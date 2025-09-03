@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -45,6 +45,8 @@ import {
   SYSTEM_TYPES,
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
+import { suggestTonerForHPPrinter } from "@/ai/flows/suggest-toner";
+import { Loader2, Wand2 } from "lucide-react";
 
 type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
@@ -57,6 +59,7 @@ interface EditAssetDialogProps {
 export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialogProps) {
   const { updateAsset } = useAssets();
   const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -89,6 +92,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
 
   const category = form.watch("category");
+  const manufacturer = form.watch("manufacturer");
+  const modelNumber = form.watch("modelNumber");
 
   function onSubmit(data: AssetFormValues) {
     if (!asset) return;
@@ -102,6 +107,46 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       description: `${data.machineName} has been updated.`,
     });
     onOpenChange(false);
+  }
+  
+  const handleTonerSuggestion = () => {
+    if (!modelNumber) {
+        toast({
+            variant: "destructive",
+            title: "Missing Model Number",
+            description: "Please enter a model number to get a toner suggestion.",
+        });
+        return;
+    }
+    startTransition(async () => {
+        try {
+            const result = await suggestTonerForHPPrinter({ modelNumber });
+            if (result.suggestedToner) {
+                const currentNotes = form.getValues("notes");
+                const newNotes = currentNotes 
+                    ? `${currentNotes}\nSuggested Toner: ${result.suggestedToner}`
+                    : `Suggested Toner: ${result.suggestedToner}`;
+                form.setValue("notes", newNotes, { shouldValidate: true });
+                toast({
+                    title: "Toner Suggestion Added",
+                    description: "Toner suggestion has been added to the notes.",
+                });
+            } else {
+                 toast({
+                    variant: "destructive",
+                    title: "No Suggestion Found",
+                    description: "Could not find a toner suggestion for this model.",
+                });
+            }
+        } catch (error) {
+            console.error("AI suggestion failed:", error);
+            toast({
+                variant: "destructive",
+                title: "AI Suggestion Error",
+                description: "Could not get a toner suggestion from AI.",
+            });
+        }
+    })
   }
 
   return (
@@ -239,12 +284,21 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                   <FormItem>
                     <FormLabel>Model Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Latitude 5420" {...field} />
+                      <Input placeholder="e.g., LaserJet Pro M404dn" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              
+              {category === 'printers' && manufacturer === 'HP' && (
+                <div className="md:col-span-2">
+                    <Button type="button" variant="outline" size="sm" onClick={handleTonerSuggestion} disabled={isPending}>
+                        {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
+                        Suggest Toner
+                    </Button>
+                </div>
+              )}
 
               <FormField
                 control={form.control}
