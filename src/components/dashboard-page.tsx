@@ -2,13 +2,14 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Download, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
+import { AssetDetailsDialog } from "@/components/asset-details-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
 import { useAssets } from "@/contexts/assets-context";
@@ -23,6 +24,7 @@ import { Skeleton } from "./ui/skeleton";
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
+  const [isDetailsAssetOpen, setDetailsAssetOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const { assets } = useAssets();
   const { toast } = useToast();
@@ -90,12 +92,18 @@ export default function DashboardPage() {
     setEditAssetOpen(true);
   }
 
+  const handleInfo = (asset: Asset) => {
+    setSelectedAsset(asset);
+    setDetailsAssetOpen(true);
+  }
+
   const filteredAssets = useMemo(() => {
     return assets.filter(asset => {
       const searchMatch = !searchQuery || 
         asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase()));
+        (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (asset.userId && asset.userId.toLowerCase().includes(searchQuery.toLowerCase()));
       
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
@@ -221,12 +229,13 @@ export default function DashboardPage() {
                   </div>
                </div>
             ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} />
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo}/>
             )}
           </main>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} />
         {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />}
+        {selectedAsset && <AssetDetailsDialog asset={selectedAsset} isOpen={isDetailsAssetOpen} onOpenChange={setDetailsAssetOpen} />}
       </div>
     </SidebarProvider>
   );

@@ -13,6 +13,7 @@ export const AssetSchema = z.object({
   serialNumber: z.string().optional().default(''),
   type: z.string().optional().default(''),
   assignedUser: z.string().optional().default(''),
+  userId: z.string().regex(/^\d*$/, "User ID must be a number.").optional().default(''),
   userType: z.enum(USER_TYPES).optional(),
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUSES),

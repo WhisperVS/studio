@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -74,6 +74,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
       serialNumber: "",
       type: "",
       assignedUser: "",
+      userId: "",
       userType: "local",
       owner: "Group Administrators",
       status: "In Use",
@@ -84,7 +85,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
   const category = form.watch("category");
   const notes = form.watch("notes");
 
-  function onSubmit(data: AssetFormValues) {
+  const onSubmit = useCallback((data: AssetFormValues) => {
     addAsset({
       ...data,
       id: crypto.randomUUID(),
@@ -95,9 +96,9 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
     });
     form.reset();
     onOpenChange(false);
-  }
+  }, [addAsset, form, onOpenChange, toast]);
 
-  const handleSuggestion = () => {
+  const handleSuggestion = useCallback(() => {
     startTransition(async () => {
       try {
         const result = await suggestAssetDetailsFromNotes({ notes });
@@ -123,7 +124,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
         });
       }
     });
-  };
+  }, [notes, form, toast]);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
@@ -339,9 +340,22 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                   />
                   <FormField
                     control={form.control}
+                    name="userId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>User ID</FormLabel>
+                        <FormControl>
+                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
                     name="userType"
                     render={({ field }) => (
-                      <FormItem className="space-y-3">
+                      <FormItem className="space-y-3 pt-2">
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}

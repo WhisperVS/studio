@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -61,12 +61,34 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
+    defaultValues: {
+      machineName: '',
+      category: 'laptops',
+      systemOS: '',
+      location: 'Schaumburg IL',
+      manufacturer: '',
+      partNumber: '',
+      modelNumber: '',
+      serialNumber: '',
+      type: '',
+      assignedUser: '',
+      userId: '',
+      userType: 'local',
+      owner: 'Group Administrators',
+      status: 'In Use',
+      notes: '',
+      purchaseDate: undefined,
+      warrantyExpirationDate: undefined
+    }
   });
 
   useEffect(() => {
     if (asset) {
       form.reset({
         ...asset,
+        assignedUser: asset.assignedUser || '',
+        userId: asset.userId || '',
+        notes: asset.notes || '',
         owner: "Group Administrators"
       });
     }
@@ -75,7 +97,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
   const category = form.watch("category");
 
-  function onSubmit(data: AssetFormValues) {
+  const onSubmit = useCallback((data: AssetFormValues) => {
     if (!asset) return;
 
     updateAsset(asset.id, {
@@ -87,7 +109,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       description: `${data.machineName} has been updated.`,
     });
     onOpenChange(false);
-  }
+  }, [asset, updateAsset, toast, onOpenChange]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -296,11 +318,24 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                       </FormItem>
                     )}
                   />
+                   <FormField
+                    control={form.control}
+                    name="userId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>User ID</FormLabel>
+                        <FormControl>
+                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={form.control}
                     name="userType"
                     render={({ field }) => (
-                      <FormItem className="space-y-3">
+                      <FormItem className="space-y-3 pt-2">
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
@@ -395,4 +430,3 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
     </Dialog>
   );
 }
-

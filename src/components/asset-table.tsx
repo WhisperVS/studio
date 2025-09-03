@@ -14,9 +14,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Trash2, Pencil } from "lucide-react";
+import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { useAssets } from "@/contexts/assets-context";
@@ -27,9 +28,10 @@ type SortKey = keyof Asset | '';
 interface AssetTableProps {
     assets: Asset[];
     onEdit: (asset: Asset) => void;
+    onInfo: (asset: Asset) => void;
 }
 
-export function AssetTable({ assets, onEdit }: AssetTableProps) {
+export function AssetTable({ assets, onEdit, onInfo }: AssetTableProps) {
   const { deleteAsset } = useAssets();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -126,10 +128,15 @@ export function AssetTable({ assets, onEdit }: AssetTableProps) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => onInfo(asset)}>
+                        <Info className="mr-2 h-4 w-4" />
+                        <span>Info</span>
+                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onEdit(asset)}>
                       <Pencil className="mr-2 h-4 w-4" />
                       <span>Edit</span>
                     </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="text-destructive focus:text-destructive focus:bg-destructive/10"
                       onClick={() => deleteAsset(asset.id)}
