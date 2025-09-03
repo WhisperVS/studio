@@ -216,7 +216,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
-                        </Trigger>
+                        </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {LOCATIONS.map((loc) => (

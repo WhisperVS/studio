@@ -182,7 +182,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
-                        </Trigger>
+                        </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {LOCATIONS.map((loc) => (
