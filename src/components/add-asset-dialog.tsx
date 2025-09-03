@@ -1,16 +1,16 @@
+
 "use client";
 
-import { useState, useTransition } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { useAssets } from "@/contexts/assets-context";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,7 +37,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
-import { AssetFormSchema } from "@/lib/types";
+import { Asset, AssetFormSchema } from "@/lib/types";
 import {
   CATEGORIES,
   LOCATIONS,
@@ -46,8 +46,8 @@ import {
   STATUSES,
   SYSTEM_TYPES,
 } from "@/lib/constants";
-import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 import { useToast } from "@/hooks/use-toast";
+import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 
 type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
@@ -59,7 +59,7 @@ interface AddAssetDialogProps {
 export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
   const { addAsset } = useAssets();
   const { toast } = useToast();
-  const [isPending, startTransition] = useTransition();
+  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -83,48 +83,57 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
   });
 
   const category = form.watch("category");
-  const notes = form.watch("notes");
 
   function onSubmit(data: AssetFormValues) {
-    addAsset({
+    const newAsset: Asset = {
       ...data,
       id: crypto.randomUUID(),
-    });
+      owner: "Group Administrators"
+    };
+    addAsset(newAsset);
     toast({
       title: "Asset Added",
       description: `${data.machineName} has been added to the inventory.`,
     });
-    form.reset();
     onOpenChange(false);
+    form.reset();
   }
 
-  const handleSuggestion = () => {
-    startTransition(async () => {
-      try {
-        const result = await suggestAssetDetailsFromNotes({ notes });
-        if (result.suggestedCategory) {
-          const validCategory = CATEGORIES.find(c => c.toLowerCase() === result.suggestedCategory?.toLowerCase())
-          if (validCategory) {
-            form.setValue("category", validCategory, { shouldValidate: true });
-          }
-        }
-        if (result.suggestedManufacturer) {
-          form.setValue("manufacturer", result.suggestedManufacturer, { shouldValidate: true });
-        }
-        toast({
-          title: "Suggestions applied",
-          description: "AI suggestions have been filled in.",
-        });
-      } catch (error) {
-        console.error("AI suggestion failed:", error);
-        toast({
-          variant: "destructive",
-          title: "AI Suggestion Error",
-          description: "Could not get suggestions from AI.",
-        });
+  const handleSuggestion = useCallback(async () => {
+    const notes = form.getValues("notes");
+    if (!notes) {
+      toast({
+        variant: "destructive",
+        title: "No Notes",
+        description: "Please enter some notes to get AI suggestions.",
+      });
+      return;
+    }
+    setIsSuggesting(true);
+    try {
+      const result = await suggestAssetDetailsFromNotes({ notes });
+      if (result.suggestedCategory) {
+        form.setValue("category", result.suggestedCategory as any, { shouldValidate: true });
       }
-    });
-  };
+      if (result.suggestedManufacturer) {
+        form.setValue("manufacturer", result.suggestedManufacturer, { shouldValidate: true });
+      }
+      toast({
+        title: "AI Suggestions Applied",
+        description: "AI suggestions have been filled in.",
+      });
+    } catch (error) {
+      console.error("AI suggestion failed:", error);
+      toast({
+        variant: "destructive",
+        title: "AI Suggestion Failed",
+        description: "Could not get suggestions. Please try again.",
+      });
+    } finally {
+      setIsSuggesting(false);
+    }
+  }, [form, toast]);
+
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
@@ -137,7 +146,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
         <DialogHeader>
           <DialogTitle>Add New Asset</DialogTitle>
           <DialogDescription>
-            Fill in the details below to add a new asset to the inventory.
+            Fill in the details below to add a new asset to your inventory.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -277,7 +286,6 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 />
               )}
 
-
               <FormField
                 control={form.control}
                 name="modelNumber"
@@ -285,7 +293,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                   <FormItem>
                     <FormLabel>Model Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Latitude 5420" {...field} />
+                      <Input placeholder="e.g., LaserJet Pro M404dn" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -342,7 +350,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                   </FormItem>
                 )}
               />
-
+              
               <div className="space-y-2">
                  <FormField
                     control={form.control}
@@ -439,20 +447,23 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
-                    Use the notes to describe the asset. You can use the AI assistant to suggest a category and manufacturer.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {notes && (
-               <Button type="button" variant="outline" size="sm" onClick={handleSuggestion} disabled={isPending}>
-                {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                Suggest with AI
+            
+            <div className="flex justify-end">
+              <Button type="button" variant="outline" onClick={handleSuggestion} disabled={isSuggesting}>
+                {isSuggesting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Suggesting...
+                  </>
+                ) : (
+                  "Suggest with AI"
+                )}
               </Button>
-            )}
-
+            </div>
 
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
