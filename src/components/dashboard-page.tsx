@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo, useState } from "react";
@@ -8,6 +9,7 @@ import { Download, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
+import { AssetInfoDialog } from "@/components/asset-info-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
 import { useAssets } from "@/contexts/assets-context";
@@ -21,6 +23,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
+  const [isInfoAssetOpen, setInfoAssetOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const { assets } = useAssets();
   const { toast } = useToast();
@@ -80,6 +83,11 @@ export default function DashboardPage() {
   const handleEdit = (asset: Asset) => {
     setSelectedAsset(asset);
     setEditAssetOpen(true);
+  }
+
+  const handleInfo = (asset: Asset) => {
+    setSelectedAsset(asset);
+    setInfoAssetOpen(true);
   }
 
   const filteredAssets = useMemo(() => {
@@ -181,11 +189,12 @@ export default function DashboardPage() {
                 </div>
               </CollapsibleContent>
             </Collapsible>
-            <AssetTable assets={filteredAssets} onEdit={handleEdit} />
+            <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} />
           </main>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} />
         <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />
+        <AssetInfoDialog asset={selectedAsset} isOpen={isInfoAssetOpen} onOpenChange={setInfoAssetOpen} />
       </div>
     </SidebarProvider>
   );
