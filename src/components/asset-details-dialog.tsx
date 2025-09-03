@@ -40,7 +40,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
   const DetailItem = ({ label, value }: { label: string, value: React.ReactNode }) => (
     <div>
         <p className="text-sm font-medium text-muted-foreground">{label}</p>
-        <p className="text-base">{value || 'N/A'}</p>
+        <div className="text-base">{value || 'N/A'}</div>
     </div>
   )
 
