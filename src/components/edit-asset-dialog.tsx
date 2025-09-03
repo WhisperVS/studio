@@ -47,7 +47,8 @@ import {
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 
-type AssetFormValues = z.infer<typeof AssetFormSchema>;
+const BaseAssetFormSchema = AssetFormSchema.omit({ id: true, owner: true });
+type AssetFormValues = z.infer<typeof BaseAssetFormSchema>;
 
 interface EditAssetDialogProps {
   asset: Asset | null;
@@ -60,7 +61,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
   const { toast } = useToast();
 
   const form = useForm<AssetFormValues>({
-    resolver: zodResolver(AssetFormSchema),
+    resolver: zodResolver(BaseAssetFormSchema),
     defaultValues: {
       machineName: "",
       category: "laptops",
@@ -73,13 +74,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       type: "",
       toner: "",
       assignedUser: "",
-      assignedUserId: "",
       userType: "local",
-      owner: "Group Administrators",
       status: "In Use",
       notes: "",
       purchaseDate: undefined,
       warrantyExpirationDate: undefined,
+      assignedUserId: "",
     },
   });
 
@@ -87,9 +87,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
     if (asset) {
       form.reset({
         ...asset,
-        owner: "Group Administrators",
         assignedUser: asset.assignedUser || '',
-        assignedUserId: asset.assignedUserId || '',
         partNumber: asset.partNumber || '',
         modelNumber: asset.modelNumber || '',
         serialNumber: asset.serialNumber || '',
@@ -97,6 +95,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
         toner: asset.toner || '',
         notes: asset.notes || '',
         type: asset.type || '',
+        assignedUserId: asset.assignedUserId || '',
       });
     }
   }, [asset, form]);
@@ -379,21 +378,17 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                   <FormItem>
                     <FormLabel>User ID</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 12345" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-               <FormField
-                control={form.control}
-                name="owner"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Owner</FormLabel>
-                    <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
+                       <Input
+                        type="number"
+                        placeholder="e.g., 12345"
+                        {...field}
+                         onChange={(e) => {
+                          const value = e.target.value;
+                          if (value === '' || /^[0-9\b]+$/.test(value)) {
+                             field.onChange(value);
+                          }
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -49,7 +49,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 
-type AssetFormValues = z.infer<typeof AssetFormSchema>;
+const BaseAssetFormSchema = AssetFormSchema.omit({ id: true, owner: true });
+type AssetFormValues = z.infer<typeof BaseAssetFormSchema>;
 
 interface AddAssetDialogProps {
   isOpen: boolean;
@@ -62,7 +63,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
   const [isSuggesting, setIsSuggesting] = useState(false);
 
   const form = useForm<AssetFormValues>({
-    resolver: zodResolver(AssetFormSchema),
+    resolver: zodResolver(BaseAssetFormSchema),
     defaultValues: {
       machineName: "",
       category: "laptops",
@@ -75,13 +76,12 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
       type: "",
       toner: "",
       assignedUser: "",
-      assignedUserId: "",
       userType: "local",
-      owner: "Group Administrators",
       status: "In Use",
       notes: "",
       purchaseDate: undefined,
       warrantyExpirationDate: undefined,
+      assignedUserId: "",
     },
   });
 
@@ -219,7 +219,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
-                        </Trigger>
+                        </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {LOCATIONS.map((loc) => (
@@ -405,21 +405,18 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                   <FormItem>
                     <FormLabel>User ID</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 12345" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-               <FormField
-                control={form.control}
-                name="owner"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Owner</FormLabel>
-                    <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
+                      <Input
+                        type="number"
+                        placeholder="e.g., 12345"
+                        {...field}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          // Allow empty string or numbers
+                          if (value === '' || /^[0-9\b]+$/.test(value)) {
+                             field.onChange(value);
+                          }
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

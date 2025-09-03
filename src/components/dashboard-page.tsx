@@ -2,10 +2,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
+import { Download, Info, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
@@ -23,7 +23,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
-  const [isInfoAssetOpen, setInfoAssetOpen] = useState(false);
+  const [isInfoOpen, setInfoOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const { assets } = useAssets();
   const { toast } = useToast();
@@ -56,6 +56,10 @@ export default function DashboardPage() {
         headers.map(header => {
             const value = (row as any)[header];
             if (value === null || value === undefined) return '';
+            // Format dates to ISO string
+            if (value instanceof Date) {
+              return value.toISOString();
+            }
             const stringValue = String(value);
             return `"${stringValue.replace(/"/g, '""')}"`;
         }).join(',')
@@ -87,7 +91,7 @@ export default function DashboardPage() {
 
   const handleInfo = (asset: Asset) => {
     setSelectedAsset(asset);
-    setInfoAssetOpen(true);
+    setInfoOpen(true);
   }
 
   const filteredAssets = useMemo(() => {
@@ -195,7 +199,7 @@ export default function DashboardPage() {
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} />
         <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />
-        <AssetInfoDialog asset={selectedAsset} isOpen={isInfoAssetOpen} onOpenChange={setInfoAssetOpen} />
+        <AssetInfoDialog asset={selectedAsset} isOpen={isInfoOpen} onOpenChange={setInfoOpen} />
       </div>
     </SidebarProvider>
   );

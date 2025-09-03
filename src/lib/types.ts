@@ -1,3 +1,4 @@
+
 import { z } from 'zod';
 import { CATEGORIES, LOCATIONS, STATUSES, USER_TYPES } from './constants';
 
@@ -14,7 +15,7 @@ export const AssetSchema = z.object({
   type: z.string().optional().default(''),
   toner: z.string().optional().default(''),
   assignedUser: z.string().optional().default(''),
-  assignedUserId: z.string().regex(/^[0-9]*$/, { message: 'User ID must be a number.' }).optional().default(''),
+  assignedUserId: z.string().optional().default(''),
   userType: z.enum(USER_TYPES).optional(),
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUSES),
@@ -25,6 +26,6 @@ export const AssetSchema = z.object({
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).extend({
-  owner: z.string()
+export const AssetFormSchema = AssetSchema.omit({ id: true }).extend({
+  owner: z.string(),
 });

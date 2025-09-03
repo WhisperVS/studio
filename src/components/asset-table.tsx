@@ -14,6 +14,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
@@ -143,14 +144,15 @@ export function AssetTable({ assets, onEdit, onInfo }: AssetTableProps) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => onInfo(asset)}>
-                        <Info className="mr-2 h-4 w-4" />
-                        <span>Info</span>
+                     <DropdownMenuItem onClick={() => onInfo(asset)}>
+                      <Info className="mr-2 h-4 w-4" />
+                      <span>Info</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onEdit(asset)}>
                       <Pencil className="mr-2 h-4 w-4" />
                       <span>Edit</span>
                     </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="text-destructive focus:text-destructive focus:bg-destructive/10"
                       onClick={() => deleteAsset(asset.id)}
