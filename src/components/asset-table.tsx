@@ -85,7 +85,14 @@ export function AssetTable({ assets, onEdit }: AssetTableProps) {
   }
 
   if (!isClient) {
-    return null; // Render nothing on the server
+    return (
+      <div className="flex flex-col items-center justify-center text-center p-12 border-2 border-dashed rounded-lg">
+          <h3 className="text-xl font-semibold tracking-tight font-headline">Loading Assets...</h3>
+          <p className="text-muted-foreground mt-2">
+              Please wait while we load your inventory.
+          </p>
+      </div>
+    );
   }
 
   if (assets.length === 0) {

@@ -12,6 +12,7 @@ export const AssetSchema = z.object({
   modelNumber: z.string().optional().default(''),
   serialNumber: z.string().optional().default(''),
   type: z.string().optional().default(''),
+  toner: z.string().optional().default(''),
   assignedUser: z.string().optional().default(''),
   userType: z.enum(USER_TYPES).optional(),
   owner: z.literal('Group Administrators'),

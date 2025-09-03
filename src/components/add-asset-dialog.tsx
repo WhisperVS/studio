@@ -73,6 +73,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
       modelNumber: "",
       serialNumber: "",
       type: "",
+      toner: "",
       assignedUser: "",
       userType: "local",
       owner: "Group Administrators",
@@ -206,7 +207,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
-                        </SelectTrigger>
+                        </Trigger>
                       </FormControl>
                       <SelectContent>
                         {LOCATIONS.map((loc) => (
@@ -244,7 +245,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 />
               )}
 
-              {category !== 'printers' && (
+              {category !== 'printers' && category !== 'networks' && (
                 <FormField
                   control={form.control}
                   name="systemOS"
@@ -259,6 +260,23 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                   )}
                 />
               )}
+              
+              {category === 'printers' && (
+                <FormField
+                  control={form.control}
+                  name="toner"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Toner</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., HP 414A" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
 
               <FormField
                 control={form.control}
