@@ -21,12 +21,17 @@ function ThemeProvider({
   defaultTheme?: Theme;
   storageKey?: string;
 }) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-
-  useEffect(() => {
-    const storedTheme = (localStorage.getItem(storageKey) as Theme) || defaultTheme;
-    setTheme(storedTheme);
-  }, [storageKey, defaultTheme]);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') {
+      return defaultTheme;
+    }
+    try {
+      return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+    } catch (e) {
+      console.warn(e);
+      return defaultTheme;
+    }
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -44,8 +49,12 @@ function ThemeProvider({
   const value = {
     theme,
     setTheme: (newTheme: Theme) => {
-      localStorage.setItem(storageKey, newTheme);
-      setTheme(newTheme);
+      try {
+        localStorage.setItem(storageKey, newTheme);
+        setTheme(newTheme);
+      } catch (e) {
+        console.warn(e);
+      }
     },
   };
 
@@ -66,7 +75,7 @@ export const useTheme = () => {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="assetzen-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="gaim-theme">
       <AssetProvider>{children}</AssetProvider>
     </ThemeProvider>
   );

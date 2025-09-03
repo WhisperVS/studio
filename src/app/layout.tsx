@@ -4,8 +4,8 @@ import { Providers } from '@/components/providers';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'AssetZen',
-  description: 'Group Administrator Inventory Manager',
+  title: 'G.A.I.M.',
+  description: 'Group Administrators Items Manager',
 };
 
 export default function RootLayout({

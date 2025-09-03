@@ -66,7 +66,7 @@ export default function DashboardPage() {
     }
     const url = URL.createObjectURL(blob);
     link.href = url;
-    link.setAttribute('download', `assetzen_inventory_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `gaim_inventory_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

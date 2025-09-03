@@ -10,7 +10,7 @@ export function Logo() {
     <div className="flex items-center gap-2 p-2 justify-center">
       <Boxes className="h-8 w-8 text-primary" />
       <span className="font-bold text-xl font-headline group-data-[collapsible=icon]:hidden">
-        AssetZen
+        G.A.I.M.
       </span>
     </div>
   );

@@ -69,7 +69,7 @@ export function AssetTable({ assets, onEdit }: AssetTableProps) {
         return 'default';
       case 'Spare':
         return 'secondary';
-      case 'In Repare':
+      case 'In Repair':
         return 'destructive';
       case 'For Parts':
         return 'outline';
