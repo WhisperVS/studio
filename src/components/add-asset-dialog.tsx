@@ -80,12 +80,14 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
       owner: "Group Administrators",
       status: "In Use",
       notes: "",
+      purchaseDate: undefined,
+      warrantyExpirationDate: undefined,
     },
   });
 
   const category = form.watch("category");
 
-  function onSubmit(data: AssetFormValues) {
+  const onSubmit = (data: AssetFormValues) => {
     const newAsset: Asset = {
       ...data,
       id: crypto.randomUUID(),
@@ -98,7 +100,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
     });
     onOpenChange(false);
     form.reset();
-  }
+  };
 
   const handleSuggestion = useCallback(async () => {
     const notes = form.getValues("notes");

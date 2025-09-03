@@ -78,6 +78,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       owner: "Group Administrators",
       status: "In Use",
       notes: "",
+      purchaseDate: undefined,
+      warrantyExpirationDate: undefined,
     },
   });
 
@@ -98,7 +100,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       });
     }
   }, [asset, form]);
-
 
   const category = form.watch("category");
 
