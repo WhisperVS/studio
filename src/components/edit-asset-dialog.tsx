@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Loader2, Sparkles } from "lucide-react";
 
 import { useAssets } from "@/contexts/assets-context";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,7 +35,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
-import { AssetFormSchema } from "@/lib/types";
+import { Asset, AssetFormSchema } from "@/lib/types";
 import {
   CATEGORIES,
   LOCATIONS,
@@ -46,20 +44,19 @@ import {
   STATUSES,
   SYSTEM_TYPES,
 } from "@/lib/constants";
-import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 import { useToast } from "@/hooks/use-toast";
 
 type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
-interface AddAssetDialogProps {
+interface EditAssetDialogProps {
+  asset: Asset | null;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
 }
 
-export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
-  const { addAsset } = useAssets();
+export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialogProps) {
+  const { updateAsset } = useAssets();
   const { toast } = useToast();
-  const [isPending, startTransition] = useTransition();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -81,62 +78,39 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
     },
   });
 
+  useEffect(() => {
+    if (asset) {
+      form.reset({
+        ...asset,
+        owner: "Group Administrators"
+      });
+    }
+  }, [asset, form]);
+
+
   const category = form.watch("category");
-  const notes = form.watch("notes");
 
   function onSubmit(data: AssetFormValues) {
-    addAsset({
-      ...data,
-      id: crypto.randomUUID(),
+    if (!asset) return;
+
+    updateAsset(asset.id, {
+        ...asset,
+        ...data,
     });
     toast({
-      title: "Asset Added",
-      description: `${data.machineName} has been added to the inventory.`,
+      title: "Asset Updated",
+      description: `${data.machineName} has been updated.`,
     });
-    form.reset();
     onOpenChange(false);
   }
 
-  const handleSuggestion = () => {
-    startTransition(async () => {
-      try {
-        const result = await suggestAssetDetailsFromNotes({ notes });
-        if (result.suggestedCategory) {
-          const validCategory = CATEGORIES.find(c => c.toLowerCase() === result.suggestedCategory?.toLowerCase())
-          if (validCategory) {
-            form.setValue("category", validCategory, { shouldValidate: true });
-          }
-        }
-        if (result.suggestedManufacturer) {
-          form.setValue("manufacturer", result.suggestedManufacturer, { shouldValidate: true });
-        }
-        toast({
-          title: "Suggestions applied",
-          description: "AI suggestions have been filled in.",
-        });
-      } catch (error) {
-        console.error("AI suggestion failed:", error);
-        toast({
-          variant: "destructive",
-          title: "AI Suggestion Error",
-          description: "Could not get suggestions from AI.",
-        });
-      }
-    });
-  };
-
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => {
-      if (!open) {
-        form.reset();
-      }
-      onOpenChange(open);
-    }}>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Add New Asset</DialogTitle>
+          <DialogTitle>Edit Asset</DialogTitle>
           <DialogDescription>
-            Fill in the details below to add a new asset to the inventory.
+            Update the details for "{asset?.machineName}".
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -162,7 +136,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Category</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a category" />
@@ -202,7 +176,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Location</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
@@ -306,7 +280,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Status</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a status" />
@@ -419,26 +393,16 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
-                    Use the notes to describe the asset. You can use the AI assistant to suggest a category and manufacturer.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {notes && (
-               <Button type="button" variant="outline" size="sm" onClick={handleSuggestion} disabled={isPending}>
-                {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                Suggest with AI
-              </Button>
-            )}
-
 
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
                 Cancel
               </Button>
-              <Button type="submit">Add Asset</Button>
+              <Button type="submit">Save Changes</Button>
             </DialogFooter>
           </form>
         </Form>

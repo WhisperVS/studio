@@ -24,7 +24,12 @@ import { format } from "date-fns";
 
 type SortKey = keyof Asset | '';
 
-export function AssetTable({ assets }: { assets: Asset[] }) {
+interface AssetTableProps {
+    assets: Asset[];
+    onEdit: (asset: Asset) => void;
+}
+
+export function AssetTable({ assets, onEdit }: AssetTableProps) {
   const { deleteAsset } = useAssets();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -79,7 +84,7 @@ export function AssetTable({ assets }: { assets: Asset[] }) {
         <div className="flex flex-col items-center justify-center text-center p-12 border-2 border-dashed rounded-lg">
             <h3 className="text-xl font-semibold tracking-tight font-headline">No Assets Found</h3>
             <p className="text-muted-foreground mt-2">
-                Get started by adding your first asset to the inventory.
+                Get started by adding your first asset to the inventory or try a different search.
             </p>
         </div>
     )
@@ -121,7 +126,7 @@ export function AssetTable({ assets }: { assets: Asset[] }) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem disabled>
+                    <DropdownMenuItem onClick={() => onEdit(asset)}>
                       <Pencil className="mr-2 h-4 w-4" />
                       <span>Edit</span>
                     </DropdownMenuItem>
