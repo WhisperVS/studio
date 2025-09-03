@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, PlusCircle, Search } from "lucide-react";
+import { Download, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
@@ -13,6 +13,10 @@ import { Logo } from "@/components/logo";
 import { useAssets } from "@/contexts/assets-context";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { CATEGORIES, LOCATIONS, STATUSES } from "@/lib/constants";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
@@ -21,6 +25,17 @@ export default function DashboardPage() {
   const { assets } = useAssets();
   const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({
+    category: 'all',
+    status: 'all',
+    location: 'all',
+  });
+  const isMobile = useIsMobile();
+  const [isFilterPanelOpen, setFilterPanelOpen] = useState(!isMobile);
+
+  const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
+    setFilters(prev => ({...prev, [filterName]: value}));
+  }
 
   const handleExport = () => {
     if (assets.length === 0) {
@@ -68,13 +83,19 @@ export default function DashboardPage() {
   }
 
   const filteredAssets = useMemo(() => {
-    if (!searchQuery) return assets;
-    return assets.filter(asset =>
-      asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.assignedUser?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [assets, searchQuery]);
+    return assets.filter(asset => {
+      const searchMatch = !searchQuery || 
+        asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.assignedUser?.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const categoryMatch = filters.category === 'all' || asset.category === filters.category;
+      const statusMatch = filters.status === 'all' || asset.status === filters.status;
+      const locationMatch = filters.location === 'all' || asset.location === filters.location;
+
+      return searchMatch && categoryMatch && statusMatch && locationMatch;
+    });
+  }, [assets, searchQuery, filters]);
 
   return (
     <SidebarProvider>
@@ -98,29 +119,68 @@ export default function DashboardPage() {
                 Inventory Dashboard
               </h1>
             </div>
-             <div className="flex items-center gap-2 flex-1 max-w-sm">
-               <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search assets..."
-                  className="pl-10"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-               </div>
-            </div>
-            <div className="flex items-center gap-2">
+             <div className="flex items-center gap-2 flex-1 justify-end">
               <Button variant="outline" size="sm" onClick={handleExport}>
                 <Download className="mr-2 h-4 w-4" />
-                Export to CSV
+                <span className="hidden sm:inline">Export to CSV</span>
               </Button>
               <Button size="sm" onClick={() => setAddAssetOpen(true)}>
                 <PlusCircle className="mr-2 h-4 w-4" />
-                Add Asset
+                <span className="hidden sm:inline">Add Asset</span>
               </Button>
             </div>
           </header>
           <main className="p-4">
+            <Collapsible open={isFilterPanelOpen} onOpenChange={setFilterPanelOpen} className="mb-4">
+              <div className="flex items-center justify-between gap-4">
+                <div className="relative w-full max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input 
+                    placeholder="Search assets..."
+                    className="pl-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <SlidersHorizontal className="mr-2 h-4 w-4" />
+                    Filters
+                  </Button>
+                </CollapsibleTrigger>
+              </div>
+              <CollapsibleContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 p-4 border rounded-lg">
+                    <Select value={filters.category} onValueChange={handleFilterChange('category')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Categories</SelectItem>
+                        {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                    <Select value={filters.status} onValueChange={handleFilterChange('status')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Statuses</SelectItem>
+                        {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                    <Select value={filters.location} onValueChange={handleFilterChange('location')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Locations</SelectItem>
+                        {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
             <AssetTable assets={filteredAssets} onEdit={handleEdit} />
           </main>
         </SidebarInset>
