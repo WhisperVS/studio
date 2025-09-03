@@ -20,14 +20,14 @@ interface AssetInfoDialogProps {
 }
 
 const DetailItem = ({ label, value }: { label: string; value?: string | null | Date }) => {
-  if (!value) return null;
+  if (value === null || value === undefined || value === '') return null;
   
   const displayValue = value instanceof Date ? format(new Date(value), 'PPP') : value;
 
   return (
     <div>
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
-      <p className="text-base">{displayValue}</p>
+      <p className="text-base capitalize">{displayValue}</p>
     </div>
   );
 };

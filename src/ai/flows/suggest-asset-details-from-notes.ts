@@ -39,7 +39,7 @@ const prompt = ai.definePrompt({
   name: 'suggestAssetDetailsPrompt',
   input: {schema: SuggestAssetDetailsInputSchema},
   output: {schema: SuggestAssetDetailsOutputSchema},
-  prompt: `Based on the following notes for an asset, suggest a category and manufacturer for the asset. If you cannot determine the category or manufacturer, leave those fields blank.
+  prompt: `Based on the following notes for an asset, suggest a category and manufacturer for the asset. Do not suggest a toner value. If you cannot determine the category or manufacturer, leave those fields blank.
 
 Notes: {{{notes}}}
 
