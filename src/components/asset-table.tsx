@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -33,6 +34,11 @@ export function AssetTable({ assets, onEdit }: AssetTableProps) {
   const { deleteAsset } = useAssets();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const sortedAssets = useMemo(() => {
     if (!sortKey) return assets;
@@ -78,6 +84,9 @@ export function AssetTable({ assets, onEdit }: AssetTableProps) {
     }
   }
 
+  if (!isClient) {
+    return null; // Render nothing on the server
+  }
 
   if (assets.length === 0) {
     return (
