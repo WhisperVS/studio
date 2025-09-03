@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { CATEGORIES, LOCATIONS, STATUSES } from "@/lib/constants";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Skeleton } from "./ui/skeleton";
 
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
@@ -32,6 +34,12 @@ export default function DashboardPage() {
   });
   const isMobile = useIsMobile();
   const [isFilterPanelOpen, setFilterPanelOpen] = useState(!isMobile);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
     setFilters(prev => ({...prev, [filterName]: value}));
@@ -87,7 +95,7 @@ export default function DashboardPage() {
       const searchMatch = !searchQuery || 
         asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        asset.assignedUser?.toLowerCase().includes(searchQuery.toLowerCase());
+        (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase()));
       
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
@@ -181,11 +189,44 @@ export default function DashboardPage() {
                 </div>
               </CollapsibleContent>
             </Collapsible>
-            <AssetTable assets={filteredAssets} onEdit={handleEdit} />
+            {!isClient ? (
+               <div className="rounded-lg border overflow-hidden">
+                  <div className="relative w-full overflow-auto">
+                    <table className="w-full caption-bottom text-sm">
+                      <thead className="[&_tr]:border-b">
+                        <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
+                        </tr>
+                      </thead>
+                      <tbody className="[&_tr:last-child]:border-0">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                            <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+               </div>
+            ) : (
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} />
+            )}
           </main>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} />
-        <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />
+        {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />}
       </div>
     </SidebarProvider>
   );

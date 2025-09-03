@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect } from "react";
@@ -60,22 +61,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
-    defaultValues: {
-      machineName: "",
-      category: "laptops",
-      systemOS: "",
-      location: "Schaumburg IL",
-      manufacturer: "",
-      partNumber: "",
-      modelNumber: "",
-      serialNumber: "",
-      type: "",
-      assignedUser: "",
-      userType: "local",
-      owner: "Group Administrators",
-      status: "In Use",
-      notes: "",
-    },
   });
 
   useEffect(() => {
@@ -85,7 +70,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
         owner: "Group Administrators"
       });
     }
-  }, [asset, form]);
+  }, [asset, form, isOpen]);
 
 
   const category = form.watch("category");
@@ -410,3 +395,4 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
     </Dialog>
   );
 }
+
