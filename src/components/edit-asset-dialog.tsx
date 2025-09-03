@@ -85,7 +85,16 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
     if (asset) {
       form.reset({
         ...asset,
-        owner: "Group Administrators"
+        owner: "Group Administrators",
+        assignedUser: asset.assignedUser || '',
+        assignedUserId: asset.assignedUserId || '',
+        partNumber: asset.partNumber || '',
+        modelNumber: asset.modelNumber || '',
+        serialNumber: asset.serialNumber || '',
+        systemOS: asset.systemOS || '',
+        toner: asset.toner || '',
+        notes: asset.notes || '',
+        type: asset.type || '',
       });
     }
   }, [asset, form]);
@@ -183,7 +192,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
-                        </SelectTrigger>
+                        </Trigger>
                       </FormControl>
                       <SelectContent>
                         {LOCATIONS.map((loc) => (
