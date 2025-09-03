@@ -73,6 +73,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
       type: "",
       toner: "",
       assignedUser: "",
+      assignedUserId: "",
       userType: "local",
       owner: "Group Administrators",
       status: "In Use",
@@ -360,6 +361,20 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                     )}
                   />
               </div>
+
+               <FormField
+                control={form.control}
+                name="assignedUserId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>User ID</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 12345" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
                <FormField
                 control={form.control}

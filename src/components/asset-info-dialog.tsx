@@ -55,6 +55,7 @@ export function AssetInfoDialog({ asset, isOpen, onOpenChange }: AssetInfoDialog
           <DetailItem label="Serial Number" value={asset.serialNumber} />
           <DetailItem label="Status" value={asset.status} />
           <DetailItem label="Assigned User" value={asset.assignedUser} />
+          <DetailItem label="User ID" value={asset.assignedUserId} />
           <DetailItem label="User Type" value={asset.userType} />
           <DetailItem label="System OS" value={asset.systemOS} />
           <DetailItem label="Type" value={asset.type} />

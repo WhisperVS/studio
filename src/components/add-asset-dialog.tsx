@@ -75,6 +75,7 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
       type: "",
       toner: "",
       assignedUser: "",
+      assignedUserId: "",
       userType: "local",
       owner: "Group Administrators",
       status: "In Use",
@@ -394,6 +395,20 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                     )}
                   />
               </div>
+
+               <FormField
+                control={form.control}
+                name="assignedUserId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>User ID</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 12345" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
                <FormField
                 control={form.control}
