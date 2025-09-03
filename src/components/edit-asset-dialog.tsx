@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -45,8 +45,6 @@ import {
   SYSTEM_TYPES,
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
-import { suggestTonerForHPPrinter } from "@/ai/flows/suggest-toner";
-import { Loader2, Wand2 } from "lucide-react";
 
 type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
@@ -59,7 +57,6 @@ interface EditAssetDialogProps {
 export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialogProps) {
   const { updateAsset } = useAssets();
   const { toast } = useToast();
-  const [isPending, startTransition] = useTransition();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -92,8 +89,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
 
   const category = form.watch("category");
-  const manufacturer = form.watch("manufacturer");
-  const modelNumber = form.watch("modelNumber");
 
   function onSubmit(data: AssetFormValues) {
     if (!asset) return;
@@ -109,46 +104,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
     onOpenChange(false);
   }
   
-  const handleTonerSuggestion = () => {
-    if (!modelNumber) {
-        toast({
-            variant: "destructive",
-            title: "Missing Model Number",
-            description: "Please enter a model number to get a toner suggestion.",
-        });
-        return;
-    }
-    startTransition(async () => {
-        try {
-            const result = await suggestTonerForHPPrinter({ modelNumber });
-            if (result.suggestedToner) {
-                const currentNotes = form.getValues("notes");
-                const newNotes = currentNotes 
-                    ? `${currentNotes}\nSuggested Toner: ${result.suggestedToner}`
-                    : `Suggested Toner: ${result.suggestedToner}`;
-                form.setValue("notes", newNotes, { shouldValidate: true });
-                toast({
-                    title: "Toner Suggestion Added",
-                    description: "Toner suggestion has been added to the notes.",
-                });
-            } else {
-                 toast({
-                    variant: "destructive",
-                    title: "No Suggestion Found",
-                    description: "Could not find a toner suggestion for this model.",
-                });
-            }
-        } catch (error) {
-            console.error("AI suggestion failed:", error);
-            toast({
-                variant: "destructive",
-                title: "AI Suggestion Error",
-                description: "Could not get a toner suggestion from AI.",
-            });
-        }
-    })
-  }
-
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
@@ -263,19 +218,21 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                 />
               )}
 
-              <FormField
-                control={form.control}
-                name="systemOS"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>System OS</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {category !== 'printers' && (
+                <FormField
+                  control={form.control}
+                  name="systemOS"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>System OS</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Windows 11 Pro" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
 
               <FormField
                 control={form.control}
@@ -290,15 +247,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
                   </FormItem>
                 )}
               />
-              
-              {category === 'printers' && manufacturer === 'HP' && (
-                <div className="md:col-span-2">
-                    <Button type="button" variant="outline" size="sm" onClick={handleTonerSuggestion} disabled={isPending}>
-                        {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
-                        Suggest Toner
-                    </Button>
-                </div>
-              )}
 
               <FormField
                 control={form.control}

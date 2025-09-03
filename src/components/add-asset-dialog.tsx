@@ -244,19 +244,21 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
                 />
               )}
 
-              <FormField
-                control={form.control}
-                name="systemOS"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>System OS</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {category !== 'printers' && (
+                <FormField
+                  control={form.control}
+                  name="systemOS"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>System OS</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Windows 11 Pro" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
 
               <FormField
                 control={form.control}
