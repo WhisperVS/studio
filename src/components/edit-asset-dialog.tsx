@@ -160,7 +160,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="category"
@@ -183,7 +182,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="manufacturer"
@@ -200,7 +198,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="location"
@@ -223,7 +220,58 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
+              <FormField
+                control={form.control}
+                name="modelNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Model Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., Latitude 5420" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="partNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Part Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., HJVX6" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="serialNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Serial Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="os"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>OS</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {(category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}
@@ -248,63 +296,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   )}
                 />
               )}
-
-              <FormField
-                control={form.control}
-                name="os"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>OS</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="modelNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Model Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Latitude 5420" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="partNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Part Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., HJVX6" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="serialNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Serial Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
               <FormField
                 control={form.control}
                 name="status"
@@ -323,20 +314,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                         ))}
                       </SelectContent>
                     </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-               <FormField
-                control={form.control}
-                name="owner"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Owner</FormLabel>
-                    <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
-                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -413,7 +390,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Purchase Date</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -425,7 +402,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Warranty Expiration</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -450,6 +427,22 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
               )}
             />
 
+            <div className="grid grid-cols-1">
+                <FormField
+                control={form.control}
+                name="owner"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Owner</FormLabel>
+                    <FormControl>
+                      <Input {...field} readOnly className="bg-muted"/>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
                 Cancel
@@ -462,7 +455,3 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
     </Dialog>
   );
 }
-
-    
-
-    
