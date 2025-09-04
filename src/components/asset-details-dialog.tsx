@@ -61,7 +61,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
             <DetailItem label="Status" value={<Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>} />
             <DetailItem label="Assigned User" value={asset.assignedUser} />
             <DetailItem label="User ID" value={asset.userId} />
-            <DetailItem label="System OS" value={asset.systemOS} />
+            <DetailItem label="OS" value={asset.os} />
             <DetailItem label="Model Number" value={asset.modelNumber} />
             <DetailItem label="Part Number" value={asset.partNumber} />
             <DetailItem label="Serial Number" value={asset.serialNumber} />

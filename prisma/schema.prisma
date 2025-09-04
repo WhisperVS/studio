@@ -1,20 +1,20 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Asset {
   id                     String    @id @default(cuid())
   machineName            String
   category               String
-  systemOS               String?
+  os                     String?
   location               String
   manufacturer           String
   partNumber             String?
@@ -24,7 +24,7 @@ model Asset {
   assignedUser           String?
   userId                 Int?
   userType               String?
-  owner                  String    @default("Group Administrators")
+  owner                  String
   status                 String
   notes                  String?
   purchaseDate           DateTime?

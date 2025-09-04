@@ -60,7 +60,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     defaultValues: {
       machineName: "",
       category: "laptops",
-      systemOS: "",
+      os: "",
       location: "Schaumburg IL",
       manufacturer: "",
       partNumber: "",
@@ -238,10 +238,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
 
               <FormField
                 control={form.control}
-                name="systemOS"
+                name="os"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>System OS</FormLabel>
+                    <FormLabel>OS</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Windows 11 Pro" {...field} />
                     </FormControl>
