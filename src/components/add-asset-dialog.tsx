@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCallback } from "react";
@@ -72,19 +73,26 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       owner: "Group Administrators",
       status: "In Use",
       notes: "",
+      purchaseDate: undefined,
+      warrantyExpirationDate: undefined
     },
   });
 
   const category = form.watch("category");
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
+    const dataToSend = {
+      ...data,
+      purchaseDate: data.purchaseDate || null,
+      warrantyExpirationDate: data.warrantyExpirationDate || null,
+    };
     try {
       const response = await fetch('/api/assets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataToSend),
       });
 
       if (!response.ok) {

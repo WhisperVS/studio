@@ -97,13 +97,19 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!asset) return;
 
+    const dataToSend = {
+      ...data,
+      purchaseDate: data.purchaseDate || null,
+      warrantyExpirationDate: data.warrantyExpirationDate || null,
+    };
+
     try {
       const response = await fetch(`/api/assets/${asset.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataToSend),
       });
 
       if (!response.ok) {
