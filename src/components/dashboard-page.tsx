@@ -129,7 +129,7 @@ export default function DashboardPage() {
         asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (asset.userId && asset.userId.toLowerCase().includes(searchQuery.toLowerCase()));
+        (asset.userId && String(asset.userId).toLowerCase().includes(searchQuery.toLowerCase()));
       
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
