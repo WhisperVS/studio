@@ -1,4 +1,4 @@
-# Stage 1: Install dependencies
+# ---------- Stage 1: Install dependencies ----------
 FROM node:20-alpine AS deps
 WORKDIR /app
 RUN apk add --no-cache openssl libc6-compat
@@ -6,13 +6,14 @@ COPY package.json package-lock.json* ./
 COPY prisma ./prisma
 RUN npm ci
 
-# Stage 2: Build the application
+# ---------- Stage 2: Build the application ----------
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# The prisma client is generated to node_modules/.prisma/client
-# It's important to do this before building the app
+# Set the DATABASE_URL to a dummy value during build time
+# It's not used for building, but Prisma requires it to be set
+ENV DATABASE_URL="postgresql://user:password@localhost:5432/gaim"
 RUN npx prisma generate
 RUN npm run build
 
@@ -20,16 +21,21 @@ RUN npm run build
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-RUN addgroup --system --gid 1001 nodejs \
-    && adduser  --system --uid 1001 nextjs
+ENV NODE_ENV=production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+# ENV NEXT_TELEMETRY_DISABLED 1
 
-# Copy production-ready files
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 USER nextjs
+
 EXPOSE 9002
-ENV PORT 9002
+
+ENV PORT=9002
+
 CMD ["node", "server.js"]
