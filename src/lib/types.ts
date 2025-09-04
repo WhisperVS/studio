@@ -18,8 +18,8 @@ export const AssetSchema = z.object({
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUSES),
   notes: z.string().optional().default(''),
-  purchaseDate: z.date().optional(),
-  warrantyExpirationDate: z.date().optional(),
+  purchaseDate: z.date().optional().nullable(),
+  warrantyExpirationDate: z.date().optional().nullable(),
 });
 
 export type Asset = z.infer<typeof AssetSchema>;
