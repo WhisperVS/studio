@@ -187,7 +187,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 control={form.control}
                 name="manufacturer"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
+                  <FormItem>
                     <FormLabel>Manufacturer</FormLabel>
                      <Combobox
                         options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
