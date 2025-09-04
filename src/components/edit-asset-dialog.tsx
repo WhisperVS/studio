@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { useAssets } from "@/contexts/assets-context";
 import {
   Form,
   FormControl,
@@ -36,7 +35,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
-import { Asset, AssetFormSchema } from "@/lib/types";
+import { Asset, AssetFormSchema, AssetFormValues } from "@/lib/types";
 import {
   CATEGORIES,
   LOCATIONS,
@@ -47,16 +46,14 @@ import {
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 
-type AssetFormValues = z.infer<typeof AssetFormSchema>;
-
 interface EditAssetDialogProps {
   asset: Asset | null;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
+  onAssetUpdated: () => void;
 }
 
-export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialogProps) {
-  const { updateAsset } = useAssets();
+export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }: EditAssetDialogProps) {
   const { toast } = useToast();
 
   const form = useForm<AssetFormValues>({
@@ -97,19 +94,37 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange }: EditAssetDialog
 
   const category = form.watch("category");
 
-  const onSubmit = useCallback((data: AssetFormValues) => {
+  const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!asset) return;
 
-    updateAsset(asset.id, {
-        ...asset,
-        ...data,
-    });
-    toast({
-      title: "Asset Updated",
-      description: `${data.machineName} has been updated.`,
-    });
-    onOpenChange(false);
-  }, [asset, updateAsset, toast, onOpenChange]);
+    try {
+      const response = await fetch(`/api/assets/${asset.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update asset');
+      }
+      
+      toast({
+        title: "Asset Updated",
+        description: `${data.machineName} has been updated.`,
+      });
+      onAssetUpdated();
+      onOpenChange(false);
+    } catch (error) {
+       console.error("Failed to update asset:", error);
+       toast({
+         variant: "destructive",
+         title: "Error",
+         description: "Could not update the asset.",
+       });
+    }
+  }, [asset, onAssetUpdated, toast, onOpenChange, form]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>

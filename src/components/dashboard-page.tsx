@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +12,6 @@ import { EditAssetDialog } from "@/components/edit-asset-dialog";
 import { AssetDetailsDialog } from "@/components/asset-details-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
-import { useAssets } from "@/contexts/assets-context";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
@@ -26,7 +25,7 @@ export default function DashboardPage() {
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
   const [isDetailsAssetOpen, setDetailsAssetOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
-  const { assets } = useAssets();
+  
   const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
@@ -38,9 +37,35 @@ export default function DashboardPage() {
   const [isFilterPanelOpen, setFilterPanelOpen] = useState(!isMobile);
   const [isClient, setIsClient] = useState(false);
 
+  // Asset state and management
+  const [assets, setAssets] = useState<Asset[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchAssets = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/assets');
+      if (!response.ok) {
+        throw new Error('Failed to fetch assets');
+      }
+      const data = await response.json();
+      setAssets(data);
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: 'destructive',
+        title: "Error",
+        description: "Could not fetch asset data."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [toast]);
+  
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    fetchAssets();
+  }, [fetchAssets]);
 
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
@@ -63,6 +88,7 @@ export default function DashboardPage() {
         headers.map(header => {
             const value = (row as any)[header];
             if (value === null || value === undefined) return '';
+            if (value instanceof Date) return value.toISOString();
             const stringValue = String(value);
             return `"${stringValue.replace(/"/g, '""')}"`;
         }).join(',')
@@ -197,7 +223,7 @@ export default function DashboardPage() {
                 </div>
               </CollapsibleContent>
             </Collapsible>
-            {!isClient ? (
+            {!isClient || isLoading ? (
                <div className="rounded-lg border overflow-hidden">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
@@ -229,12 +255,12 @@ export default function DashboardPage() {
                   </div>
                </div>
             ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo}/>
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets}/>
             )}
           </main>
         </SidebarInset>
-        <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} />
-        {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} />}
+        <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} onAssetAdded={fetchAssets} />
+        {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} onAssetUpdated={fetchAssets} />}
         {selectedAsset && <AssetDetailsDialog asset={selectedAsset} isOpen={isDetailsAssetOpen} onOpenChange={setDetailsAssetOpen} />}
       </div>
     </SidebarProvider>

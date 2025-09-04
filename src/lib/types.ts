@@ -27,3 +27,5 @@ export type Asset = z.infer<typeof AssetSchema>;
 export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).extend({
   owner: z.string()
 });
+
+export type AssetFormValues = z.infer<typeof AssetFormSchema>;

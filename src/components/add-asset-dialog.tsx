@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Sparkles } from "lucide-react";
 
-import { useAssets } from "@/contexts/assets-context";
 import {
   Form,
   FormControl,
@@ -37,7 +36,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
-import { AssetFormSchema } from "@/lib/types";
+import { AssetFormSchema, AssetFormValues } from "@/lib/types";
 import {
   CATEGORIES,
   LOCATIONS,
@@ -49,15 +48,13 @@ import {
 import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 import { useToast } from "@/hooks/use-toast";
 
-type AssetFormValues = z.infer<typeof AssetFormSchema>;
-
 interface AddAssetDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
+  onAssetAdded: () => void;
 }
 
-export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
-  const { addAsset } = useAssets();
+export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
@@ -85,18 +82,36 @@ export function AddAssetDialog({ isOpen, onOpenChange }: AddAssetDialogProps) {
   const category = form.watch("category");
   const notes = form.watch("notes");
 
-  const onSubmit = useCallback((data: AssetFormValues) => {
-    addAsset({
-      ...data,
-      id: crypto.randomUUID(),
-    });
-    toast({
-      title: "Asset Added",
-      description: `${data.machineName} has been added to the inventory.`,
-    });
-    form.reset();
-    onOpenChange(false);
-  }, [addAsset, form, onOpenChange, toast]);
+  const onSubmit = useCallback(async (data: AssetFormValues) => {
+    try {
+      const response = await fetch('/api/assets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add asset');
+      }
+
+      toast({
+        title: "Asset Added",
+        description: `${data.machineName} has been added to the inventory.`,
+      });
+      form.reset();
+      onAssetAdded(); // Refetch assets
+      onOpenChange(false);
+    } catch (error) {
+       console.error("Failed to add asset:", error);
+       toast({
+         variant: "destructive",
+         title: "Error",
+         description: "Could not add the asset.",
+       });
+    }
+  }, [onAssetAdded, form, onOpenChange, toast]);
 
   const handleSuggestion = useCallback(() => {
     startTransition(async () => {

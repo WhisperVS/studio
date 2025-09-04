@@ -20,8 +20,8 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
-import { useAssets } from "@/contexts/assets-context";
 import { format } from "date-fns";
+import { useToast } from '@/hooks/use-toast';
 
 type SortKey = keyof Asset | '';
 
@@ -29,12 +29,36 @@ interface AssetTableProps {
     assets: Asset[];
     onEdit: (asset: Asset) => void;
     onInfo: (asset: Asset) => void;
+    onDelete: () => void;
 }
 
-export function AssetTable({ assets, onEdit, onInfo }: AssetTableProps) {
-  const { deleteAsset } = useAssets();
+export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps) {
+  const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+
+  const handleDelete = async (assetId: string) => {
+    try {
+      const response = await fetch(`/api/assets/${assetId}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete asset');
+      }
+      toast({
+        title: "Asset Deleted",
+        description: "The asset has been removed from the inventory.",
+      });
+      onDelete(); // Refetch assets
+    } catch (error) {
+      console.error("Failed to delete asset:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not delete the asset.",
+      });
+    }
+  };
 
   const sortedAssets = useMemo(() => {
     if (!sortKey) return assets;
@@ -139,7 +163,7 @@ export function AssetTable({ assets, onEdit, onInfo }: AssetTableProps) {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="text-destructive focus:text-destructive focus:bg-destructive/10"
-                      onClick={() => deleteAsset(asset.id)}
+                      onClick={() => handleDelete(asset.id)}
                     >
                       <Trash2 className="mr-2 h-4 w-4" />
                       <span>Delete</span>

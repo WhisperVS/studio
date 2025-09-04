@@ -1,7 +1,6 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { AssetProvider } from "@/contexts/assets-context";
 
 type Theme = "dark" | "light" | "system";
 
@@ -76,7 +75,7 @@ export const useTheme = () => {
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="gaim-theme">
-      <AssetProvider>{children}</AssetProvider>
+      {children}
     </ThemeProvider>
   );
 }
