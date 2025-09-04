@@ -69,7 +69,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       serialNumber: '',
       type: '',
       assignedUser: '',
-      userId: '',
+      userId: undefined,
       userType: 'local',
       owner: 'Group Administrators',
       status: 'In Use',
@@ -86,7 +86,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         os: asset.os ?? '',
         type: asset.type ?? '',
         assignedUser: asset.assignedUser ?? '',
-        userId: asset.userId?.toString() ?? '',
+        userId: asset.userId ?? undefined,
         notes: asset.notes ?? '',
         owner: "Group Administrators"
       });
@@ -367,7 +367,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                       <FormItem>
                         <FormLabel>User ID</FormLabel>
                         <FormControl>
-                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
+                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -462,3 +462,5 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
     </Dialog>
   );
 }
+
+    

@@ -68,7 +68,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       serialNumber: "",
       type: "",
       assignedUser: "",
-      userId: "",
+      userId: undefined,
       userType: "local",
       owner: "Group Administrators",
       status: "In Use",
@@ -354,7 +354,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         <FormItem>
                         <FormLabel>User ID</FormLabel>
                         <FormControl>
-                            <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
+                            <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -377,7 +377,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                                 <FormControl>
                                     <RadioGroupItem value="local" />
                                 </FormControl>
-                                <FormLabel className="font-normal">Local</FormLabel>
+                                <FormLabel className="font-normal">Local</TFormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-2 space-y-0">
                                 <FormControl>
@@ -449,3 +449,5 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     </Dialog>
   );
 }
+
+    

@@ -24,9 +24,7 @@ export const AssetSchema = z.object({
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-const numericString = z.string().regex(/^\d*$/, 'User ID must be a number').optional();
-
-export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, userId: true }).extend({
+export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).extend({
   owner: z.string(),
   userId: z.preprocess(
     (val) => {
@@ -44,3 +42,5 @@ export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, userId:
 });
 
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
+
+    
