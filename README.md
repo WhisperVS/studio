@@ -8,46 +8,39 @@ Here are the steps to get the application running on your local machine or serve
 
 ### Prerequisites
 
-*   **Node.js**: Ensure you have a recent version of Node.js installed (v18+ recommended). This is needed for installing dependencies and running Prisma commands.
-*   **npm**: The Node Package Manager, used for installing packages.
 *   **Docker**: Ensure Docker is installed and running on your machine. [Get Docker](https://www.docker.com/get-started)
 *   **Docker Compose**: This is included with Docker Desktop for Windows and Mac. On Linux, you may need to install it separately.
 
 ### Setup and Execution
 
-1.  **Install Dependencies:**
-    Open a terminal in the project's root directory and install the required `npm` packages. This is mainly for Prisma CLI to work correctly.
-    ```bash
-    npm install
-    ```
+1.  **Create Environment File:**
+    The application requires a `.env` file to configure the database connection for Prisma CLI to work from outside the container. This file is also used by Docker Compose to inject the environment variable into the application container.
 
-2.  **Create Environment File:**
-    The application uses an `.env` file to configure the database connection. The `docker-compose.yml` file is already set up to pass the correct `DATABASE_URL` to the application container, so you don't need to create this file for the app itself. However, it's good practice to have it for running local Prisma commands if needed.
-
-    Create a file named `.env` and add the following line. This matches the credentials in `docker-compose.yml`.
+    Create a file named `.env` in the project root and add the following line. This matches the credentials in `docker-compose.yml`.
     ```
     DATABASE_URL="postgresql://user:password@localhost:5432/gaim"
     ```
 
-3.  **Start the Application and Database:**
+2.  **Start the Application and Database:**
     Use Docker Compose to build the application image and start both the Next.js app container and the PostgreSQL database container.
     ```bash
     docker-compose up --build
     ```
-    - The `--build` flag tells Docker Compose to rebuild the application image if there are any changes in the code. You only need to use it the first time or after you've made changes.
-    - This command will start both containers in your terminal. You will see logs from both the application and the database.
+    - The `--build` flag tells Docker Compose to rebuild the application image if there are any changes in the code. You can omit it for subsequent runs.
+    - This command will start both containers in your terminal. You will see logs from both the application and the database. The application will be available, but it will show errors until the database schema is initialized in the next step.
 
-4.  **Initialize the Database Schema:**
-    When the containers are running, open a **new, separate terminal window**. You need to apply the database schema to the PostgreSQL database. Prisma uses the `schema.prisma` file to create the `Asset` table.
+3.  **Initialize the Database Schema:**
+    When the containers are running, open a **new, separate terminal window**. You need to apply the database schema to the PostgreSQL database. This is done by executing the Prisma command *inside* the running `app` container.
 
     Run the following command:
     ```bash
-    npx prisma db push
+    docker-compose exec app npx prisma db push
     ```
-    This command connects to the database running inside the Docker container and creates the necessary tables. You only need to do this once.
+    - `docker-compose exec app` tells Docker to run the following command inside the service named `app`.
+    - `npx prisma db push` connects to the database and creates the necessary tables based on your `schema.prisma` file. You only need to do this once, or after you make changes to the schema.
 
-5.  **View Your App:**
-    Open your browser and navigate to **[http://localhost:9002](http://localhost:9002)** to use the application. All data will now be saved to and loaded from your PostgreSQL database.
+4.  **View Your App:**
+    Open your browser and navigate to **[http://localhost:9002](http://localhost:9002)** to use the application. The application should now be running without errors. All data will be saved to and loaded from your PostgreSQL database.
 
 ### Stopping the Application
 To stop the containers, you can press `Ctrl + C` in the terminal where `docker-compose` is running, or run the following command from another terminal in the same directory:
