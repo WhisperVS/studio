@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useTransition, useCallback } from "react";
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Loader2, Sparkles } from "lucide-react";
 
 import {
   Form,
@@ -45,7 +43,6 @@ import {
   STATUSES,
   SYSTEM_TYPES,
 } from "@/lib/constants";
-import { suggestAssetDetailsFromNotes } from "@/ai/flows/suggest-asset-details-from-notes";
 import { useToast } from "@/hooks/use-toast";
 
 interface AddAssetDialogProps {
@@ -56,7 +53,6 @@ interface AddAssetDialogProps {
 
 export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
-  const [isPending, startTransition] = useTransition();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -80,7 +76,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   });
 
   const category = form.watch("category");
-  const notes = form.watch("notes");
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     try {
@@ -112,34 +107,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
        });
     }
   }, [onAssetAdded, form, onOpenChange, toast]);
-
-  const handleSuggestion = useCallback(() => {
-    startTransition(async () => {
-      try {
-        const result = await suggestAssetDetailsFromNotes({ notes });
-        if (result.suggestedCategory) {
-          const validCategory = CATEGORIES.find(c => c.toLowerCase() === result.suggestedCategory?.toLowerCase())
-          if (validCategory) {
-            form.setValue("category", validCategory, { shouldValidate: true });
-          }
-        }
-        if (result.suggestedManufacturer) {
-          form.setValue("manufacturer", result.suggestedManufacturer, { shouldValidate: true });
-        }
-        toast({
-          title: "Suggestions applied",
-          description: "AI suggestions have been filled in.",
-        });
-      } catch (error) {
-        console.error("AI suggestion failed:", error);
-        toast({
-          variant: "destructive",
-          title: "AI Suggestion Error",
-          description: "Could not get suggestions from AI.",
-        });
-      }
-    });
-  }, [notes, form, toast]);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
@@ -448,20 +415,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
-                    Use the notes to describe the asset. You can use the AI assistant to suggest a category and manufacturer.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {notes && (
-               <Button type="button" variant="outline" size="sm" onClick={handleSuggestion} disabled={isPending}>
-                {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                Suggest with AI
-              </Button>
-            )}
-
 
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
