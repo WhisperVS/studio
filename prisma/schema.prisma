@@ -11,25 +11,25 @@ datasource db {
 }
 
 model Asset {
-  id                      String    @id @default(cuid())
-  machineName             String
-  category                String
-  systemOS                String?
-  location                String
-  manufacturer            String
-  partNumber              String?
-  modelNumber             String?
-  serialNumber            String?
-  type                    String?
-  assignedUser            String?
-  userId                  String?
-  userType                String?
-  owner                   String    @default("Group Administrators")
-  status                  String
-  notes                   String?
-  purchaseDate            DateTime?
-  warrantyExpirationDate  DateTime?
-
+  id        String   @id @default(cuid())
+  machineName String
+  category  String
+  systemOS  String?
+  location  String
+  manufacturer String
+  partNumber  String?
+  modelNumber String?
+  serialNumber String?
+  type      String?
+  assignedUser String?
+  userId    String?
+  userType  String?
+  owner     String
+  status    String
+  notes     String?
+  purchaseDate DateTime?
+  warrantyExpirationDate DateTime?
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

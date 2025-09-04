@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
 export async function GET(request: Request) {
   try {
     const assets = await prisma.asset.findMany({
-        orderBy: {
-            createdAt: 'desc'
-        }
+      orderBy: {
+        machineName: 'asc'
+      }
     });
     return NextResponse.json(assets);
   } catch (error) {
