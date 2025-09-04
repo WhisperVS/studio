@@ -314,65 +314,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   </FormItem>
                 )}
               />
-
-              <div className="space-y-2">
-                 <FormField
-                    control={form.control}
-                    name="assignedUser"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Assigned User</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="userId"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>User ID</FormLabel>
-                        <FormControl>
-                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="userType"
-                    render={({ field }) => (
-                      <FormItem className="space-y-3 pt-2">
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                            className="flex items-center space-x-4"
-                          >
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="local" />
-                              </FormControl>
-                              <FormLabel className="font-normal">Local</FormLabel>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="remote" />
-                              </FormControl>
-                              <FormLabel className="font-normal">Remote</FormLabel>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-              </div>
-
-               <FormField
+              
+              <FormField
                 control={form.control}
                 name="owner"
                 render={({ field }) => (
@@ -385,30 +328,95 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   </FormItem>
                 )}
               />
+            </div>
 
-              <FormField
-                control={form.control}
-                name="purchaseDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Purchase Date</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
+                <div className="md:col-span-2">
+                    <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
+                </div>
+                <FormField
+                    control={form.control}
+                    name="assignedUser"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Assigned User</FormLabel>
+                        <FormControl>
+                            <Input placeholder="e.g., John Doe" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="userId"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>User ID</FormLabel>
+                        <FormControl>
+                            <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <div className="md:col-span-2">
+                    <FormField
+                        control={form.control}
+                        name="userType"
+                        render={({ field }) => (
+                        <FormItem className="space-y-3 pt-2">
+                             <FormLabel>User Type</FormLabel>
+                            <FormControl>
+                            <RadioGroup
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                                className="flex items-center space-x-4"
+                            >
+                                <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                    <RadioGroupItem value="local" />
+                                </FormControl>
+                                <FormLabel className="font-normal">Local</FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                    <RadioGroupItem value="remote" />
+                                </FormControl>
+                                <FormLabel className="font-normal">Remote</FormLabel>
+                                </FormItem>
+                            </RadioGroup>
+                            </FormControl>
+                        </FormItem>
+                        )}
+                    />
+                </div>
+            </div>
 
-              <FormField
-                control={form.control}
-                name="warrantyExpirationDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Warranty Expiration</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <FormField
+                    control={form.control}
+                    name="purchaseDate"
+                    render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                        <FormLabel>Purchase Date</FormLabel>
+                        <DatePicker date={field.value} setDate={field.onChange} />
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+
+                <FormField
+                    control={form.control}
+                    name="warrantyExpirationDate"
+                    render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                        <FormLabel>Warranty Expiration</FormLabel>
+                        <DatePicker date={field.value} setDate={field.onChange} />
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
             </div>
             
             <FormField
