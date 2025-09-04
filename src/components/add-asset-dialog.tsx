@@ -66,7 +66,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       partNumber: "",
       modelNumber: "",
       serialNumber: "",
-      type: "",
+      type: undefined,
       assignedUser: "",
       userId: undefined,
       userType: "local",
@@ -218,7 +218,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Type</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder={`Select a ${category.slice(0, -1)} type`} />
@@ -377,7 +377,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                                 <FormControl>
                                     <RadioGroupItem value="local" />
                                 </FormControl>
-                                <FormLabel className="font-normal">Local</TFormLabel>
+                                <FormLabel className="font-normal">Local</FormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-2 space-y-0">
                                 <FormControl>
@@ -449,5 +449,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     </Dialog>
   );
 }
+
+    
 
     
