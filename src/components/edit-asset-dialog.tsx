@@ -84,7 +84,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       form.reset({
         ...asset,
         assignedUser: asset.assignedUser || '',
-        userId: asset.userId || '',
+        userId: asset.userId?.toString() || '',
         notes: asset.notes || '',
         owner: "Group Administrators"
       });
@@ -101,6 +101,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       ...data,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
+      type: data.type || null,
     };
 
     try {

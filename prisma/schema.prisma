@@ -22,7 +22,7 @@ model Asset {
   serialNumber           String?
   type                   String?
   assignedUser           String?
-  userId                 String?
+  userId                 Int?
   userType               String?
   owner                  String    @default("Group Administrators")
   status                 String

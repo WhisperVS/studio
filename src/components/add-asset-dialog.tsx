@@ -85,6 +85,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       ...data,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
+      type: data.type || null,
     };
     try {
       const response = await fetch('/api/assets', {

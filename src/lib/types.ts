@@ -5,27 +5,42 @@ export const AssetSchema = z.object({
   id: z.string(),
   machineName: z.string().min(1, 'Machine name is required'),
   category: z.enum(CATEGORIES),
-  systemOS: z.string().optional().default(''),
+  systemOS: z.string().optional(),
   location: z.enum(LOCATIONS),
   manufacturer: z.string().min(1, 'Manufacturer is required'),
-  partNumber: z.string().optional().default(''),
-  modelNumber: z.string().optional().default(''),
-  serialNumber: z.string().optional().default(''),
-  type: z.string().optional().default(''),
-  assignedUser: z.string().optional().default(''),
-  userId: z.string().optional().default(''),
+  partNumber: z.string().optional(),
+  modelNumber: z.string().optional(),
+  serialNumber: z.string().optional(),
+  type: z.string().optional().nullable(),
+  assignedUser: z.string().optional(),
+  userId: z.number().optional().nullable(),
   userType: z.enum(USER_TYPES).optional(),
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUSES),
-  notes: z.string().optional().default(''),
+  notes: z.string().optional(),
   purchaseDate: z.date().optional().nullable(),
   warrantyExpirationDate: z.date().optional().nullable(),
 });
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).extend({
-  owner: z.string()
+const numericString = z.string().regex(/^\d*$/, 'User ID must be a number').optional();
+
+export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, userId: true }).extend({
+  owner: z.string(),
+  userId: z.preprocess(
+    (val) => {
+        if (typeof val === 'string' && val.trim() !== '') {
+            const num = Number(val);
+            return isNaN(num) ? val : num;
+        }
+        if (typeof val === 'number') {
+            return val;
+        }
+        return undefined;
+    },
+    z.number({ invalid_type_error: 'User ID must be a number' }).optional()
+  ),
 });
 
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
