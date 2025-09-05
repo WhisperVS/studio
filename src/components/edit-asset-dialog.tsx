@@ -118,7 +118,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       if (!response.ok) {
         throw new Error('Failed to update asset');
       }
-      
+
       toast({
         title: "Asset Updated",
         description: `${data.machineName} has been updated.`,
@@ -126,12 +126,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       onAssetUpdated();
       onOpenChange(false);
     } catch (error) {
-       console.error("Failed to update asset:", error);
-       toast({
-         variant: "destructive",
-         title: "Error",
-         description: "Could not update the asset.",
-       });
+      console.error("Failed to update asset:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not update the asset.",
+      });
     }
   }, [asset, onAssetUpdated, toast, onOpenChange, form]);
 
@@ -188,12 +188,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Manufacturer</FormLabel>
-                     <Combobox
-                        options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
-                        value={field.value}
-                        onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
-                        placeholder="Select or type manufacturer..."
-                        />
+                    <Combobox
+                      options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
+                      value={field.value}
+                      onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
+                      placeholder="Select or type manufacturer..."
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -319,68 +319,68 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 )}
               />
             </div>
-            
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
-                <div className="md:col-span-2">
-                    <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
-                </div>
-                 <FormField
-                    control={form.control}
-                    name="assignedUser"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Assigned User</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                   <FormField
-                    control={form.control}
-                    name="userId"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>User ID</FormLabel>
-                        <FormControl>
-                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                <div className="md:col-span-2">
-                    <FormField
-                        control={form.control}
-                        name="userType"
-                        render={({ field }) => (
-                        <FormItem className="space-y-3 pt-2">
-                             <FormLabel>User Type</FormLabel>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
+              <div className="md:col-span-2">
+                <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
+              </div>
+              <FormField
+                control={form.control}
+                name="assignedUser"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Assigned User</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>User ID</FormLabel>
+                    <FormControl>
+                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="md:col-span-2">
+                <FormField
+                  control={form.control}
+                  name="userType"
+                  render={({ field }) => (
+                    <FormItem className="space-y-3 pt-2">
+                      <FormLabel>User Type</FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          value={field.value}
+                          className="flex items-center space-x-4"
+                        >
+                          <FormItem className="flex items-center space-x-2 space-y-0">
                             <FormControl>
-                            <RadioGroup
-                                onValueChange={field.onChange}
-                                value={field.value}
-                                className="flex items-center space-x-4"
-                            >
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="local" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Local</FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="remote" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Remote</FormLabel>
-                                </FormItem>
-                            </RadioGroup>
+                              <RadioGroupItem value="local" />
                             </FormControl>
-                        </FormItem>
-                        )}
-                    />
-                </div>
+                            <FormLabel className="font-normal">Local</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-2 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="remote" />
+                            </FormControl>
+                            <FormLabel className="font-normal">Remote</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -408,7 +408,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 )}
               />
             </div>
-            
+
             <FormField
               control={form.control}
               name="notes"
@@ -428,14 +428,14 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
             />
 
             <div className="grid grid-cols-1">
-                <FormField
+              <FormField
                 control={form.control}
                 name="owner"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Owner</FormLabel>
                     <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
+                      <Input {...field} readOnly className="bg-muted" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

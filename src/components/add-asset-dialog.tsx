@@ -108,12 +108,12 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       onAssetAdded(); // Refetch assets
       onOpenChange(false);
     } catch (error) {
-       console.error("Failed to add asset:", error);
-       toast({
-         variant: "destructive",
-         title: "Error",
-         description: "Could not add the asset.",
-       });
+      console.error("Failed to add asset:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not add the asset.",
+      });
     }
   }, [onAssetAdded, form, onOpenChange, toast]);
 
@@ -175,12 +175,12 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Manufacturer</FormLabel>
-                     <Combobox
-                        options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
-                        value={field.value}
-                        onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
-                        placeholder="Select or type manufacturer..."
-                        />
+                    <Combobox
+                      options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
+                      value={field.value}
+                      onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
+                      placeholder="Select or type manufacturer..."
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -283,7 +283,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   )}
                 />
               )}
-               <FormField
+              <FormField
                 control={form.control}
                 name="status"
                 render={({ field }) => (
@@ -308,94 +308,94 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
-                <div className="md:col-span-2">
-                    <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
-                </div>
+              <div className="md:col-span-2">
+                <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
+              </div>
+              <FormField
+                control={form.control}
+                name="assignedUser"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Assigned User</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>User ID</FormLabel>
+                    <FormControl>
+                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="md:col-span-2">
                 <FormField
-                    control={form.control}
-                    name="assignedUser"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Assigned User</FormLabel>
-                        <FormControl>
-                            <Input placeholder="e.g., John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="userId"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>User ID</FormLabel>
-                        <FormControl>
-                            <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="md:col-span-2">
-                    <FormField
-                        control={form.control}
-                        name="userType"
-                        render={({ field }) => (
-                        <FormItem className="space-y-3 pt-2">
-                             <FormLabel>User Type</FormLabel>
+                  control={form.control}
+                  name="userType"
+                  render={({ field }) => (
+                    <FormItem className="space-y-3 pt-2">
+                      <FormLabel>User Type</FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="flex items-center space-x-4"
+                        >
+                          <FormItem className="flex items-center space-x-2 space-y-0">
                             <FormControl>
-                            <RadioGroup
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                                className="flex items-center space-x-4"
-                            >
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="local" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Local</FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="remote" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Remote</FormLabel>
-                                </FormItem>
-                            </RadioGroup>
+                              <RadioGroupItem value="local" />
                             </FormControl>
-                        </FormItem>
-                        )}
-                    />
-                </div>
+                            <FormLabel className="font-normal">Local</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-2 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="remote" />
+                            </FormControl>
+                            <FormLabel className="font-normal">Remote</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <FormField
-                    control={form.control}
-                    name="purchaseDate"
-                    render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                        <FormLabel>Purchase Date</FormLabel>
-                        <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
+              <FormField
+                control={form.control}
+                name="purchaseDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Purchase Date</FormLabel>
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                    control={form.control}
-                    name="warrantyExpirationDate"
-                    render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                        <FormLabel>Warranty Expiration</FormLabel>
-                        <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
+              <FormField
+                control={form.control}
+                name="warrantyExpirationDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Warranty Expiration</FormLabel>
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-            
+
             <FormField
               control={form.control}
               name="notes"
@@ -413,16 +413,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 </FormItem>
               )}
             />
-            
+
             <div className="grid grid-cols-1">
-                 <FormField
+              <FormField
                 control={form.control}
                 name="owner"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Owner</FormLabel>
                     <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
+                      <Input {...field} readOnly className="bg-muted" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

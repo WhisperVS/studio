@@ -39,6 +39,9 @@ export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).exten
     },
     z.number({ invalid_type_error: 'User ID must be a number' }).optional()
   ),
+  // Coerce incoming strings or numbers to Date objects for validation
+  purchaseDate: z.coerce.date().optional().nullable(),
+  warrantyExpirationDate: z.coerce.date().optional().nullable(),
 });
 
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
