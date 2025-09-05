@@ -85,7 +85,8 @@ export default function DashboardPage() {
     const headers: (keyof Omit<Asset, 'id'>)[] = [
       'machineName', 'category', 'status', 'assignedUser', 'userId', 'location', 
       'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
-      'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes'
+      'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
+      'createdAt', 'updatedAt'
     ];
 
     const csvContent = [
@@ -98,7 +99,7 @@ export default function DashboardPage() {
             return '';
           }
 
-          if (header === 'purchaseDate' || header === 'warrantyExpirationDate') {
+          if (['purchaseDate', 'warrantyExpirationDate', 'createdAt', 'updatedAt'].includes(header) && value) {
             value = format(new Date(value), 'MM/dd/yyyy');
           }
           

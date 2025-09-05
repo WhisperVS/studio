@@ -18,13 +18,15 @@ export const AssetSchema = z.object({
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUSES),
   notes: z.string().optional(),
-  purchaseDate: z.date().optional().nullable(),
-  warrantyExpirationDate: z.date().optional().nullable(),
+  purchaseDate: z.coerce.date().optional().nullable(),
+  warrantyExpirationDate: z.coerce.date().optional().nullable(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 });
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).extend({
+export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, createdAt: true, updatedAt: true }).extend({
   owner: z.string(),
   userId: z.preprocess(
     (val) => {
@@ -39,11 +41,8 @@ export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true }).exten
     },
     z.number({ invalid_type_error: 'User ID must be a number' }).optional()
   ),
-  // Coerce incoming strings or numbers to Date objects for validation
   purchaseDate: z.coerce.date().optional().nullable(),
   warrantyExpirationDate: z.coerce.date().optional().nullable(),
 });
 
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
-
-    
