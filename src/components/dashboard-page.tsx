@@ -19,6 +19,7 @@ import { CATEGORIES, LOCATIONS, STATUSES } from "@/lib/constants";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Skeleton } from "./ui/skeleton";
+import { format } from "date-fns";
 
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
@@ -81,14 +82,27 @@ export default function DashboardPage() {
       });
       return;
     }
-    const headers = Object.keys(assets[0]);
+    const headers: (keyof Omit<Asset, 'id'>)[] = [
+      'machineName', 'category', 'status', 'assignedUser', 'userId', 'location',
+      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type',
+      'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
+      'createdAt', 'updatedAt'
+    ];
+
     const csvContent = [
       headers.join(','),
       ...assets.map(row =>
         headers.map(header => {
-          const value = (row as any)[header];
-          if (value === null || value === undefined) return '';
-          if (value instanceof Date) return value.toISOString();
+          let value = (row as any)[header];
+
+          if (value === null || value === undefined) {
+            return '';
+          }
+
+          if (['purchaseDate', 'warrantyExpirationDate', 'createdAt', 'updatedAt'].includes(header) && value) {
+            value = format(new Date(value), 'MM/dd/yyyy');
+          }
+
           const stringValue = String(value);
           return `"${stringValue.replace(/"/g, '""')}"`;
         }).join(',')
