@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
   const [isDetailsAssetOpen, setDetailsAssetOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
-  
+
   const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
@@ -61,7 +61,7 @@ export default function DashboardPage() {
       setIsLoading(false);
     }
   }, [toast]);
-  
+
   useEffect(() => {
     setIsClient(true);
     fetchAssets();
@@ -69,7 +69,7 @@ export default function DashboardPage() {
 
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
-    setFilters(prev => ({...prev, [filterName]: value}));
+    setFilters(prev => ({ ...prev, [filterName]: value }));
   }
 
   const handleExport = () => {
@@ -84,13 +84,13 @@ export default function DashboardPage() {
     const headers = Object.keys(assets[0]);
     const csvContent = [
       headers.join(','),
-      ...assets.map(row => 
+      ...assets.map(row =>
         headers.map(header => {
-            const value = (row as any)[header];
-            if (value === null || value === undefined) return '';
-            if (value instanceof Date) return value.toISOString();
-            const stringValue = String(value);
-            return `"${stringValue.replace(/"/g, '""')}"`;
+          const value = (row as any)[header];
+          if (value === null || value === undefined) return '';
+          if (value instanceof Date) return value.toISOString();
+          const stringValue = String(value);
+          return `"${stringValue.replace(/"/g, '""')}"`;
         }).join(',')
       )
     ].join('\n');
@@ -108,8 +108,8 @@ export default function DashboardPage() {
     document.body.removeChild(link);
 
     toast({
-        title: "Export Successful",
-        description: "Your asset inventory has been exported as a CSV file."
+      title: "Export Successful",
+      description: "Your asset inventory has been exported as a CSV file."
     })
   };
 
@@ -125,12 +125,12 @@ export default function DashboardPage() {
 
   const filteredAssets = useMemo(() => {
     return assets.filter(asset => {
-      const searchMatch = !searchQuery || 
+      const searchMatch = !searchQuery ||
         asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (asset.userId && asset.userId.toLowerCase().includes(searchQuery.toLowerCase()));
-      
+        (asset.userId && String(asset.userId).toLowerCase().includes(searchQuery.toLowerCase()));
+
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
       const locationMatch = filters.location === 'all' || asset.location === filters.location;
@@ -161,7 +161,7 @@ export default function DashboardPage() {
                 Inventory Dashboard
               </h1>
             </div>
-             <div className="flex items-center gap-2 flex-1 justify-end">
+            <div className="flex items-center gap-2 flex-1 justify-end">
               <Button variant="outline" size="sm" onClick={handleExport}>
                 <Download className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Export to CSV</span>
@@ -177,7 +177,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between gap-4">
                 <div className="relative w-full max-w-sm">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input 
+                  <Input
                     placeholder="Search assets..."
                     className="pl-10"
                     value={searchQuery}
@@ -193,69 +193,69 @@ export default function DashboardPage() {
               </div>
               <CollapsibleContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 p-4 border rounded-lg">
-                    <Select value={filters.category} onValueChange={handleFilterChange('category')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Categories</SelectItem>
-                        {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                    <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Statuses</SelectItem>
-                        {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                    <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by location" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Locations</SelectItem>
-                        {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
+                  <Select value={filters.category} onValueChange={handleFilterChange('category')}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Filter by category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Categories</SelectItem>
+                      {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={filters.status} onValueChange={handleFilterChange('status')}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Filter by status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Statuses</SelectItem>
+                      {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={filters.location} onValueChange={handleFilterChange('location')}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Filter by location" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Locations</SelectItem>
+                      {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
                 </div>
               </CollapsibleContent>
             </Collapsible>
             {!isClient || isLoading ? (
-               <div className="rounded-lg border overflow-hidden">
-                  <div className="relative w-full overflow-auto">
-                    <table className="w-full caption-bottom text-sm">
-                      <thead className="[&_tr]:border-b">
-                        <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
+              <div className="rounded-lg border overflow-hidden">
+                <div className="relative w-full overflow-auto">
+                  <table className="w-full caption-bottom text-sm">
+                    <thead className="[&_tr]:border-b">
+                      <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
+                      </tr>
+                    </thead>
+                    <tbody className="[&_tr:last-child]:border-0">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
+                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
+                          <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
+                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                          <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                          <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                          <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
                         </tr>
-                      </thead>
-                      <tbody className="[&_tr:last-child]:border-0">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
-                            <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                            <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-               </div>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets}/>
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} />
             )}
           </main>
         </SidebarInset>

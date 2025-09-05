@@ -67,9 +67,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       partNumber: '',
       modelNumber: '',
       serialNumber: '',
-      type: '',
+      type: undefined,
       assignedUser: '',
-      userId: '',
+      userId: undefined,
       userType: 'local',
       owner: 'Group Administrators',
       status: 'In Use',
@@ -86,7 +86,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         os: asset.os ?? '',
         type: asset.type ?? '',
         assignedUser: asset.assignedUser ?? '',
-        userId: asset.userId?.toString() ?? '',
+        userId: asset.userId ?? undefined,
         notes: asset.notes ?? '',
         owner: "Group Administrators"
       });
@@ -118,7 +118,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       if (!response.ok) {
         throw new Error('Failed to update asset');
       }
-      
+
       toast({
         title: "Asset Updated",
         description: `${data.machineName} has been updated.`,
@@ -126,12 +126,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       onAssetUpdated();
       onOpenChange(false);
     } catch (error) {
-       console.error("Failed to update asset:", error);
-       toast({
-         variant: "destructive",
-         title: "Error",
-         description: "Could not update the asset.",
-       });
+      console.error("Failed to update asset:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not update the asset.",
+      });
     }
   }, [asset, onAssetUpdated, toast, onOpenChange, form]);
 
@@ -160,7 +160,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="category"
@@ -183,24 +182,22 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="manufacturer"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Manufacturer</FormLabel>
-                     <Combobox
-                        options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
-                        value={field.value}
-                        onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
-                        placeholder="Select or type manufacturer..."
-                        />
+                    <Combobox
+                      options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
+                      value={field.value}
+                      onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
+                      placeholder="Select or type manufacturer..."
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="location"
@@ -223,7 +220,58 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-
+              <FormField
+                control={form.control}
+                name="modelNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Model Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., Latitude 5420" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="partNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Part Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., HJVX6" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="serialNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Serial Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="os"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>OS</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {(category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}
@@ -231,7 +279,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Type</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value ?? ''}>
+                      <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder={`Select a ${category.slice(0, -1)} type`} />
@@ -248,63 +296,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   )}
                 />
               )}
-
-              <FormField
-                control={form.control}
-                name="os"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>OS</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="modelNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Model Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Latitude 5420" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="partNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Part Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., HJVX6" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="serialNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Serial Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
               <FormField
                 control={form.control}
                 name="status"
@@ -327,83 +318,69 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
+            </div>
 
-               <FormField
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
+              <div className="md:col-span-2">
+                <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
+              </div>
+              <FormField
                 control={form.control}
-                name="owner"
+                name="assignedUser"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>Assigned User</FormLabel>
                     <FormControl>
-                      <Input {...field} readOnly className="bg-muted"/>
+                      <Input placeholder="e.g., John Doe" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </div>
-            
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
-                <div className="md:col-span-2">
-                    <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
-                </div>
-                 <FormField
-                    control={form.control}
-                    name="assignedUser"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Assigned User</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                   <FormField
-                    control={form.control}
-                    name="userId"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>User ID</FormLabel>
-                        <FormControl>
-                          <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                <div className="md:col-span-2">
-                    <FormField
-                        control={form.control}
-                        name="userType"
-                        render={({ field }) => (
-                        <FormItem className="space-y-3 pt-2">
-                             <FormLabel>User Type</FormLabel>
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>User ID</FormLabel>
+                    <FormControl>
+                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="md:col-span-2">
+                <FormField
+                  control={form.control}
+                  name="userType"
+                  render={({ field }) => (
+                    <FormItem className="space-y-3 pt-2">
+                      <FormLabel>User Type</FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          value={field.value}
+                          className="flex items-center space-x-4"
+                        >
+                          <FormItem className="flex items-center space-x-2 space-y-0">
                             <FormControl>
-                            <RadioGroup
-                                onValueChange={field.onChange}
-                                value={field.value}
-                                className="flex items-center space-x-4"
-                            >
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="local" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Local</FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                <FormControl>
-                                    <RadioGroupItem value="remote" />
-                                </FormControl>
-                                <FormLabel className="font-normal">Remote</FormLabel>
-                                </FormItem>
-                            </RadioGroup>
+                              <RadioGroupItem value="local" />
                             </FormControl>
-                        </FormItem>
-                        )}
-                    />
-                </div>
+                            <FormLabel className="font-normal">Local</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-2 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="remote" />
+                            </FormControl>
+                            <FormLabel className="font-normal">Remote</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -413,7 +390,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Purchase Date</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -425,13 +402,13 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Warranty Expiration</FormLabel>
-                    <DatePicker date={field.value} setDate={field.onChange} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            
+
             <FormField
               control={form.control}
               name="notes"
@@ -449,6 +426,22 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 </FormItem>
               )}
             />
+
+            <div className="grid grid-cols-1">
+              <FormField
+                control={form.control}
+                name="owner"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Owner</FormLabel>
+                    <FormControl>
+                      <Input {...field} readOnly className="bg-muted" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
