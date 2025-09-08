@@ -10,7 +10,6 @@ import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
 import { AssetDetailsDialog } from "@/components/asset-details-dialog";
-import { OfficeMapDialog } from "@/components/office-map-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
 import { type Asset } from "@/lib/types";
@@ -26,7 +25,6 @@ export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
   const [isDetailsAssetOpen, setDetailsAssetOpen] = useState(false);
-  const [isMapOpen, setMapOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
 
   const { toast } = useToast();
@@ -86,7 +84,7 @@ export default function DashboardPage() {
     }
     const headers: (keyof Omit<Asset, 'id'>)[] = [
       'machineName', 'category', 'status', 'assignedUser', 'userId', 'location', 
-      'officeLocation', 'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
+      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
       'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
       'createdAt', 'updatedAt'
     ];
@@ -137,19 +135,6 @@ export default function DashboardPage() {
   const handleInfo = (asset: Asset) => {
     setSelectedAsset(asset);
     setDetailsAssetOpen(true);
-  }
-
-  const handleShowOnMap = (asset: Asset) => {
-    if (asset.officeLocation) {
-      setSelectedAsset(asset);
-      setMapOpen(true);
-    } else {
-      toast({
-        variant: 'destructive',
-        title: "Location Not Found",
-        description: "This asset does not have a specific office location assigned to it."
-      })
-    }
   }
 
   const filteredAssets = useMemo(() => {
@@ -286,14 +271,13 @@ export default function DashboardPage() {
                 </div>
               </div>
             ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} onShowOnMap={handleShowOnMap} />
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} />
             )}
           </main>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} onAssetAdded={fetchAssets} />
         {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} onAssetUpdated={fetchAssets} />}
         {selectedAsset && <AssetDetailsDialog asset={selectedAsset} isOpen={isDetailsAssetOpen} onOpenChange={setDetailsAssetOpen} />}
-        {selectedAsset && <OfficeMapDialog asset={selectedAsset} isOpen={isMapOpen} onOpenChange={setMapOpen} />}
       </div>
     </SidebarProvider>
   );

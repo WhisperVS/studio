@@ -7,7 +7,6 @@ export const AssetSchema = z.object({
   category: z.enum(CATEGORIES),
   os: z.string().optional(),
   location: z.enum(LOCATIONS),
-  officeLocation: z.string().optional().nullable(),
   manufacturer: z.string().min(1, 'Manufacturer is required'),
   partNumber: z.string().optional(),
   modelNumber: z.string().optional(),

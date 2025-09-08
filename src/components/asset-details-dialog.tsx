@@ -58,7 +58,6 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
           <DetailItem label="Category" value={<span className="capitalize">{asset.category}</span>} />
           <DetailItem label="Manufacturer" value={asset.manufacturer} />
           <DetailItem label="Building Location" value={asset.location} />
-          <DetailItem label="Office Location" value={asset.officeLocation} />
           <DetailItem label="Status" value={<Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>} />
           <DetailItem label="Assigned User" value={asset.assignedUser} />
           <DetailItem label="User ID" value={asset.userId} />

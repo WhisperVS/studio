@@ -28,7 +28,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Trash2, Pencil, Info, MapPin } from "lucide-react";
+import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { format } from "date-fns";
@@ -41,10 +41,9 @@ interface AssetTableProps {
   onEdit: (asset: Asset) => void;
   onInfo: (asset: Asset) => void;
   onDelete: () => void;
-  onShowOnMap: (asset: Asset) => void;
 }
 
-export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: AssetTableProps) {
+export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps) {
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -165,21 +164,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: As
                   <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
                 </TableCell>
                 <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
-                <TableCell>
-                  {asset.userId ? (
-                      <Button
-                        variant="link"
-                        className="p-0 h-auto"
-                        onClick={() => onShowOnMap(asset)}
-                        disabled={!asset.officeLocation}
-                        title={asset.officeLocation ? `Show location ${asset.officeLocation} on map` : 'No office location assigned'}
-                      >
-                        {asset.userId}
-                      </Button>
-                    ) : (
-                      'N/A'
-                    )}
-                </TableCell>
+                <TableCell>{asset.userId || 'N/A'}</TableCell>
                 <TableCell className="hidden md:table-cell">{asset.location}</TableCell>
                 <TableCell className="hidden lg:table-cell">
                   {asset.purchaseDate ? format(new Date(asset.purchaseDate), 'PPP') : 'N/A'}
@@ -196,13 +181,6 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: As
                       <DropdownMenuItem onClick={() => onInfo(asset)}>
                         <Info className="mr-2 h-4 w-4" />
                         <span>Info</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem 
-                        onClick={() => onShowOnMap(asset)} 
-                        disabled={!asset.officeLocation}
-                      >
-                        <MapPin className="mr-2 h-4 w-4" />
-                        <span>Show on Map</span>
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => onEdit(asset)}>
                         <Pencil className="mr-2 h-4 w-4" />
