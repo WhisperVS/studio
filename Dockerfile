@@ -1,24 +1,15 @@
+
 # ---- Base ----
-FROM node:20-alpine AS base
+FROM node:20 as base
 WORKDIR /app
 
 # ---- Dependencies ----
-FROM base AS deps
-WORKDIR /app
+FROM base as deps
+COPY package.json package-lock.json ./
+RUN npm install
 
-# Install dependencies based on the lock file
-COPY package.json package-lock.json* ./
-
-# Install OpenSSL for Prisma
-RUN apk add --no-cache openssl libc6-compat
-COPY prisma ./prisma
-RUN npm ci
-
-# ---- Builder ----
-FROM base AS builder
-WORKDIR /app
-
-# Copy dependencies from the 'deps' stage
+# ---- Build ----
+FROM base as builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -29,30 +20,15 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---- Runner ----
-FROM base AS runner
+FROM base as runner
 WORKDIR /app
 
-# Install OpenSSL for Prisma
-RUN apk add --no-cache openssl libc6-compat
-
-# Create a non-root user
-RUN addgroup --system --gid 1001 nodejs \
-    && adduser  --system --uid 1001 nextjs
-
-
+# Copy built assets from builder
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/prisma ./prisma
-
-# Change ownership of the node_modules directory
-RUN chown -R nextjs:nodejs .
-
-USER nextjs
 
 EXPOSE 9002
-ENV PORT 9002
-ENV HOSTNAME "0.0.0.0"
 
 # Start the application
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start"]
