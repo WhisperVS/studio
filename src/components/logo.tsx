@@ -12,7 +12,7 @@ export function Logo() {
           G.A.I.M.
         </span>
         <span className="text-xs text-muted-foreground leading-tight">
-          Group Administrator Inventory Manager
+          Group Administrators Inventory Manager
         </span>
       </div>
     </div>
