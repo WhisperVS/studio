@@ -148,6 +148,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
               <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
               <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
               <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
+              <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden xl:table-cell">Manufacturer</TableHead>
+              <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden 2xl:table-cell">Model</TableHead>
               <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
               <TableHead onClick={() => handleSort('userId')} className="cursor-pointer">User ID</TableHead>
               <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden md:table-cell">Location</TableHead>
@@ -163,6 +165,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
                 <TableCell>
                   <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
                 </TableCell>
+                <TableCell className="hidden xl:table-cell">{asset.manufacturer}</TableCell>
+                <TableCell className="hidden 2xl:table-cell">{asset.modelNumber}</TableCell>
                 <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
                 <TableCell>{asset.userId || 'N/A'}</TableCell>
                 <TableCell className="hidden md:table-cell">{asset.location}</TableCell>
