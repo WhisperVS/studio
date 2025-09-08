@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -13,10 +14,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
@@ -104,6 +107,16 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
     }
   }
 
+  if (!isClient) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center p-12 border-2 border-dashed rounded-lg">
+        <h3 className="text-xl font-semibold tracking-tight font-headline">Loading Assets...</h3>
+        <p className="text-muted-foreground mt-2">
+          Please wait while we load your inventory.
+        </p>
+      </div>
+    );
+  }
 
   if (assets.length === 0) {
     return (
@@ -160,6 +173,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
                       <Pencil className="mr-2 h-4 w-4" />
                       <span>Edit</span>
                     </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="text-destructive focus:text-destructive focus:bg-destructive/10"
