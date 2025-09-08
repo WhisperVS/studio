@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const validatedData = CreateAssetAPISchema.parse(body);
-    
+
     const newAsset = await prisma.asset.create({
       data: {
         ...validatedData,

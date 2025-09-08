@@ -91,7 +91,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       });
       return;
     }
-    
+
     const dataToSend = {
       ...data,
       purchaseDate: data.purchaseDate || null,

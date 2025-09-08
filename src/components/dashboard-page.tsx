@@ -86,8 +86,8 @@ export default function DashboardPage() {
       return;
     }
     const headers: (keyof Omit<Asset, 'id'>)[] = [
-      'machineName', 'category', 'status', 'assignedUser', 'userId', 'location', 
-      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
+      'machineName', 'category', 'status', 'assignedUser', 'userId', 'location',
+      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type',
       'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
       'createdBy', 'updatedBy', 'createdAt', 'updatedAt'
     ];
@@ -97,7 +97,7 @@ export default function DashboardPage() {
       ...assets.map(row =>
         headers.map(header => {
           let value = (row as any)[header];
-          
+
           if (value === null || value === undefined) {
             return '';
           }
@@ -105,7 +105,7 @@ export default function DashboardPage() {
           if (['purchaseDate', 'warrantyExpirationDate', 'createdAt', 'updatedAt'].includes(header) && value) {
             value = format(new Date(value), 'MM/dd/yyyy');
           }
-          
+
           const stringValue = String(value);
           return `"${stringValue.replace(/"/g, '""')}"`;
         }).join(',')
@@ -182,15 +182,15 @@ export default function DashboardPage() {
               <div className="flex items-center gap-2 flex-1 justify-end">
                 <div className="w-full max-w-[180px]">
                   <Select value={currentUser} onValueChange={setCurrentUser}>
-                      <SelectTrigger className="h-9">
-                        <div className="flex items-center gap-2">
-                          <User className="h-4 w-4 text-muted-foreground" />
-                          <SelectValue placeholder="Select user..." />
-                        </div>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {USERS.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
-                      </SelectContent>
+                    <SelectTrigger className="h-9">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-muted-foreground" />
+                        <SelectValue placeholder="Select user..." />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {USERS.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
+                    </SelectContent>
                   </Select>
                 </div>
                 <Button variant="outline" size="sm" onClick={handleExport}>

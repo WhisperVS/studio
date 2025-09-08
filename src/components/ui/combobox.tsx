@@ -34,7 +34,7 @@ export function Combobox({
   placeholder = "Select an option...",
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false)
-  
+
   const handleSelect = (currentValue: string) => {
     const newValue = currentValue === value ? "" : currentValue
     onChange(newValue)

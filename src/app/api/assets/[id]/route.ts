@@ -25,14 +25,14 @@ export async function GET(
                                                   }
 
 
-                                                  // PUT handler to update an asset
-                                                  export async function PUT(
-                                                    request: Request,
-                                                      { params }: { params: { id: string } }
-                                                      ) {
-                                                        try {
-                                                            const body = await request.json();
-                                                                const validatedData = UpdateAssetAPISchema.parse(body);
+// PUT handler to update an asset
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const body = await request.json();
+    const validatedData = UpdateAssetAPISchema.parse(body);
 
                                                                     const updatedAsset = await prisma.asset.update({
                                                                           where: { id: params.id },

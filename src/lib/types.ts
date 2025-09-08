@@ -29,10 +29,10 @@ export const AssetSchema = z.object({
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({ 
-  id: true, 
-  owner: true, 
-  createdAt: true, 
+export const AssetFormSchema = AssetSchema.omit({
+  id: true,
+  owner: true,
+  createdAt: true,
   updatedAt: true,
   createdBy: true,
   updatedBy: true,
@@ -40,14 +40,14 @@ export const AssetFormSchema = AssetSchema.omit({
   owner: z.string(),
   userId: z.preprocess(
     (val) => {
-        if (typeof val === 'string' && val.trim() !== '') {
-            const num = Number(val);
-            return isNaN(num) ? val : num;
-        }
-        if (typeof val === 'number') {
-            return val;
-        }
-        return undefined;
+      if (typeof val === 'string' && val.trim() !== '') {
+        const num = Number(val);
+        return isNaN(num) ? val : num;
+      }
+      if (typeof val === 'number') {
+        return val;
+      }
+      return undefined;
     },
     z.number({ invalid_type_error: 'User ID must be a number' }).optional()
   ),
