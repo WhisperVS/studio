@@ -168,110 +168,118 @@ export default function DashboardPage() {
           </SidebarFooter>
         </Sidebar>
         <SidebarInset className="flex-1">
-          <header className="flex items-center justify-between p-4 border-b gap-4 flex-wrap">
-            <div className="flex items-center gap-2">
-              <SidebarTrigger className="md:hidden" />
-              <h1 className="text-2xl font-bold tracking-tight font-headline">
-                Inventory Dashboard
-              </h1>
-            </div>
-            <div className="flex items-center gap-2 flex-1 justify-end">
-              <Button variant="outline" size="sm" onClick={handleExport}>
-                <Download className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">Export to CSV</span>
-              </Button>
-              <Button size="sm" onClick={() => setAddAssetOpen(true)}>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">Add Asset</span>
-              </Button>
-            </div>
-          </header>
-          <main className="p-4">
-            <Collapsible open={isFilterPanelOpen} onOpenChange={setFilterPanelOpen} className="mb-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="relative w-full max-w-sm">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search assets..."
-                    className="pl-10"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                <CollapsibleTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <SlidersHorizontal className="mr-2 h-4 w-4" />
-                    Filters
-                  </Button>
-                </CollapsibleTrigger>
+          <div className="container mx-auto">
+            <header className="flex items-center justify-between p-4 border-b gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <SidebarTrigger className="md:hidden" />
+                <h1 className="text-2xl font-bold tracking-tight font-headline">
+                  Inventory Dashboard
+                </h1>
               </div>
-              <CollapsibleContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 p-4 border rounded-lg">
-                  <Select value={filters.category} onValueChange={handleFilterChange('category')}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Filter by category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Categories</SelectItem>
-                      {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                  <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Statuses</SelectItem>
-                      {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                  <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Filter by location" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Locations</SelectItem>
-                      {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
+              <div className="flex items-center gap-2 flex-1 justify-end">
+                <Button variant="outline" size="sm" onClick={handleExport}>
+                  <Download className="mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Export to CSV</span>
+                </Button>
+                <Button size="sm" onClick={() => setAddAssetOpen(true)}>
+                  <PlusCircle className="mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Add Asset</span>
+                </Button>
+              </div>
+            </header>
+            <main className="p-4 md:p-6 lg:p-8">
+              <Collapsible open={isFilterPanelOpen} onOpenChange={setFilterPanelOpen} className="mb-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="relative w-full max-w-sm">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Search assets..."
+                      className="pl-10"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <SlidersHorizontal className="mr-2 h-4 w-4" />
+                      Filters
+                    </Button>
+                  </CollapsibleTrigger>
                 </div>
-              </CollapsibleContent>
-            </Collapsible>
-            {!isClient || isLoading ? (
-              <div className="rounded-lg border overflow-hidden">
-                <div className="relative w-full overflow-auto">
-                  <table className="w-full caption-bottom text-sm">
-                    <thead className="[&_tr]:border-b">
-                      <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
-                      </tr>
-                    </thead>
-                    <tbody className="[&_tr:last-child]:border-0">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
-                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
-                          <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
-                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
-                          <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                          <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                          <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
+                <CollapsibleContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 p-4 border rounded-lg">
+                    <Select value={filters.category} onValueChange={handleFilterChange('category')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Categories</SelectItem>
+                        {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                    <Select value={filters.status} onValueChange={handleFilterChange('status')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Statuses</SelectItem>
+                        {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                    <Select value={filters.location} onValueChange={handleFilterChange('location')}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Filter by location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Locations</SelectItem>
+                        {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+              {!isClient || isLoading ? (
+                <div className="rounded-lg border overflow-hidden">
+                  <div className="relative w-full overflow-auto">
+                    <table className="w-full caption-bottom text-sm">
+                      <thead className="[&_tr]:border-b">
+                        <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell [&:has([role=checkbox])]:pr-0">Manufacturer</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden 2xl:table-cell [&:has([role=checkbox])]:pr-0">Model</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">User ID</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="[&_tr:last-child]:border-0">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden 2xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} />
-            )}
-          </main>
+              ) : (
+                <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} />
+              )}
+            </main>
+          </div>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} onAssetAdded={fetchAssets} />
         {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} onAssetUpdated={fetchAssets} />}
