@@ -61,7 +61,7 @@ export function Combobox({
           <CommandInput placeholder={placeholder} />
           <CommandList>
             <CommandEmpty>No options found. You can add a new one.</CommandEmpty>
-            <CommandGroup>
+            <CommandGroup className="max-h-60 overflow-y-auto">
               {options.map((option) => (
                 <CommandItem
                   key={option.value}
