@@ -260,30 +260,30 @@ export default function DashboardPage() {
                     <table className="w-full caption-bottom text-sm">
                       <thead className="[&_tr]:border-b">
                         <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
                           <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
                           <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell [&:has([role=checkbox])]:pr-0">Manufacturer</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden 2xl:table-cell [&:has([role=checkbox])]:pr-0">Model</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Manufacturer</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Model</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell [&:has([role=checkbox])]:pr-0">OS</th>
                           <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">User ID</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden sm:table-cell [&:has([role=checkbox])]:pr-0">User ID</th>
+                          <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden 2xl:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
                           <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
                         </tr>
                       </thead>
                       <tbody className="[&_tr:last-child]:border-0">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
                             <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
                             <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
-                            <td className="p-4 align-middle hidden xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                            <td className="p-4 align-middle hidden 2xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
-                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
                             <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
                             <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                            <td className="p-4 align-middle hidden sm:table-cell"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle hidden 2xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
                             <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
                           </tr>
                         ))}
