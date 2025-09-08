@@ -10,6 +10,7 @@ import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
 import { AssetDetailsDialog } from "@/components/asset-details-dialog";
+import { OfficeMapDialog } from "@/components/office-map-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
 import { type Asset } from "@/lib/types";
@@ -25,6 +26,7 @@ export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
   const [isEditAssetOpen, setEditAssetOpen] = useState(false);
   const [isDetailsAssetOpen, setDetailsAssetOpen] = useState(false);
+  const [isMapOpen, setMapOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
 
   const { toast } = useToast();
@@ -84,7 +86,7 @@ export default function DashboardPage() {
     }
     const headers: (keyof Omit<Asset, 'id'>)[] = [
       'machineName', 'category', 'status', 'assignedUser', 'userId', 'location', 
-      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
+      'officeLocation', 'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
       'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
       'createdAt', 'updatedAt'
     ];
@@ -135,6 +137,19 @@ export default function DashboardPage() {
   const handleInfo = (asset: Asset) => {
     setSelectedAsset(asset);
     setDetailsAssetOpen(true);
+  }
+
+  const handleShowOnMap = (asset: Asset) => {
+    if (asset.officeLocation) {
+      setSelectedAsset(asset);
+      setMapOpen(true);
+    } else {
+      toast({
+        variant: 'destructive',
+        title: "Location Not Found",
+        description: "This asset does not have a specific office location assigned to it."
+      })
+    }
   }
 
   const filteredAssets = useMemo(() => {
@@ -247,6 +262,7 @@ export default function DashboardPage() {
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Category</th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">User ID</th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Purchase Date</th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
@@ -259,6 +275,7 @@ export default function DashboardPage() {
                           <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
                           <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
                           <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                          <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
                           <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
                           <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
                           <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
@@ -269,13 +286,14 @@ export default function DashboardPage() {
                 </div>
               </div>
             ) : (
-              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} />
+              <AssetTable assets={filteredAssets} onEdit={handleEdit} onInfo={handleInfo} onDelete={fetchAssets} onShowOnMap={handleShowOnMap} />
             )}
           </main>
         </SidebarInset>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} onAssetAdded={fetchAssets} />
         {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} onAssetUpdated={fetchAssets} />}
         {selectedAsset && <AssetDetailsDialog asset={selectedAsset} isOpen={isDetailsAssetOpen} onOpenChange={setDetailsAssetOpen} />}
+        {selectedAsset && <OfficeMapDialog asset={selectedAsset} isOpen={isMapOpen} onOpenChange={setMapOpen} />}
       </div>
     </SidebarProvider>
   );

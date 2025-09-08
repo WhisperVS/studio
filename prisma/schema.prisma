@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Asset {
-  id                     String    @id @default(uuid())
+  id                     String    @id @default(cuid())
   machineName            String
   category               String
   os                     String?
   location               String
+  officeLocation         String?
   manufacturer           String
   partNumber             String?
   modelNumber            String?
@@ -29,7 +30,6 @@ model Asset {
   notes                  String?
   purchaseDate           DateTime?
   warrantyExpirationDate DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
 }

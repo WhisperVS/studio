@@ -62,6 +62,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       category: "laptops",
       os: "",
       location: "Schaumburg IL",
+      officeLocation: "",
       manufacturer: "",
       partNumber: "",
       modelNumber: "",
@@ -190,7 +191,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Location</FormLabel>
+                    <FormLabel>Building Location</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -203,6 +204,22 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         ))}
                       </SelectContent>
                     </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="officeLocation"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Office Location</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 42 or 121" {...field} value={field.value ?? ''} />
+                    </FormControl>
+                     <FormDescription>
+                      The cubicle or room number from the office map.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

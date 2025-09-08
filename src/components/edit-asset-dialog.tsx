@@ -9,6 +9,7 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -63,6 +64,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       category: 'laptops',
       os: '',
       location: 'Schaumburg IL',
+      officeLocation: '',
       manufacturer: '',
       partNumber: '',
       modelNumber: '',
@@ -88,6 +90,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         assignedUser: asset.assignedUser ?? '',
         userId: asset.userId ?? undefined,
         notes: asset.notes ?? '',
+        officeLocation: asset.officeLocation ?? '',
         owner: "Group Administrators"
       });
     }
@@ -198,13 +201,13 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-              <FormField
+               <FormField
                 control={form.control}
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Location</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <FormLabel>Building Location</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
@@ -216,6 +219,22 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                         ))}
                       </SelectContent>
                     </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="officeLocation"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Office Location</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., 42 or 121" {...field} value={field.value ?? ''} />
+                    </FormControl>
+                     <FormDescription>
+                      The cubicle or room number from the office map.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
