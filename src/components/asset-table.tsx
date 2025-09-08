@@ -31,7 +31,6 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
-import { format } from "date-fns";
 import { useToast } from '@/hooks/use-toast';
 
 type SortKey = keyof Asset | '';
@@ -145,34 +144,32 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
               <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
               <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
-              <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden xl:table-cell">Manufacturer</TableHead>
-              <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden 2xl:table-cell">Model</TableHead>
+              <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
+              <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">Manufacturer</TableHead>
+              <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden lg:table-cell">Model</TableHead>
+              <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">OS</TableHead>
               <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
-              <TableHead onClick={() => handleSort('userId')} className="cursor-pointer">User ID</TableHead>
-              <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden md:table-cell">Location</TableHead>
-              <TableHead onClick={() => handleSort('purchaseDate')} className="cursor-pointer hidden lg:table-cell">Purchase Date</TableHead>
+              <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">User ID</TableHead>
+              <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">Location</TableHead>
               <TableHead><span className="sr-only">Actions</span></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {sortedAssets.map((asset) => (
               <TableRow key={asset.id}>
-                <TableCell className="font-medium">{asset.machineName}</TableCell>
                 <TableCell className="capitalize">{asset.category}</TableCell>
                 <TableCell>
                   <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
                 </TableCell>
-                <TableCell className="hidden xl:table-cell">{asset.manufacturer}</TableCell>
-                <TableCell className="hidden 2xl:table-cell">{asset.modelNumber}</TableCell>
+                <TableCell className="font-medium">{asset.machineName}</TableCell>
+                <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>
+                <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>
+                <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>
                 <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
-                <TableCell>{asset.userId || 'N/A'}</TableCell>
-                <TableCell className="hidden md:table-cell">{asset.location}</TableCell>
-                <TableCell className="hidden lg:table-cell">
-                  {asset.purchaseDate ? format(new Date(asset.purchaseDate), 'PPP') : 'N/A'}
-                </TableCell>
+                <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>
+                <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
