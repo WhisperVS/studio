@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo, useState } from 'react';
@@ -16,6 +17,16 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil, Info, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -37,10 +48,14 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: As
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
 
-  const handleDelete = async (assetId: string) => {
+  const handleDelete = async () => {
+    if (!assetToDelete) return;
+
     try {
-      const response = await fetch(`/api/assets/${assetId}`, {
+      const response = await fetch(`/api/assets/${assetToDelete}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -58,7 +73,15 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: As
         title: "Error",
         description: "Could not delete the asset.",
       });
+    } finally {
+      setAssetToDelete(null);
+      setIsAlertOpen(false);
     }
+  };
+
+  const openDeleteDialog = (assetId: string) => {
+    setAssetToDelete(assetId);
+    setIsAlertOpen(true);
   };
 
   const sortedAssets = useMemo(() => {
@@ -118,87 +141,106 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, onShowOnMap }: As
   }
 
   return (
-    <div className="rounded-lg border overflow-hidden">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
-            <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
-            <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
-            <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
-            <TableHead onClick={() => handleSort('userId')} className="cursor-pointer">User ID</TableHead>
-            <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden md:table-cell">Location</TableHead>
-            <TableHead onClick={() => handleSort('purchaseDate')} className="cursor-pointer hidden lg:table-cell">Purchase Date</TableHead>
-            <TableHead><span className="sr-only">Actions</span></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedAssets.map((asset) => (
-            <TableRow key={asset.id}>
-              <TableCell className="font-medium">{asset.machineName}</TableCell>
-              <TableCell className="capitalize">{asset.category}</TableCell>
-              <TableCell>
-                <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
-              </TableCell>
-              <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
-              <TableCell>
-                 {asset.userId ? (
-                    <Button
-                      variant="link"
-                      className="p-0 h-auto"
-                      onClick={() => onShowOnMap(asset)}
-                      disabled={!asset.officeLocation}
-                      title={asset.officeLocation ? `Show location ${asset.officeLocation} on map` : 'No office location assigned'}
-                    >
-                      {asset.userId}
-                    </Button>
-                  ) : (
-                    'N/A'
-                  )}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">{asset.location}</TableCell>
-              <TableCell className="hidden lg:table-cell">
-                {asset.purchaseDate ? format(new Date(asset.purchaseDate), 'PPP') : 'N/A'}
-              </TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
-                      <span className="sr-only">Open menu</span>
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                     <DropdownMenuItem onClick={() => onInfo(asset)}>
-                      <Info className="mr-2 h-4 w-4" />
-                      <span>Info</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => onShowOnMap(asset)} 
-                      disabled={!asset.officeLocation}
-                    >
-                      <MapPin className="mr-2 h-4 w-4" />
-                      <span>Show on Map</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => onEdit(asset)}>
-                      <Pencil className="mr-2 h-4 w-4" />
-                      <span>Edit</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      className="text-destructive focus:text-destructive focus:bg-destructive/10"
-                      onClick={() => handleDelete(asset.id)}
-                    >
-                      <Trash2 className="mr-2 h-4 w-4" />
-                      <span>Delete</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
+    <>
+      <div className="rounded-lg border overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
+              <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
+              <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
+              <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
+              <TableHead onClick={() => handleSort('userId')} className="cursor-pointer">User ID</TableHead>
+              <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden md:table-cell">Location</TableHead>
+              <TableHead onClick={() => handleSort('purchaseDate')} className="cursor-pointer hidden lg:table-cell">Purchase Date</TableHead>
+              <TableHead><span className="sr-only">Actions</span></TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHeader>
+          <TableBody>
+            {sortedAssets.map((asset) => (
+              <TableRow key={asset.id}>
+                <TableCell className="font-medium">{asset.machineName}</TableCell>
+                <TableCell className="capitalize">{asset.category}</TableCell>
+                <TableCell>
+                  <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
+                </TableCell>
+                <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
+                <TableCell>
+                  {asset.userId ? (
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto"
+                        onClick={() => onShowOnMap(asset)}
+                        disabled={!asset.officeLocation}
+                        title={asset.officeLocation ? `Show location ${asset.officeLocation} on map` : 'No office location assigned'}
+                      >
+                        {asset.userId}
+                      </Button>
+                    ) : (
+                      'N/A'
+                    )}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">{asset.location}</TableCell>
+                <TableCell className="hidden lg:table-cell">
+                  {asset.purchaseDate ? format(new Date(asset.purchaseDate), 'PPP') : 'N/A'}
+                </TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="h-8 w-8 p-0">
+                        <span className="sr-only">Open menu</span>
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onClick={() => onInfo(asset)}>
+                        <Info className="mr-2 h-4 w-4" />
+                        <span>Info</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={() => onShowOnMap(asset)} 
+                        disabled={!asset.officeLocation}
+                      >
+                        <MapPin className="mr-2 h-4 w-4" />
+                        <span>Show on Map</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onEdit(asset)}>
+                        <Pencil className="mr-2 h-4 w-4" />
+                        <span>Edit</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        className="text-destructive focus:text-destructive focus:bg-destructive/10"
+                        onClick={() => openDeleteDialog(asset.id)}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        <span>Delete</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the asset
+              from your inventory.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-destructive hover:bg-destructive/90">
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
