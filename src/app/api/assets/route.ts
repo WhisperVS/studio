@@ -1,6 +1,7 @@
+
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { AssetFormSchema } from '@/lib/types';
+import { CreateAssetAPISchema } from '@/lib/types';
 
 const prisma = new PrismaClient();
 
@@ -23,8 +24,8 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const validatedData = AssetFormSchema.parse(body);
-    
+    const validatedData = CreateAssetAPISchema.parse(body);
+
     const newAsset = await prisma.asset.create({
       data: {
         ...validatedData,

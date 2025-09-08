@@ -1,6 +1,7 @@
+
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { AssetFormSchema } from '@/lib/types';
+import { UpdateAssetAPISchema } from '@/lib/types';
 
 const prisma = new PrismaClient();
 
@@ -31,7 +32,7 @@ export async function PUT(
 ) {
   try {
     const body = await request.json();
-    const validatedData = AssetFormSchema.parse(body);
+    const validatedData = UpdateAssetAPISchema.parse(body);
 
     const updatedAsset = await prisma.asset.update({
       where: { id: params.id },

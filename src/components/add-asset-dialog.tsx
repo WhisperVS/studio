@@ -45,6 +45,7 @@ import {
   SYSTEM_TYPES,
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@/components/user-provider";
 
 interface AddAssetDialogProps {
   isOpen: boolean;
@@ -54,6 +55,7 @@ interface AddAssetDialogProps {
 
 export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
+  const { currentUser } = useUser();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -81,11 +83,22 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const category = form.watch("category");
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
+    if (!currentUser) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please select a user before adding an asset.",
+      });
+      return;
+    }
+
     const dataToSend = {
       ...data,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
+      createdBy: currentUser,
+      updatedBy: currentUser,
     };
     try {
       const response = await fetch('/api/assets', {
@@ -115,7 +128,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         description: "Could not add the asset.",
       });
     }
-  }, [onAssetAdded, form, onOpenChange, toast]);
+  }, [onAssetAdded, form, onOpenChange, toast, currentUser]);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {

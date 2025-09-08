@@ -1,3 +1,4 @@
+
 export const CATEGORIES = ['systems', 'servers', 'laptops', 'networks', 'printers', 'other'] as const;
 export const LOCATIONS = ['Schaumburg IL', 'Rockford IL'] as const;
 export const STATUSES = ['In Use', 'In Repair', 'Spare', 'For Parts'] as const;
@@ -7,3 +8,4 @@ export const MANUFACTURERS = [
   'Dell', 'HP', 'Lenovo', 'Apple', 'Microsoft', 'Asus', 'Acer', 'MSI', 'Samsung', 'Sony', 'Cisco', 'Brother', 'Canon', 'Epson'
 ] as const;
 export const USER_TYPES = ['local', 'remote'] as const;
+export const USERS = ['V.Shtohryn', 'J.Darling'] as const;

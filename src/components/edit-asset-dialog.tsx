@@ -46,6 +46,7 @@ import {
   SYSTEM_TYPES,
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "./user-provider";
 
 interface EditAssetDialogProps {
   asset: Asset | null;
@@ -56,6 +57,7 @@ interface EditAssetDialogProps {
 
 export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }: EditAssetDialogProps) {
   const { toast } = useToast();
+  const { currentUser } = useUser();
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -100,11 +102,21 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!asset) return;
 
+    if (!currentUser) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please select a user before editing an asset.",
+      });
+      return;
+    }
+
     const dataToSend = {
       ...data,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
+      updatedBy: currentUser,
     };
 
     try {
@@ -134,7 +146,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         description: "Could not update the asset.",
       });
     }
-  }, [asset, onAssetUpdated, toast, onOpenChange, form]);
+  }, [asset, onAssetUpdated, toast, onOpenChange, form, currentUser]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
