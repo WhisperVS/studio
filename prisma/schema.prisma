@@ -1,35 +1,34 @@
-generator client {
-  provider = "prisma-client-js"
-}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model Asset {
-  id         String   @id @default(cuid())
-  machineName String
-  category   String
-  os         String?
-  location   String
-  manufacturer String
-  partNumber String?
-  modelNumber String?
-  serialNumber String?
-  type       String?
-
-  assignedUser String?
-  userId     Int?
-  userType   String?
-
-  owner      String   @default("Group Administrators")
-  status     String
-  notes      String?
-
-  purchaseDate         DateTime?
+  id                     String    @id @default(cuid())
+  machineName            String
+  category               String
+  os                     String?
+  location               String
+  manufacturer           String
+  partNumber             String?
+  modelNumber            String?
+  serialNumber           String?
+  type                   String?
+  assignedUser           String?
+  userId                 Int?
+  userType               String?
+  owner                  String
+  status                 String
+  notes                  String?
+  purchaseDate           DateTime?
   warrantyExpirationDate DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdBy              String?
+  updatedBy              String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
 }

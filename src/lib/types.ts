@@ -1,3 +1,4 @@
+
 import { z } from 'zod';
 import { CATEGORIES, LOCATIONS, STATUSES, USER_TYPES } from './constants';
 
@@ -20,13 +21,22 @@ export const AssetSchema = z.object({
   notes: z.string().optional(),
   purchaseDate: z.coerce.date().optional().nullable(),
   warrantyExpirationDate: z.coerce.date().optional().nullable(),
+  createdBy: z.string().optional(),
+  updatedBy: z.string().optional(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 });
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, createdAt: true, updatedAt: true }).extend({
+export const AssetFormSchema = AssetSchema.omit({ 
+  id: true, 
+  owner: true, 
+  createdAt: true, 
+  updatedAt: true,
+  createdBy: true,
+  updatedBy: true,
+}).extend({
   owner: z.string(),
   userId: z.preprocess(
     (val) => {
@@ -46,3 +56,12 @@ export const AssetFormSchema = AssetSchema.omit({ id: true, owner: true, created
 });
 
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
+
+export const CreateAssetAPISchema = AssetFormSchema.extend({
+  createdBy: z.string(),
+  updatedBy: z.string(),
+});
+
+export const UpdateAssetAPISchema = AssetFormSchema.extend({
+  updatedBy: z.string(),
+});

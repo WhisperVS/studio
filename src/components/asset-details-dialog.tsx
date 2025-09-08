@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -70,6 +71,8 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
           )}
           <DetailItem label="Purchase Date" value={asset.purchaseDate ? format(asset.purchaseDate, 'PPP') : 'N/A'} />
           <DetailItem label="Warranty Expiration" value={asset.warrantyExpirationDate ? format(asset.warrantyExpirationDate, 'PPP') : 'N/A'} />
+          <DetailItem label="Created By" value={asset.createdBy} />
+          <DetailItem label="Last Modified By" value={asset.updatedBy} />
           <DetailItem label="Owner" value={asset.owner} />
           <div className="md:col-span-2">
             <DetailItem label="Notes" value={asset.notes} />

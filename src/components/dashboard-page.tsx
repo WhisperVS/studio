@@ -5,7 +5,7 @@ import { useMemo, useState, useEffect, useCallback } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, PlusCircle, Search, SlidersHorizontal } from "lucide-react";
+import { Download, PlusCircle, Search, SlidersHorizontal, User } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
@@ -15,11 +15,12 @@ import { Logo } from "@/components/logo";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { CATEGORIES, LOCATIONS, STATUSES } from "@/lib/constants";
+import { CATEGORIES, LOCATIONS, STATUSES, USERS } from "@/lib/constants";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Skeleton } from "./ui/skeleton";
 import { format } from "date-fns";
+import { useUser } from "@/components/user-provider";
 
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
@@ -41,6 +42,8 @@ export default function DashboardPage() {
   // Asset state and management
   const [assets, setAssets] = useState<Asset[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser, setCurrentUser } = useUser();
+
 
   const fetchAssets = useCallback(async () => {
     setIsLoading(true);
@@ -86,7 +89,7 @@ export default function DashboardPage() {
       'machineName', 'category', 'status', 'assignedUser', 'userId', 'location', 
       'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type', 
       'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
-      'createdAt', 'updatedAt'
+      'createdBy', 'updatedBy', 'createdAt', 'updatedAt'
     ];
 
     const csvContent = [
@@ -177,6 +180,19 @@ export default function DashboardPage() {
                 </h1>
               </div>
               <div className="flex items-center gap-2 flex-1 justify-end">
+                <div className="w-full max-w-[180px]">
+                  <Select value={currentUser} onValueChange={setCurrentUser}>
+                      <SelectTrigger className="h-9">
+                        <div className="flex items-center gap-2">
+                          <User className="h-4 w-4 text-muted-foreground" />
+                          <SelectValue placeholder="Select user..." />
+                        </div>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {USERS.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
+                      </SelectContent>
+                  </Select>
+                </div>
                 <Button variant="outline" size="sm" onClick={handleExport}>
                   <Download className="mr-2 h-4 w-4" />
                   <span className="hidden sm:inline">Export to CSV</span>
