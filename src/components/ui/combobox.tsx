@@ -1,104 +1,122 @@
+"use client";
 
-"use client"
+import * as React from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
 
-import * as React from "react"
-import { Check, ChevronsUpDown, X } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
+import { cn } from "@/lib/utils"; // <- keep this import if you have cn; otherwise inline className join
+import { Button } from "@/components/ui/button";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+  PopoverContent,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandInput,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
+type Option = { value: string; label: string };
 
 interface ComboboxProps {
-  options: { value: string; label: string }[]
-  value: string
-  onChange: (value: string) => void
-  placeholder?: string
+  options?: Option[];              // safe default
+  value?: string | null;
+  onChange?: (val: string | null) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
 export function Combobox({
-  options,
+  options = [],
   value,
   onChange,
-  placeholder = "Select an option...",
+  placeholder = "Select or type…",
+  disabled,
+  className,
 }: ComboboxProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
-  const handleSelect = (currentValue: string) => {
-    const newValue = currentValue === value ? "" : currentValue
-    onChange(newValue)
-    setOpen(false)
-  }
+  const selected = options.find((o) => o.value === value);
+
+  const handleSelect = (val: string) => {
+    const next = val === value ? null : val;
+    onChange?.(next);
+    setOpen(false);
+  };
 
   const handleClear = () => {
-    onChange("")
-    setOpen(false)
-  }
-
+    onChange?.(null);
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          type="button"
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between font-normal"
+          disabled={disabled}
+          className={cn("w-full justify-between font-normal", className)}
         >
-          {value
-            ? options.find((option) => option.value === value)?.label
-            : placeholder}
+          {selected ? selected.label : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+
+      {/* KEY: cap height + own scrollbar + stop wheel bubbling */}
+      <PopoverContent
+        align="start"
+        className="w-[var(--radix-popover-trigger-width)] p-0"
+        onWheel={(e) => e.stopPropagation()}
+      >
         <Command>
           <CommandInput placeholder={placeholder} />
-          <CommandList>
-            <CommandEmpty>No options found. You can add a new one.</CommandEmpty>
-            <CommandGroup className="max-h-60 overflow-y-auto">
-              {options.map((option) => (
+          <CommandList
+            className="max-h-60 overflow-y-auto"
+            onWheel={(e) => e.stopPropagation()}
+          >
+            <CommandEmpty>No options found.</CommandEmpty>
+
+            <CommandGroup>
+              {options.map((opt) => (
                 <CommandItem
-                  key={option.value}
-                  value={option.value}
+                  key={opt.value}
+                  value={opt.value}
                   onSelect={handleSelect}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === option.value ? "opacity-100" : "opacity-0"
+                      opt.value === value ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {option.label}
+                  {opt.label}
                 </CommandItem>
               ))}
             </CommandGroup>
           </CommandList>
         </Command>
-        {value && (
-            <div className="p-2 border-t">
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full justify-center"
-                    onClick={handleClear}
-                >
-                    Clear
-                </Button>
-            </div>
+
+        {!!value && (
+          <div className="border-t p-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full justify-center"
+              onClick={handleClear}
+              type="button"
+            >
+              Clear
+            </Button>
+          </div>
         )}
       </PopoverContent>
     </Popover>
-  )
+  );
 }

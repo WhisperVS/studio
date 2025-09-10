@@ -17,7 +17,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    image: 13whisper13/studio-app:v1.0.2
+    image: 13whisper13/studio-app:v1.0.3
     build: .
     ports:
       - "9002:9002"
