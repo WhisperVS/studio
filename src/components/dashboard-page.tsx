@@ -21,6 +21,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Skeleton } from "./ui/skeleton";
 import { format } from "date-fns";
 import { useUser } from "@/components/user-provider";
+import { CategoryCounts } from "./category-counts";
 
 export default function DashboardPage() {
   const [isAddAssetOpen, setAddAssetOpen] = useState(false);
@@ -70,6 +71,13 @@ export default function DashboardPage() {
     setIsClient(true);
     fetchAssets();
   }, [fetchAssets]);
+
+  const categoryCounts = useMemo(() => {
+    return assets.reduce((acc, asset) => {
+      acc[asset.category] = (acc[asset.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+  }, [assets]);
 
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
@@ -183,7 +191,12 @@ export default function DashboardPage() {
             <Logo />
           </SidebarHeader>
           <SidebarContent>
-            {/* Navigation items can go here if more pages are added */}
+            <CategoryCounts
+              counts={categoryCounts}
+              isLoading={isLoading}
+              selectedCategory={filters.category}
+              onSelectCategory={handleFilterChange('category')}
+            />
           </SidebarContent>
           <SidebarFooter className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
             <ThemeToggle />
