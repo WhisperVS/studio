@@ -85,24 +85,43 @@ export default function DashboardPage() {
       });
       return;
     }
-    const headers: (keyof Omit<Asset, 'id'>)[] = [
-      'machineName', 'category', 'status', 'assignedUser', 'userId', 'location',
-      'manufacturer', 'modelNumber', 'partNumber', 'serialNumber', 'os', 'type',
-      'userType', 'owner', 'purchaseDate', 'warrantyExpirationDate', 'notes',
-      'createdBy', 'updatedBy', 'createdAt', 'updatedAt'
-    ];
+    
+    const columns = [
+      { label: 'Category', key: 'category' },
+      { label: 'Status', key: 'status' },
+      { label: 'Machine Name', key: 'machineName' },
+      { label: 'Manufacturer', key: 'manufacturer' },
+      { label: 'Part Number', key: 'partNumber' },
+      { label: 'Model Number', key: 'modelNumber' },
+      { label: 'Serial Number', key: 'serialNumber' },
+      { label: 'Type', key: 'type' },
+      { label: 'OS', key: 'os' },
+      { label: 'Assigned User', key: 'assignedUser' },
+      { label: 'User ID', key: 'userId' },
+      { label: 'User Type', key: 'userType' },
+      { label: 'Location', key: 'location' },
+      { label: 'Owner', key: 'owner' },
+      { label: 'Purchase Date', key: 'purchaseDate' },
+      { label: 'Warranty Expiration Date', key: 'warrantyExpirationDate' },
+      { label: 'Notes', key: 'notes' },
+      { label: 'Created By', key: 'createdBy' },
+      { label: 'Updated By', key: 'updatedBy' },
+      { label: 'Created At', key: 'createdAt' },
+      { label: 'Updated At', key: 'updatedAt' },
+    ] as const;
+
 
     const csvContent = [
-      headers.join(','),
+      columns.map(c => c.label).join(','),
       ...assets.map(row =>
-        headers.map(header => {
-          let value = (row as any)[header];
+        columns.map(col => {
+          let value = (row as any)[col.key];
 
           if (value === null || value === undefined) {
             return '';
           }
 
-          if (['purchaseDate', 'warrantyExpirationDate', 'createdAt', 'updatedAt'].includes(header) && value) {
+          if (['purchaseDate', 'warrantyExpirationDate', 'createdAt', 'updatedAt'].includes(col.key) && value) {
             value = format(new Date(value), 'MM/dd/yyyy');
           }
 
@@ -308,5 +327,3 @@ export default function DashboardPage() {
     </SidebarProvider>
   );
 }
-
-    
