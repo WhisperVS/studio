@@ -2,7 +2,7 @@
 "use client";
 
 import { CATEGORIES } from "@/lib/constants";
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "./ui/sidebar";
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/ui/sidebar";
 import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
 

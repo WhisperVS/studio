@@ -93,4 +93,14 @@
     box-shadow: 0 0 0 1000px hsl(var(--background)) inset !important;
     transition: background-color 5000s ease-in-out 0s;
   }
+  
+  html.theme-changing *,
+  html.theme-changing *::before,
+  html.theme-changing *::after {
+    transition: none !important;
+  }
+
+  html.theme-changing [data-theme-icon] {
+    transition: all 0.15s ease-out !important;
+  }
 }
