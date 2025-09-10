@@ -403,7 +403,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Purchase Date</FormLabel>
-                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
+                    <DatePicker 
+                      date={field.value ?? undefined} 
+                      setDate={(d) => field.onChange(d === undefined ? null : d)} 
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -415,7 +418,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Warranty Expiration</FormLabel>
-                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
+                    <DatePicker 
+                      date={field.value ?? undefined} 
+                      setDate={(d) => field.onChange(d === undefined ? null : d)} 
+                    />
                     <FormMessage />
                   </FormItem>
                 )}

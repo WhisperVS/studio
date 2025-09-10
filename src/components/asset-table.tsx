@@ -140,68 +140,70 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
 
   return (
     <>
-      <div className="rounded-lg border overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
-              <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
-              <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
-              <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">Manufacturer</TableHead>
-              <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden lg:table-cell">Model</TableHead>
-              <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">OS</TableHead>
-              <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
-              <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">User ID</TableHead>
-              <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">Location</TableHead>
-              <TableHead><span className="sr-only">Actions</span></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedAssets.map((asset) => (
-              <TableRow key={asset.id}>
-                <TableCell className="capitalize">{asset.category}</TableCell>
-                <TableCell>
-                  <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
-                </TableCell>
-                <TableCell className="font-medium">{asset.machineName}</TableCell>
-                <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>
-                <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>
-                <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>
-                <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
-                <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>
-                <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>
-                <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <span className="sr-only">Open menu</span>
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={() => onInfo(asset)}>
-                        <Info className="mr-2 h-4 w-4" />
-                        <span>Info</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onEdit(asset)}>
-                        <Pencil className="mr-2 h-4 w-4" />
-                        <span>Edit</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        className="text-destructive focus:text-destructive focus:bg-destructive/10"
-                        onClick={() => openDeleteDialog(asset.id)}
-                      >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        <span>Delete</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
+      <div className="rounded-lg border overflow-hidden h-full">
+        <div className="relative w-full h-full overflow-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
+                <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
+                <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
+                <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">Manufacturer</TableHead>
+                <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden lg:table-cell">Model</TableHead>
+                <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">OS</TableHead>
+                <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
+                <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">User ID</TableHead>
+                <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">Location</TableHead>
+                <TableHead><span className="sr-only">Actions</span></TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {sortedAssets.map((asset) => (
+                <TableRow key={asset.id}>
+                  <TableCell className="capitalize">{asset.category}</TableCell>
+                  <TableCell>
+                    <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
+                  </TableCell>
+                  <TableCell className="font-medium">{asset.machineName}</TableCell>
+                  <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>
+                  <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>
+                  <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>
+                  <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
+                  <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>
+                  <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => onInfo(asset)}>
+                          <Info className="mr-2 h-4 w-4" />
+                          <span>Info</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => onEdit(asset)}>
+                          <Pencil className="mr-2 h-4 w-4" />
+                          <span>Edit</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          className="text-destructive focus:text-destructive focus:bg-destructive/10"
+                          onClick={() => openDeleteDialog(asset.id)}
+                        >
+                          <Trash2 className="mr-2 h-4 w-4" />
+                          <span>Delete</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
       <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
         <AlertDialogContent>

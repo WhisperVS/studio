@@ -1,8 +1,9 @@
+
 "use client"
 
 import * as React from "react"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { Calendar as CalendarIcon, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -26,6 +27,12 @@ export function DatePicker({ date, setDate }: DatePickerProps) {
     setIsOpen(false);
   }
 
+  const handleClear = () => {
+    setDate(undefined);
+    setIsOpen(false);
+  }
+
+
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
@@ -47,6 +54,16 @@ export function DatePicker({ date, setDate }: DatePickerProps) {
           onSelect={handleSelect}
           initialFocus
         />
+        <div className="p-2 border-t">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-center"
+            onClick={handleClear}
+          >
+            Clear
+          </Button>
+        </div>
       </PopoverContent>
     </Popover>
   )

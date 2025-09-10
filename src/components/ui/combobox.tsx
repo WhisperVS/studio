@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check, ChevronsUpDown, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -40,6 +40,12 @@ export function Combobox({
     onChange(newValue)
     setOpen(false)
   }
+
+  const handleClear = () => {
+    onChange("")
+    setOpen(false)
+  }
+
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -80,6 +86,18 @@ export function Combobox({
             </CommandGroup>
           </CommandList>
         </Command>
+        {value && (
+            <div className="p-2 border-t">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-center"
+                    onClick={handleClear}
+                >
+                    Clear
+                </Button>
+            </div>
+        )}
       </PopoverContent>
     </Popover>
   )
