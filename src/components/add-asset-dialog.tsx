@@ -46,6 +46,7 @@ import {
 } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@/components/user-provider";
+import { ClipboardCopy } from "lucide-react";
 
 interface AddAssetDialogProps {
   isOpen: boolean;
@@ -81,6 +82,23 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   });
 
   const category = form.watch("category");
+
+  const handleCopyCommand = useCallback(() => {
+    const command = "wmic useraccount where name='%USERNAME%' get fullname & echo Computer: %COMPUTERNAME% & wmic csproduct get Name,IdentifyingNumber & wmic os get Caption,Version";
+    navigator.clipboard.writeText(command).then(() => {
+      toast({
+        title: "Command Copied",
+        description: "The command has been copied to your clipboard.",
+      });
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to copy command.",
+      });
+    });
+  }, [toast]);
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!currentUser) {
@@ -151,6 +169,12 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="flex justify-end">
+              <Button type="button" variant="outline" size="sm" onClick={handleCopyCommand}>
+                <ClipboardCopy className="mr-2 h-4 w-4" />
+                Copy PC Info Command
+              </Button>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
