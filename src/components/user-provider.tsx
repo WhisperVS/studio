@@ -1,7 +1,7 @@
 
 "use client";
 
-import { USERS } from "@/lib/constants";
+import { APP_CONFIG } from "@/lib/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
@@ -16,12 +16,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         if (typeof window !== 'undefined') {
             try {
                 const storedUser = localStorage.getItem("currentUser");
-                return storedUser || USERS[0];
+                return storedUser || APP_CONFIG.users[0];
             } catch (error) {
                 console.warn("Failed to read from localStorage", error);
             }
         }
-        return USERS[0];
+        return APP_CONFIG.users[0];
     });
 
     useEffect(() => {

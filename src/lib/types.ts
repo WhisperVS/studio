@@ -1,13 +1,15 @@
 
 import { z } from 'zod';
-import { CATEGORIES, LOCATIONS, STATUSES, USER_TYPES } from './constants';
+import { CATEGORY_IDS, APP_CONFIG } from './config';
+
+const categoryIds = APP_CONFIG.categories.map(c => c.id) as [string, ...string[]];
 
 export const AssetSchema = z.object({
   id: z.string(),
   machineName: z.string().min(1, 'Machine name is required'),
-  category: z.enum(CATEGORIES),
+  category: z.enum(categoryIds),
   os: z.string().optional(),
-  location: z.enum(LOCATIONS),
+  location: z.enum(APP_CONFIG.locations),
   manufacturer: z.string().min(1, 'Manufacturer is required'),
   partNumber: z.string().optional(),
   modelNumber: z.string().optional(),
@@ -15,9 +17,9 @@ export const AssetSchema = z.object({
   type: z.string().optional().nullable(),
   assignedUser: z.string().optional(),
   userId: z.number().optional().nullable(),
-  userType: z.enum(USER_TYPES).optional(),
+  userType: z.enum(APP_CONFIG.userTypes).optional(),
   owner: z.literal('Group Administrators'),
-  status: z.enum(STATUSES),
+  status: z.enum(APP_CONFIG.statuses),
   notes: z.string().optional(),
   purchaseDate: z.coerce.date().optional().nullable(),
   warrantyExpirationDate: z.coerce.date().optional().nullable(),

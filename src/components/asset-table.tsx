@@ -32,6 +32,7 @@ import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { useToast } from '@/hooks/use-toast';
+import { APP_CONFIG } from '@/lib/config';
 
 type SortKey = keyof Asset | '';
 
@@ -145,15 +146,15 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead onClick={() => handleSort('category')} className="cursor-pointer">Category</TableHead>
-                <TableHead onClick={() => handleSort('status')} className="cursor-pointer">Status</TableHead>
-                <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">Machine Name</TableHead>
-                <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">Manufacturer</TableHead>
+                <TableHead onClick={() => handleSort('category')} className="cursor-pointer">{APP_CONFIG.labels.category}</TableHead>
+                <TableHead onClick={() => handleSort('status')} className="cursor-pointer">{APP_CONFIG.labels.status}</TableHead>
+                <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">{APP_CONFIG.labels.machineName}</TableHead>
+                <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">{APP_CONFIG.labels.manufacturer}</TableHead>
                 <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden lg:table-cell">Model</TableHead>
-                <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">OS</TableHead>
-                <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">Assigned User</TableHead>
-                <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">User ID</TableHead>
-                <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">Location</TableHead>
+                <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">{APP_CONFIG.labels.os}</TableHead>
+                <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">{APP_CONFIG.labels.assignedUser}</TableHead>
+                <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">{APP_CONFIG.labels.userId}</TableHead>
+                <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">{APP_CONFIG.labels.location}</TableHead>
                 <TableHead><span className="sr-only">Actions</span></TableHead>
               </TableRow>
             </TableHeader>

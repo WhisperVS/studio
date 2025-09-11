@@ -1,9 +1,8 @@
 
 "use client";
 
-import { CATEGORIES } from "@/lib/constants";
+import { APP_CONFIG, CATEGORY_IDS } from "@/lib/config";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/ui/sidebar";
-import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
 
 interface CategoryCountsProps {
@@ -13,16 +12,6 @@ interface CategoryCountsProps {
   onSelectCategory: (category: string) => void;
 }
 
-const categoryIcons: Record<string, React.ReactNode> = {
-  all: <LayoutGrid />,
-  laptops: <Laptop />,
-  servers: <Server />,
-  systems: <HardDrive />,
-  networks: <Network />,
-  printers: <Printer />,
-  other: <Component />,
-};
-
 export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCategory }: CategoryCountsProps) {
 
   if (isLoading) {
@@ -30,15 +19,15 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
       <SidebarGroup>
         <SidebarGroupLabel>Categories</SidebarGroupLabel>
         <div className="flex flex-col gap-1">
-          {Array.from({ length: 7 }).map((_, i) => (
+          {Array.from({ length: APP_CONFIG.categories.length + 1 }).map((_, i) => (
             <SidebarMenuSkeleton key={i} showIcon />
           ))}
         </div>
       </SidebarGroup>
     );
   }
-
-  const allCategories = ['all', ...CATEGORIES];
+  
+  const allCategories = [APP_CONFIG.allCategory, ...APP_CONFIG.categories];
   const totalCount = Object.values(counts).reduce((sum, count) => sum + count, 0);
 
 
@@ -47,16 +36,16 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
       <SidebarGroupLabel>Categories</SidebarGroupLabel>
       <SidebarMenu>
         {allCategories.map((category) => (
-          <SidebarMenuItem key={category}>
+          <SidebarMenuItem key={category.id}>
             <SidebarMenuButton
-              tooltip={category}
-              isActive={selectedCategory === category}
-              onClick={() => onSelectCategory(category)}
+              tooltip={category.name}
+              isActive={selectedCategory === category.id}
+              onClick={() => onSelectCategory(category.id)}
             >
-              {categoryIcons[category]}
-              <span className="capitalize">{category}</span>
+              {category.icon}
+              <span className="capitalize">{category.name}</span>
             </SidebarMenuButton>
-            <SidebarMenuBadge>{category === 'all' ? totalCount : (counts[category] || 0)}</SidebarMenuBadge>
+            <SidebarMenuBadge>{category.id === 'all' ? totalCount : (counts[category.id] || 0)}</SidebarMenuBadge>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

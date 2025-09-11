@@ -22,7 +22,8 @@ export async function GET(request: Request) {
       model: asset.modelNumber,
       os: asset.os,
       assigned_user: asset.assignedUser,
-      quantity: "1", // Defaulting quantity to "1" as it's not in the base model
+      user_id: asset.userId,
+      //quantity: "1", // Defaulting quantity to "1" as it's not in the base model
       location: asset.location,
     }));
 

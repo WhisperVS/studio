@@ -15,7 +15,7 @@ import { Logo } from "@/components/logo";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { CATEGORIES, LOCATIONS, STATUSES, USERS } from "@/lib/constants";
+import { APP_CONFIG } from "@/lib/config";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Skeleton } from "./ui/skeleton";
@@ -221,7 +221,7 @@ export default function DashboardPage() {
                       </div>
                     </SelectTrigger>
                     <SelectContent>
-                      {USERS.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
+                      {APP_CONFIG.users.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -262,7 +262,7 @@ export default function DashboardPage() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Categories</SelectItem>
-                        {CATEGORIES.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
+                        {APP_CONFIG.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
                       </SelectContent>
                     </Select>
                     <Select value={filters.status} onValueChange={handleFilterChange('status')}>
@@ -271,7 +271,7 @@ export default function DashboardPage() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Statuses</SelectItem>
-                        {STATUSES.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                        {APP_CONFIG.statuses.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
                       </SelectContent>
                     </Select>
                     <Select value={filters.location} onValueChange={handleFilterChange('location')}>
@@ -280,7 +280,7 @@ export default function DashboardPage() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Locations</SelectItem>
-                        {LOCATIONS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                        {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>

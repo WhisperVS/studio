@@ -36,17 +36,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
 import { AssetFormSchema, AssetFormValues } from "@/lib/types";
-import {
-  CATEGORIES,
-  LOCATIONS,
-  MANUFACTURERS,
-  SERVER_TYPES,
-  STATUSES,
-  SYSTEM_TYPES,
-} from "@/lib/constants";
+import { APP_CONFIG } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@/components/user-provider";
-import { ClipboardCopy } from "lucide-react";
+import { ClipboardCopy, FileJson } from "lucide-react";
+import { Label } from "./ui/label";
 
 interface AddAssetDialogProps {
   isOpen: boolean;
@@ -54,9 +48,109 @@ interface AddAssetDialogProps {
   onAssetAdded: () => void;
 }
 
+function JsonImportDialog({
+  isOpen,
+  onOpenChange,
+  onImport,
+}: {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+  onImport: (data: any) => void;
+}) {
+  const { toast } = useToast();
+  const [jsonString, setJsonString] = useState("");
+
+  const handleImport = () => {
+    try {
+      if (!jsonString.trim()) {
+        throw new Error("JSON input cannot be empty.");
+      }
+      const data = JSON.parse(jsonString);
+      onImport(data);
+      onOpenChange(false);
+      setJsonString("");
+    } catch (error) {
+      console.error("Failed to parse JSON:", error);
+      const errorMessage = error instanceof Error ? error.message : "Invalid JSON format.";
+      toast({
+        variant: "destructive",
+        title: "JSON Import Error",
+        description: errorMessage,
+      });
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Import from JSON</DialogTitle>
+          <DialogDescription>
+            Paste the JSON output from your command into the text area below.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid gap-2">
+            <Label htmlFor="json-import-textarea">JSON Data</Label>
+            <Textarea
+              id="json-import-textarea"
+              placeholder='{ "Machine Name": "PC-1234", ... }'
+              value={jsonString}
+              onChange={(e) => setJsonString(e.target.value)}
+              className="h-48 resize-y"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => onOpenChange(false)}>Cancel</Button>
+          <Button onClick={handleImport}>Import</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function CommandDisplayDialog({
+  isOpen,
+  onOpenChange,
+  command
+}: {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+  command: string;
+}) {
+  return (
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Copy Information Script</DialogTitle>
+          <DialogDescription>
+            Highlight the command below and copy it. Then paste it into the Command Prompt on the target machine.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <Input 
+            readOnly 
+            value={command} 
+            className="font-mono"
+            onFocus={(e) => e.target.select()}
+          />
+        </div>
+        <DialogFooter>
+          <Button variant="secondary" onClick={() => onOpenChange(false)}>Close</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+
 export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
   const { currentUser } = useUser();
+  const [isJsonImportOpen, setIsJsonImportOpen] = useState(false);
+  const [isCommandDialogOpen, setIsCommandDialogOpen] = useState(false);
+  const infoScriptCommand = "\\\\ga-fs5\\home$\\scripts\\json_bat\\system-info.bat";
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -82,23 +176,64 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   });
 
   const category = form.watch("category");
+  
+  const handleJsonImport = (data: any) => {
+    const mapping: Record<string, keyof AssetFormValues> = {
+      "User": "userId",
+      "Assigned User": "assignedUser",
+      "Machine Name": "machineName",
+      "Manufacturer": "manufacturer",
+      "Model Number": "modelNumber",
+      "Serial Number": "serialNumber",
+      "OS": "os",
+    };
 
-  const handleCopyCommand = useCallback(() => {
-    const command = "wmic useraccount where name='%USERNAME%' get fullname & echo Computer: %COMPUTERNAME% & wmic csproduct get Name,IdentifyingNumber & wmic os get Caption,Version";
-    navigator.clipboard.writeText(command).then(() => {
-      toast({
-        title: "Command Copied",
-        description: "The command has been copied to your clipboard.",
-      });
-    }, (err) => {
-      console.error('Could not copy text: ', err);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Failed to copy command.",
-      });
-    });
-  }, [toast]);
+    let fieldsUpdated = false;
+    let isDell = false;
+    let modelNumber = '';
+
+    for (const key in data) {
+      const formField = mapping[key];
+      if (formField) {
+        const value = String(data[key]);
+
+        if (formField === 'userId') {
+          const numValue = parseInt(value, 10);
+          if (!isNaN(numValue)) {
+            form.setValue(formField, numValue, { shouldValidate: true });
+          }
+        } else {
+          form.setValue(formField, value, { shouldValidate: true });
+        }
+        
+        if (formField === 'manufacturer' && value.toLowerCase() === 'dell') {
+          isDell = true;
+        }
+        if (formField === 'modelNumber') {
+          modelNumber = value;
+        }
+        fieldsUpdated = true;
+      }
+    }
+
+    if (isDell && modelNumber) {
+      form.setValue('partNumber', modelNumber, { shouldValidate: true });
+    }
+
+    if (fieldsUpdated) {
+        toast({
+            title: "Import Successful",
+            description: "Asset details have been imported into the form."
+        });
+    } else {
+        toast({
+            variant: "destructive",
+            title: "Import Failed",
+            description: "No matching fields were found in the provided JSON."
+        });
+    }
+  };
+
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!currentUser) {
@@ -149,6 +284,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   }, [onAssetAdded, form, onOpenChange, toast, currentUser]);
 
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) {
         form.reset();
@@ -167,21 +303,28 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             Fill in the details below to add a new asset to the inventory.
           </DialogDescription>
         </DialogHeader>
+
+        <div className="flex items-center gap-4 pt-2">
+            <Button type="button" variant="outline" size="sm" onClick={() => setIsJsonImportOpen(true)} className="shadow-sm">
+              <FileJson className="mr-2 h-4 w-4" />
+              Import from JSON
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={() => setIsCommandDialogOpen(true)} className="shadow-sm">
+              <ClipboardCopy className="mr-2 h-4 w-4" />
+              Copy Info Script
+            </Button>
+        </div>
+
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="flex justify-end">
-              <Button type="button" variant="outline" size="sm" onClick={handleCopyCommand}>
-                <ClipboardCopy className="mr-2 h-4 w-4" />
-                Copy PC Info Command
-              </Button>
-            </div>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-2">
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
                 name="machineName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Machine Name</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., WKSTN-DEV-01" {...field} />
                     </FormControl>
@@ -194,7 +337,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -202,8 +345,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {CATEGORIES.map((cat) => (
-                          <SelectItem key={cat} value={cat} className="capitalize">{cat}</SelectItem>
+                        {APP_CONFIG.categories.map((cat) => (
+                          <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -216,9 +359,9 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="manufacturer"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Manufacturer</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
                     <Combobox
-                      options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
+                      options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                       value={field.value}
                       onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
                       placeholder="Select or type manufacturer..."
@@ -232,7 +375,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Building Location</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -240,7 +383,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {LOCATIONS.map((loc) => (
+                        {APP_CONFIG.locations.map((loc) => (
                           <SelectItem key={loc} value={loc}>{loc}</SelectItem>
                         ))}
                       </SelectContent>
@@ -254,7 +397,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="modelNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Model Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Latitude 5420" {...field} />
                     </FormControl>
@@ -267,7 +410,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="partNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Part Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., HJVX6" {...field} />
                     </FormControl>
@@ -280,7 +423,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="serialNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Serial Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., 5J2X1Y2" {...field} />
                     </FormControl>
@@ -293,7 +436,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="os"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>OS</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Windows 11 Pro" {...field} />
                     </FormControl>
@@ -307,7 +450,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="type"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Type</FormLabel>
+                      <FormLabel>{APP_CONFIG.labels.type}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                         <FormControl>
                           <SelectTrigger>
@@ -315,7 +458,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {(category === 'systems' ? SYSTEM_TYPES : SERVER_TYPES).map((type) => (
+                          {(category === 'systems' ? APP_CONFIG.systemTypes : APP_CONFIG.serverTypes).map((type) => (
                             <SelectItem key={type} value={type}>{type}</SelectItem>
                           ))}
                         </SelectContent>
@@ -330,7 +473,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -338,7 +481,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {STATUSES.map((status) => (
+                        {APP_CONFIG.statuses.map((status) => (
                           <SelectItem key={status} value={status}>{status}</SelectItem>
                         ))}
                       </SelectContent>
@@ -358,7 +501,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="assignedUser"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Assigned User</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., John Doe" {...field} />
                     </FormControl>
@@ -371,7 +514,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="userId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>User ID</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
                     <FormControl>
                       <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
                     </FormControl>
@@ -385,7 +528,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="userType"
                   render={({ field }) => (
                     <FormItem className="space-y-3 pt-2">
-                      <FormLabel>User Type</FormLabel>
+                      <FormLabel>{APP_CONFIG.labels.userType}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -418,7 +561,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="purchaseDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Purchase Date</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
                     <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
@@ -430,7 +573,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="warrantyExpirationDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Warranty Expiration</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
                     <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d ?? undefined)} />
                     <FormMessage />
                   </FormItem>
@@ -443,7 +586,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel>{APP_CONFIG.labels.notes}</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., Purchased from Dell Outlet. Has a scratch on the top case. Comes with a 24-inch Dell UltraSharp monitor."
@@ -462,7 +605,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="owner"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
                     <FormControl>
                       <Input {...field} readOnly className="bg-muted" />
                     </FormControl>
@@ -482,5 +625,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         </Form>
       </DialogContent>
     </Dialog>
+     <JsonImportDialog
+        isOpen={isJsonImportOpen}
+        onOpenChange={setIsJsonImportOpen}
+        onImport={handleJsonImport}
+      />
+    <CommandDisplayDialog
+        isOpen={isCommandDialogOpen}
+        onOpenChange={setIsCommandDialogOpen}
+        command={infoScriptCommand}
+    />
+    </>
   );
 }

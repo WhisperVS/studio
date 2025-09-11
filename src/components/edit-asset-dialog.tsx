@@ -37,14 +37,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
 import { Asset, AssetFormSchema, AssetFormValues } from "@/lib/types";
-import {
-  CATEGORIES,
-  LOCATIONS,
-  MANUFACTURERS,
-  SERVER_TYPES,
-  STATUSES,
-  SYSTEM_TYPES,
-} from "@/lib/constants";
+import { APP_CONFIG } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "./user-provider";
 
@@ -170,7 +163,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="machineName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Machine Name</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., WKSTN-DEV-01" {...field} />
                     </FormControl>
@@ -183,7 +176,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -191,8 +184,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {CATEGORIES.map((cat) => (
-                          <SelectItem key={cat} value={cat} className="capitalize">{cat}</SelectItem>
+                        {APP_CONFIG.categories.map((cat) => (
+                          <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -205,9 +198,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="manufacturer"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Manufacturer</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
                     <Combobox
-                      options={MANUFACTURERS.map(m => ({ value: m, label: m }))}
+                      options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                       value={field.value}
                       onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
                       placeholder="Select or type manufacturer..."
@@ -221,7 +214,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Building Location</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -229,7 +222,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {LOCATIONS.map((loc) => (
+                        {APP_CONFIG.locations.map((loc) => (
                           <SelectItem key={loc} value={loc}>{loc}</SelectItem>
                         ))}
                       </SelectContent>
@@ -243,7 +236,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="modelNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Model Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Latitude 5420" {...field} />
                     </FormControl>
@@ -256,7 +249,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="partNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Part Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., HJVX6" {...field} />
                     </FormControl>
@@ -269,7 +262,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="serialNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Serial Number</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., 5J2X1Y2" {...field} />
                     </FormControl>
@@ -282,7 +275,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="os"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>OS</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Windows 11 Pro" {...field} />
                     </FormControl>
@@ -296,7 +289,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="type"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Type</FormLabel>
+                      <FormLabel>{APP_CONFIG.labels.type}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                         <FormControl>
                           <SelectTrigger>
@@ -304,7 +297,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {(category === 'systems' ? SYSTEM_TYPES : SERVER_TYPES).map((type) => (
+                          {(category === 'systems' ? APP_CONFIG.systemTypes : APP_CONFIG.serverTypes).map((type) => (
                             <SelectItem key={type} value={type}>{type}</SelectItem>
                           ))}
                         </SelectContent>
@@ -319,7 +312,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -327,7 +320,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {STATUSES.map((status) => (
+                        {APP_CONFIG.statuses.map((status) => (
                           <SelectItem key={status} value={status}>{status}</SelectItem>
                         ))}
                       </SelectContent>
@@ -347,7 +340,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="assignedUser"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Assigned User</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., John Doe" {...field} />
                     </FormControl>
@@ -360,7 +353,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="userId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>User ID</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
                     <FormControl>
                       <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
                     </FormControl>
@@ -374,7 +367,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="userType"
                   render={({ field }) => (
                     <FormItem className="space-y-3 pt-2">
-                      <FormLabel>User Type</FormLabel>
+                      <FormLabel>{APP_CONFIG.labels.userType}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -407,7 +400,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="purchaseDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Purchase Date</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
                       setDate={(d) => field.onChange(d === undefined ? null : d)} 
@@ -422,7 +415,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="warrantyExpirationDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Warranty Expiration</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
                       setDate={(d) => field.onChange(d === undefined ? null : d)} 
@@ -438,7 +431,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel>{APP_CONFIG.labels.notes}</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., Purchased from Dell Outlet. Has a scratch on the top case. Comes with a 24-inch Dell UltraSharp monitor."
@@ -457,7 +450,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="owner"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
                     <FormControl>
                       <Input {...field} readOnly className="bg-muted" />
                     </FormControl>
