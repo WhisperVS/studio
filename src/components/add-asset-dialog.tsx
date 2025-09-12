@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useCallback, useState, useEffect, useMemo, useRef } from "react";
@@ -119,6 +118,17 @@ function CommandDisplayDialog({
   onOpenChange: (isOpen: boolean) => void;
   command: string;
 }) {
+  const { toast } = useToast();
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(command);
+      toast({ title: "Copied", description: "Command copied to clipboard." });
+    } catch {
+      toast({ variant: "destructive", title: "Copy failed", description: "Press Ctrl+C to copy manually." });
+    }
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -137,6 +147,7 @@ function CommandDisplayDialog({
           />
         </div>
         <DialogFooter>
+          <Button variant="outline" onClick={copy}>Copy</Button>
           <Button onClick={() => onOpenChange(false)}>Close</Button>
         </DialogFooter>
       </DialogContent>
@@ -153,9 +164,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const infoScriptCommand = "\\\\ga-fs5\\home$\\scripts\\json_bat\\system-info.bat";
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
-
+  const suggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const typingTimer = useRef<number | null>(null);
   const modelInputRef = useRef<HTMLInputElement>(null);
-  const typingTimer = useRef<NodeJS.Timeout | null>(null);
+
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -180,15 +192,17 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     },
   });
 
+  const category = form.watch("category");
+
   const keywordIndex = useMemo(() => {
-    const items: Array<{ mfr: string; cat: string; k: string; lower: string }> = [];
-    for (const mfr of Object.keys(manufacturerCatalog)) {
-      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog] || {};
-      for (const cat of Object.keys(cats)) {
+    const items: { mfr: string; cat: string; k: string; lower: string }[] = [];
+    for (const mfr in manufacturerCatalog) {
+      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog];
+      for (const cat in cats) {
         const data = (cats as any)[cat];
         if (data?.keywords) {
           for (const k of data.keywords) {
-            items.push({ mfr, cat: String(cat), k, lower: k.toLowerCase() });
+            items.push({ mfr, cat, k, lower: k.toLowerCase() });
           }
         }
       }
@@ -198,43 +212,63 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
 
   const getSuggestions = useCallback((query: string) => {
     if (!query) return [];
-    const lowerQuery = query.toLowerCase();
+    const q = query.toLowerCase();
     return keywordIndex
-      .map(item => {
+      .map(it => {
         let score = 0;
-        if (item.lower.startsWith(lowerQuery)) score = 3;
-        else if (item.lower.includes(lowerQuery)) score = 1;
-        return { keyword: item.k, score };
+        if (it.lower.startsWith(q)) score = 3;
+        else if (it.lower.includes(q)) score = 1;
+        return { k: it.k, score };
       })
       .filter(x => x.score > 0)
-      .sort((a, b) => b.score - a.score || a.keyword.length - b.keyword.length)
+      .sort((a, b) => b.score - a.score || a.k.length - b.k.length)
       .slice(0, 8)
-      .map(x => x.keyword);
+      .map(x => x.k);
   }, [keywordIndex]);
   
   const autoCategorizeByModel = useCallback((model: string) => {
     if (!model) return;
-    const lowerModel = model.toLowerCase();
-  
+    const l = model.toLowerCase();
+
+    let best: { manufacturer: string; category: AssetFormValues['category']; type?: string; score: number } | null = null;
+
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
       const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
       for (const category in categoriesData) {
         const catData = categoriesData[category as keyof typeof categoriesData];
-        if (catData?.keywords.some(k => lowerModel.includes(k.toLowerCase()))) {
-          form.setValue('manufacturer', manufacturer, { shouldValidate: true });
-          form.setValue('category', category as AssetFormValues['category'], { shouldValidate: true });
-          
+        if (!catData?.keywords?.length) continue;
+
+        for (const k of catData.keywords) {
+          const lk = k.toLowerCase();
+          let score = 0;
+          if (l.startsWith(lk)) score = 3;
+          else if (l.includes(lk)) score = 1;
+          if (score === 0) continue;
+
+          score += Math.min(2, Math.floor(lk.length / 8));
+
+          let foundType: string | undefined;
           if ((category === 'systems' || category === 'servers') && catData.types) {
             for (const type in catData.types) {
-              if (catData.types[type].some(t => lowerModel.includes(t.toLowerCase()))) {
-                form.setValue('type', type, { shouldValidate: true });
+              if (catData.types[type].some((t) => l.includes(t.toLowerCase()))) {
+                foundType = type;
+                score += 1;
                 break;
               }
             }
           }
-          return;
+
+          if (!best || score > best.score) {
+            best = { manufacturer, category: category as AssetFormValues['category'], type: foundType, score };
+          }
         }
       }
+    }
+
+    if (best) {
+      form.setValue('manufacturer', best.manufacturer, { shouldValidate: true });
+      form.setValue('category', best.category, { shouldValidate: true });
+      if (best.type) form.setValue('type', best.type, { shouldValidate: true });
     }
   }, [form]);
 
@@ -250,87 +284,95 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     form.setValue('modelNumber', value, { shouldValidate: true });
 
     if (typingTimer.current) {
-      clearTimeout(typingTimer.current);
+      window.clearTimeout(typingTimer.current);
     }
-    
-    typingTimer.current = setTimeout(() => {
-      const newSuggestions = getSuggestions(value);
-      setSuggestions(newSuggestions);
-      setActiveSuggestionIndex(0);
-    }, 200); // 200ms debounce delay
+    typingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getSuggestions(value);
+        setSuggestions(list);
+        setActiveSuggestionIndex(0);
+      } else {
+        setSuggestions([]);
+      }
+    }, 160);
   };
-
+  
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (suggestions.length === 0) return;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setActiveSuggestionIndex(prev => (prev + 1) % suggestions.length);
+      setActiveSuggestionIndex((prev) => (prev + 1) % suggestions.length);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setActiveSuggestionIndex(prev => (prev - 1 + suggestions.length) % suggestions.length);
+      setActiveSuggestionIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
     } else if (e.key === 'Enter' || e.key === 'Tab') {
-      if (suggestions[activeSuggestionIndex]) {
-        e.preventDefault();
-        acceptSuggestion(suggestions[activeSuggestionIndex]);
-      }
+      e.preventDefault();
+      const chosen = suggestions[activeSuggestionIndex];
+      if (chosen) acceptSuggestion(chosen);
     } else if (e.key === 'Escape') {
       setSuggestions([]);
     }
   };
 
+  useEffect(() => {
+    if (activeSuggestionIndex >= 0 && suggestionItemRefs.current[activeSuggestionIndex]) {
+      suggestionItemRefs.current[activeSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeSuggestionIndex, suggestions]);
+
+  useEffect(() => {
+    suggestionItemRefs.current = suggestionItemRefs.current.slice(0, suggestions.length);
+  }, [suggestions]);
+
+  
   const handleJsonImport = (data: any) => {
+    const normalize = (v: unknown) => String(v ?? '').replace(/\r?\n|\r/g, '').trim();
+
     const mapping: Record<string, keyof AssetFormValues> = {
       "Assigned User": "assignedUser",
       "Machine Name": "machineName",
+      "Computer": "machineName",
       "Manufacturer": "manufacturer",
+      "Model": "modelNumber",
       "Model Number": "modelNumber",
+      "Serial": "serialNumber",
       "Serial Number": "serialNumber",
       "OS": "os",
     };
 
     let fieldsUpdated = false;
-    let isDell = false;
     let importedModelNumber = '';
+    let importedManufacturer = '';
 
-    for (const key in data) {
+    for (const [key, raw] of Object.entries(data)) {
       const formField = mapping[key];
-      if (formField) {
-        const value = String(data[key]);
+      if (!formField) continue;
+      const value = normalize(raw);
+      if (value) {
         form.setValue(formField, value, { shouldValidate: true });
-        
-        if (formField === 'manufacturer' && value.toLowerCase().includes('dell')) {
-          isDell = true;
-        }
-        if (formField === 'modelNumber') {
-          importedModelNumber = value;
-        }
+        if (formField === 'manufacturer') importedManufacturer = value;
+        if (formField === 'modelNumber') importedModelNumber = value;
         fieldsUpdated = true;
       }
     }
-    
+
     if (importedModelNumber) {
       autoCategorizeByModel(importedModelNumber);
     }
 
-    if (isDell && importedModelNumber) {
+    if (!form.getValues('partNumber') && /dell/i.test(importedManufacturer || form.getValues('manufacturer')) && importedModelNumber) {
       form.setValue('partNumber', importedModelNumber, { shouldValidate: true });
     }
 
-    if (fieldsUpdated) {
-        toast({
-            title: "Import Successful",
-            description: "Asset details have been imported into the form."
-        });
-    } else {
-        toast({
-            variant: "destructive",
-            title: "Import Failed",
-            description: "No matching fields were found in the provided JSON."
-        });
-    }
+    toast({
+      variant: fieldsUpdated ? 'default' : 'destructive',
+      title: fieldsUpdated ? 'Import Successful' : 'Import Failed',
+      description: fieldsUpdated
+        ? 'Asset details have been imported into the form.'
+        : 'No matching fields were found in the provided JSON.',
+    });
   };
-
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!currentUser) {
@@ -368,7 +410,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         description: `${data.machineName} has been added to the inventory.`,
       });
       form.reset();
-      onAssetAdded(); // Refetch assets
+      onAssetAdded();
       onOpenChange(false);
     } catch (error) {
       console.error("Failed to add asset:", error);
@@ -379,8 +421,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       });
     }
   }, [onAssetAdded, onOpenChange, toast, currentUser, form]);
-
-  const category = form.watch("category");
 
   return (
     <>
@@ -394,7 +434,11 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       <DialogContent 
         className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => {
-          e.preventDefault();
+          if (suggestions.length > 0 && modelInputRef.current && !modelInputRef.current.contains(e.target as Node)) {
+            setSuggestions([]);
+          } else if (suggestions.length > 0) {
+            e.preventDefault();
+          }
         }}
       >
         <DialogHeader>
@@ -413,7 +457,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               <ClipboardCopy className="mr-2 h-4 w-4" />
               Copy Info Script
             </Button>
-            <Button type="button" variant="destructive" size="sm" onClick={() => form.reset()} className="ml-auto shadow-sm">
+            <Button type="button" variant="destructive" size="sm" onClick={() => { form.reset(); setSuggestions([]); }} className="ml-auto shadow-sm">
                 <RotateCcw className="mr-2 h-4 w-4" />
                 Clear Form
             </Button>
@@ -518,6 +562,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <div className="relative">
                       <Input
+                        aria-autocomplete="list"
+                        aria-controls="model-suggestion-list"
+                        aria-expanded={suggestions.length > 0}
+                        aria-activedescendant={suggestions.length ? `model-suggestion-${activeSuggestionIndex}` : undefined}
                         placeholder="e.g., Latitude 5420"
                         {...field}
                         onChange={handleModelChange}
@@ -527,12 +575,20 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       />
                       {suggestions.length > 0 && (
                         <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
-                          <ul className="max-h-64 overflow-auto text-sm">
+                          <ul
+                            id="model-suggestion-list"
+                            role="listbox"
+                            className="max-h-60 overflow-auto py-1"
+                          >
                             {suggestions.map((s, i) => (
                               <li
                                 key={s}
+                                id={`model-suggestion-${i}`}
+                                role="option"
+                                aria-selected={i === activeSuggestionIndex}
+                                ref={el => { suggestionItemRefs.current[i] = el }}
                                 onMouseDown={(e) => { e.preventDefault(); acceptSuggestion(s); }}
-                                className={`px-3 py-2 cursor-pointer ${i === activeSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
+                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
                               >
                                 {s}
                               </li>
@@ -740,7 +796,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             />
 
             <DialogFooter className="pt-4 flex-row justify-end items-center gap-2">
-              <Button type="button" variant="outline" onClick={() => { onOpenChange(false); setSuggestions([]); }}>
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
                 Cancel
               </Button>
               <Button type="submit">Add Asset</Button>
