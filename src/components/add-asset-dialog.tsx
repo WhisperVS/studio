@@ -1,14 +1,13 @@
 
 "use client";
 
-import { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState, useEffect, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -152,9 +151,11 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const [isJsonImportOpen, setIsJsonImportOpen] = useState(false);
   const [isCommandDialogOpen, setIsCommandDialogOpen] = useState(false);
   const infoScriptCommand = "\\\\ga-fs5\\home$\\scripts\\json_bat\\system-info.bat";
-  const [suggestion, setSuggestion] = useState('');
-  const modelInputRef = useRef<HTMLInputElement>(null);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
 
+  const modelInputRef = useRef<HTMLInputElement>(null);
+  const typingTimer = useRef<NodeJS.Timeout | null>(null);
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -179,31 +180,38 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     },
   });
 
-  const category = form.watch("category");
-  const modelNumber = form.watch("modelNumber");
-
-  const findSuggestion = (value: string) => {
-    if (!value) {
-      setSuggestion('');
-      return;
-    }
-    const lowerValue = value.toLowerCase();
-    for (const manufacturer in manufacturerCatalog) {
-      for (const category in manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog]) {
-        const categoryData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog][category as keyof typeof manufacturerCatalog[keyof typeof manufacturerCatalog]];
-        if (categoryData && categoryData.keywords) {
-          for (const keyword of categoryData.keywords) {
-            if (keyword.toLowerCase().startsWith(lowerValue)) {
-              setSuggestion(keyword);
-              return;
-            }
+  const keywordIndex = useMemo(() => {
+    const items: Array<{ mfr: string; cat: string; k: string; lower: string }> = [];
+    for (const mfr of Object.keys(manufacturerCatalog)) {
+      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog] || {};
+      for (const cat of Object.keys(cats)) {
+        const data = (cats as any)[cat];
+        if (data?.keywords) {
+          for (const k of data.keywords) {
+            items.push({ mfr, cat: String(cat), k, lower: k.toLowerCase() });
           }
         }
       }
     }
-    setSuggestion('');
-  };
+    return items;
+  }, []);
 
+  const getSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const lowerQuery = query.toLowerCase();
+    return keywordIndex
+      .map(item => {
+        let score = 0;
+        if (item.lower.startsWith(lowerQuery)) score = 3;
+        else if (item.lower.includes(lowerQuery)) score = 1;
+        return { keyword: item.k, score };
+      })
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score || a.keyword.length - b.keyword.length)
+      .slice(0, 8)
+      .map(x => x.keyword);
+  }, [keywordIndex]);
+  
   const autoCategorizeByModel = useCallback((model: string) => {
     if (!model) return;
     const lowerModel = model.toLowerCase();
@@ -230,27 +238,47 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
   }, [form]);
 
+  const acceptSuggestion = useCallback((value: string) => {
+    form.setValue('modelNumber', value, { shouldValidate: true });
+    setSuggestions([]);
+    setActiveSuggestionIndex(0);
+    autoCategorizeByModel(value);
+  }, [form, autoCategorizeByModel]);
+
   const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     form.setValue('modelNumber', value, { shouldValidate: true });
-    findSuggestion(value);
+
+    if (typingTimer.current) {
+      clearTimeout(typingTimer.current);
+    }
+    
+    typingTimer.current = setTimeout(() => {
+      const newSuggestions = getSuggestions(value);
+      setSuggestions(newSuggestions);
+      setActiveSuggestionIndex(0);
+    }, 200); // 200ms debounce delay
   };
-  
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Tab' && suggestion) {
+    if (suggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
       e.preventDefault();
-      form.setValue('modelNumber', suggestion, { shouldValidate: true });
-      setSuggestion('');
+      setActiveSuggestionIndex(prev => (prev + 1) % suggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveSuggestionIndex(prev => (prev - 1 + suggestions.length) % suggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (suggestions[activeSuggestionIndex]) {
+        e.preventDefault();
+        acceptSuggestion(suggestions[activeSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setSuggestions([]);
     }
   };
 
-  useEffect(() => {
-    if (modelNumber) {
-      autoCategorizeByModel(modelNumber);
-    }
-  }, [modelNumber, autoCategorizeByModel]);
-
-  
   const handleJsonImport = (data: any) => {
     const mapping: Record<string, keyof AssetFormValues> = {
       "Assigned User": "assignedUser",
@@ -350,17 +378,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         description: "Could not add the asset.",
       });
     }
-  }, [onAssetAdded, form, onOpenChange, toast, currentUser]);
+  }, [onAssetAdded, onOpenChange, toast, currentUser, form]);
 
-  const displaySuggestion = suggestion && modelNumber && suggestion.toLowerCase().startsWith(modelNumber.toLowerCase())
-    ? modelNumber + suggestion.substring(modelNumber.length)
-    : '';
+  const category = form.watch("category");
 
   return (
     <>
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) {
         form.reset();
+        setSuggestions([]);
       }
       onOpenChange(open);
     }}>
@@ -498,12 +525,21 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         ref={modelInputRef}
                         autoComplete="off"
                       />
-                      {displaySuggestion && (
-                         <div className="absolute inset-y-0 left-0 px-3 py-2 text-muted-foreground pointer-events-none">
-                           <span className="invisible">{field.value}</span>
-                           <span>{displaySuggestion.substring(field.value?.length || 0)}</span>
-                         </div>
-                       )}
+                      {suggestions.length > 0 && (
+                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                          <ul className="max-h-64 overflow-auto text-sm">
+                            {suggestions.map((s, i) => (
+                              <li
+                                key={s}
+                                onMouseDown={(e) => { e.preventDefault(); acceptSuggestion(s); }}
+                                className={`px-3 py-2 cursor-pointer ${i === activeSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
+                              >
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                     <FormMessage />
                   </FormItem>
@@ -704,7 +740,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             />
 
             <DialogFooter className="pt-4 flex-row justify-end items-center gap-2">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+              <Button type="button" variant="outline" onClick={() => { onOpenChange(false); setSuggestions([]); }}>
                 Cancel
               </Button>
               <Button type="submit">Add Asset</Button>
