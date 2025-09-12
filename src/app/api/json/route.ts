@@ -4,6 +4,19 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS(request: Request) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 // GET handler to fetch all assets and format them for the JSON endpoint
 export async function GET(request: Request) {
   try {
@@ -23,14 +36,14 @@ export async function GET(request: Request) {
       os: asset.os,
       assigned_user: asset.assignedUser,
       user_id: asset.userId,
-      //quantity: "1", // Defaulting quantity to "1" as it's not in the base model
+      quantity: "1", // Defaulting quantity to "1" as it's not in the base model
       location: asset.location,
     }));
 
     return NextResponse.json({
       success: true,
       data: formattedData,
-    });
+    }, { headers: corsHeaders });
     
   } catch (error) {
     console.error('Failed to fetch assets for JSON endpoint:', error);
@@ -39,7 +52,7 @@ export async function GET(request: Request) {
         success: false,
         error: 'Failed to fetch assets' 
       }, 
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }

@@ -5,6 +5,20 @@ import { CreateAssetAPISchema } from '@/lib/types';
 
 const prisma = new PrismaClient();
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS(request: Request) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
+
 // GET handler to fetch all assets
 export async function GET(request: Request) {
   try {
@@ -13,10 +27,10 @@ export async function GET(request: Request) {
         machineName: 'asc'
       }
     });
-    return NextResponse.json(assets);
+    return NextResponse.json(assets, { headers: corsHeaders });
   } catch (error) {
     console.error('Failed to fetch assets:', error);
-    return NextResponse.json({ error: 'Failed to fetch assets' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch assets' }, { status: 500, headers: corsHeaders });
   }
 }
 
@@ -32,9 +46,9 @@ export async function POST(request: Request) {
         owner: 'Group Administrators',
       },
     });
-    return NextResponse.json(newAsset, { status: 201 });
+    return NextResponse.json(newAsset, { status: 201, headers: corsHeaders });
   } catch (error) {
     console.error('Failed to create asset:', error);
-    return NextResponse.json({ error: 'Failed to create asset' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create asset' }, { status: 500, headers: corsHeaders });
   }
 }

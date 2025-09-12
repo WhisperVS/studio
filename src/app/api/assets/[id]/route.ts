@@ -5,6 +5,19 @@ import { UpdateAssetAPISchema } from '@/lib/types';
 
 const prisma = new PrismaClient();
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS(request: Request) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 // GET handler to fetch a single asset
 export async function GET(
   request: Request,
@@ -15,12 +28,12 @@ export async function GET(
                 where: { id: params.id },
                     });
                         if (!asset) {
-                              return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
+                              return NextResponse.json({ error: 'Asset not found' }, { status: 404, headers: corsHeaders });
                                   }
-                                      return NextResponse.json(asset);
+                                      return NextResponse.json(asset, { headers: corsHeaders });
                                         } catch (error) {
                                             console.error('Failed to fetch asset:', error);
-                                                return NextResponse.json({ error: 'Failed to fetch asset' }, { status: 500 });
+                                                return NextResponse.json({ error: 'Failed to fetch asset' }, { status: 500, headers: corsHeaders });
                                                   }
                                                   }
 
@@ -41,10 +54,10 @@ export async function PUT(
                                                                                                 owner: 'Group Administrators',
                                                                                                       },
                                                                                                           });
-                                                                                                              return NextResponse.json(updatedAsset);
+                                                                                                              return NextResponse.json(updatedAsset, { headers: corsHeaders });
                                                                                                                 } catch (error) {
                                                                                                                     console.error('Failed to update asset:', error);
-                                                                                                                        return NextResponse.json({ error: 'Failed to update asset' }, { status: 500 });
+                                                                                                                        return NextResponse.json({ error: 'Failed to update asset' }, { status: 500, headers: corsHeaders });
                                                                                                                           }
                                                                                                                           }
 
@@ -57,9 +70,9 @@ export async function PUT(
                                                                                                                                     await prisma.asset.delete({
                                                                                                                                           where: { id: params.id },
                                                                                                                                               });
-                                                                                                                                                  return new NextResponse(null, { status: 204 }); // No Content
+                                                                                                                                                  return new NextResponse(null, { status: 204, headers: corsHeaders }); // No Content
                                                                                                                                                     } catch (error) {
                                                                                                                                                         console.error('Failed to delete asset:', error);
-                                                                                                                                                            return NextResponse.json({ error: 'Failed to delete asset' }, { status: 500 });
+                                                                                                                                                            return NextResponse.json({ error: 'Failed to delete asset' }, { status: 500, headers: corsHeaders });
                                                                                                                                                               }
                                                                                                                                                               }

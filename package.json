@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db:backup": "mkdir -p backups && docker-compose exec -T db sh -c \"pg_dump -U user -d gaim | gzip\" > backups/backup_$(date +%Y-%m-%d_%H-%M-%S).sql.gz"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
