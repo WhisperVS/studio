@@ -1,13 +1,15 @@
 
 import { z } from 'zod';
-import { CATEGORY_IDS, APP_CONFIG } from './config';
+import { APP_CONFIG } from './config';
 
-const categoryIds = APP_CONFIG.categories.map(c => c.id) as [string, ...string[]];
+export const CATEGORY_IDS = ["laptops", "servers", "systems", "networks", "printers", "other"] as const;
+export type AssetCategory = (typeof CATEGORY_IDS)[number];
+
 
 export const AssetSchema = z.object({
   id: z.string(),
   machineName: z.string().min(1, 'Machine name is required'),
-  category: z.enum(categoryIds),
+  category: z.enum(CATEGORY_IDS),
   os: z.string().optional(),
   location: z.enum(APP_CONFIG.locations),
   manufacturer: z.string().min(1, 'Manufacturer is required'),
@@ -40,6 +42,7 @@ export const AssetFormSchema = AssetSchema.omit({
   updatedBy: true,
 }).extend({
   owner: z.string(),
+  type: z.string().optional(),
   userId: z.preprocess(
     (val) => {
       if (typeof val === 'string' && val.trim() !== '') {
@@ -67,3 +70,5 @@ export const CreateAssetAPISchema = AssetFormSchema.extend({
 export const UpdateAssetAPISchema = AssetFormSchema.extend({
   updatedBy: z.string(),
 });
+
+    

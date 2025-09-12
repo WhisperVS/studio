@@ -2,6 +2,7 @@
 import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
 
+
 export const APP_CONFIG = {
   categories: [
     { 
@@ -48,14 +49,14 @@ export const APP_CONFIG = {
     icon: React.createElement(LayoutGrid)
   },
   locations: ['Schaumburg IL', 'Rockford IL'] as const,
-  statuses: ['In Use', 'For Repair', 'Spare', 'For Parts', 'For Recycle'] as const,
-  systemTypes: ['MFF', 'Tower', 'AIO', 'Desktop'] as const,
+  statuses: ['In Use', 'In Repair', 'Spare', 'For Parts'] as const,
+  systemTypes: ['MFF', 'SFF', 'Tower', 'AIO', 'Desktop'] as const,
   serverTypes: ['Rack', 'Tower', 'Blade'] as const,
   manufacturers: [
-    'Dell', 'HP', 'Lenovo', 'Apple', 'Microsoft', 'Asus', 'Acer', 'MSI', 'Samsung', 'Cisco'
+    'Dell', 'HP', 'Lenovo', 'Apple', 'Microsoft', 'Asus', 'Acer', 'MSI', 'Samsung', 'Sony', 'Cisco', 'Brother', 'Canon', 'Epson'
   ] as const,
   userTypes: ['local', 'remote'] as const,
-  users: ['V.Shtohryn', 'J.Darling'] as const,
+  users: ['V.Shtohryn', 'J.Darling', 'Test.user'] as const,
   labels: {
     machineName: 'Machine Name',
     category: 'Category',
@@ -80,3 +81,5 @@ export const APP_CONFIG = {
 } as const;
 
 export const CATEGORY_IDS = APP_CONFIG.categories.map(c => c.id);
+
+    

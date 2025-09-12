@@ -80,7 +80,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       form.reset({
         ...asset,
         os: asset.os ?? '',
-        type: asset.type ?? '',
+        type: asset.type ?? undefined,
         assignedUser: asset.assignedUser ?? '',
         userId: asset.userId ?? undefined,
         notes: asset.notes ?? '',
@@ -157,6 +157,21 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            
+            <FormField
+              control={form.control}
+              name="owner"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
+                  <FormControl>
+                    <Input {...field} readOnly className="bg-muted" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
@@ -202,7 +217,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <Combobox
                       options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                       value={field.value}
-                      onChange={(value) => form.setValue('manufacturer', value, { shouldValidate: true })}
+                      onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
                       placeholder="Select or type manufacturer..."
                     />
                     <FormMessage />
@@ -443,22 +458,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 </FormItem>
               )}
             />
-
-            <div className="grid grid-cols-1">
-              <FormField
-                control={form.control}
-                name="owner"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
-                    <FormControl>
-                      <Input {...field} readOnly className="bg-muted" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
 
             <DialogFooter className="pt-4">
               <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
