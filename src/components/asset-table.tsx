@@ -32,7 +32,7 @@ import { MoreHorizontal, Trash2, Pencil, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { useToast } from '@/hooks/use-toast';
-import { APP_CONFIG } from '@/lib/config';
+import { APP_CONFIG, getStatusVariant } from '@/lib/config';
 
 type SortKey = keyof Asset | '';
 
@@ -111,22 +111,6 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
       setSortOrder('asc');
     }
   };
-
-  const getStatusVariant = (status: Asset['status']) => {
-    switch (status) {
-      case 'In Use':
-        return 'default';
-      case 'Spare':
-        return 'secondary';
-      case 'In Repair':
-        return 'destructive';
-      case 'For Parts':
-        return 'outline';
-      default:
-        return 'default';
-    }
-  }
-
 
   if (assets.length === 0) {
     return (

@@ -1,6 +1,6 @@
 
 import { z } from 'zod';
-import { APP_CONFIG } from './config';
+import { APP_CONFIG, STATUS_NAMES } from './config';
 
 export const CATEGORY_IDS = ["laptops", "servers", "systems", "networks", "printers", "other"] as const;
 export type AssetCategory = (typeof CATEGORY_IDS)[number];
@@ -21,7 +21,7 @@ export const AssetSchema = z.object({
   userId: z.number().optional().nullable(),
   userType: z.enum(APP_CONFIG.userTypes).optional(),
   owner: z.literal('Group Administrators'),
-  status: z.enum(APP_CONFIG.statuses),
+  status: z.enum(STATUS_NAMES),
   notes: z.string().optional(),
   purchaseDate: z.coerce.date().optional().nullable(),
   warrantyExpirationDate: z.coerce.date().optional().nullable(),

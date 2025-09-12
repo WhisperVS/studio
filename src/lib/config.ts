@@ -1,6 +1,7 @@
 
 import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
+import type { BadgeProps } from "@/components/ui/badge";
 
 
 export const APP_CONFIG = {
@@ -49,14 +50,20 @@ export const APP_CONFIG = {
     icon: React.createElement(LayoutGrid)
   },
   locations: ['Schaumburg IL', 'Rockford IL'] as const,
-  statuses: ['In Use', 'In Repair', 'Spare', 'For Parts'] as const,
+  statuses: [
+    { name: 'In Use', variant: 'default' },
+    { name: 'Spare', variant: 'secondary' },
+    { name: 'For Repair', variant: 'destructive' },
+    { name: 'For Parts', variant: 'outline' },
+    { name: 'For Recycle', variant: 'destructive' },
+  ] as const,
   systemTypes: ['MFF', 'SFF', 'Tower', 'AIO', 'Desktop'] as const,
   serverTypes: ['Rack', 'Tower', 'Blade'] as const,
   manufacturers: [
     'Dell', 'HP', 'Lenovo', 'Apple', 'Microsoft', 'Asus', 'Acer', 'MSI', 'Samsung', 'Sony', 'Cisco', 'Brother', 'Canon', 'Epson'
   ] as const,
   userTypes: ['local', 'remote'] as const,
-  users: ['V.Shtohryn', 'J.Darling', 'Test.user'] as const,
+  users: ['V.Shtohryn', 'J.Darling'] as const,
   labels: {
     machineName: 'Machine Name',
     category: 'Category',
@@ -82,4 +89,13 @@ export const APP_CONFIG = {
 
 export const CATEGORY_IDS = APP_CONFIG.categories.map(c => c.id);
 
+export const STATUS_NAMES = [
+  APP_CONFIG.statuses[0].name, 
+  ...APP_CONFIG.statuses.slice(1).map(s => s.name)
+] as const;
+
+export function getStatusVariant(statusName: (typeof STATUS_NAMES)[number]): BadgeProps['variant'] {
+  const status = APP_CONFIG.statuses.find(s => s.name === statusName);
+  return status ? status.variant : 'default';
+}
     

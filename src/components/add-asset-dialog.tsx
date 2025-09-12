@@ -189,11 +189,11 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
     const lowerValue = value.toLowerCase();
     for (const manufacturer in manufacturerCatalog) {
-      for (const category in manufacturerCatalog[manufacturer]) {
-        const categoryData = manufacturerCatalog[manufacturer][category as keyof typeof manufacturerCatalog[typeof manufacturer]];
+      for (const category in manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog]) {
+        const categoryData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog][category as keyof typeof manufacturerCatalog[keyof typeof manufacturerCatalog]];
         if (categoryData && categoryData.keywords) {
           for (const keyword of categoryData.keywords) {
-            if (keyword.toLowerCase().startsWith(lowerValue) && lowerValue.length < keyword.length) {
+            if (keyword.toLowerCase().startsWith(lowerValue)) {
               setSuggestion(keyword);
               return;
             }
@@ -209,7 +209,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     const lowerModel = model.toLowerCase();
   
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
-      const categoriesData = manufacturerCatalog[manufacturer];
+      const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
       for (const category in categoriesData) {
         const catData = categoriesData[category as keyof typeof categoriesData];
         if (catData?.keywords.some(k => lowerModel.includes(k.toLowerCase()))) {
@@ -586,7 +586,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       </FormControl>
                       <SelectContent>
                         {APP_CONFIG.statuses.map((status) => (
-                          <SelectItem key={status} value={status}>{status}</SelectItem>
+                          <SelectItem key={status.name} value={status.name}>{status.name}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

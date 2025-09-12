@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Asset } from "@/lib/types";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
-import { APP_CONFIG } from "@/lib/config";
+import { APP_CONFIG, getStatusVariant, STATUS_NAMES } from "@/lib/config";
 
 interface AssetDetailsDialogProps {
   asset: Asset | null;
@@ -23,21 +23,6 @@ interface AssetDetailsDialogProps {
 
 export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetailsDialogProps) {
   if (!asset) return null;
-
-  const getStatusVariant = (status: Asset['status']) => {
-    switch (status) {
-      case 'In Use':
-        return 'default';
-      case 'Spare':
-        return 'secondary';
-      case 'In Repair':
-        return 'destructive';
-      case 'For Parts':
-        return 'outline';
-      default:
-        return 'default';
-    }
-  }
 
   const DetailItem = ({ label, value }: { label: string, value: React.ReactNode }) => (
     <div>

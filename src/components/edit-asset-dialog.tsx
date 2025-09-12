@@ -336,7 +336,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                       </FormControl>
                       <SelectContent>
                         {APP_CONFIG.statuses.map((status) => (
-                          <SelectItem key={status} value={status}>{status}</SelectItem>
+                          <SelectItem key={status.name} value={status.name}>{status.name}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

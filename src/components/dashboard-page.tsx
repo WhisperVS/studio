@@ -271,7 +271,7 @@ export default function DashboardPage() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Statuses</SelectItem>
-                        {APP_CONFIG.statuses.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                        {APP_CONFIG.statuses.map(s => <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>)}
                       </SelectContent>
                     </Select>
                     <Select value={filters.location} onValueChange={handleFilterChange('location')}>
