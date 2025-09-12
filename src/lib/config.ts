@@ -60,7 +60,7 @@ export const APP_CONFIG = {
   systemTypes: ['MFF', 'SFF', 'Tower', 'AIO', 'Desktop'] as const,
   serverTypes: ['Rack', 'Tower', 'Blade'] as const,
   manufacturers: [
-    'Dell', 'HP', 'Lenovo', 'Apple', 'Microsoft', 'Asus', 'Acer', 'MSI', 'Samsung', 'Sony', 'Cisco', 'Brother', 'Canon', 'Epson'
+    'Acer', 'Apple', 'Asus', 'Brother', 'Canon', 'Cisco', 'Dell', 'Epson', 'Fortinet', 'HP', 'Juniper', 'Lenovo', 'Lexmark', 'Microsoft', 'MikroTik', 'MSI', 'Netgear', 'Samsung', 'SonicWall', 'Supermicro', 'TPLink', 'Ubiquiti'
   ] as const,
   userTypes: ['local', 'remote'] as const,
   users: ['V.Shtohryn', 'J.Darling'] as const,
