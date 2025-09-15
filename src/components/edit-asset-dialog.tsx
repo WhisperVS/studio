@@ -285,19 +285,23 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="os"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+
+              {!['printers', 'networks'].includes(category) && (
+                <FormField
+                  control={form.control}
+                  name="os"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Windows 11 Pro" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
               {(category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}

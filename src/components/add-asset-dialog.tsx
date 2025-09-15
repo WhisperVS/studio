@@ -36,7 +36,7 @@ import { DatePicker } from "@/components/ui/datepicker";
 import { Combobox } from "@/components/ui/combobox";
 import { AssetFormSchema, AssetFormValues } from "@/lib/types";
 import { APP_CONFIG } from "@/lib/config";
-import { manufacturerCatalog } from "@/lib/catalog";
+import { manufacturerCatalog, osCatalog } from "@/lib/catalog";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@/components/user-provider";
 import { ClipboardCopy, FileJson, RotateCcw } from "lucide-react";
@@ -124,9 +124,9 @@ function CommandDisplayDialog({
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(command);
-      toast({ title: "Copied", description: "Command copied to clipboard." });
-    } catch {
-      toast({ variant: "destructive", title: "Copy failed", description: "Press Ctrl+C to copy manually." });
+      toast({ title: "Copied!", description: "The command has been copied to your clipboard." });
+    } catch (err) {
+      toast({ variant: "destructive", title: "Copy Failed", description: "Could not copy the command." });
     }
   };
 
@@ -148,8 +148,7 @@ function CommandDisplayDialog({
           />
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={copy}>Copy</Button>
-          <Button onClick={() => onOpenChange(false)}>Close</Button>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>Close</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -163,11 +162,18 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const [isJsonImportOpen, setIsJsonImportOpen] = useState(false);
   const [isCommandDialogOpen, setIsCommandDialogOpen] = useState(false);
   const infoScriptCommand = "\\\\ga-fs5\\home$\\scripts\\json_bat\\system-info.bat";
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
-  const suggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const typingTimer = useRef<number | null>(null);
+  
+  const [modelSuggestions, setModelSuggestions] = useState<string[]>([]);
+  const [activeModelSuggestionIndex, setActiveModelSuggestionIndex] = useState(0);
+  const modelSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const modelTypingTimer = useRef<number | null>(null);
   const modelInputRef = useRef<HTMLInputElement>(null);
+
+  const [osSuggestions, setOsSuggestions] = useState<string[]>([]);
+  const [activeOsSuggestionIndex, setActiveOsSuggestionIndex] = useState(0);
+  const osSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const osTypingTimer = useRef<number | null>(null);
+  const osInputRef = useRef<HTMLInputElement>(null);
 
 
   const form = useForm<AssetFormValues>({
@@ -211,7 +217,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     return items;
   }, []);
 
-  const getSuggestions = useCallback((query: string) => {
+  const getModelSuggestions = useCallback((query: string) => {
     if (!query) return [];
     const q = query.toLowerCase();
     return keywordIndex
@@ -222,10 +228,18 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         return { k: it.k, score };
       })
       .filter(x => x.score > 0)
-      .sort((a, b) => b.score - a.score || a.k.length - b.k.length)
+      .sort((a, b) => b.score - a.k.length - b.k.length)
       .slice(0, 8)
       .map(x => x.k);
   }, [keywordIndex]);
+  
+  const getOsSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return osCatalog.os.keywords
+      .filter(k => k.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, []);
   
   const autoCategorizeByModel = useCallback((model: string) => {
     if (!model) return;
@@ -273,62 +287,137 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
   }, [form]);
 
-  const acceptSuggestion = useCallback((value: string) => {
+  const acceptModelSuggestion = useCallback((value: string) => {
     form.setValue('modelNumber', value, { shouldValidate: true });
-    setSuggestions([]);
-    setActiveSuggestionIndex(0);
+    setModelSuggestions([]);
+    setActiveModelSuggestionIndex(0);
     autoCategorizeByModel(value);
   }, [form, autoCategorizeByModel]);
+  
+  const acceptOsSuggestion = useCallback((value: string) => {
+    form.setValue('os', value, { shouldValidate: true });
+    setOsSuggestions([]);
+    setActiveOsSuggestionIndex(0);
+  }, [form]);
 
   const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     form.setValue('modelNumber', value, { shouldValidate: true });
 
-    if (typingTimer.current) {
-      window.clearTimeout(typingTimer.current);
+    if (modelTypingTimer.current) {
+      window.clearTimeout(modelTypingTimer.current);
     }
-    typingTimer.current = window.setTimeout(() => {
+    modelTypingTimer.current = window.setTimeout(() => {
       if (value) {
-        const list = getSuggestions(value);
-        setSuggestions(list);
-        setActiveSuggestionIndex(0);
+        const list = getModelSuggestions(value);
+        setModelSuggestions(list);
+        setActiveModelSuggestionIndex(0);
       } else {
-        setSuggestions([]);
+        setModelSuggestions([]);
       }
     }, 160);
   };
   
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (suggestions.length === 0) return;
+  const handleModelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (modelSuggestions.length === 0) return;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setActiveSuggestionIndex((prev) => (prev + 1) % suggestions.length);
+      setActiveModelSuggestionIndex((prev) => (prev + 1) % modelSuggestions.length);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setActiveSuggestionIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
+      setActiveModelSuggestionIndex((prev) => (prev - 1 + modelSuggestions.length) % modelSuggestions.length);
     } else if (e.key === 'Enter' || e.key === 'Tab') {
-      e.preventDefault();
-      const chosen = suggestions[activeSuggestionIndex];
-      if (chosen) acceptSuggestion(chosen);
+      if (modelSuggestions[activeModelSuggestionIndex]) {
+        e.preventDefault();
+        acceptModelSuggestion(modelSuggestions[activeModelSuggestionIndex]);
+      }
     } else if (e.key === 'Escape') {
-      setSuggestions([]);
+      setModelSuggestions([]);
+    }
+  };
+  
+  const handleOsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    form.setValue('os', value, { shouldValidate: true });
+
+    if (osTypingTimer.current) {
+      window.clearTimeout(osTypingTimer.current);
+    }
+    osTypingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getOsSuggestions(value);
+        setOsSuggestions(list);
+        setActiveOsSuggestionIndex(0);
+      } else {
+        setOsSuggestions([]);
+      }
+    }, 160);
+  };
+  
+  const handleOsKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (osSuggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveOsSuggestionIndex((prev) => (prev + 1) % osSuggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveOsSuggestionIndex((prev) => (prev - 1 + osSuggestions.length) % osSuggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (osSuggestions[activeOsSuggestionIndex]) {
+        e.preventDefault();
+        acceptOsSuggestion(osSuggestions[activeOsSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setOsSuggestions([]);
     }
   };
 
   useEffect(() => {
-    if (activeSuggestionIndex >= 0 && suggestionItemRefs.current[activeSuggestionIndex]) {
-      suggestionItemRefs.current[activeSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    if (activeModelSuggestionIndex >= 0 && modelSuggestionItemRefs.current[activeModelSuggestionIndex]) {
+      modelSuggestionItemRefs.current[activeModelSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
     }
-  }, [activeSuggestionIndex, suggestions]);
+  }, [activeModelSuggestionIndex, modelSuggestions]);
 
   useEffect(() => {
-    suggestionItemRefs.current = suggestionItemRefs.current.slice(0, suggestions.length);
-  }, [suggestions]);
+    modelSuggestionItemRefs.current = modelSuggestionItemRefs.current.slice(0, modelSuggestions.length);
+  }, [modelSuggestions]);
+  
+  useEffect(() => {
+    if (activeOsSuggestionIndex >= 0 && osSuggestionItemRefs.current[activeOsSuggestionIndex]) {
+      osSuggestionItemRefs.current[activeOsSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeOsSuggestionIndex, osSuggestions]);
+
+  useEffect(() => {
+    osSuggestionItemRefs.current = osSuggestionItemRefs.current.slice(0, osSuggestions.length);
+  }, [osSuggestions]);
 
   
   const handleJsonImport = (data: any) => {
     const normalize = (v: unknown) => String(v ?? '').replace(/\r?\n|\r/g, '').trim();
+    
+    const findBestOsMatch = (osString: string): string => {
+      if (!osString) return osString;
+      const lowerOsString = osString.toLowerCase();
+      let bestMatch = osString;
+      let highestScore = 0;
+
+      for (const keyword of osCatalog.os.keywords) {
+        const lowerKeyword = keyword.toLowerCase();
+        if (lowerOsString.includes(lowerKeyword)) {
+          // Simple score: longer match is better
+          const score = keyword.length;
+          if (score > highestScore) {
+            highestScore = score;
+            bestMatch = keyword;
+          }
+        }
+      }
+      return bestMatch;
+    };
+
 
     const mapping: Record<string, keyof AssetFormValues> = {
       "Assigned User": "assignedUser",
@@ -349,7 +438,13 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     for (const [key, raw] of Object.entries(data)) {
       const formField = mapping[key];
       if (!formField) continue;
-      const value = normalize(raw);
+      
+      let value = normalize(raw);
+
+      if (formField === 'os') {
+        value = findBestOsMatch(value);
+      }
+      
       if (value) {
         form.setValue(formField, value, { shouldValidate: true });
         if (formField === 'manufacturer') importedManufacturer = value;
@@ -428,7 +523,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) {
         form.reset();
-        setSuggestions([]);
+        setModelSuggestions([]);
+        setOsSuggestions([]);
       }
       onOpenChange(open);
     }}>
@@ -454,7 +550,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               <ClipboardCopy className="mr-2 h-4 w-4" />
               Copy Info Script
             </Button>
-            <Button type="button" variant="destructive" size="sm" onClick={() => { form.reset(); setSuggestions([]); }} className="ml-auto shadow-sm">
+            <Button type="button" variant="destructive" size="sm" onClick={() => { form.reset(); setModelSuggestions([]); setOsSuggestions([]); }} className="ml-auto shadow-sm">
                 <RotateCcw className="mr-2 h-4 w-4" />
                 Clear Form
             </Button>
@@ -561,31 +657,31 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       <Input
                         aria-autocomplete="list"
                         aria-controls="model-suggestion-list"
-                        aria-expanded={suggestions.length > 0}
-                        aria-activedescendant={suggestions.length ? `model-suggestion-${activeSuggestionIndex}` : undefined}
+                        aria-expanded={modelSuggestions.length > 0}
+                        aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
                         placeholder="e.g., Latitude 5420"
                         {...field}
                         onChange={handleModelChange}
-                        onKeyDown={handleKeyDown}
+                        onKeyDown={handleModelKeyDown}
                         ref={modelInputRef}
                         autoComplete="off"
                       />
-                      {suggestions.length > 0 && (
+                      {modelSuggestions.length > 0 && (
                         <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
                           <ul
                             id="model-suggestion-list"
                             role="listbox"
                             className="max-h-60 overflow-auto py-1"
                           >
-                            {suggestions.map((s, i) => (
+                            {modelSuggestions.map((s, i) => (
                               <li
                                 key={s}
                                 id={`model-suggestion-${i}`}
                                 role="option"
-                                aria-selected={i === activeSuggestionIndex}
-                                ref={el => { suggestionItemRefs.current[i] = el }}
-                                onMouseDown={(e) => { e.preventDefault(); acceptSuggestion(s); }}
-                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                                aria-selected={i === activeModelSuggestionIndex}
+                                ref={el => { modelSuggestionItemRefs.current[i] = el }}
+                                onMouseDown={(e) => { e.preventDefault(); acceptModelSuggestion(s); }}
+                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeModelSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
                               >
                                 {s}
                               </li>
@@ -624,19 +720,57 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="os"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+
+              {!['printers', 'networks'].includes(category) && (
+                <FormField
+                  control={form.control}
+                  name="os"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
+                      <div className="relative">
+                        <Input
+                          aria-autocomplete="list"
+                          aria-controls="os-suggestion-list"
+                          aria-expanded={osSuggestions.length > 0}
+                          aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
+                          placeholder="e.g., Windows 11 Pro"
+                          {...field}
+                          onChange={handleOsChange}
+                          onKeyDown={handleOsKeyDown}
+                          ref={osInputRef}
+                          autoComplete="off"
+                        />
+                        {osSuggestions.length > 0 && (
+                          <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                            <ul
+                              id="os-suggestion-list"
+                              role="listbox"
+                              className="max-h-60 overflow-auto py-1"
+                            >
+                              {osSuggestions.map((s, i) => (
+                                <li
+                                  key={s}
+                                  id={`os-suggestion-${i}`}
+                                  role="option"
+                                  aria-selected={i === activeOsSuggestionIndex}
+                                  ref={el => { osSuggestionItemRefs.current[i] = el }}
+                                  onMouseDown={(e) => { e.preventDefault(); acceptOsSuggestion(s); }}
+                                  className={`px-3 py-2 text-sm cursor-pointer ${i === activeOsSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                                >
+                                  {s}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
               {(category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}
