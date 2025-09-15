@@ -76,27 +76,28 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     },
     printers: {
-        keywords: [
-          "E310dw", "E514dw", "E525w",
-          "B2360dn", "B2375dfw",
-          "C1760nw", "C1765nfw", "C2660dn", "C2665dnf",
-          "C3760dn", "C3765dnf",
-          "H625cdw", "H825cdw",
-          "S2830dn", "S2810dn", "S3845cdn", "S5830dn", "S5840cdn"
-        ]
+      keywords: [
+        "E310dw", "E514dw", "E525w",
+        "B2360dn", "B2375dfw",
+        "C1760nw", "C1765nfw", "C2660dn", "C2665dnf",
+        "C3760dn", "C3765dnf",
+        "H625cdw", "H825cdw",
+        "S2830dn", "S2810dn", "S3845cdn", "S5830dn", "S5840cdn"
+      ]
     },
     networks: {
-        keywords: [
-          "PowerSwitch S3048", "PowerSwitch S4048", "PowerSwitch S4148", "PowerSwitch S4248",
-          "PowerSwitch S5048", "PowerSwitch S5248F-ON", "PowerSwitch S5296F-ON",
-          "PowerSwitch S5448F-ON", "PowerSwitch S6000",
-          "PowerConnect 2808", "PowerConnect 2824", "PowerConnect 2848"
-        ],
-        types: {
-          "Switch": ["PowerSwitch", "PowerConnect"]
-        }
+      keywords: [
+        "PowerSwitch S3048", "PowerSwitch S4048", "PowerSwitch S4148", "PowerSwitch S4248",
+        "PowerSwitch S5048", "PowerSwitch S5248F-ON", "PowerSwitch S5296F-ON",
+        "PowerSwitch S5448F-ON", "PowerSwitch S6000",
+        "PowerConnect 2808", "PowerConnect 2824", "PowerConnect 2848"
+      ],
+      types: {
+        "Switch": ["PowerSwitch", "PowerConnect"]
+      }
     }
   },
+
   HP: {
     laptops: {
       keywords: [
@@ -154,77 +155,156 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     },
     printers: {
-        keywords: [
-          // ---- LaserJet Pro (Mono) ----
-          "LaserJet Pro M201dw", "LaserJet Pro M402n", "LaserJet Pro M402dn", "LaserJet Pro M402dw",
-          "LaserJet Pro M404n", "LaserJet Pro M404dn", "LaserJet Pro M404dw",
-          "LaserJet Pro M405dn", "LaserJet Pro M405dw",
-          "LaserJet Pro MFP M225dn", "LaserJet Pro MFP M227fdw",
-          "LaserJet Pro MFP M426fdn", "LaserJet Pro MFP M426fdw",
-          "LaserJet Pro MFP M428fdn", "LaserJet Pro MFP M428fdw",
+      keywords: [
+        // ==================== LaserJet (Standard, Non-Pro, 2015–2025) ====================
+        // Mono single-function
+        "LaserJet M102a", "LaserJet M102w", "LaserJet M104a", "LaserJet M104w",
+        "LaserJet M106w", "LaserJet M107w", "LaserJet M109a", "LaserJet M109w",
+        "LaserJet M110w", "LaserJet M111w", "LaserJet M112w",
+        "LaserJet M203d", "LaserJet M203dn", "LaserJet M203dw",
+        "LaserJet M206dn", "LaserJet M206dw", "LaserJet M209dw", "LaserJet M209dwe",
+        "LaserJet M214dw",
+        // Mono MFP
+        "LaserJet MFP M130a", "LaserJet MFP M130fn", "LaserJet MFP M130fw", "LaserJet MFP M130nw",
+        "LaserJet MFP M132a", "LaserJet MFP M132fn", "LaserJet MFP M132fw", "LaserJet MFP M132nw",
+        "LaserJet MFP M135a", "LaserJet MFP M135w", "LaserJet MFP M137fnw",
+        "LaserJet MFP M140w", "LaserJet MFP M140we", "LaserJet MFP M141w", "LaserJet MFP M142fw",
+        "LaserJet MFP M232dw", "LaserJet MFP M232dwe", "LaserJet MFP M234d", "LaserJet MFP M234sdn", "LaserJet MFP M234sdne", "LaserJet MFP M234sdw", "LaserJet MFP M234sdwe",
 
-          // ---- Color LaserJet Pro ----
-          "Color LaserJet Pro M252dw", "Color LaserJet Pro M254dw",
-          "Color LaserJet Pro M255dw",
-          "Color LaserJet Pro MFP M277dw", "Color LaserJet Pro MFP M281fdw", "Color LaserJet Pro MFP M283fdw",
+        // ====== Explicit M400-series (Mono & Color, Pro + Enterprise era, 2015–2025) ======
+        // Mono single-function (Pro)
+        "LaserJet Pro M401n", "LaserJet Pro M401dn", "LaserJet Pro M401dw",  // early 2010s carryover
+        "LaserJet Pro M402n", "LaserJet Pro M402dn", "LaserJet Pro M402dw",
+        "LaserJet Pro M404n", "LaserJet Pro M404dn", "LaserJet Pro M404dw",
+        "LaserJet Pro M405dn", "LaserJet Pro M405dw",
+        // Mono MFP (Pro)
+        "LaserJet Pro MFP M425dn", "LaserJet Pro MFP M425dw",
+        "LaserJet Pro MFP M426fdn", "LaserJet Pro MFP M426fdw",
+        "LaserJet Pro MFP M428fdn", "LaserJet Pro MFP M428fdw",
+        "LaserJet Pro MFP M429fdn", "LaserJet Pro MFP M429fdw",
+        // Color (Pro)
+        "Color LaserJet Pro M452dn", "Color LaserJet Pro M452dw",
+        "Color LaserJet Pro MFP M274n", "Color LaserJet Pro MFP M277dw",
+        "Color LaserJet Pro MFP M281fdw", "Color LaserJet Pro MFP M283fdw",
+        "Color LaserJet Pro MFP M479fdn", "Color LaserJet Pro MFP M479fdw",
+        // Enterprise M400-class
+        "LaserJet Enterprise M406dn",
+        "LaserJet Enterprise MFP M430f", "LaserJet Enterprise Flow MFP M430z",
 
-          // ---- LaserJet Enterprise (Mono) ----
-          "LaserJet Enterprise M506dn", "LaserJet Enterprise M506x",
-          "LaserJet Enterprise M507n", "LaserJet Enterprise M507dn", "LaserJet Enterprise M507x",
-          "LaserJet Enterprise M528dn", "LaserJet Enterprise M528f",
-          "LaserJet Enterprise M610dn", "LaserJet Enterprise M611dn", "LaserJet Enterprise M612dn",
+        // ====== Explicit M600-series (Mono & Color, Enterprise) ======
+        // 2015-generation (M604/605/606)
+        "LaserJet Enterprise M604n", "LaserJet Enterprise M604dn",
+        "LaserJet Enterprise M605n", "LaserJet Enterprise M605dn", "LaserJet Enterprise M605x",
+        "LaserJet Enterprise M606dn", "LaserJet Enterprise M606x",
+        // 2017–2019 generation (M607/608/609)
+        "LaserJet Enterprise M607n", "LaserJet Enterprise M607dn",
+        "LaserJet Enterprise M608n", "LaserJet Enterprise M608dn", "LaserJet Enterprise M608x",
+        "LaserJet Enterprise M609dn", "LaserJet Enterprise M609x",
+        // 2020–2023 generation (M610/611/612)
+        "LaserJet Enterprise M610dn", "LaserJet Enterprise M611dn", "LaserJet Enterprise M612dn",
+        // Corresponding MFP (M63x)
+        "LaserJet Enterprise MFP M631dn", "LaserJet Enterprise MFP M632fht", "LaserJet Enterprise MFP M633fh",
+        "LaserJet Enterprise MFP M634h", "LaserJet Enterprise MFP M635fht",
+        // Large-format mono A3 relatives sometimes grouped with M600 family
+        "LaserJet Enterprise MFP M725dn", "LaserJet Enterprise MFP M725f",
 
-          // ---- Color LaserJet Enterprise ----
-          "Color LaserJet Enterprise M553n", "Color LaserJet Enterprise M553dn",
-          "Color LaserJet Enterprise M554dn", "Color LaserJet Enterprise M555dn",
-          "Color LaserJet Enterprise Flow MFP M577z", "Color LaserJet Enterprise MFP M578dn",
+        // ==================== Color LaserJet (Non-Pro) ====================
+        "Color Laser 150a", "Color Laser 150nw",
+        "Color Laser MFP 178nw", "Color Laser MFP 178nwg", "Color Laser MFP 179fnw",
 
-          // ---- OfficeJet Pro (Ink) ----
-          "OfficeJet Pro 6960", "OfficeJet Pro 6970", "OfficeJet Pro 6978",
-          "OfficeJet Pro 7740 Wide Format",
-          "OfficeJet Pro 8020", "OfficeJet Pro 8022", "OfficeJet Pro 8035",
-          "OfficeJet Pro 9010", "OfficeJet Pro 9015", "OfficeJet Pro 9015e", "OfficeJet Pro 9020", "OfficeJet Pro 9025e",
+        // ==================== LaserJet Pro (Mono & Color, other) ====================
+        "LaserJet Pro M118dw", "LaserJet Pro M201dw", "LaserJet Pro M203dw",
+        "LaserJet Pro M501dn", "LaserJet Pro M506dn",
 
-          // ---- PageWide (Ink Business) ----
-          "PageWide Pro 352dw", "PageWide Pro 377dw",
-          "PageWide Pro 452dw", "PageWide Pro 477dw",
-          "PageWide Pro 552dw", "PageWide Pro 577dw",
-          "PageWide Enterprise Color 556dn", "PageWide Enterprise Color 586f",
+        // ==================== LaserJet Enterprise (additional) ====================
+        "LaserJet Enterprise M506dn", "LaserJet Enterprise M506x",
+        "LaserJet Enterprise M507n", "LaserJet Enterprise M507dn", "LaserJet Enterprise M507x",
+        "LaserJet Enterprise M528dn", "LaserJet Enterprise M528f",
+        "LaserJet Enterprise M633fh", "LaserJet Enterprise M635fht",
 
-          // ---- DesignJet (Large-format) ----
-          "DesignJet T120", "DesignJet T520", "DesignJet T530",
-          "DesignJet T630", "DesignJet T650",
-          "DesignJet T830", "DesignJet T850",
-          "DesignJet Z6", "DesignJet Z9+" ,
+        // ==================== Color LaserJet Enterprise (A4) ====================
+        "Color LaserJet Enterprise M553n", "Color LaserJet Enterprise M553dn",
+        "Color LaserJet Enterprise M554dn", "Color LaserJet Enterprise M555dn",
+        "Color LaserJet Enterprise M651dn", "Color LaserJet Enterprise M652dn", "Color LaserJet Enterprise M653x",
+        "Color LaserJet Enterprise Flow MFP M577z", "Color LaserJet Enterprise MFP M578dn",
+        "Color LaserJet Enterprise MFP M681f", "Color LaserJet Enterprise MFP M682z",
+        "Color LaserJet Enterprise M751dn", "Color LaserJet Enterprise M776dn",
 
-          // ---- DeskJet / ENVY (Home ink) ----
-          "DeskJet 2130", "DeskJet 3630", "DeskJet 3755",
-          "DeskJet 4155e", "DeskJet 2755e",
-          "ENVY 4500", "ENVY 5540", "ENVY 6055e", "ENVY 6455e",
-          "ENVY Inspire 7955e"
-        ]
+        // ==================== Neverstop Laser (Toner Tank) ====================
+        "Neverstop Laser 1000a", "Neverstop Laser 1000w",
+        "Neverstop Laser MFP 1200a", "Neverstop Laser MFP 1200w", "Neverstop Laser MFP 1202w", "Neverstop Laser MFP 1202nw",
+
+        // ==================== LaserJet Tank (2023–2025) ====================
+        "LaserJet Tank 1502w", "LaserJet Tank 2504dw",
+        "LaserJet Tank MFP 1602w", "LaserJet Tank MFP 2502dw", "LaserJet Tank MFP 2602sdw",
+
+        // ==================== OfficeJet / OfficeJet Pro (incl. e-series) ====================
+        "OfficeJet 3830", "OfficeJet 5255", "OfficeJet 6950", "OfficeJet 6970",
+        "OfficeJet Pro 6230", "OfficeJet Pro 6960", "OfficeJet Pro 6978",
+        "OfficeJet Pro 7720", "OfficeJet Pro 7740",
+        "OfficeJet Pro 8020", "OfficeJet Pro 8022", "OfficeJet Pro 8035",
+        "OfficeJet Pro 8710", "OfficeJet Pro 8720", "OfficeJet Pro 8740",
+        "OfficeJet Pro 9010", "OfficeJet Pro 9015", "OfficeJet Pro 9015e",
+        "OfficeJet Pro 9020", "OfficeJet Pro 9025", "OfficeJet Pro 9025e",
+        "OfficeJet Pro 9120e", "OfficeJet Pro 9130e", "OfficeJet Pro 9720e", "OfficeJet Pro 9730e",
+
+        // ==================== Smart Tank (Ink Tank) ====================
+        "Smart Tank 500", "Smart Tank 510", "Smart Tank 515", "Smart Tank 530",
+        "Smart Tank 600", "Smart Tank 615",
+        "Smart Tank 700", "Smart Tank 720", "Smart Tank 730", "Smart Tank 7305",
+        "Smart Tank 7000", "Smart Tank 7200", "Smart Tank 7300", "Smart Tank 7600",
+
+        // ==================== PageWide (Pro & Enterprise) ====================
+        "PageWide Pro 352dw", "PageWide Pro 377dw",
+        "PageWide Pro 452dw", "PageWide Pro 477dw",
+        "PageWide Pro 552dw", "PageWide Pro 577dw",
+        "PageWide Enterprise Color 556dn", "PageWide Enterprise Color 586f",
+        "PageWide Enterprise Color 750", "PageWide Enterprise Color 755",
+        "PageWide Enterprise Color MFP 780", "PageWide Enterprise Color MFP 785",
+
+        // ==================== DesignJet (Large-format) ====================
+        "DesignJet T120", "DesignJet T130",
+        "DesignJet T520", "DesignJet T530",
+        "DesignJet T630", "DesignJet T650",
+        "DesignJet T730", "DesignJet T830", "DesignJet T850",
+        "DesignJet Z6", "DesignJet Z9+",
+        "DesignJet Studio", "DesignJet XL 3600",
+
+        // ==================== DeskJet / ENVY / ENVY Inspire / Tango ====================
+        // DeskJet
+        "DeskJet 2130", "DeskJet 2622", "DeskJet 2636",
+        "DeskJet 2700", "DeskJet 2710", "DeskJet 2720", "DeskJet 2722", "DeskJet 2723", "DeskJet 2755e",
+        "DeskJet 4100e", "DeskJet 4155e",
+        // ENVY + ENVY Inspire
+        "ENVY 4520", "ENVY 5540", "ENVY 6055e", "ENVY 6455e",
+        "ENVY Photo 7155", "ENVY Photo 7855",
+        "ENVY Inspire 7200e", "ENVY Inspire 7900e", "ENVY Inspire 7955e",
+        // Tango
+        "Tango", "Tango X"
+      ]
     },
     networks: {
-        keywords: [
-          // Aruba switches
-          "Aruba 2530", "Aruba 2540", "Aruba 2930F", "Aruba 2930M",
-          "Aruba 3810", "Aruba 5400R", "Aruba 6000", "Aruba 6100",
-          "Aruba 6200F", "Aruba 6300F", "Aruba 6400",
-          // Wireless APs
-          "Aruba AP-305", "Aruba AP-315", "Aruba AP-325",
-          "Aruba AP-505", "Aruba AP-515", "Aruba AP-535", "Aruba AP-635",
-          // Gateways / controllers
-          "Aruba 7005", "Aruba 7010", "Aruba 7030", "Aruba 7205", "Aruba 7210",
-          // Legacy HP/ProCurve
-          "ProCurve 1810G", "ProCurve 2520", "ProCurve 2530", "ProCurve 2910al"
-        ],
-        types: {
-          "Switch": ["Aruba 25", "Aruba 29", "Aruba 63", "ProCurve"],
-          "Wireless": ["Aruba AP", "Aruba Instant"],
-          "Controller": ["Aruba 70", "Aruba 72"]
-        }
+      keywords: [
+        // Aruba switches
+        "Aruba 2530", "Aruba 2540", "Aruba 2930F", "Aruba 2930M",
+        "Aruba 3810", "Aruba 5400R", "Aruba 6000", "Aruba 6100",
+        "Aruba 6200F", "Aruba 6300F", "Aruba 6400",
+        // Wireless APs
+        "Aruba AP-305", "Aruba AP-315", "Aruba AP-325",
+        "Aruba AP-505", "Aruba AP-515", "Aruba AP-535", "Aruba AP-635",
+        // Gateways / controllers
+        "Aruba 7005", "Aruba 7010", "Aruba 7030", "Aruba 7205", "Aruba 7210",
+        // Legacy HP/ProCurve
+        "ProCurve 1810G", "ProCurve 2520", "ProCurve 2530", "ProCurve 2910al"
+      ],
+      types: {
+        "Switch": ["Aruba 25", "Aruba 29", "Aruba 63", "ProCurve"],
+        "Wireless": ["Aruba AP", "Aruba Instant"],
+        "Controller": ["Aruba 70", "Aruba 72"]
+      }
     }
   },
+
   Lenovo: {
     laptops: {
       keywords: [
@@ -267,13 +347,14 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     },
     printers: {
-        keywords: [
-          "Lenovo LJ2200", "Lenovo LJ2605d", "Lenovo LJ2650dn",
-          "Lenovo M7206w", "Lenovo M7268w",
-          "Lenovo M7605D", "Lenovo M7655DFW"
-        ]
+      keywords: [
+        "Lenovo LJ2200", "Lenovo LJ2605d", "Lenovo LJ2650dn",
+        "Lenovo M7206w", "Lenovo M7268w",
+        "Lenovo M7605D", "Lenovo M7655DFW"
+      ]
     }
   },
+
   Microsoft: {
     laptops: {
       keywords: [
@@ -285,6 +366,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
     },
     systems: { keywords: ["Surface Studio", "Surface Hub 2S"] }
   },
+
   Apple: {
     laptops: {
       keywords: [
@@ -297,18 +379,22 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
     },
     systems: { keywords: ["iMac", "iMac 24", "Mac mini", "Mac Studio", "Mac Pro"] }
   },
+
   Asus: {
     laptops: { keywords: ["ZenBook", "ZenBook UX305", "UX330", "UX433", "UX425", "ZenBook 14", "VivoBook", "ROG Zephyrus", "TUF Gaming"] },
     systems: { keywords: ["ExpertCenter", "ProArt Station", "All-in-One"] }
   },
+
   Acer: {
     laptops: { keywords: ["Swift", "Swift 3", "Swift 5", "Aspire", "Aspire E", "Aspire 5", "Aspire 7", "Nitro", "Predator"] },
     systems: { keywords: ["Veriton", "Aspire Desktop", "All-in-One"] }
   },
+
   MSI: {
     laptops: { keywords: ["Prestige", "Summit", "Modern", "Creator", "Katana", "Raider", "Stealth"] },
     systems: { keywords: ["PRO DP", "Creator P"] }
   },
+
   Samsung: {
     laptops: { keywords: ["Notebook 9", "Galaxy Book", "Galaxy Book2", "Galaxy Book3"] },
     printers: {
@@ -319,6 +405,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       ]
     }
   },
+
   Cisco: {
     servers: {
       keywords: ["UCS", "UCS C220 M4", "UCS C240 M4", "UCS C220 M5", "UCS C240 M5", "UCS C220 M6", "UCS C240 M6", "UCS B200 M5"],
@@ -328,39 +415,41 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     },
     networks: {
-        keywords: [
-          // Catalyst campus switches
-          "Catalyst 2960X", "Catalyst 2960XR", "Catalyst 3650", "Catalyst 3850",
-          "Catalyst 9200", "Catalyst 9200L", "Catalyst 9300", "Catalyst 9300L",
-          "Catalyst 9400", "Catalyst 9500",
-          // Nexus (datacenter)
-          "Nexus 3k", "Nexus 5k", "Nexus 7k", "Nexus 9k", "N9K-C93180", "N9K-C9364",
-          // Meraki (cloud-managed)
-          "Meraki MS120", "Meraki MS125", "Meraki MS210", "Meraki MS225", "Meraki MS250",
-          "Meraki MS350", "Meraki MS355", "Meraki MX64", "Meraki MX67", "Meraki MX84",
-          "Meraki MX95", "Meraki MX100", "Meraki MX105", "Meraki MX250", "Meraki MX450",
-          "Meraki MR36", "Meraki MR46", "Meraki MR56", "Meraki MR70",
-          // Security
-          "ASA 5506-X", "ASA 5508-X", "ASA 5516-X", "Firepower 1010", "Firepower 1120",
-          "Firepower 1140", "Firepower 2110", "Firepower 2130", "Firepower 2140",
-          // Voice/Collab
-          "Cisco IP Phone 7800", "Cisco IP Phone 8800"
-        ],
-        types: {
-          "Switch": ["Catalyst", "Nexus", "Meraki MS"],
-          "Router": ["ISR", "Meraki MX"],
-          "Wireless": ["Meraki MR", "Catalyst 9100"],
-          "Firewall": ["ASA", "Firepower"],
-          "VoIP": ["Cisco IP Phone"]
-        }
+      keywords: [
+        // Catalyst campus switches
+        "Catalyst 2960X", "Catalyst 2960XR", "Catalyst 3650", "Catalyst 3850",
+        "Catalyst 9200", "Catalyst 9200L", "Catalyst 9300", "Catalyst 9300L",
+        "Catalyst 9400", "Catalyst 9500",
+        // Nexus (datacenter)
+        "Nexus 3k", "Nexus 5k", "Nexus 7k", "Nexus 9k", "N9K-C93180", "N9K-C9364",
+        // Meraki (cloud-managed)
+        "Meraki MS120", "Meraki MS125", "Meraki MS210", "Meraki MS225", "Meraki MS250",
+        "Meraki MS350", "Meraki MS355", "Meraki MX64", "Meraki MX67", "Meraki MX84",
+        "Meraki MX95", "Meraki MX100", "Meraki MX105", "Meraki MX250", "Meraki MX450",
+        "Meraki MR36", "Meraki MR46", "Meraki MR56", "Meraki MR70",
+        // Security
+        "ASA 5506-X", "ASA 5508-X", "ASA 5516-X", "Firepower 1010", "Firepower 1120",
+        "Firepower 1140", "Firepower 2110", "Firepower 2130", "Firepower 2140",
+        // Voice/Collab
+        "Cisco IP Phone 7800", "Cisco IP Phone 8800"
+      ],
+      types: {
+        "Switch": ["Catalyst", "Nexus", "Meraki MS"],
+        "Router": ["ISR", "Meraki MX"],
+        "Wireless": ["Meraki MR", "Catalyst 9100"],
+        "Firewall": ["ASA", "Firepower"],
+        "VoIP": ["Cisco IP Phone"]
+      }
     },
     other: {
       keywords: ["Webex Device"]
     }
   },
+
   Supermicro: {
     servers: { keywords: ["SuperServer", "SYS-5019", "SYS-510P", "SYS-6029", "SYS-620P", "AS-1114S", "AS-2014S"] }
   },
+
   Canon: {
     printers: {
       keywords: [
@@ -377,6 +466,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       ]
     }
   },
+
   Epson: {
     printers: {
       keywords: [
@@ -390,6 +480,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       ]
     }
   },
+
   Brother: {
     printers: {
       keywords: [
@@ -401,6 +492,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       ]
     }
   },
+
   Lexmark: {
     printers: {
       keywords: [
@@ -410,6 +502,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       ]
     }
   },
+
   Netgear: {
     networks: {
       keywords: [
@@ -427,6 +520,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   SonicWall: {
     networks: {
       keywords: [
@@ -447,6 +541,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   Ubiquiti: {
     networks: {
       keywords: [
@@ -466,6 +561,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   Juniper: {
     networks: {
       keywords: [
@@ -479,6 +575,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   Fortinet: {
     networks: {
       keywords: [
@@ -497,6 +594,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   TPLink: {
     networks: {
       keywords: [
@@ -517,6 +615,7 @@ export const manufacturerCatalog: Record<string, Partial<Record<AssetCategory, {
       }
     }
   },
+
   MikroTik: {
     networks: {
       keywords: [

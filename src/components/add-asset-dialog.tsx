@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCallback, useState, useEffect, useMemo, useRef } from "react";
@@ -434,11 +435,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       <DialogContent 
         className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => {
-          if (suggestions.length > 0 && modelInputRef.current && !modelInputRef.current.contains(e.target as Node)) {
-            setSuggestions([]);
-          } else if (suggestions.length > 0) {
-            e.preventDefault();
-          }
+          e.preventDefault();
         }}
       >
         <DialogHeader>
