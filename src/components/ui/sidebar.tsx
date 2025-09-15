@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -538,7 +539,7 @@ const SidebarMenuButton = React.forwardRef<
   React.ComponentProps<"button"> & {
     asChild?: boolean
     isActive?: boolean
-    tooltip?: string | React.ComponentProps<typeof TooltipContent>
+    tooltip?: React.ComponentProps<typeof TooltipContent> | string
   } & VariantProps<typeof sidebarMenuButtonVariants>
 >(
   (
@@ -571,11 +572,8 @@ const SidebarMenuButton = React.forwardRef<
       return button
     }
 
-    if (typeof tooltip === "string") {
-      tooltip = {
-        children: tooltip,
-      }
-    }
+    const tooltipContentProps =
+      typeof tooltip === "string" ? { children: tooltip } : tooltip
 
     return (
       <Tooltip>
@@ -584,7 +582,7 @@ const SidebarMenuButton = React.forwardRef<
           side="right"
           align="center"
           hidden={state !== "collapsed" || isMobile}
-          {...tooltip}
+          {...tooltipContentProps}
         />
       </Tooltip>
     )
@@ -650,10 +648,12 @@ const SidebarMenuSkeleton = React.forwardRef<
     showIcon?: boolean
   }
 >(({ className, showIcon = false, ...props }, ref) => {
-  // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  }, [])
+  const [width, setWidth] = React.useState('0%');
+
+  React.useEffect(() => {
+    // Random width between 50 to 90%.
+    setWidth(`${Math.floor(Math.random() * 40) + 50}%`);
+  }, []);
 
   return (
     <div
