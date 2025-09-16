@@ -295,7 +295,7 @@ export default function DashboardPage() {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-background">
+      <div className="flex min-h-screen bg-background overflow-x-hidden">
         <Sidebar collapsible="icon" className="border-r">
           <SidebarHeader>
             <Logo />
@@ -464,7 +464,7 @@ export default function DashboardPage() {
               <div className="flex-1 min-h-0 w-full h-full overflow-hidden">
                 {!isClient || isInitialLoad ? (
                   <div className="rounded-lg border overflow-hidden h-full">
-                    <div className="relative w-full h-full overflow-auto">
+                    <div className="relative w-full h-full overflow-y-auto overflow-x-hidden">
                       <table className="w-full caption-bottom text-sm">
                         <thead className="[&_tr]:border-b">
                           <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">

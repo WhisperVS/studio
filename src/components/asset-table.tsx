@@ -148,7 +148,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   return (
     <>
       <div className="rounded-lg border overflow-hidden h-full">
-        <div className="relative w-full h-full overflow-auto">
+        <div className="relative w-full h-full overflow-y-auto overflow-x-hidden">
           <Table>
             <TableHeader>
               <TableRow>
