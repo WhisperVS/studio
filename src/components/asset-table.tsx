@@ -1,7 +1,8 @@
 
+
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -33,6 +34,8 @@ import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { useToast } from '@/hooks/use-toast';
 import { APP_CONFIG, getStatusVariant } from '@/lib/config';
+import { Checkbox } from './ui/checkbox';
+import { cn } from '@/lib/utils';
 
 type SortKey = keyof Asset | '';
 
@@ -41,14 +44,28 @@ interface AssetTableProps {
   onEdit: (asset: Asset) => void;
   onInfo: (asset: Asset) => void;
   onDelete: () => void;
+  selectedAssetIds: string[];
+  onSelectedAssetIdsChange: (ids: string[]) => void;
+  columnVisibility: Record<string, boolean>;
 }
 
-export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps) {
+export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility }: AssetTableProps) {
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
+
+  const assetIdsOnPage = useMemo(() => assets.map(a => a.id), [assets]);
+  
+  const handleRowSelect = (assetId: string, checked: boolean) => {
+    onSelectedAssetIdsChange(
+      checked
+        ? [...selectedAssetIds, assetId]
+        : selectedAssetIds.filter(id => id !== assetId)
+    );
+  };
+
 
   const handleDelete = async () => {
     if (!assetToDelete) return;
@@ -112,6 +129,11 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
     }
   };
 
+  const getCategoryName = (categoryId: string) => {
+    const category = APP_CONFIG.categories.find(c => c.id === categoryId);
+    return category ? category.name : categoryId;
+  }
+
   if (assets.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center text-center p-12 border-2 border-dashed rounded-lg">
@@ -130,32 +152,40 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead onClick={() => handleSort('category')} className="cursor-pointer">{APP_CONFIG.labels.category}</TableHead>
-                <TableHead onClick={() => handleSort('status')} className="cursor-pointer">{APP_CONFIG.labels.status}</TableHead>
-                <TableHead onClick={() => handleSort('machineName')} className="cursor-pointer">{APP_CONFIG.labels.machineName}</TableHead>
-                <TableHead onClick={() => handleSort('manufacturer')} className="cursor-pointer hidden md:table-cell">{APP_CONFIG.labels.manufacturer}</TableHead>
-                <TableHead onClick={() => handleSort('modelNumber')} className="cursor-pointer hidden lg:table-cell">Model</TableHead>
-                <TableHead onClick={() => handleSort('os')} className="cursor-pointer hidden xl:table-cell">{APP_CONFIG.labels.os}</TableHead>
-                <TableHead onClick={() => handleSort('assignedUser')} className="cursor-pointer">{APP_CONFIG.labels.assignedUser}</TableHead>
-                <TableHead onClick={() => handleSort('userId')} className="cursor-pointer hidden sm:table-cell">{APP_CONFIG.labels.userId}</TableHead>
-                <TableHead onClick={() => handleSort('location')} className="cursor-pointer hidden 2xl:table-cell">{APP_CONFIG.labels.location}</TableHead>
+                 <TableHead className="w-[40px]"></TableHead>
+                 {APP_CONFIG.tableColumns.map(col => columnVisibility[col.id] && (
+                    <TableHead 
+                      key={col.id}
+                      onClick={() => handleSort(col.id as keyof Asset)}
+                      className={cn("cursor-pointer", col.className)}
+                    >
+                      {col.label}
+                    </TableHead>
+                 ))}
                 <TableHead><span className="sr-only">Actions</span></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {sortedAssets.map((asset) => (
-                <TableRow key={asset.id}>
-                  <TableCell className="capitalize">{asset.category}</TableCell>
-                  <TableCell>
-                    <Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>
+                <TableRow key={asset.id} data-state={selectedAssetIds.includes(asset.id) ? "selected" : ""}>
+                   <TableCell>
+                    <Checkbox
+                      checked={selectedAssetIds.includes(asset.id)}
+                      onCheckedChange={(checked) => handleRowSelect(asset.id, !!checked)}
+                      aria-label={`Select row for ${asset.machineName}`}
+                    />
                   </TableCell>
-                  <TableCell className="font-medium">{asset.machineName}</TableCell>
-                  <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>
-                  <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>
-                  <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>
-                  <TableCell>{asset.assignedUser || 'N/A'}</TableCell>
-                  <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>
-                  <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>
+                  {columnVisibility.category && <TableCell>{getCategoryName(asset.category)}</TableCell>}
+                  {columnVisibility.status && <TableCell><Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge></TableCell>}
+                  {columnVisibility.machineName && <TableCell className="font-medium">{asset.machineName}</TableCell>}
+                  {columnVisibility.manufacturer && <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>}
+                  {columnVisibility.modelNumber && <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>}
+                  {columnVisibility.partNumber && <TableCell className="hidden lg:table-cell">{asset.partNumber}</TableCell>}
+                  {columnVisibility.serialNumber && <TableCell className="hidden xl:table-cell">{asset.serialNumber}</TableCell>}
+                  {columnVisibility.os && <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>}
+                  {columnVisibility.assignedUser && <TableCell>{asset.assignedUser || 'N/A'}</TableCell>}
+                  {columnVisibility.userId && <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>}
+                  {columnVisibility.location && <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>}
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -210,3 +240,6 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete }: AssetTableProps
     </>
   );
 }
+
+    
+

@@ -10,39 +10,37 @@ export const AssetSchema = z.object({
   id: z.string(),
   machineName: z.string().min(1, 'Machine name is required'),
   category: z.enum(CATEGORY_IDS),
-  os: z.string().optional(),
+  os: z.string().optional().nullable(),
   location: z.enum(APP_CONFIG.locations),
   manufacturer: z.string().min(1, 'Manufacturer is required'),
-  partNumber: z.string().optional(),
-  modelNumber: z.string().optional(),
-  serialNumber: z.string().optional(),
+  partNumber: z.string().optional().nullable(),
+  modelNumber: z.string().optional().nullable(),
+  serialNumber: z.string().min(1, 'Serial number is required'),
   type: z.string().optional().nullable(),
-  assignedUser: z.string().optional(),
+  assignedUser: z.string().optional().nullable(),
   userId: z.number().optional().nullable(),
-  userType: z.enum(APP_CONFIG.userTypes).optional(),
+  userType: z.enum(APP_CONFIG.userTypes).optional().nullable(),
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUS_NAMES),
-  notes: z.string().optional(),
+  notes: z.string().optional().nullable(),
   purchaseDate: z.coerce.date().optional().nullable(),
   warrantyExpirationDate: z.coerce.date().optional().nullable(),
-  createdBy: z.string().optional(),
-  updatedBy: z.string().optional(),
+  createdBy: z.string().optional().nullable(),
+  updatedBy: z.string().optional().nullable(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 });
 
 export type Asset = z.infer<typeof AssetSchema>;
 
-export const AssetFormSchema = AssetSchema.omit({
+const BaseAssetFormSchema = AssetSchema.omit({
   id: true,
-  owner: true,
   createdAt: true,
   updatedAt: true,
   createdBy: true,
   updatedBy: true,
 }).extend({
-  owner: z.string(),
-  type: z.string().optional(),
+  category: z.enum(CATEGORY_IDS).optional(),
   userId: z.preprocess(
     (val) => {
       if (typeof val === 'string' && val.trim() !== '') {
@@ -56,19 +54,44 @@ export const AssetFormSchema = AssetSchema.omit({
     },
     z.number({ invalid_type_error: 'User ID must be a number' }).optional()
   ),
-  purchaseDate: z.coerce.date().optional().nullable(),
-  warrantyExpirationDate: z.coerce.date().optional().nullable(),
 });
 
+const refineFunction = (data: z.infer<typeof BaseAssetFormSchema>, ctx: z.RefinementCtx) => {
+  if (!data.category) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['category'],
+      message: 'Product family is required.',
+    });
+  }
+
+  const isOsRequired = data.category && !['printers', 'networks', 'other'].includes(data.category);
+  if (isOsRequired && (!data.os || data.os.trim() === '')) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['os'],
+      message: 'OS is required for this product family',
+    });
+  }
+};
+
+// Schema for the frontend form
+export const AssetFormSchema = BaseAssetFormSchema.superRefine(refineFunction);
 export type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
-export const CreateAssetAPISchema = AssetFormSchema.extend({
+// Schemas for the API, with refinements
+const CreateApiSchemaBase = BaseAssetFormSchema.extend({
+  category: z.enum(CATEGORY_IDS),
   createdBy: z.string(),
   updatedBy: z.string(),
 });
+export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFunction);
 
-export const UpdateAssetAPISchema = AssetFormSchema.extend({
+
+const UpdateApiSchemaBase = BaseAssetFormSchema.extend({
+  category: z.enum(CATEGORY_IDS),
   updatedBy: z.string(),
 });
+export const UpdateAssetAPISchema = UpdateApiSchemaBase.superRefine(refineFunction);
 
     

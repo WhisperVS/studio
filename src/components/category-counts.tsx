@@ -17,7 +17,7 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
   if (isLoading) {
     return (
       <SidebarGroup>
-        <SidebarGroupLabel>Categories</SidebarGroupLabel>
+        <SidebarGroupLabel>Product Families</SidebarGroupLabel>
         <div className="flex flex-col gap-1">
           {Array.from({ length: APP_CONFIG.categories.length + 1 }).map((_, i) => (
             <SidebarMenuSkeleton key={i} showIcon />
@@ -33,7 +33,7 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Categories</SidebarGroupLabel>
+      <SidebarGroupLabel>Product Families</SidebarGroupLabel>
       <SidebarMenu>
         {allCategories.map((category) => (
           <SidebarMenuItem key={category.id}>
@@ -52,3 +52,5 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
     </SidebarGroup>
   );
 }
+
+    

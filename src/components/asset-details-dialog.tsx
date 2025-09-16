@@ -24,6 +24,11 @@ interface AssetDetailsDialogProps {
 export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetailsDialogProps) {
   if (!asset) return null;
 
+  const getCategoryName = (categoryId: string) => {
+    const category = APP_CONFIG.categories.find(c => c.id === categoryId);
+    return category ? category.name : categoryId;
+  }
+
   const DetailItem = ({ label, value }: { label: string, value: React.ReactNode }) => (
     <div>
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
@@ -42,7 +47,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
           <DetailItem label={APP_CONFIG.labels.machineName} value={asset.machineName} />
-          <DetailItem label={APP_CONFIG.labels.category} value={<span className="capitalize">{asset.category}</span>} />
+          <DetailItem label={APP_CONFIG.labels.category} value={getCategoryName(asset.category)} />
           <DetailItem label={APP_CONFIG.labels.manufacturer} value={asset.manufacturer} />
           <DetailItem label={APP_CONFIG.labels.location} value={asset.location} />
           <DetailItem label={APP_CONFIG.labels.status} value={<Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge>} />
@@ -71,3 +76,5 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
     </Dialog>
   );
 }
+
+    

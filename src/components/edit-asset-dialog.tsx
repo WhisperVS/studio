@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -9,7 +9,6 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -40,6 +39,8 @@ import { Asset, AssetFormSchema, AssetFormValues } from "@/lib/types";
 import { APP_CONFIG } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "./user-provider";
+import { manufacturerCatalog, osCatalog } from "@/lib/catalog";
+import { userNames } from "@/lib/user-catalog";
 
 interface EditAssetDialogProps {
   asset: Asset | null;
@@ -51,6 +52,25 @@ interface EditAssetDialogProps {
 export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }: EditAssetDialogProps) {
   const { toast } = useToast();
   const { currentUser } = useUser();
+  
+  const [modelSuggestions, setModelSuggestions] = useState<string[]>([]);
+  const [activeModelSuggestionIndex, setActiveModelSuggestionIndex] = useState(0);
+  const modelSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const modelTypingTimer = useRef<number | null>(null);
+  const modelInputRef = useRef<HTMLInputElement>(null);
+
+  const [osSuggestions, setOsSuggestions] = useState<string[]>([]);
+  const [activeOsSuggestionIndex, setActiveOsSuggestionIndex] = useState(0);
+  const osSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const osTypingTimer = useRef<number | null>(null);
+  const osInputRef = useRef<HTMLInputElement>(null);
+
+  const [userSuggestions, setUserSuggestions] = useState<string[]>([]);
+  const [activeUserSuggestionIndex, setActiveUserSuggestionIndex] = useState(0);
+  const userSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const userTypingTimer = useRef<number | null>(null);
+  const userInputRef = useRef<HTMLInputElement>(null);
+
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
@@ -91,6 +111,278 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
 
   const category = form.watch("category");
+  
+  const keywordIndex = useMemo(() => {
+    const items: { mfr: string; cat: string; k: string; lower: string }[] = [];
+    for (const mfr in manufacturerCatalog) {
+      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog];
+      for (const cat in cats) {
+        const data = (cats as any)[cat];
+        if (data?.keywords) {
+          for (const k of data.keywords) {
+            items.push({ mfr, cat, k, lower: k.toLowerCase() });
+          }
+        }
+      }
+    }
+    return items;
+  }, []);
+
+  const getModelSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return keywordIndex
+      .map(it => {
+        let score = 0;
+        if (it.lower.startsWith(q)) score = 3;
+        else if (it.lower.includes(q)) score = 1;
+        return { k: it.k, score };
+      })
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.k.length - b.k.length)
+      .slice(0, 8)
+      .map(x => x.k);
+  }, [keywordIndex]);
+  
+  const getOsSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return osCatalog.os.keywords
+      .filter(k => k.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, []);
+
+  const getUserSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return userNames
+      .filter(name => name.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, []);
+
+  const autoCategorizeByModel = useCallback((model: string): string | null => {
+    if (!model) return null;
+    const l = model.toLowerCase();
+
+    let best: { manufacturer: string; category: AssetFormValues['category']; type?: string; score: number } | null = null;
+
+    for (const manufacturer of Object.keys(manufacturerCatalog)) {
+      const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
+      for (const category in categoriesData) {
+        const catData = (categoriesData as any)[category as keyof typeof categoriesData];
+        if (!catData?.keywords?.length) continue;
+
+        for (const k of catData.keywords) {
+          const lk = k.toLowerCase();
+          let score = 0;
+          if (l.startsWith(lk)) score = 3;
+          else if (l.includes(lk)) score = 1;
+          if (score === 0) continue;
+
+          score += Math.min(2, Math.floor(lk.length / 8));
+
+          let foundType: string | undefined;
+          if ((category === 'systems' || category === 'servers') && catData.types) {
+            for (const type in catData.types) {
+              if (catData.types[type].some((t: string) => l.includes(t.toLowerCase()))) {
+                foundType = type;
+                score += 1;
+                break;
+              }
+            }
+          }
+
+          if (!best || score > best.score) {
+            best = { manufacturer, category: category as AssetFormValues['category'], type: foundType, score };
+          }
+        }
+      }
+    }
+
+    if (best) {
+      form.setValue('manufacturer', best.manufacturer, { shouldValidate: true });
+      form.setValue('category', best.category, { shouldValidate: true });
+      if (best.type) form.setValue('type', best.type, { shouldValidate: true });
+      return best.manufacturer;
+    }
+    return null;
+  }, [form]);
+
+  const handleModelBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const model = e.target.value;
+    if (model) {
+        const manufacturer = autoCategorizeByModel(model);
+        if (manufacturer && /dell/i.test(manufacturer)) {
+            form.setValue('partNumber', model, { shouldValidate: true });
+        }
+    }
+  };
+
+  const acceptModelSuggestion = useCallback((value: string) => {
+    form.setValue('modelNumber', value, { shouldValidate: true });
+    setModelSuggestions([]);
+    setActiveModelSuggestionIndex(0);
+    const manufacturer = autoCategorizeByModel(value);
+
+    if (manufacturer && /dell/i.test(manufacturer)) {
+      form.setValue('partNumber', value, { shouldValidate: true });
+    }
+  }, [form, autoCategorizeByModel]);
+  
+  const acceptOsSuggestion = useCallback((value: string) => {
+    form.setValue('os', value, { shouldValidate: true });
+    setOsSuggestions([]);
+    setActiveOsSuggestionIndex(0);
+  }, [form]);
+
+  const acceptUserSuggestion = useCallback((value: string) => {
+    form.setValue('assignedUser', value, { shouldValidate: true });
+    setUserSuggestions([]);
+    setActiveUserSuggestionIndex(0);
+  }, [form]);
+
+  const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    form.setValue('modelNumber', value, { shouldValidate: true });
+
+    if (modelTypingTimer.current) {
+      window.clearTimeout(modelTypingTimer.current);
+    }
+    modelTypingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getModelSuggestions(value);
+        setModelSuggestions(list);
+        setActiveModelSuggestionIndex(0);
+      } else {
+        setModelSuggestions([]);
+      }
+    }, 160);
+  };
+  
+  const handleModelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (modelSuggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveModelSuggestionIndex((prev) => (prev + 1) % modelSuggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveModelSuggestionIndex((prev) => (prev - 1 + modelSuggestions.length) % modelSuggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (modelSuggestions[activeModelSuggestionIndex]) {
+        e.preventDefault();
+        acceptModelSuggestion(modelSuggestions[activeModelSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setModelSuggestions([]);
+    }
+  };
+  
+  const handleOsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    form.setValue('os', value, { shouldValidate: true });
+
+    if (osTypingTimer.current) {
+      window.clearTimeout(osTypingTimer.current);
+    }
+    osTypingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getOsSuggestions(value);
+        setOsSuggestions(list);
+        setActiveOsSuggestionIndex(0);
+      } else {
+        setOsSuggestions([]);
+      }
+    }, 160);
+  };
+  
+  const handleOsKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (osSuggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveOsSuggestionIndex((prev) => (prev + 1) % osSuggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveOsSuggestionIndex((prev) => (prev - 1 + osSuggestions.length) % osSuggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (osSuggestions[activeOsSuggestionIndex]) {
+        e.preventDefault();
+        acceptOsSuggestion(osSuggestions[activeOsSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setOsSuggestions([]);
+    }
+  };
+
+  const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    form.setValue('assignedUser', value, { shouldValidate: true });
+
+    if (userTypingTimer.current) {
+      window.clearTimeout(userTypingTimer.current);
+    }
+    userTypingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getUserSuggestions(value);
+        setUserSuggestions(list);
+        setActiveUserSuggestionIndex(0);
+      } else {
+        setUserSuggestions([]);
+      }
+    }, 160);
+  };
+
+  const handleUserKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (userSuggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveUserSuggestionIndex((prev) => (prev + 1) % userSuggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveUserSuggestionIndex((prev) => (prev - 1 + userSuggestions.length) % userSuggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (userSuggestions[activeUserSuggestionIndex]) {
+        e.preventDefault();
+        acceptUserSuggestion(userSuggestions[activeUserSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setUserSuggestions([]);
+    }
+  };
+
+
+  useEffect(() => {
+    if (activeModelSuggestionIndex >= 0 && modelSuggestionItemRefs.current[activeModelSuggestionIndex]) {
+      modelSuggestionItemRefs.current[activeModelSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeModelSuggestionIndex, modelSuggestions]);
+
+  useEffect(() => {
+    modelSuggestionItemRefs.current = modelSuggestionItemRefs.current.slice(0, modelSuggestions.length);
+  }, [modelSuggestions]);
+  
+  useEffect(() => {
+    if (activeOsSuggestionIndex >= 0 && osSuggestionItemRefs.current[activeOsSuggestionIndex]) {
+      osSuggestionItemRefs.current[activeOsSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeOsSuggestionIndex, osSuggestions]);
+
+  useEffect(() => {
+    osSuggestionItemRefs.current = osSuggestionItemRefs.current.slice(0, osSuggestions.length);
+  }, [osSuggestions]);
+  
+  useEffect(() => {
+    if (activeUserSuggestionIndex >= 0 && userSuggestionItemRefs.current[activeUserSuggestionIndex]) {
+      userSuggestionItemRefs.current[activeUserSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeUserSuggestionIndex, userSuggestions]);
+
+  useEffect(() => {
+    userSuggestionItemRefs.current = userSuggestionItemRefs.current.slice(0, userSuggestions.length);
+  }, [userSuggestions]);
+
 
   const onSubmit = useCallback(async (data: AssetFormValues) => {
     if (!asset) return;
@@ -104,8 +396,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       return;
     }
 
+    const needsOs = data.category && !['printers','networks'].includes(data.category);
+    const normalizedOs = needsOs ? (data.os?.trim() || null) : null;
+
     const dataToSend = {
       ...data,
+      os: normalizedOs,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
@@ -122,7 +418,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update asset');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update asset');
       }
 
       toast({
@@ -136,13 +433,20 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Could not update the asset.",
+        description: error instanceof Error ? error.message : "Could not update the asset.",
       });
     }
-  }, [asset, onAssetUpdated, toast, onOpenChange, form, currentUser]);
+  }, [asset, onAssetUpdated, toast, onOpenChange, currentUser]);
 
   return (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open) {
+        setModelSuggestions([]);
+        setOsSuggestions([]);
+        setUserSuggestions([]);
+      }
+      onOpenChange(open);
+    }}>
       <DialogContent 
         className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => {
@@ -156,7 +460,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" autoComplete="off">
             
             <FormField
               control={form.control}
@@ -180,7 +484,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} />
+                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -230,7 +534,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
@@ -252,9 +556,47 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Latitude 5420" {...field} />
-                    </FormControl>
+                    <div className="relative">
+                      <FormControl>
+                        <Input
+                          aria-autocomplete="list"
+                          aria-controls="model-suggestion-list"
+                          aria-expanded={modelSuggestions.length > 0}
+                          aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
+                          placeholder="e.g., Latitude 5420"
+                          {...field}
+                          value={field.value ?? ''}
+                          onChange={handleModelChange}
+                          onKeyDown={handleModelKeyDown}
+                          onBlur={handleModelBlur}
+                          ref={modelInputRef}
+                          autoComplete="off"
+                        />
+                      </FormControl>
+                      {modelSuggestions.length > 0 && (
+                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                          <ul
+                            id="model-suggestion-list"
+                            role="listbox"
+                            className="max-h-60 overflow-auto py-1"
+                          >
+                            {modelSuggestions.map((s, i) => (
+                              <li
+                                key={s}
+                                id={`model-suggestion-${i}`}
+                                role="option"
+                                aria-selected={i === activeModelSuggestionIndex}
+                                ref={el => { modelSuggestionItemRefs.current[i] = el }}
+                                onMouseDown={(e) => { e.preventDefault(); acceptModelSuggestion(s); }}
+                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeModelSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                              >
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -266,7 +608,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., HJVX6" {...field} />
+                      <Input placeholder="e.g., HJVX6" {...field} value={field.value ?? ''} autoComplete="off"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -279,30 +621,67 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
+                      <Input placeholder="e.g., 5J2X1Y2" {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {!['printers', 'networks'].includes(category) && (
+              {category && !['printers', 'networks'].includes(category) && (
                 <FormField
                   control={form.control}
                   name="os"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Windows 11 Pro" {...field} />
-                      </FormControl>
+                      <div className="relative">
+                        <FormControl>
+                          <Input
+                            aria-autocomplete="list"
+                            aria-controls="os-suggestion-list"
+                            aria-expanded={osSuggestions.length > 0}
+                            aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
+                            placeholder="e.g., Windows 11 Pro"
+                            {...field}
+                            value={field.value ?? ''}
+                            onChange={handleOsChange}
+                            onKeyDown={handleOsKeyDown}
+                            ref={osInputRef}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        {osSuggestions.length > 0 && (
+                          <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                            <ul
+                              id="os-suggestion-list"
+                              role="listbox"
+                              className="max-h-60 overflow-auto py-1"
+                            >
+                              {osSuggestions.map((s, i) => (
+                                <li
+                                  key={s}
+                                  id={`os-suggestion-${i}`}
+                                  role="option"
+                                  aria-selected={i === activeOsSuggestionIndex}
+                                  ref={el => { osSuggestionItemRefs.current[i] = el }}
+                                  onMouseDown={(e) => { e.preventDefault(); acceptOsSuggestion(s); }}
+                                  className={`px-3 py-2 text-sm cursor-pointer ${i === activeOsSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                                >
+                                  {s}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               )}
 
-              {(category === 'systems' || category === 'servers') && (
+              {category && (category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}
                   name="type"
@@ -360,9 +739,46 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., John Doe" {...field} />
-                    </FormControl>
+                     <div className="relative">
+                      <FormControl>
+                        <Input
+                          aria-autocomplete="list"
+                          aria-controls="user-suggestion-list"
+                          aria-expanded={userSuggestions.length > 0}
+                          aria-activedescendant={userSuggestions.length ? `user-suggestion-${activeUserSuggestionIndex}` : undefined}
+                          placeholder="e.g., John Doe"
+                          {...field}
+                          value={field.value ?? ''}
+                          onChange={handleUserChange}
+                          onKeyDown={handleUserKeyDown}
+                          ref={userInputRef}
+                          autoComplete="off"
+                        />
+                      </FormControl>
+                      {userSuggestions.length > 0 && (
+                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                          <ul
+                            id="user-suggestion-list"
+                            role="listbox"
+                            className="max-h-60 overflow-auto py-1"
+                          >
+                            {userSuggestions.map((s, i) => (
+                              <li
+                                key={s}
+                                id={`user-suggestion-${i}`}
+                                role="option"
+                                aria-selected={i === activeUserSuggestionIndex}
+                                ref={el => { userSuggestionItemRefs.current[i] = el }}
+                                onMouseDown={(e) => { e.preventDefault(); acceptUserSuggestion(s); }}
+                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeUserSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                              >
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -374,7 +790,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
                     <FormControl>
-                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} />
+                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} autoComplete="off"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -390,7 +806,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
-                          value={field.value}
+                          value={field.value ?? 'local'}
                           className="flex items-center space-x-4"
                         >
                           <FormItem className="flex items-center space-x-2 space-y-0">
@@ -422,7 +838,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d === undefined ? null : d)} 
+                      setDate={(d) => field.onChange(d)} 
                     />
                     <FormMessage />
                   </FormItem>
@@ -437,7 +853,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d === undefined ? null : d)} 
+                      setDate={(d) => field.onChange(d)} 
                     />
                     <FormMessage />
                   </FormItem>
@@ -456,6 +872,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                       placeholder="e.g., Purchased from Dell Outlet. Has a scratch on the top case. Comes with a 24-inch Dell UltraSharp monitor."
                       className="resize-y"
                       {...field}
+                      value={field.value ?? ''}
                     />
                   </FormControl>
                   <FormMessage />

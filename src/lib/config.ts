@@ -1,4 +1,5 @@
 
+
 import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
 import type { BadgeProps } from "@/components/ui/badge";
@@ -37,8 +38,8 @@ export const APP_CONFIG = {
       icon: React.createElement(Printer)
     },
     { 
-      id: 'other', 
-      name: 'Other', 
+      id: 'misc', 
+      name: 'Misc Item', 
       description: 'Miscellaneous hardware and peripherals.',
       icon: React.createElement(Component)
     },
@@ -46,7 +47,7 @@ export const APP_CONFIG = {
   allCategory: {
     id: 'all',
     name: 'All Assets',
-    description: 'View all asset categories.',
+    description: 'View all product families.',
     icon: React.createElement(LayoutGrid)
   },
   locations: ['Schaumburg IL', 'Rockford IL'] as const,
@@ -60,18 +61,18 @@ export const APP_CONFIG = {
   systemTypes: ['MFF', 'SFF', 'Tower', 'AIO', 'Desktop'] as const,
   serverTypes: ['Rack', 'Tower', 'Blade'] as const,
   manufacturers: [
-    'Acer', 'Apple', 'Asus', 'Brother', 'Canon', 'Cisco', 'Dell', 'Epson', 'Fortinet', 'HP', 'Juniper', 'Lenovo', 'Lexmark', 'Microsoft', 'MikroTik', 'MSI', 'Netgear', 'Samsung', 'SonicWall', 'Supermicro', 'TPLink', 'Ubiquiti'
+    'Acer', 'Apple', 'Aruba', 'Asus', 'Brother', 'Canon', 'Cisco', 'Dell', 'Epson', 'Fortinet', 'HP', 'Juniper', 'Lenovo', 'Lexmark', 'Microsoft', 'MikroTik', 'MSI', 'Netgear', 'Samsung', 'SonicWall', 'Supermicro', 'TP-Link', 'Ubiquiti'
   ] as const,
   userTypes: ['local', 'remote'] as const,
   users: ['V.Shtohryn', 'J.Darling'] as const,
   labels: {
     machineName: 'Machine Name',
-    category: 'Category',
+    category: 'Product Family',
     os: 'OS',
     location: 'Location',
     manufacturer: 'Manufacture',
     partNumber: 'Part Number',
-    modelNumber: 'Model Number',
+    modelNumber: 'Model',
     serialNumber: 'Serial Number',
     type: 'Type',
     assignedUser: 'Assigned User',
@@ -85,6 +86,19 @@ export const APP_CONFIG = {
     createdBy: 'Created By',
     updatedBy: 'Last Modified By',
   },
+  tableColumns: [
+    { id: 'category', label: 'Product Family', defaultVisible: true, className: "" },
+    { id: 'status', label: 'Status', defaultVisible: true, className: "" },
+    { id: 'machineName', label: 'Machine Name', defaultVisible: true, className: "" },
+    { id: 'manufacturer', label: 'Manufacturer', defaultVisible: true, className: "hidden md:table-cell" },
+    { id: 'modelNumber', label: 'Model', defaultVisible: true, className: "hidden lg:table-cell" },
+    { id: 'partNumber', label: 'Part Number', defaultVisible: false, className: "hidden lg:table-cell" },
+    { id: 'serialNumber', label: 'Serial Number', defaultVisible: false, className: "hidden xl:table-cell" },
+    { id: 'os', label: 'OS', defaultVisible: false, className: "hidden xl:table-cell" },
+    { id: 'assignedUser', label: 'Assigned User', defaultVisible: true, className: "" },
+    { id: 'userId', label: 'User ID', defaultVisible: true, className: "hidden sm:table-cell" },
+    { id: 'location', label: 'Location', defaultVisible: false, className: "hidden 2xl:table-cell" },
+  ] as const,
 } as const;
 
 export const CATEGORY_IDS = APP_CONFIG.categories.map(c => c.id);
@@ -99,3 +113,6 @@ export function getStatusVariant(statusName: (typeof STATUS_NAMES)[number]): Bad
   return status ? status.variant : 'default';
 }
     
+
+    
+

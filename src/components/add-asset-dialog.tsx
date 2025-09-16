@@ -41,6 +41,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@/components/user-provider";
 import { ClipboardCopy, FileJson, RotateCcw } from "lucide-react";
 import { Label } from "./ui/label";
+import { userNames } from "@/lib/user-catalog";
 
 interface AddAssetDialogProps {
   isOpen: boolean;
@@ -119,16 +120,6 @@ function CommandDisplayDialog({
   onOpenChange: (isOpen: boolean) => void;
   command: string;
 }) {
-  const { toast } = useToast();
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(command);
-      toast({ title: "Copied!", description: "The command has been copied to your clipboard." });
-    } catch (err) {
-      toast({ variant: "destructive", title: "Copy Failed", description: "Could not copy the command." });
-    }
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -175,28 +166,35 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const osTypingTimer = useRef<number | null>(null);
   const osInputRef = useRef<HTMLInputElement>(null);
 
+  const [userSuggestions, setUserSuggestions] = useState<string[]>([]);
+  const [activeUserSuggestionIndex, setActiveUserSuggestionIndex] = useState(0);
+  const userSuggestionItemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const userTypingTimer = useRef<number | null>(null);
+  const userInputRef = useRef<HTMLInputElement>(null);
+
+  const defaultFormValues: AssetFormValues = {
+    machineName: "",
+    category: undefined,
+    os: "",
+    location: "Schaumburg IL",
+    manufacturer: "",
+    partNumber: "",
+    modelNumber: "",
+    serialNumber: "",
+    type: undefined,
+    assignedUser: "",
+    userId: undefined,
+    userType: "local",
+    owner: "Group Administrators",
+    status: "In Use",
+    notes: "",
+    purchaseDate: undefined,
+    warrantyExpirationDate: undefined
+  };
 
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
-    defaultValues: {
-      machineName: "",
-      category: "laptops",
-      os: "",
-      location: "Schaumburg IL",
-      manufacturer: "",
-      partNumber: "",
-      modelNumber: "",
-      serialNumber: "",
-      type: undefined,
-      assignedUser: "",
-      userId: undefined,
-      userType: "local",
-      owner: "Group Administrators",
-      status: "In Use",
-      notes: "",
-      purchaseDate: undefined,
-      warrantyExpirationDate: undefined
-    },
+    defaultValues: defaultFormValues,
   });
 
   const category = form.watch("category");
@@ -228,7 +226,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         return { k: it.k, score };
       })
       .filter(x => x.score > 0)
-      .sort((a, b) => b.score - a.k.length - b.k.length)
+      .sort((a, b) => (b.score - a.score) || (a.k.length - b.k.length))
       .slice(0, 8)
       .map(x => x.k);
   }, [keywordIndex]);
@@ -240,9 +238,17 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       .filter(k => k.toLowerCase().includes(q))
       .slice(0, 8);
   }, []);
+
+  const getUserSuggestions = useCallback((query: string) => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return userNames
+      .filter(name => name.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, []);
   
-  const autoCategorizeByModel = useCallback((model: string) => {
-    if (!model) return;
+  const autoCategorizeByModel = useCallback((model: string): string | null => {
+    if (!model) return null;
     const l = model.toLowerCase();
 
     let best: { manufacturer: string; category: AssetFormValues['category']; type?: string; score: number } | null = null;
@@ -250,7 +256,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
       const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
       for (const category in categoriesData) {
-        const catData = categoriesData[category as keyof typeof categoriesData];
+        const catData = (categoriesData as any)[category as keyof typeof categoriesData];
         if (!catData?.keywords?.length) continue;
 
         for (const k of catData.keywords) {
@@ -265,7 +271,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
           let foundType: string | undefined;
           if ((category === 'systems' || category === 'servers') && catData.types) {
             for (const type in catData.types) {
-              if (catData.types[type].some((t) => l.includes(t.toLowerCase()))) {
+              if (catData.types[type].some((t: string) => l.includes(t.toLowerCase()))) {
                 foundType = type;
                 score += 1;
                 break;
@@ -284,20 +290,43 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       form.setValue('manufacturer', best.manufacturer, { shouldValidate: true });
       form.setValue('category', best.category, { shouldValidate: true });
       if (best.type) form.setValue('type', best.type, { shouldValidate: true });
+      return best.manufacturer;
     }
+    return null;
   }, [form]);
+
+
+  const handleModelBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const model = e.target.value;
+    if (model) {
+        const manufacturer = autoCategorizeByModel(model);
+        if (manufacturer && /dell/i.test(manufacturer)) {
+            form.setValue('partNumber', model, { shouldValidate: true });
+        }
+    }
+  };
 
   const acceptModelSuggestion = useCallback((value: string) => {
     form.setValue('modelNumber', value, { shouldValidate: true });
     setModelSuggestions([]);
     setActiveModelSuggestionIndex(0);
-    autoCategorizeByModel(value);
+    const manufacturer = autoCategorizeByModel(value);
+    
+    if (manufacturer && /dell/i.test(manufacturer)) {
+      form.setValue('partNumber', value, { shouldValidate: true });
+    }
   }, [form, autoCategorizeByModel]);
   
   const acceptOsSuggestion = useCallback((value: string) => {
     form.setValue('os', value, { shouldValidate: true });
     setOsSuggestions([]);
     setActiveOsSuggestionIndex(0);
+  }, [form]);
+
+  const acceptUserSuggestion = useCallback((value: string) => {
+    form.setValue('assignedUser', value, { shouldValidate: true });
+    setUserSuggestions([]);
+    setActiveUserSuggestionIndex(0);
   }, [form]);
 
   const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -374,6 +403,43 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
   };
 
+  const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    form.setValue('assignedUser', value, { shouldValidate: true });
+
+    if (userTypingTimer.current) {
+      window.clearTimeout(userTypingTimer.current);
+    }
+    userTypingTimer.current = window.setTimeout(() => {
+      if (value) {
+        const list = getUserSuggestions(value);
+        setUserSuggestions(list);
+        setActiveUserSuggestionIndex(0);
+      } else {
+        setUserSuggestions([]);
+      }
+    }, 160);
+  };
+  
+  const handleUserKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (userSuggestions.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveUserSuggestionIndex((prev) => (prev + 1) % userSuggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveUserSuggestionIndex((prev) => (prev - 1 + userSuggestions.length) % userSuggestions.length);
+    } else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (userSuggestions[activeUserSuggestionIndex]) {
+        e.preventDefault();
+        acceptUserSuggestion(userSuggestions[activeUserSuggestionIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      setUserSuggestions([]);
+    }
+  };
+
   useEffect(() => {
     if (activeModelSuggestionIndex >= 0 && modelSuggestionItemRefs.current[activeModelSuggestionIndex]) {
       modelSuggestionItemRefs.current[activeModelSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
@@ -393,6 +459,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   useEffect(() => {
     osSuggestionItemRefs.current = osSuggestionItemRefs.current.slice(0, osSuggestions.length);
   }, [osSuggestions]);
+
+  useEffect(() => {
+    if (activeUserSuggestionIndex >= 0 && userSuggestionItemRefs.current[activeUserSuggestionIndex]) {
+      userSuggestionItemRefs.current[activeUserSuggestionIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeUserSuggestionIndex, userSuggestions]);
+
+  useEffect(() => {
+    userSuggestionItemRefs.current = userSuggestionItemRefs.current.slice(0, userSuggestions.length);
+  }, [userSuggestions]);
 
   
   const handleJsonImport = (data: any) => {
@@ -433,7 +509,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
 
     let fieldsUpdated = false;
     let importedModelNumber = '';
-    let importedManufacturer = '';
 
     for (const [key, raw] of Object.entries(data)) {
       const formField = mapping[key];
@@ -447,18 +522,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       
       if (value) {
         form.setValue(formField, value, { shouldValidate: true });
-        if (formField === 'manufacturer') importedManufacturer = value;
         if (formField === 'modelNumber') importedModelNumber = value;
         fieldsUpdated = true;
       }
     }
 
     if (importedModelNumber) {
-      autoCategorizeByModel(importedModelNumber);
-    }
-
-    if (!form.getValues('partNumber') && /dell/i.test(importedManufacturer || form.getValues('manufacturer')) && importedModelNumber) {
-      form.setValue('partNumber', importedModelNumber, { shouldValidate: true });
+        const detectedManufacturer = autoCategorizeByModel(importedModelNumber);
+        if (detectedManufacturer && /dell/i.test(detectedManufacturer)) {
+            form.setValue('partNumber', importedModelNumber, { shouldValidate: true });
+        }
     }
 
     toast({
@@ -479,9 +552,13 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       });
       return;
     }
+    
+    const needsOs = !['printers','networks'].includes(data.category!);
+    const normalizedOs = needsOs ? (data.os?.trim() || null) : null;
 
     const dataToSend = {
       ...data,
+      os: normalizedOs,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
@@ -497,15 +574,25 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         body: JSON.stringify(dataToSend),
       });
 
+      const errorData = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to add asset');
+        if (response.status === 409) { // Conflict - Duplicate Asset
+          toast({
+            variant: "destructive",
+            title: "Duplicate Asset",
+            description: errorData.message || 'This asset already exists.',
+          });
+        } else {
+          throw new Error(errorData.error || 'Failed to add asset');
+        }
+        return;
       }
 
       toast({
         title: "Asset Added",
         description: `${data.machineName} has been added to the inventory.`,
       });
-      form.reset();
+      form.reset(defaultFormValues);
       onAssetAdded();
       onOpenChange(false);
     } catch (error) {
@@ -513,18 +600,26 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Could not add the asset.",
+        description: error instanceof Error ? error.message : "Could not add the asset.",
       });
     }
-  }, [onAssetAdded, onOpenChange, toast, currentUser, form]);
+  }, [onAssetAdded, onOpenChange, toast, currentUser, form, autoCategorizeByModel]);
+
+  const handleClearForm = () => {
+    form.reset(defaultFormValues);
+    setModelSuggestions([]);
+    setOsSuggestions([]);
+    setUserSuggestions([]);
+  }
 
   return (
     <>
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) {
-        form.reset();
+        form.reset(defaultFormValues);
         setModelSuggestions([]);
         setOsSuggestions([]);
+        setUserSuggestions([]);
       }
       onOpenChange(open);
     }}>
@@ -550,14 +645,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               <ClipboardCopy className="mr-2 h-4 w-4" />
               Copy Info Script
             </Button>
-            <Button type="button" variant="destructive" size="sm" onClick={() => { form.reset(); setModelSuggestions([]); setOsSuggestions([]); }} className="ml-auto shadow-sm">
+            <Button type="button" variant="destructive" size="sm" onClick={handleClearForm} className="ml-auto shadow-sm">
                 <RotateCcw className="mr-2 h-4 w-4" />
                 Clear Form
             </Button>
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-2" autoComplete="off">
             
             <FormField
               control={form.control}
@@ -581,7 +676,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} />
+                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -593,10 +688,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
+                          <SelectValue placeholder="Select a product family" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -631,7 +726,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
@@ -661,8 +756,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
                         placeholder="e.g., Latitude 5420"
                         {...field}
+                        value={field.value ?? ''}
                         onChange={handleModelChange}
                         onKeyDown={handleModelKeyDown}
+                        onBlur={handleModelBlur}
                         ref={modelInputRef}
                         autoComplete="off"
                       />
@@ -701,7 +798,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., HJVX6" {...field} />
+                      <Input placeholder="e.g., HJVX6" {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -714,14 +811,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 5J2X1Y2" {...field} />
+                      <Input placeholder="e.g., 5J2X1Y2" {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {!['printers', 'networks'].includes(category) && (
+              {category && !['printers', 'networks'].includes(category) && (
                 <FormField
                   control={form.control}
                   name="os"
@@ -736,6 +833,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                           aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
                           placeholder="e.g., Windows 11 Pro"
                           {...field}
+                          value={field.value ?? ''}
                           onChange={handleOsChange}
                           onKeyDown={handleOsKeyDown}
                           ref={osInputRef}
@@ -771,7 +869,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 />
               )}
 
-              {(category === 'systems' || category === 'servers') && (
+              {category && (category === 'systems' || category === 'servers') && (
                 <FormField
                   control={form.control}
                   name="type"
@@ -801,7 +899,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a status" />
@@ -829,9 +927,46 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., John Doe" {...field} />
-                    </FormControl>
+                    <div className="relative">
+                      <FormControl>
+                        <Input
+                          aria-autocomplete="list"
+                          aria-controls="user-suggestion-list"
+                          aria-expanded={userSuggestions.length > 0}
+                          aria-activedescendant={userSuggestions.length ? `user-suggestion-${activeUserSuggestionIndex}` : undefined}
+                          placeholder="e.g., John Doe"
+                          {...field}
+                          value={field.value ?? ''}
+                          onChange={handleUserChange}
+                          onKeyDown={handleUserKeyDown}
+                          ref={userInputRef}
+                          autoComplete="off"
+                        />
+                      </FormControl>
+                      {userSuggestions.length > 0 && (
+                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                          <ul
+                            id="user-suggestion-list"
+                            role="listbox"
+                            className="max-h-60 overflow-auto py-1"
+                          >
+                            {userSuggestions.map((s, i) => (
+                              <li
+                                key={s}
+                                id={`user-suggestion-${i}`}
+                                role="option"
+                                aria-selected={i === activeUserSuggestionIndex}
+                                ref={el => { userSuggestionItemRefs.current[i] = el }}
+                                onMouseDown={(e) => { e.preventDefault(); acceptUserSuggestion(s); }}
+                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeUserSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                              >
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -859,7 +994,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          value={field.value ?? 'local'}
                           className="flex items-center space-x-4"
                         >
                           <FormItem className="flex items-center space-x-2 space-y-0">
@@ -919,6 +1054,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       placeholder="e.g., Purchased from Dell Outlet. Has a scratch on the top case. Comes with a 24-inch Dell UltraSharp monitor."
                       className="resize-y"
                       {...field}
+                      value={field.value ?? ''}
                     />
                   </FormControl>
                   <FormMessage />
@@ -949,3 +1085,5 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     </>
   );
 }
+
+    
