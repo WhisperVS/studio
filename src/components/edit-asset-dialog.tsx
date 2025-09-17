@@ -120,7 +120,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
     for (const mfr in manufacturerCatalog) {
       const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog];
       for (const cat in cats) {
-        const data = (cats as any)[cat];
+        const data = (cats as any)[cat as keyof typeof cats];
         if (data?.keywords) {
           for (const k of data.keywords) {
             items.push({ mfr, cat, k, lower: k.toLowerCase() });
@@ -868,7 +868,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d)} 
+                      setDate={(d) => field.onChange(d === undefined ? null : d)}
                     />
                     <FormMessage />
                   </FormItem>
@@ -883,7 +883,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d)} 
+                      setDate={(d) => field.onChange(d === undefined ? null : d)}
                     />
                     <FormMessage />
                   </FormItem>
@@ -922,3 +922,5 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
     </Dialog>
   );
 }
+
+    
