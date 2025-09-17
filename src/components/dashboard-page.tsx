@@ -1,12 +1,10 @@
-
-
 "use client";
 
-import { useMemo, useState, useEffect, useCallback, useRef } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, PlusCircle, Search, SlidersHorizontal, Trash2, User, X, CheckSquare, Square, View } from "lucide-react";
+import { Download, PlusCircle, Search, Trash2, User, X, Check, ExternalLink, Settings2 } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
@@ -17,7 +15,6 @@ import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { APP_CONFIG } from "@/lib/config";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Skeleton } from "./ui/skeleton";
 import { format } from "date-fns";
@@ -42,7 +39,6 @@ export default function DashboardPage() {
     location: 'all',
   });
   const isMobile = useIsMobile();
-  const [isFilterPanelOpen, setFilterPanelOpen] = useState(!isMobile);
   const [isClient, setIsClient] = useState(false);
   const { currentUser, setCurrentUser } = useUser();
 
@@ -54,26 +50,45 @@ export default function DashboardPage() {
     return initialVisibility;
   });
 
+  const [tempColumnVisibility, setTempColumnVisibility] = useState(columnVisibility);
+  const [isViewDropdownOpen, setIsViewDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    setTempColumnVisibility(columnVisibility);
+  }, [isViewDropdownOpen, columnVisibility]);
+
+  const handleApplyColumnVisibility = () => {
+    setColumnVisibility(tempColumnVisibility);
+    setIsViewDropdownOpen(false);
+  };
+
+  const handleCancelColumnVisibility = () => {
+    setTempColumnVisibility(columnVisibility);
+    setIsViewDropdownOpen(false);
+  };
+
+
   useEffect(() => {
     if (typeof window !== 'undefined' && currentUser) {
       try {
         const saved = localStorage.getItem(`columnVisibility_${currentUser}`);
         if (saved) {
-          setColumnVisibility(JSON.parse(saved));
+          const parsed = JSON.parse(saved);
+          setColumnVisibility(parsed);
+          setTempColumnVisibility(parsed);
         } else {
-          // If no settings for this user, revert to default
           const initialVisibility: ColumnVisibility = {};
           APP_CONFIG.tableColumns.forEach(col => {
             initialVisibility[col.id] = col.defaultVisible;
           });
           setColumnVisibility(initialVisibility);
+          setTempColumnVisibility(initialVisibility);
         }
       } catch (error) {
         console.warn("Failed to read column visibility from localStorage", error);
       }
     }
   }, [currentUser]);
-
 
   useEffect(() => {
     if (currentUser) {
@@ -85,17 +100,13 @@ export default function DashboardPage() {
     }
   }, [columnVisibility, currentUser]);
 
-  const [tempColumnVisibility, setTempColumnVisibility] = useState<ColumnVisibility>(columnVisibility);
-  const [isViewDropdownOpen, setIsViewDropdownOpen] = useState(false);
-
-
-  // Asset state and management
   const [assets, setAssets] = useState<Asset[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   
   const [selectedAssetIds, setSelectedAssetIds] = useState<string[]>([]);
   const [isBulkDeleteAlertOpen, setIsBulkDeleteAlertOpen] = useState(false);
+  const [rowHeights, setRowHeights] = useState<number[]>([]);
 
 
   const fetchAssets = useCallback(async () => {
@@ -125,19 +136,12 @@ export default function DashboardPage() {
     fetchAssets();
   }, [fetchAssets]);
 
-  useEffect(() => {
-    if (isViewDropdownOpen) {
-      setTempColumnVisibility(columnVisibility);
-    }
-  }, [isViewDropdownOpen, columnVisibility]);
-
   const categoryCounts = useMemo(() => {
     return assets.reduce((acc, asset) => {
       acc[asset.category] = (acc[asset.category] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
   }, [assets]);
-
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
@@ -146,23 +150,18 @@ export default function DashboardPage() {
   const filteredAssets = useMemo(() => {
     return assets.filter(asset => {
       const searchMatch = !searchQuery ||
-        asset.machineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        asset.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (asset.assignedUser && asset.assignedUser.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (asset.userId && String(asset.userId).toLowerCase().includes(searchQuery.toLowerCase()));
+        Object.values(asset).some(val => 
+          String(val).toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
       const locationMatch = filters.location === 'all' || asset.location === filters.location;
 
       return searchMatch && categoryMatch && statusMatch && locationMatch;
-    });
+    }).sort((a, b) => a.machineName.localeCompare(b.machineName));
   }, [assets, searchQuery, filters]);
 
-  const handleSelectAllFiltered = () => {
-    const filteredIds = filteredAssets.map(a => a.id);
-    setSelectedAssetIds(Array.from(new Set([...selectedAssetIds, ...filteredIds])));
-  };
 
   const handleExport = (selectedOnly = false) => {
     const assetsToExport = selectedOnly
@@ -201,7 +200,6 @@ export default function DashboardPage() {
       { label: 'Created At', key: 'createdAt' },
       { label: 'Updated At', key: 'updatedAt' },
     ] as const;
-
 
     const csvContent = [
       columns.map(c => c.label).join(','),
@@ -282,16 +280,11 @@ export default function DashboardPage() {
     setSelectedAsset(asset);
     setDetailsAssetOpen(true);
   }
-
-  const handleConfirmViewChange = () => {
-    setColumnVisibility(tempColumnVisibility);
-    setIsViewDropdownOpen(false);
-  };
-
-  const handleCancelViewChange = () => {
-    setIsViewDropdownOpen(false);
-  };
-
+  
+  const handleSelectAllOnPage = () => {
+    const pageAssetIds = filteredAssets.map(a => a.id);
+    setSelectedAssetIds(pageAssetIds);
+  }
 
   return (
     <SidebarProvider>
@@ -346,175 +339,160 @@ export default function DashboardPage() {
               </div>
             </header>
             <main className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col min-h-0 overflow-hidden">
-              <Collapsible open={isFilterPanelOpen} onOpenChange={setFilterPanelOpen} className="mb-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="relative w-full max-w-sm">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search assets..."
-                      className="pl-10"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm">
-                          <View className="mr-2 h-4 w-4" />
-                          View
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        {APP_CONFIG.tableColumns.map((column) => (
-                          <DropdownMenuCheckboxItem
-                            key={column.id}
-                            className="capitalize"
-                            checked={tempColumnVisibility[column.id]}
-                            onCheckedChange={(value) =>
-                              setTempColumnVisibility((prev) => ({
-                                ...prev,
-                                [column.id]: !!value,
-                              }))
-                            }
-                            onSelect={(e) => e.preventDefault()}
-                          >
-                            {column.label}
-                          </DropdownMenuCheckboxItem>
-                        ))}
-                        <DropdownMenuSeparator />
-                        <div className="flex justify-end gap-2 p-2">
-                            <Button variant="outline" size="sm" onClick={handleCancelViewChange}>Cancel</Button>
-                            <Button size="sm" onClick={handleConfirmViewChange}>Confirm</Button>
+                  
+                  {/* Main content area */}
+                  <div className="flex-1 flex flex-col min-w-0">
+                    <div className="flex items-center gap-2 mb-4 h-[58px]">
+                        <div className="relative flex-1">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                placeholder="Search all fields..."
+                                className="pl-10 h-9"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                         </div>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                        <div className="flex items-center gap-2">
+                          <Select value={filters.category} onValueChange={handleFilterChange('category')}>
+                            <SelectTrigger className="h-9 w-[180px]">
+                              <SelectValue placeholder="Filter by product family" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="all">All Product Families</SelectItem>
+                              {APP_CONFIG.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                          <Select value={filters.status} onValueChange={handleFilterChange('status')}>
+                            <SelectTrigger className="h-9 w-[180px]">
+                              <SelectValue placeholder="Filter by status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="all">All Statuses</SelectItem>
+                              {APP_CONFIG.statuses.map(s => <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                          <Select value={filters.location} onValueChange={handleFilterChange('location')}>
+                            <SelectTrigger className="h-9 w-[180px]">
+                              <SelectValue placeholder="Filter by location" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="all">All Locations</SelectItem>
+                              {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                          <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" size="sm" className="h-9">
+                                    <Settings2 className="mr-2 h-4 w-4" />
+                                    View
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-[200px]">
+                                <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                {APP_CONFIG.tableColumns.map(column => (
+                                    <DropdownMenuCheckboxItem
+                                        key={column.id}
+                                        className="capitalize"
+                                        checked={tempColumnVisibility[column.id]}
+                                        onCheckedChange={value =>
+                                            setTempColumnVisibility(prev => ({
+                                                ...prev,
+                                                [column.id]: !!value,
+                                            }))
+                                        }
+                                        onSelect={(e) => e.preventDefault()} // Prevent closing
+                                    >
+                                        {column.label}
+                                    </DropdownMenuCheckboxItem>
+                                ))}
+                                <DropdownMenuSeparator />
+                                <div className="flex justify-end gap-2 p-2">
+                                  <Button variant="ghost" size="sm" onClick={handleCancelColumnVisibility}>Cancel</Button>
+                                  <Button size="sm" onClick={handleApplyColumnVisibility}>Apply</Button>
+                                </div>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                    </div>
 
-                    <CollapsibleTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        <SlidersHorizontal className="mr-2 h-4 w-4" />
-                        Filters
-                      </Button>
-                    </CollapsibleTrigger>
-                  </div>
-                </div>
-                <CollapsibleContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 p-4 border rounded-lg">
-                    <Select value={filters.category} onValueChange={handleFilterChange('category')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by product family" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Product Families</SelectItem>
-                        {APP_CONFIG.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                    <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Statuses</SelectItem>
-                        {APP_CONFIG.statuses.map(s => <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                    <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by location" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Locations</SelectItem>
-                        {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
+                    <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px]">
+                        <div className="flex items-center gap-2">
+                            <Button variant="outline" size="sm" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
+                                <Check className="mr-2 h-4 w-4" />
+                                Select all assets
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
+                                <X className="mr-2 h-4 w-4" />
+                                Clear selection
+                            </Button>
+                        </div>
 
-              <div className="flex items-center gap-4 p-3 mb-4 rounded-lg border bg-muted/50 h-[58px]">
-                <div className="flex-1 text-sm font-medium text-muted-foreground">
-                  {selectedAssetIds.length > 0
-                    ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
-                    : `${filteredAssets.length} items.`
-                  }
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Selected
-                  </Button>
-                  <Button variant="destructive" size="sm" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
-                    <Trash2 className="mr-2 h-4 w-4" />
-                    Delete Selected
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={handleSelectAllFiltered}>
-                    <CheckSquare className="mr-2 h-4 w-4" />
-                    Select All
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
-                    <X className="mr-2 h-4 w-4" />
-                    Clear Selection
-                  </Button>
-                </div>
-              </div>
+                        <div className="text-sm font-medium text-muted-foreground">
+                            {selectedAssetIds.length > 0
+                                ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
+                                : `${filteredAssets.length} items.`
+                            }
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Button variant="outline" size="sm" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
+                                <Download className="mr-2 h-4 w-4" />
+                                Export Selected
+                            </Button>
+                            <Button variant="destructive" size="sm" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Delete Selected
+                            </Button>
+                        </div>
+                    </div>
 
-
-              <div className="flex-1 min-h-0 w-full h-full overflow-hidden">
-                {!isClient || isInitialLoad ? (
-                  <div className="rounded-lg border overflow-hidden h-full">
-                    <div className="relative w-full h-full overflow-y-auto overflow-x-hidden">
-                      <table className="w-full caption-bottom text-sm">
-                        <thead className="[&_tr]:border-b">
-                          <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[40px]"><Skeleton className="h-5 w-5" /></th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Product Family</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Status</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Machine Name</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell [&:has([role=checkbox])]:pr-0">Manufacturer</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell [&:has([role=checkbox])]:pr-0">Model</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell [&:has([role=checkbox])]:pr-0">OS</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">Assigned User</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden sm:table-cell [&:has([role=checkbox])]:pr-0">User ID</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden 2xl:table-cell [&:has([role=checkbox])]:pr-0">Location</th>
-                            <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"><span className="sr-only">Actions</span></th>
-                          </tr>
-                        </thead>
-                        <tbody className="[&_tr:last-child]:border-0">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                              <td className="p-4 align-middle"><Skeleton className="h-5 w-5" /></td>
-                              <td className="p-4 align-middle"><Skeleton className="h-5 w-[80px]" /></td>
-                              <td className="p-4 align-middle"><Skeleton className="h-8 w-[100px]" /></td>
-                              <td className="p-4 align-middle"><Skeleton className="h-5 w-[150px]" /></td>
-                              <td className="p-4 align-middle hidden md:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                              <td className="p-4 align-middle hidden lg:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                              <td className="p-4 align-middle hidden xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                              <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
-                              <td className="p-4 align-middle hidden sm:table-cell"><Skeleton className="h-5 w-[80px]" /></td>
-                              <td className="p-4 align-middle hidden 2xl:table-cell"><Skeleton className="h-5 w-[100px]" /></td>
-                              <td className="p-4 align-middle"><Skeleton className="h-8 w-8" /></td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                    <div className="flex-1 min-h-0 w-full h-full overflow-hidden">
+                      {!isClient || isInitialLoad ? (
+                        <div className="rounded-lg border overflow-hidden h-full">
+                           <table className="w-full caption-bottom text-sm">
+                            <thead className="[&_tr]:border-b">
+                              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <th className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r-0 first:border-r-0 w-[40px]"><Skeleton className="h-5 w-5" /></th>
+                                {APP_CONFIG.tableColumns.map(col => (
+                                  <th key={col.id} className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r last:border-r-0">
+                                    {col.label}
+                                  </th>
+                                ))}
+                                <th className="h-12 w-12 bg-muted"><span className="sr-only">Actions</span></th>
+                              </tr>
+                            </thead>
+                             <tbody className="[&_tr:last-child]:border-0">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted h-9">
+                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-5" /></td>
+                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
+                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-[100px]" /></td>
+                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[150px]" /></td>
+                                  <td className="p-4 align-middle hidden md:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
+                                  <td className="p-4 align-middle hidden lg:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
+                                  <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                                  <td className="p-4 align-middle hidden sm:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
+                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-8" /></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                           </table>
+                        </div>
+                      ) : (
+                        <div className="h-full">
+                          <AssetTable
+                            assets={filteredAssets}
+                            onEdit={handleEdit}
+                            onInfo={handleInfo}
+                            onDelete={fetchAssets}
+                            selectedAssetIds={selectedAssetIds}
+                            onSelectedAssetIdsChange={setSelectedAssetIds}
+                            columnVisibility={columnVisibility}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
-                ) : (
-                  <div className="h-full">
-                    <AssetTable
-                      assets={filteredAssets}
-                      onEdit={handleEdit}
-                      onInfo={handleInfo}
-                      onDelete={fetchAssets}
-                      selectedAssetIds={selectedAssetIds}
-                      onSelectedAssetIdsChange={setSelectedAssetIds}
-                      columnVisibility={columnVisibility}
-                    />
-                  </div>
-                )}
-              </div>
             </main>
           </div>
         </SidebarInset>
@@ -527,8 +505,8 @@ export default function DashboardPage() {
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the selected {selectedAssetIds.length} asset(s)
-                        from your inventory.
+                        This will permanently delete the selected {selectedAssetIds.length} asset(s)
+                        from your inventory. This action cannot be undone.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

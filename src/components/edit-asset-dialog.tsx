@@ -84,6 +84,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       modelNumber: '',
       serialNumber: '',
       type: undefined,
+      webui: "",
       assignedUser: '',
       userId: undefined,
       userType: 'local',
@@ -101,6 +102,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         ...asset,
         os: asset.os ?? '',
         type: asset.type ?? undefined,
+        webui: asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '',
         assignedUser: asset.assignedUser ?? '',
         userId: asset.userId ?? undefined,
         notes: asset.notes ?? '',
@@ -111,6 +113,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
 
   const category = form.watch("category");
+  const showWebUI = useMemo(() => category && ['networks', 'printers', 'servers'].includes(category), [category]);
   
   const keywordIndex = useMemo(() => {
     const items: { mfr: string; cat: string; k: string; lower: string }[] = [];
@@ -396,12 +399,14 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       return;
     }
 
-    const needsOs = data.category && !['printers','networks'].includes(data.category);
+    const needsOs = data.category && !['printers','networks', 'misc'].includes(data.category);
     const normalizedOs = needsOs ? (data.os?.trim() || null) : null;
+    const webui = data.webui ? `https://${data.webui.replace(/^https?:\/\//, '')}` : null;
 
     const dataToSend = {
       ...data,
       os: normalizedOs,
+      webui: webui,
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
@@ -628,7 +633,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 )}
               />
 
-              {category && !['printers', 'networks'].includes(category) && (
+              {category && !['printers', 'networks', 'misc'].includes(category) && (
                 <FormField
                   control={form.control}
                   name="os"
@@ -700,6 +705,31 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                           ))}
                         </SelectContent>
                       </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {showWebUI && (
+                <FormField
+                  control={form.control}
+                  name="webui"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{APP_CONFIG.labels.webui}</FormLabel>
+                      <div className="flex items-center">
+                        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-input bg-muted text-sm text-muted-foreground">
+                          https://
+                        </span>
+                        <FormControl>
+                          <Input
+                            placeholder="192.168.1.1"
+                            {...field}
+                            value={field.value ?? ''}
+                            className="rounded-l-none"
+                          />
+                        </FormControl>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}

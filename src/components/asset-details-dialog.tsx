@@ -14,6 +14,7 @@ import { Asset } from "@/lib/types";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
 import { APP_CONFIG, getStatusVariant, STATUS_NAMES } from "@/lib/config";
+import { ExternalLink } from "lucide-react";
 
 interface AssetDetailsDialogProps {
   asset: Asset | null;
@@ -35,6 +36,12 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
       <div className="text-base">{value || 'N/A'}</div>
     </div>
   )
+
+  const handleConnect = () => {
+    if (asset?.webui) {
+      window.open(asset.webui, '_blank', 'noopener,noreferrer');
+    }
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -60,6 +67,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
           {(asset.category === 'systems' || asset.category === 'servers') && (
             <DetailItem label={APP_CONFIG.labels.type} value={asset.type} />
           )}
+          {asset.webui && <DetailItem label={APP_CONFIG.labels.webui} value={asset.webui} />}
           <DetailItem label={APP_CONFIG.labels.purchaseDate} value={asset.purchaseDate ? format(asset.purchaseDate, 'PPP') : 'N/A'} />
           <DetailItem label={APP_CONFIG.labels.warrantyExpirationDate} value={asset.warrantyExpirationDate ? format(asset.warrantyExpirationDate, 'PPP') : 'N/A'} />
           <DetailItem label={APP_CONFIG.labels.createdBy} value={asset.createdBy} />
@@ -69,7 +77,15 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
             <DetailItem label={APP_CONFIG.labels.notes} value={asset.notes} />
           </div>
         </div>
-        <DialogFooter>
+        <DialogFooter className="sm:justify-between">
+          <div>
+            {asset.webui && (
+              <Button onClick={handleConnect} variant="outline">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Connect
+              </Button>
+            )}
+          </div>
           <Button onClick={() => onOpenChange(false)}>Close</Button>
         </DialogFooter>
       </DialogContent>

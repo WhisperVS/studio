@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { APP_CONFIG, STATUS_NAMES } from './config';
 
-export const CATEGORY_IDS = ["laptops", "servers", "systems", "networks", "printers", "other"] as const;
+export const CATEGORY_IDS = ["laptops", "servers", "systems", "networks", "printers", "misc"] as const;
 export type AssetCategory = (typeof CATEGORY_IDS)[number];
 
 
@@ -17,6 +17,7 @@ export const AssetSchema = z.object({
   modelNumber: z.string().optional().nullable(),
   serialNumber: z.string().min(1, 'Serial number is required'),
   type: z.string().optional().nullable(),
+  webui: z.string().optional().nullable(),
   assignedUser: z.string().optional().nullable(),
   userId: z.number().optional().nullable(),
   userType: z.enum(APP_CONFIG.userTypes).optional().nullable(),
@@ -54,6 +55,7 @@ const BaseAssetFormSchema = AssetSchema.omit({
     },
     z.number({ invalid_type_error: 'User ID must be a number' }).optional()
   ),
+  webui: z.string().optional().nullable(),
 });
 
 const refineFunction = (data: z.infer<typeof BaseAssetFormSchema>, ctx: z.RefinementCtx) => {
@@ -65,7 +67,7 @@ const refineFunction = (data: z.infer<typeof BaseAssetFormSchema>, ctx: z.Refine
     });
   }
 
-  const isOsRequired = data.category && !['printers', 'networks', 'other'].includes(data.category);
+  const isOsRequired = data.category && !['printers', 'networks', 'misc'].includes(data.category);
   if (isOsRequired && (!data.os || data.os.trim() === '')) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
@@ -84,6 +86,7 @@ const CreateApiSchemaBase = BaseAssetFormSchema.extend({
   category: z.enum(CATEGORY_IDS),
   createdBy: z.string(),
   updatedBy: z.string(),
+  webui: z.string().optional().nullable(),
 });
 export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFunction);
 
@@ -91,7 +94,6 @@ export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFuncti
 const UpdateApiSchemaBase = BaseAssetFormSchema.extend({
   category: z.enum(CATEGORY_IDS),
   updatedBy: z.string(),
+  webui: z.string().optional().nullable(),
 });
 export const UpdateAssetAPISchema = UpdateApiSchemaBase.superRefine(refineFunction);
-
-    

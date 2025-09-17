@@ -1,5 +1,4 @@
 
-
 import { Laptop, Network, Printer, Server, HardDrive, Component, LayoutGrid } from "lucide-react";
 import React from "react";
 import type { BadgeProps } from "@/components/ui/badge";
@@ -75,6 +74,7 @@ export const APP_CONFIG = {
     modelNumber: 'Model',
     serialNumber: 'Serial Number',
     type: 'Type',
+    webui: 'WebUI',
     assignedUser: 'Assigned User',
     userId: 'User ID',
     userType: 'User Type',
@@ -92,6 +92,7 @@ export const APP_CONFIG = {
     { id: 'machineName', label: 'Machine Name', defaultVisible: true, className: "" },
     { id: 'manufacturer', label: 'Manufacturer', defaultVisible: true, className: "hidden md:table-cell" },
     { id: 'modelNumber', label: 'Model', defaultVisible: true, className: "hidden lg:table-cell" },
+    { id: 'type', label: 'Type', defaultVisible: false, className: "hidden lg:table-cell" },
     { id: 'partNumber', label: 'Part Number', defaultVisible: false, className: "hidden lg:table-cell" },
     { id: 'serialNumber', label: 'Serial Number', defaultVisible: false, className: "hidden xl:table-cell" },
     { id: 'os', label: 'OS', defaultVisible: false, className: "hidden xl:table-cell" },
@@ -112,7 +113,3 @@ export function getStatusVariant(statusName: (typeof STATUS_NAMES)[number]): Bad
   const status = APP_CONFIG.statuses.find(s => s.name === statusName);
   return status ? status.variant : 'default';
 }
-    
-
-    
-

@@ -17,12 +17,13 @@ model Asset {
   manufacturer           String
   partNumber             String?
   modelNumber            String?
-  serialNumber           String?
+  serialNumber           String
   type                   String?
+  webui                  String?
   assignedUser           String?
   userId                 Int?
   userType               String?
-  owner                  String
+  owner                  String    @default("Group Administrators")
   status                 String
   notes                  String?
   purchaseDate           DateTime?
@@ -31,4 +32,6 @@ model Asset {
   updatedBy              String?
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
+
+  @@unique([manufacturer, serialNumber])
 }
