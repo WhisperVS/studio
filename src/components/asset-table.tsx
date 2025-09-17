@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo, useState } from 'react';
@@ -147,7 +148,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
 
   return (
     <>
-      <div className="rounded-lg border overflow-hidden h-full flex-1">
+      <div className="rounded-lg border overflow-hidden h-full">
         <div className="relative w-full h-full overflow-y-auto overflow-x-hidden">
             <Table>
               <TableHeader>
