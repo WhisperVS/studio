@@ -19,7 +19,7 @@ export const AssetSchema = z.object({
   type: z.string().optional().nullable(),
   webui: z.string().optional().nullable(),
   assignedUser: z.string().optional().nullable(),
-  userId: z.number().optional().nullable(),
+  userId: z.string().optional().nullable(),
   userType: z.enum(APP_CONFIG.userTypes).optional().nullable(),
   owner: z.literal('Group Administrators'),
   status: z.enum(STATUS_NAMES),
@@ -42,19 +42,7 @@ const BaseAssetFormSchema = AssetSchema.omit({
   updatedBy: true,
 }).extend({
   category: z.enum(CATEGORY_IDS).optional(),
-  userId: z.preprocess(
-    (val) => {
-      if (typeof val === 'string' && val.trim() !== '') {
-        const num = Number(val);
-        return isNaN(num) ? val : num;
-      }
-      if (typeof val === 'number') {
-        return val;
-      }
-      return undefined;
-    },
-    z.number({ invalid_type_error: 'User ID must be a number' }).optional()
-  ),
+  userId: z.string().optional(),
   webui: z.string().optional().nullable(),
 });
 

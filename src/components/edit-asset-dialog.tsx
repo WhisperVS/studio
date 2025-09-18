@@ -86,7 +86,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       type: undefined,
       webui: "",
       assignedUser: '',
-      userId: undefined,
+      userId: '',
       userType: 'local',
       owner: 'Group Administrators',
       status: 'In Use',
@@ -104,7 +104,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         type: asset.type ?? undefined,
         webui: asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '',
         assignedUser: asset.assignedUser ?? '',
-        userId: asset.userId ?? undefined,
+        userId: asset.userId ?? '',
         notes: asset.notes ?? '',
         owner: "Group Administrators"
       });
@@ -113,6 +113,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
 
   const category = form.watch("category");
+  const status = form.watch("status");
   const showWebUI = useMemo(() => category && ['networks', 'printers', 'servers'].includes(category), [category]);
   
   const keywordIndex = useMemo(() => {
@@ -171,8 +172,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
       const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
-      for (const category in categoriesData) {
-        const catData = (categoriesData as any)[category as keyof typeof categoriesData];
+      for (const categoryKey in categoriesData) {
+        const category = categoryKey as keyof typeof categoriesData;
+        const catData = (categoriesData as any)[category];
         if (!catData?.keywords?.length) continue;
 
         for (const k of catData.keywords) {
@@ -410,6 +412,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       purchaseDate: data.purchaseDate || null,
       warrantyExpirationDate: data.warrantyExpirationDate || null,
       type: data.type || null,
+      userId: data.userId?.trim() ? data.userId : "N/A",
       updatedBy: currentUser,
     };
 
@@ -453,7 +456,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       onOpenChange(open);
     }}>
       <DialogContent 
-        className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto"
+        className="sm:max-w-4xl max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => {
           e.preventDefault();
         }}
@@ -465,7 +468,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" autoComplete="off">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1 pt-1" autoComplete="off">
             
             <FormField
               control={form.control}
@@ -481,7 +484,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
               <FormField
                 control={form.control}
                 name="machineName"
@@ -613,7 +616,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., HJVX6" {...field} value={field.value ?? ''} autoComplete="off"/>
+                      <Input
+                        placeholder="e.g., HJVX6"
+                        {...field}
+                        value={field.value ?? ''}
+                        autoComplete="off"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -626,7 +634,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 5J2X1Y2" {...field} value={field.value ?? ''} />
+                      <Input
+                        placeholder="e.g., 5J2X1Y2"
+                        {...field}
+                        value={field.value ?? ''}
+                        onChange={(e) => field.onChange(e.target.value.toUpperCase())}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -758,108 +771,110 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 )}
               />
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 p-4 border rounded-lg">
-              <div className="md:col-span-2">
-                <p className="font-medium text-sm text-foreground mb-3">User Assignment</p>
-              </div>
-              <FormField
-                control={form.control}
-                name="assignedUser"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
-                     <div className="relative">
-                      <FormControl>
-                        <Input
-                          aria-autocomplete="list"
-                          aria-controls="user-suggestion-list"
-                          aria-expanded={userSuggestions.length > 0}
-                          aria-activedescendant={userSuggestions.length ? `user-suggestion-${activeUserSuggestionIndex}` : undefined}
-                          placeholder="e.g., John Doe"
-                          {...field}
-                          value={field.value ?? ''}
-                          onChange={handleUserChange}
-                          onKeyDown={handleUserKeyDown}
-                          ref={userInputRef}
-                          autoComplete="off"
-                        />
-                      </FormControl>
-                      {userSuggestions.length > 0 && (
-                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
-                          <ul
-                            id="user-suggestion-list"
-                            role="listbox"
-                            className="max-h-60 overflow-auto py-1"
-                          >
-                            {userSuggestions.map((s, i) => (
-                              <li
-                                key={s}
-                                id={`user-suggestion-${i}`}
-                                role="option"
-                                aria-selected={i === activeUserSuggestionIndex}
-                                ref={el => { userSuggestionItemRefs.current[i] = el }}
-                                onMouseDown={(e) => { e.preventDefault(); acceptUserSuggestion(s); }}
-                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeUserSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
-                              >
-                                {s}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="userId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
-                    <FormControl>
-                      <Input type="text" inputMode="numeric" placeholder="e.g., 12345" {...field} value={field.value ?? ''} autoComplete="off"/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="md:col-span-2">
+            
+            {status && !['For Recycle', 'For Parts'].includes(status) && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 p-2 border rounded-lg">
+                <div className="md:col-span-2">
+                  <p className="font-medium text-sm text-foreground">User Assignment</p>
+                </div>
                 <FormField
                   control={form.control}
-                  name="userType"
+                  name="assignedUser"
                   render={({ field }) => (
-                    <FormItem className="space-y-3 pt-2">
-                      <FormLabel>{APP_CONFIG.labels.userType}</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          value={field.value ?? 'local'}
-                          className="flex items-center space-x-4"
-                        >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="local" />
-                            </FormControl>
-                            <FormLabel className="font-normal">Local</FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="remote" />
-                            </FormControl>
-                            <FormLabel className="font-normal">Remote</FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
+                    <FormItem>
+                      <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
+                       <div className="relative">
+                        <FormControl>
+                          <Input
+                            aria-autocomplete="list"
+                            aria-controls="user-suggestion-list"
+                            aria-expanded={userSuggestions.length > 0}
+                            aria-activedescendant={userSuggestions.length ? `user-suggestion-${activeUserSuggestionIndex}` : undefined}
+                            placeholder="e.g., John Doe"
+                            {...field}
+                            value={field.value ?? ''}
+                            onChange={handleUserChange}
+                            onKeyDown={handleUserKeyDown}
+                            ref={userInputRef}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        {userSuggestions.length > 0 && (
+                          <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                            <ul
+                              id="user-suggestion-list"
+                              role="listbox"
+                              className="max-h-60 overflow-auto py-1"
+                            >
+                              {userSuggestions.map((s, i) => (
+                                <li
+                                  key={s}
+                                  id={`user-suggestion-${i}`}
+                                  role="option"
+                                  aria-selected={i === activeUserSuggestionIndex}
+                                  ref={el => { userSuggestionItemRefs.current[i] = el }}
+                                  onMouseDown={(e) => { e.preventDefault(); acceptUserSuggestion(s); }}
+                                  className={`px-3 py-2 text-sm cursor-pointer ${i === activeUserSuggestionIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'}`}
+                                >
+                                  {s}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="userId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="e.g., 0005" {...field} value={field.value ?? ''} autoComplete="off"/>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="md:col-span-2">
+                  <FormField
+                    control={form.control}
+                    name="userType"
+                    render={({ field }) => (
+                      <FormItem className="space-y-1 pt-1">
+                        <FormLabel>{APP_CONFIG.labels.userType}</FormLabel>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            value={field.value ?? 'local'}
+                            className="flex items-center space-x-4"
+                          >
+                            <FormItem className="flex items-center space-x-2 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="local" />
+                              </FormControl>
+                              <FormLabel className="font-normal">Local</FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-2 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="remote" />
+                              </FormControl>
+                              <FormLabel className="font-normal">Remote</FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
               <FormField
                 control={form.control}
                 name="purchaseDate"
@@ -868,7 +883,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d === undefined ? null : d)}
+                      setDate={field.onChange}
                     />
                     <FormMessage />
                   </FormItem>
@@ -883,7 +898,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
                     <DatePicker 
                       date={field.value ?? undefined} 
-                      setDate={(d) => field.onChange(d === undefined ? null : d)}
+                      setDate={field.onChange}
                     />
                     <FormMessage />
                   </FormItem>

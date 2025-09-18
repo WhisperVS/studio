@@ -52,5 +52,3 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
     </SidebarGroup>
   );
 }
-
-    

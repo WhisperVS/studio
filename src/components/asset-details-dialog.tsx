@@ -45,14 +45,14 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>Asset Details</DialogTitle>
           <DialogDescription>
             Viewing details for asset: <strong>{asset.machineName}</strong>
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 py-4">
           <DetailItem label={APP_CONFIG.labels.machineName} value={asset.machineName} />
           <DetailItem label={APP_CONFIG.labels.category} value={getCategoryName(asset.category)} />
           <DetailItem label={APP_CONFIG.labels.manufacturer} value={asset.manufacturer} />

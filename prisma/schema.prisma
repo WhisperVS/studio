@@ -21,7 +21,7 @@ model Asset {
   type                   String?
   webui                  String?
   assignedUser           String?
-  userId                 Int?
+  userId                 String?
   userType               String?
   owner                  String    @default("Group Administrators")
   status                 String
