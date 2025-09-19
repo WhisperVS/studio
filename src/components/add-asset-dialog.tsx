@@ -183,6 +183,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     serialNumber: "",
     type: undefined,
     webui: "",
+    webuiProtocol: 'https',
     assignedUser: "",
     userId: "",
     userType: "local",
@@ -302,10 +303,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const handleModelBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const model = e.target.value;
     if (model) {
-        const manufacturer = autoCategorizeByModel(model);
-        if (manufacturer && /dell/i.test(manufacturer)) {
-            form.setValue('partNumber', model, { shouldValidate: true });
-        }
+        autoCategorizeByModel(model);
     }
   };
 
@@ -313,11 +311,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     form.setValue('modelNumber', value, { shouldValidate: true });
     setModelSuggestions([]);
     setActiveModelSuggestionIndex(0);
-    const manufacturer = autoCategorizeByModel(value);
-    
-    if (manufacturer && /dell/i.test(manufacturer)) {
-      form.setValue('partNumber', value, { shouldValidate: true });
-    }
+    autoCategorizeByModel(value);
   }, [form, autoCategorizeByModel]);
   
   const acceptOsSuggestion = useCallback((value: string) => {
@@ -532,10 +526,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
 
     if (importedModelNumber) {
-        const detectedManufacturer = autoCategorizeByModel(importedModelNumber);
-        if (detectedManufacturer && /dell/i.test(detectedManufacturer)) {
-            form.setValue('partNumber', importedModelNumber, { shouldValidate: true });
-        }
+        autoCategorizeByModel(importedModelNumber);
     }
 
     toast({
@@ -559,11 +550,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     
     const needsOs = !['printers','networks', 'misc'].includes(data.category!);
     const normalizedOs = needsOs ? (data.os?.trim() || null) : null;
-    const webui = data.webui ? `https://${data.webui.replace(/^https?:\/\//, '')}` : null;
+    const webui = data.webui ? `${data.webuiProtocol}://${data.webui.replace(/^https?:\/\//, '')}` : null;
+    
+    // Create a copy of the data to avoid modifying the form state directly
+    const submissionData = { ...data };
+    // Exclude webuiProtocol from the data sent to the API
+    delete (submissionData as Partial<AssetFormValues>).webuiProtocol;
 
 
     const dataToSend = {
-      ...data,
+      ...submissionData,
       os: normalizedOs,
       webui: webui,
       purchaseDate: data.purchaseDate || null,
@@ -917,10 +913,22 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{APP_CONFIG.labels.webui}</FormLabel>
-                       <div className="flex items-center">
-                        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-input bg-muted text-sm text-muted-foreground">
-                          https://
-                        </span>
+                      <div className="flex items-center">
+                        <FormField
+                            control={form.control}
+                            name="webuiProtocol"
+                            render={({ field: protoField }) => (
+                                <Select onValueChange={protoField.onChange} value={protoField.value}>
+                                    <SelectTrigger className="w-[100px] rounded-r-none focus:ring-0">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="https">https://</SelectItem>
+                                        <SelectItem value="http">http://</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            )}
+                        />
                         <FormControl>
                           <Input
                             placeholder="192.168.1.1"

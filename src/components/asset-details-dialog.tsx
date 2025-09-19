@@ -67,7 +67,16 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
           {(asset.category === 'systems' || asset.category === 'servers') && (
             <DetailItem label={APP_CONFIG.labels.type} value={asset.type} />
           )}
-          {asset.webui && <DetailItem label={APP_CONFIG.labels.webui} value={asset.webui} />}
+          {asset.webui && (
+            <DetailItem 
+              label={APP_CONFIG.labels.webui} 
+              value={
+                <a href={asset.webui} target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">
+                  {asset.webui}
+                </a>
+              } 
+            />
+          )}
           <DetailItem label={APP_CONFIG.labels.purchaseDate} value={asset.purchaseDate ? format(asset.purchaseDate, 'PPP') : 'N/A'} />
           <DetailItem label={APP_CONFIG.labels.warrantyExpirationDate} value={asset.warrantyExpirationDate ? format(asset.warrantyExpirationDate, 'PPP') : 'N/A'} />
           <DetailItem label={APP_CONFIG.labels.createdBy} value={asset.createdBy} />
@@ -92,5 +101,3 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
     </Dialog>
   );
 }
-
-    

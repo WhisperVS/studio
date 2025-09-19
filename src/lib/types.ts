@@ -44,6 +44,7 @@ const BaseAssetFormSchema = AssetSchema.omit({
   category: z.enum(CATEGORY_IDS).optional(),
   userId: z.string().optional(),
   webui: z.string().optional().nullable(),
+  webuiProtocol: z.enum(['http', 'https']).default('https'),
 });
 
 const refineFunction = (data: z.infer<typeof BaseAssetFormSchema>, ctx: z.RefinementCtx) => {
