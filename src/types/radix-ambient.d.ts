@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Ambient module declarations for @radix-ui packages used in the project.
 // Some Radix packages ship types, but in some environments TypeScript
 // may still complain about missing module declarations (especially

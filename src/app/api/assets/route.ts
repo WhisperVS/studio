@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { CreateAssetAPISchema } from '@/lib/types';
 import { z } from 'zod';
 
@@ -12,7 +12,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
-export async function OPTIONS(request: Request) {
+export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
     headers: corsHeaders,
@@ -21,7 +21,7 @@ export async function OPTIONS(request: Request) {
 
 
 // GET handler to fetch all assets
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const assets = await prisma.asset.findMany({
       orderBy: {
@@ -39,7 +39,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const rawText = await request.text();
-    let body: any;
+    let body: unknown;
     try {
       body = rawText ? JSON.parse(rawText) : {};
     } catch (parseError) {
@@ -48,9 +48,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400, headers: corsHeaders });
     }
 
+    // Parse & validate with Zod. Use the schema's inferred type for safety.
     const validatedData = CreateAssetAPISchema.parse(body);
 
-    const dataToCreate = validatedData as any;
+    type CreateAssetInput = z.infer<typeof CreateAssetAPISchema>;
+    const dataToCreate = validatedData as CreateAssetInput;
 
     // Check for duplicates based on manufacturer and serial number
     if (validatedData.manufacturer && validatedData.serialNumber) {
@@ -66,12 +68,23 @@ export async function POST(request: Request) {
       }
     }
 
-    const newAsset = await prisma.asset.create({
-      data: {
-        ...dataToCreate,
-        owner: 'Group Administrators',
-      },
-    });
+    // Sanitize input: only pass fields that exist on the Prisma model.
+    const allowedKeys = new Set([
+      'machineName','category','os','location','manufacturer','partNumber','modelNumber','serialNumber',
+      'type','webui','assignedUser','userId','userType','owner','status','notes',
+      'purchaseDate','warrantyExpirationDate','createdBy','updatedBy'
+    ]);
+
+  const sanitizedData: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(dataToCreate)) {
+      if (allowedKeys.has(k)) sanitizedData[k] = v;
+    }
+
+    // Ensure owner is set server-side
+    sanitizedData.owner = 'Group Administrators';
+
+  // sanitizedData is built dynamically; cast to Prisma's input type via unknown to avoid `any`
+  const newAsset = await prisma.asset.create({ data: sanitizedData as unknown as Prisma.AssetCreateInput });
     return NextResponse.json(newAsset, { status: 201, headers: corsHeaders });
   } catch (error) {
     console.error('Failed to create asset:', error);

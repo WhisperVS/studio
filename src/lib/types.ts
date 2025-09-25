@@ -74,7 +74,10 @@ export type AssetFormValues = z.infer<typeof AssetFormSchema>;
 
 // Schemas for the API, with refinements
 const CreateApiSchemaBase = BaseAssetFormSchema.extend({
-  category: z.enum(CATEGORY_IDS),
+  // Allow category to be optional during parsing so the superRefine can
+  // emit a friendly custom error when it's missing instead of Zod's
+  // raw enum error for an empty string.
+  category: z.enum(CATEGORY_IDS).optional(),
   createdBy: z.string(),
   updatedBy: z.string(),
     // Removed webui
@@ -83,7 +86,8 @@ export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFuncti
 
 
 const UpdateApiSchemaBase = BaseAssetFormSchema.extend({
-  category: z.enum(CATEGORY_IDS),
+  // Same as Create: parse optionally and rely on superRefine for errors
+  category: z.enum(CATEGORY_IDS).optional(),
   updatedBy: z.string(),
     // Removed webui
 });

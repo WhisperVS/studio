@@ -1,0 +1,89 @@
+
+> gaim@0.1.0 dev
+> next dev --turbopack -p 9002
+
+   ▲ Next.js 15.3.3 (Turbopack)
+   - Local:        http://localhost:9002
+   - Network:      http://192.8.4.178:9002
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1346ms
+ ○ Compiling / ...
+ ✓ Compiled / in 4.2s
+ GET / 200 in 5187ms
+ ○ Compiling /api/assets ...
+ ✓ Compiled /api/assets in 543ms
+Failed to parse JSON body for create asset: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at POST (src\app\api\assets\route.ts:44:28)
+  42 |     let body: unknown;
+  43 |     try {
+> 44 |       body = rawText ? JSON.parse(rawText) : {};
+     |                            ^
+  45 |     } catch (parseError) {
+  46 |       console.error('Failed to parse JSON body for create asset:', parseError);
+  47 |       console.error('Raw request body:', rawText);
+Raw request body: {\
+ POST /api/assets 400 in 1212ms
+Failed to parse JSON body for create asset: SyntaxError: Bad escaped character in JSON at position 15 (line 1 column 16)
+    at JSON.parse (<anonymous>)
+    at POST (src\app\api\assets\route.ts:44:28)
+  42 |     let body: unknown;
+  43 |     try {
+> 44 |       body = rawText ? JSON.parse(rawText) : {};
+     |                            ^
+  45 |     } catch (parseError) {
+  46 |       console.error('Failed to parse JSON body for create asset:', parseError);
+  47 |       console.error('Raw request body:', rawText);
+Raw request body: {" machineName\:\TEST-POST-002\,\category\:\systems\,\manufacturer\:\TestCorp\,\modelNumber\:\T-1001\,\serialNumber\:\SN12346\,\createdBy\:\tester\,\updatedBy\:\tester\}
+ POST /api/assets 400 in 150ms
+Failed to fetch assets: Error [PrismaClientInitializationError]: 
+Invalid `prisma.asset.findMany()` invocation in
+C:\Users\vshtohryn\Desktop\my docs\my app\gaim\studio\.next\server\chunks\[root-of-the-server]__e2217685._.js:442:43
+
+  439 }
+  440 async function GET() {
+  441     try {
+→ 442         const assets = await prisma.asset.findMany(
+Can't reach database server at `db:5432`
+
+Please make sure your database server is running at `db:5432`.
+    at <unknown> (src\app\api\assets\route.ts:26:38)
+    at async GET (src\app\api\assets\route.ts:26:19)
+  24 | export async function GET() {
+  25 |   try {
+> 26 |     const assets = await prisma.asset.findMany({
+     |                                      ^
+  27 |       orderBy: {
+  28 |         machineName: 'asc'
+  29 |       } {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/assets 500 in 2830ms
+Failed to fetch assets: Error [PrismaClientInitializationError]: 
+Invalid `prisma.asset.findMany()` invocation in
+C:\Users\vshtohryn\Desktop\my docs\my app\gaim\studio\.next\server\chunks\[root-of-the-server]__e2217685._.js:442:43
+
+  439 }
+  440 async function GET() {
+  441     try {
+→ 442         const assets = await prisma.asset.findMany(
+Can't reach database server at `db:5432`
+
+Please make sure your database server is running at `db:5432`.
+    at <unknown> (src\app\api\assets\route.ts:26:38)
+    at async GET (src\app\api\assets\route.ts:26:19)
+  24 | export async function GET() {
+  25 |   try {
+> 26 |     const assets = await prisma.asset.findMany({
+     |                                      ^
+  27 |       orderBy: {
+  28 |         machineName: 'asc'
+  29 |       } {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/assets 500 in 2838ms
+[?25h

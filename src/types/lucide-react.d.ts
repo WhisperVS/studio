@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'lucide-react' {
   // Minimal declarations for the icons used by the project.
   const Icon: any;

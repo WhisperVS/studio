@@ -10,7 +10,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
-export async function OPTIONS(request: Request) {
+export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
     headers: corsHeaders,
@@ -18,7 +18,7 @@ export async function OPTIONS(request: Request) {
 }
 
 // GET handler to fetch all assets and format them for the JSON endpoint
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const assets = await prisma.asset.findMany({
       orderBy: {

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { APP_CONFIG, CATEGORY_IDS } from "@/lib/config";
+import { APP_CONFIG } from "@/lib/config";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/ui/sidebar";
 import React from "react";
 

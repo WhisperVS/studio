@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect, useCallback } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, PlusCircle, Search, Trash2, User, X, Check, ExternalLink, Settings2 } from "lucide-react";
+import { Download, PlusCircle, Search, Trash2, User, X, Check, Settings2 } from "lucide-react";
 import { AssetTable } from "@/components/asset-table";
 import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
@@ -38,7 +38,8 @@ export default function DashboardPage() {
     status: 'all',
     location: 'all',
   });
-  const isMobile = useIsMobile();
+  // isMobile not used yet; keep hook for future responsive tweaks
+  useIsMobile();
   const [isClient, setIsClient] = useState(false);
   const { currentUser, setCurrentUser } = useUser();
 
@@ -106,7 +107,7 @@ export default function DashboardPage() {
   
   const [selectedAssetIds, setSelectedAssetIds] = useState<string[]>([]);
   const [isBulkDeleteAlertOpen, setIsBulkDeleteAlertOpen] = useState(false);
-  const [rowHeights, setRowHeights] = useState<number[]>([]);
+  // rowHeights intentionally unused for now
 
 
   const fetchAssets = useCallback(async () => {
@@ -204,7 +205,8 @@ export default function DashboardPage() {
       columns.map(c => c.label).join(','),
       ...assetsToExport.map(row =>
         columns.map(col => {
-          let value = (row as any)[col.key];
+          const key = col.key as keyof Asset;
+          let value = row[key];
 
           if (value === null || value === undefined) {
             return '';

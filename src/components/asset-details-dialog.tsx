@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Asset } from "@/lib/types";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
-import { APP_CONFIG, getStatusVariant, STATUS_NAMES } from "@/lib/config";
+import { APP_CONFIG, getStatusVariant } from "@/lib/config";
 import { ExternalLink } from "lucide-react";
 
 interface AssetDetailsDialogProps {

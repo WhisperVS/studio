@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 
 // Slot fallback that forwards refs and accepts arbitrary props so it

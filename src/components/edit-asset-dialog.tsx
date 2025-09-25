@@ -4,7 +4,6 @@
 import { useEffect, useCallback, useState, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 
 import {
   Form,
@@ -119,11 +118,13 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
   const showWebUI = useMemo(() => category && ['networks', 'printers', 'servers'].includes(category), [category]);
   
   const keywordIndex = useMemo(() => {
+    type MfrCatalog = Record<string, Record<string, { keywords?: string[]; types?: Record<string, string[]> }>>;
+    const catsRoot = manufacturerCatalog as unknown as MfrCatalog;
     const items: { mfr: string; cat: string; k: string; lower: string }[] = [];
-    for (const mfr in manufacturerCatalog) {
-      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog];
-      for (const cat in cats) {
-        const data = (cats as any)[cat as keyof typeof cats];
+    for (const mfr of Object.keys(catsRoot)) {
+      const cats = catsRoot[mfr] || {};
+      for (const cat of Object.keys(cats)) {
+        const data = cats[cat];
         if (data?.keywords) {
           for (const k of data.keywords) {
             items.push({ mfr, cat, k, lower: k.toLowerCase() });
@@ -174,9 +175,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
       const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
-      for (const categoryKey in categoriesData) {
+      type CatData = { keywords?: string[]; types?: Record<string, string[]> };
+      for (const categoryKey of Object.keys(categoriesData)) {
         const category = categoryKey as keyof typeof categoriesData;
-        const catData = (categoriesData as any)[category];
+        const catData = (categoriesData as unknown as Record<string, CatData>)[categoryKey];
         if (!catData?.keywords?.length) continue;
 
         for (const k of catData.keywords) {
@@ -462,9 +464,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       >
         <DialogHeader>
           <DialogTitle>Edit Asset</DialogTitle>
-          <DialogDescription>
-            Update the details for "{asset?.machineName}".
-          </DialogDescription>
+            <DialogDescription>
+              Update the details for {asset?.machineName ? `"${asset.machineName}"` : 'this asset'}.
+            </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1 pt-1" autoComplete="off">

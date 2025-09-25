@@ -49,6 +49,27 @@ interface AddAssetDialogProps {
   onAssetAdded: () => void;
 }
 
+const DEFAULT_FORM_VALUES: AssetFormValues = {
+  machineName: "",
+  category: undefined,
+  os: "",
+  location: "Schaumburg IL",
+  manufacturer: "",
+  partNumber: "",
+  modelNumber: "",
+  serialNumber: "",
+  type: undefined,
+  webui: "",
+  assignedUser: "",
+  userId: "",
+  userType: "local",
+  owner: "Group Administrators",
+  status: "In Use",
+  notes: "",
+  purchaseDate: undefined,
+  warrantyExpirationDate: undefined,
+};
+
 function JsonImportDialog({
   isOpen,
   onOpenChange,
@@ -56,7 +77,7 @@ function JsonImportDialog({
 }: {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  onImport: (data: any) => void;
+  onImport: (data: unknown) => void;
 }) {
   const { toast } = useToast();
   const [jsonString, setJsonString] = useState("");
@@ -172,30 +193,9 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const userTypingTimer = useRef<number | null>(null);
   const userInputRef = useRef<HTMLInputElement>(null);
 
-  const defaultFormValues: AssetFormValues = {
-    machineName: "",
-    category: undefined,
-    os: "",
-    location: "Schaumburg IL",
-    manufacturer: "",
-    partNumber: "",
-    modelNumber: "",
-    serialNumber: "",
-    type: undefined,
-  webui: "",
-    assignedUser: "",
-    userId: "",
-    userType: "local",
-    owner: "Group Administrators",
-    status: "In Use",
-    notes: "",
-    purchaseDate: undefined,
-    warrantyExpirationDate: undefined
-  };
-
   const form = useForm<AssetFormValues>({
     resolver: zodResolver(AssetFormSchema),
-    defaultValues: defaultFormValues,
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
   const category = form.watch("category");
@@ -203,11 +203,13 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   const showWebUI = useMemo(() => category && ['networks', 'printers', 'servers'].includes(category), [category]);
 
   const keywordIndex = useMemo(() => {
+    type MfrCatalog = Record<string, Record<string, { keywords?: string[]; types?: Record<string, string[]> }>>;
+    const catsRoot = manufacturerCatalog as unknown as MfrCatalog;
     const items: { mfr: string; cat: string; k: string; lower: string }[] = [];
-    for (const mfr in manufacturerCatalog) {
-      const cats = manufacturerCatalog[mfr as keyof typeof manufacturerCatalog];
-      for (const cat in cats) {
-        const data = (cats as any)[cat];
+    for (const mfr of Object.keys(catsRoot)) {
+      const cats = catsRoot[mfr] || {};
+      for (const cat of Object.keys(cats)) {
+        const data = cats[cat];
         if (data?.keywords) {
           for (const k of data.keywords) {
             items.push({ mfr, cat, k, lower: k.toLowerCase() });
@@ -258,8 +260,9 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
 
     for (const manufacturer of Object.keys(manufacturerCatalog)) {
       const categoriesData = manufacturerCatalog[manufacturer as keyof typeof manufacturerCatalog];
-      for (const category in categoriesData) {
-        const catData = (categoriesData as any)[category as keyof typeof categoriesData];
+      type CatData = { keywords?: string[]; types?: Record<string, string[]> };
+      for (const category of Object.keys(categoriesData)) {
+        const catData = (categoriesData as unknown as Record<string, CatData>)[category];
         if (!catData?.keywords?.length) continue;
 
         for (const k of catData.keywords) {
@@ -467,7 +470,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   }, [userSuggestions]);
 
   
-  const handleJsonImport = (data: any) => {
+  const handleJsonImport = (data: unknown) => {
     const normalize = (v: unknown) => String(v ?? '').replace(/\r?\n|\r/g, '').trim();
     
     const findBestOsMatch = (osString: string): string => {
@@ -507,7 +510,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     let fieldsUpdated = false;
     let importedModelNumber = '';
 
-    for (const [key, raw] of Object.entries(data)) {
+    for (const [key, raw] of Object.entries(data as Record<string, unknown>)) {
       const formField = mapping[key];
       if (!formField) continue;
       
@@ -595,7 +598,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         title: "Asset Added",
         description: `${data.machineName} has been added to the inventory.`,
       });
-      form.reset(defaultFormValues);
+  form.reset(DEFAULT_FORM_VALUES);
       onAssetAdded();
       onOpenChange(false);
     } catch (error) {
@@ -606,10 +609,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         description: error instanceof Error ? error.message : "Could not add the asset.",
       });
     }
-  }, [onAssetAdded, onOpenChange, toast, currentUser, form, autoCategorizeByModel]);
+  }, [onAssetAdded, onOpenChange, toast, currentUser, form]);
 
   const handleClearForm = () => {
-    form.reset(defaultFormValues);
+    form.reset(DEFAULT_FORM_VALUES);
     setModelSuggestions([]);
     setOsSuggestions([]);
     setUserSuggestions([]);
@@ -619,7 +622,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     <>
   <Dialog open={isOpen} onOpenChange={(open: boolean) => {
       if (!open) {
-        form.reset(defaultFormValues);
+        form.reset(DEFAULT_FORM_VALUES);
         setModelSuggestions([]);
         setOsSuggestions([]);
         setUserSuggestions([]);
@@ -691,7 +694,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a product family" />
@@ -729,7 +732,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a location" />
@@ -933,7 +936,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a status" />
