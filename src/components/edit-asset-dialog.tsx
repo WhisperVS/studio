@@ -98,14 +98,13 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
   useEffect(() => {
     if (asset && isOpen) {
-  const webuiAddress = asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '';
+        const webuiAddress = asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '';
 
       form.reset({
         ...asset,
         os: asset.os ?? '',
         type: asset.type ?? undefined,
         webui: webuiAddress,
-        webuiProtocol: protocol,
         assignedUser: asset.assignedUser ?? '',
         userId: asset.userId ?? '',
         notes: asset.notes ?? '',
