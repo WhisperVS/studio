@@ -38,8 +38,19 @@ export async function GET(request: Request) {
 // POST handler to create a new asset
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const rawText = await request.text();
+    let body: any;
+    try {
+      body = rawText ? JSON.parse(rawText) : {};
+    } catch (parseError) {
+      console.error('Failed to parse JSON body for create asset:', parseError);
+      console.error('Raw request body:', rawText);
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400, headers: corsHeaders });
+    }
+
     const validatedData = CreateAssetAPISchema.parse(body);
+
+    const dataToCreate = validatedData as any;
 
     // Check for duplicates based on manufacturer and serial number
     if (validatedData.manufacturer && validatedData.serialNumber) {
@@ -57,7 +68,7 @@ export async function POST(request: Request) {
 
     const newAsset = await prisma.asset.create({
       data: {
-        ...validatedData,
+        ...dataToCreate,
         owner: 'Group Administrators',
       },
     });

@@ -23,7 +23,12 @@ services:
     ports:
       - "9002:9002"
     environment:
-      DATABASE_URL: ${DATABASE_URL}
+      # If DATABASE_URL is not provided from the host environment, fall back to
+      # a connection string that points at the `db` service. Inside Docker
+      # containers, `localhost` refers to the container itself, so use the
+      # service name (`db`) as the hostname.
+      # Example Prisma format: postgresql://user:password@host:port/database
+      DATABASE_URL: ${DATABASE_URL:-postgresql://user:password@db:5432/gaim}
     depends_on:
       db:
         condition: service_healthy

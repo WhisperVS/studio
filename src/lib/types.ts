@@ -43,8 +43,10 @@ const BaseAssetFormSchema = AssetSchema.omit({
 }).extend({
   category: z.enum(CATEGORY_IDS).optional(),
   userId: z.string().optional(),
-  webui: z.string().optional().nullable(),
-  webuiProtocol: z.enum(['http', 'https']).default('https'),
+    webui: z.string().optional().nullable(),
+    // Removed webuiProtocol
+  // Owner is set server-side; don't require clients to include it in the form/API payload.
+  owner: z.literal('Group Administrators').optional(),
 });
 
 const refineFunction = (data: z.infer<typeof BaseAssetFormSchema>, ctx: z.RefinementCtx) => {
@@ -75,7 +77,7 @@ const CreateApiSchemaBase = BaseAssetFormSchema.extend({
   category: z.enum(CATEGORY_IDS),
   createdBy: z.string(),
   updatedBy: z.string(),
-  webui: z.string().optional().nullable(),
+    // Removed webui
 });
 export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFunction);
 
@@ -83,6 +85,6 @@ export const CreateAssetAPISchema = CreateApiSchemaBase.superRefine(refineFuncti
 const UpdateApiSchemaBase = BaseAssetFormSchema.extend({
   category: z.enum(CATEGORY_IDS),
   updatedBy: z.string(),
-  webui: z.string().optional().nullable(),
+    // Removed webui
 });
 export const UpdateAssetAPISchema = UpdateApiSchemaBase.superRefine(refineFunction);

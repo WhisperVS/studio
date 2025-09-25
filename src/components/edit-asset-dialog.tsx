@@ -84,8 +84,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
       modelNumber: '',
       serialNumber: '',
       type: undefined,
-      webui: "",
-      webuiProtocol: 'https',
+  webui: "",
       assignedUser: '',
       userId: '',
       userType: 'local',
@@ -99,8 +98,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
   useEffect(() => {
     if (asset && isOpen) {
-        const protocol = (asset.webui?.startsWith('http://') ? 'http' : 'https') as 'http' | 'https';
-        const webuiAddress = asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '';
+  const webuiAddress = asset.webui ? asset.webui.replace(/^https?:\/\//, '') : '';
 
       form.reset({
         ...asset,
@@ -401,12 +399,11 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
 
     const needsOs = data.category && !['printers','networks', 'misc'].includes(data.category);
     const normalizedOs = needsOs ? (data.os?.trim() || null) : null;
-    const webui = data.webui ? `${data.webuiProtocol}://${data.webui.replace(/^https?:\/\//, '')}` : null;
-    
+    const webui = data.webui
+      ? (data.webui.match(/^https?:\/\//i) ? data.webui : `https://${data.webui.replace(/^https?:\/\//i, '')}`)
+      : null;
     // Create a copy of the data to avoid modifying the form state directly
     const submissionData = { ...data };
-    // Exclude webuiProtocol from the data sent to the API
-    delete (submissionData as Partial<AssetFormValues>).webuiProtocol;
 
     const dataToSend = {
       ...submissionData,
@@ -734,21 +731,6 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                     <FormItem>
                       <FormLabel>{APP_CONFIG.labels.webui}</FormLabel>
                       <div className="flex items-center">
-                        <FormField
-                            control={form.control}
-                            name="webuiProtocol"
-                            render={({ field: protoField }) => (
-                                <Select onValueChange={protoField.onChange} value={protoField.value}>
-                                    <SelectTrigger className="w-[100px] rounded-r-none focus:ring-0">
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="https">https://</SelectItem>
-                                        <SelectItem value="http">http://</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            )}
-                        />
                         <FormControl>
                           <Input
                             placeholder="192.168.1.1"

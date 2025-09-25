@@ -31,8 +31,8 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-# Runtime OS deps
-RUN apk add --no-cache openssl libc6-compat
+# Runtime OS deps (include postgresql-client so pg_isready is available)
+RUN apk add --no-cache openssl libc6-compat postgresql-client
 
 # Non-root user
 RUN addgroup --system --gid 1001 nodejs \
@@ -44,9 +44,18 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
+# Ensure runtime node modules (including @prisma/client runtime files) are present
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copy wait-for-db helper script
+COPY --from=builder /app/scripts/wait-for-db.sh ./scripts/wait-for-db.sh
 
 # Permissions
+
 RUN chown -R nextjs:nodejs .
+
+# Ensure the wait script is executable
+RUN chmod +x ./scripts/wait-for-db.sh || true
 
 USER nextjs
 
@@ -55,4 +64,4 @@ ENV PORT=9002
 ENV HOSTNAME="0.0.0.0"
 
 # Start the standalone server
-CMD ["sh", "-c", "npx prisma migrate deploy || true; node server.js"]
+CMD ["sh", "-c", "./scripts/wait-for-db.sh ${DB_HOST:-db} ${DB_PORT:-5432} 30 && npx prisma migrate deploy || true; node server.js"]
