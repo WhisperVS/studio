@@ -73,7 +73,7 @@ export function Combobox({
       <PopoverContent
         align="start"
         className="w-[var(--radix-popover-trigger-width)] p-0"
-        onWheel={(e) => e.stopPropagation()}
+  onWheel={(e: React.WheelEvent) => e.stopPropagation()}
       >
         <Command>
           <CommandInput placeholder={placeholder} />

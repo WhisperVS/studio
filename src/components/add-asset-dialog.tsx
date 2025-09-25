@@ -617,7 +617,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
 
   return (
     <>
-    <Dialog open={isOpen} onOpenChange={(open) => {
+  <Dialog open={isOpen} onOpenChange={(open: boolean) => {
       if (!open) {
         form.reset(defaultFormValues);
         setModelSuggestions([]);
@@ -628,7 +628,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }}>
       <DialogContent 
         className="sm:max-w-4xl max-h-[90vh] overflow-y-auto"
-        onInteractOutside={(e) => {
+  onInteractOutside={(e: React.SyntheticEvent) => {
           e.preventDefault();
         }}
       >

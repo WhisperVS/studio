@@ -446,7 +446,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
   }, [asset, onAssetUpdated, toast, onOpenChange, currentUser]);
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => {
+  <Dialog open={isOpen} onOpenChange={(open: boolean) => {
       if (!open) {
         setModelSuggestions([]);
         setOsSuggestions([]);
@@ -456,7 +456,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
     }}>
       <DialogContent 
         className="sm:max-w-4xl max-h-[90vh] overflow-y-auto"
-        onInteractOutside={(e) => {
+  onInteractOutside={(e: React.SyntheticEvent) => {
           e.preventDefault();
         }}
       >

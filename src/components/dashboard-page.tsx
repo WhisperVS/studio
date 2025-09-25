@@ -404,13 +404,13 @@ export default function DashboardPage() {
                                         key={column.id}
                                         className="capitalize"
                                         checked={tempColumnVisibility[column.id]}
-                                        onCheckedChange={value =>
-                                            setTempColumnVisibility(prev => ({
-                                                ...prev,
-                                                [column.id]: !!value,
-                                            }))
-                                        }
-                                        onSelect={(e) => e.preventDefault()} // Prevent closing
+                    onCheckedChange={(value: boolean | 'indeterminate') =>
+                      setTempColumnVisibility(prev => ({
+                        ...prev,
+                        [column.id]: !!value,
+                      }))
+                    }
+                    onSelect={(e: React.SyntheticEvent) => e.preventDefault()} // Prevent closing
                                     >
                                         {column.label}
                                     </DropdownMenuCheckboxItem>

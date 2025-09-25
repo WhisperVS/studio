@@ -195,7 +195,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                       <div className="flex items-center justify-center">
                         <Checkbox
                           checked={selectedAssetIds.includes(asset.id)}
-                          onCheckedChange={(checked) => handleRowSelect(asset.id, !!checked)}
+                          onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect(asset.id, !!checked)}
                           aria-label={`Select row for ${asset.machineName}`}
                         />
                       </div>

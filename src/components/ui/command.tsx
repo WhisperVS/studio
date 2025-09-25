@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { type DialogProps } from "@radix-ui/react-dialog"
+// DialogProps import removed; we use the Dialog wrapper component types
 import { Command as CommandPrimitive } from "cmdk"
 import { Search } from "lucide-react"
 
@@ -23,7 +23,7 @@ const Command = React.forwardRef<
 ))
 Command.displayName = CommandPrimitive.displayName
 
-interface CommandDialogProps extends DialogProps {}
+type CommandDialogProps = React.PropsWithChildren<Record<string, unknown>>;
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
