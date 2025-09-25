@@ -85,6 +85,11 @@
 }
 
 @layer utilities {
+  /* Centralized form control sizing to keep Input/Select consistency */
+  .form-control {
+    @apply h-9 px-3 py-2 text-sm;
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
