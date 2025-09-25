@@ -309,11 +309,37 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
   };
 
+  // If manufacturer is Dell and a model number exists, auto-fill the part number when appropriate.
+  const manufacturerValue = form.watch('manufacturer');
+  const modelValue = form.watch('modelNumber');
+  const partValue = form.watch('partNumber');
+
+  useEffect(() => {
+    if (!manufacturerValue || !modelValue) return;
+    try {
+      const isDell = (manufacturerValue || '').toString().toLowerCase().startsWith('dell');
+      if (isDell && modelValue && !partValue) {
+        form.setValue('partNumber', modelValue, { shouldValidate: true });
+      }
+    } catch {
+      // ignore
+    }
+  }, [manufacturerValue, modelValue, partValue, form]);
+
   const acceptModelSuggestion = useCallback((value: string) => {
     form.setValue('modelNumber', value, { shouldValidate: true });
     setModelSuggestions([]);
     setActiveModelSuggestionIndex(0);
     autoCategorizeByModel(value);
+    // If autoCategorizeByModel set manufacturer to Dell synchronously, fill partNumber as well
+    try {
+      const mfr = form.getValues('manufacturer') || '';
+      if (mfr.toString().toLowerCase().startsWith('dell')) {
+        form.setValue('partNumber', value, { shouldValidate: true });
+      }
+    } catch {
+      // ignore
+    }
   }, [form, autoCategorizeByModel]);
   
   const acceptOsSuggestion = useCallback((value: string) => {
@@ -344,6 +370,17 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         setModelSuggestions([]);
       }
     }, 160);
+
+    // If manufacturer is Dell, mirror the model number into partNumber unless user already set one
+    try {
+      const mfr = form.getValues('manufacturer') || '';
+      const currentPart = form.getValues('partNumber') || '';
+      if (mfr.toString().toLowerCase().startsWith('dell') && value && !currentPart) {
+        form.setValue('partNumber', value, { shouldValidate: true });
+      }
+    } catch {
+      // ignore
+    }
   };
   
   const handleModelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -716,12 +753,15 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
-                    <Combobox
-                      options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
-                      value={field.value}
-                      onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
-                      placeholder="Select or type manufacturer..."
-                    />
+                    <FormControl>
+                      <Combobox
+                        className="form-control"
+                        options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
+                        value={field.value}
+                        onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
+                        placeholder="Select or type manufacturer..."
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -756,6 +796,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <div className="relative">
                       <Input
+                        className="form-control"
                         aria-autocomplete="list"
                         aria-controls="model-suggestion-list"
                         aria-expanded={modelSuggestions.length > 0}
@@ -803,13 +844,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="e.g., HJVX6"
-                        {...field}
-                        value={field.value ?? ''}
-                      />
-                    </FormControl>
+                      <FormControl>
+                        <Input
+                          className="form-control"
+                          placeholder="e.g., HJVX6"
+                          {...field}
+                          value={field.value ?? ''}
+                        />
+                      </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -968,6 +1010,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       <div className="relative">
                         <FormControl>
                           <Input
+                            className="form-control"
                             aria-autocomplete="list"
                             aria-controls="user-suggestion-list"
                             aria-expanded={userSuggestions.length > 0}
@@ -1016,7 +1059,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormItem>
                       <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="e.g., 0005" {...field} value={field.value ?? ''} />
+                        <Input className="form-control" type="text" placeholder="e.g., 0005" {...field} value={field.value ?? ''} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
