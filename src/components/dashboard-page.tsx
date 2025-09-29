@@ -502,7 +502,7 @@ export default function DashboardPage() {
                      </table>
                   </div>
                 ) : (
-                  <ErrorBoundary>
+                  <ErrorBoundary key={searchQuery}>
                     <AssetTable
                       assets={filteredAssets}
                       onEdit={handleEdit}
