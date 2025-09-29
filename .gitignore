@@ -48,3 +48,6 @@ firestore-debug.log
 payload*.json
 payload_post.js
 tmp_query.sql
+
+# Database backups
+backups/
