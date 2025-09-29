@@ -167,7 +167,7 @@
     background-color: hsl(var(--table-header-bg));
     backdrop-filter: blur(2px);
     /* match header bottom border color with table cell borders (uses --border base variable) */
-    border-bottom: 1px solid hsl(var(--border) / 0.18);
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
     /* subtle separation without adding a different color line */
     box-shadow: none;
   }
@@ -187,34 +187,34 @@
     transition: all 0.15s ease-out !important;
   }
 
-  /* table cell borders: use base border color with slightly higher contrast */
+  /* table cell borders: use base border color with higher contrast for better visibility */
   .table-cell-border {
-    border-color: hsl(var(--border) / 0.18);
+    border-color: hsl(var(--border) / 0.4);
   }
 
   /* apply to table cells and headers within table components */
   table tr th,
   table tr td {
-    border-color: hsl(var(--border) / 0.18);
+    border-color: hsl(var(--border) / 0.4);
   }
 
   /* ensure header and body separation lines match exactly */
   .table-header-bg {
-    border-bottom: 1px solid hsl(var(--border) / 0.18);
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
   }
 
   /* Ensure vertical (right) borders match horizontal separators exactly */
   table tr th,
   table tr td {
     /* force both bottom and right borders to match the theme border token */
-    border-bottom: 1px solid hsl(var(--border) / 0.18) !important;
-    border-right: 1px solid hsl(var(--border) / 0.18) !important;
+    border-bottom: 1px solid hsl(var(--border) / 0.4) !important;
+    border-right: 1px solid hsl(var(--border) / 0.4) !important;
   }
 
   /* Ribbon should visually match the table header background and separators */
   .ribbon {
     background-color: hsl(var(--table-header-bg));
-    border-top: 1px solid hsl(var(--border) / 0.18);
+    border-top: 1px solid hsl(var(--border) / 0.4);
     /* ensure ribbon sits above rows but below any overlays */
     z-index: 40;
   }
