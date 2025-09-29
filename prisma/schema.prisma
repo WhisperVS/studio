@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Asset {
-  id                     String                @id
+  id                     String                @id @default(cuid())
   machineName            String                @default("N/A")
   category               AssetCategory
   os                     String?

@@ -29,8 +29,30 @@ export async function GET() {
       }
     });
 
-    // No mapping needed - the database already contains the display values
-    return NextResponse.json(assets, { headers: corsHeaders });
+    // Map enum values back to display values for the frontend
+    const mapEnumToDisplay = (asset: any) => {
+      const locationMap: Record<string, string> = {
+        'SchaumburgIL': 'Schaumburg IL',
+        'RockfordIL': 'Rockford IL'
+      };
+      
+      const statusMap: Record<string, string> = {
+        'InUse': 'In Use',
+        'Spare': 'Spare',
+        'ForRepair': 'For Repair',
+        'ForParts': 'For Parts',
+        'ForRecycle': 'For Recycle'
+      };
+      
+      return {
+        ...asset,
+        location: locationMap[asset.location] || asset.location,
+        status: statusMap[asset.status] || asset.status
+      };
+    };
+
+    const mappedAssets = assets.map(mapEnumToDisplay);
+    return NextResponse.json(mappedAssets, { headers: corsHeaders });
   } catch (error) {
     console.error('Failed to fetch assets:', error);
     return NextResponse.json({ error: 'Failed to fetch assets' }, { status: 500, headers: corsHeaders });
@@ -72,8 +94,37 @@ export async function POST(request: Request) {
 
     // Map display values to enum values before database operations
     const mapDisplayToEnum = (data: any) => {
-      // No mapping needed - database stores display values directly
-      return data;
+      // Map location display values to enum values
+      const locationMap: Record<string, string> = {
+        'Schaumburg IL': 'SchaumburgIL',
+        'Rockford IL': 'RockfordIL'
+      };
+      
+      // Map status display values to enum values
+      const statusMap: Record<string, string> = {
+        'In Use': 'InUse',
+        'Spare': 'Spare',
+        'For Repair': 'ForRepair',
+        'For Parts': 'ForParts',
+        'For Recycle': 'ForRecycle'
+      };
+      
+      // Map category display values to enum values
+      const categoryMap: Record<string, string> = {
+        'laptops': 'laptops',
+        'servers': 'servers',
+        'systems': 'systems',
+        'networks': 'networks',
+        'printers': 'printers',
+        'misc': 'misc'
+      };
+      
+      return {
+        ...data,
+        location: locationMap[data.location] || data.location,
+        status: statusMap[data.status] || data.status,
+        category: categoryMap[data.category] || data.category
+      };
     };
 
     // Sanitize input: only pass fields that exist on the Prisma model.

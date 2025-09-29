@@ -107,7 +107,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
         assignedUser: asset.assignedUser ?? '',
         userId: asset.userId ?? '',
         notes: asset.notes ?? '',
-        owner: "Group Administrators"
+        owner: "Group Administrators",
+        location: asset.location || 'Schaumburg IL',
+        status: asset.status || 'In Use'
       });
     }
   }, [asset, form, isOpen]);
@@ -505,7 +507,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="category-select">{APP_CONFIG.labels.category}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} key={`category-${asset?.id}`}>
                       <FormControl>
                         <SelectTrigger id="category-select" name="category">
                           <SelectValue placeholder="Select a category" />
@@ -543,7 +545,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="location-select">{APP_CONFIG.labels.location}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} key={`location-${asset?.id}`}>
                       <FormControl>
                         <SelectTrigger id="location-select" name="location">
                           <SelectValue placeholder="Select a location" />
@@ -786,7 +788,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="status-select">{APP_CONFIG.labels.status}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} key={`status-${asset?.id}`}>
                       <FormControl>
                         <SelectTrigger id="status-select" name="status">
                           <SelectValue placeholder="Select a status" />

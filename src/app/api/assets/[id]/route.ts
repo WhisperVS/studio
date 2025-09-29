@@ -14,13 +14,55 @@ const corsHeaders = {
 
 // Helper functions for enum mapping
 const mapEnumToDisplay = (asset: any) => {
-  // No mapping needed - database already contains display values
-  return asset;
+  const locationMap: Record<string, string> = {
+    'SchaumburgIL': 'Schaumburg IL',
+    'RockfordIL': 'Rockford IL'
+  };
+  
+  const statusMap: Record<string, string> = {
+    'InUse': 'In Use',
+    'Spare': 'Spare',
+    'ForRepair': 'For Repair',
+    'ForParts': 'For Parts',
+    'ForRecycle': 'For Recycle'
+  };
+  
+  return {
+    ...asset,
+    location: locationMap[asset.location] || asset.location,
+    status: statusMap[asset.status] || asset.status
+  };
 };
 
 const mapDisplayToEnum = (data: any) => {
-  // No mapping needed - database stores display values directly
-  return data;
+  const locationMap: Record<string, string> = {
+    'Schaumburg IL': 'SchaumburgIL',
+    'Rockford IL': 'RockfordIL'
+  };
+  
+  const statusMap: Record<string, string> = {
+    'In Use': 'InUse',
+    'Spare': 'Spare',
+    'For Repair': 'ForRepair',
+    'For Parts': 'ForParts',
+    'For Recycle': 'ForRecycle'
+  };
+  
+  const categoryMap: Record<string, string> = {
+    'laptops': 'laptops',
+    'servers': 'servers',
+    'systems': 'systems',
+    'networks': 'networks',
+    'printers': 'printers',
+    'misc': 'misc'
+  };
+  
+  return {
+    ...data,
+    location: locationMap[data.location] || data.location,
+    status: statusMap[data.status] || data.status,
+    category: categoryMap[data.category] || data.category
+  };
 };
 
 export async function OPTIONS() {
