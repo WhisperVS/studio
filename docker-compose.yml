@@ -17,9 +17,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
+    image: ${DOCKER_USERNAME:-whispervs}/gaim:${APP_VERSION:-0.1.0}
     build:
       context: .
       dockerfile: Dockerfile
+      tags:
+        - ${DOCKER_USERNAME:-whispervs}/gaim:${APP_VERSION:-0.1.0}
+        - ${DOCKER_USERNAME:-whispervs}/gaim:latest
     ports:
       - "9002:9002"
     environment:

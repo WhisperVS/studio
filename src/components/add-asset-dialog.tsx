@@ -751,11 +751,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="manufacturer"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="manufacturer-combobox">{APP_CONFIG.labels.manufacturer}</FormLabel>
+                    <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
                     <FormControl>
                       <Combobox
                         className="form-control"
-                        id="manufacturer-combobox"
                         options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                         value={field.value}
                         onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
@@ -942,10 +941,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="type"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.type}</FormLabel>
+                      <FormLabel htmlFor="type-select">{APP_CONFIG.labels.type}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                         <FormControl>
-                          <SelectTrigger>
+                          <SelectTrigger id="type-select" name="type">
                             <SelectValue placeholder={`Select a ${category.slice(0, -1)} type`} />
                           </SelectTrigger>
                         </FormControl>
@@ -967,17 +966,39 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
-                      <div className="flex items-center">
-                        <FormControl>
-                          <Input
-                            placeholder="192.168.1.1"
-                            {...field}
-                            id="webui-input"
-                            name="webui"
-                            value={field.value ?? ''}
-                            className="rounded-l-none"
-                          />
-                        </FormControl>
+                      <div className="relative">
+                        <div className="flex">
+                          <Select
+                            value={field.value?.startsWith('https://') ? 'https' : field.value?.startsWith('http://') ? 'http' : 'https'}
+                            onValueChange={(protocol: string) => {
+                              const currentValue = field.value || '';
+                              const cleanValue = currentValue.replace(/^https?:\/\//, '');
+                              field.onChange(`${protocol}://${cleanValue}`);
+                            }}
+                          >
+                            <SelectTrigger className="w-24 rounded-r-none border-r-0">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="https">HTTPS</SelectItem>
+                              <SelectItem value="http">HTTP</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormControl>
+                            <Input
+                              placeholder="192.168.1.1"
+                              {...field}
+                              id="webui-input"
+                              name="webui"
+                              value={field.value?.replace(/^https?:\/\//, '') ?? ''}
+                              onChange={(e) => {
+                                const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
+                                field.onChange(`${protocol}://${e.target.value}`);
+                              }}
+                              className="rounded-l-none"
+                            />
+                          </FormControl>
+                        </div>
                       </div>
                       <FormMessage />
                     </FormItem>
@@ -1121,7 +1142,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel htmlFor="purchase-date-picker">{APP_CONFIG.labels.purchaseDate}</FormLabel>
-                    <DatePicker id="purchase-date-picker" date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -1133,7 +1154,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel htmlFor="warranty-date-picker">{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
-                    <DatePicker id="warranty-date-picker" date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
+                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
                     <FormMessage />
                   </FormItem>
                 )}

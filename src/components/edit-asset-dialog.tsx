@@ -476,24 +476,24 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
               name="owner"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
+                  <FormLabel htmlFor="owner-input">{APP_CONFIG.labels.owner}</FormLabel>
                   <FormControl>
-                    <Input {...field} readOnly className="bg-muted" />
+                    <Input {...field} id="owner-input" name="owner" readOnly className="bg-muted" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 items-start">
               <FormField
                 control={form.control}
                 name="machineName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
+                    <FormLabel htmlFor="machine-name-input">{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} value={field.value ?? ''} />
+                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} id="machine-name-input" name="machineName" value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -504,10 +504,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
+                    <FormLabel htmlFor="category-select">{APP_CONFIG.labels.category}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="category-select" name="category">
                           <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
                       </FormControl>
@@ -542,10 +542,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
+                    <FormLabel htmlFor="location-select">{APP_CONFIG.labels.location}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="location-select" name="location">
                           <SelectValue placeholder="Select a location" />
                         </SelectTrigger>
                       </FormControl>
@@ -564,7 +564,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="modelNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
+                    <FormLabel htmlFor="model-number-input">{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
@@ -574,6 +574,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                           aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
                           placeholder="e.g., Latitude 5420"
                           {...field}
+                          id="model-number-input"
+                          name="modelNumber"
                           value={field.value ?? ''}
                           onChange={handleModelChange}
                           onKeyDown={handleModelKeyDown}
@@ -615,15 +617,19 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="partNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="e.g., HJVX6"
-                        {...field}
-                        value={field.value ?? ''}
-                        autoComplete="off"
-                      />
-                    </FormControl>
+                    <FormLabel htmlFor="part-number-input">{APP_CONFIG.labels.partNumber}</FormLabel>
+                    <div className="relative">
+                      <FormControl>
+                        <Input
+                          placeholder="e.g., HJVX6"
+                          {...field}
+                          id="part-number-input"
+                          name="partNumber"
+                          value={field.value ?? ''}
+                          autoComplete="off"
+                        />
+                      </FormControl>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -633,11 +639,13 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="serialNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
+                    <FormLabel htmlFor="serial-number-input">{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="e.g., 5J2X1Y2"
                         {...field}
+                        id="serial-number-input"
+                        name="serialNumber"
                         value={field.value ?? ''}
                         onChange={(e) => field.onChange(e.target.value.toUpperCase())}
                       />
@@ -653,7 +661,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="os"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
+                      <FormLabel htmlFor="os-input">{APP_CONFIG.labels.os}</FormLabel>
                       <div className="relative">
                         <FormControl>
                           <Input
@@ -663,6 +671,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                             aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
                             placeholder="e.g., Windows 11 Pro"
                             {...field}
+                            id="os-input"
+                            name="os"
                             value={field.value ?? ''}
                             onChange={handleOsChange}
                             onKeyDown={handleOsKeyDown}
@@ -730,16 +740,40 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="webui"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.webui}</FormLabel>
-                      <div className="flex items-center">
-                        <FormControl>
-                          <Input
-                            placeholder="192.168.1.1"
-                            {...field}
-                            value={field.value ?? ''}
-                            className="rounded-l-none"
-                          />
-                        </FormControl>
+                      <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
+                      <div className="relative">
+                        <div className="flex">
+                          <Select
+                            value={field.value?.startsWith('https://') ? 'https' : field.value?.startsWith('http://') ? 'http' : 'https'}
+                            onValueChange={(protocol: string) => {
+                              const currentValue = field.value || '';
+                              const cleanValue = currentValue.replace(/^https?:\/\//, '');
+                              field.onChange(`${protocol}://${cleanValue}`);
+                            }}
+                          >
+                            <SelectTrigger className="w-24 rounded-r-none border-r-0">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="https">HTTPS</SelectItem>
+                              <SelectItem value="http">HTTP</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormControl>
+                            <Input
+                              placeholder="192.168.1.1"
+                              {...field}
+                              id="webui-input"
+                              name="webui"
+                              value={field.value?.replace(/^https?:\/\//, '') ?? ''}
+                              onChange={(e) => {
+                                const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
+                                field.onChange(`${protocol}://${e.target.value}`);
+                              }}
+                              className="rounded-l-none"
+                            />
+                          </FormControl>
+                        </div>
                       </div>
                       <FormMessage />
                     </FormItem>
@@ -751,10 +785,10 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
+                    <FormLabel htmlFor="status-select">{APP_CONFIG.labels.status}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="status-select" name="status">
                           <SelectValue placeholder="Select a status" />
                         </SelectTrigger>
                       </FormControl>
@@ -771,7 +805,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
             </div>
             
             {status && !['For Recycle', 'For Parts'].includes(status) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 p-2 border rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 p-2 border rounded-lg items-start">
                 <div className="md:col-span-2">
                   <p className="font-medium text-sm text-foreground">User Assignment</p>
                 </div>
@@ -780,7 +814,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="assignedUser"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.assignedUser}</FormLabel>
+                      <FormLabel htmlFor="assigned-user-input">{APP_CONFIG.labels.assignedUser}</FormLabel>
                        <div className="relative">
                         <FormControl>
                           <Input
@@ -790,6 +824,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                             aria-activedescendant={userSuggestions.length ? `user-suggestion-${activeUserSuggestionIndex}` : undefined}
                             placeholder="e.g., John Doe"
                             {...field}
+                            id="assigned-user-input"
+                            name="assignedUser"
                             value={field.value ?? ''}
                             onChange={handleUserChange}
                             onKeyDown={handleUserKeyDown}
@@ -830,10 +866,12 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   name="userId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
-                      <FormControl>
-                        <Input type="text" placeholder="e.g., 0005" {...field} value={field.value ?? ''} autoComplete="off"/>
-                      </FormControl>
+                      <FormLabel htmlFor="user-id-input">{APP_CONFIG.labels.userId}</FormLabel>
+                      <div className="relative">
+                        <FormControl>
+                          <Input type="text" placeholder="e.g., 0005" {...field} id="user-id-input" name="userId" value={field.value ?? ''} autoComplete="off"/>
+                        </FormControl>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -872,7 +910,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 items-start">
               <FormField
                 control={form.control}
                 name="purchaseDate"
