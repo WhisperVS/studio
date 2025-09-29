@@ -28,6 +28,8 @@ export async function GET() {
         machineName: 'asc'
       }
     });
+
+    // No mapping needed - the database already contains the display values
     return NextResponse.json(assets, { headers: corsHeaders });
   } catch (error) {
     console.error('Failed to fetch assets:', error);
@@ -68,6 +70,12 @@ export async function POST(request: Request) {
       }
     }
 
+    // Map display values to enum values before database operations
+    const mapDisplayToEnum = (data: any) => {
+      // No mapping needed - database stores display values directly
+      return data;
+    };
+
     // Sanitize input: only pass fields that exist on the Prisma model.
     const allowedKeys = new Set([
       'machineName','category','os','location','manufacturer','partNumber','modelNumber','serialNumber',
@@ -83,8 +91,11 @@ export async function POST(request: Request) {
     // Ensure owner is set server-side
     sanitizedData.owner = 'Group Administrators';
 
-  // sanitizedData is built dynamically; cast to Prisma's input type via unknown to avoid `any`
-  const newAsset = await prisma.asset.create({ data: sanitizedData as unknown as Prisma.AssetCreateInput });
+    // Map display values to database enum values
+    const mappedData = mapDisplayToEnum(sanitizedData);
+
+  // mappedData is built dynamically; cast to Prisma's input type via unknown to avoid `any`
+  const newAsset = await prisma.asset.create({ data: mappedData as unknown as Prisma.AssetCreateInput });
     return NextResponse.json(newAsset, { status: 201, headers: corsHeaders });
   } catch (error) {
     console.error('Failed to create asset:', error);

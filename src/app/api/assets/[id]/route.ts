@@ -12,6 +12,17 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
+// Helper functions for enum mapping
+const mapEnumToDisplay = (asset: any) => {
+  // No mapping needed - database already contains display values
+  return asset;
+};
+
+const mapDisplayToEnum = (data: any) => {
+  // No mapping needed - database stores display values directly
+  return data;
+};
+
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
@@ -31,7 +42,11 @@ export async function GET(
                         if (!asset) {
                               return NextResponse.json({ error: 'Asset not found' }, { status: 404, headers: corsHeaders });
                                   }
-                                      return NextResponse.json(asset, { headers: corsHeaders });
+                                  
+                                  // Map enum values to display values
+                                  const mappedAsset = mapEnumToDisplay(asset);
+                                  
+                                      return NextResponse.json(mappedAsset, { headers: corsHeaders });
                                         } catch (error) {
                                             console.error('Failed to fetch asset:', error);
                                                 return NextResponse.json({ error: 'Failed to fetch asset' }, { status: 500, headers: corsHeaders });
@@ -48,14 +63,21 @@ export async function PUT(
     const body = await request.json();
     const validatedData = UpdateAssetAPISchema.parse(body);
 
+    // Map display values to enum values
+    const mappedData = mapDisplayToEnum({
+      ...validatedData,
+      owner: 'Group Administrators',
+    });
+
     const updatedAsset = await prisma.asset.update({
       where: { id: params.id },
-      data: {
-        ...validatedData,
-        owner: 'Group Administrators',
-      },
+      data: mappedData,
     });
-    return NextResponse.json(updatedAsset, { headers: corsHeaders });
+    
+    // Map enum values back to display values for response
+    const responseAsset = mapEnumToDisplay(updatedAsset);
+    
+    return NextResponse.json(responseAsset, { headers: corsHeaders });
   } catch (error) {
     console.error('Failed to update asset:', error);
     if (error instanceof z.ZodError) {

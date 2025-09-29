@@ -654,11 +654,33 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     setUserSuggestions([]);
   }
 
+  // Reset form when dialog opens to clear any validation errors
+  useEffect(() => {
+    if (isOpen) {
+      form.reset(DEFAULT_FORM_VALUES, { 
+        keepErrors: false,
+        keepDirty: false,
+        keepTouched: false,
+        keepValues: false
+      });
+      form.clearErrors();
+      setModelSuggestions([]);
+      setOsSuggestions([]);
+      setUserSuggestions([]);
+    }
+  }, [isOpen, form]);
+
   return (
     <>
   <Dialog open={isOpen} onOpenChange={(open: boolean) => {
       if (!open) {
-        form.reset(DEFAULT_FORM_VALUES);
+        form.reset(DEFAULT_FORM_VALUES, { 
+          keepErrors: false,
+          keepDirty: false,
+          keepTouched: false,
+          keepValues: false
+        });
+        form.clearErrors();
         setModelSuggestions([]);
         setOsSuggestions([]);
         setUserSuggestions([]);

@@ -1,5 +1,5 @@
 generator client {
-  provider      = "prisma-client-js"
+  provider = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
@@ -9,29 +9,54 @@ datasource db {
 }
 
 model Asset {
-  id                     String    @id @default(cuid())
-  machineName            String
-  category               String
+  id                     String                @id
+  machineName            String                @default("N/A")
+  category               AssetCategory
   os                     String?
-  location               String
-  manufacturer           String
+  location               Location
+  manufacturer           String                @default("N/A")
   partNumber             String?
   modelNumber            String?
-  serialNumber           String
+  serialNumber           String                @default("N/A")
   type                   String?
   webui                  String?
   assignedUser           String?
   userId                 String?
-  userType               String?
-  owner                  String    @default("Group Administrators")
-  status                 String
+  userType               UserType?
+  owner                  String                @default("Group Administrators")
+  status                 AssetStatus
   notes                  String?
   purchaseDate           DateTime?
   warrantyExpirationDate DateTime?
   createdBy              String?
   updatedBy              String?
-  createdAt              DateTime  @default(now())
-  updatedAt              DateTime  @updatedAt
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+}
 
-  @@unique([manufacturer, serialNumber])
+enum AssetCategory {
+  laptops
+  servers
+  systems
+  networks
+  printers
+  misc
+}
+
+enum Location {
+  SchaumburgIL @map("Schaumburg IL")
+  RockfordIL   @map("Rockford IL")
+}
+
+enum UserType {
+  local
+  remote
+}
+
+enum AssetStatus {
+  InUse       @map("In Use")
+  Spare       @map("Spare")
+  ForRepair   @map("For Repair")
+  ForParts    @map("For Parts")
+  ForRecycle  @map("For Recycle")
 }
