@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useCallback, useState, useEffect, useMemo, useRef } from "react";
@@ -695,31 +694,31 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1 pt-1" autoComplete="off">
-            
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-2" autoComplete="off">
+            {/* Adjusted spacing for better alignment */}
             <FormField
               control={form.control}
               name="owner"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{APP_CONFIG.labels.owner}</FormLabel>
+                  <FormLabel htmlFor="owner-input">{APP_CONFIG.labels.owner}</FormLabel>
                   <FormControl>
-                    <Input {...field} readOnly className="bg-muted" />
+                    <Input {...field} id="owner-input" name="owner" readOnly className="bg-muted" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 items-start">
               <FormField
                 control={form.control}
                 name="machineName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.machineName}</FormLabel>
+                    <FormLabel htmlFor="machine-name-input">{APP_CONFIG.labels.machineName}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} value={field.value ?? ''} />
+                      <Input placeholder="e.g., WKSTN-DEV-01" {...field} id="machine-name-input" name="machineName" value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -730,10 +729,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.category}</FormLabel>
+                    <FormLabel htmlFor="category-select">{APP_CONFIG.labels.category}</FormLabel>
                     <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="category-select" name="category">
                           <SelectValue placeholder="Select a product family" />
                         </SelectTrigger>
                       </FormControl>
@@ -752,10 +751,11 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="manufacturer"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
+                    <FormLabel htmlFor="manufacturer-combobox">{APP_CONFIG.labels.manufacturer}</FormLabel>
                     <FormControl>
                       <Combobox
                         className="form-control"
+                        id="manufacturer-combobox"
                         options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                         value={field.value}
                         onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
@@ -771,10 +771,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.location}</FormLabel>
+                    <FormLabel htmlFor="location-select">{APP_CONFIG.labels.location}</FormLabel>
                     <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="location-select" name="location">
                           <SelectValue placeholder="Select a location" />
                         </SelectTrigger>
                       </FormControl>
@@ -793,7 +793,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="modelNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.modelNumber}</FormLabel>
+                    <FormLabel htmlFor="model-number-input">{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <div className="relative">
                       <Input
                         className="form-control"
@@ -803,6 +803,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                         aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
                         placeholder="e.g., Latitude 5420"
                         {...field}
+                        id="model-number-input"
+                        name="modelNumber"
                         value={field.value ?? ''}
                         onChange={handleModelChange}
                         onKeyDown={handleModelKeyDown}
@@ -843,15 +845,19 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="partNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.partNumber}</FormLabel>
+                    <FormLabel htmlFor="part-number-input">{APP_CONFIG.labels.partNumber}</FormLabel>
+                    <div className="relative">
                       <FormControl>
                         <Input
                           className="form-control"
                           placeholder="e.g., HJVX6"
                           {...field}
+                          id="part-number-input"
+                          name="partNumber"
                           value={field.value ?? ''}
                         />
                       </FormControl>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -861,11 +867,13 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="serialNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.serialNumber}</FormLabel>
+                    <FormLabel htmlFor="serial-number-input">{APP_CONFIG.labels.serialNumber}</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="e.g., 5J2X1Y2"
                         {...field}
+                        id="serial-number-input"
+                        name="serialNumber"
                         value={field.value ?? ''}
                         onChange={(e) => field.onChange(e.target.value.toUpperCase())}
                       />
@@ -881,7 +889,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="os"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.os}</FormLabel>
+                      <FormLabel htmlFor="os-input">{APP_CONFIG.labels.os}</FormLabel>
                       <div className="relative">
                         <Input
                           aria-autocomplete="list"
@@ -890,6 +898,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                           aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
                           placeholder="e.g., Windows 11 Pro"
                           {...field}
+                          id="os-input"
+                          name="os"
                           value={field.value ?? ''}
                           onChange={handleOsChange}
                           onKeyDown={handleOsKeyDown}
@@ -956,12 +966,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="webui"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.webui}</FormLabel>
+                      <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
                       <div className="flex items-center">
                         <FormControl>
                           <Input
                             placeholder="192.168.1.1"
                             {...field}
+                            id="webui-input"
+                            name="webui"
                             value={field.value ?? ''}
                             className="rounded-l-none"
                           />
@@ -977,10 +989,10 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{APP_CONFIG.labels.status}</FormLabel>
+                    <FormLabel htmlFor="status-select">{APP_CONFIG.labels.status}</FormLabel>
                       <Select onValueChange={(v: string | undefined) => field.onChange(v || undefined)} value={field.value ?? undefined}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger id="status-select" name="status">
                           <SelectValue placeholder="Select a status" />
                         </SelectTrigger>
                       </FormControl>
@@ -997,7 +1009,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             </div>
 
             {status && !['For Recycle', 'For Parts'].includes(status) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 p-2 border rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 p-2 border rounded-lg items-start">
                 <div className="md:col-span-2">
                   <p className="font-medium text-sm text-foreground">User Assignment</p>
                 </div>
@@ -1057,10 +1069,12 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   name="userId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{APP_CONFIG.labels.userId}</FormLabel>
-                      <FormControl>
-                        <Input className="form-control" type="text" placeholder="e.g., 0005" {...field} value={field.value ?? ''} />
-                      </FormControl>
+                      <FormLabel htmlFor="user-id-input">{APP_CONFIG.labels.userId}</FormLabel>
+                      <div className="relative">
+                        <FormControl>
+                          <Input className="form-control" type="text" placeholder="e.g., 0005" {...field} id="user-id-input" name="userId" value={field.value ?? ''} />
+                        </FormControl>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -1077,6 +1091,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                             onValueChange={field.onChange}
                             value={field.value ?? 'local'}
                             className="flex items-center space-x-4"
+                            name="userType"
                           >
                             <FormItem className="flex items-center space-x-2 space-y-0">
                               <FormControl>
@@ -1099,14 +1114,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 items-start">
               <FormField
                 control={form.control}
                 name="purchaseDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>{APP_CONFIG.labels.purchaseDate}</FormLabel>
-                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
+                    <FormLabel htmlFor="purchase-date-picker">{APP_CONFIG.labels.purchaseDate}</FormLabel>
+                    <DatePicker id="purchase-date-picker" date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -1117,8 +1132,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 name="warrantyExpirationDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
-                    <DatePicker date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
+                    <FormLabel htmlFor="warranty-date-picker">{APP_CONFIG.labels.warrantyExpirationDate}</FormLabel>
+                    <DatePicker id="warranty-date-picker" date={field.value ?? undefined} setDate={(d) => field.onChange(d)} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -1130,12 +1145,14 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{APP_CONFIG.labels.notes}</FormLabel>
+                  <FormLabel htmlFor="notes-textarea">{APP_CONFIG.labels.notes}</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., Purchased from Dell Outlet. Has a scratch on the top case. Comes with a 24-inch Dell UltraSharp monitor."
                       className="resize-y"
                       {...field}
+                      id="notes-textarea"
+                      name="notes"
                       value={field.value ?? ''}
                     />
                   </FormControl>
@@ -1168,4 +1185,3 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   );
 }
 
-    

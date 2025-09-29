@@ -6,6 +6,9 @@
   :root {
     --background: 280 50% 95%;
     --foreground: 275 10% 15%;
+    /* table header specific colors (H S% L%) */
+    --table-header-bg: 0 0% 96%; /* light subtle gray */
+    --table-header-border: 220 10% 90%;
     --card: 280 50% 98%;
     --card-foreground: 275 10% 15%;
     --popover: 280 50% 98%;
@@ -42,6 +45,9 @@
   .dark {
     --background: 275 15% 10%;
     --foreground: 275 15% 95%;
+    /* header in dark theme: slightly lighter than card but darker than background */
+    --table-header-bg: 275 15% 14%;
+    --table-header-border: 275 15% 20%;
     --card: 275 15% 12%;
     --card-foreground: 275 15% 95%;
     --popover: 275 15% 12%;
@@ -90,13 +96,85 @@
     @apply h-9 px-3 py-2 text-sm;
   }
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    -webkit-text-fill-color: hsl(var(--foreground));
-    box-shadow: 0 0 0 1000px hsl(var(--background)) inset !important;
-    transition: background-color 5000s ease-in-out 0s;
+  /* Horizontal ribbon spacer used beneath wide tables to provide a synced horizontal scrollbar */
+  .ribbon-spacer {
+    @apply h-1 bg-muted-foreground/10 rounded;
+    min-width: 1px; /* avoid collapsing to zero */
+  }
+
+  .ribbon-overlay {
+    pointer-events: auto; /* allow scrolling */
+    background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.02));
+    border-radius: 6px;
+    z-index: 25; /* above rows but below header */
+  }
+
+  .ribbon-overlay .ribbon-spacer {
+    height: 6px; /* a bit taller so the thumb is comfortable */
+  }
+
+  /* ensure ribbon thumb is easy to hit but overlay doesn't block row events */
+  .ribbon-overlay::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    border: 3px solid rgba(0,0,0,0.04);
+    background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
+    box-shadow: 0 0 10px rgba(59,130,246,0.25);
+  }
+
+  /* Ribbon handle affordance */
+  .ribbon-handle {
+    @apply h-3 bg-gradient-to-r from-muted-foreground/20 to-muted-foreground/40 rounded cursor-grab hover:opacity-90;
+  }
+
+  /* Sticky header subtle separation */
+  .sticky-header-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+
+  /* Focus outline for buttons in sticky headers */
+  .sticky-header-button:focus {
+    outline: 2px solid rgba(59,130,246,0.6);
+    outline-offset: 2px;
+  }
+
+  /* Neon scrollbar styling */
+  .scrollbar-neon::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+  }
+  .scrollbar-neon::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-neon::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(59,130,246,0.9), rgba(99,102,241,0.9));
+    border-radius: 9999px;
+    border: 3px solid rgba(0,0,0,0.08);
+    box-shadow: 0 0 12px rgba(59,130,246,0.35);
+  }
+  .scrollbar-neon::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 18px rgba(59,130,246,0.5);
+  }
+
+  /* For firefox */
+  .scrollbar-neon {
+    scrollbar-color: rgba(59,130,246,0.9) transparent;
+    scrollbar-width: thin;
+  }
+
+  /* table header background variant */
+  .table-header-bg {
+    /* use dedicated table header background so header is distinct from table body */
+    background-color: hsl(var(--table-header-bg));
+    backdrop-filter: blur(2px);
+    /* match header bottom border color with table cell borders (uses --border base variable) */
+    border-bottom: 1px solid hsl(var(--border) / 0.18);
+    /* subtle separation without adding a different color line */
+    box-shadow: none;
+  }
+
+  /* sticky header should be above table rows */
+  .table-header-bg.sticky {
+    z-index: 30;
   }
   
   html.theme-changing *,
@@ -107,5 +185,57 @@
 
   html.theme-changing [data-theme-icon] {
     transition: all 0.15s ease-out !important;
+  }
+
+  /* table cell borders: use base border color with slightly higher contrast */
+  .table-cell-border {
+    border-color: hsl(var(--border) / 0.18);
+  }
+
+  /* apply to table cells and headers within table components */
+  table tr th,
+  table tr td {
+    border-color: hsl(var(--border) / 0.18);
+  }
+
+  /* ensure header and body separation lines match exactly */
+  .table-header-bg {
+    border-bottom: 1px solid hsl(var(--border) / 0.18);
+  }
+
+  /* Ensure vertical (right) borders match horizontal separators exactly */
+  table tr th,
+  table tr td {
+    /* force both bottom and right borders to match the theme border token */
+    border-bottom: 1px solid hsl(var(--border) / 0.18) !important;
+    border-right: 1px solid hsl(var(--border) / 0.18) !important;
+  }
+
+  /* Ribbon should visually match the table header background and separators */
+  .ribbon {
+    background-color: hsl(var(--table-header-bg));
+    border-top: 1px solid hsl(var(--border) / 0.18);
+    /* ensure ribbon sits above rows but below any overlays */
+    z-index: 40;
+  }
+
+  /* spacer should be transparent so ribbon background fills the track, but keep a small height for scrollbar rendering */
+  .ribbon-spacer {
+    min-width: 1px;
+    height: 6px; /* matches earlier spacer suggestion */
+    background: transparent;
+  }
+
+  /* Webkit track should be transparent to reveal the header-colored ribbon background */
+  .ribbon::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* make scrollbar thumb stand out on top of the header-colored ribbon */
+  .ribbon::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    border: 3px solid hsl(var(--table-header-bg)); /* blend the thumb with the ribbon background */
+    background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
+    box-shadow: 0 0 8px rgba(59,130,246,0.22);
   }
 }

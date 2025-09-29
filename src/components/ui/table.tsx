@@ -1,4 +1,3 @@
-
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -19,7 +18,8 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b bg-background sticky top-0 z-10", className)} {...props} />
+  // apply table-header-bg here so the header background is consistent and themed
+  <thead ref={ref} className={cn("[_&>tr]:border-b sticky top-0 z-10 table-header-bg", className)} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -29,7 +29,7 @@ const TableBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tbody
     ref={ref}
-    className={cn("[&_tr]:border-b", className)}
+    className={cn("[_&>tr]:border-b", className)}
     {...props}
   />
 ))
@@ -72,7 +72,8 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 bg-muted px-4 text-left align-middle font-semibold text-foreground [&:has([role=checkbox])]:pr-0 border-r last:border-r-0",
+      // use table-header-bg and table-cell-border for consistent header bg and borders
+      "h-12 table-header-bg px-4 text-left align-middle font-semibold text-foreground [&:has([role=checkbox])]:pr-0 border-r table-cell-border last:border-r-0",
       className
     )}
     {...props}
@@ -87,7 +88,8 @@ const TableCell = React.forwardRef<
   <td
     ref={ref}
     className={cn(
-      "px-4 align-middle [&:has([role=checkbox])]:pr-0 border-r last:border-r-0",
+      // ensure table cells use the same border color utility
+      "px-4 align-middle [&:has([role=checkbox])]:pr-0 border-r table-cell-border last:border-r-0",
       "whitespace-nowrap overflow-hidden text-ellipsis",
       className
     )}
@@ -119,4 +121,3 @@ export {
   TableCaption,
 }
 
-    

@@ -1,3 +1,19 @@
+node_modules
+.next/cache
+.git
+.env
+*.log
+npm-debug.log*
+dist
+coverage
+.vscode
+/.idea
+tests
+docs
+/*.tgz
+Dockerfile.dev
+Dockerfile.local
+/.DS_Store
 # Docker-specific gitignore
 # https://docs.docker.com/engine/reference/builder/#dockerignore-file
 

@@ -1,7 +1,6 @@
-
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -46,9 +45,10 @@ interface AssetTableProps {
   selectedAssetIds: string[];
   onSelectedAssetIdsChange: (ids: string[]) => void;
   columnVisibility: Record<string, boolean>;
+  tableHeight?: string; // CSS height (e.g. '600px' or 'calc(100vh - 260px)')
 }
 
-export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility }: AssetTableProps) {
+export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility, tableHeight }: AssetTableProps) {
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -146,18 +146,86 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
     )
   }
 
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const ribbonRef = useRef<HTMLDivElement | null>(null);
+
+  // compute how many dynamic columns are visible (used to set min-width so horizontal scroll appears)
+  const visibleDynamicColumns = APP_CONFIG.tableColumns.filter(col => columnVisibility[col.id]).length;
+  const totalColumns = visibleDynamicColumns + 3; // connect, select, actions
+  // set a per-column width (px) — tweak as needed; if many columns are visible this will force horizontal scrolling
+  const perColumnPx = 120;
+  const tableMinWidthPx = Math.max(totalColumns * perColumnPx, 760);
+  const forceHorizontal = visibleDynamicColumns >= 9; // force horizontal scrollbar when user enabled 9 or more columns
+
+  useEffect(() => {
+    const scrollEl = scrollRef.current;
+    const ribbonEl = ribbonRef.current;
+    if (!scrollEl || !ribbonEl) return;
+
+    const onScroll = () => {
+      // keep ribbon in sync with table scroll
+      ribbonEl.scrollLeft = scrollEl.scrollLeft;
+    };
+    const onRibbonScroll = () => {
+      // allow user to drag the ribbon to scroll the table
+      scrollEl.scrollLeft = ribbonEl.scrollLeft;
+    };
+
+    scrollEl.addEventListener('scroll', onScroll);
+    ribbonEl.addEventListener('scroll', onRibbonScroll);
+
+    const setSpacerWidth = () => {
+      const inner = ribbonEl.querySelector('.ribbon-spacer') as HTMLDivElement | null;
+      if (inner) inner.style.width = `${scrollEl.scrollWidth}px`;
+      // Show ribbon only when table is wider than its visible area
+      if (scrollEl.scrollWidth > scrollEl.clientWidth) {
+        ribbonEl.style.display = 'block';
+      } else {
+        ribbonEl.style.display = 'none';
+      }
+    };
+
+    setSpacerWidth();
+
+    const resizeObserver = new ResizeObserver(() => setSpacerWidth());
+    resizeObserver.observe(scrollEl);
+
+    return () => {
+      scrollEl.removeEventListener('scroll', onScroll);
+      ribbonEl.removeEventListener('scroll', onRibbonScroll);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  // when visible columns change, recalc the ribbon spacer to match new scrollWidth
+  useEffect(() => {
+    const scrollEl = scrollRef.current;
+    const ribbonEl = ribbonRef.current;
+    if (!scrollEl || !ribbonEl) return;
+    const inner = ribbonEl.querySelector('.ribbon-spacer') as HTMLDivElement | null;
+    if (inner) (inner as HTMLDivElement).style.width = `${scrollEl.scrollWidth}px`;
+    if (scrollEl.scrollWidth <= scrollEl.clientWidth) {
+      ribbonEl.style.display = 'none';
+    } else {
+      ribbonEl.style.display = 'block';
+    }
+  }, [visibleDynamicColumns, assets.length]);
+
   return (
     <>
-      <div className="rounded-lg border overflow-hidden h-full">
-        <div className="relative w-full h-full overflow-y-auto overflow-x-hidden">
-            <Table>
+      {/* create an isolated stacking context so the table's sticky elements can't escape and overlap higher-level UI like the sidebar */}
+      <div className="rounded-lg border overflow-hidden flex-1 isolate">
+        <div className="relative w-full h-full flex flex-col">
+          {/* Scrollable table area - fixed height so table content scrolls internally */}
+          <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '100%', paddingBottom: '1.25rem' }}>
+            <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
+                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center table-header-bg border-r border-border sticky top-0 z-20">
                     <ExternalLink className="h-4 w-4 inline-block" />
                     <span className="sr-only">Connect</span>
                   </TableHead>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
+                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center table-header-bg border-r border-border sticky top-0 z-20">
                     <CheckSquare className="h-4 w-4 inline-block" />
                     <span className="sr-only">Select</span>
                   </TableHead>
@@ -165,85 +233,105 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                       <TableHead 
                         key={col.id}
                         onClick={() => handleSort(col.id as keyof Asset)}
-                        className={cn("cursor-pointer", col.className)}
+                        className={cn("cursor-pointer table-header-bg border-b border-border sticky top-0 z-10", col.className)}
                       >
                         {col.label}
                       </TableHead>
                   ))}
-                  <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
+                  <TableHead className="w-12 table-header-bg border-b border-border sticky top-0 z-10"><span className="sr-only">Actions</span></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {sortedAssets.map((asset) => (
-                  <TableRow key={asset.id} data-state={selectedAssetIds.includes(asset.id) ? "selected" : ""}>
-                    {asset.webui ? (
-                      <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="h-7 w-7"
-                          onClick={() => handleConnect(asset.webui!)}
-                          aria-label={`Connect to ${asset.machineName}`}
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </TableCell>
-                    ) : (
-                      <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0" />
-                    )}
-                    <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0">
-                      <div className="flex items-center justify-center">
-                        <Checkbox
-                          checked={selectedAssetIds.includes(asset.id)}
-                          onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect(asset.id, !!checked)}
-                          aria-label={`Select row for ${asset.machineName}`}
-                        />
-                      </div>
-                    </TableCell>
-                    {columnVisibility.category && <TableCell>{getCategoryName(asset.category)}</TableCell>}
-                    {columnVisibility.status && <TableCell><Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge></TableCell>}
-                    {columnVisibility.machineName && <TableCell className="font-medium">{asset.machineName}</TableCell>}
-                    {columnVisibility.manufacturer && <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>}
-                    {columnVisibility.modelNumber && <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>}
-                    {columnVisibility.type && <TableCell className="hidden lg:table-cell">{asset.type}</TableCell>}
-                    {columnVisibility.partNumber && <TableCell className="hidden lg:table-cell">{asset.partNumber}</TableCell>}
-                    {columnVisibility.serialNumber && <TableCell className="hidden xl:table-cell">{asset.serialNumber}</TableCell>}
-                    {columnVisibility.os && <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>}
-                    {columnVisibility.assignedUser && <TableCell>{asset.assignedUser || 'N/A'}</TableCell>}
-                    {columnVisibility.userId && <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>}
-                    {columnVisibility.location && <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>}
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => onInfo(asset)}>
-                            <Info className="mr-2 h-4 w-4" />
-                            <span>Info</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => onEdit(asset)}>
-                            <Pencil className="mr-2 h-4 w-4" />
-                            <span>Edit</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            className="text-destructive focus:text-destructive focus:bg-destructive/10"
-                            onClick={() => openDeleteDialog(asset.id)}
-                          >
-                            <Trash2 className="mr-2 h-4 w-4" />
-                            <span>Delete</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {(() => {
+                  try {
+                    return sortedAssets.map((asset) => (
+                      <TableRow key={asset.id} data-state={selectedAssetIds.includes(asset.id) ? "selected" : ""}>
+                        {asset.webui ? (
+                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center bg-transparent border-r border-border">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-7 w-7"
+                              onClick={() => handleConnect(asset.webui!)}
+                              aria-label={`Connect to ${asset.machineName}`}
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                            </Button>
+                          </TableCell>
+                        ) : (
+                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 bg-transparent border-r border-border" />
+                        )}
+                        <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 bg-transparent border-r border-border">
+                          <div className="flex items-center justify-center">
+                            <Checkbox
+                              checked={selectedAssetIds.includes(asset.id)}
+                              onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect(asset.id, !!checked)}
+                              aria-label={`Select row for ${asset.machineName}`}
+                            />
+                          </div>
+                        </TableCell>
+                        {columnVisibility.category && <TableCell>{getCategoryName(asset.category)}</TableCell>}
+                        {columnVisibility.status && <TableCell><Badge variant={getStatusVariant(asset.status)}>{asset.status}</Badge></TableCell>}
+                        {columnVisibility.machineName && <TableCell className="font-medium">{asset.machineName}</TableCell>}
+                        {columnVisibility.manufacturer && <TableCell className="hidden md:table-cell">{asset.manufacturer}</TableCell>}
+                        {columnVisibility.modelNumber && <TableCell className="hidden lg:table-cell">{asset.modelNumber}</TableCell>}
+                        {columnVisibility.type && <TableCell className="hidden lg:table-cell">{asset.type}</TableCell>}
+                        {columnVisibility.partNumber && <TableCell className="hidden lg:table-cell">{asset.partNumber}</TableCell>}
+                        {columnVisibility.serialNumber && <TableCell className="hidden xl:table-cell">{asset.serialNumber}</TableCell>}
+                        {columnVisibility.os && <TableCell className="hidden xl:table-cell">{asset.os}</TableCell>}
+                        {columnVisibility.assignedUser && <TableCell>{asset.assignedUser || 'N/A'}</TableCell>}
+                        {columnVisibility.userId && <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>}
+                        {columnVisibility.location && <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>}
+                        <TableCell>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => onInfo(asset)}>
+                                <Info className="mr-2 h-4 w-4" />
+                                <span>Info</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => onEdit(asset)}>
+                                <Pencil className="mr-2 h-4 w-4" />
+                                <span>Edit</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem
+                                className="text-destructive focus:text-destructive focus:bg-destructive/10"
+                                onClick={() => openDeleteDialog(asset.id)}
+                              >
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                <span>Delete</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </TableCell>
+                      </TableRow>
+                    ));
+                  } catch (err) {
+                    console.error('Error rendering table rows:', err);
+                    return (
+                      <TableRow>
+                        <TableCell colSpan={totalColumns}>
+                          <div className="p-4 text-sm text-destructive">An error occurred rendering rows. Try clearing the search or refresh the page.</div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  }
+                })()}
+                
               </TableBody>
             </Table>
+          </div>
+          {/* Bottom horizontal scroll ribbon that mirrors the table's scrollWidth (overlay, doesn't add layout height) */}
+          <div ref={ribbonRef} className="absolute bottom-0 left-0 w-full h-6 overflow-x-auto overflow-y-hidden scrollbar-neon z-30 ribbon" style={{ display: 'none' }}>
+            {/* spacer provides the scrollable width and a tiny height so browsers render the horizontal scrollbar */}
+            <div className="ribbon-spacer h-px" />
+          </div>
         </div>
       </div>
       <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>

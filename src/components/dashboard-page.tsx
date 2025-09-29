@@ -22,6 +22,7 @@ import { useUser } from "@/components/user-provider";
 import { CategoryCounts } from "./category-counts";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { ErrorBoundary } from "./ui/error-boundary";
 
 type ColumnVisibility = Record<string, boolean>;
 
@@ -149,18 +150,31 @@ export default function DashboardPage() {
   }
   
   const filteredAssets = useMemo(() => {
-    return assets.filter(asset => {
-      const searchMatch = !searchQuery ||
-        Object.values(asset).some(val => 
-          String(val).toLowerCase().includes(searchQuery.toLowerCase())
-        );
+    const q = (searchQuery || '').trim().toLowerCase();
+
+    const matches = assets.filter(asset => {
+      const searchMatch = !q || Object.values(asset).some(val => {
+        try {
+          if (val === null || val === undefined) return false;
+          if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean') {
+            return String(val).toLowerCase().includes(q);
+          }
+          // fallback for objects/dates — stringify safely
+          return JSON.stringify(val).toLowerCase().includes(q);
+        } catch (err) {
+          return false;
+        }
+      });
 
       const categoryMatch = filters.category === 'all' || asset.category === filters.category;
       const statusMatch = filters.status === 'all' || asset.status === filters.status;
       const locationMatch = filters.location === 'all' || asset.location === filters.location;
 
       return searchMatch && categoryMatch && statusMatch && locationMatch;
-    }).sort((a, b) => a.machineName.localeCompare(b.machineName));
+    });
+
+    // safe sort — guard against missing machineName
+    return matches.sort((a, b) => (a.machineName || '').localeCompare(b.machineName || ''));
   }, [assets, searchQuery, filters]);
 
 
@@ -289,7 +303,7 @@ export default function DashboardPage() {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-background overflow-x-hidden">
+      <div className="flex h-screen bg-background overflow-hidden">
         <Sidebar collapsible="icon" className="border-r">
           <SidebarHeader>
             <Logo />
@@ -306,106 +320,104 @@ export default function DashboardPage() {
             <ThemeToggle />
           </SidebarFooter>
         </Sidebar>
-        <SidebarInset className="flex-1">
-          <div className="w-full max-w-none flex flex-col h-screen px-6">
-            <header className="flex items-center justify-between p-4 border-b gap-4 flex-wrap">
-              <div className="flex items-center gap-2">
-                <SidebarTrigger className="md:hidden" />
-                <h1 className="text-2xl font-bold tracking-tight font-headline">
-                  Inventory Dashboard
-                </h1>
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger className="md:hidden" />
+              <h1 className="text-2xl font-bold tracking-tight font-headline">
+                Inventory Dashboard
+              </h1>
+            </div>
+            <div className="flex items-center gap-2 flex-1 justify-end">
+              <div className="w-full max-w-[180px]">
+                <Select value={currentUser} onValueChange={setCurrentUser}>
+                  <SelectTrigger className="h-9">
+                    <div className="flex items-center gap-2">
+                      <User className="h-4 w-4 text-muted-foreground" />
+                      <SelectValue placeholder="Select user..." />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {APP_CONFIG.users.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="flex items-center gap-2 flex-1 justify-end">
-                <div className="w-full max-w-[180px]">
-                  <Select value={currentUser} onValueChange={setCurrentUser}>
-                    <SelectTrigger className="h-9">
-                      <div className="flex items-center gap-2">
-                        <User className="h-4 w-4 text-muted-foreground" />
-                        <SelectValue placeholder="Select user..." />
-                      </div>
+              <Button variant="outline" size="sm" onClick={() => handleExport()}>
+                <Download className="mr-2 h-4 w-4" />
+                <span className="hidden sm:inline">Export All</span>
+              </Button>
+              <Button size="sm" onClick={() => setAddAssetOpen(true)}>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                <span className="hidden sm:inline">Add Asset</span>
+              </Button>
+            </div>
+          </header>
+          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-8">
+            {/* Main content area */}
+            <div className="flex-1 flex flex-col min-w-0 min-h-0">
+              <div className="top-controls flex items-center gap-2 mb-4 h-[58px] shrink-0">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                      placeholder="Search all fields..."
+                      className="pl-10 pr-10 h-9"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  {searchQuery && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                      onClick={() => setSearchQuery("")}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Select value={filters.category} onValueChange={handleFilterChange('category')}>
+                    <SelectTrigger className="h-9 w-[180px]">
+                      <SelectValue placeholder="Filter by product family" />
                     </SelectTrigger>
                     <SelectContent>
-                      {APP_CONFIG.users.map(user => <SelectItem key={user} value={user}>{user}</SelectItem>)}
+                      <SelectItem value="all">All Product Families</SelectItem>
+                      {APP_CONFIG.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
                     </SelectContent>
                   </Select>
-                </div>
-                <Button variant="outline" size="sm" onClick={() => handleExport()}>
-                  <Download className="mr-2 h-4 w-4" />
-                  <span className="hidden sm:inline">Export All</span>
-                </Button>
-                <Button size="sm" onClick={() => setAddAssetOpen(true)}>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  <span className="hidden sm:inline">Add Asset</span>
-                </Button>
-              </div>
-            </header>
-            <main className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col min-h-0 overflow-hidden">
-                  
-                  {/* Main content area */}
-                  <div className="flex-1 flex flex-col min-w-0 min-h-0">
-                    <div className="flex items-center gap-2 mb-4 h-[58px]">
-                        <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                            <Input
-                                placeholder="Search all fields..."
-                                className="pl-10 pr-10 h-9"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                            {searchQuery && (
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
-                                onClick={() => setSearchQuery("")}
-                              >
-                                <X className="h-4 w-4" />
-                              </Button>
-                            )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Select value={filters.category} onValueChange={handleFilterChange('category')}>
-                            <SelectTrigger className="h-9 w-[180px]">
-                              <SelectValue placeholder="Filter by product family" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="all">All Product Families</SelectItem>
-                              {APP_CONFIG.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                          <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                            <SelectTrigger className="h-9 w-[180px]">
-                              <SelectValue placeholder="Filter by status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="all">All Statuses</SelectItem>
-                              {APP_CONFIG.statuses.map(s => <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                          <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                            <SelectTrigger className="h-9 w-[180px]">
-                              <SelectValue placeholder="Filter by location" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="all">All Locations</SelectItem>
-                              {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                          <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" size="sm" className="h-9">
-                                    <Settings2 className="mr-2 h-4 w-4" />
-                                    View
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-[200px]">
-                                <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                {APP_CONFIG.tableColumns.map(column => (
-                                    <DropdownMenuCheckboxItem
-                                        key={column.id}
-                                        className="capitalize"
-                                        checked={tempColumnVisibility[column.id]}
+                  <Select value={filters.status} onValueChange={handleFilterChange('status')}>
+                    <SelectTrigger className="h-9 w-[180px]">
+                      <SelectValue placeholder="Filter by status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Statuses</SelectItem>
+                      {APP_CONFIG.statuses.map(s => <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={filters.location} onValueChange={handleFilterChange('location')}>
+                    <SelectTrigger className="h-9 w-[180px]">
+                      <SelectValue placeholder="Filter by location" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Locations</SelectItem>
+                      {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="h-9">
+                            <Settings2 className="mr-2 h-4 w-4" />
+                            View
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-[200px]">
+                        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {APP_CONFIG.tableColumns.map(column => (
+                            <DropdownMenuCheckboxItem
+                                key={column.id}
+                                className="capitalize"
+                                checked={tempColumnVisibility[column.id]}
                     onCheckedChange={(value: boolean | 'indeterminate') =>
                       setTempColumnVisibility(prev => ({
                         ...prev,
@@ -413,98 +425,100 @@ export default function DashboardPage() {
                       }))
                     }
                     onSelect={(e: React.SyntheticEvent) => e.preventDefault()} // Prevent closing
-                                    >
-                                        {column.label}
-                                    </DropdownMenuCheckboxItem>
-                                ))}
-                                <DropdownMenuSeparator />
-                                <div className="flex justify-end gap-2 p-2">
-                                  <Button variant="ghost" size="sm" onClick={handleCancelColumnVisibility}>Cancel</Button>
-                                  <Button size="sm" onClick={handleApplyColumnVisibility}>Apply</Button>
-                                </div>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                            >
+                                {column.label}
+                            </DropdownMenuCheckboxItem>
+                        ))}
+                        <DropdownMenuSeparator />
+                        <div className="flex justify-end gap-2 p-2">
+                          <Button variant="ghost" size="sm" onClick={handleCancelColumnVisibility}>Cancel</Button>
+                          <Button size="sm" onClick={handleApplyColumnVisibility}>Apply</Button>
                         </div>
-                    </div>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
 
-                    <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px]">
-                        <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
-                                <Check className="mr-2 h-4 w-4" />
-                                Select all assets
-                            </Button>
-                            <Button variant="outline" size="sm" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
-                                <X className="mr-2 h-4 w-4" />
-                                Clear selection
-                            </Button>
-                        </div>
+              <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px] shrink-0">
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
+                    <Check className="mr-2 h-4 w-4" />
+                    Select all on page
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
+                    <X className="mr-2 h-4 w-4" />
+                    Clear selection
+                  </Button>
+                </div>
 
-                        <div className="text-sm font-medium text-muted-foreground">
-                            {selectedAssetIds.length > 0
-                                ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
-                                : `${filteredAssets.length} items.`
-                            }
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
-                                <Download className="mr-2 h-4 w-4" />
-                                Export Selected
-                            </Button>
-                            <Button variant="destructive" size="sm" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
-                                <Trash2 className="mr-2 h-4 w-4" />
-                                Delete Selected
-                            </Button>
-                        </div>
-                    </div>
+                <div className="text-sm font-medium text-muted-foreground">
+                  {selectedAssetIds.length > 0
+                      ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
+                      : `${filteredAssets.length} items.`
+                  }
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
+                    <Download className="mr-2 h-4 w-4" />
+                    Export Selected
+                  </Button>
+                  <Button variant="destructive" size="sm" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Delete Selected
+                  </Button>
+                </div>
+              </div>
 
-                    <div className="flex-1 min-h-0 overflow-hidden flex">
-                      {!isClient || isInitialLoad ? (
-                        <div className="rounded-lg border overflow-hidden h-full flex-1">
-                           <table className="w-full caption-bottom text-sm">
-                            <thead className="[&_tr]:border-b">
-                              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                <th className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r-0 first:border-r-0 w-[40px]"><Skeleton className="h-5 w-5" /></th>
-                                {APP_CONFIG.tableColumns.map(col => (
-                                  <th key={col.id} className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r last:border-r-0">
-                                    {col.label}
-                                  </th>
-                                ))}
-                                <th className="h-12 w-12 bg-muted"><span className="sr-only">Actions</span></th>
-                              </tr>
-                            </thead>
-                             <tbody className="[&_tr:last-child]:border-0">
-                              {Array.from({ length: 5 }).map((_, i) => (
-                                <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted h-9">
-                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-5" /></td>
-                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
-                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-[100px]" /></td>
-                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[150px]" /></td>
-                                  <td className="p-4 align-middle hidden md:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
-                                  <td className="p-4 align-middle hidden lg:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
-                                  <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
-                                  <td className="p-4 align-middle hidden sm:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
-                                  <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-8" /></td>
-                                </tr>
-                              ))}
-                            </tbody>
-                           </table>
-                        </div>
-                      ) : (
-                        <AssetTable
-                          assets={filteredAssets}
-                          onEdit={handleEdit}
-                          onInfo={handleInfo}
-                          onDelete={fetchAssets}
-                          selectedAssetIds={selectedAssetIds}
-                          onSelectedAssetIdsChange={setSelectedAssetIds}
-                          columnVisibility={columnVisibility}
-                        />
-                      )}
-                    </div>
+              <div className="flex-1 min-h-0 overflow-hidden flex">
+                {!isClient || isInitialLoad ? (
+                  <div className="rounded-lg border overflow-hidden h-full flex-1">
+                    <table className="w-full caption-bottom text-sm">
+                      <thead className="[&_tr]:border-b">
+                        <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                          <th className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r-0 first:border-r-0 w-[40px]"><Skeleton className="h-5 w-5" /></th>
+                          {APP_CONFIG.tableColumns.map(col => (
+                            <th key={col.id} className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r last:border-r-0">
+                              {col.label}
+                            </th>
+                          ))}
+                          <th className="h-12 w-12 bg-muted"><span className="sr-only">Actions</span></th>
+                        </tr>
+                      </thead>
+                       <tbody className="[&_tr:last-child]:border-0">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted h-9">
+                            <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-5" /></td>
+                            <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-[100px]" /></td>
+                            <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[150px]" /></td>
+                            <td className="p-4 align-middle hidden md:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle hidden lg:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[100px]" /></td>
+                            <td className="p-4 align-middle"><Skeleton className="h-5 w-[120px]" /></td>
+                            <td className="p-4 align-middle hidden sm:table-cell border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
+                            <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-8" /></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                     </table>
                   </div>
-            </main>
-          </div>
-        </SidebarInset>
+                ) : (
+                  <ErrorBoundary>
+                    <AssetTable
+                      assets={filteredAssets}
+                      onEdit={handleEdit}
+                      onInfo={handleInfo}
+                      onDelete={fetchAssets}
+                      selectedAssetIds={selectedAssetIds}
+                      onSelectedAssetIdsChange={setSelectedAssetIds}
+                      columnVisibility={columnVisibility}
+                      tableHeight="100%"
+                    />
+                  </ErrorBoundary>
+                )}
+              </div>
+            </div>
+          </main>
+        </div>
         <AddAssetDialog isOpen={isAddAssetOpen} onOpenChange={setAddAssetOpen} onAssetAdded={fetchAssets} />
         {selectedAsset && <EditAssetDialog asset={selectedAsset} isOpen={isEditAssetOpen} onOpenChange={setEditAssetOpen} onAssetUpdated={fetchAssets} />}
         {selectedAsset && <AssetDetailsDialog asset={selectedAsset} isOpen={isDetailsAssetOpen} onOpenChange={setDetailsAssetOpen} />}

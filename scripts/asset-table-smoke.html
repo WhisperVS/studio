@@ -1,0 +1,62 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Asset Table Smoke</title></head><body><h1>Asset Table Smoke</h1><p>ribbon-spacer present: true</p><pre>
+"use client";
+
+import { useMemo, useState, useRef, useEffect } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { MoreHorizontal, Trash2, Pencil, Info, ExternalLink, CheckSquare } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import type { Asset } from "@/lib/types";
+import { useToast } from '@/hooks/use-toast';
+import { APP_CONFIG, getStatusVariant } from '@/lib/config';
+import { Checkbox } from './ui/checkbox';
+import { cn } from '@/lib/utils';
+
+type SortKey = keyof Asset | '';
+
+interface AssetTableProps {
+  assets: Asset[];
+  onEdit: (asset: Asset) => void;
+  onInfo: (asset: Asset) => void;
+  onDelete: () => void;
+  selectedAssetIds: string[];
+  onSelectedAssetIdsChange: (ids: string[]) => void;
+  columnVisibility: Record&lt;string, boolean>;
+}
+
+export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility }: AssetTableProps) {
+  const { toast } = useToast();
+  const [sortKey, setSortKey] = useState&lt;SortKey>('machineName');
+  const [sortOrder, setSortOrder] = useState&lt;'asc' | 'desc'>('asc');
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [assetToDelete, setAssetToDelete] = useState&lt;string | null>(null);
+
+  const handleRowSelect = (assetId: string, checked: boolean) => {
+    onSelectedAssetIdsChange(
+      checked
+        ? [...selectedAssetIds, assetId]
+        : selectedAssetIds.filter(id => id !== assetId</pre></body></html>
