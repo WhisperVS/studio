@@ -217,7 +217,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       <div className="rounded-lg border overflow-hidden flex-1 isolate">
         <div className="relative w-full h-full flex flex-col">
           {/* Scrollable table area - fixed height so table content scrolls internally */}
-          <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '0.5rem' }}>
+          <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
             <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableHeader>
                 <TableRow>
@@ -328,7 +328,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             </Table>
           </div>
           {/* Bottom horizontal scroll ribbon that mirrors the table's scrollWidth (overlay, doesn't add layout height) */}
-          <div ref={ribbonRef} className="absolute bottom-0 left-0 right-3 h-5 overflow-x-auto overflow-y-hidden scrollbar-neon z-20 ribbon" style={{ display: 'none' }}>
+          <div ref={ribbonRef} className="absolute bottom-0 left-0 right-4 h-5 overflow-x-auto overflow-y-hidden scrollbar-neon z-20 ribbon" style={{ display: 'none' }}>
             {/* spacer provides the scrollable width and a tiny height so browsers render the horizontal scrollbar */}
             <div className="ribbon-spacer h-px" />
           </div>

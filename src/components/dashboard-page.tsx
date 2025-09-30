@@ -148,6 +148,14 @@ export default function DashboardPage() {
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
   }
+
+  const handleClearFilters = () => {
+    setFilters({
+      category: 'all',
+      status: 'all',
+      location: 'all',
+    });
+  }
   
   const filteredAssets = useMemo(() => {
     try {
@@ -453,6 +461,10 @@ export default function DashboardPage() {
                         </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
+                  <Button variant="outline" size="sm" className="h-9" onClick={handleClearFilters}>
+                    <X className="mr-2 h-4 w-4" />
+                    Clear Filters
+                  </Button>
                 </div>
               </div>
 
