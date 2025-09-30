@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      fontSize: {
+        sm: ['0.829rem', '1.25rem'], // Override text-sm with custom values
+      },
       fontFamily: {
         body: ['PT Sans', 'sans-serif'],
         headline: ['Space Grotesk', 'sans-serif'],

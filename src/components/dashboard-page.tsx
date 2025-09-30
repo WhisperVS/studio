@@ -150,31 +150,48 @@ export default function DashboardPage() {
   }
   
   const filteredAssets = useMemo(() => {
-    const q = (searchQuery || '').trim().toLowerCase();
+    try {
+      const q = (searchQuery || '').trim().toLowerCase();
 
-    const matches = assets.filter(asset => {
-      const searchMatch = !q || Object.values(asset).some(val => {
+      const matches = assets.filter(asset => {
         try {
-          if (val === null || val === undefined) return false;
-          if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean') {
-            return String(val).toLowerCase().includes(q);
-          }
-          // fallback for objects/dates — stringify safely
-          return JSON.stringify(val).toLowerCase().includes(q);
+          const searchMatch = !q || Object.values(asset).some(val => {
+            try {
+              if (val === null || val === undefined) return false;
+              if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean') {
+                return String(val).toLowerCase().includes(q);
+              }
+              // fallback for objects/dates — stringify safely
+              return JSON.stringify(val).toLowerCase().includes(q);
+            } catch (err) {
+              return false;
+            }
+          });
+
+          const categoryMatch = filters.category === 'all' || asset.category === filters.category;
+          const statusMatch = filters.status === 'all' || asset.status === filters.status;
+          const locationMatch = filters.location === 'all' || asset.location === filters.location;
+
+          return searchMatch && categoryMatch && statusMatch && locationMatch;
         } catch (err) {
+          console.warn('Error filtering asset:', asset.id, err);
           return false;
         }
       });
 
-      const categoryMatch = filters.category === 'all' || asset.category === filters.category;
-      const statusMatch = filters.status === 'all' || asset.status === filters.status;
-      const locationMatch = filters.location === 'all' || asset.location === filters.location;
-
-      return searchMatch && categoryMatch && statusMatch && locationMatch;
-    });
-
-    // safe sort — guard against missing machineName
-    return matches.sort((a, b) => (a.machineName || '').localeCompare(b.machineName || ''));
+      // safe sort — guard against missing machineName
+      return matches.sort((a, b) => {
+        try {
+          return (a.machineName || '').localeCompare(b.machineName || '');
+        } catch (err) {
+          console.warn('Error sorting assets:', err);
+          return 0;
+        }
+      });
+    } catch (err) {
+      console.error('Error in filteredAssets:', err);
+      return []; // Return empty array if filtering fails
+    }
   }, [assets, searchQuery, filters]);
 
 
@@ -352,7 +369,7 @@ export default function DashboardPage() {
               </Button>
             </div>
           </header>
-          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-8">
+          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-4">
             {/* Main content area */}
             <div className="flex-1 flex flex-col min-w-0 min-h-0">
               <div className="top-controls flex items-center gap-2 mb-4 h-[58px] shrink-0">
@@ -502,7 +519,7 @@ export default function DashboardPage() {
                      </table>
                   </div>
                 ) : (
-                  <ErrorBoundary key={searchQuery}>
+                  <ErrorBoundary key={`${searchQuery}-${filters.category}-${filters.status}-${filters.location}`}>
                     <AssetTable
                       assets={filteredAssets}
                       onEdit={handleEdit}

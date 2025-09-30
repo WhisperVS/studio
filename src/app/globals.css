@@ -7,7 +7,7 @@
     --background: 280 50% 95%;
     --foreground: 275 10% 15%;
     /* table header specific colors (H S% L%) */
-    --table-header-bg: 0 0% 96%; /* light subtle gray */
+    --table-header-bg: 218 89% 73%; /* blue color rgb(124, 172, 248) */
     --table-header-border: 220 10% 90%;
     --card: 280 50% 98%;
     --card-foreground: 275 10% 15%;
@@ -63,7 +63,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 275 15% 25%;
-    --input: 275 15% 20%;
+    --input: 275 15% 40%;
     --ring: 275 90% 70%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -155,19 +155,25 @@
     box-shadow: 0 0 18px rgba(59,130,246,0.5);
   }
 
-  /* For firefox */
+  /* For firefox - light theme */
   .scrollbar-neon {
-    scrollbar-color: rgba(59,130,246,0.9) transparent;
-    scrollbar-width: thin;
+    scrollbar-color: rgb(122 0 209) #f4ecf9;
+    scrollbar-width: auto;
+  }
+
+  /* For firefox - dark theme */
+  .dark .scrollbar-neon {
+    scrollbar-color: rgb(122 0 209) #1a161d;
+    scrollbar-width: auto;
   }
 
   /* table header background variant */
   .table-header-bg {
     /* use dedicated table header background so header is distinct from table body */
     background-color: hsl(var(--table-header-bg));
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(0px);
     /* match header bottom border color with table cell borders (uses --border base variable) */
-    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    border-bottom: 1px solid hsl(var(--border) / 0.7);
     /* subtle separation without adding a different color line */
     box-shadow: none;
   }
@@ -187,36 +193,36 @@
     transition: all 0.15s ease-out !important;
   }
 
-  /* table cell borders: use base border color with higher contrast for better visibility */
+  /* table cell borders: use base border color with much higher contrast for maximum visibility */
   .table-cell-border {
-    border-color: hsl(var(--border) / 0.4);
+    border-color: hsl(var(--border) / 0.7);
   }
 
   /* apply to table cells and headers within table components */
   table tr th,
   table tr td {
-    border-color: hsl(var(--border) / 0.4);
+    border-color: hsl(var(--border) / 0.7);
   }
 
   /* ensure header and body separation lines match exactly */
   .table-header-bg {
-    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    border-bottom: 1px solid hsl(var(--border) / 0.7);
   }
 
   /* Ensure vertical (right) borders match horizontal separators exactly */
   table tr th,
   table tr td {
     /* force both bottom and right borders to match the theme border token */
-    border-bottom: 1px solid hsl(var(--border) / 0.4) !important;
-    border-right: 1px solid hsl(var(--border) / 0.4) !important;
+    border-bottom: 1px solid hsl(var(--border) / 0.7) !important;
+    border-right: 1px solid hsl(var(--border) / 0.7) !important;
   }
 
   /* Ribbon should visually match the table header background and separators */
   .ribbon {
-    background-color: hsl(var(--table-header-bg));
-    border-top: 1px solid hsl(var(--border) / 0.4);
+    /* background-color: hsl(var(--table-header-bg));
+    border-top: 1px solid hsl(var(--border) / 0.7); */
     /* ensure ribbon sits above rows but below any overlays */
-    z-index: 40;
+    /* z-index: 40; */
   }
 
   /* spacer should be transparent so ribbon background fills the track, but keep a small height for scrollbar rendering */

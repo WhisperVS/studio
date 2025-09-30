@@ -153,7 +153,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   const visibleDynamicColumns = APP_CONFIG.tableColumns.filter(col => columnVisibility[col.id]).length;
   const totalColumns = visibleDynamicColumns + 3; // connect, select, actions
   // set a per-column width (px) — tweak as needed; if many columns are visible this will force horizontal scrolling
-  const perColumnPx = 120;
+  const perColumnPx = 120; // Restored to original value
   const tableMinWidthPx = Math.max(totalColumns * perColumnPx, 760);
   const forceHorizontal = visibleDynamicColumns >= 9; // force horizontal scrollbar when user enabled 9 or more columns
 
@@ -217,15 +217,15 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       <div className="rounded-lg border overflow-hidden flex-1 isolate">
         <div className="relative w-full h-full flex flex-col">
           {/* Scrollable table area - fixed height so table content scrolls internally */}
-          <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '100%', paddingBottom: '1.25rem' }}>
+          <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '0.5rem' }}>
             <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center table-header-bg border-r border-border sticky top-0 z-20">
+                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center sticky top-0 z-20">
                     <ExternalLink className="h-4 w-4 inline-block" />
                     <span className="sr-only">Connect</span>
                   </TableHead>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center table-header-bg border-r border-border sticky top-0 z-20">
+                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center sticky top-0 z-20">
                     <CheckSquare className="h-4 w-4 inline-block" />
                     <span className="sr-only">Select</span>
                   </TableHead>
@@ -233,12 +233,12 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                       <TableHead 
                         key={col.id}
                         onClick={() => handleSort(col.id as keyof Asset)}
-                        className={cn("cursor-pointer table-header-bg border-b border-border sticky top-0 z-10", col.className)}
+                        className={cn("cursor-pointer sticky top-0 z-10", col.className)}
                       >
                         {col.label}
                       </TableHead>
                   ))}
-                  <TableHead className="w-12 table-header-bg border-b border-border sticky top-0 z-10"><span className="sr-only">Actions</span></TableHead>
+                  <TableHead className="w-12 sticky top-0 z-10"><span className="sr-only">Actions</span></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -328,7 +328,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             </Table>
           </div>
           {/* Bottom horizontal scroll ribbon that mirrors the table's scrollWidth (overlay, doesn't add layout height) */}
-          <div ref={ribbonRef} className="absolute bottom-0 left-0 w-full h-6 overflow-x-auto overflow-y-hidden scrollbar-neon z-30 ribbon" style={{ display: 'none' }}>
+          <div ref={ribbonRef} className="absolute bottom-0 left-0 right-3 h-5 overflow-x-auto overflow-y-hidden scrollbar-neon z-20 ribbon" style={{ display: 'none' }}>
             {/* spacer provides the scrollable width and a tiny height so browsers render the horizontal scrollbar */}
             <div className="ribbon-spacer h-px" />
           </div>
