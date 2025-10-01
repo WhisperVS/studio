@@ -57,7 +57,9 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-accent/20 h-9",
+      "border-b transition-colors h-9",
+      "bg-[var(--table-data-bg)] hover:bg-[var(--table-data-hover)] data-[state=selected]:bg-[var(--table-data-selected)]",
+      "text-[var(--table-data-text)]",
       className
     )}
     {...props}
@@ -72,8 +74,9 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      // use table-header-bg and table-cell-border for consistent header bg and borders
-      "h-12 table-header-bg px-4 text-left align-middle font-semibold text-foreground [&:has([role=checkbox])]:pr-0 border-r table-cell-border last:border-r-0",
+      // use table-header-bg for consistent header styling
+      "h-12 table-header-bg px-4 text-left align-middle font-semibold [&:has([role=checkbox])]:pr-0 border-r table-cell-border last:border-r-0",
+      "text-[var(--table-header-text)]",
       className
     )}
     {...props}
@@ -91,6 +94,7 @@ const TableCell = React.forwardRef<
       // ensure table cells use the same border color utility
       "px-4 align-middle [&:has([role=checkbox])]:pr-0 border-r table-cell-border last:border-r-0",
       "whitespace-nowrap overflow-hidden text-ellipsis",
+      "text-[var(--table-data-text)]",
       className
     )}
     {...props}

@@ -2,7 +2,9 @@
 /* LIGHT THEME - PROFESSIONAL COLOR SCHEME */
 /* ========================================= */
 
-:root {
+/* Default fallback (light theme) */
+:root,
+.light {
   /* ============================= */
   /* CORE LAYOUT COLORS */
   /* ============================= */

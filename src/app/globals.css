@@ -33,16 +33,31 @@
   .status-badge.in-use {
     background-color: var(--status-in-use-bg);
     color: var(--status-in-use-text);
+    border: none;
+  }
+
+  .status-badge.in-use:hover {
+    background-color: var(--status-in-use-hover);
   }
 
   .status-badge.spare {
     background-color: var(--status-spare-bg);
     color: var(--status-spare-text);
+    border: none;
+  }
+
+  .status-badge.spare:hover {
+    background-color: var(--status-spare-hover);
   }
 
   .status-badge.for-repair {
     background-color: var(--status-for-repair-bg);
     color: var(--status-for-repair-text);
+    border: none;
+  }
+
+  .status-badge.for-repair:hover {
+    background-color: var(--status-for-repair-hover);
   }
 
   .status-badge.for-parts {
@@ -51,14 +66,18 @@
     border: 1px solid var(--status-for-parts-border);
   }
 
+  .status-badge.for-parts:hover {
+    background-color: var(--status-for-parts-hover);
+  }
+
   .status-badge.for-recycle {
     background-color: var(--status-for-recycle-bg);
     color: var(--status-for-recycle-text);
+    border: none;
   }
 
-  .status-badge.warning {
-    background-color: var(--warning-color);
-    color: var(--warning-foreground);
+  .status-badge.for-recycle:hover {
+    background-color: var(--status-for-recycle-hover);
   }
 
   .btn-add-asset {
@@ -167,10 +186,11 @@
   /* table header background variant */
   .table-header-bg {
     /* use dedicated table header background so header is distinct from table body */
-    background-color: hsl(var(--table-header-bg));
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
     backdrop-filter: blur(0px);
-    /* match header bottom border color with table cell borders (uses --border base variable) */
-    border-bottom: 1px solid hsl(var(--border) / 0.7);
+    /* match header bottom border color with table cell borders */
+    border-bottom: 1px solid var(--table-header-border);
     /* subtle separation without adding a different color line */
     box-shadow: none;
   }
@@ -190,35 +210,36 @@
     transition: all 0.15s ease-out !important;
   }
 
-  /* table cell borders: use base border color with much higher contrast for maximum visibility */
+  /* table cell borders: use table border variables for consistency */
   .table-cell-border {
-    border-color: hsl(var(--border) / 0.7);
+    border-color: var(--table-data-border);
   }
 
   /* apply to table cells and headers within table components */
   table tr th,
   table tr td {
-    border-color: hsl(var(--border) / 0.7);
+    border-color: var(--table-data-border);
   }
 
   /* ensure header and body separation lines match exactly */
   .table-header-bg {
-    border-bottom: 1px solid hsl(var(--border) / 0.7);
+    border-bottom: 1px solid var(--table-header-border);
   }
 
   /* Ensure vertical (right) borders match horizontal separators exactly */
   table tr th,
   table tr td {
     /* force both bottom and right borders to match the theme border token */
-    border-bottom: 1px solid hsl(var(--border) / 0.7) !important;
-    border-right: 1px solid hsl(var(--border) / 0.7) !important;
+    border-bottom: 1px solid var(--table-data-border) !important;
+    border-right: 1px solid var(--table-data-border) !important;
   }
 
   /* Ensure borders are visible on selected rows */
   table tr[data-state="selected"] th,
   table tr[data-state="selected"] td {
-    border-bottom: 1px solid hsl(var(--border) / 0.8) !important;
-    border-right: 1px solid hsl(var(--border) / 0.8) !important;
+    border-bottom: 1px solid var(--table-data-border) !important;
+    border-right: 1px solid var(--table-data-border) !important;
+    background-color: var(--table-data-selected);
     position: relative;
     z-index: 1;
   }
@@ -238,7 +259,7 @@
   /* make scrollbar thumb stand out on top of the header-colored ribbon */
   .ribbon::-webkit-scrollbar-thumb {
     border-radius: 9999px;
-    border: 3px solid hsl(var(--table-header-bg)); /* blend the thumb with the ribbon background */
+    border: 3px solid var(--table-header-bg); /* blend the thumb with the ribbon background */
     background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
     box-shadow: 0 0 8px rgba(59,130,246,0.22);
   }

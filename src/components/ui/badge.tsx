@@ -17,6 +17,12 @@ const badgeVariants = cva(
         warning:
           "border-transparent bg-warning text-warning-foreground hover:bg-warning/80",
         outline: "text-foreground",
+        // Custom status variants that use our CSS variables
+        "in-use": "status-badge in-use",
+        "spare": "status-badge spare", 
+        "for-repair": "status-badge for-repair",
+        "for-parts": "status-badge for-parts",
+        "for-recycle": "status-badge for-recycle",
       },
     },
     defaultVariants: {
