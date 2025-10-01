@@ -89,7 +89,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
         <DialogFooter className="sm:justify-between">
           <div>
             {asset.webui && (
-              <Button onClick={handleConnect} variant="outline" className="btn-view-settings">
+              <Button onClick={handleConnect} className="btn-view-settings">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Connect
               </Button>

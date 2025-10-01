@@ -81,12 +81,97 @@
   }
 
   .btn-add-asset {
-    background-color: var(--btn-add-asset-bg);
-    color: var(--btn-add-asset-text);
+    background-color: var(--btn-add-asset-bg) !important;
+    color: var(--btn-add-asset-text) !important;
+    border: 1px solid var(--btn-add-asset-bg) !important;
   }
 
   .btn-add-asset:hover {
-    background-color: var(--btn-add-asset-hover);
+    background-color: var(--btn-add-asset-hover) !important;
+    border-color: var(--btn-add-asset-hover) !important;
+  }
+
+  .btn-export {
+    background-color: var(--btn-export-bg) !important;
+    color: var(--btn-export-text) !important;
+    border: 1px solid var(--btn-export-bg) !important;
+  }
+
+  .btn-export:hover {
+    background-color: var(--btn-export-hover) !important;
+    border-color: var(--btn-export-hover) !important;
+  }
+
+  .btn-view-settings {
+    background-color: var(--btn-view-settings-bg) !important;
+    color: var(--btn-view-settings-text) !important;
+    border: 1px solid var(--input-border) !important;
+  }
+
+  .btn-view-settings:hover {
+    background-color: var(--btn-view-settings-hover) !important;
+  }
+
+  .btn-clear-filters {
+    background-color: var(--btn-clear-filters-bg) !important;
+    color: var(--btn-clear-filters-text) !important;
+    border: 1px solid var(--input-border) !important;
+  }
+
+  .btn-clear-filters:hover {
+    background-color: var(--btn-clear-filters-hover) !important;
+  }
+
+  .btn-select-all {
+    background-color: var(--btn-select-all-bg) !important;
+    color: var(--btn-select-all-text) !important;
+    border: 1px solid var(--btn-select-all-bg) !important;
+  }
+
+  .btn-select-all:hover {
+    background-color: var(--btn-select-all-hover) !important;
+  }
+
+  .btn-clear-selection {
+    background-color: var(--btn-clear-selection-bg) !important;
+    color: var(--btn-clear-selection-text) !important;
+    border: 1px solid var(--input-border) !important;
+  }
+
+  .btn-clear-selection:hover {
+    background-color: var(--btn-clear-selection-hover) !important;
+  }
+
+  .btn-apply {
+    background-color: var(--btn-apply-bg) !important;
+    color: var(--btn-apply-text) !important;
+    border: 1px solid var(--btn-apply-bg) !important;
+  }
+
+  .btn-apply:hover {
+    background-color: var(--btn-apply-hover) !important;
+    border-color: var(--btn-apply-hover) !important;
+  }
+
+  .btn-cancel {
+    background-color: var(--btn-cancel-bg) !important;
+    color: var(--btn-cancel-text) !important;
+    border: 1px solid var(--input-border) !important;
+  }
+
+  .btn-cancel:hover {
+    background-color: var(--btn-cancel-hover) !important;
+  }
+
+  .btn-delete {
+    background-color: var(--btn-delete-bg) !important;
+    color: var(--btn-delete-text) !important;
+    border: 1px solid var(--btn-delete-bg) !important;
+  }
+
+  .btn-delete:hover {
+    background-color: var(--btn-delete-hover) !important;
+    border-color: var(--btn-delete-hover) !important;
   }
 
   .checkbox-root[data-state="unchecked"] {

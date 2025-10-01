@@ -964,7 +964,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
             />
 
             <DialogFooter className="pt-4">
-              <Button type="button" variant="ghost" className="btn-cancel" onClick={() => onOpenChange(false)}>
+              <Button type="button" className="btn-cancel" onClick={() => onOpenChange(false)}>
                 Cancel
               </Button>
               <Button type="submit" className="btn-apply">Save Changes</Button>
