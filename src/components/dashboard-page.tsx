@@ -367,11 +367,11 @@ export default function DashboardPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button variant="outline" size="sm" onClick={() => handleExport()}>
+              <Button variant="outline" size="sm" className="btn-export" onClick={() => handleExport()}>
                 <Download className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Export All</span>
               </Button>
-              <Button size="sm" onClick={() => setAddAssetOpen(true)}>
+              <Button size="sm" className="btn-add-asset" onClick={() => setAddAssetOpen(true)}>
                 <PlusCircle className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Add Asset</span>
               </Button>
@@ -428,9 +428,35 @@ export default function DashboardPage() {
                       {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
                     </SelectContent>
                   </Select>
+                  <Button variant="outline" size="sm" className="h-9 btn-clear-filters" onClick={handleClearFilters}>
+                    <X className="mr-2 h-4 w-4" />
+                    Clear Filters
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px] shrink-0">
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" className="btn-select-all" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
+                    <Check className="mr-2 h-4 w-4" />
+                    Select all on page
+                  </Button>
+                  <Button variant="outline" size="sm" className="btn-clear-selection" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
+                    <X className="mr-2 h-4 w-4" />
+                    Clear selection
+                  </Button>
+                </div>
+
+                <div className="text-sm font-medium text-muted-foreground">
+                  {selectedAssetIds.length > 0
+                      ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
+                      : `${filteredAssets.length} items.`
+                  }
+                </div>
+                <div className="flex items-center gap-2">
                   <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="h-9">
+                        <Button variant="outline" size="sm" className="btn-view-settings">
                             <Settings2 className="mr-2 h-4 w-4" />
                             View
                         </Button>
@@ -456,42 +482,16 @@ export default function DashboardPage() {
                         ))}
                         <DropdownMenuSeparator />
                         <div className="flex justify-end gap-2 p-2">
-                          <Button variant="ghost" size="sm" onClick={handleCancelColumnVisibility}>Cancel</Button>
-                          <Button size="sm" onClick={handleApplyColumnVisibility}>Apply</Button>
+                          <Button variant="ghost" size="sm" className="btn-cancel" onClick={handleCancelColumnVisibility}>Cancel</Button>
+                          <Button size="sm" className="btn-apply" onClick={handleApplyColumnVisibility}>Apply</Button>
                         </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <Button variant="outline" size="sm" className="h-9" onClick={handleClearFilters}>
-                    <X className="mr-2 h-4 w-4" />
-                    Clear Filters
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px] shrink-0">
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
-                    <Check className="mr-2 h-4 w-4" />
-                    Select all on page
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
-                    <X className="mr-2 h-4 w-4" />
-                    Clear selection
-                  </Button>
-                </div>
-
-                <div className="text-sm font-medium text-muted-foreground">
-                  {selectedAssetIds.length > 0
-                      ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
-                      : `${filteredAssets.length} items.`
-                  }
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
+                  <Button variant="outline" size="sm" className="btn-export" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
                     <Download className="mr-2 h-4 w-4" />
                     Export Selected
                   </Button>
-                  <Button variant="destructive" size="sm" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
+                  <Button variant="destructive" size="sm" className="btn-delete" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
                     <Trash2 className="mr-2 h-4 w-4" />
                     Delete Selected
                   </Button>

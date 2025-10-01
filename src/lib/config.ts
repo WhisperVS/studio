@@ -55,7 +55,7 @@ export const APP_CONFIG = {
     { name: 'Spare', variant: 'secondary' },
     { name: 'For Repair', variant: 'destructive' },
     { name: 'For Parts', variant: 'outline' },
-    { name: 'For Recycle', variant: 'destructive' },
+    { name: 'For Recycle', variant: 'warning' },
   ] as const,
   systemTypes: ['MFF', 'SFF', 'Tower', 'AIO', 'Desktop'] as const,
   serverTypes: ['Rack', 'Tower', 'Blade'] as const,

@@ -1,0 +1,225 @@
+/* ========================================= */
+/* LIGHT THEME - PROFESSIONAL COLOR SCHEME */
+/* ========================================= */
+
+:root {
+  /* ============================= */
+  /* CORE LAYOUT COLORS */
+  /* ============================= */
+  
+  /* Main page background and text */
+  --page-background: rgb(248, 250, 252);       /* Clean slate gray background */
+  --page-text: rgb(30, 41, 59);                /* Professional dark blue-gray text */
+  
+  /* ============================= */
+  /* TABLE STYLING */
+  /* ============================= */
+  
+  /* Table Header Section */
+  --table-header-bg: rgb(59, 130, 246);        /* Professional blue header */
+  --table-header-text: rgb(255, 255, 255);     /* Clean white text */
+  --table-header-border: rgb(226, 232, 240);   /* Subtle light border */
+  --table-header-hover: rgb(37, 99, 235);      /* Darker blue hover */
+  
+  /* Table Data Section */
+  --table-data-bg: rgb(255, 255, 255);         /* Pure white data cells */
+  --table-data-text: rgb(51, 65, 85);          /* Professional slate text */
+  --table-data-border: rgb(226, 232, 240);     /* Light borders */
+  --table-data-hover: rgb(239, 246, 255);      /* Light blue hover */
+  --table-data-selected: rgb(219, 234, 254);   /* Light blue selection */
+  
+  /* ============================= */
+  /* CARD AND PANEL COLORS */
+  /* ============================= */
+  
+  --card-background: rgb(255, 255, 255);       /* Clean white cards */
+  --card-text: rgb(30, 41, 59);                /* Professional dark text */
+  --card-border: rgb(226, 232, 240);           /* Subtle light borders */
+  
+  /* ============================= */
+  /* MODAL AND DIALOG COLORS */
+  /* ============================= */
+  
+  --modal-background: rgb(255, 255, 255);      /* Clean white modals */
+  --modal-text: rgb(30, 41, 59);               /* Professional dark text */
+  --modal-overlay: rgb(15, 23, 42);            /* Professional dark overlay */
+  
+  /* ============================= */
+  /* FORM INPUT COLORS */
+  /* ============================= */
+  
+  --input-background: rgb(255, 255, 255);      /* White input background */
+  --input-text: rgb(30, 41, 59);               /* Dark professional text */
+  --input-border: rgb(203, 213, 225);          /* Visible light slate borders */
+  --input-border-focus: rgb(59, 130, 246);     /* Vibrant blue focus */
+  --input-placeholder: rgb(100, 116, 139);     /* Muted placeholder text */
+  
+  /* ============================= */
+  /* DROPDOWN AND SELECT COLORS */
+  /* ============================= */
+  
+  --dropdown-background: rgb(255, 255, 255);   /* White dropdowns */
+  --dropdown-text: rgb(30, 41, 59);            /* Professional dark text */
+  --dropdown-border: rgb(203, 213, 225);       /* Visible light slate borders */
+  --dropdown-hover: rgb(241, 245, 249);        /* Very light hover */
+  
+  /* ============================= */
+  /* SYSTEM COLORS */
+  /* ============================= */
+  
+  /* Accent and highlight colors */
+  --accent-color: rgb(59, 130, 246);           /* Professional blue accent */
+  --accent-text: rgb(255, 255, 255);           /* White text on blue */
+  --focus-ring: rgb(59, 130, 246);             /* Consistent blue focus rings */
+  
+  /* Status and notification colors */
+  --success-color: rgb(16, 185, 129);          /* Modern emerald green */
+  --warning-color: rgb(245, 158, 11);          /* Professional amber */
+  --error-color: rgb(220, 38, 38);             /* Clean red */
+  --info-color: rgb(59, 130, 246);             /* Consistent blue */
+  
+  /* ============================= */
+  /* STATUS BADGE COLORS */
+  /* ============================= */
+  
+  /* Status Badge - "In Use" */
+  --status-in-use-bg: rgb(16, 185, 129);       /* Modern emerald green */
+  --status-in-use-text: rgb(255, 255, 255);    /* Clean white text */
+  --status-in-use-hover: rgb(5, 150, 105);     /* Darker emerald hover */
+  
+  /* Status Badge - "Spare" */
+  --status-spare-bg: rgb(71, 85, 105);         /* Professional slate gray */
+  --status-spare-text: rgb(255, 255, 255);     /* White text */
+  --status-spare-hover: rgb(51, 65, 85);       /* Darker slate hover */
+  
+  /* Status Badge - "For Repair" */
+  --status-for-repair-bg: rgb(220, 38, 38);    /* Professional red */
+  --status-for-repair-text: rgb(255, 255, 255); /* White text */
+  --status-for-repair-hover: rgb(185, 28, 28); /* Darker red hover */
+  
+  /* Status Badge - "For Parts" */
+  --status-for-parts-bg: transparent;          /* Transparent background */
+  --status-for-parts-text: rgb(100, 116, 139); /* Muted slate text */
+  --status-for-parts-border: rgb(203, 213, 225); /* Light border */
+  --status-for-parts-hover: rgb(248, 250, 252); /* Light gray hover */
+  
+  /* Status Badge - "For Recycle" */
+  --status-for-recycle-bg: rgb(245, 158, 11);  /* Professional amber */
+  --status-for-recycle-text: rgb(255, 255, 255); /* White text */
+  --status-for-recycle-hover: rgb(217, 119, 6); /* Darker amber hover */
+  
+  /* ============================= */
+  /* TAILWIND INTEGRATION */
+  /* ============================= */
+  
+  /* Core Tailwind variables */
+  --primary: rgb(59, 130, 246);                /* Blue primary for buttons */
+  --primary-foreground: rgb(255, 255, 255);    /* White text on blue */
+  --secondary: rgb(71, 85, 105);               /* Slate gray for secondary */
+  --secondary-foreground: rgb(255, 255, 255);  /* White text on slate */
+  --destructive: rgb(220, 38, 38);             /* Red for destructive */
+  --destructive-foreground: rgb(255, 255, 255); /* White text on red */
+  --warning: rgb(245, 158, 11);                /* Amber for warning */
+  --warning-foreground: rgb(255, 255, 255);    /* White text on amber */
+  --foreground: rgb(30, 41, 59);               /* Main text color */
+  --background: rgb(248, 250, 252);            /* Main background */
+  --muted: rgb(241, 245, 249);                 /* Muted backgrounds */
+  --muted-foreground: rgb(100, 116, 139);      /* Muted text */
+  --accent: rgb(241, 245, 249);                /* Accent backgrounds */
+  --accent-foreground: rgb(30, 41, 59);        /* Accent text */
+  --border: rgb(226, 232, 240);                /* Borders */
+  --input: rgb(226, 232, 240);                 /* Input borders */
+  --ring: rgb(59, 130, 246);                   /* Focus rings */
+  
+  /* ============================= */
+  /* SPECIFIC BUTTON COLORS */
+  /* ============================= */
+  
+  /* Dashboard Action Buttons */
+  --btn-add-asset-bg: rgb(59, 130, 246);       /* Blue for Add Asset */
+  --btn-add-asset-text: rgb(255, 255, 255);    /* White text */
+  --btn-add-asset-hover: rgb(37, 99, 235);     /* Darker blue hover */
+  
+  --btn-export-bg: rgb(16, 185, 129);          /* Emerald for Export */
+  --btn-export-text: rgb(255, 255, 255);       /* White text */
+  --btn-export-hover: rgb(5, 150, 105);        /* Darker emerald hover */
+  
+  --btn-view-settings-bg: rgb(255, 255, 255);  /* White for View */
+  --btn-view-settings-text: rgb(51, 65, 85);   /* Slate text */
+  --btn-view-settings-hover: rgb(241, 245, 249); /* Gray hover */
+  
+  /* Filter Control Buttons */
+  --btn-clear-filters-bg: rgb(255, 255, 255);  /* White for Clear Filters */
+  --btn-clear-filters-text: rgb(100, 116, 139); /* Muted text */
+  --btn-clear-filters-hover: rgb(248, 250, 252); /* Subtle gray hover */
+  
+  /* Table Selection Buttons */
+  --btn-select-all-bg: rgb(219, 234, 254);     /* Light blue for Select All */
+  --btn-select-all-text: rgb(30, 64, 175);     /* Dark blue text */
+  --btn-select-all-hover: rgb(191, 219, 254);  /* Darker blue hover */
+  
+  --btn-clear-selection-bg: rgb(255, 255, 255); /* White for Clear Selection */
+  --btn-clear-selection-text: rgb(100, 116, 139); /* Muted text */
+  --btn-clear-selection-hover: rgb(248, 250, 252); /* Subtle gray hover */
+  
+  /* Dialog/Modal Action Buttons */
+  --btn-apply-bg: rgb(59, 130, 246);           /* Blue for Apply */
+  --btn-apply-text: rgb(255, 255, 255);        /* White text */
+  --btn-apply-hover: rgb(37, 99, 235);         /* Darker blue hover */
+  
+  --btn-cancel-bg: rgb(255, 255, 255);         /* White for Cancel */
+  --btn-cancel-text: rgb(100, 116, 139);       /* Muted text */
+  --btn-cancel-hover: rgb(248, 250, 252);      /* Subtle gray hover */
+  
+  --btn-delete-bg: rgb(220, 38, 38);           /* Red for Delete */
+  --btn-delete-text: rgb(255, 255, 255);       /* White text */
+  --btn-delete-hover: rgb(185, 28, 28);        /* Darker red hover */
+  
+  /* ============================= */
+  /* SIDEBAR NAVIGATION */
+  /* ============================= */
+  
+  --sidebar-background: rgb(30, 41, 59);       /* Professional slate background */
+  --sidebar-text: rgb(226, 232, 240);          /* Light slate text */
+  --sidebar-link-text: rgb(148, 163, 184);     /* Muted link text */
+  --sidebar-link-hover: rgb(51, 65, 85);       /* Darker slate hover */
+  --sidebar-active-bg: rgb(59, 130, 246);      /* Blue active background */
+  --sidebar-active-text: rgb(255, 255, 255);   /* White active text */
+  --sidebar-border: rgb(51, 65, 85);           /* Subtle border color */
+  
+  /* ============================= */
+  /* CHART COLORS */
+  /* ============================= */
+  
+  --chart-color-1: rgb(59, 130, 246);          /* Professional blue */
+  --chart-color-2: rgb(16, 185, 129);          /* Emerald green */
+  --chart-color-3: rgb(245, 158, 11);          /* Amber */
+  --chart-color-4: rgb(168, 85, 247);          /* Purple */
+  --chart-color-5: rgb(220, 38, 38);           /* Red */
+  
+  /* ============================= */
+  /* LEGACY COMPATIBILITY */
+  /* ============================= */
+  
+  /* Table aliases for backward compatibility */
+  --table-cell-bg: var(--table-data-bg);
+  --table-cell-text: var(--table-data-text);
+  --table-cell-border: var(--table-data-border);
+  --table-row-hover: var(--table-data-hover);
+  --table-row-selected: var(--table-data-selected);
+  
+  /* Button outline style compatibility */
+  --btn-outline-bg: rgb(255, 255, 255);
+  --btn-outline-text: rgb(51, 65, 85);
+  --btn-outline-border: rgb(203, 213, 225);
+  --btn-outline-hover: rgb(248, 250, 252);
+  
+  /* System destructive colors compatibility */
+  --btn-destructive-bg: rgb(220, 38, 38);
+  --btn-destructive-text: rgb(255, 255, 255);
+  --btn-destructive-border: rgb(220, 38, 38);
+  --btn-destructive-hover: rgb(185, 28, 28);
+  
+  /* Radius */
+  --radius: 0.5rem;
+}

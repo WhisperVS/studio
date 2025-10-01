@@ -1,92 +1,83 @@
+@import '../styles/themes/light-theme.css';
+@import '../styles/themes/dark-theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 280 50% 95%;
-    --foreground: 275 10% 15%;
-    /* table header specific colors (H S% L%) */
-    --table-header-bg: 218 89% 73%; /* blue color rgb(124, 172, 248) */
-    --table-header-border: 220 10% 90%;
-    --card: 280 50% 98%;
-    --card-foreground: 275 10% 15%;
-    --popover: 280 50% 98%;
-    --popover-foreground: 275 10% 15%;
-    --primary: 275 100% 41%;
-    --primary-foreground: 275 0% 100%;
-    --secondary: 280 40% 90%;
-    --secondary-foreground: 275 10% 15%;
-    --muted: 280 40% 90%;
-    --muted-foreground: 275 10% 45%;
-    --accent: 248 53% 58%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 280 20% 70%;
-    --input: 280 20% 80%;
-    --ring: 275 100% 50%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 275 40% 18%;
-    --sidebar-foreground: 275 40% 95%;
-    --sidebar-primary: 275 90% 65%;
-    --sidebar-primary-foreground: 275 20% 10%;
-    --sidebar-accent: 275 40% 28%;
-    --sidebar-accent-foreground: 275 40% 95%;
-    --sidebar-border: 275 40% 25%;
-    --sidebar-ring: 275 90% 70%;
+  * {
+    border-color: var(--border);
   }
 
-  .dark {
-    --background: 275 15% 10%;
-    --foreground: 275 15% 95%;
-    /* header in dark theme: slightly lighter than card but darker than background */
-    --table-header-bg: 275 15% 14%;
-    --table-header-border: 275 15% 20%;
-    --card: 275 15% 12%;
-    --card-foreground: 275 15% 95%;
-    --popover: 275 15% 12%;
-    --popover-foreground: 275 15% 95%;
-    --primary: 275 90% 65%;
-    --primary-foreground: 275 20% 10%;
-    --secondary: 275 15% 20%;
-    --secondary-foreground: 275 15% 95%;
-    --muted: 275 15% 20%;
-    --muted-foreground: 275 15% 65%;
-    --accent: 248 60% 70%;
-    --accent-foreground: 248 20% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 275 15% 25%;
-    --input: 275 15% 40%;
-    --ring: 275 90% 70%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 275 15% 8%;
-    --sidebar-foreground: 275 15% 95%;
-    --sidebar-primary: 275 90% 65%;
-    --sidebar-primary-foreground: 275 20% 10%;
-    --sidebar-accent: 275 15% 15%;
-    --sidebar-accent-foreground: 275 15% 95%;
-    --sidebar-border: 275 15% 10%;
-    --sidebar-ring: 275 90% 70%;
+  body {
+    background-color: var(--page-background);
+    color: var(--page-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  *:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .status-badge {
+    @apply inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  .status-badge.in-use {
+    background-color: var(--status-in-use-bg);
+    color: var(--status-in-use-text);
+  }
+
+  .status-badge.spare {
+    background-color: var(--status-spare-bg);
+    color: var(--status-spare-text);
+  }
+
+  .status-badge.for-repair {
+    background-color: var(--status-for-repair-bg);
+    color: var(--status-for-repair-text);
+  }
+
+  .status-badge.for-parts {
+    background-color: var(--status-for-parts-bg);
+    color: var(--status-for-parts-text);
+    border: 1px solid var(--status-for-parts-border);
+  }
+
+  .status-badge.for-recycle {
+    background-color: var(--status-for-recycle-bg);
+    color: var(--status-for-recycle-text);
+  }
+
+  .status-badge.warning {
+    background-color: var(--warning-color);
+    color: var(--warning-foreground);
+  }
+
+  .btn-add-asset {
+    background-color: var(--btn-add-asset-bg);
+    color: var(--btn-add-asset-text);
+  }
+
+  .btn-add-asset:hover {
+    background-color: var(--btn-add-asset-hover);
+  }
+
+  .checkbox-root[data-state="unchecked"] {
+    border-color: var(--input-border) !important;
+    background-color: var(--input-background) !important;
+  }
+
+  .checkbox-root[data-state="checked"] {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
   }
 }
 
@@ -98,7 +89,7 @@
 
   /* Horizontal ribbon spacer used beneath wide tables to provide a synced horizontal scrollbar */
   .ribbon-spacer {
-    @apply h-1 bg-muted-foreground/10 rounded;
+    @apply h-1 bg-slate-200 rounded;
     min-width: 1px; /* avoid collapsing to zero */
   }
 
@@ -123,7 +114,7 @@
 
   /* Ribbon handle affordance */
   .ribbon-handle {
-    @apply h-3 bg-gradient-to-r from-muted-foreground/20 to-muted-foreground/40 rounded cursor-grab hover:opacity-90;
+    @apply h-3 bg-gradient-to-r from-slate-300 to-slate-400 rounded cursor-grab hover:opacity-90;
   }
 
   /* Sticky header subtle separation */
@@ -233,14 +224,6 @@
   }
 
   /* Ribbon should visually match the table header background and separators */
-  .ribbon {
-    /* background-color: hsl(var(--table-header-bg));
-    border-top: 1px solid hsl(var(--border) / 0.7); */
-    /* ensure ribbon sits above rows but below any overlays */
-    /* z-index: 40; */
-  }
-
-  /* spacer should be transparent so ribbon background fills the track, but keep a small height for scrollbar rendering */
   .ribbon-spacer {
     min-width: 1px;
     height: 6px; /* matches earlier spacer suggestion */

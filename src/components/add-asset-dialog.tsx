@@ -123,8 +123,8 @@ function JsonImportDialog({
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={handleImport}>Import</Button>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+          <Button className="btn-apply" onClick={handleImport}>Import</Button>
+          <Button variant="outline" className="btn-cancel" onClick={() => onOpenChange(false)}>Cancel</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -159,7 +159,7 @@ function CommandDisplayDialog({
           />
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>Close</Button>
+          <Button variant="outline" className="btn-cancel" onClick={() => onOpenChange(false)}>Close</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
