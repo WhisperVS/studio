@@ -665,6 +665,60 @@ button:focus, .btn:focus, [role="button"]:focus {
   opacity: 1 !important;
   position: relative !important;
   z-index: 999 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure theme toggle icons are visible */
+.light .theme-toggle svg,
+.light .theme-toggle [data-theme-icon],
+:root .theme-toggle svg,
+:root .theme-toggle [data-theme-icon] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #374151 !important;
+  width: 20px !important;
+  height: 20px !important;
+  position: absolute !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Show moon icon in light theme */
+.light .theme-toggle [data-lucide="moon-star"],
+.light .theme-toggle svg[data-theme-icon]:last-child,
+:root .theme-toggle [data-lucide="moon-star"],
+:root .theme-toggle svg[data-theme-icon]:last-child {
+  transform: rotate(0deg) scale(1) !important;
+  opacity: 1 !important;
+}
+
+/* Hide sun icon in light theme */
+.light .theme-toggle [data-lucide="sun-medium"],
+.light .theme-toggle svg[data-theme-icon]:first-child,
+:root .theme-toggle [data-lucide="sun-medium"],
+:root .theme-toggle svg[data-theme-icon]:first-child {
+  transform: rotate(90deg) scale(0) !important;
+  opacity: 0 !important;
+}
+
+/* Ensure sidebar footer container is visible */
+.light .sidebar-footer-manual,
+.light [data-sidebar="footer"],
+:root .sidebar-footer-manual,
+:root [data-sidebar="footer"] {
+  display: flex !important;
+  visibility: visible !important;
+  background-color: var(--sidebar-background, var(--background)) !important;
+  border-top: 1px solid var(--border) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  min-height: 80px !important;
 }
 
 /* Sidebar footer specific styling */

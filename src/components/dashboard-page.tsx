@@ -341,7 +341,16 @@ export default function DashboardPage() {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className="sidebar-footer-manual flex-shrink-0 border-t p-4 bg-background" style={{ minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid var(--border)' }}>
+          <div className="sidebar-footer-manual flex-shrink-0 border-t p-4" style={{ 
+            minHeight: '80px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            borderTop: '1px solid var(--border)',
+            backgroundColor: 'var(--sidebar-background, var(--background))',
+            position: 'relative',
+            zIndex: 10
+          }}>
             <ThemeToggle />
           </div>
         </Sidebar>
