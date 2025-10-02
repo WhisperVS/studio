@@ -8,34 +8,46 @@
   /* ============================= */
   
   /* Main page background and text */
-  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 0%, rgb(31, 41, 55) 100%); /* Premium dark gradient */
-  --page-text: rgb(243, 244, 246);             /* Premium light text */
+  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 25%, rgb(31, 41, 55) 50%); /* Premium dark gradient */
+  --page-text: rgb(217, 221, 230);             /* Premium light text */
   
   /* ============================= */
-  /* TABLE STYLING - PREMIUM DARK */
+  /* TABLE STYLING - INVENTORY DASHBOARD DARK */
   /* ============================= */
   
-  /* Table Header Section */
-  --table-header-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium gradient */
+  /* Table Header Section - Enhanced for Dashboard */
+  --table-header-bg: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Deeper premium gradient */
   --table-header-text: rgb(255, 255, 255);     /* Pure white text */
-  --table-header-border: rgb(99, 102, 241);    /* Matching border */
-  --table-header-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Darker gradient */
+  --table-header-border: rgb(79, 70, 229);     /* Matching deeper border */
+  --table-header-hover: linear-gradient(135deg, rgb(67, 56, 202) 0%, rgb(109, 40, 217) 100%); /* Even darker gradient */
   
-  /* Table Data Section */
-  --table-data-bg: rgba(31, 41, 55, 0.8);      /* Semi-transparent dark */
-  --table-data-text: rgb(243, 244, 246);       /* Premium light text */
-  --table-data-border: rgba(75, 85, 99, 0.6);  /* Subtle borders */
-  --table-data-hover: rgba(55, 65, 81, 0.8);   /* Sophisticated hover */
-  --table-data-selected: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); /* Premium selection */
+  /* Table Data Section - Optimized for Inventory */
+  --table-data-bg: rgba(15, 23, 42, 0.95);     /* Darker, more solid background */
+  --table-data-text: rgb(248, 250, 252);       /* Brighter text for readability */
+  --table-data-border: rgba(71, 85, 105, 0.8); /* More visible borders */
+  --table-data-hover: rgba(30, 41, 59, 0.9);   /* Stronger hover effect */
+  --table-data-selected: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.25) 100%); /* More vibrant selection */
   
   /* ============================= */
-  /* CARD AND PANEL COLORS - PREMIUM DARK */
+  /* DASHBOARD CARDS - INVENTORY FOCUSED */
   /* ============================= */
   
-  --card-background: rgba(31, 41, 55, 0.95);   /* Premium dark cards */
-  --card-text: rgb(243, 244, 246);             /* Premium light text */
-  --card-border: rgba(75, 85, 99, 0.6);        /* Sophisticated borders */
-  --card-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4); /* Premium dark shadow */
+  --card-background: rgba(15, 23, 42, 0.98);   /* Darker, more solid cards for dashboard */
+  --card-text: rgb(248, 250, 252);             /* Brighter text for inventory data */
+  --card-border: rgba(71, 85, 105, 0.8);       /* More defined borders */
+  --card-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Enhanced depth */
+  
+  /* Dashboard Stat Cards */
+  --dashboard-stat-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  --dashboard-stat-border: rgba(79, 70, 229, 0.3);
+  --dashboard-stat-text: rgb(248, 250, 252);
+  --dashboard-stat-accent: rgb(79, 70, 229);
+  
+  /* Inventory Status Indicators */
+  --inventory-in-stock: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
+  --inventory-low-stock: linear-gradient(135deg, rgb(251, 191, 36) 0%, rgb(245, 158, 11) 100%);
+  --inventory-out-stock: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
+  --inventory-reserved: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(99, 102, 241) 100%);
   
   /* ============================= */
   /* MODAL AND DIALOG COLORS - PREMIUM DARK */
@@ -85,6 +97,35 @@
   --btn-clear-text: rgb(209, 213, 219);        /* Premium text */
   --btn-clear-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
   --btn-clear-border: rgba(75, 85, 99, 0.8);   /* Sophisticated border */
+  
+  /* ============================= */
+  /* DASHBOARD ACTION BUTTONS - INVENTORY */
+  /* ============================= */
+  
+  /* Add Asset Button - Enhanced for Dashboard */
+  --btn-add-asset-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
+  --btn-add-asset-text: rgb(255, 255, 255);
+  --btn-add-asset-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
+  --btn-add-asset-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4);
+  
+  /* Export Button - Dashboard Style */
+  --btn-export-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+  --btn-export-text: rgb(255, 255, 255);
+  --btn-export-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
+  --btn-export-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.4);
+  
+  /* Delete/Remove Button - Enhanced */
+  --btn-delete-bg: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
+  --btn-delete-text: rgb(255, 255, 255);
+  --btn-delete-hover: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
+  --btn-delete-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4);
+  
+  /* Dashboard Filter Pills */
+  --filter-pill-bg: rgba(30, 41, 59, 0.8);
+  --filter-pill-text: rgb(203, 213, 225);
+  --filter-pill-active-bg: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%);
+  --filter-pill-active-text: rgb(255, 255, 255);
+  --filter-pill-hover: rgba(51, 65, 85, 0.9);
   
   /* ============================= */
   /* SYSTEM COLORS */
@@ -137,7 +178,7 @@
   
   /* Core Tailwind variables */
   --primary: rgb(59, 130, 246);                /* Blue primary for buttons */
-  --primary-foreground: rgb(255, 255, 255);    /* White text on blue */
+  --primary-foreground: rgb(252, 251, 251);    /* White text on blue */
   --secondary: rgb(71, 85, 105);               /* Slate gray for secondary */
   --secondary-foreground: rgb(226, 232, 240);  /* Light text on slate */
   --destructive: rgb(220, 38, 38);             /* Red for destructive */
@@ -351,7 +392,7 @@
   border: 2px solid transparent !important;
   background-image: var(--input-border-focus) !important;
   background-clip: padding-box !important;
-  color: rgb(255, 255, 255) !important;
+  color: rgb(240, 240, 240) !important;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5) !important;
 }
@@ -426,7 +467,7 @@
   background: var(--btn-secondary-hover) !important;
   border-color: transparent !important;
   background-image: var(--accent-color) !important;
-  color: white !important;
+  color: rgb(206, 86, 86) !important;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4) !important;
 }
@@ -526,4 +567,333 @@
 .dark .top-controls *:focus-visible {
   outline: 2px solid var(--focus-ring) !important;
   outline-offset: 2px !important;
+}
+
+/* ============================= */
+/* INVENTORY DASHBOARD SPECIFIC STYLING - DARK THEME */
+/* ============================= */
+
+/* Main page background override */
+.dark {
+  background: var(--page-background) !important;
+}
+
+.dark body {
+  background: var(--page-background) !important;
+}
+
+/* Main content area background */
+.dark main,
+.dark .main-content,
+.dark [class*="main"],
+.dark .flex-1.flex.flex-col.min-h-0 {
+  background: var(--page-background) !important;
+  min-height: 100vh;
+}
+
+/* Dashboard main container */
+.dark .dashboard-page {
+  background: rgba(3, 7, 18, 0.95) !important;
+  border: 1px solid rgba(71, 85, 105, 0.3) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.6);
+  padding: 24px;
+}
+
+/* Enhanced table styling for inventory */
+.dark .asset-table {
+  background: var(--table-data-bg) !important;
+  border: 1px solid var(--table-data-border) !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
+}
+
+.dark .asset-table th {
+  background: var(--table-header-bg) !important;
+  color: var(--table-header-text) !important;
+  font-weight: 600;
+  padding: 16px 12px;
+  border-bottom: 2px solid var(--table-header-border) !important;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.dark .asset-table td {
+  background: var(--table-data-bg) !important;
+  color: var(--table-data-text) !important;
+  border-bottom: 1px solid var(--table-data-border) !important;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.dark .asset-table tr:hover td {
+  background: var(--table-data-hover) !important;
+  transform: scale(1.005);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
+}
+
+.dark .asset-table tr.selected td {
+  background: var(--table-data-selected) !important;
+  border-left: 3px solid rgb(79, 70, 229);
+}
+
+/* Dashboard stats cards */
+.dark .category-counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dark .stats-card {
+  background: var(--dashboard-stat-bg) !important;
+  border: 1px solid var(--dashboard-stat-border) !important;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.dark .stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px -8px rgba(79, 70, 229, 0.3);
+  border-color: rgba(79, 70, 229, 0.5);
+}
+
+.dark .stats-value {
+  color: var(--dashboard-stat-accent) !important;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dark .stats-label {
+  color: var(--dashboard-stat-text) !important;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* Enhanced action buttons for dashboard */
+.dark .btn-add-asset {
+  background: var(--btn-add-asset-bg) !important;
+  color: var(--btn-add-asset-text) !important;
+  box-shadow: var(--btn-add-asset-shadow);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dark .btn-add-asset:hover {
+  background: var(--btn-add-asset-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
+}
+
+/* Asset status indicators */
+.dark .badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.dark .status-in-use {
+  background: var(--inventory-in-stock) !important;
+  color: rgb(233, 233, 233);
+}
+
+.dark .status-spare {
+  background: var(--inventory-in-stock) !important;
+  color: white;
+}
+
+.dark .status-for-repair {
+  background: var(--inventory-out-stock) !important;
+  color: white;
+}
+
+.dark .status-for-parts {
+  background: var(--inventory-low-stock) !important;
+  color: white;
+}
+
+/* ============================= */
+/* TAILWIND CLASS OVERRIDES */
+/* ============================= */
+
+/* Override Tailwind bg-background class in dark mode */
+.dark .bg-background {
+  background: var(--page-background) !important;
+}
+
+/* Specifically target the main dashboard container */
+.dark div[class*="flex h-screen bg-background"] {
+  background: var(--page-background) !important;
+}
+
+/* Target all flex containers that might have background */
+.dark div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]) {
+  background: var(--page-background) !important;
+}
+
+/* Override any overflow-hidden containers */
+.dark div[class*="overflow-hidden"]:not([class*="table"]) {
+  background: var(--page-background) !important;
+}
+
+/* Main container background enforcement */
+.dark div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]) {
+  background: var(--page-background) !important;
+}
+
+/* ============================= */
+/* THEME TOGGLE WHITE STYLING */
+/* ============================= */
+
+/* Theme toggle white styling */
+.dark .theme-toggle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: rgb(71, 85, 105) !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+  border-radius: 8px;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: visible;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.dark .theme-toggle:hover {
+  background: rgb(255, 255, 255) !important;
+  color: rgb(51, 65, 85) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* Theme toggle styling in light mode */
+.light .theme-toggle,
+:root .theme-toggle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: rgb(71, 85, 105) !important;
+  border: 1px solid rgba(203, 213, 225, 0.5) !important;
+  border-radius: 8px;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: visible;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* ============================= */
+/* LAYOUT AND VIEWPORT FIXES */
+/* ============================= */
+
+/* Ensure sidebar footer is always visible */
+.dark [data-sidebar="sidebar"] {
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dark [data-sidebar="content"] {
+  flex: 1 !important;
+  overflow: visible !important;
+  padding: 8px !important;
+}
+
+.dark [data-sidebar="footer"] {
+  flex-shrink: 0 !important;
+  background: var(--sidebar-background) !important;
+  z-index: 10 !important;
+  padding: 16px !important;
+  border-top: 1px solid var(--border) !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Main layout viewport constraints */
+.dark .main-layout {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Table container scrolling */
+.dark .table-container {
+  max-height: calc(100vh - 280px) !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+}
+
+/* ============================= */
+/* SIDEBAR CONTENT OPTIMIZATION */
+/* ============================= */
+
+/* Category counts proper spacing */
+.dark .sidebar-group {
+  margin-bottom: 8px !important;
+}
+
+.dark .sidebar-menu {
+  gap: 2px !important;
+}
+
+.dark .sidebar-menu-item {
+  margin-bottom: 1px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+/* ============================= */
+/* THEME TOGGLE VISIBILITY FIXES */
+/* ============================= */
+
+/* Theme toggle container ensures visibility */
+.dark .theme-toggle-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 48px !important;
+}
+
+/* Force theme toggle visibility with multiple selectors */
+.dark button.theme-toggle,
+.dark .theme-toggle,
+.dark [class*="theme-toggle"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 999 !important;
+}
+
+/* Sidebar footer specific styling */
+.dark [data-sidebar="footer"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
 }

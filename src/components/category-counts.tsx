@@ -32,20 +32,23 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
 
 
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Product Families</SidebarGroupLabel>
-      <SidebarMenu>
+    <SidebarGroup className="sidebar-group">
+      <SidebarGroupLabel className="text-xs font-medium text-muted-foreground px-2 py-1">Product Families</SidebarGroupLabel>
+      <SidebarMenu className="sidebar-menu space-y-1">
         {allCategories.map((category) => (
-          <SidebarMenuItem key={category.id}>
+          <SidebarMenuItem key={category.id} className="sidebar-menu-item">
             <SidebarMenuButton
               tooltip={category.name}
               isActive={selectedCategory === category.id}
               onClick={() => onSelectCategory(category.id)}
+              className="w-full justify-between px-2 py-1.5 text-sm"
             >
-              {category.icon}
-              <span className="capitalize">{category.name}</span>
+              <div className="flex items-center gap-2">
+                {category.icon}
+                <span className="capitalize truncate">{category.name}</span>
+              </div>
             </SidebarMenuButton>
-            <SidebarMenuBadge>{category.id === 'all' ? totalCount : (counts[category.id] || 0)}</SidebarMenuBadge>
+            <SidebarMenuBadge className="text-xs px-1.5 py-0.5">{category.id === 'all' ? totalCount : (counts[category.id] || 0)}</SidebarMenuBadge>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

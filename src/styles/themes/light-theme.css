@@ -12,6 +12,7 @@
   /* Main page background and text */
   --page-background: linear-gradient(135deg, rgb(250, 251, 252) 0%, rgb(247, 248, 250) 100%); /* Premium gradient */
   --page-text: rgb(17, 24, 39);                /* Rich charcoal text */
+  --background: rgb(250, 251, 252);            /* Fallback background */
   
   /* ============================= */
   /* TABLE STYLING - PREMIUM */
@@ -500,4 +501,175 @@ button:focus, .btn:focus, [role="button"]:focus {
   transform: translateY(-2px) scale(1.02);
   filter: brightness(1.1) saturate(1.2);
   box-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4) !important;
+}
+
+/* ============================= */
+/* LIGHT THEME BACKGROUND OVERRIDES */
+/* ============================= */
+
+/* Override Tailwind bg-background class in light mode */
+.light .bg-background,
+:root .bg-background {
+  background: var(--page-background) !important;
+}
+
+/* Specifically target the main dashboard container */
+.light div[class*="flex h-screen bg-background"],
+:root div[class*="flex h-screen bg-background"] {
+  background: var(--page-background) !important;
+}
+
+/* Target all flex containers that might have background */
+.light div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]),
+:root div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]) {
+  background: var(--page-background) !important;
+}
+
+/* Override any overflow-hidden containers */
+.light div[class*="overflow-hidden"]:not([class*="table"]),
+:root div[class*="overflow-hidden"]:not([class*="table"]) {
+  background: var(--page-background) !important;
+}
+
+/* Main container background enforcement */
+.light div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]),
+:root div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]) {
+  background: var(--page-background) !important;
+}
+
+/* Main content area background */
+.light main,
+.light .main-content,
+.light [class*="main"],
+:root main,
+:root .main-content,
+:root [class*="main"] {
+  background: var(--page-background) !important;
+  min-height: 100vh;
+}
+
+/* ============================= */
+/* THEME TOGGLE STYLING FOR LIGHT MODE */
+/* ============================= */
+
+/* Theme toggle styling in light mode */
+.light .theme-toggle,
+:root .theme-toggle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: rgb(71, 85, 105) !important;
+  border: 1px solid rgba(203, 213, 225, 0.5) !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 8px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.light .theme-toggle:hover,
+:root .theme-toggle:hover {
+  background: rgb(255, 255, 255) !important;
+  color: rgb(51, 65, 85) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Theme toggle icons styling */
+.light .theme-toggle svg,
+:root .theme-toggle svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: inherit !important;
+  position: relative !important;
+}
+
+/* ============================= */
+/* LAYOUT AND VIEWPORT FIXES */
+/* ============================= */
+
+/* Ensure sidebar footer is always visible */
+.light [data-sidebar="sidebar"],
+:root [data-sidebar="sidebar"] {
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.light [data-sidebar="content"],
+:root [data-sidebar="content"] {
+  flex: 1 !important;
+  overflow: visible !important;
+  padding: 8px !important;
+}
+
+.light [data-sidebar="footer"],
+:root [data-sidebar="footer"] {
+  flex-shrink: 0 !important;
+  background: var(--sidebar-background, #ffffff) !important;
+  z-index: 10 !important;
+  padding: 16px !important;
+  border-top: 1px solid var(--border, #e2e8f0) !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Main layout viewport constraints */
+.light .main-layout,
+:root .main-layout {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Table container scrolling */
+.light .table-container,
+:root .table-container {
+  max-height: calc(100vh - 280px) !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+}
+
+/* ============================= */
+/* THEME TOGGLE VISIBILITY FIXES */
+/* ============================= */
+
+/* Theme toggle container ensures visibility */
+.light .theme-toggle-container,
+:root .theme-toggle-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 48px !important;
+}
+
+/* Force theme toggle visibility with multiple selectors */
+.light button.theme-toggle,
+.light .theme-toggle,
+.light [class*="theme-toggle"],
+:root button.theme-toggle,
+:root .theme-toggle,
+:root [class*="theme-toggle"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 999 !important;
+}
+
+/* Sidebar footer specific styling */
+.light [data-sidebar="footer"] .theme-toggle,
+:root [data-sidebar="footer"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
 }

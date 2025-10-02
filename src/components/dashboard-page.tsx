@@ -328,12 +328,12 @@ export default function DashboardPage() {
 
   return (
     <SidebarProvider>
-      <div className="flex h-screen bg-background overflow-hidden">
-        <Sidebar collapsible="icon" className="border-r">
-          <SidebarHeader>
+      <div className="main-layout flex h-screen bg-background overflow-hidden">
+        <Sidebar collapsible="icon" className="border-r flex flex-col h-screen">
+          <SidebarHeader className="flex-shrink-0">
             <Logo />
           </SidebarHeader>
-          <SidebarContent>
+          <SidebarContent className="flex-1 overflow-visible py-2">
             <CategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -341,8 +341,10 @@ export default function DashboardPage() {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <SidebarFooter className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
-            <ThemeToggle />
+          <SidebarFooter className="flex-shrink-0 flex items-center justify-center group-data-[collapsible=icon]:justify-center border-t bg-background p-4">
+            <div className="theme-toggle-container w-full flex justify-center">
+              <ThemeToggle />
+            </div>
           </SidebarFooter>
         </Sidebar>
         <div className="flex-1 flex flex-col overflow-hidden">
@@ -377,7 +379,7 @@ export default function DashboardPage() {
               </Button>
             </div>
           </header>
-          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-4">
+          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-4 max-h-[calc(100vh-80px)] overflow-hidden">
             {/* Main content area */}
             <div className="flex-1 flex flex-col min-w-0 min-h-0">
               <div className="top-controls flex items-center gap-2 mb-4 h-[58px] shrink-0">
@@ -498,9 +500,9 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="flex-1 min-h-0 overflow-hidden flex">
+              <div className="table-container flex-1 min-h-0 overflow-auto flex max-h-[calc(100vh-300px)] border rounded-lg">
                 {!isClient || isInitialLoad ? (
-                  <div className="rounded-lg border overflow-hidden h-full flex-1">
+                  <div className="rounded-lg border overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
                     <table className="w-full caption-bottom text-sm">
                       <thead className="[&_tr]:border-b">
                         <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
@@ -540,7 +542,7 @@ export default function DashboardPage() {
                       selectedAssetIds={selectedAssetIds}
                       onSelectedAssetIdsChange={setSelectedAssetIds}
                       columnVisibility={columnVisibility}
-                      tableHeight="100%"
+                      tableHeight="calc(100vh - 300px)"
                     />
                   </ErrorBoundary>
                 )}
