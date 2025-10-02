@@ -83,14 +83,14 @@
   /* ============================= */
   
   /* Status Badge - "In Use" */
-  --status-in-use-bg: rgb(16, 185, 129);       /* Modern emerald green */
+  --status-in-use-bg: rgb(37, 99, 235);       /* Modern emerald green */
   --status-in-use-text: rgb(255, 255, 255);    /* Clean white text */
-  --status-in-use-hover: rgb(5, 150, 105);     /* Darker emerald hover */
+  --status-in-use-hover: rgb(63, 117, 235);     /* Darker emerald hover */
   
   /* Status Badge - "Spare" */
-  --status-spare-bg: rgb(100, 116, 139);       /* Lighter slate gray */
+  --status-spare-bg: rgb(15, 117, 58);       /* Lighter slate gray */
   --status-spare-text: rgb(255, 255, 255);     /* White text */
-  --status-spare-hover: rgb(71, 85, 105);      /* Darker slate hover */
+  --status-spare-hover: rgb(23, 160, 80);      /* Darker slate hover */
   
   /* Status Badge - "For Repair" */
   --status-for-repair-bg: rgb(220, 38, 38);    /* Professional red */
@@ -196,6 +196,17 @@
   --chart-color-3: rgb(245, 158, 11);          /* Amber */
   --chart-color-4: rgb(168, 85, 247);          /* Purple */
   --chart-color-5: rgb(220, 38, 38);           /* Red */
+  
+  /* ============================= */
+  /* SCROLLBAR COLORS */
+  /* ============================= */
+  
+  --scrollbar-track: rgb(30, 41, 59);          /* Dark slate track */
+  --scrollbar-track-border: rgb(51, 65, 85);   /* Slate track border */
+  --scrollbar-thumb: rgb(59, 130, 246);        /* Blue thumb */
+  --scrollbar-thumb-hover: rgb(37, 99, 235);   /* Darker blue hover */
+  --scrollbar-thumb-border: rgb(30, 41, 59);   /* Dark slate thumb border */
+  --scrollbar-corner: rgb(30, 41, 59);         /* Dark slate corner */
   
   /* ============================= */
   /* LEGACY COMPATIBILITY */

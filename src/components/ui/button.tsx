@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 border border-[var(--primary)]",
+        primary: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 border border-[var(--primary)]",
         destructive:
           "bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:bg-[var(--destructive)]/90 border border-[var(--destructive)]",
         outline:
@@ -37,7 +37,6 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
       size: "default",
     },
   }

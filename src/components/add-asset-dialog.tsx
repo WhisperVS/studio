@@ -1208,7 +1208,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
                 Cancel
               </Button>
-              <Button type="submit">Add Asset</Button>
+              <Button type="submit" variant="primary">Add Asset</Button>
             </DialogFooter>
           </form>
         </Form>

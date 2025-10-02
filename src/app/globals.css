@@ -81,97 +81,97 @@
   }
 
   .btn-add-asset {
-    background-color: var(--btn-add-asset-bg) !important;
-    color: var(--btn-add-asset-text) !important;
-    border: 1px solid var(--btn-add-asset-bg) !important;
+    background-color: var(--btn-add-asset-bg);
+    color: var(--btn-add-asset-text);
+    border: 1px solid var(--btn-add-asset-bg);
   }
 
   .btn-add-asset:hover {
-    background-color: var(--btn-add-asset-hover) !important;
-    border-color: var(--btn-add-asset-hover) !important;
+    background-color: var(--btn-add-asset-hover);
+    border-color: var(--btn-add-asset-hover);
   }
 
   .btn-export {
-    background-color: var(--btn-export-bg) !important;
-    color: var(--btn-export-text) !important;
-    border: 1px solid var(--btn-export-bg) !important;
+    background-color: var(--btn-export-bg);
+    color: var(--btn-export-text);
+    border: 1px solid var(--btn-export-bg);
   }
 
   .btn-export:hover {
-    background-color: var(--btn-export-hover) !important;
-    border-color: var(--btn-export-hover) !important;
+    background-color: var(--btn-export-hover);
+    border-color: var(--btn-export-hover);
   }
 
   .btn-view-settings {
-    background-color: var(--btn-view-settings-bg) !important;
-    color: var(--btn-view-settings-text) !important;
-    border: 1px solid var(--input-border) !important;
+    background-color: var(--btn-view-settings-bg);
+    color: var(--btn-view-settings-text);
+    border: 1px solid var(--input-border);
   }
 
   .btn-view-settings:hover {
-    background-color: var(--btn-view-settings-hover) !important;
+    background-color: var(--btn-view-settings-hover);
   }
 
   .btn-clear-filters {
-    background-color: var(--btn-clear-filters-bg) !important;
-    color: var(--btn-clear-filters-text) !important;
-    border: 1px solid var(--input-border) !important;
+    background-color: var(--btn-clear-filters-bg);
+    color: var(--btn-clear-filters-text);
+    border: 1px solid var(--input-border);
   }
 
   .btn-clear-filters:hover {
-    background-color: var(--btn-clear-filters-hover) !important;
+    background-color: var(--btn-clear-filters-hover);
   }
 
   .btn-select-all {
-    background-color: var(--btn-select-all-bg) !important;
-    color: var(--btn-select-all-text) !important;
-    border: 1px solid var(--btn-select-all-bg) !important;
+    background-color: var(--btn-select-all-bg);
+    color: var(--btn-select-all-text);
+    border: 1px solid var(--btn-select-all-bg);
   }
 
   .btn-select-all:hover {
-    background-color: var(--btn-select-all-hover) !important;
+    background-color: var(--btn-select-all-hover);
   }
 
   .btn-clear-selection {
-    background-color: var(--btn-clear-selection-bg) !important;
-    color: var(--btn-clear-selection-text) !important;
-    border: 1px solid var(--input-border) !important;
+    background-color: var(--btn-clear-selection-bg);
+    color: var(--btn-clear-selection-text);
+    border: 1px solid var(--input-border);
   }
 
   .btn-clear-selection:hover {
-    background-color: var(--btn-clear-selection-hover) !important;
+    background-color: var(--btn-clear-selection-hover);
   }
 
   .btn-apply {
-    background-color: var(--btn-apply-bg) !important;
-    color: var(--btn-apply-text) !important;
-    border: 1px solid var(--btn-apply-bg) !important;
+    background-color: var(--btn-apply-bg);
+    color: var(--btn-apply-text);
+    border: 1px solid var(--btn-apply-bg);
   }
 
   .btn-apply:hover {
-    background-color: var(--btn-apply-hover) !important;
-    border-color: var(--btn-apply-hover) !important;
+    background-color: var(--btn-apply-hover);
+    border-color: var(--btn-apply-hover);
   }
 
   .btn-cancel {
-    background-color: var(--btn-cancel-bg) !important;
-    color: var(--btn-cancel-text) !important;
-    border: 1px solid var(--input-border) !important;
+    background-color: var(--btn-cancel-bg);
+    color: var(--btn-cancel-text);
+    border: 1px solid var(--input-border);
   }
 
   .btn-cancel:hover {
-    background-color: var(--btn-cancel-hover) !important;
+    background-color: var(--btn-cancel-hover);
   }
 
   .btn-delete {
-    background-color: var(--btn-delete-bg) !important;
-    color: var(--btn-delete-text) !important;
-    border: 1px solid var(--btn-delete-bg) !important;
+    background-color: var(--btn-delete-bg);
+    color: var(--btn-delete-text);
+    border: 1px solid var(--btn-delete-bg);
   }
 
   .btn-delete:hover {
-    background-color: var(--btn-delete-hover) !important;
-    border-color: var(--btn-delete-hover) !important;
+    background-color: var(--btn-delete-hover);
+    border-color: var(--btn-delete-hover);
   }
 
   .checkbox-root[data-state="unchecked"] {
@@ -238,33 +238,28 @@
     width: 12px;
   }
   .scrollbar-neon::-webkit-scrollbar-track {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    background: var(--scrollbar-track);
+    border: 1px solid var(--scrollbar-track-border);
     border-radius: 4px;
   }
   .scrollbar-neon::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, rgba(59,130,246,0.9), rgba(99,102,241,0.9));
+    background: var(--scrollbar-thumb);
     border-radius: 9999px;
-    border: 2px solid hsl(var(--card));
+    border: 2px solid var(--scrollbar-thumb-border);
     box-shadow: 0 0 12px rgba(59,130,246,0.35);
   }
   .scrollbar-neon::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
     box-shadow: 0 0 18px rgba(59,130,246,0.5);
   }
   .scrollbar-neon::-webkit-scrollbar-corner {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    background: var(--scrollbar-corner);
+    border: 1px solid var(--scrollbar-track-border);
   }
 
-  /* For firefox - light theme */
+  /* For firefox - now using theme variables */
   .scrollbar-neon {
-    scrollbar-color: rgb(122 0 209) #f4ecf9;
-    scrollbar-width: auto;
-  }
-
-  /* For firefox - dark theme */
-  .dark .scrollbar-neon {
-    scrollbar-color: rgb(122 0 209) #1a161d;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     scrollbar-width: auto;
   }
 
