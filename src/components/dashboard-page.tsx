@@ -341,11 +341,9 @@ export default function DashboardPage() {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <SidebarFooter className="flex-shrink-0 flex items-center justify-center group-data-[collapsible=icon]:justify-center border-t bg-background p-4">
-            <div className="theme-toggle-container w-full flex justify-center">
-              <ThemeToggle />
-            </div>
-          </SidebarFooter>
+          <div className="sidebar-footer-manual flex-shrink-0 border-t p-4 bg-background" style={{ minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid var(--border)' }}>
+            <ThemeToggle />
+          </div>
         </Sidebar>
         <div className="flex-1 flex flex-col overflow-hidden">
           <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0">

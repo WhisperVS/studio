@@ -673,3 +673,68 @@ button:focus, .btn:focus, [role="button"]:focus {
   background: rgba(255, 255, 255, 0.95) !important;
   border: 1px solid rgba(203, 213, 225, 0.3) !important;
 }
+
+/* ============================= */
+/* ENHANCED DROPDOWN HOVER EFFECTS */
+/* ============================= */
+
+/* Dropdown menu items hover enhancement */
+.light [data-radix-popper-content-wrapper] [role="menuitem"]:hover,
+.light [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
+.light .dropdown-menu-item:hover,
+:root [data-radix-popper-content-wrapper] [role="menuitem"]:hover,
+:root [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
+:root .dropdown-menu-item:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: rgb(51, 65, 85) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Select dropdown items hover */
+.light [data-radix-select-content] [role="option"]:hover,
+.light .select-item:hover,
+:root [data-radix-select-content] [role="option"]:hover,
+:root .select-item:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: rgb(51, 65, 85) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Checkbox items in dropdowns */
+.light [role="menuitemcheckbox"]:hover,
+:root [role="menuitemcheckbox"]:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: rgb(51, 65, 85) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* ============================= */
+/* DIALOG CLOSE BUTTON ENHANCEMENT */
+/* ============================= */
+
+/* Dialog close button visibility */
+.light [data-radix-dialog-content] button[data-radix-dialog-close],
+:root [data-radix-dialog-content] button[data-radix-dialog-close] {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: rgb(71, 85, 105) !important;
+  opacity: 0.8 !important;
+  z-index: 9999 !important;
+  transition: all 0.2s ease !important;
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  order: -1 !important;
+}
+
+.light [data-radix-dialog-content] button[data-radix-dialog-close]:hover,
+:root [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  color: rgb(15, 23, 42) !important;
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+}

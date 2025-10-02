@@ -1,5 +1,5 @@
 
-import { Laptop, Network, Printer, Server, HardDrive, LayoutGrid } from "lucide-react";
+import { Laptop, Network, Printer, Server, HardDrive, LayoutGrid, Circle, CheckSquare } from "lucide-react";
 import React from "react";
 import type { BadgeProps } from "@/components/ui/badge";
 
@@ -40,7 +40,7 @@ export const APP_CONFIG = {
       id: 'misc', 
       name: 'Misc Items', 
       description: 'Miscellaneous hardware and peripherals.',
-      icon: React.createElement(LayoutGrid)
+      icon: React.createElement(Circle)
     },
   ],
   allCategory: {
