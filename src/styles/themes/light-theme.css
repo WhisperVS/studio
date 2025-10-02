@@ -678,34 +678,67 @@ button:focus, .btn:focus, [role="button"]:focus {
 /* ENHANCED DROPDOWN HOVER EFFECTS */
 /* ============================= */
 
-/* Dropdown menu items hover enhancement */
-.light [data-radix-popper-content-wrapper] [role="menuitem"]:hover,
-.light [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
-.light .dropdown-menu-item:hover,
-:root [data-radix-popper-content-wrapper] [role="menuitem"]:hover,
-:root [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
-:root .dropdown-menu-item:hover {
-  background: rgba(59, 130, 246, 0.1) !important;
-  color: rgb(51, 65, 85) !important;
-  transition: all 0.2s ease !important;
-}
-
-/* Select dropdown items hover */
+/* Select dropdown items hover - multiple selectors for comprehensive coverage */
+.light [data-radix-select-content] [data-radix-select-item]:hover,
 .light [data-radix-select-content] [role="option"]:hover,
-.light .select-item:hover,
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+.light [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
+.light [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover,
+:root [data-radix-select-content] [data-radix-select-item]:hover,
 :root [data-radix-select-content] [role="option"]:hover,
-:root .select-item:hover {
-  background: rgba(59, 130, 246, 0.1) !important;
-  color: rgb(51, 65, 85) !important;
-  transition: all 0.2s ease !important;
+:root [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+:root [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
+:root [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: rgb(15, 23, 42) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
 }
 
-/* Checkbox items in dropdowns */
-.light [role="menuitemcheckbox"]:hover,
-:root [role="menuitemcheckbox"]:hover {
-  background: rgba(59, 130, 246, 0.1) !important;
-  color: rgb(51, 65, 85) !important;
-  transition: all 0.2s ease !important;
+/* SelectItem component hover */
+.light div[class*="select-none"][class*="cursor-default"]:hover,
+:root div[class*="select-none"][class*="cursor-default"]:hover {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: rgb(15, 23, 42) !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Dropdown menu items with class-based targeting */
+.light .dropdown-menu-item:hover,
+.light .select-item:hover,
+:root .dropdown-menu-item:hover,
+:root .select-item:hover {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: rgb(15, 23, 42) !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Focus states enhancement */
+.light [data-radix-select-content] [data-radix-select-item]:focus,
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
+:root [data-radix-select-content] [data-radix-select-item]:focus,
+:root [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus {
+  background: rgba(59, 130, 246, 0.18) !important;
+  color: rgb(15, 23, 42) !important;
+  outline: none !important;
+}
+
+/* Universal dropdown item hover fallbacks */
+.light [data-radix-select-viewport] > *:hover,
+.light [data-radix-dropdown-menu-content] > *:hover,
+:root [data-radix-select-viewport] > *:hover,
+:root [data-radix-dropdown-menu-content] > *:hover {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: rgb(15, 23, 42) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
+}
+
+/* Tailwind class-based hover overrides */
+.light .hover\:bg-accent:hover,
+:root .hover\:bg-accent:hover {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: rgb(15, 23, 42) !important;
 }
 
 /* ============================= */
