@@ -886,7 +886,10 @@
 /* Force theme toggle visibility with multiple selectors */
 .dark button.theme-toggle,
 .dark .theme-toggle,
-.dark [class*="theme-toggle"] {
+.dark [class*="theme-toggle"],
+html.dark button.theme-toggle,
+html.dark .theme-toggle,
+html.dark [class*="theme-toggle"] {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -903,7 +906,9 @@
 
 /* Ensure theme toggle icons are visible */
 .dark .theme-toggle svg,
-.dark .theme-toggle [data-theme-icon] {
+.dark .theme-toggle [data-theme-icon],
+html.dark .theme-toggle svg,
+html.dark .theme-toggle [data-theme-icon] {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -930,7 +935,9 @@
 
 /* Ensure sidebar footer container is visible */
 .dark .sidebar-footer-manual,
-.dark [data-sidebar="footer"] {
+.dark [data-sidebar="footer"],
+html.dark .sidebar-footer-manual,
+html.dark [data-sidebar="footer"] {
   display: flex !important;
   visibility: visible !important;
   background-color: var(--sidebar-background) !important;
