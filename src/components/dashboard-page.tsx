@@ -10,6 +10,7 @@ import { AddAssetDialog } from "@/components/add-asset-dialog";
 import { EditAssetDialog } from "@/components/edit-asset-dialog";
 import { AssetDetailsDialog } from "@/components/asset-details-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SimpleThemeToggle } from "@/components/simple-theme-toggle";
 import { Logo } from "@/components/logo";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
@@ -329,11 +330,11 @@ export default function DashboardPage() {
   return (
     <SidebarProvider>
       <div className="main-layout flex h-screen bg-background overflow-hidden">
-        <Sidebar collapsible="icon" className="border-r flex flex-col h-screen">
+        <Sidebar collapsible="icon" className="border-r flex flex-col" style={{ height: '100vh', maxHeight: '100vh' }}>
           <SidebarHeader className="flex-shrink-0">
             <Logo />
           </SidebarHeader>
-          <SidebarContent className="flex-1 overflow-visible py-2">
+          <SidebarContent className="flex-1 overflow-visible py-2" style={{ flex: '1 1 auto', minHeight: 0 }}>
             <CategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -347,11 +348,12 @@ export default function DashboardPage() {
             alignItems: 'center', 
             justifyContent: 'center', 
             borderTop: '1px solid var(--border)',
-            backgroundColor: 'var(--sidebar-background, var(--background))',
+            backgroundColor: '#ffffff',
             position: 'relative',
-            zIndex: 10
+            zIndex: 1000,
+            flexShrink: 0
           }}>
-            <ThemeToggle />
+            <SimpleThemeToggle />
           </div>
         </Sidebar>
         <div className="flex-1 flex flex-col overflow-hidden">

@@ -883,7 +883,7 @@
   min-height: 48px !important;
 }
 
-/* Force theme toggle visibility with multiple selectors */
+/* Simple theme toggle visibility - dark theme */
 .dark button.theme-toggle,
 .dark .theme-toggle,
 .dark [class*="theme-toggle"],
@@ -893,18 +893,9 @@ html.dark [class*="theme-toggle"] {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
-  position: relative !important;
-  z-index: 999 !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(203, 213, 225, 0.3) !important;
-  border-radius: 8px !important;
-  width: 40px !important;
-  height: 40px !important;
-  align-items: center !important;
-  justify-content: center !important;
 }
 
-/* Ensure theme toggle icons are visible */
+/* Simple theme toggle icons - dark theme */
 .dark .theme-toggle svg,
 .dark .theme-toggle [data-theme-icon],
 html.dark .theme-toggle svg,
@@ -912,11 +903,6 @@ html.dark .theme-toggle [data-theme-icon] {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  color: #374151 !important;
-  width: 20px !important;
-  height: 20px !important;
-  position: absolute !important;
-  transition: all 0.3s ease !important;
 }
 
 /* Show sun icon in dark theme */

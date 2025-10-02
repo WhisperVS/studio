@@ -653,7 +653,7 @@ button:focus, .btn:focus, [role="button"]:focus {
   min-height: 48px !important;
 }
 
-/* Force theme toggle visibility with multiple selectors */
+/* Simple theme toggle visibility - light theme */
 .light button.theme-toggle,
 .light .theme-toggle,
 .light [class*="theme-toggle"],
@@ -663,18 +663,9 @@ button:focus, .btn:focus, [role="button"]:focus {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
-  position: relative !important;
-  z-index: 999 !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(203, 213, 225, 0.3) !important;
-  border-radius: 8px !important;
-  width: 40px !important;
-  height: 40px !important;
-  align-items: center !important;
-  justify-content: center !important;
 }
 
-/* Ensure theme toggle icons are visible */
+/* Simple theme toggle icons - light theme */
 .light .theme-toggle svg,
 .light .theme-toggle [data-theme-icon],
 :root .theme-toggle svg,
@@ -682,11 +673,6 @@ button:focus, .btn:focus, [role="button"]:focus {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  color: #374151 !important;
-  width: 20px !important;
-  height: 20px !important;
-  position: absolute !important;
-  transition: all 0.3s ease !important;
 }
 
 /* Show moon icon in light theme */
