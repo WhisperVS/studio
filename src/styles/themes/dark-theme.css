@@ -4,64 +4,87 @@
 
 .dark {
   /* ============================= */
-  /* CORE LAYOUT COLORS */
+  /* CORE LAYOUT COLORS - PREMIUM DARK */
   /* ============================= */
   
   /* Main page background and text */
-  --page-background: rgb(15, 23, 42);          /* Deep professional slate */
-  --page-text: rgb(226, 232, 240);             /* Light slate text */
+  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 0%, rgb(31, 41, 55) 100%); /* Premium dark gradient */
+  --page-text: rgb(243, 244, 246);             /* Premium light text */
   
   /* ============================= */
-  /* TABLE STYLING */
+  /* TABLE STYLING - PREMIUM DARK */
   /* ============================= */
   
   /* Table Header Section */
-  --table-header-bg: rgb(51, 65, 85);          /* Professional dark slate header */
-  --table-header-text: rgb(226, 232, 240);     /* Light slate text */
-  --table-header-border: rgb(71, 85, 105);     /* Medium slate border */
-  --table-header-hover: rgb(71, 85, 105);      /* Lighter slate hover */
+  --table-header-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium gradient */
+  --table-header-text: rgb(255, 255, 255);     /* Pure white text */
+  --table-header-border: rgb(99, 102, 241);    /* Matching border */
+  --table-header-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Darker gradient */
   
   /* Table Data Section */
-  --table-data-bg: rgb(30, 41, 59);            /* Medium slate data cells */
-  --table-data-text: rgb(203, 213, 225);       /* Light blue-gray text */
-  --table-data-border: rgb(51, 65, 85);        /* Dark slate borders */
-  --table-data-hover: rgb(51, 65, 85);         /* Slate hover */
-  --table-data-selected: rgb(30, 58, 138);     /* Deep blue selection */
+  --table-data-bg: rgba(31, 41, 55, 0.8);      /* Semi-transparent dark */
+  --table-data-text: rgb(243, 244, 246);       /* Premium light text */
+  --table-data-border: rgba(75, 85, 99, 0.6);  /* Subtle borders */
+  --table-data-hover: rgba(55, 65, 81, 0.8);   /* Sophisticated hover */
+  --table-data-selected: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); /* Premium selection */
   
   /* ============================= */
-  /* CARD AND PANEL COLORS */
+  /* CARD AND PANEL COLORS - PREMIUM DARK */
   /* ============================= */
   
-  --card-background: rgb(30, 41, 59);          /* Professional slate cards */
-  --card-text: rgb(226, 232, 240);             /* Light slate text */
-  --card-border: rgb(51, 65, 85);              /* Subtle slate borders */
+  --card-background: rgba(31, 41, 55, 0.95);   /* Premium dark cards */
+  --card-text: rgb(243, 244, 246);             /* Premium light text */
+  --card-border: rgba(75, 85, 99, 0.6);        /* Sophisticated borders */
+  --card-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4); /* Premium dark shadow */
   
   /* ============================= */
-  /* MODAL AND DIALOG COLORS */
+  /* MODAL AND DIALOG COLORS - PREMIUM DARK */
   /* ============================= */
   
-  --modal-background: rgb(30, 41, 59);         /* Professional slate modals */
-  --modal-text: rgb(226, 232, 240);            /* Light slate text */
-  --modal-overlay: rgb(0, 0, 0);               /* Professional dark overlay */
+  --modal-background: rgba(31, 41, 55, 0.98);  /* Premium dark modal */
+  --modal-text: rgb(243, 244, 246);            /* Premium light text */
+  --modal-overlay: rgba(0, 0, 0, 0.8);         /* Deep overlay */
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Premium dark shadow */
   
   /* ============================= */
   /* FORM INPUT COLORS */
   /* ============================= */
   
-  --input-background: rgb(51, 65, 85);         /* Dark slate input background */
-  --input-text: rgb(226, 232, 240);            /* Light slate text */
-  --input-border: rgb(71, 85, 105);            /* Medium slate borders */
-  --input-border-focus: rgb(59, 130, 246);     /* Vibrant blue focus */
-  --input-placeholder: rgb(148, 163, 184);     /* Muted placeholder text */
+  --input-background: rgb(64, 68, 75);         /* Discord input gray */
+  --input-text: rgb(220, 221, 222);            /* Discord light text */
+  --input-border: rgb(64, 68, 75);             /* Matching border */
+  --input-border-focus: rgb(88, 101, 242);     /* Discord blurple focus */
+  --input-placeholder: rgb(142, 146, 151);     /* Discord placeholder gray */
   
   /* ============================= */
-  /* DROPDOWN AND SELECT COLORS */
+  /* BUTTON STYLING - PREMIUM DARK */
   /* ============================= */
   
-  --dropdown-background: rgb(51, 65, 85);      /* Dark slate dropdowns */
-  --dropdown-text: rgb(226, 232, 240);         /* Light slate text */
-  --dropdown-border: rgb(71, 85, 105);         /* Medium slate borders */
-  --dropdown-hover: rgb(71, 85, 105);          /* Lighter slate hover */
+  /* Primary Buttons */
+  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium gradient */
+  --btn-primary-text: rgb(255, 255, 255);      /* Pure white text */
+  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Premium hover */
+  --btn-primary-shadow: 0 8px 32px -8px rgba(99, 102, 241, 0.4); /* Premium shadow */
+  
+  /* Secondary Buttons */
+  --btn-secondary-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium dark secondary */
+  --btn-secondary-text: rgb(99, 102, 241);     /* Premium accent text */
+  --btn-secondary-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
+  --btn-secondary-border: rgba(75, 85, 99, 0.8); /* Sophisticated border */
+  
+  /* Filter/Control Buttons */
+  --btn-filter-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium filter */
+  --btn-filter-text: rgb(209, 213, 219);       /* Premium gray text */
+  --btn-filter-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
+  --btn-filter-border: rgba(75, 85, 99, 0.8);  /* Sophisticated border */
+  --btn-filter-active: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium active */
+  --btn-filter-active-text: rgb(255, 255, 255); /* White active text */
+  
+  /* Clear Filters Button */
+  --btn-clear-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium clear */
+  --btn-clear-text: rgb(209, 213, 219);        /* Premium text */
+  --btn-clear-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
+  --btn-clear-border: rgba(75, 85, 99, 0.8);   /* Sophisticated border */
   
   /* ============================= */
   /* SYSTEM COLORS */
@@ -179,18 +202,18 @@
   /* SIDEBAR NAVIGATION */
   /* ============================= */
   
-  --sidebar-background: rgb(30, 41, 59);       /* Professional slate background */
-  --sidebar-text: rgb(226, 232, 240);          /* Light slate text */
-  --sidebar-link-text: rgb(148, 163, 184);     /* Muted link text */
-  --sidebar-link-hover: rgb(71, 85, 105);      /* Lighter slate hover */
-  --sidebar-active-bg: rgb(59, 130, 246);      /* Blue active background */
-  --sidebar-active-text: rgb(255, 255, 255);   /* White active text */
-  --sidebar-border: rgb(71, 85, 105);          /* Subtle border color */
+  --sidebar-background: rgb(47, 49, 54);       /* Discord sidebar gray */
+  --sidebar-text: rgb(220, 221, 222);          /* Discord light text */
+  --sidebar-link-text: rgb(142, 146, 151);     /* Discord muted text */
+  --sidebar-link-hover: rgb(64, 68, 75);       /* Discord hover gray */
+  --sidebar-active-bg: rgb(88, 101, 242);      /* Discord blurple active */
+  --sidebar-active-text: rgb(255, 255, 255);   /* Pure white active text */
+  --sidebar-border: rgb(64, 68, 75);           /* Discord border gray */
   
   /* Logo Colors */
-  --logo-icon-color: rgb(96, 165, 250);        /* Lighter blue icon for dark theme */
-  --logo-title-color: rgb(248, 250, 252);      /* Near white title text */
-  --logo-subtitle-color: rgb(156, 163, 175);   /* Light gray subtitle text */
+  --logo-icon-color: rgb(114, 137, 218);       /* Discord lighter blurple */
+  --logo-title-color: rgb(255, 255, 255);      /* Pure white title */
+  --logo-subtitle-color: rgb(142, 146, 151);   /* Discord muted text */
   
   /* ============================= */
   /* CHART COLORS */
@@ -241,4 +264,266 @@
   /* ============================= */
   
   --radius: 0.5rem;
+}
+
+/* ============================= */
+/* PREMIUM DARK FILTER CONTROLS STYLING */
+/* ============================= */
+
+/* Enhanced styling for filter controls section - Premium Dark */
+.dark .top-controls {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+  padding: 20px 0;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 32px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Premium dark search input */
+.dark .top-controls input[type="text"] {
+  background: var(--input-background) !important;
+  border: 2px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--input-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.dark .top-controls input[type="text"]:focus {
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  box-shadow: var(--input-shadow-focus) !important;
+  outline: none !important;
+  background: rgba(31, 41, 55, 0.9) !important;
+  transform: translateY(-1px);
+}
+
+.dark .top-controls input[type="text"]::placeholder {
+  color: var(--input-placeholder) !important;
+  font-weight: 400;
+}
+
+/* Premium dark combobox/dropdown buttons */
+.dark .top-controls button[role="combobox"] {
+  background: var(--dropdown-background) !important;
+  border: 2px solid var(--dropdown-border) !important;
+  color: var(--dropdown-text) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.dark .top-controls button[role="combobox"]:hover {
+  background: var(--dropdown-hover) !important;
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4) !important;
+}
+
+.dark .top-controls button[role="combobox"]:focus {
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  box-shadow: var(--input-shadow-focus) !important;
+  outline: none !important;
+  background: rgba(31, 41, 55, 0.9) !important;
+  transform: translateY(-1px);
+}
+
+/* Premium dark clear filters button */
+.dark .btn-clear-filters {
+  background: var(--btn-clear-bg) !important;
+  border: 2px solid var(--btn-clear-border) !important;
+  color: var(--btn-clear-text) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.dark .btn-clear-filters:hover {
+  background: var(--btn-clear-hover) !important;
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  color: rgb(255, 255, 255) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5) !important;
+}
+
+.dark .btn-clear-filters svg {
+  color: currentColor !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium dark focus ring for all interactive elements */
+.dark .top-controls *:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+  border-radius: 12px;
+}
+
+/* ============================= */
+/* ADVANCED DYNAMIC BUTTON REACTIONS - DARK THEME */
+/* ============================= */
+
+/* Universal dark button enhancement */
+.dark button, .dark .btn, .dark [role="button"] {
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme ripple effect */
+.dark button::before, .dark .btn::before, .dark [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dark ripple activation */
+.dark button:hover::before, .dark .btn:hover::before, .dark [role="button"]:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Dynamic dark primary button states */
+.dark button[class*="primary"], .dark .btn-primary {
+  background: var(--btn-primary-bg) !important;
+  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark button[class*="primary"]:hover, .dark .btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.5), 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  filter: brightness(1.2) saturate(1.1);
+}
+
+/* Dark secondary button states */
+.dark button[class*="secondary"], .dark .btn-secondary {
+  background: var(--btn-secondary-bg) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark button[class*="secondary"]:hover, .dark .btn-secondary:hover {
+  background: var(--btn-secondary-hover) !important;
+  border-color: transparent !important;
+  background-image: var(--accent-color) !important;
+  color: white !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Dark success states */
+.dark .btn-success, .dark button[class*="success"] {
+  background: var(--success-color) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .btn-success:hover, .dark button[class*="success"]:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2) hue-rotate(5deg);
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5) !important;
+}
+
+/* Dark floating action buttons */
+.dark .fab {
+  background: var(--accent-color) !important;
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .fab:hover {
+  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================= */
+/* DISCORD-STYLE FILTER CONTROLS - DARK THEME */
+/* ============================= */
+
+/* Enhanced styling for filter controls section */
+.dark .top-controls {
+  background: var(--page-background);
+  border-bottom: 1px solid var(--input-border);
+  padding: 16px 0;
+}
+
+/* Discord-style search input - dark theme */
+.dark .top-controls input[type="text"] {
+  background: var(--input-background) !important;
+  border: 1px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.dark .top-controls input[type="text"]:focus {
+  border-color: var(--input-border-focus) !important;
+  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
+  outline: none !important;
+}
+
+.dark .top-controls input[type="text"]::placeholder {
+  color: var(--input-placeholder) !important;
+}
+
+/* Discord-style combobox/dropdown buttons - dark theme */
+.dark .top-controls button[role="combobox"] {
+  background: var(--btn-filter-bg) !important;
+  border: 1px solid var(--btn-filter-border) !important;
+  color: var(--btn-filter-text) !important;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.dark .top-controls button[role="combobox"]:hover {
+  background: var(--btn-filter-hover) !important;
+  border-color: var(--input-border-focus) !important;
+}
+
+.dark .top-controls button[role="combobox"]:focus {
+  border-color: var(--input-border-focus) !important;
+  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
+  outline: none !important;
+}
+
+/* Discord-style clear filters button - dark theme */
+.dark .btn-clear-filters {
+  background: var(--btn-clear-bg) !important;
+  border: 1px solid var(--btn-clear-border) !important;
+  color: var(--btn-clear-text) !important;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.dark .btn-clear-filters:hover {
+  background: var(--btn-clear-hover) !important;
+  border-color: var(--input-border-focus) !important;
+  color: var(--input-border-focus) !important;
+}
+
+.dark .btn-clear-filters svg {
+  color: currentColor !important;
+}
+
+/* Discord-style focus ring for all interactive elements - dark theme */
+.dark .top-controls *:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
 }
