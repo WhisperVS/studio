@@ -551,12 +551,15 @@
   color: var(--btn-clear-text) !important;
   transition: all 0.15s ease;
   box-shadow: none !important;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .dark .btn-clear-filters:hover {
   background: var(--btn-clear-hover) !important;
   border-color: var(--input-border-focus) !important;
   color: var(--input-border-focus) !important;
+  transform: translateY(-1px) scale(1.01);
 }
 
 .dark .btn-clear-filters svg {
