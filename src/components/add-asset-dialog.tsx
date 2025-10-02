@@ -776,7 +776,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
                     <FormControl>
                       <Combobox
-                        className="form-control"
                         options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
                         value={field.value}
                         onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
@@ -1052,7 +1051,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
             </div>
 
             {status && !['For Recycle', 'For Parts'].includes(status) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 p-2 border rounded-lg items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 p-4 border rounded-lg bg-card items-start">
                 <div className="md:col-span-2">
                   <p className="font-medium text-sm text-foreground">User Assignment</p>
                 </div>

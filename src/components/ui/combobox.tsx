@@ -62,7 +62,13 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           disabled={disabled}
-          className={cn("w-full justify-between font-normal", className)}
+          className={cn(
+            "w-full justify-between font-normal form-control",
+            "border border-input bg-background text-foreground",
+            "hover:bg-accent hover:text-accent-foreground",
+            "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+            className
+          )}
         >
           {selected ? selected.label : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
