@@ -189,6 +189,11 @@
   --sidebar-active-text: rgb(255, 255, 255);   /* White active text */
   --sidebar-border: rgb(51, 65, 85);           /* Subtle border color */
   
+  /* Logo Colors */
+  --logo-icon-color: rgb(59, 130, 246);        /* Blue icon */
+  --logo-title-color: rgb(255, 255, 255);      /* White title text */
+  --logo-subtitle-color: rgb(148, 163, 184);   /* Muted subtitle text */
+  
   /* ============================= */
   /* CHART COLORS */
   /* ============================= */

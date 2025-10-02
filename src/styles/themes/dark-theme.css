@@ -61,7 +61,7 @@
   --dropdown-background: rgb(51, 65, 85);      /* Dark slate dropdowns */
   --dropdown-text: rgb(226, 232, 240);         /* Light slate text */
   --dropdown-border: rgb(71, 85, 105);         /* Medium slate borders */
-  --dropdown-hover: rgb(71, 85, 105);          /* Darker slate hover */
+  --dropdown-hover: rgb(71, 85, 105);          /* Lighter slate hover */
   
   /* ============================= */
   /* SYSTEM COLORS */
@@ -83,14 +83,14 @@
   /* ============================= */
   
   /* Status Badge - "In Use" */
-  --status-in-use-bg: rgb(37, 99, 235);       /* Modern emerald green */
+  --status-in-use-bg: rgb(16, 185, 129);       /* Modern emerald green */
   --status-in-use-text: rgb(255, 255, 255);    /* Clean white text */
-  --status-in-use-hover: rgb(63, 117, 235);     /* Darker emerald hover */
+  --status-in-use-hover: rgb(5, 150, 105);     /* Darker emerald hover */
   
   /* Status Badge - "Spare" */
-  --status-spare-bg: rgb(15, 117, 58);       /* Lighter slate gray */
+  --status-spare-bg: rgb(71, 85, 105);         /* Professional slate gray */
   --status-spare-text: rgb(255, 255, 255);     /* White text */
-  --status-spare-hover: rgb(23, 160, 80);      /* Darker slate hover */
+  --status-spare-hover: rgb(51, 65, 85);       /* Darker slate hover */
   
   /* Status Badge - "For Repair" */
   --status-for-repair-bg: rgb(220, 38, 38);    /* Professional red */
@@ -98,10 +98,10 @@
   --status-for-repair-hover: rgb(185, 28, 28); /* Darker red hover */
   
   /* Status Badge - "For Parts" */
-  --status-for-parts-bg: transparent;          /* Transparent background */
-  --status-for-parts-text: rgb(148, 163, 184); /* Muted slate text */
-  --status-for-parts-border: rgb(71, 85, 105); /* Medium border */
-  --status-for-parts-hover: rgb(51, 65, 85);   /* Dark slate hover */
+  --status-for-parts-bg: rgb(71, 85, 105);     /* Muted dark background */
+  --status-for-parts-text: rgb(203, 213, 225); /* Muted slate text */
+  --status-for-parts-border: rgb(51, 65, 85);  /* Dark border */
+  --status-for-parts-hover: rgb(51, 65, 85);   /* Darker slate hover */
   
   /* Status Badge - "For Recycle" */
   --status-for-recycle-bg: rgb(245, 158, 11);  /* Professional amber */
@@ -115,15 +115,15 @@
   /* Core Tailwind variables */
   --primary: rgb(59, 130, 246);                /* Blue primary for buttons */
   --primary-foreground: rgb(255, 255, 255);    /* White text on blue */
-  --secondary: rgb(100, 116, 139);             /* Lighter slate for secondary */
-  --secondary-foreground: rgb(255, 255, 255);  /* White text on slate */
+  --secondary: rgb(71, 85, 105);               /* Slate gray for secondary */
+  --secondary-foreground: rgb(226, 232, 240);  /* Light text on slate */
   --destructive: rgb(220, 38, 38);             /* Red for destructive */
   --destructive-foreground: rgb(255, 255, 255); /* White text on red */
   --warning: rgb(245, 158, 11);                /* Amber for warning */
   --warning-foreground: rgb(255, 255, 255);    /* White text on amber */
   --foreground: rgb(226, 232, 240);            /* Main text color */
   --background: rgb(15, 23, 42);               /* Main background */
-  --muted: rgb(51, 65, 85);                    /* Muted backgrounds */
+  --muted: rgb(30, 41, 59);                    /* Muted backgrounds */
   --muted-foreground: rgb(148, 163, 184);      /* Muted text */
   --accent: rgb(51, 65, 85);                   /* Accent backgrounds */
   --accent-foreground: rgb(226, 232, 240);     /* Accent text */
@@ -144,22 +144,22 @@
   --btn-export-text: rgb(255, 255, 255);       /* White text */
   --btn-export-hover: rgb(5, 150, 105);        /* Darker emerald hover */
   
-  --btn-view-settings-bg: rgb(51, 65, 85);     /* Slate for View */
+  --btn-view-settings-bg: rgb(51, 65, 85);     /* Dark slate for View */
   --btn-view-settings-text: rgb(226, 232, 240); /* Light text */
   --btn-view-settings-hover: rgb(71, 85, 105); /* Lighter slate hover */
   
   /* Filter Control Buttons */
-  --btn-clear-filters-bg: rgb(51, 65, 85);     /* Slate for Clear Filters */
-  --btn-clear-filters-text: rgb(148, 163, 184); /* Muted text */
+  --btn-clear-filters-bg: rgb(51, 65, 85);     /* Dark slate for Clear Filters */
+  --btn-clear-filters-text: rgb(203, 213, 225); /* Light text */
   --btn-clear-filters-hover: rgb(71, 85, 105); /* Lighter slate hover */
   
   /* Table Selection Buttons */
-  --btn-select-all-bg: rgb(30, 58, 138);       /* Deep blue for Select All */
-  --btn-select-all-text: rgb(219, 234, 254);   /* Light blue text */
-  --btn-select-all-hover: rgb(30, 64, 175);    /* Lighter blue hover */
+  --btn-select-all-bg: rgb(59, 130, 246);      /* Blue for Select All */
+  --btn-select-all-text: rgb(255, 255, 255);   /* White text */
+  --btn-select-all-hover: rgb(37, 99, 235);    /* Darker blue hover */
   
-  --btn-clear-selection-bg: rgb(51, 65, 85);   /* Slate for Clear Selection */
-  --btn-clear-selection-text: rgb(148, 163, 184); /* Muted text */
+  --btn-clear-selection-bg: rgb(51, 65, 85);   /* Dark slate for Clear Selection */
+  --btn-clear-selection-text: rgb(203, 213, 225); /* Light text */
   --btn-clear-selection-hover: rgb(71, 85, 105); /* Lighter slate hover */
   
   /* Dialog/Modal Action Buttons */
@@ -167,8 +167,8 @@
   --btn-apply-text: rgb(255, 255, 255);        /* White text */
   --btn-apply-hover: rgb(37, 99, 235);         /* Darker blue hover */
   
-  --btn-cancel-bg: rgb(51, 65, 85);            /* Slate for Cancel */
-  --btn-cancel-text: rgb(148, 163, 184);       /* Muted text */
+  --btn-cancel-bg: rgb(51, 65, 85);            /* Dark slate for Cancel */
+  --btn-cancel-text: rgb(203, 213, 225);       /* Light text */
   --btn-cancel-hover: rgb(71, 85, 105);        /* Lighter slate hover */
   
   --btn-delete-bg: rgb(220, 38, 38);           /* Red for Delete */
@@ -179,13 +179,18 @@
   /* SIDEBAR NAVIGATION */
   /* ============================= */
   
-  --sidebar-background: rgb(15, 23, 42);       /* Deep slate background */
+  --sidebar-background: rgb(30, 41, 59);       /* Professional slate background */
   --sidebar-text: rgb(226, 232, 240);          /* Light slate text */
   --sidebar-link-text: rgb(148, 163, 184);     /* Muted link text */
-  --sidebar-link-hover: rgb(51, 65, 85);       /* Slate hover */
+  --sidebar-link-hover: rgb(71, 85, 105);      /* Lighter slate hover */
   --sidebar-active-bg: rgb(59, 130, 246);      /* Blue active background */
   --sidebar-active-text: rgb(255, 255, 255);   /* White active text */
-  --sidebar-border: rgb(51, 65, 85);           /* Subtle border color */
+  --sidebar-border: rgb(71, 85, 105);          /* Subtle border color */
+  
+  /* Logo Colors */
+  --logo-icon-color: rgb(96, 165, 250);        /* Lighter blue icon for dark theme */
+  --logo-title-color: rgb(248, 250, 252);      /* Near white title text */
+  --logo-subtitle-color: rgb(156, 163, 175);   /* Light gray subtitle text */
   
   /* ============================= */
   /* CHART COLORS */
@@ -198,39 +203,42 @@
   --chart-color-5: rgb(220, 38, 38);           /* Red */
   
   /* ============================= */
-  /* SCROLLBAR COLORS */
+  /* SCROLLBAR STYLING */
   /* ============================= */
   
-  --scrollbar-track: rgb(30, 41, 59);          /* Dark slate track */
-  --scrollbar-track-border: rgb(51, 65, 85);   /* Slate track border */
+  --scrollbar-track: rgb(30, 41, 59);          /* Dark track */
+  --scrollbar-track-border: rgb(51, 65, 85);   /* Subtle border */
   --scrollbar-thumb: rgb(59, 130, 246);        /* Blue thumb */
   --scrollbar-thumb-hover: rgb(37, 99, 235);   /* Darker blue hover */
-  --scrollbar-thumb-border: rgb(30, 41, 59);   /* Dark slate thumb border */
-  --scrollbar-corner: rgb(30, 41, 59);         /* Dark slate corner */
+  --scrollbar-thumb-border: rgb(30, 41, 59);   /* Track colored border */
+  --scrollbar-corner: rgb(30, 41, 59);         /* Corner color */
   
   /* ============================= */
-  /* LEGACY COMPATIBILITY */
+  /* TABLE STYLING HELPERS */
   /* ============================= */
   
-  /* Table aliases for backward compatibility */
   --table-cell-bg: var(--table-data-bg);
   --table-cell-text: var(--table-data-text);
   --table-cell-border: var(--table-data-border);
   --table-row-hover: var(--table-data-hover);
   --table-row-selected: var(--table-data-selected);
   
-  /* Button outline style compatibility */
+  /* ============================= */
+  /* BUTTON VARIANT HELPERS */
+  /* ============================= */
+  
   --btn-outline-bg: rgb(51, 65, 85);
   --btn-outline-text: rgb(226, 232, 240);
   --btn-outline-border: rgb(71, 85, 105);
   --btn-outline-hover: rgb(71, 85, 105);
-  
-  /* System destructive colors compatibility */
   --btn-destructive-bg: rgb(220, 38, 38);
   --btn-destructive-text: rgb(255, 255, 255);
   --btn-destructive-border: rgb(220, 38, 38);
   --btn-destructive-hover: rgb(185, 28, 28);
   
-  /* Radius */
+  /* ============================= */
+  /* COMPONENT RADIUS */
+  /* ============================= */
+  
   --radius: 0.5rem;
 }
