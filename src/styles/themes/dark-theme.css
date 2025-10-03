@@ -640,9 +640,9 @@
 .dark .asset-table tr[data-state="selected"] td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
-  transform: scale(1.005);
+  /* transform: scale(1.005); */
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
-  border-left: 3px solid rgb(79, 70, 229);
+  border-left: 1px solid rgb(79, 70, 229);
   position: relative;
 }
 
@@ -651,9 +651,9 @@
 .dark .asset-table tr[data-state="selected"]:hover td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
-  transform: scale(1.008);
+  /* transform: scale(1.008); */
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  border-left: 3px solid rgb(99, 102, 241);
+  border-left: 1px solid rgb(99, 102, 241);
 }
 
 /* Dashboard stats cards */
