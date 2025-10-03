@@ -1948,3 +1948,40 @@ html.light [data-sidebar="footer"] {
   background: rgba(99, 102, 241, 0.1) !important;
   color: rgb(99, 102, 241) !important;
 }
+
+/* ===== TOOLBAR CONTAINER STABILITY ===== */
+/* Fix toolbar bar container movement on hover */
+.light .flex.items-center.justify-between.gap-4,
+.light .bg-card.flex.items-center.justify-between,
+.light [class*="h-[58px]"].flex,
+.light .border.bg-card {
+  transform: none !important;
+  transition: none !important;
+}
+
+.light .flex.items-center.justify-between.gap-4:hover,
+.light .bg-card.flex.items-center.justify-between:hover,
+.light [class*="h-[58px]"].flex:hover,
+.light .border.bg-card:hover {
+  transform: none !important;
+}
+
+/* ===== TOOLBAR BUTTON STABILITY ===== */
+/* Prevent movement/jumping in toolbar and action buttons */
+.light .flex.items-center.justify-between button,
+.light .flex.items-center.gap-2 button,
+.light .bg-card button,
+.light [class*="h-[58px]"] button {
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: none !important;
+}
+
+.light .flex.items-center.justify-between button:hover,
+.light .flex.items-center.gap-2 button:hover,
+.light .bg-card button:hover,
+.light [class*="h-[58px]"] button:hover {
+  transform: none !important;
+}
