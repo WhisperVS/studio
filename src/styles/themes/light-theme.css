@@ -215,26 +215,58 @@
 .light [class*="main"],
 .light .flex-1.flex.flex-col.min-h-0 {
   background: var(--page-background) !important;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
   min-height: 100vh;
+  position: relative;
 }
 
 /* Dashboard main container */
 .light .dashboard-page {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(203, 213, 225, 0.6) !important;
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  box-shadow: 0 8px 40px -12px rgba(15, 23, 42, 0.1);
-  padding: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 50%, rgba(241, 245, 249, 0.98) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.4) !important;
+  backdrop-filter: blur(24px);
+  border-radius: 20px;
+  box-shadow: 
+    0 12px 48px -12px rgba(15, 23, 42, 0.12),
+    0 4px 16px -4px rgba(99, 102, 241, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle animated gradient overlay */
+.light .dashboard-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(99, 102, 241, 0.02) 0%, 
+    transparent 25%, 
+    transparent 75%, 
+    rgba(139, 92, 246, 0.02) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.light .dashboard-page > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Enhanced table styling for inventory */
 .light .asset-table {
-  background: var(--table-data-bg) !important;
-  border: 1px solid var(--table-data-border) !important;
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.12), 0 2px 8px -2px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(12px);
 }
 
 /* Table header row gets the gradient background */
@@ -275,17 +307,21 @@
 }
 
 .light .asset-table td {
-  background: var(--table-data-bg) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
   color: var(--table-data-text) !important;
-  border-bottom: 1px solid var(--table-data-border) !important;
-  padding: 12px;
-  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.4) !important;
+  padding: 14px 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  margin: 2px;
 }
 
 .light .asset-table tr:hover td {
-  background: var(--table-data-hover) !important;
-  transform: scale(1.005);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%) !important;
+  transform: translateY(-2px) scale(1.002);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.15), 0 4px 12px -4px rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  border-color: rgba(99, 102, 241, 0.2) !important;
 }
 
 /* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
@@ -315,18 +351,23 @@
 }
 
 .light .stats-card {
-  background: var(--dashboard-stat-bg) !important;
-  border: 1px solid var(--dashboard-stat-border) !important;
-  border-radius: 12px;
-  padding: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(241, 245, 249, 0.95) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.4) !important;
+  border-radius: 16px;
+  padding: 24px;
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.1), 0 2px 8px -2px rgba(99, 102, 241, 0.05);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
 }
 
 .light .stats-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 60px -12px rgba(15, 23, 42, 0.15), 0 8px 25px -8px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 50%, rgba(238, 242, 255, 0.9) 100%) !important;
 }
 
 .light .stats-number {
@@ -348,12 +389,15 @@
 .light .btn-add-asset {
   background: var(--btn-add-asset-bg) !important;
   color: var(--btn-add-asset-text) !important;
-  box-shadow: var(--btn-add-asset-shadow);
+  box-shadow: var(--btn-add-asset-shadow), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
+  border-radius: 12px;
+  padding: 14px 28px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
 }
 
 .light .btn-add-asset:hover {
@@ -563,13 +607,16 @@
 .light .status-badge {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.025em;
   border: 1px solid;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
 }
 
 .light .status-badge.in-use {
@@ -604,12 +651,13 @@
 
 /* Enhanced asset table container */
 .light .asset-table-container {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 50%, rgba(241, 245, 249, 0.98) 100%);
+  border: 1px solid rgba(203, 213, 225, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px -12px rgba(15, 23, 42, 0.1), 0 4px 16px -4px rgba(99, 102, 241, 0.06);
+  backdrop-filter: blur(16px);
   overflow: hidden;
+  position: relative;
 }
 
 /* Premium selection effects */
@@ -1068,17 +1116,19 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
   color: var(--sidebar-text);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--sidebar-link-bg);
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(203, 213, 225, 0.3);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(8px);
+  margin-bottom: 4px;
 }
 
 .light .sidebar-nav a::before,
@@ -1097,11 +1147,12 @@
 .light .sidebar-nav a:hover,
 .light .sidebar-nav button:hover,
 .light .sidebar-nav [role="button"]:hover {
-  background: var(--sidebar-link-hover);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
   color: var(--sidebar-link-text-hover);
-  border-color: rgba(99, 102, 241, 0.3);
-  transform: translateX(4px);
-  box-shadow: 4px 0 16px rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateX(6px) scale(1.02);
+  box-shadow: 8px 0 25px -8px rgba(99, 102, 241, 0.2), 0 4px 12px -4px rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
 }
 
 .light .sidebar-nav a:hover::before,
@@ -1113,11 +1164,13 @@
 .light .sidebar-nav a.active,
 .light .sidebar-nav button.active,
 .light .sidebar-nav [role="button"].active {
-  background: var(--sidebar-link-active);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.12) 100%);
   color: var(--sidebar-link-text-active);
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: rgba(99, 102, 241, 0.5);
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  transform: scale(1.02);
 }
 
 .light .sidebar-nav svg,
@@ -1151,14 +1204,15 @@
 .light .dropdown-content,
 .light [role="menu"],
 .light [data-radix-select-content] {
-  background: var(--dropdown-content-bg);
-  border: 1px solid var(--dropdown-content-border);
-  border-radius: 12px;
-  box-shadow: var(--dropdown-content-shadow);
-  backdrop-filter: blur(16px);
-  padding: 8px;
-  min-width: 200px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(203, 213, 225, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px -12px rgba(15, 23, 42, 0.15), 0 8px 25px -8px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 12px;
+  min-width: 220px;
   overflow: hidden;
+  position: relative;
 }
 
 /* SelectItem component hover - MATCH SIDEBAR STYLE */
@@ -1167,17 +1221,18 @@
 .light [role="menuitem"] {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
   color: var(--page-text);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(203, 213, 225, 0.2);
   position: relative;
   overflow: hidden;
+  margin-bottom: 2px;
 }
 
 /* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
@@ -1200,11 +1255,12 @@
 .light [data-radix-select-item][data-highlighted],
 .light .dropdown-item[data-highlighted],
 .light [role="menuitem"][data-highlighted] {
-  background: var(--dropdown-hover) !important;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%) !important;
   color: var(--dropdown-item-selected-text) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  transform: translateX(4px) !important;
-  box-shadow: 4px 0 16px rgba(99, 102, 241, 0.1) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  transform: translateX(6px) scale(1.02) !important;
+  box-shadow: 6px 0 20px -6px rgba(99, 102, 241, 0.15) !important;
+  border-radius: 14px !important;
 }
 
 .light [data-radix-select-item]:hover::before,
