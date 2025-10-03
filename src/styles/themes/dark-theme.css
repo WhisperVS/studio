@@ -67,6 +67,8 @@
   --input-border: rgb(64, 68, 75);             /* Matching border */
   --input-border-focus: rgb(88, 101, 242);     /* Discord blurple focus */
   --input-placeholder: rgb(142, 146, 151);     /* Discord placeholder gray */
+  --input-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Premium input shadow */
+  --input-shadow-focus: 0 8px 32px -8px rgba(88, 101, 242, 0.4); /* Premium focus shadow */
   
   /* ============================= */
   /* BUTTON STYLING - PREMIUM DARK */
@@ -320,30 +322,104 @@
   box-shadow: 0 4px 32px -8px rgba(0, 0, 0, 0.4);
 }
 
-/* Premium dark search input */
-.dark .top-controls input[type="text"] {
-  background: var(--input-background) !important;
+/* Premium dark search input - FIXED SIZE AND POSITIONING */
+.dark .top-controls input[type="text"],
+.dark .top-controls input {
+  background: var(--background) !important;
   border: 2px solid var(--input-border) !important;
   color: var(--input-text) !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--input-shadow) !important;
   font-weight: 500;
   border-radius: 12px;
+  box-sizing: border-box !important;
+  width: 320px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  line-height: 20px !important;
+  font-size: 14px !important;
+  padding: 8px 40px 8px 40px !important;
+  margin: 0 !important;
+  position: relative !important;
+  display: block !important;
 }
 
-.dark .top-controls input[type="text"]:focus {
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
+.dark .top-controls input[type="text"]:focus,
+.dark .top-controls input:focus {
+  border: 2px solid var(--input-border-focus) !important;
+  background: var(--background) !important;
   box-shadow: var(--input-shadow-focus) !important;
   outline: none !important;
-  background: rgba(31, 41, 55, 0.9) !important;
-  transform: translateY(-1px);
+  width: 320px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  line-height: 20px !important;
+  font-size: 14px !important;
+  padding: 8px 40px 8px 40px !important;
+  margin: 0 !important;
+  position: relative !important;
+  display: block !important;
 }
 
-.dark .top-controls input[type="text"]::placeholder {
+.dark .top-controls input[type="text"]::placeholder,
+.dark .top-controls input::placeholder {
   color: var(--input-placeholder) !important;
   font-weight: 400;
+  line-height: 20px !important;
+  font-size: 14px !important;
+}
+
+/* Fix the search input container to maintain consistent layout */
+.dark .top-controls .relative {
+  position: relative !important;
+  display: block !important;
+  width: 320px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Fix button positioning inside search box */
+.dark .top-controls .relative button {
+  position: absolute !important;
+  right: 4px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  z-index: 10 !important;
+  margin: 0 !important;
+  border-radius: 6px !important;
+}
+
+/* Search icon styling */
+.dark .top-controls .lucide-search {
+  color: var(--input-placeholder) !important;
+  transition: color 0.2s ease;
+}
+
+.dark .top-controls input[type="text"]:focus + .lucide-search,
+.dark .top-controls input[type="text"]:focus ~ .lucide-search {
+  color: var(--input-border-focus) !important;
+}
+
+/* Search icon positioning - make sure it's visible */
+.dark .top-controls .relative .lucide-search {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--input-placeholder) !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+}
+
+/* When input is focused, change search icon color */
+.dark .top-controls .relative:focus-within .lucide-search {
+  color: var(--input-border-focus) !important;
 }
 
 /* Premium dark combobox/dropdown buttons */
