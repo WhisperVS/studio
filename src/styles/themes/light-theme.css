@@ -1982,6 +1982,182 @@ html.light [data-sidebar="footer"] {
   box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.15) !important;
 }
 
+/* ===== TOOLBAR BUTTON CUSTOM COLORS ===== */
+/* Select All button - Blue gradient */
+.light button[class*="bg-[var(--btn-select-all-bg)]"] {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 50%, rgb(29, 78, 216) 100%) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(59, 130, 246, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+.light button[class*="bg-[var(--btn-select-all-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 50%, rgb(30, 64, 175) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+/* Clear Selection button - Gray gradient */
+.light button[class*="bg-[var(--btn-clear-selection-bg)]"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.9) 50%, rgba(226, 232, 240, 0.95) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.4) !important;
+  color: rgb(71, 85, 105) !important;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.light button[class*="bg-[var(--btn-clear-selection-bg)]"]:hover {
+  background: linear-gradient(135deg, rgba(226, 232, 240, 0.98) 0%, rgba(203, 213, 225, 0.95) 50%, rgba(148, 163, 184, 0.9) 100%) !important;
+  border-color: rgba(148, 163, 184, 0.6) !important;
+  color: rgb(51, 65, 85) !important;
+}
+
+/* View Settings button - Purple gradient */
+.light button[class*="bg-[var(--btn-view-settings-bg)]"] {
+  background: linear-gradient(135deg, rgb(147, 51, 234) 0%, rgb(126, 34, 206) 50%, rgb(107, 33, 168) 100%) !important;
+  border: 1px solid rgba(147, 51, 234, 0.4) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(147, 51, 234, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+.light button[class*="bg-[var(--btn-view-settings-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(126, 34, 206) 0%, rgb(107, 33, 168) 50%, rgb(88, 28, 135) 100%) !important;
+  border-color: rgba(147, 51, 234, 0.6) !important;
+}
+
+/* Export Selected button - Teal gradient */
+.light button[class*="bg-[var(--btn-export-bg)]"] {
+  background: linear-gradient(135deg, rgb(6, 182, 212) 0%, rgb(8, 145, 178) 50%, rgb(14, 116, 144) 100%) !important;
+  border: 1px solid rgba(6, 182, 212, 0.4) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(6, 182, 212, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+.light button[class*="bg-[var(--btn-export-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(8, 145, 178) 0%, rgb(14, 116, 144) 50%, rgb(21, 94, 117) 100%) !important;
+  border-color: rgba(6, 182, 212, 0.6) !important;
+}
+
+/* Delete Selected button - Red gradient */
+.light button[class*="bg-[var(--btn-delete-bg)]"] {
+  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 50%, rgb(185, 28, 28) 100%) !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(239, 68, 68, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+.light button[class*="bg-[var(--btn-delete-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 50%, rgb(153, 27, 27) 100%) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+/* ===== SEARCH BAR AND FILTERS STYLING ===== */
+/* Search input field */
+.light input[placeholder*="Search"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  border-radius: 12px !important;
+  color: rgb(15, 23, 42) !important;
+  font-size: 0.875rem;
+  padding: 10px 16px 10px 40px !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+}
+
+.light input[placeholder*="Search"]:focus {
+  outline: none !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), inset 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px -4px rgba(99, 102, 241, 0.15) !important;
+  background: rgba(255, 255, 255, 1) !important;
+}
+
+.light input[placeholder*="Search"]::placeholder {
+  color: rgb(148, 163, 184) !important;
+  font-weight: 400;
+}
+
+/* Filter dropdown buttons */
+.light button[aria-haspopup="menu"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  border-radius: 12px !important;
+  color: rgb(71, 85, 105) !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 10px 16px !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 4px -1px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.light button[aria-haspopup="menu"]:hover {
+  background: linear-gradient(135deg, rgba(238, 242, 255, 0.98) 0%, rgba(224, 231, 255, 0.95) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.light button[aria-haspopup="menu"][aria-expanded="true"] {
+  background: linear-gradient(135deg, rgba(238, 242, 255, 1) 0%, rgba(224, 231, 255, 0.98) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  color: rgb(79, 70, 229) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 4px 12px -4px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Filter Dropdown Buttons - All same color (Blue gradient) */
+.light div.flex.items-center.gap-2.flex-1.justify-end button[role="combobox"] {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 50%, rgb(29, 78, 216) 100%) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
+  font-weight: 500;
+  box-shadow: 0 4px 16px -4px rgba(59, 130, 246, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light div.flex.items-center.gap-2.flex-1.justify-end button[role="combobox"]:hover {
+  background: linear-gradient(135deg, rgb(96, 165, 250) 0%, rgb(59, 130, 246) 50%, rgb(37, 99, 235) 100%) !important;
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  box-shadow: 0 12px 32px -8px rgba(59, 130, 246, 0.6), 0 6px 16px -4px rgba(15, 23, 42, 0.15);
+}
+
+.light div.flex.items-center.gap-2.flex-1.justify-end button[role="combobox"]:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.5), 0 4px 12px -3px rgba(15, 23, 42, 0.12);
+}
+
+/* Clear Filters button (Coral/Red) - using more reliable targeting */
+.light div[style*="width:120px"] button,
+.light button:has(svg):has(*[text*="Clear"]) {
+  background: linear-gradient(135deg, rgb(251, 113, 133) 0%, rgb(244, 63, 94) 50%, rgb(225, 29, 72) 100%) !important;
+  border: 1px solid rgba(251, 113, 133, 0.4) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
+  font-weight: 500;
+  box-shadow: 0 4px 16px -4px rgba(251, 113, 133, 0.4), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+.light div[style*="width:120px"] button:hover,
+.light button:has(svg):has(*[text*="Clear"]):hover {
+  background: linear-gradient(135deg, rgb(244, 63, 94) 0%, rgb(225, 29, 72) 50%, rgb(190, 18, 60) 100%) !important;
+  transform: translateY(-1px) scale(1.02);
+  border-color: rgba(251, 113, 133, 0.6) !important;
+  box-shadow: 0 8px 25px -8px rgba(251, 113, 133, 0.5), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+}
+
+/* Search icon styling */
+.light input[placeholder*="Search"] + svg,
+.light input[placeholder*="Search"] ~ svg {
+  color: rgb(148, 163, 184) !important;
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light input[placeholder*="Search"]:focus + svg,
+.light input[placeholder*="Search"]:focus ~ svg {
+  color: rgb(99, 102, 241) !important;
+}
+
 /* ===== TOOLBAR BUTTON STABILITY ===== */
 /* Prevent movement/jumping in toolbar and action buttons */
 .light .flex.items-center.justify-between button,
