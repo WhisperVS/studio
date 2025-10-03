@@ -1,22 +1,24 @@
 /* ============================= */
-/* DROPDOWN/SELECT HOVER FIXES - ULTIMATE SOLUTION */
+/* DROPDOWN/SELECT HOVER FIXES - VARIABLE-BASED SOLUTION */
 /* ============================= */
+/* This file uses ONLY CSS variables - no hardcoded values */
+/* Shared between light and dark themes */
 
-/* DROPDOWN ITEM HOVER CLASS - Modern Dark Theme Styling */
+/* DROPDOWN ITEM HOVER CLASS - Uses Theme Variables */
 .dropdown-item-hover:hover,
 .dropdown-item-hover[data-highlighted],
 .dropdown-item-hover[data-state="checked"],
 .dropdown-item-hover[data-state="open"],
 .dropdown-item-hover:focus {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
-    color: rgb(248, 250, 252) !important;
+    background: var(--dropdown-hover) !important;
+    color: var(--dropdown-item-selected-text) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
     border-radius: 8px !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    box-shadow: var(--dropdown-shadow) !important;
     backdrop-filter: blur(12px) !important;
     box-sizing: border-box !important;
-    position: relative !important;
 }
 
 /* Add subtle inner glow effect */
@@ -28,58 +30,42 @@
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%) !important;
+    background: var(--dropdown-glow) !important;
     border-radius: 8px !important;
     pointer-events: none !important;
     z-index: 1 !important;
 }
 
-/* Enhanced focus state with blue accent */
+/* Enhanced focus state */
 .dropdown-item-hover:focus {
-    outline: 2px solid rgba(59, 130, 246, 0.4) !important;
+    outline: 2px solid var(--dropdown-focus-outline) !important;
     outline-offset: 1px !important;
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    box-shadow: var(--dropdown-focus-shadow) !important;
 }
 
-/* Light theme version with premium styling */
-html:not(.dark) .dropdown-item-hover:hover,
-html:not(.dark) .dropdown-item-hover[data-highlighted],
-html:not(.dark) .dropdown-item-hover[data-state="checked"],
-html:not(.dark) .dropdown-item-hover[data-state="open"],
-html:not(.dark) .dropdown-item-hover:focus {
-    background: linear-gradient(135deg, rgb(238, 242, 255) 0%, rgb(224, 231, 255) 50%, rgb(219, 234, 254) 100%) !important;
-    color: rgb(30, 41, 59) !important;
-    transform: translateY(-1px) scale(1.02) !important;
-    box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(59, 130, 246, 0.2) !important;
-}
-
-/* CRITICAL: Force hover effects for all dropdown items in dark theme */
+/* CRITICAL: Force hover effects for all dropdown items */
 /* Using maximum specificity to override any conflicting styles */
 
-/* Target all possible dropdown item selectors with modern dark theme styling */
-html.dark [data-radix-select-content] [data-radix-select-item]:hover,
-html.dark [data-radix-select-content] [data-radix-select-item][data-highlighted],
-html.dark [data-radix-select-content] [data-radix-select-item][data-state="checked"],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-state="open"],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-state="checked"],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:hover,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-highlighted],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-state="checked"],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:hover,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-highlighted],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-state="open"] {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
-    color: rgb(248, 250, 252) !important;
+/* Target all possible dropdown item selectors */
+[data-radix-select-content] [data-radix-select-item]:hover,
+[data-radix-select-content] [data-radix-select-item][data-highlighted],
+[data-radix-select-content] [data-radix-select-item][data-state="checked"],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-state="open"],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-state="checked"],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:hover,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-highlighted],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-state="checked"],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:hover,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-highlighted],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-state="open"] {
+    background: var(--dropdown-hover) !important;
+    color: var(--dropdown-item-selected-text) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+    box-shadow: var(--dropdown-shadow) !important;
     border-radius: 8px !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     backdrop-filter: blur(12px) !important;
@@ -88,94 +74,94 @@ html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigg
 }
 
 /* Add pseudo-element glow for all items */
-html.dark [data-radix-select-content] [data-radix-select-item]:hover::before,
-html.dark [data-radix-select-content] [data-radix-select-item][data-highlighted]::before,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover::before,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted]::before,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover::before,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted]::before {
+[data-radix-select-content] [data-radix-select-item]:hover::before,
+[data-radix-select-content] [data-radix-select-item][data-highlighted]::before,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover::before,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted]::before,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover::before,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted]::before {
     content: '' !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%) !important;
+    background: var(--dropdown-glow) !important;
     border-radius: 8px !important;
     pointer-events: none !important;
     z-index: 1 !important;
 }
 
-/* Enhanced focus states with blue accent */
-html.dark [data-radix-select-content] [data-radix-select-item]:focus,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:focus,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:focus,
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:focus {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
-    color: rgb(248, 250, 252) !important;
-    outline: 2px solid rgba(59, 130, 246, 0.4) !important;
+/* Enhanced focus states */
+[data-radix-select-content] [data-radix-select-item]:focus,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:focus,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:focus,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:focus {
+    background: var(--dropdown-hover) !important;
+    color: var(--dropdown-item-selected-text) !important;
+    outline: 2px solid var(--dropdown-focus-outline) !important;
     outline-offset: 1px !important;
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    box-shadow: var(--dropdown-focus-shadow) !important;
     transform: translateY(-1px) !important;
 }
 
 /* Fallback selectors for any items that might use different attributes */
-html.dark [role="option"]:hover,
-html.dark [role="option"][data-highlighted],
-html.dark [role="menuitem"]:hover,
-html.dark [role="menuitem"][data-highlighted],
-html.dark [role="menuitemcheckbox"]:hover,
-html.dark [role="menuitemcheckbox"][data-highlighted],
-html.dark [role="menuitemradio"]:hover,
-html.dark [role="menuitemradio"][data-highlighted] {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
-    color: rgb(248, 250, 252) !important;
+[role="option"]:hover,
+[role="option"][data-highlighted],
+[role="menuitem"]:hover,
+[role="menuitem"][data-highlighted],
+[role="menuitemcheckbox"]:hover,
+[role="menuitemcheckbox"][data-highlighted],
+[role="menuitemradio"]:hover,
+[role="menuitemradio"][data-highlighted] {
+    background: var(--dropdown-hover) !important;
+    color: var(--dropdown-item-selected-text) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+    box-shadow: var(--dropdown-shadow) !important;
     border-radius: 8px !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     box-sizing: border-box !important;
 }
 
 /* Additional class-based targeting for components using className */
-html.dark .dropdown-menu-item:hover,
-html.dark .dropdown-menu-item[data-highlighted],
-html.dark .select-item:hover,
-html.dark .select-item[data-highlighted] {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
-    color: rgb(248, 250, 252) !important;
+.dropdown-menu-item:hover,
+.dropdown-menu-item[data-highlighted],
+.select-item:hover,
+.select-item[data-highlighted] {
+    background: var(--dropdown-hover) !important;
+    color: var(--dropdown-item-selected-text) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+    box-shadow: var(--dropdown-shadow) !important;
     border-radius: 8px !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     box-sizing: border-box !important;
 }
 
-/* Override any Tailwind classes that might conflict with modern dark styling */
-html.dark .hover\:bg-accent:hover,
-html.dark .focus\:bg-accent:focus,
-html.dark [data-highlighted].hover\:bg-accent,
-html.dark [data-highlighted].focus\:bg-accent {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%) !important;
+/* Override any Tailwind classes that might conflict */
+.hover\:bg-accent:hover,
+.focus\:bg-accent:focus,
+[data-highlighted].hover\:bg-accent,
+[data-highlighted].focus\:bg-accent {
+    background: var(--dropdown-hover) !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+    box-shadow: var(--dropdown-shadow) !important;
     box-sizing: border-box !important;
 }
 
-html.dark .hover\:text-accent-foreground:hover,
-html.dark .focus\:text-accent-foreground:focus,
-html.dark [data-highlighted].hover\:text-accent-foreground,
-html.dark [data-highlighted].focus\:text-accent-foreground {
-    color: rgb(248, 250, 252) !important;
+.hover\:text-accent-foreground:hover,
+.focus\:text-accent-foreground:focus,
+[data-highlighted].hover\:text-accent-foreground,
+[data-highlighted].focus\:text-accent-foreground {
+    color: var(--dropdown-item-selected-text) !important;
 }
 
-/* Ensure the items have proper cursor and transition with premium base styling */
-html.dark [data-radix-select-content] [data-radix-select-item],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item],
-html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger] {
+/* Ensure the items have proper cursor and transition */
+[data-radix-select-content] [data-radix-select-item],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger] {
     cursor: pointer !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border-radius: 8px !important;
@@ -184,39 +170,12 @@ html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigg
 }
 
 /* Enhanced dropdown content container styling */
-html.dark [data-radix-dropdown-menu-content],
-html.dark [data-radix-select-content] {
-    background: rgba(15, 23, 42, 0.98) !important;
-    border: 1px solid rgba(71, 85, 105, 0.8) !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 70, 229, 0.1) !important;
+[data-radix-dropdown-menu-content],
+[data-radix-select-content] {
+    background: var(--dropdown-content-bg) !important;
+    border: 1px solid var(--dropdown-content-border) !important;
+    box-shadow: var(--dropdown-content-shadow) !important;
     backdrop-filter: blur(20px) !important;
     border-radius: 12px !important;
     padding: 8px !important;
-}
-
-/* Light theme dropdown containers */
-html:not(.dark) [data-radix-dropdown-menu-content],
-html:not(.dark) [data-radix-select-content] {
-    background: rgba(255, 255, 255, 0.98) !important;
-    border: 1px solid rgba(203, 213, 225, 0.8) !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(59, 130, 246, 0.05) !important;
-    backdrop-filter: blur(20px) !important;
-    border-radius: 12px !important;
-    padding: 8px !important;
-}
-
-/* Light theme - ensure hover still works with premium styling */
-html:not(.dark) [data-radix-select-content] [data-radix-select-item]:hover,
-html:not(.dark) [data-radix-select-content] [data-radix-select-item][data-highlighted],
-html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
-    background: linear-gradient(135deg, rgb(238, 242, 255) 0%, rgb(224, 231, 255) 50%, rgb(219, 234, 254) 100%) !important;
-    color: rgb(30, 41, 59) !important;
-    transform: translateY(-1px) scale(1.02) !important;
-    box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border: 1px solid rgba(59, 130, 246, 0.2) !important;
 }

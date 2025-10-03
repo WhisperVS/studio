@@ -35,8 +35,8 @@ export function SimpleThemeToggle() {
         }}
       >
         {/* Placeholder icon during SSR */}
-        <div style={{ width: '20px', height: '20px', opacity: 0.5 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2">
+        <div className="theme-toggle-placeholder-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="2">
             <circle cx="12" cy="12" r="3" />
           </svg>
         </div>
@@ -91,20 +91,12 @@ export function SimpleThemeToggle() {
       {theme === "dark" ? (
         <SunMedium 
           size={20} 
-          color="#fbbf24" 
-          style={{ 
-            transition: 'all 0.3s ease',
-            filter: 'drop-shadow(0 0 4px rgba(251, 191, 36, 0.4))'
-          }} 
+          className="theme-toggle-sun-icon"
         />
       ) : (
         <MoonStar 
           size={20} 
-          color="#6366f1" 
-          style={{ 
-            transition: 'all 0.3s ease',
-            filter: 'drop-shadow(0 0 4px rgba(99, 102, 241, 0.4))'
-          }} 
+          className="theme-toggle-moon-icon"
         />
       )}
     </button>

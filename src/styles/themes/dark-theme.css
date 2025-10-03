@@ -50,6 +50,29 @@
   --inventory-reserved: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(99, 102, 241) 100%);
   
   /* ============================= */
+  /* DROPDOWN/SELECT VARIABLES - DARK */
+  /* ============================= */
+  
+  /* Dropdown hover effects */
+  --dropdown-hover: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%);
+  --dropdown-item-selected-text: rgb(248, 250, 252);
+  --dropdown-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2);
+  --dropdown-focus-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --dropdown-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%);
+  --dropdown-content-bg: rgba(15, 23, 42, 0.98);
+  --dropdown-content-border: rgba(71, 85, 105, 0.8);
+  --dropdown-content-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 70, 229, 0.1);
+  --dropdown-focus-outline: rgba(59, 130, 246, 0.4);
+  
+  /* ============================= */
+  /* THEME TOGGLE VARIABLES - DARK */
+  /* ============================= */
+  
+  /* Theme toggle icon colors */
+  --theme-toggle-sun-color: #fbbf24;
+  --theme-toggle-moon-color: #6366f1;
+  
+  /* ============================= */
   /* MODAL AND DIALOG COLORS - PREMIUM DARK */
   /* ============================= */
   

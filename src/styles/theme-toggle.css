@@ -1,0 +1,29 @@
+/* ============================= */
+/* THEME TOGGLE COMPONENT STYLES */  
+/* ============================= */
+/* Uses ONLY CSS variables - no hardcoded values */
+/* Shared between light and dark themes */
+
+/* Theme toggle icon color classes */
+.theme-toggle-sun-icon {
+    color: var(--theme-toggle-sun-color);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.4));
+}
+
+.theme-toggle-moon-icon {
+    color: var(--theme-toggle-moon-color);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.4));
+}
+
+/* Placeholder icon during SSR */
+.theme-toggle-placeholder-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+}
+
+.theme-toggle-placeholder-icon svg {
+    stroke: var(--theme-toggle-moon-color);
+}
