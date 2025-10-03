@@ -248,10 +248,43 @@
   --sidebar-background: rgb(47, 49, 54);       /* Discord sidebar gray */
   --sidebar-text: rgb(220, 221, 222);          /* Discord light text */
   --sidebar-link-text: rgb(142, 146, 151);     /* Discord muted text */
-  --sidebar-link-hover: rgb(64, 68, 75);       /* Discord hover gray */
-  --sidebar-active-bg: rgb(88, 101, 242);      /* Discord blurple active */
-  --sidebar-active-text: rgb(255, 255, 255);   /* Pure white active text */
+  --sidebar-link-bg: transparent;              /* Transparent background */
+  --sidebar-link-hover: rgba(88, 101, 242, 0.1); /* Discord blurple hover */
+  --sidebar-link-active: rgba(88, 101, 242, 0.2); /* Discord blurple active */
+  --sidebar-link-active-text: rgb(255, 255, 255); /* Pure white active text */
+  --sidebar-link-icon: rgb(142, 146, 151);     /* Discord muted icon */
+  --sidebar-link-icon-active: rgb(255, 255, 255); /* White active icon */
+  --sidebar-text-hover: rgb(255, 255, 255);    /* White hover text */
   --sidebar-border: rgb(64, 68, 75);           /* Discord border gray */
+  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Dark shadow */
+  
+  /* Sidebar header */
+  --sidebar-header-bg: rgba(47, 49, 54, 0.9);  /* Dark header */
+  --sidebar-header-text: rgb(255, 255, 255);   /* White header text */
+  --sidebar-header-border: rgba(64, 68, 75, 0.6); /* Dark border */
+  
+  /* ============================= */
+  /* DROPDOWN AND SELECT COLORS - DARK THEME */
+  /* ============================= */
+  
+  --dropdown-background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  --dropdown-text: rgb(220, 221, 222);
+  --dropdown-border: rgba(71, 85, 105, 0.6);
+  --dropdown-hover: rgba(88, 101, 242, 0.1);
+  --dropdown-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --dropdown-item-selected: rgba(88, 101, 242, 0.2);
+  --dropdown-item-selected-text: rgb(255, 255, 255);
+  
+  /* ============================= */
+  /* COMPONENT TEXT COLORS - DARK THEME */
+  /* ============================= */
+  
+  --text-primary: rgb(240, 240, 240);          /* Primary text */
+  --text-secondary: rgb(220, 221, 222);        /* Secondary text */
+  --text-tertiary: rgb(142, 146, 151);         /* Tertiary text */
+  --text-quaternary: rgb(100, 116, 139);       /* Quaternary text */
+  --text-error: rgb(206, 86, 86);              /* Error text */
+  --text-muted: rgb(142, 146, 151);            /* Muted text */
   
   /* Logo Colors */
   --logo-icon-color: rgb(114, 137, 218);       /* Discord lighter blurple */
@@ -468,7 +501,7 @@
   border: 2px solid transparent !important;
   background-image: var(--input-border-focus) !important;
   background-clip: padding-box !important;
-  color: rgb(240, 240, 240) !important;
+  color: var(--text-primary) !important;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5) !important;
 }
@@ -543,7 +576,7 @@
   background: var(--btn-secondary-hover) !important;
   border-color: transparent !important;
   background-image: var(--accent-color) !important;
-  color: rgb(206, 86, 86) !important;
+  color: var(--text-error) !important;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4) !important;
 }
@@ -879,7 +912,7 @@
 /* Theme toggle white styling */
 .dark .theme-toggle {
   background: rgba(255, 255, 255, 0.95) !important;
-  color: rgb(71, 85, 105) !important;
+  color: var(--text-quaternary) !important;
   border: 1px solid rgba(203, 213, 225, 0.3) !important;
   border-radius: 8px;
   width: 40px !important;
@@ -902,25 +935,7 @@
   box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
 }
 
-/* Theme toggle styling in light mode */
-.light .theme-toggle,
-:root .theme-toggle {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: rgb(71, 85, 105) !important;
-  border: 1px solid rgba(203, 213, 225, 0.5) !important;
-  border-radius: 8px;
-  width: 40px !important;
-  height: 40px !important;
-  padding: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: visible;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
+/* REMOVED - No cross-theme references allowed for complete separation */
 
 /* ============================= */
 /* LAYOUT AND VIEWPORT FIXES */
@@ -982,6 +997,194 @@
   margin-bottom: 1px !important;
   font-size: 0.875rem !important;
   line-height: 1.25rem !important;
+}
+
+/* ============================= */
+/* SIDEBAR NAVIGATION - DARK THEME */
+/* ============================= */
+
+/* Sidebar category links enhanced hover - Dark Theme */
+.dark .sidebar-nav a,
+.dark .sidebar-nav button,
+.dark .sidebar-nav [role="button"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--sidebar-link-bg);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .sidebar-nav a::before,
+.dark .sidebar-nav button::before,
+.dark .sidebar-nav [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .sidebar-nav a:hover,
+.dark .sidebar-nav button:hover,
+.dark .sidebar-nav [role="button"]:hover {
+  background: var(--sidebar-link-hover);
+  color: var(--sidebar-text-hover);
+  border-color: rgba(88, 101, 242, 0.3);
+  transform: translateX(4px);
+  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2);
+}
+
+.dark .sidebar-nav a:hover::before,
+.dark .sidebar-nav button:hover::before,
+.dark .sidebar-nav [role="button"]:hover::before {
+  left: 100%;
+}
+
+.dark .sidebar-nav a.active,
+.dark .sidebar-nav button.active,
+.dark .sidebar-nav [role="button"].active {
+  background: var(--sidebar-link-active);
+  color: var(--sidebar-link-active-text);
+  border-color: rgba(88, 101, 242, 0.4);
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(88, 101, 242, 0.3);
+}
+
+.dark .sidebar-nav svg,
+.dark .sidebar-nav .lucide {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  color: var(--sidebar-link-icon);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .sidebar-nav a:hover svg,
+.dark .sidebar-nav button:hover svg,
+.dark .sidebar-nav [role="button"]:hover .lucide,
+.dark .sidebar-nav a.active svg,
+.dark .sidebar-nav button.active svg,
+.dark .sidebar-nav [role="button"].active .lucide {
+  color: var(--sidebar-link-icon-active);
+  transform: scale(1.1);
+}
+
+/* ============================= */
+/* DROPDOWN STYLING - DARK THEME */
+/* ============================= */
+
+/* Dropdown content styling - Premium Dark */
+.dark [data-radix-popper-content-wrapper] {
+  z-index: 1000;
+}
+
+.dark .dropdown-content,
+.dark [role="menu"],
+.dark [data-radix-select-content] {
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
+  backdrop-filter: blur(16px);
+  padding: 8px;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+/* SelectItem component hover - MATCH SIDEBAR STYLE */
+.dark [data-radix-select-item],
+.dark .dropdown-item,
+.dark [role="menuitem"] {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: var(--dropdown-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
+.dark [data-radix-select-item]::before,
+.dark .dropdown-item::before,
+.dark [role="menuitem"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark [data-radix-select-item]:hover,
+.dark .dropdown-item:hover,
+.dark [role="menuitem"]:hover,
+.dark [data-radix-select-item][data-highlighted],
+.dark .dropdown-item[data-highlighted],
+.dark [role="menuitem"][data-highlighted] {
+  background: var(--dropdown-hover) !important;
+  color: var(--dropdown-item-selected-text) !important;
+  border-color: rgba(88, 101, 242, 0.3) !important;
+  transform: translateX(4px) !important;
+  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2) !important;
+}
+
+.dark [data-radix-select-item]:hover::before,
+.dark .dropdown-item:hover::before,
+.dark [role="menuitem"]:hover::before,
+.dark [data-radix-select-item][data-highlighted]::before,
+.dark .dropdown-item[data-highlighted]::before,
+.dark [role="menuitem"][data-highlighted]::before {
+  left: 100% !important;
+}
+
+.dark [data-radix-select-item] svg,
+.dark .dropdown-item svg,
+.dark [role="menuitem"] svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sidebar-link-icon);
+}
+
+.dark [data-radix-select-item]:hover svg,
+.dark .dropdown-item:hover svg,
+.dark [role="menuitem"]:hover svg,
+.dark [data-radix-select-item][data-highlighted] svg,
+.dark .dropdown-item[data-highlighted] svg,
+.dark [role="menuitem"][data-highlighted] svg {
+  color: var(--sidebar-link-icon-active) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Override accent-foreground text colors */
+.dark [data-radix-select-item][data-state="checked"],
+.dark .dropdown-item[data-state="checked"],
+.dark [role="menuitem"][data-state="checked"] {
+  background: var(--dropdown-item-selected) !important;
+  color: var(--dropdown-item-selected-text) !important;
+  font-weight: 600 !important;
 }
 
 /* ============================= */

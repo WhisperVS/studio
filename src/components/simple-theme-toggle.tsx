@@ -2,9 +2,47 @@
 
 import { MoonStar, SunMedium } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
+import { useEffect, useState } from "react";
 
 export function SimpleThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch by only rendering theme-dependent content after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Render a placeholder during SSR to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="theme-toggle-btn"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '40px',
+          height: '40px',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          border: '1px solid rgba(203, 213, 225, 0.4)',
+          borderRadius: '10px',
+          cursor: 'pointer',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          position: 'relative',
+          zIndex: 1000,
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+        }}
+      >
+        {/* Placeholder icon during SSR */}
+        <div style={{ width: '20px', height: '20px', opacity: 0.5 }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2">
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </div>
+      </button>
+    );
+  }
 
   return (
     <button

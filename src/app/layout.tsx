@@ -10,6 +10,7 @@ const spaceGrotesk = Space_Grotesk({ weight: ['400', '700'], subsets: ['latin'],
 export const metadata: Metadata = {
   title: 'G.A.I.M.',
   description: 'Group Administrators Items Manager',
+  // Theme fix update
 };
 
 export default function RootLayout({
