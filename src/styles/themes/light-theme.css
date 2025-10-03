@@ -372,6 +372,23 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Selected rows maintain hover appearance - light theme */
+.light .asset-table tr[data-state="selected"] td,
+:root .asset-table tr[data-state="selected"] td {
+  background: var(--table-data-hover) !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+  border-left: 3px solid rgb(99, 102, 241);
+  position: relative;
+}
+
+/* Selected rows on hover get enhanced effect - light theme */
+.light .asset-table tr[data-state="selected"]:hover td,
+:root .asset-table tr[data-state="selected"]:hover td {
+  background: var(--table-data-hover) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+  border-left: 3px solid rgb(79, 70, 229);
+}
+
 /* Premium focus ring for all interactive elements */
 .top-controls *:focus-visible {
   outline: 2px solid var(--focus-ring) !important;
