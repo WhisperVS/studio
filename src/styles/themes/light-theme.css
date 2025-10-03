@@ -1449,9 +1449,213 @@ html.light [data-sidebar="footer"] {
   color: rgb(99, 102, 241) !important;
 }
 
+/* Force rounded corners on all Tailwind button classes */
+.light .rounded-md,
+.light .rounded,
+.light .rounded-sm,
+.light .rounded-lg {
+  border-radius: 12px !important;
+}
+
+/* Override Tailwind button border radius specifically */
+.light button.rounded-md,
+.light button.rounded,
+.light button.rounded-sm,
+.light button.rounded-lg,
+.light [role="button"].rounded-md,
+.light [role="button"].rounded,
+.light [role="button"].rounded-sm,
+.light [role="button"].rounded-lg {
+  border-radius: 12px !important;
+}
+
+/* Ensure all interactive elements have consistent radius */
+.light input,
+.light select,
+.light textarea {
+  border-radius: 10px !important;
+}
+
 /* ============================= */
-/* DIALOG CLOSE BUTTON ENHANCEMENT */
+/* GENERAL BUTTON ENHANCEMENTS - LIGHT THEME */
 /* ============================= */
+
+/* Universal button improvements */
+.light button,
+.light .btn,
+.light [role="button"] {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+/* Primary button universal styling */
+.light button[class*="primary"],
+.light .btn-primary,
+.light button[class*="bg-primary"] {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  border-radius: 12px !important;
+}
+
+.light button[class*="primary"]:hover,
+.light .btn-primary:hover,
+.light button[class*="bg-primary"]:hover {
+  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+/* Secondary button universal styling */
+.light button[class*="secondary"],
+.light .btn-secondary,
+.light button[class*="outline"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.85) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  color: rgb(71, 85, 105) !important;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-radius: 12px !important;
+}
+
+.light button[class*="secondary"]:hover,
+.light .btn-secondary:hover,
+.light button[class*="outline"]:hover {
+  background: linear-gradient(135deg, rgba(241, 245, 249, 0.95) 0%, rgba(226, 232, 240, 0.9) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Success/Green button styling */
+.light button[class*="success"],
+.light .btn-success {
+  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%) !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.3), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  border-radius: 12px !important;
+}
+
+.light button[class*="success"]:hover,
+.light .btn-success:hover {
+  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(34, 197, 94, 0.5) !important;
+}
+
+/* Danger/Red button styling */
+.light button[class*="danger"],
+.light button[class*="destructive"],
+.light .btn-danger {
+  background: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%) !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(248, 113, 113, 0.3), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  border-radius: 12px !important;
+}
+
+.light button[class*="danger"]:hover,
+.light button[class*="destructive"]:hover,
+.light .btn-danger:hover {
+  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(248, 113, 113, 0.5) !important;
+}
+
+/* ============================= */
+/* HEADER BUTTON STYLING - LIGHT THEME */
+/* ============================= */
+
+/* Header container styling */
+.light .page-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.4);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08);
+}
+
+/* All header buttons */
+.light .page-header button {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Export button styling */
+.light .page-header button[class*="bg-[var(--btn-export-bg)]"] {
+  background: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(16, 185, 129, 0.3), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  border-radius: 12px !important;
+}
+
+.light .page-header button[class*="bg-[var(--btn-export-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.4), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Add Asset button styling */
+.light .page-header button[class*="bg-[var(--primary)]"] {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  border-radius: 12px !important;
+}
+
+.light .page-header button[class*="bg-[var(--primary)]"]:hover {
+  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+/* User dropdown button styling */
+.light .page-header button[role="combobox"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.85) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  color: rgb(71, 85, 105) !important;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-radius: 12px !important;
+}
+
+.light .page-header button[role="combobox"]:hover {
+  background: linear-gradient(135deg, rgba(241, 245, 249, 0.95) 0%, rgba(226, 232, 240, 0.9) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Sidebar toggle button */
+.light .page-header button[data-sidebar="trigger"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.75) 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.5) !important;
+  color: rgb(100, 116, 139) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.06);
+}
+
+.light .page-header button[data-sidebar="trigger"]:hover {
+  background: linear-gradient(135deg, rgba(241, 245, 249, 0.9) 0%, rgba(226, 232, 240, 0.85) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 10px -4px rgba(99, 102, 241, 0.2);
+}
 
 /* Dialog close button visibility */
 .light [data-radix-dialog-content] button[data-radix-dialog-close] {
