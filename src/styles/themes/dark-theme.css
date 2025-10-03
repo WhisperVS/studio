@@ -1057,31 +1057,41 @@ html.dark [data-sidebar="footer"] {
 /* ENHANCED DROPDOWN HOVER EFFECTS */
 /* ============================= */
 
-/* Select dropdown items hover - multiple selectors for comprehensive coverage */
+/* COMPREHENSIVE DROPDOWN/SELECT HOVER STYLES FOR DARK THEME */
+/* Target all possible Radix dropdown and select item states */
 .dark [data-radix-select-content] [data-radix-select-item]:hover,
+.dark [data-radix-select-content] [data-radix-select-item][data-highlighted],
 .dark [data-radix-select-content] [role="option"]:hover,
+.dark [data-radix-select-content] [role="option"][data-highlighted],
 .dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
 .dark [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
-.dark [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover {
-  background: rgba(59, 130, 246, 0.2) !important;
+.dark [data-radix-dropdown-menu-content] [role="menuitem"][data-highlighted],
+.dark [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover,
+.dark [data-radix-dropdown-menu-content] [role="menuitemcheckbox"][data-highlighted],
+.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
+.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
+  background: var(--sidebar-link-hover) !important;
   color: rgb(255, 255, 255) !important;
   transition: all 0.15s ease !important;
   border-radius: 6px !important;
 }
 
-/* SelectItem component hover */
+/* SelectItem component hover - MATCH SIDEBAR STYLE */
 .dark div[class*="select-none"][class*="cursor-default"]:hover {
-  background: rgba(59, 130, 246, 0.2) !important;
+  background: var(--sidebar-link-hover) !important;
   color: rgb(255, 255, 255) !important;
   transition: all 0.15s ease !important;
+  border-radius: 6px !important;
 }
 
-/* Dropdown menu items with class-based targeting */
+/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
 .dark .dropdown-menu-item:hover,
 .dark .select-item:hover {
-  background: rgba(59, 130, 246, 0.2) !important;
+  background: var(--sidebar-link-hover) !important;
   color: rgb(255, 255, 255) !important;
   transition: all 0.15s ease !important;
+  border-radius: 6px !important;
 }
 
 /* Focus states enhancement */
@@ -1092,18 +1102,33 @@ html.dark [data-sidebar="footer"] {
   outline: none !important;
 }
 
-/* Universal dropdown item hover fallbacks */
+/* UNIVERSAL DROPDOWN ITEM FALLBACKS */
+/* Catch any items that might not be targeted by specific selectors */
 .dark [data-radix-select-viewport] > *:hover,
-.dark [data-radix-dropdown-menu-content] > *:hover {
-  background: rgba(59, 130, 246, 0.2) !important;
+.dark [data-radix-select-viewport] > *[data-highlighted],
+.dark [data-radix-dropdown-menu-content] > *:hover,
+.dark [data-radix-dropdown-menu-content] > *[data-highlighted] {
+  background: var(--sidebar-link-hover) !important;
   color: rgb(255, 255, 255) !important;
   transition: all 0.15s ease !important;
   border-radius: 6px !important;
 }
 
-/* Tailwind class-based hover overrides */
-.dark .hover\:bg-accent:hover {
-  background: rgba(59, 130, 246, 0.2) !important;
+/* TAILWIND CLASS OVERRIDES FOR DARK THEME */
+/* Override default Tailwind hover classes with sidebar colors */
+.dark .hover\:bg-accent:hover,
+.dark [data-highlighted].hover\:bg-accent,
+.dark .focus\:bg-accent:focus,
+.dark [data-highlighted].focus\:bg-accent {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+/* Override accent-foreground text colors */
+.dark .hover\:text-accent-foreground:hover,
+.dark [data-highlighted].hover\:text-accent-foreground,
+.dark .focus\:text-accent-foreground:focus,
+.dark [data-highlighted].focus\:text-accent-foreground {
   color: rgb(255, 255, 255) !important;
 }
 

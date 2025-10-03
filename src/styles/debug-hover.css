@@ -1,0 +1,21 @@
+/* DEBUG STYLES - TEMPORARY FOR TESTING HOVER EFFECTS */
+/* Add bright colors to immediately see if hover is working */
+
+/*
+Uncomment these lines to test if hover is working at all:
+
+html.dark [data-radix-select-content] [data-radix-select-item]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover {
+    background-color: magenta !important;
+    color: yellow !important;
+}
+
+.dropdown-item-hover:hover {
+    background-color: lime !important;
+    color: red !important;
+}
+*/
+
+/* If the bright colors don't show up, there's a fundamental CSS issue */
+/* If they do show up, change them back to the proper theme colors */

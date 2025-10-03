@@ -1,0 +1,118 @@
+/* ============================= */
+/* DROPDOWN/SELECT HOVER FIXES - ULTIMATE SOLUTION */
+/* ============================= */
+
+/* DROPDOWN ITEM HOVER CLASS - Main solution */
+.dropdown-item-hover:hover,
+.dropdown-item-hover[data-highlighted],
+.dropdown-item-hover[data-state="checked"],
+.dropdown-item-hover[data-state="open"],
+.dropdown-item-hover:focus {
+    background-color: rgb(64, 68, 75) !important; /* Dark theme sidebar hover */
+    color: #ffffff !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+/* Light theme version */
+html:not(.dark) .dropdown-item-hover:hover,
+html:not(.dark) .dropdown-item-hover[data-highlighted],
+html:not(.dark) .dropdown-item-hover[data-state="checked"],
+html:not(.dark) .dropdown-item-hover[data-state="open"],
+html:not(.dark) .dropdown-item-hover:focus {
+    background: linear-gradient(135deg, rgb(238, 242, 255) 0%, rgb(224, 231, 255) 100%) !important;
+    color: rgb(51, 65, 85) !important;
+}
+
+/* CRITICAL: Force hover effects for all dropdown items in dark theme */
+/* Using maximum specificity to override any conflicting styles */
+
+/* Target all possible dropdown item selectors */
+html.dark [data-radix-select-content] [data-radix-select-item]:hover,
+html.dark [data-radix-select-content] [data-radix-select-item][data-highlighted],
+html.dark [data-radix-select-content] [data-radix-select-item][data-state="checked"],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-state="open"],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-state="checked"],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-highlighted],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-state="checked"],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:hover,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-highlighted],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-state="open"] {
+    background-color: rgb(64, 68, 75) !important; /* --sidebar-link-hover value */
+    color: #ffffff !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+/* Focus states */
+html.dark [data-radix-select-content] [data-radix-select-item]:focus,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:focus,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:focus,
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:focus {
+    background-color: rgb(64, 68, 75) !important; /* --sidebar-link-hover value */
+    color: #ffffff !important;
+    outline: none !important;
+}
+
+/* Fallback selectors for any items that might use different attributes */
+html.dark [role="option"]:hover,
+html.dark [role="option"][data-highlighted],
+html.dark [role="menuitem"]:hover,
+html.dark [role="menuitem"][data-highlighted],
+html.dark [role="menuitemcheckbox"]:hover,
+html.dark [role="menuitemcheckbox"][data-highlighted],
+html.dark [role="menuitemradio"]:hover,
+html.dark [role="menuitemradio"][data-highlighted] {
+    background-color: rgb(64, 68, 75) !important; /* --sidebar-link-hover value */
+    color: #ffffff !important;
+}
+
+/* Additional class-based targeting for components using className */
+html.dark .dropdown-menu-item:hover,
+html.dark .dropdown-menu-item[data-highlighted],
+html.dark .select-item:hover,
+html.dark .select-item[data-highlighted] {
+    background-color: rgb(64, 68, 75) !important; /* --sidebar-link-hover value */
+    color: #ffffff !important;
+}
+
+/* Override any Tailwind classes that might conflict */
+html.dark .hover\:bg-accent:hover,
+html.dark .focus\:bg-accent:focus,
+html.dark [data-highlighted].hover\:bg-accent,
+html.dark [data-highlighted].focus\:bg-accent {
+    background-color: rgb(64, 68, 75) !important; /* --sidebar-link-hover value */
+}
+
+html.dark .hover\:text-accent-foreground:hover,
+html.dark .focus\:text-accent-foreground:focus,
+html.dark [data-highlighted].hover\:text-accent-foreground,
+html.dark [data-highlighted].focus\:text-accent-foreground {
+    color: #ffffff !important;
+}
+
+/* Ensure the items have proper cursor and transition */
+html.dark [data-radix-select-content] [data-radix-select-item],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item],
+html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger] {
+    cursor: pointer !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+    border-radius: 6px !important;
+}
+
+/* Light theme - ensure hover still works */
+html:not(.dark) [data-radix-select-content] [data-radix-select-item]:hover,
+html:not(.dark) [data-radix-select-content] [data-radix-select-item][data-highlighted],
+html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
+html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
+html:not(.dark) [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
+    background: linear-gradient(135deg, rgb(238, 242, 255) 0%, rgb(224, 231, 255) 100%) !important; /* --sidebar-link-hover light theme */
+    color: rgb(51, 65, 85) !important;
+}
