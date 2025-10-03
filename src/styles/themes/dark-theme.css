@@ -16,10 +16,10 @@
   /* ============================= */
   
   /* Table Header Section - Enhanced for Dashboard */
-  --table-header-bg: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Deeper premium gradient */
+  --table-header-bg: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%); /* Much darker gradient */
   --table-header-text: rgb(255, 255, 255);     /* Pure white text */
-  --table-header-border: rgb(79, 70, 229);     /* Matching deeper border */
-  --table-header-hover: linear-gradient(135deg, rgb(67, 56, 202) 0%, rgb(109, 40, 217) 100%); /* Even darker gradient */
+  --table-header-border: rgb(99, 102, 241);    /* Purple accent border */
+  --table-header-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(109, 40, 217) 100%); /* Purple gradient on hover */
   
   /* Table Data Section - Optimized for Inventory */
   --table-data-bg: rgba(15, 23, 42, 0.95);     /* Darker, more solid background */
@@ -610,8 +610,18 @@
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
 }
 
-.dark .asset-table th {
-  background: var(--table-header-bg) !important;
+/* Table header row gets the gradient background */
+.dark .asset-table thead tr,
+.dark table thead tr {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%) !important;
+  position: relative;
+}
+
+/* Individual header cells get solid background to blend seamlessly */
+.dark .asset-table th,
+.dark table th {
+  background: transparent !important;
+  background-color: transparent !important;
   color: var(--table-header-text) !important;
   font-weight: 600;
   padding: 16px 12px;
@@ -619,6 +629,8 @@
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
+  position: relative;
+  z-index: 5;
 }
 
 .dark .asset-table td {
@@ -635,25 +647,31 @@
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
 }
 
-/* Selected rows maintain hover appearance - OVERRIDE GLOBAL CSS */
+/* FINAL FIX - Override ALL global CSS conflicts */
+.dark table tr[data-state="selected"] th,
 .dark table tr[data-state="selected"] td,
+.dark .asset-table tr[data-state="selected"] th,
 .dark .asset-table tr[data-state="selected"] td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
-  /* transform: scale(1.005); */
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
-  border-left: 1px solid rgb(79, 70, 229);
-  position: relative;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
+  border-left: 1px solid rgb(79, 70, 229) !important;
+  border-bottom: 1px solid var(--table-data-border) !important;
+  border-right: 1px solid var(--table-data-border) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
-/* Selected rows on hover get enhanced effect */
+/* Enhanced hover for selected rows */
+.dark table tr[data-state="selected"]:hover th,
 .dark table tr[data-state="selected"]:hover td,
+.dark .asset-table tr[data-state="selected"]:hover th,
 .dark .asset-table tr[data-state="selected"]:hover td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
-  /* transform: scale(1.008); */
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  border-left: 1px solid rgb(99, 102, 241);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25) !important;
+  border-left: 1px solid rgb(99, 102, 241) !important;
+  z-index: 3 !important;
 }
 
 /* Dashboard stats cards */
