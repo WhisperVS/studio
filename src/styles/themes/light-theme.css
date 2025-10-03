@@ -101,125 +101,49 @@
   /* ============================= */
   
   /* Primary Buttons */
-  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium gradient */
-  --btn-primary-text: rgb(255, 255, 255);      /* Pure white text */
-  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Premium hover */
-  --btn-primary-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3); /* Premium shadow */
+  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium indigo gradient */
+  --btn-primary-text: rgb(255, 255, 255);      /* White text */
+  --btn-primary-hover: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(167, 139, 250) 100%); /* Lighter on hover */
+  --btn-primary-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.4); /* Premium primary shadow */
+  --btn-primary-shadow-hover: 0 8px 32px -8px rgba(99, 102, 241, 0.6); /* Enhanced hover shadow */
   
   /* Secondary Buttons */
-  --btn-secondary-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%); /* Premium light secondary */
-  --btn-secondary-text: rgb(99, 102, 241);     /* Premium accent text */
-  --btn-secondary-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%); /* Premium hover */
-  --btn-secondary-border: rgba(203, 213, 225, 0.8); /* Sophisticated border */
+  --btn-secondary-bg: rgba(248, 250, 252, 0.95); /* Light secondary background */
+  --btn-secondary-text: rgb(71, 85, 105);      /* Muted text */
+  --btn-secondary-border: rgba(203, 213, 225, 0.8); /* Subtle border */
+  --btn-secondary-hover: rgba(241, 245, 249, 0.95); /* Slightly darker on hover */
+  --btn-secondary-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.08); /* Subtle secondary shadow */
   
-  /* Filter/Control Buttons */
-  --btn-filter-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%); /* Premium filter */
-  --btn-filter-text: rgb(71, 85, 105);         /* Premium gray text */
-  --btn-filter-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%); /* Premium hover */
-  --btn-filter-border: rgba(203, 213, 225, 0.8); /* Sophisticated border */
-  --btn-filter-active: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium active */
-  --btn-filter-active-text: rgb(255, 255, 255); /* White active text */
+  /* Danger Buttons */
+  --btn-danger-bg: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%); /* Red gradient */
+  --btn-danger-text: rgb(255, 255, 255);       /* White text */
+  --btn-danger-hover: linear-gradient(135deg, rgb(252, 165, 165) 0%, rgb(248, 113, 113) 100%); /* Lighter red on hover */
+  --btn-danger-shadow: 0 4px 16px -4px rgba(239, 68, 68, 0.4); /* Red shadow */
   
-  /* Clear Filters Button */
-  --btn-clear-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%); /* Premium clear */
-  --btn-clear-text: rgb(71, 85, 105);          /* Premium text */
-  --btn-clear-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%); /* Premium hover */
-  --btn-clear-border: rgba(203, 213, 225, 0.8); /* Sophisticated border */
-  
-  /* ============================= */
-  /* DASHBOARD ACTION BUTTONS - INVENTORY */
-  /* ============================= */
-  
-  /* Add Asset Button - Enhanced for Dashboard */
-  --btn-add-asset-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
-  --btn-add-asset-text: rgb(255, 255, 255);
-  --btn-add-asset-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  --btn-add-asset-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.3);
-  
-  /* Export Button - Dashboard Style */
-  --btn-export-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  --btn-export-text: rgb(255, 255, 255);
-  --btn-export-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
-  --btn-export-shadow: 0 4px 16px -4px rgba(59, 130, 246, 0.3);
-  
-  /* Delete/Remove Button - Enhanced */
-  --btn-delete-bg: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
-  --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-hover: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  --btn-delete-shadow: 0 4px 16px -4px rgba(248, 113, 113, 0.3);
-  
-  /* Dashboard Filter Pills */
-  --filter-pill-bg: rgba(248, 250, 252, 0.8);
-  --filter-pill-text: rgb(71, 85, 105);
-  --filter-pill-active-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --filter-pill-active-text: rgb(255, 255, 255);
-  --filter-pill-hover: rgba(241, 245, 249, 0.9);
-  
-  /* ============================= */
-  /* SYSTEM COLORS */
-  /* ============================= */
-  
-  /* Accent and highlight colors */
-  --accent-color: rgb(99, 102, 241);           /* Professional indigo accent */
-  --accent-text: rgb(255, 255, 255);           /* White text on indigo */
-  --focus-ring: rgb(99, 102, 241);             /* Consistent indigo focus rings */
-  
-  /* Status and notification colors */
-  --success-color: rgb(34, 197, 94);           /* Modern emerald green */
-  --warning-color: rgb(245, 158, 11);          /* Professional amber */
-  --error-color: rgb(239, 68, 68);             /* Clean red */
-  --info-color: rgb(59, 130, 246);             /* Consistent blue */
-  
-  /* ============================= */
-  /* STATUS BADGE COLORS */
-  /* ============================= */
-  
-  /* Status Badge - "In Use" */
-  --status-in-use-bg: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.1) 100%);
-  --status-in-use-text: rgb(21, 128, 61);
-  --status-in-use-border: rgba(34, 197, 94, 0.3);
-  --status-in-use-hover: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%);
-  
-  /* Status Badge - "Spare" */
-  --status-spare-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
-  --status-spare-text: rgb(29, 78, 216);
-  --status-spare-border: rgba(59, 130, 246, 0.3);
-  --status-spare-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%);
-  
-  /* Status Badge - "For Repair" */
-  --status-for-repair-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
-  --status-for-repair-text: rgb(180, 83, 9);
-  --status-for-repair-border: rgba(245, 158, 11, 0.3);
-  --status-for-repair-hover: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
-  
-  /* Status Badge - "For Parts" */
-  --status-for-parts-bg: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-  --status-for-parts-text: rgb(124, 58, 237);
-  --status-for-parts-border: rgba(168, 85, 247, 0.3);
-  --status-for-parts-hover: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
-  
-  /* Status Badge - "For Recycle" */
-  --status-for-recycle-bg: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
-  --status-for-recycle-text: rgb(220, 38, 38);
-  --status-for-recycle-border: rgba(248, 113, 113, 0.3);
-  --status-for-recycle-hover: linear-gradient(135deg, rgba(248, 113, 113, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%);
+  /* Add Asset Button */
+  --btn-add-asset-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%); /* Green gradient */
+  --btn-add-asset-text: rgb(255, 255, 255);    /* White text */
+  --btn-add-asset-hover: linear-gradient(135deg, rgb(74, 222, 128) 0%, rgb(34, 197, 94) 100%); /* Lighter green on hover */
+  --btn-add-asset-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.4); /* Green shadow */
   
   /* ============================= */
   /* SIDEBAR STYLING - PREMIUM LIGHT */
   /* ============================= */
   
   /* Sidebar background and structure */
-  --sidebar-background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  --sidebar-border: rgba(203, 213, 225, 0.6);
-  --sidebar-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+  --sidebar-background: rgba(255, 255, 255, 0.95); /* Clean white sidebar */
+  --sidebar-text: rgb(71, 85, 105);            /* Muted text */
+  --sidebar-category-text: rgb(100, 116, 139); /* Even more muted category text */
+  --sidebar-border: rgba(203, 213, 225, 0.6);  /* Subtle border */
+  --sidebar-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08); /* Subtle sidebar shadow */
   
-  /* Sidebar links */
-  --sidebar-link-text: rgb(71, 85, 105);
-  --sidebar-link-hover: rgba(99, 102, 241, 0.08);
-  --sidebar-link-active: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-  --sidebar-link-active-text: rgb(79, 70, 229);
-  --sidebar-link-icon: rgb(100, 116, 139);
-  --sidebar-link-icon-active: rgb(99, 102, 241);
+  /* Sidebar links and navigation */
+  --sidebar-link-bg: transparent;              /* Transparent default */
+  --sidebar-link-text: rgb(71, 85, 105);       /* Muted link text */
+  --sidebar-link-hover: rgba(99, 102, 241, 0.08); /* Subtle indigo hover */
+  --sidebar-link-active: rgba(99, 102, 241, 0.12); /* Slightly stronger active */
+  --sidebar-link-text-hover: rgb(99, 102, 241); /* Indigo text on hover */
+  --sidebar-link-text-active: rgb(99, 102, 241); /* Indigo text when active */
   
   /* Sidebar header */
   --sidebar-header-bg: rgba(255, 255, 255, 0.8);
@@ -227,491 +151,390 @@
   --sidebar-header-border: rgba(203, 213, 225, 0.4);
   
   /* ============================= */
-  /* DROPDOWN AND SELECT COLORS - PREMIUM LIGHT */
+  /* STATUS BADGE COLORS - LIGHT THEME */
   /* ============================= */
   
-  --dropdown-background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(248, 250, 252) 100%);
-  --dropdown-text: rgb(15, 23, 42);
-  --dropdown-border: rgba(203, 213, 225, 0.6);
-  --dropdown-hover: linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%);
-  --dropdown-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04);
-  --dropdown-item-selected: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
-  --dropdown-item-selected-text: rgb(79, 70, 229);
-  
-  /* ============================= */
-  /* SPECIFIC BUTTON VARIANTS - LIGHT THEME */
-  /* ============================= */
-  
-  /* View Settings Button */
-  --btn-view-settings-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  --btn-view-settings-text: rgb(71, 85, 105);
-  --btn-view-settings-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%);
-  --btn-view-settings-border: rgba(203, 213, 225, 0.8);
-  --btn-view-settings-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
-  
-  /* Clear Filters Button */
-  --btn-clear-filters-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  --btn-clear-filters-text: rgb(71, 85, 105);
-  --btn-clear-filters-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%);
-  --btn-clear-filters-border: rgba(203, 213, 225, 0.8);
-  --btn-clear-filters-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
-  
-  /* Select All Button */
-  --btn-select-all-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  --btn-select-all-text: rgb(255, 255, 255);
-  --btn-select-all-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
-  --btn-select-all-border: rgba(59, 130, 246, 0.8);
-  --btn-select-all-shadow: 0 2px 8px -2px rgba(59, 130, 246, 0.3);
-  
-  /* Clear Selection Button */
-  --btn-clear-selection-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  --btn-clear-selection-text: rgb(71, 85, 105);
-  --btn-clear-selection-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%);
-  --btn-clear-selection-border: rgba(203, 213, 225, 0.8);
-  --btn-clear-selection-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
-  
-  /* Apply Button */
-  --btn-apply-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
-  --btn-apply-text: rgb(255, 255, 255);
-  --btn-apply-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  --btn-apply-border: rgba(34, 197, 94, 0.8);
-  --btn-apply-shadow: 0 2px 8px -2px rgba(34, 197, 94, 0.3);
-  
-  /* Cancel Button */
-  --btn-cancel-bg: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  --btn-cancel-text: rgb(71, 85, 105);
-  --btn-cancel-hover: linear-gradient(135deg, rgb(241, 245, 249) 0%, rgb(226, 232, 240) 100%);
-  --btn-cancel-border: rgba(203, 213, 225, 0.8);
-  --btn-cancel-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
-  
-  /* ============================= */
-  /* SEMANTIC COLORS */
-  /* ============================= */
-  
-  /* Primary semantic colors */
-  --primary: rgb(99, 102, 241);
-  --primary-foreground: rgb(255, 255, 255);
-  --secondary: rgb(241, 245, 249);
-  --secondary-foreground: rgb(15, 23, 42);
-  --destructive: rgb(239, 68, 68);
-  --destructive-foreground: rgb(255, 255, 255);
-  --muted: rgb(241, 245, 249);
-  --muted-foreground: rgb(100, 116, 139);
-  --accent: rgb(241, 245, 249);
-  --accent-foreground: rgb(15, 23, 42);
-  --popover: rgb(255, 255, 255);
-  --popover-foreground: rgb(15, 23, 42);
-  --ring: rgb(99, 102, 241);
-  
-  /* ============================= */
-  /* UTILITY COLORS */
-  /* ============================= */
-  
-  /* Border and separator colors */
-  --border-light: rgba(203, 213, 225, 0.3);
-  --border-heavy: rgba(203, 213, 225, 0.8);
-  
-  /* Background utilities */
-  --background-secondary: rgb(241, 245, 249);
-  --background-tertiary: rgb(226, 232, 240);
-  
-  /* Text utilities */
-  --text-primary: rgb(15, 23, 42);
-  --text-secondary: rgb(71, 85, 105);
-  --text-tertiary: rgb(100, 116, 139);
-  --text-quaternary: rgb(148, 163, 184);
-  
-  /* Surface colors for elevated elements */
-  --surface-raised: rgba(255, 255, 255, 0.9);
-  --surface-overlay: rgba(255, 255, 255, 0.95);
-  
-  /* STATUS BADGE COLORS */
-  
-  /* Status Badge - "In Use" */
+  /* In Use - Green */
   --status-in-use-bg: rgba(34, 197, 94, 0.1);
-  --status-in-use-border: rgb(34, 197, 94);
-  --status-in-use-text: rgb(21, 128, 61);
+  --status-in-use-text: rgb(22, 163, 74);
+  --status-in-use-border: rgba(34, 197, 94, 0.3);
+  --status-in-use-hover: rgba(34, 197, 94, 0.15);
   
-  /* Status Badge - "Spare" */
+  /* Spare - Blue */
   --status-spare-bg: rgba(59, 130, 246, 0.1);
-  --status-spare-border: rgb(59, 130, 246);
   --status-spare-text: rgb(37, 99, 235);
+  --status-spare-border: rgba(59, 130, 246, 0.3);
+  --status-spare-hover: rgba(59, 130, 246, 0.15);
   
-  /* Status Badge - "For Repair" */
-  --status-for-repair-bg: rgba(245, 158, 11, 0.1);
-  --status-for-repair-border: rgb(245, 158, 11);
-  --status-for-repair-text: rgb(217, 119, 6);
+  /* For Repair - Orange */
+  --status-for-repair-bg: rgba(251, 191, 36, 0.1);
+  --status-for-repair-text: rgb(245, 158, 11);
+  --status-for-repair-border: rgba(251, 191, 36, 0.3);
+  --status-for-repair-hover: rgba(251, 191, 36, 0.15);
   
-  /* Status Badge - "For Parts" */
-  --status-for-parts-bg: rgba(168, 85, 247, 0.1);
-  --status-for-parts-border: rgb(168, 85, 247);
-  --status-for-parts-text: rgb(147, 51, 234);
+  /* For Parts - Red */
+  --status-for-parts-bg: rgba(248, 113, 113, 0.1);
+  --status-for-parts-text: rgb(239, 68, 68);
+  --status-for-parts-border: rgba(248, 113, 113, 0.3);
+  --status-for-parts-hover: rgba(248, 113, 113, 0.15);
   
-  /* Status Badge - "For Recycle" */
-  --status-for-recycle-bg: rgba(239, 68, 68, 0.1);
-  --status-for-recycle-border: rgb(239, 68, 68);
-  --status-for-recycle-text: rgb(220, 38, 38);
+  /* For Recycle - Gray */
+  --status-for-recycle-bg: rgba(107, 114, 128, 0.1);
+  --status-for-recycle-text: rgb(75, 85, 99);
+  --status-for-recycle-border: rgba(107, 114, 128, 0.3);
+  --status-for-recycle-hover: rgba(107, 114, 128, 0.15);
   
-  /* TAILWIND INTEGRATION */
+  /* ============================= */
+  /* SCROLLBAR STYLING - LIGHT THEME */
+  /* ============================= */
   
-  /* Core Tailwind variables - HSL format without hsl() wrapper */
-  --background: 210 40% 98%;  /* rgb(248, 250, 252) converted to HSL */
-  --foreground: 222 84% 5%;   /* rgb(15, 23, 42) converted to HSL */
-  --card: 0 0% 100%;          /* rgb(255, 255, 255) converted to HSL */
-  --card-foreground: 222 84% 5%; /* rgb(15, 23, 42) converted to HSL */
-  --popover: 0 0% 100%;       /* rgb(255, 255, 255) converted to HSL */
-  --popover-foreground: 222 84% 5%; /* rgb(15, 23, 42) converted to HSL */
-  --primary: 221 83% 53%;     /* rgb(59, 130, 246) converted to HSL */
-  --primary-foreground: 0 0% 100%; /* rgb(255, 255, 255) converted to HSL */
-  --secondary: 210 40% 96%;   /* rgb(241, 245, 249) converted to HSL */
-  --secondary-foreground: 215 25% 27%; /* rgb(71, 85, 105) converted to HSL */
-  --muted: 210 40% 96%;       /* rgb(241, 245, 249) converted to HSL */
-  --muted-foreground: 215 16% 47%; /* rgb(100, 116, 139) converted to HSL */
-  --accent: 221 83% 53%;      /* rgb(59, 130, 246) converted to HSL */
-  --accent-foreground: 0 0% 100%; /* rgb(255, 255, 255) converted to HSL */
-  --destructive: 0 84% 60%;   /* rgb(239, 68, 68) converted to HSL */
-  --destructive-foreground: 0 0% 100%; /* rgb(255, 255, 255) converted to HSL */
-  --border: 214 32% 91%;      /* rgb(226, 232, 240) converted to HSL */
-  --input: 214 32% 91%;       /* rgb(226, 232, 240) converted to HSL */
-  --ring: 221 83% 53%;        /* rgb(59, 130, 246) converted to HSL */
-  --chart-1: 221 83% 53%;     /* rgb(59, 130, 246) converted to HSL */
-  --chart-2: 142 76% 36%;     /* rgb(34, 197, 94) converted to HSL */
-  --chart-3: 38 92% 50%;      /* rgb(245, 158, 11) converted to HSL */
-  --chart-4: 271 91% 65%;     /* rgb(168, 85, 247) converted to HSL */
-  --chart-5: 0 84% 60%;       /* rgb(239, 68, 68) converted to HSL */
-  --radius: 0.5rem;
+  --scrollbar-track: rgba(241, 245, 249, 0.8);
+  --scrollbar-track-border: rgba(203, 213, 225, 0.4);
+  --scrollbar-thumb: linear-gradient(180deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+  --scrollbar-thumb-border: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(99, 102, 241, 0.9) 0%, rgba(139, 92, 246, 0.9) 100%);
+  --scrollbar-corner: rgba(241, 245, 249, 0.8);
   
-  /* Sidebar specific variables - HSL format */
-  --sidebar: 0 0% 100%;       /* rgb(255, 255, 255) converted to HSL */
-  --sidebar-foreground: 215 25% 27%; /* rgb(71, 85, 105) converted to HSL */
-  --sidebar-primary: 221 83% 53%; /* rgb(59, 130, 246) converted to HSL */
-  --sidebar-primary-foreground: 0 0% 100%; /* rgb(255, 255, 255) converted to HSL */
-  --sidebar-accent: 221 83% 53% / 0.1; /* rgba(59, 130, 246, 0.1) in HSL with alpha */
-  --sidebar-accent-foreground: 221 83% 53%; /* rgb(59, 130, 246) converted to HSL */
-  --sidebar-border: 214 32% 91%; /* rgb(226, 232, 240) converted to HSL */
-  --sidebar-ring: 221 83% 53%;   /* rgb(59, 130, 246) converted to HSL */
+  /* ============================= */
+  /* FOCUS AND ACCESSIBILITY */
+  /* ============================= */
   
-  /* SPECIFIC BUTTON COLORS */
-  
-  /* Dashboard Action Buttons */
-  --btn-primary-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  --btn-primary-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
-  --btn-primary-border: rgb(59, 130, 246);
-  --btn-primary-text: rgb(255, 255, 255);
-  --btn-primary-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-  
-  --btn-export-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(21, 128, 61) 100%);
-  --btn-export-hover: linear-gradient(135deg, rgb(21, 128, 61) 0%, rgb(22, 101, 52) 100%);
-  --btn-export-border: rgb(34, 197, 94);
-  --btn-export-text: rgb(255, 255, 255);
-  --btn-export-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
-  
-  --btn-delete-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  --btn-delete-hover: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
-  --btn-delete-border: rgb(239, 68, 68);
-  --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
-  
-  /* Filter Control Buttons */
-  --btn-apply-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  --btn-apply-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
-  --btn-apply-text: rgb(255, 255, 255);
-  
-  /* Table Selection Buttons */
-  --btn-select-all-bg: linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(147, 51, 234) 100%);
-  --btn-select-all-hover: linear-gradient(135deg, rgb(147, 51, 234) 0%, rgb(126, 34, 206) 100%);
-  --btn-select-all-text: rgb(255, 255, 255);
-  
-  --btn-clear-selection-bg: linear-gradient(135deg, rgb(100, 116, 139) 0%, rgb(71, 85, 105) 100%);
-  --btn-clear-selection-hover: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(51, 65, 85) 100%);
-  --btn-clear-selection-text: rgb(255, 255, 255);
-  
-  --btn-view-settings-bg: linear-gradient(135deg, rgb(245, 158, 11) 0%, rgb(217, 119, 6) 100%);
-  --btn-view-settings-hover: linear-gradient(135deg, rgb(217, 119, 6) 0%, rgb(180, 83, 9) 100%);
-  --btn-view-settings-text: rgb(255, 255, 255);
-  
-  /* Dialog/Modal Action Buttons */
-  --btn-cancel-bg: linear-gradient(135deg, rgb(148, 163, 184) 0%, rgb(100, 116, 139) 100%);
-  --btn-cancel-hover: linear-gradient(135deg, rgb(100, 116, 139) 0%, rgb(71, 85, 105) 100%);
-  --btn-cancel-text: rgb(255, 255, 255);
-  
-  --btn-clear-filters-bg: linear-gradient(135deg, rgb(100, 116, 139) 0%, rgb(71, 85, 105) 100%);
-  --btn-clear-filters-hover: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(51, 65, 85) 100%);
-  --btn-clear-filters-text: rgb(255, 255, 255);
-  
-  /* SIDEBAR NAVIGATION */
-  --sidebar-bg: rgb(255, 255, 255);
-  --sidebar-border: rgb(226, 232, 240);
-  --sidebar-text: rgb(71, 85, 105);
-  --sidebar-text-hover: rgb(59, 130, 246);
-  --sidebar-link-bg: transparent;
-  --sidebar-link-hover: rgba(59, 130, 246, 0.1);
-  --sidebar-link-active: rgba(59, 130, 246, 0.15);
-  --sidebar-icon: rgb(100, 116, 139);
-  --sidebar-icon-hover: rgb(59, 130, 246);
-  --sidebar-icon-active: rgb(59, 130, 246);
-  
-  /* Logo Colors */
-  --logo-primary: rgb(59, 130, 246);
-  --logo-secondary: rgb(100, 116, 139);
-  --logo-bg: rgb(255, 255, 255);
-  --logo-border: rgb(226, 232, 240);
-  
-  /* CHART COLORS */
-  --chart-blue: rgb(59, 130, 246);
-  --chart-green: rgb(34, 197, 94);
-  --chart-yellow: rgb(245, 158, 11);
-  --chart-purple: rgb(168, 85, 247);
-  --chart-red: rgb(239, 68, 68);
-  --chart-orange: rgb(249, 115, 22);
-  --chart-teal: rgb(20, 184, 166);
-  --chart-pink: rgb(236, 72, 153);
-  --chart-gray: rgb(100, 116, 139);
-  
-  /* SCROLLBAR STYLING */
-  --scrollbar-track: rgba(226, 232, 240, 0.3);
-  --scrollbar-thumb: rgba(148, 163, 184, 0.5);
-  --scrollbar-thumb-hover: rgba(100, 116, 139, 0.7);
-  --scrollbar-width: 8px;
-  --scrollbar-border-radius: 4px;
-  
-  /* TABLE STYLING HELPERS */
-  --table-row-hover: rgba(59, 130, 246, 0.05);
-  --table-row-selected: rgba(59, 130, 246, 0.1);
-  --table-header-bg: rgb(248, 250, 252);
-  --table-header-text: rgb(71, 85, 105);
-  --table-border: rgb(226, 232, 240);
-  --table-stripe: rgba(241, 245, 249, 0.5);
-  
-  /* BUTTON VARIANT HELPERS */
-  --btn-hover-scale: 1.02;
-  --btn-active-scale: 0.98;
-  --btn-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --btn-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  --btn-disabled-opacity: 0.5;
-  --btn-disabled-cursor: not-allowed;
-  
-  /* COMPONENT RADIUS */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
+  --focus-ring: rgba(99, 102, 241, 0.5);       /* Indigo focus ring */
+  --focus-outline-offset: 2px;                 /* Standard focus offset */
 }
 
-/* PREMIUM LIGHT FILTER CONTROLS STYLING - SCOPED TO LIGHT THEME ONLY */
+/* ============================= */
+/* SCOPED COMPONENT STYLES - LIGHT THEME */
+/* ============================= */
 
-/* Enhanced styling for filter controls section - Premium Light */
-.light .filter-controls {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(12px);
-}
-
-/* Premium light search input - FIXED SIZE AND POSITIONING */
-.light .search-container {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-}
-
-.light .search-container input[type="text"] {
-  width: 100%;
-  height: 42px;
-  padding: 12px 16px 12px 48px;
-  border: 2px solid rgba(226, 232, 240, 0.6);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  color: rgb(15, 23, 42);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(8px);
-}
-
-.light .search-container input[type="text"]:focus {
-  outline: none;
-  border-color: rgb(59, 130, 246);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 
-    0 0 0 3px rgba(59, 130, 246, 0.1),
-    0 4px 16px rgba(59, 130, 246, 0.15);
-  transform: translateY(-1px);
-}
-
-.light .search-container input[type="text"]:hover:not(:focus) {
-  border-color: rgba(148, 163, 184, 0.8);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.light .search-container input[type="text"]::placeholder {
-  color: rgb(148, 163, 184);
-  font-weight: 400;
-}
-
-/* Fix the search input container to maintain consistent layout - SCOPED TO LIGHT THEME */
-.light .search-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  min-width: 300px;
-  max-width: 400px;
-}
-
-/* Fix button positioning inside search box */
-.light .search-container button {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  width: 20px;
-  height: 20px;
-  z-index: 2;
-}
-
-/* Search icon styling */
-.light .search-container button svg,
-.light .search-container .lucide-search {
-  width: 18px;
-  height: 18px;
-  color: rgb(148, 163, 184);
-  transition: color 0.2s ease;
-}
-
-/* Search icon positioning - make sure it's visible */
-.light .search-container:focus-within button svg,
-.light .search-container:focus-within .lucide-search {
-  color: rgb(59, 130, 246);
-}
-
-/* Combobox and dropdown button styling - Premium Light */
-.light .filter-controls button[data-state],
-.light .filter-controls [role="combobox"],
-.light .filter-controls .combobox-trigger {
-  height: 42px;
-  padding: 12px 16px;
-  border: 2px solid rgba(226, 232, 240, 0.6);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  color: rgb(15, 23, 42);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-}
-
-.light .filter-controls button[data-state]:hover,
-.light .filter-controls [role="combobox"]:hover,
-.light .filter-controls .combobox-trigger:hover {
-  border-color: rgba(148, 163, 184, 0.8);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
-}
-
-.light .filter-controls button[data-state="open"],
-.light .filter-controls [role="combobox"][data-state="open"],
-.light .filter-controls .combobox-trigger[data-state="open"] {
-  border-color: rgb(59, 130, 246);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 
-    0 0 0 3px rgba(59, 130, 246, 0.1),
-    0 4px 16px rgba(59, 130, 246, 0.15);
-}
-
-/* Clear filters button - Premium Light */
-.light .filter-controls .clear-filters,
-.light .filter-controls button[type="button"]:not([data-state]):not([role="combobox"]) {
-  height: 42px;
-  padding: 12px 20px;
-  border: 2px solid rgba(239, 68, 68, 0.3);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 242, 242, 0.95) 100%);
-  color: rgb(239, 68, 68);
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-}
-
-.light .filter-controls .clear-filters:hover,
-.light .filter-controls button[type="button"]:not([data-state]):not([role="combobox"]):hover {
-  border-color: rgb(239, 68, 68);
-  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  color: rgb(255, 255, 255);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
-  transform: translateY(-1px);
-}
-
-/* Focus ring for all interactive elements - light theme */
-.light .filter-controls *:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
-/* INVENTORY DASHBOARD SPECIFIC STYLING - LIGHT THEME */
-
-/* Main dashboard container - Premium Light */
-.light .dashboard-container {
-  background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
+/* Global background override - force light theme background */
+.light,
+.light body,
+.light main,
+.light .main-content,
+.light [class*="main"],
+.light .flex-1.flex.flex-col.min-h-0 {
+  background: var(--page-background) !important;
   min-height: 100vh;
 }
 
-/* Dashboard header section */
-.light .dashboard-header {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(12px);
+/* Dashboard main container */
+.light .dashboard-page {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px -12px rgba(15, 23, 42, 0.1);
+  padding: 24px;
 }
 
-/* Inventory stats cards - Premium Light */
+/* Enhanced table styling for inventory */
+.light .asset-table {
+  background: var(--table-data-bg) !important;
+  border: 1px solid var(--table-data-border) !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
+}
+
+/* Table header row gets the gradient background */
+.light .asset-table thead tr,
+.light table thead tr {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 50%, rgb(67, 56, 202) 100%) !important;
+  position: relative;
+}
+
+/* Individual header cells get solid background to blend seamlessly */
+.light .asset-table th,
+.light table th,
+.light .asset-table thead th,
+.light table thead th {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--table-header-text) !important;
+  font-weight: 600;
+  padding: 16px 12px;
+  border-bottom: 2px solid var(--table-header-border) !important;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 5;
+}
+
+/* FORCE header cells to NEVER be affected by selection state */
+.light table tr[data-state="selected"] th,
+.light .asset-table tr[data-state="selected"] th,
+.light table thead tr th,
+.light .asset-table thead tr th {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--table-header-text) !important;
+  border-left: none !important;
+  box-shadow: none !important;
+}
+
+.light .asset-table td {
+  background: var(--table-data-bg) !important;
+  color: var(--table-data-text) !important;
+  border-bottom: 1px solid var(--table-data-border) !important;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.light .asset-table tr:hover td {
+  background: var(--table-data-hover) !important;
+  transform: scale(1.005);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+}
+
+/* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
+.light table tbody tr[data-state="selected"] td,
+.light .asset-table tbody tr[data-state="selected"] td {
+  background: var(--table-data-hover) !important;
+  background-color: var(--table-data-hover) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+.light table tbody tr[data-state="selected"]:hover td,
+.light .asset-table tbody tr[data-state="selected"]:hover td {
+  background: var(--table-data-hover) !important;
+  background-color: var(--table-data-hover) !important;
+  z-index: 3 !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Dashboard statistics cards */
+.light .category-counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .light .stats-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--dashboard-stat-bg) !important;
+  border: 1px solid var(--dashboard-stat-border) !important;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
 }
 
 .light .stats-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
 }
 
-/* Asset table container - Premium Light */
-.light .asset-table-container {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
+.light .stats-number {
+  color: var(--dashboard-stat-accent) !important;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
+
+.light .stats-label {
+  color: var(--dashboard-stat-text) !important;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* Enhanced action buttons for dashboard */
+.light .btn-add-asset {
+  background: var(--btn-add-asset-bg) !important;
+  color: var(--btn-add-asset-text) !important;
+  box-shadow: var(--btn-add-asset-shadow);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.light .btn-add-asset:hover {
+  background: var(--btn-add-asset-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px -8px rgba(34, 197, 94, 0.4);
+}
+
+/* Asset status indicators */
+.light .badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.light .status-in-use {
+  background: var(--inventory-in-stock) !important;
+  color: white;
+}
+
+.light .status-spare {
+  background: var(--inventory-in-stock) !important;
+  color: white;
+}
+
+.light .status-for-repair {
+  background: var(--inventory-low-stock) !important;
+  color: white;
+}
+
+.light .status-for-parts {
+  background: var(--inventory-out-stock) !important;
+  color: white;
+}
+
+.light .status-for-recycle {
+  background: var(--inventory-reserved) !important;
+  color: white;
+}
+
+/* ============================= */
+/* SIDEBAR COMPONENT STYLING - LIGHT THEME */
+/* ============================= */
+
+/* Ensure sidebar footer is always visible */
+.light [data-sidebar="sidebar"] {
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.light [data-sidebar="content"] {
+  flex: 1 !important;
+  overflow: visible !important;
+  padding: 8px !important;
+}
+
+.light [data-sidebar="footer"] {
+  flex-shrink: 0 !important;
+  background: var(--sidebar-background) !important;
+  z-index: 10 !important;
+  padding: 16px !important;
+  border-top: 1px solid var(--border) !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Main layout viewport constraints */
+.light .main-layout {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Table container scrolling */
+.light .table-container {
+  max-height: calc(100vh - 280px) !important;
+  overflow: auto !important;
+}
+
+/* Enhanced sidebar styling */
+.light .sidebar-group {
+  margin-bottom: 8px !important;
+}
+
+.light .sidebar-menu {
+  gap: 2px !important;
+}
+
+.light .sidebar-menu-item {
+  margin-bottom: 1px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.light .sidebar-nav a,
+.light .sidebar-nav button,
+.light .sidebar-nav [role="button"] {
+  width: 100%;
+  color: var(--sidebar-text);
+  background: var(--sidebar-link-bg);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 10px 16px;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.light .sidebar-nav a:hover,
+.light .sidebar-nav button:hover,
+.light .sidebar-nav [role="button"]:hover {
+  background: var(--sidebar-link-hover) !important;
+  color: var(--sidebar-link-text-hover) !important;
+  transform: translateX(4px);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 4px 0 16px rgba(99, 102, 241, 0.1);
+}
+
+.light .sidebar-nav a[data-active="true"],
+.light .sidebar-nav button[data-active="true"],
+.light .sidebar-nav [role="button"][data-active="true"] {
+  background: var(--sidebar-link-active) !important;
+  color: var(--sidebar-link-text-active) !important;
+  border-color: rgba(99, 102, 241, 0.3);
+  font-weight: 600;
+}
+
+/* Premium light sidebar enhancement */
+.light .sidebar-nav a::before,
+.light .sidebar-nav button::before,
+.light .sidebar-nav [role="button"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 2px 2px 0;
+}
+
+.light .sidebar-nav a:hover::before,
+.light .sidebar-nav button:hover::before,
+.light .sidebar-nav [role="button"]:hover::before {
+  transform: scaleY(1);
+}
+
+.light .sidebar-nav a[data-active="true"]::before,
+.light .sidebar-nav button[data-active="true"]::before,
+.light .sidebar-nav [role="button"][data-active="true"]::before {
+  transform: scaleY(1);
+}
+
+/* ============================= */
+/* PREMIUM LIGHT THEME ENHANCEMENTS */
+/* ============================= */
 
 /* Table header styling - Premium Light */
 .light .asset-table thead th {
-  background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  color: rgb(71, 85, 105);
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  color: rgb(255, 255, 255);
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.025em;
   text-transform: uppercase;
   padding: 16px 20px;
-  border-bottom: 2px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 2px solid rgba(99, 102, 241, 0.8);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -731,15 +554,13 @@
   box-shadow: 4px 0 16px rgba(59, 130, 246, 0.1);
 }
 
-/* Table cell content */
 .light .asset-table tbody td {
-  padding: 16px 20px;
   color: rgb(15, 23, 42);
-  font-size: 14px;
   vertical-align: middle;
+  padding: 16px 20px;
+  font-size: 14px;
 }
 
-/* Status badge styling - Premium Light */
 .light .status-badge {
   display: inline-flex;
   align-items: center;
@@ -783,353 +604,57 @@
   color: var(--status-for-recycle-text);
 }
 
-/* Asset action buttons in table - Premium Light */
-.light .asset-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.light .asset-actions button {
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid;
-}
-
-.light .asset-actions .edit-btn {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
-  border-color: rgba(59, 130, 246, 0.3);
-  color: rgb(59, 130, 246);
-}
-
-.light .asset-actions .edit-btn:hover {
-  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  color: rgb(255, 255, 255);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.light .asset-actions .delete-btn {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: rgb(239, 68, 68);
-}
-
-.light .asset-actions .delete-btn:hover {
-  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  color: rgb(255, 255, 255);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-}
-
-/* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
-.light .asset-table tbody tr[data-state="selected"] {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%) !important;
-  border-color: rgba(59, 130, 246, 0.4) !important;
-}
-
-/* Enhanced hover for selected rows - DATA ROWS ONLY */
-.light .asset-table tbody tr[data-state="selected"]:hover {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%) !important;
-  border-color: rgba(59, 130, 246, 0.6) !important;
-  transform: translateX(6px) !important;
-  box-shadow: 6px 0 20px rgba(59, 130, 246, 0.2) !important;
-}
-
-/* Pagination controls - Premium Light */
-.light .pagination-controls {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border-top: 1px solid rgba(226, 232, 240, 0.6);
-  padding: 16px 24px;
-  backdrop-filter: blur(8px);
-}
-
-.light .pagination-controls button {
-  padding: 8px 16px;
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  color: rgb(71, 85, 105);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.light .pagination-controls button:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  border-color: rgb(59, 130, 246);
-  color: rgb(255, 255, 255);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-}
-
-.light .pagination-controls button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: rgba(241, 245, 249, 0.8);
-  color: rgb(148, 163, 184);
-}
-
-.light .pagination-controls button.active {
-  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
-  border-color: rgb(59, 130, 246);
-  color: rgb(255, 255, 255);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-}
-
-/* Modal and dialog styling - Premium Light */
-.light .modal-overlay {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-}
-
-.light .modal-content {
+/* Enhanced asset table container */
+.light .asset-table-container {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
   border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 20px 64px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(16px);
-}
-
-.light .modal-header {
-  background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 20px 20px 0 0;
-  padding: 24px;
-}
-
-.light .modal-footer {
-  background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
-  border-top: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 0 0 20px 20px;
-  padding: 24px;
-}
-
-/* Form styling in modals - Premium Light */
-.light .form-group {
-  margin-bottom: 20px;
-}
-
-.light .form-label {
-  display: block;
-  color: rgb(71, 85, 105);
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.light .form-input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid rgba(226, 232, 240, 0.6);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  color: rgb(15, 23, 42);
-  font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.light .form-input:focus {
-  outline: none;
-  border-color: rgb(59, 130, 246);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 
-    0 0 0 3px rgba(59, 130, 246, 0.1),
-    0 4px 12px rgba(59, 130, 246, 0.15);
-}
-
-/* Override Tailwind bg-background class in light mode */
-.light-theme [data-theme="light"] {
-  background: var(--background) !important;
-}
-
-.light-theme .bg-background {
-  background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%) !important;
-}
-
-.light-theme .bg-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%) !important;
-}
-
-/* Override any overflow-hidden containers */
-.light-theme .overflow-hidden {
-  overflow: visible !important;
-}
-
-.light-theme .table-container {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-}
-
-/* Sidebar category links enhanced hover - Light Theme */
-.light .sidebar-nav a,
-.light .sidebar-nav button,
-.light .sidebar-nav [role="button"] {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  color: var(--sidebar-text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--sidebar-link-bg);
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.light .sidebar-nav a::before,
-.light .sidebar-nav button::before,
-.light .sidebar-nav [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .sidebar-nav a:hover,
-.light .sidebar-nav button:hover,
-.light .sidebar-nav [role="button"]:hover {
-  background: var(--sidebar-link-hover);
-  color: var(--sidebar-text-hover);
-  border-color: rgba(59, 130, 246, 0.2);
-  transform: translateX(4px);
-  box-shadow: 4px 0 16px rgba(59, 130, 246, 0.1);
-}
-
-.light .sidebar-nav a:hover::before,
-.light .sidebar-nav button:hover::before,
-.light .sidebar-nav [role="button"]:hover::before {
-  left: 100%;
-}
-
-.light .sidebar-nav a.active,
-.light .sidebar-nav button.active,
-.light .sidebar-nav [role="button"].active {
-  background: var(--sidebar-link-active);
-  color: var(--sidebar-text-hover);
-  border-color: rgba(59, 130, 246, 0.3);
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
-}
-
-.light .sidebar-nav svg,
-.light .sidebar-nav .lucide {
-  width: 18px;
-  height: 18px;
-  margin-right: 12px;
-  color: var(--sidebar-icon);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .sidebar-nav a:hover svg,
-.light .sidebar-nav button:hover svg,
-.light .sidebar-nav [role="button"]:hover .lucide,
-.light .sidebar-nav a.active svg,
-.light .sidebar-nav button.active svg,
-.light .sidebar-nav [role="button"].active .lucide {
-  color: var(--sidebar-icon-hover);
-  transform: scale(1.1);
-}
-
-/* Simple theme toggle visibility - light theme */
-.light .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
   backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-/* Simple theme toggle icons - light theme */
-.light .theme-toggle:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
+/* Premium selection effects */
+.light .asset-table tr[data-state="selected"] {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
   border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+}
+
+/* ============================= */
+/* HOVER EFFECTS AND INTERACTIONS */
+/* ============================= */
+
+/* Button hover enhancements */
+.light button:hover,
+.light .btn:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover effects */
+.light .card:hover,
+.light [class*="card"]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-}
-
-.light .theme-toggle svg {
-  width: 20px;
-  height: 20px;
-  color: rgb(71, 85, 105);
-  transition: all 0.3s ease;
-}
-
-.light .theme-toggle:hover svg {
-  color: rgb(59, 130, 246);
-  transform: rotate(180deg);
-}
-
-/* Dropdown content styling - Premium Light */
-[data-radix-popper-content-wrapper] {
-  z-index: 1000;
-}
-
-.light .dropdown-content,
-.light [role="menu"],
-.light [data-radix-select-content] {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 12px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(16px);
-  padding: 8px;
-  min-width: 200px;
-  overflow: hidden;
-}
-
-/* SelectItem component hover - MATCH SIDEBAR STYLE */
-.light [data-radix-select-item],
-.light .dropdown-item,
-.light [role="menuitem"] {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  border-radius: 8px;
-  color: rgb(71, 85, 105);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
-.light [data-radix-select-item]::before,
-.light .dropdown-item::before,
-.light [role="menuitem"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* Input focus effects */
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: var(--input-border-focus) !important;
+  box-shadow: var(--input-shadow-focus) !important;
+  outline: none;
 }
 
+/* ============================= */
+/* DROPDOWN AND SELECT STYLING */
+/* ============================= */
+
+/* Dropdown item enhancements */
 .light [data-radix-select-item]:hover,
 .light .dropdown-item:hover,
 .light [role="menuitem"]:hover,
@@ -1178,4 +703,51 @@
   background: rgba(59, 130, 246, 0.15) !important;
   color: rgb(59, 130, 246) !important;
   font-weight: 600 !important;
+}
+
+/* TAILWIND CLASS OVERRIDES FOR LIGHT THEME */
+/* Override default Tailwind hover classes with sidebar colors */
+.light .hover\:bg-accent:hover,
+.light [data-highlighted].hover\:bg-accent,
+.light .focus\:bg-accent:focus,
+.light [data-highlighted].focus\:bg-accent {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(59, 130, 246) !important;
+}
+
+/* Override accent-foreground text colors */
+.light .hover\:text-accent-foreground:hover,
+.light [data-highlighted].hover\:text-accent-foreground,
+.light .focus\:text-accent-foreground:focus,
+.light [data-highlighted].focus\:text-accent-foreground {
+  color: rgb(59, 130, 246) !important;
+}
+
+/* ============================= */
+/* DIALOG CLOSE BUTTON ENHANCEMENT */
+/* ============================= */
+
+/* Dialog close button visibility */
+.light [data-radix-dialog-content] button[data-radix-dialog-close] {
+  background: rgba(15, 23, 42, 0.1) !important;
+  border: 1px solid rgba(15, 23, 42, 0.2) !important;
+  color: rgb(71, 85, 105) !important;
+  opacity: 0.8 !important;
+  z-index: 9999 !important;
+  transition: all 0.2s ease !important;
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  order: -1 !important;
+}
+
+.light [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
+  background: rgba(15, 23, 42, 0.2) !important;
+  border: 1px solid rgba(15, 23, 42, 0.3) !important;
+  color: rgb(15, 23, 42) !important;
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
 }
