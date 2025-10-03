@@ -382,7 +382,7 @@ export default function DashboardPage() {
                 <Download className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Export All</span>
               </Button>
-              <Button size="sm" className="btn-add-asset" onClick={() => setAddAssetOpen(true)}>
+              <Button size="sm" variant="primary" onClick={() => setAddAssetOpen(true)}>
                 <PlusCircle className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Add Asset</span>
               </Button>
