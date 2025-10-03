@@ -368,7 +368,6 @@
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
@@ -568,7 +567,6 @@
   border-radius: 8px;
   font-size: 12px;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.025em;
   border: 1px solid;
   transition: all 0.2s ease;
@@ -721,6 +719,678 @@
 .light .focus\:text-accent-foreground:focus,
 .light [data-highlighted].focus\:text-accent-foreground {
   color: rgb(59, 130, 246) !important;
+}
+
+/* ============================= */
+/* PREMIUM LIGHT FILTER CONTROLS STYLING */
+/* ============================= */
+
+/* Enhanced styling for filter controls section - Premium Light */
+.light .top-controls {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.3);
+  padding: 20px 0;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 32px -8px rgba(15, 23, 42, 0.1);
+}
+
+/* Premium light search input - FIXED SIZE AND POSITIONING */
+.light .top-controls input[type="text"],
+.light .top-controls input {
+  background: rgb(255, 255, 255) !important;
+  border: 2px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--input-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+  box-sizing: border-box !important;
+  width: 320px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  line-height: 20px !important;
+  font-size: 14px !important;
+  padding: 8px 40px 8px 40px !important;
+  margin: 0 !important;
+  position: relative !important;
+  display: block !important;
+}
+
+.light .top-controls input[type="text"]:focus,
+.light .top-controls input:focus {
+  border: 2px solid var(--input-border-focus) !important;
+  background: rgb(255, 255, 255) !important;
+  box-shadow: var(--input-shadow-focus) !important;
+  outline: none !important;
+  width: 320px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  line-height: 20px !important;
+  font-size: 14px !important;
+  padding: 8px 40px 8px 40px !important;
+  margin: 0 !important;
+  position: relative !important;
+  display: block !important;
+}
+
+.light .top-controls input[type="text"]::placeholder,
+.light .top-controls input::placeholder {
+  color: var(--input-placeholder) !important;
+  font-weight: 400;
+  line-height: 20px !important;
+  font-size: 14px !important;
+}
+
+/* Fix the search input container to maintain consistent layout */
+.light .top-controls .relative {
+  position: relative !important;
+  display: block !important;
+  width: 320px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Fix button positioning inside search box */
+.light .top-controls .relative button {
+  position: absolute !important;
+  right: 4px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  z-index: 10 !important;
+  margin: 0 !important;
+  border-radius: 6px !important;
+}
+
+/* Search icon styling */
+.light .top-controls .lucide-search {
+  color: var(--input-placeholder) !important;
+  transition: color 0.2s ease;
+}
+
+.light .top-controls input[type="text"]:focus + .lucide-search,
+.light .top-controls input[type="text"]:focus ~ .lucide-search {
+  color: var(--input-border-focus) !important;
+}
+
+/* Search icon positioning - make sure it's visible */
+.light .top-controls .relative .lucide-search {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--input-placeholder) !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+}
+
+/* When input is focused, change search icon color */
+.light .top-controls .relative:focus-within .lucide-search {
+  color: var(--input-border-focus) !important;
+}
+
+/* Premium light combobox/dropdown buttons */
+.light .top-controls button[role="combobox"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--dropdown-content-border) !important;
+  color: var(--page-text) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-content-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.light .top-controls button[role="combobox"]:hover {
+  background: var(--dropdown-hover) !important;
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.light .top-controls button[role="combobox"]:focus {
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  box-shadow: var(--input-shadow-focus) !important;
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-1px);
+}
+
+/* Premium light clear filters button */
+.light .btn-clear-filters {
+  background: rgba(248, 250, 252, 0.95) !important;
+  border: 2px solid rgba(203, 213, 225, 0.8) !important;
+  color: rgb(71, 85, 105) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-content-shadow) !important;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.light .btn-clear-filters:hover {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border: 2px solid transparent !important;
+  background-image: var(--input-border-focus) !important;
+  background-clip: padding-box !important;
+  color: rgb(15, 23, 42) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4) !important;
+}
+
+.light .btn-clear-filters svg {
+  color: currentColor !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium light focus ring for all interactive elements */
+.light .top-controls *:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+  border-radius: 12px;
+}
+
+/* ============================= */
+/* ADVANCED DYNAMIC BUTTON REACTIONS - LIGHT THEME */
+/* ============================= */
+
+/* Universal light button enhancement */
+.light button, .light .btn, .light [role="button"] {
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light theme ripple effect */
+.light button::before, .light .btn::before, .light [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light ripple activation */
+.light button:hover::before, .light .btn:hover::before, .light [role="button"]:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Dynamic light primary button states */
+.light button[class*="primary"], .light .btn-primary {
+  background: var(--btn-primary-bg) !important;
+  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(15, 23, 42, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light button[class*="primary"]:hover, .light .btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.4), 0 8px 25px rgba(15, 23, 42, 0.15) !important;
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Light secondary button states */
+.light button[class*="secondary"], .light .btn-secondary {
+  background: var(--btn-secondary-bg) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light button[class*="secondary"]:hover, .light .btn-secondary:hover {
+  background: var(--btn-secondary-hover) !important;
+  border-color: transparent !important;
+  background-image: var(--input-border-focus) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Light success states */
+.light .btn-success, .light button[class*="success"] {
+  background: rgb(34, 197, 94) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light .btn-success:hover, .light button[class*="success"]:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1) hue-rotate(5deg);
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.4) !important;
+}
+
+/* Light floating action buttons */
+.light .fab {
+  background: var(--input-border-focus) !important;
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3), 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.light .fab:hover {
+  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.4), 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+/* ============================= */
+/* LIGHT-STYLE FILTER CONTROLS - LIGHT THEME */
+/* ============================= */
+
+/* Enhanced styling for filter controls section */
+.light .top-controls {
+  background: var(--page-background);
+  border-bottom: 1px solid var(--input-border);
+  padding: 16px 0;
+}
+
+/* Light-style search input - light theme */
+.light .top-controls input[type="text"] {
+  background: var(--input-background) !important;
+  border: 1px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.light .top-controls input[type="text"]:focus {
+  border-color: var(--input-border-focus) !important;
+  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
+  outline: none !important;
+}
+
+.light .top-controls input[type="text"]::placeholder {
+  color: var(--input-placeholder) !important;
+}
+
+/* Light-style combobox/dropdown buttons - light theme */
+.light .top-controls button[role="combobox"] {
+  background: rgba(248, 250, 252, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.8) !important;
+  color: rgb(71, 85, 105) !important;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.light .top-controls button[role="combobox"]:hover {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border-color: var(--input-border-focus) !important;
+}
+
+.light .top-controls button[role="combobox"]:focus {
+  border-color: var(--input-border-focus) !important;
+  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
+  outline: none !important;
+}
+
+/* Light-style clear filters button - light theme */
+.light .btn-clear-filters {
+  background: rgba(248, 250, 252, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.8) !important;
+  color: rgb(71, 85, 105) !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  box-shadow: none !important;
+}
+
+.light .btn-clear-filters:hover {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border-color: var(--input-border-focus) !important;
+  color: var(--input-border-focus) !important;
+}
+
+.light .btn-clear-filters svg {
+  color: currentColor !important;
+}
+
+/* Light-style focus ring for all interactive elements - light theme */
+.light .top-controls *:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* ============================= */
+/* SIDEBAR NAVIGATION - LIGHT THEME */
+/* ============================= */
+
+/* Sidebar category links enhanced hover - Light Theme */
+.light .sidebar-nav a,
+.light .sidebar-nav button,
+.light .sidebar-nav [role="button"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--sidebar-link-bg);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.light .sidebar-nav a::before,
+.light .sidebar-nav button::before,
+.light .sidebar-nav [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light .sidebar-nav a:hover,
+.light .sidebar-nav button:hover,
+.light .sidebar-nav [role="button"]:hover {
+  background: var(--sidebar-link-hover);
+  color: var(--sidebar-link-text-hover);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateX(4px);
+  box-shadow: 4px 0 16px rgba(99, 102, 241, 0.1);
+}
+
+.light .sidebar-nav a:hover::before,
+.light .sidebar-nav button:hover::before,
+.light .sidebar-nav [role="button"]:hover::before {
+  left: 100%;
+}
+
+.light .sidebar-nav a.active,
+.light .sidebar-nav button.active,
+.light .sidebar-nav [role="button"].active {
+  background: var(--sidebar-link-active);
+  color: var(--sidebar-link-text-active);
+  border-color: rgba(99, 102, 241, 0.4);
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+}
+
+.light .sidebar-nav svg,
+.light .sidebar-nav .lucide {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  color: rgb(100, 116, 139);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light .sidebar-nav a:hover svg,
+.light .sidebar-nav button:hover svg,
+.light .sidebar-nav [role="button"]:hover .lucide,
+.light .sidebar-nav a.active svg,
+.light .sidebar-nav button.active svg,
+.light .sidebar-nav [role="button"].active .lucide {
+  color: rgb(99, 102, 241);
+  transform: scale(1.1);
+}
+
+/* ============================= */
+/* DROPDOWN STYLING - LIGHT THEME */
+/* ============================= */
+
+/* Dropdown content styling - Premium Light */
+.light [data-radix-popper-content-wrapper] {
+  z-index: 1000;
+}
+
+.light .dropdown-content,
+.light [role="menu"],
+.light [data-radix-select-content] {
+  background: var(--dropdown-content-bg);
+  border: 1px solid var(--dropdown-content-border);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-content-shadow);
+  backdrop-filter: blur(16px);
+  padding: 8px;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+/* SelectItem component hover - MATCH SIDEBAR STYLE */
+.light [data-radix-select-item],
+.light .dropdown-item,
+.light [role="menuitem"] {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: var(--page-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
+.light [data-radix-select-item]::before,
+.light .dropdown-item::before,
+.light [role="menuitem"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light [data-radix-select-item]:hover,
+.light .dropdown-item:hover,
+.light [role="menuitem"]:hover,
+.light [data-radix-select-item][data-highlighted],
+.light .dropdown-item[data-highlighted],
+.light [role="menuitem"][data-highlighted] {
+  background: var(--dropdown-hover) !important;
+  color: var(--dropdown-item-selected-text) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  transform: translateX(4px) !important;
+  box-shadow: 4px 0 16px rgba(99, 102, 241, 0.1) !important;
+}
+
+.light [data-radix-select-item]:hover::before,
+.light .dropdown-item:hover::before,
+.light [role="menuitem"]:hover::before,
+.light [data-radix-select-item][data-highlighted]::before,
+.light .dropdown-item[data-highlighted]::before,
+.light [role="menuitem"][data-highlighted]::before {
+  left: 100% !important;
+}
+
+.light [data-radix-select-item] svg,
+.light .dropdown-item svg,
+.light [role="menuitem"] svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgb(100, 116, 139);
+}
+
+.light [data-radix-select-item]:hover svg,
+.light .dropdown-item:hover svg,
+.light [role="menuitem"]:hover svg,
+.light [data-radix-select-item][data-highlighted] svg,
+.light .dropdown-item[data-highlighted] svg,
+.light [role="menuitem"][data-highlighted] svg {
+  color: rgb(99, 102, 241) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Override accent-foreground text colors */
+.light [data-radix-select-item][data-state="checked"],
+.light .dropdown-item[data-state="checked"],
+.light [role="menuitem"][data-state="checked"] {
+  background: rgba(99, 102, 241, 0.15) !important;
+  color: var(--dropdown-item-selected-text) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================= */
+/* THEME TOGGLE VISIBILITY FIXES */
+/* ============================= */
+
+/* Theme toggle container ensures visibility */
+.light .theme-toggle-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 48px !important;
+}
+
+/* Simple theme toggle visibility - light theme */
+.light button.theme-toggle,
+.light .theme-toggle,
+.light [class*="theme-toggle"],
+html.light button.theme-toggle,
+html.light .theme-toggle,
+html.light [class*="theme-toggle"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Simple theme toggle icons - light theme */
+.light .theme-toggle svg,
+.light .theme-toggle [data-theme-icon],
+html.light .theme-toggle svg,
+html.light .theme-toggle [data-theme-icon] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Hide sun icon in light theme */
+.light .theme-toggle [data-lucide="sun-medium"],
+.light .theme-toggle svg[data-theme-icon]:first-child {
+  transform: rotate(-90deg) scale(0) !important;
+  opacity: 0 !important;
+}
+
+/* Show moon icon in light theme */
+.light .theme-toggle [data-lucide="moon-star"],
+.light .theme-toggle svg[data-theme-icon]:last-child {
+  transform: rotate(0deg) scale(1) !important;
+  opacity: 1 !important;
+}
+
+/* Ensure sidebar footer container is visible */
+.light .sidebar-footer-manual,
+.light [data-sidebar="footer"],
+html.light .sidebar-footer-manual,
+html.light [data-sidebar="footer"] {
+  display: flex !important;
+  visibility: visible !important;
+  background-color: var(--sidebar-background) !important;
+  border-top: 1px solid rgba(203, 213, 225, 0.6) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  min-height: 80px !important;
+}
+
+/* Sidebar footer specific styling */
+.light [data-sidebar="footer"] .theme-toggle {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+}
+
+/* ============================= */
+/* ENHANCED DROPDOWN HOVER EFFECTS */
+/* ============================= */
+
+/* COMPREHENSIVE DROPDOWN/SELECT HOVER STYLES FOR LIGHT THEME */
+/* Target all possible Radix dropdown and select item states */
+.light [data-radix-select-content] [data-radix-select-item]:hover,
+.light [data-radix-select-content] [data-radix-select-item][data-highlighted],
+.light [data-radix-select-content] [role="option"]:hover,
+.light [data-radix-select-content] [role="option"][data-highlighted],
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
+.light [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
+.light [data-radix-dropdown-menu-content] [role="menuitem"][data-highlighted],
+.light [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover,
+.light [data-radix-dropdown-menu-content] [role="menuitemcheckbox"][data-highlighted],
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(99, 102, 241) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
+}
+
+/* SelectItem component hover - MATCH SIDEBAR STYLE */
+.light div[class*="select-none"][class*="cursor-default"]:hover {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(99, 102, 241) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
+}
+
+/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
+.light .dropdown-menu-item:hover,
+.light .select-item:hover {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(99, 102, 241) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
+}
+
+/* Focus states enhancement */
+.light [data-radix-select-content] [data-radix-select-item]:focus,
+.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus {
+  background: rgba(99, 102, 241, 0.15) !important;
+  color: rgb(99, 102, 241) !important;
+  outline: none !important;
+}
+
+/* UNIVERSAL DROPDOWN ITEM FALLBACKS */
+/* Catch any items that might not be targeted by specific selectors */
+.light [data-radix-select-viewport] > *:hover,
+.light [data-radix-select-viewport] > *[data-highlighted],
+.light [data-radix-dropdown-menu-content] > *:hover,
+.light [data-radix-dropdown-menu-content] > *[data-highlighted] {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(99, 102, 241) !important;
+  transition: all 0.15s ease !important;
+  border-radius: 6px !important;
+}
+
+/* TAILWIND CLASS OVERRIDES FOR LIGHT THEME */
+/* Override default Tailwind hover classes with sidebar colors */
+.light .hover\:bg-accent:hover,
+.light [data-highlighted].hover\:bg-accent,
+.light .focus\:bg-accent:focus,
+.light [data-highlighted].focus\:bg-accent {
+  background: var(--sidebar-link-hover) !important;
+  color: rgb(99, 102, 241) !important;
+}
+
+/* Override accent-foreground text colors */
+.light .hover\:text-accent-foreground:hover,
+.light [data-highlighted].hover\:text-accent-foreground,
+.light .focus\:text-accent-foreground:focus,
+.light [data-highlighted].focus\:text-accent-foreground {
+  color: rgb(99, 102, 241) !important;
 }
 
 /* ============================= */
