@@ -1403,6 +1403,214 @@ html.dark [data-sidebar="footer"] {
   color: rgb(255, 255, 255) !important;
 }
 
+/* Force rounded corners on all Tailwind button classes */
+.dark .rounded-md,
+.dark .rounded,
+.dark .rounded-sm,
+.dark .rounded-lg {
+  border-radius: 12px !important;
+}
+
+/* Override Tailwind button border radius specifically */
+.dark button.rounded-md,
+.dark button.rounded,
+.dark button.rounded-sm,
+.dark button.rounded-lg,
+.dark [role="button"].rounded-md,
+.dark [role="button"].rounded,
+.dark [role="button"].rounded-sm,
+.dark [role="button"].rounded-lg {
+  border-radius: 12px !important;
+}
+
+/* Ensure all interactive elements have consistent radius */
+.dark input,
+.dark select,
+.dark textarea {
+  border-radius: 10px !important;
+}
+
+/* ============================= */
+/* HEADER BUTTON STYLING - DARK THEME */
+/* ============================= */
+
+/* Header container styling */
+.dark .page-header {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.9) 100%);
+  border-bottom: 1px solid rgba(71, 85, 105, 0.4);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.2);
+}
+
+/* All header buttons */
+.dark .page-header button {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Export button styling */
+.dark .page-header button[class*="bg-[var(--btn-export-bg)]"] {
+  background: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(16, 185, 129, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px !important;
+}
+
+.dark .page-header button[class*="bg-[var(--btn-export-bg)]"]:hover {
+  background: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Add Asset button styling */
+.dark .page-header button[class*="bg-[var(--primary)]"] {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px !important;
+}
+
+.dark .page-header button[class*="bg-[var(--primary)]"]:hover {
+  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+/* User dropdown button styling */
+.dark .page-header button[role="combobox"] {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(51, 65, 85, 0.85) 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.6) !important;
+  color: rgb(226, 232, 240) !important;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 12px !important;
+}
+
+.dark .page-header button[role="combobox"]:hover {
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Sidebar toggle button */
+.dark .page-header button[data-sidebar="trigger"] {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(51, 65, 85, 0.75) 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.5) !important;
+  color: rgb(148, 163, 184) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.15);
+}
+
+.dark .page-header button[data-sidebar="trigger"]:hover {
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.9) 0%, rgba(71, 85, 105, 0.85) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 10px -4px rgba(99, 102, 241, 0.2);
+}
+
+/* ============================= */
+/* GENERAL BUTTON ENHANCEMENTS - DARK THEME */
+/* ============================= */
+
+/* Universal button improvements */
+.dark button,
+.dark .btn,
+.dark [role="button"] {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+/* Primary button universal styling */
+.dark button[class*="primary"],
+.dark .btn-primary,
+.dark button[class*="bg-primary"] {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px !important;
+}
+
+.dark button[class*="primary"]:hover,
+.dark .btn-primary:hover,
+.dark button[class*="bg-primary"]:hover {
+  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+/* Secondary button universal styling */
+.dark button[class*="secondary"],
+.dark .btn-secondary,
+.dark button[class*="outline"] {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(51, 65, 85, 0.85) 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.6) !important;
+  color: rgb(226, 232, 240) !important;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 12px !important;
+}
+
+.dark button[class*="secondary"]:hover,
+.dark .btn-secondary:hover,
+.dark button[class*="outline"]:hover {
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(99, 102, 241) !important;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Success/Green button styling */
+.dark button[class*="success"],
+.dark .btn-success {
+  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%) !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px !important;
+}
+
+.dark button[class*="success"]:hover,
+.dark .btn-success:hover {
+  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+  border-color: rgba(34, 197, 94, 0.5) !important;
+}
+
+/* Danger/Red button styling */
+.dark button[class*="danger"],
+.dark button[class*="destructive"],
+.dark .btn-danger {
+  background: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%) !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px -4px rgba(248, 113, 113, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px !important;
+}
+
+.dark button[class*="danger"]:hover,
+.dark button[class*="destructive"]:hover,
+.dark .btn-danger:hover {
+  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+  border-color: rgba(248, 113, 113, 0.5) !important;
+}
+
 /* ============================= */
 /* DIALOG CLOSE BUTTON ENHANCEMENT */
 /* ============================= */
