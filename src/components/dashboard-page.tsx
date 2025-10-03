@@ -440,7 +440,7 @@ export default function DashboardPage() {
                     </SelectContent>
                   </Select>
                   <div style={{ width: '120px', flexShrink: 0, display: 'flex', justifyContent: 'flex-start' }}>
-                    <Button size="sm" className="h-9 btn-clear-filters" onClick={handleClearFilters}>
+                    <Button size="sm" variant="clear-filters" onClick={handleClearFilters}>
                       <X className="mr-2 h-4 w-4" />
                       Clear Filters
                     </Button>
