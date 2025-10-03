@@ -439,10 +439,12 @@ export default function DashboardPage() {
                       {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
                     </SelectContent>
                   </Select>
-                  <Button size="sm" className="h-9 btn-clear-filters mr-3" onClick={handleClearFilters}>
-                    <X className="mr-2 h-4 w-4" />
-                    Clear Filters
-                  </Button>
+                  <div style={{ width: '120px', flexShrink: 0, display: 'flex', justifyContent: 'flex-start' }}>
+                    <Button size="sm" className="h-9 btn-clear-filters" onClick={handleClearFilters}>
+                      <X className="mr-2 h-4 w-4" />
+                      Clear Filters
+                    </Button>
+                  </div>
                 </div>
               </div>
 

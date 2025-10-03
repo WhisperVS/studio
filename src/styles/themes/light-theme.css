@@ -355,7 +355,7 @@
   background: var(--btn-clear-bg) !important;
   border: 2px solid var(--btn-clear-border) !important;
   color: var(--btn-clear-text) !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   box-shadow: var(--dropdown-shadow) !important;
   font-weight: 500;
   border-radius: 12px;
@@ -363,12 +363,8 @@
 
 .btn-clear-filters:hover {
   background: var(--btn-clear-hover) !important;
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
   color: rgb(255, 255, 255) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4) !important;
 }
 
 .btn-clear-filters svg {
