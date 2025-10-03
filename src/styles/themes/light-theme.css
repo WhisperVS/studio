@@ -11,7 +11,7 @@
   /* ============================= */
   
   /* Main page background and text */
-  --page-background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%); /* Premium light gradient */
+  --page-background: linear-gradient(135deg, rgb(240, 248, 255) 0%, rgb(230, 245, 255) 50%, rgb(240, 248, 255) 100%); /* Subtle sky blue wave gradient */
   --page-text: rgb(15, 23, 42);                /* Rich dark text */
   
   /* ============================= */
@@ -25,19 +25,19 @@
   --table-header-hover: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(109, 40, 217) 100%); /* Lighter gradient on hover */
   
   /* Table Data Section - Optimized for Inventory */
-  --table-data-bg: rgba(255, 255, 255, 0.95);  /* Pure white with slight transparency */
+  --table-data-bg: rgba(248, 252, 255, 0.95);  /* Sky blue tinted with slight transparency */
   --table-data-text: rgb(15, 23, 42);          /* Rich dark text for readability */
-  --table-data-border: rgba(203, 213, 225, 0.8); /* Subtle borders */
-  --table-data-hover: rgba(248, 250, 252, 0.9); /* Light hover effect */
+  --table-data-border: rgba(173, 216, 230, 0.6); /* Sky blue tinted borders */
+  --table-data-hover: rgba(230, 245, 255, 0.9); /* Sky blue hover effect */
   --table-data-selected: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%); /* Subtle selection */
   
   /* ============================= */
   /* DASHBOARD CARDS - INVENTORY FOCUSED */
   /* ============================= */
   
-  --card-background: rgba(255, 255, 255, 0.98); /* Clean white cards for dashboard */
+  --card-background: rgba(248, 252, 255, 0.98); /* Light sky blue tinted cards */
   --card-text: rgb(15, 23, 42);                /* Rich dark text for inventory data */
-  --card-border: rgba(203, 213, 225, 0.6);     /* Subtle defined borders */
+  --card-border: rgba(173, 216, 230, 0.4);     /* Sky blue tinted borders */
   --card-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04); /* Premium light shadow */
   
   /* Dashboard Stat Cards */
@@ -79,7 +79,7 @@
   /* MODAL AND DIALOG COLORS - PREMIUM LIGHT */
   /* ============================= */
   
-  --modal-background: rgba(255, 255, 255, 0.98); /* Premium white modal */
+  --modal-background: rgba(248, 252, 255, 0.98); /* Sky blue tinted modal */
   --modal-text: rgb(15, 23, 42);               /* Rich dark text */
   --modal-overlay: rgba(15, 23, 42, 0.4);      /* Subtle overlay */
   --modal-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15); /* Premium light shadow */
@@ -88,9 +88,9 @@
   /* FORM INPUT COLORS */
   /* ============================= */
   
-  --input-background: rgb(248, 250, 252);      /* Light input background */
+  --input-background: rgb(248, 252, 255);      /* Sky blue tinted input background */
   --input-text: rgb(15, 23, 42);               /* Rich dark text */
-  --input-border: rgb(203, 213, 225);          /* Subtle border */
+  --input-border: rgb(173, 216, 230);          /* Sky blue tinted border */
   --input-border-focus: rgb(99, 102, 241);     /* Indigo focus */
   --input-placeholder: rgb(100, 116, 139);     /* Muted placeholder */
   --input-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08); /* Subtle input shadow */
@@ -131,10 +131,10 @@
   /* ============================= */
   
   /* Sidebar background and structure */
-  --sidebar-background: rgba(255, 255, 255, 0.95); /* Clean white sidebar */
+  --sidebar-background: rgba(240, 248, 255, 0.98); /* Light sky blue sidebar to match theme */
   --sidebar-text: rgb(71, 85, 105);            /* Muted text */
   --sidebar-category-text: rgb(100, 116, 139); /* Even more muted category text */
-  --sidebar-border: rgba(203, 213, 225, 0.6);  /* Subtle border */
+  --sidebar-border: rgba(173, 216, 230, 0.3);  /* Sky blue tinted border */
   --sidebar-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08); /* Subtle sidebar shadow */
   
   /* Sidebar links and navigation */
@@ -2119,11 +2119,36 @@ html.light [data-sidebar="footer"] {
   transform: translateY(-2px) scale(1.03);
   border-color: rgba(59, 130, 246, 0.6) !important;
   box-shadow: 0 12px 32px -8px rgba(59, 130, 246, 0.6), 0 6px 16px -4px rgba(15, 23, 42, 0.15);
+  color: rgb(255, 255, 255) !important; /* Keep white text on hover */
 }
 
 .light div.flex.items-center.gap-2.flex-1.justify-end button[role="combobox"]:active {
   transform: translateY(-1px) scale(1.01);
   box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.5), 0 4px 12px -3px rgba(15, 23, 42, 0.12);
+}
+
+/* Blue buttons - Keep white text on hover */
+.light button[style*="background-color"]:hover,
+.light button[style*="background-color"]:hover *,
+.light button[style*="background-color"]:hover span,
+.light button[style*="background-color"]:hover svg,
+.light div button[class*="bg-blue"]:hover,
+.light div button[class*="bg-blue"]:hover *,
+.light div button[class*="bg-blue"]:hover span,
+.light div button[class*="bg-blue"]:hover svg {
+  color: rgb(255, 255, 255) !important; /* Force white text */
+  fill: rgb(255, 255, 255) !important;
+  stroke: rgb(255, 255, 255) !important;
+}
+
+/* Ensure Select all on page button keeps white text */
+.light button:has([data-lucide="check"]):hover,
+.light button:has([data-lucide="check"]):hover *,
+.light button:has([data-lucide="check"]):hover span,
+.light button:has([data-lucide="check"]):hover svg {
+  color: rgb(255, 255, 255) !important;
+  fill: rgb(255, 255, 255) !important;
+  stroke: rgb(255, 255, 255) !important;
 }
 
 /* Clear Filters button (Coral/Red) - using more reliable targeting */
@@ -2176,4 +2201,28 @@ html.light [data-sidebar="footer"] {
 .light .bg-card button:hover,
 .light [class*="h-[58px]"] button:hover {
   transform: none !important;
+}
+
+/* Specific fix for "Select all on page" button only */
+.light button[style*="background-color: rgb(59, 130, 246)"]:hover,
+.light button[style*="background-color: rgb(59, 130, 246)"]:hover span,
+.light button[style*="background-color: rgb(59, 130, 246)"]:hover svg {
+  color: rgb(255, 255, 255) !important;
+  fill: rgb(255, 255, 255) !important;
+  stroke: rgb(255, 255, 255) !important;
+}
+
+/* High specificity override for blue buttons in light theme */
+html.light button[style*="background-color"]:hover,
+html.light button[style*="background-color"]:hover *,
+html.light button[style*="background-color"]:hover span,
+html.light button[style*="background-color"]:hover svg,
+html.light div button[style*="blue"]:hover,
+html.light div button[style*="blue"]:hover *,
+html body.light button:hover,
+html body.light button:hover * {
+  color: rgb(255, 255, 255) !important;
+  fill: rgb(255, 255, 255) !important;
+  stroke: rgb(255, 255, 255) !important;
+  text-shadow: none !important;
 }

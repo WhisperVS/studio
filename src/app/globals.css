@@ -3,6 +3,11 @@
 @import '../styles/dropdown-fixes.css';
 @import '../styles/theme-toggle.css';
 
+/* Prevent flash of unstyled content - simple approach */
+html {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
