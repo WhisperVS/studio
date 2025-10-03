@@ -11,7 +11,7 @@
   /* ============================= */
   
   /* Main page background and text */
-  --page-background: linear-gradient(135deg, rgb(240, 248, 255) 0%, rgb(230, 245, 255) 50%, rgb(240, 248, 255) 100%); /* Subtle sky blue wave gradient */
+  --page-background: linear-gradient(135deg, rgb(255, 240, 235) 0%, rgb(255, 228, 225) 50%, rgb(255, 240, 235) 100%); /* Coral water wave gradient */
   --page-text: rgb(15, 23, 42);                /* Rich dark text */
   
   /* ============================= */
@@ -25,10 +25,10 @@
   --table-header-hover: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(109, 40, 217) 100%); /* Lighter gradient on hover */
   
   /* Table Data Section - Optimized for Inventory */
-  --table-data-bg: rgba(248, 252, 255, 0.95);  /* Sky blue tinted with slight transparency */
+  --table-data-bg: rgba(255, 248, 245, 0.95);  /* Coral water tinted with slight transparency */
   --table-data-text: rgb(15, 23, 42);          /* Rich dark text for readability */
-  --table-data-border: rgba(173, 216, 230, 0.6); /* Sky blue tinted borders */
-  --table-data-hover: rgba(230, 245, 255, 0.9); /* Sky blue hover effect */
+  --table-data-border: rgba(255, 127, 80, 0.6); /* Coral tinted borders */
+  --table-data-hover: rgba(255, 235, 230, 0.9); /* Coral water hover effect */
   --table-data-selected: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%); /* Subtle selection */
   
   /* ============================= */
@@ -41,10 +41,10 @@
   --card-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04); /* Premium light shadow */
   
   /* Dashboard Stat Cards */
-  --dashboard-stat-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-  --dashboard-stat-border: rgba(99, 102, 241, 0.2);
+  --dashboard-stat-bg: linear-gradient(135deg, rgba(255, 248, 245, 0.95) 0%, rgba(255, 240, 235, 0.95) 100%);
+  --dashboard-stat-border: rgba(255, 127, 80, 0.4);
   --dashboard-stat-text: rgb(15, 23, 42);
-  --dashboard-stat-accent: rgb(99, 102, 241);
+  --dashboard-stat-accent: rgb(255, 99, 71);
   
   /* Inventory Status Indicators */
   --inventory-in-stock: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
@@ -57,15 +57,15 @@
   /* ============================= */
   
   /* Dropdown hover effects */
-  --dropdown-hover: linear-gradient(135deg, rgb(238, 242, 255) 0%, rgb(224, 231, 255) 50%, rgb(219, 234, 254) 100%);
+  --dropdown-hover: linear-gradient(135deg, rgb(255, 245, 240) 0%, rgb(255, 235, 230) 50%, rgb(255, 225, 220) 100%);
   --dropdown-item-selected-text: rgb(30, 41, 59);
-  --dropdown-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.1);
-  --dropdown-focus-shadow: 0 4px 16px -2px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --dropdown-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%, rgba(139, 92, 246, 0.03) 100%);
-  --dropdown-content-bg: rgba(255, 255, 255, 0.98);
-  --dropdown-content-border: rgba(203, 213, 225, 0.8);
-  --dropdown-content-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(59, 130, 246, 0.05);
-  --dropdown-focus-outline: rgba(59, 130, 246, 0.5);
+  --dropdown-shadow: 0 4px 12px -2px rgba(255, 127, 80, 0.3), 0 2px 6px -1px rgba(0, 0, 0, 0.1);
+  --dropdown-focus-shadow: 0 4px 16px -2px rgba(255, 127, 80, 0.4), 0 0 20px rgba(255, 127, 80, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --dropdown-glow: linear-gradient(135deg, rgba(255, 127, 80, 0.08) 0%, transparent 50%, rgba(255, 99, 71, 0.05) 100%);
+  --dropdown-content-bg: rgba(255, 248, 245, 0.98);
+  --dropdown-content-border: rgba(255, 127, 80, 0.6);
+  --dropdown-content-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 127, 80, 0.1);
+  --dropdown-focus-outline: rgba(255, 127, 80, 0.6);
   
   /* ============================= */
   /* THEME TOGGLE VARIABLES - LIGHT */
@@ -79,7 +79,7 @@
   /* MODAL AND DIALOG COLORS - PREMIUM LIGHT */
   /* ============================= */
   
-  --modal-background: rgba(248, 252, 255, 0.98); /* Sky blue tinted modal */
+  --modal-background: rgba(255, 248, 245, 0.98); /* Coral water tinted modal */
   --modal-text: rgb(15, 23, 42);               /* Rich dark text */
   --modal-overlay: rgba(15, 23, 42, 0.4);      /* Subtle overlay */
   --modal-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15); /* Premium light shadow */
@@ -88,9 +88,9 @@
   /* FORM INPUT COLORS */
   /* ============================= */
   
-  --input-background: rgb(248, 252, 255);      /* Sky blue tinted input background */
+  --input-background: rgb(255, 248, 245);      /* Coral water tinted input background */
   --input-text: rgb(15, 23, 42);               /* Rich dark text */
-  --input-border: rgb(173, 216, 230);          /* Sky blue tinted border */
+  --input-border: rgb(255, 127, 80);          /* Coral tinted border */
   --input-border-focus: rgb(99, 102, 241);     /* Indigo focus */
   --input-placeholder: rgb(100, 116, 139);     /* Muted placeholder */
   --input-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08); /* Subtle input shadow */
@@ -108,10 +108,10 @@
   --btn-primary-shadow-hover: 0 8px 32px -8px rgba(99, 102, 241, 0.6); /* Enhanced hover shadow */
   
   /* Secondary Buttons */
-  --btn-secondary-bg: rgba(248, 250, 252, 0.95); /* Light secondary background */
+  --btn-secondary-bg: rgba(255, 248, 245, 0.95); /* Coral water tinted secondary background */
   --btn-secondary-text: rgb(71, 85, 105);      /* Muted text */
-  --btn-secondary-border: rgba(203, 213, 225, 0.8); /* Subtle border */
-  --btn-secondary-hover: rgba(241, 245, 249, 0.95); /* Slightly darker on hover */
+  --btn-secondary-border: rgba(255, 127, 80, 0.6); /* Coral tinted border */
+  --btn-secondary-hover: rgba(255, 240, 235, 0.95); /* Coral water hover */
   --btn-secondary-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.08); /* Subtle secondary shadow */
   
   /* Danger Buttons */
@@ -131,10 +131,10 @@
   /* ============================= */
   
   /* Sidebar background and structure */
-  --sidebar-background: rgba(240, 248, 255, 0.98); /* Light sky blue sidebar to match theme */
+  --sidebar-background: rgba(255, 245, 240, 0.98); /* Coral water tinted sidebar */
   --sidebar-text: rgb(71, 85, 105);            /* Muted text */
   --sidebar-category-text: rgb(100, 116, 139); /* Even more muted category text */
-  --sidebar-border: rgba(173, 216, 230, 0.3);  /* Sky blue tinted border */
+  --sidebar-border: rgba(255, 127, 80, 0.3);  /* Coral tinted border */
   --sidebar-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.08); /* Subtle sidebar shadow */
   
   /* Sidebar links and navigation */
@@ -146,9 +146,9 @@
   --sidebar-link-text-active: rgb(99, 102, 241); /* Indigo text when active */
   
   /* Sidebar header */
-  --sidebar-header-bg: rgba(255, 255, 255, 0.8);
+  --sidebar-header-bg: rgba(255, 245, 240, 0.9);
   --sidebar-header-text: rgb(15, 23, 42);
-  --sidebar-header-border: rgba(203, 213, 225, 0.4);
+  --sidebar-header-border: rgba(255, 127, 80, 0.4);
   
   /* ============================= */
   /* STATUS BADGE COLORS - LIGHT THEME */
@@ -188,18 +188,18 @@
   /* SCROLLBAR STYLING - LIGHT THEME */
   /* ============================= */
   
-  --scrollbar-track: rgba(241, 245, 249, 0.8);
-  --scrollbar-track-border: rgba(203, 213, 225, 0.4);
-  --scrollbar-thumb: linear-gradient(180deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+  --scrollbar-track: rgba(255, 245, 240, 0.8);
+  --scrollbar-track-border: rgba(255, 127, 80, 0.4);
+  --scrollbar-thumb: linear-gradient(180deg, rgba(255, 127, 80, 0.8) 0%, rgba(255, 99, 71, 0.8) 100%);
   --scrollbar-thumb-border: rgba(255, 255, 255, 0.2);
-  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(99, 102, 241, 0.9) 0%, rgba(139, 92, 246, 0.9) 100%);
-  --scrollbar-corner: rgba(241, 245, 249, 0.8);
+  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(255, 127, 80, 0.9) 0%, rgba(255, 99, 71, 0.9) 100%);
+  --scrollbar-corner: rgba(255, 245, 240, 0.8);
   
   /* ============================= */
   /* FOCUS AND ACCESSIBILITY */
   /* ============================= */
   
-  --focus-ring: rgba(99, 102, 241, 0.5);       /* Indigo focus ring */
+  --focus-ring: rgba(255, 127, 80, 0.5);       /* Coral focus ring */
   --focus-outline-offset: 2px;                 /* Standard focus offset */
 }
 
@@ -216,21 +216,21 @@
 .light .flex-1.flex.flex-col.min-h-0 {
   background: var(--page-background) !important;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(255, 127, 80, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 99, 71, 0.03) 0%, transparent 50%);
   min-height: 100vh;
   position: relative;
 }
 
 /* Dashboard main container */
 .light .dashboard-page {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 50%, rgba(241, 245, 249, 0.98) 100%) !important;
-  border: 1px solid rgba(203, 213, 225, 0.4) !important;
+  background: linear-gradient(135deg, rgba(255, 248, 245, 0.98) 0%, rgba(255, 240, 235, 0.95) 50%, rgba(255, 235, 230, 0.98) 100%) !important;
+  border: 1px solid rgba(255, 127, 80, 0.4) !important;
   backdrop-filter: blur(24px);
   border-radius: 20px;
   box-shadow: 
     0 12px 48px -12px rgba(15, 23, 42, 0.12),
-    0 4px 16px -4px rgba(99, 102, 241, 0.06),
+    0 4px 16px -4px rgba(255, 127, 80, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 28px;
   position: relative;
@@ -246,10 +246,10 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(45deg, 
-    rgba(99, 102, 241, 0.02) 0%, 
+    rgba(255, 127, 80, 0.03) 0%, 
     transparent 25%, 
     transparent 75%, 
-    rgba(139, 92, 246, 0.02) 100%);
+    rgba(255, 99, 71, 0.03) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -261,11 +261,11 @@
 
 /* Enhanced table styling for inventory */
 .light .asset-table {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%) !important;
-  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  background: linear-gradient(135deg, rgba(255, 248, 245, 0.98) 0%, rgba(255, 240, 235, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 127, 80, 0.6) !important;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.12), 0 2px 8px -2px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.12), 0 2px 8px -2px rgba(255, 127, 80, 0.1);
   backdrop-filter: blur(12px);
 }
 
@@ -351,13 +351,13 @@
 }
 
 .light .stats-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(241, 245, 249, 0.95) 100%) !important;
-  border: 1px solid rgba(203, 213, 225, 0.4) !important;
+  background: linear-gradient(135deg, rgba(255, 248, 245, 0.95) 0%, rgba(255, 240, 235, 0.9) 50%, rgba(255, 235, 230, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 127, 80, 0.4) !important;
   border-radius: 16px;
   padding: 24px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.1), 0 2px 8px -2px rgba(99, 102, 241, 0.05);
+  box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.1), 0 2px 8px -2px rgba(255, 127, 80, 0.08);
   backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
@@ -365,9 +365,9 @@
 
 .light .stats-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 60px -12px rgba(15, 23, 42, 0.15), 0 8px 25px -8px rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 50%, rgba(238, 242, 255, 0.9) 100%) !important;
+  box-shadow: 0 20px 60px -12px rgba(15, 23, 42, 0.15), 0 8px 25px -8px rgba(255, 127, 80, 0.15);
+  border-color: rgba(255, 127, 80, 0.6) !important;
+  background: linear-gradient(135deg, rgba(255, 248, 245, 0.98) 0%, rgba(255, 240, 235, 0.95) 50%, rgba(255, 225, 220, 0.9) 100%) !important;
 }
 
 .light .stats-number {
@@ -2225,4 +2225,54 @@ html body.light button:hover * {
   fill: rgb(255, 255, 255) !important;
   stroke: rgb(255, 255, 255) !important;
   text-shadow: none !important;
+}
+
+/* ===== HEADER AREA STYLING - CORAL WATER THEME ===== */
+/* Beautiful header styling without breaking scale - targeting actual header structure */
+.light .page-header {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Create styled background layer without affecting layout */
+.light .page-header::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: linear-gradient(135deg, rgba(255, 248, 245, 0.95) 0%, rgba(255, 240, 235, 0.9) 100%);
+  border: 1px solid rgba(255, 127, 80, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px -8px rgba(15, 23, 42, 0.1), 
+    0 2px 8px -2px rgba(255, 127, 80, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Enhanced text styling without changing dimensions */
+.light .page-header h1.text-2xl.font-bold {
+  color: rgb(15, 23, 42) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba(255, 127, 80, 0.1) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Add subtle glow effect to the header text */
+.light .page-header h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 127, 80, 0.03) 50%, transparent 70%);
+  border-radius: 8px;
+  z-index: -1;
+  pointer-events: none;
 }
