@@ -378,7 +378,7 @@ export default function DashboardPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button size="sm" className="btn-export" onClick={() => handleExport()}>
+              <Button size="sm" variant="export" onClick={() => handleExport()}>
                 <Download className="mr-2 h-4 w-4" />
                 <span className="hidden sm:inline">Export All</span>
               </Button>
@@ -450,11 +450,11 @@ export default function DashboardPage() {
 
               <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px] shrink-0">
                 <div className="flex items-center gap-2">
-                  <Button size="sm" className="btn-select-all" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
+                  <Button size="sm" variant="select-all" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
                     <Check className="mr-2 h-4 w-4" />
                     Select all on page
                   </Button>
-                  <Button size="sm" className="btn-clear-selection" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
+                  <Button size="sm" variant="clear-selection" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
                     <X className="mr-2 h-4 w-4" />
                     Clear selection
                   </Button>
@@ -469,7 +469,7 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2">
                   <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
                     <DropdownMenuTrigger asChild>
-                        <Button size="sm" className="btn-view-settings">
+                        <Button size="sm" variant="view-settings">
                             <Settings2 className="mr-2 h-4 w-4" />
                             View
                         </Button>
@@ -495,16 +495,16 @@ export default function DashboardPage() {
                         ))}
                         <DropdownMenuSeparator />
                         <div className="flex justify-end gap-2 p-2">
-                          <Button size="sm" className="btn-cancel" onClick={handleCancelColumnVisibility}>Cancel</Button>
-                          <Button size="sm" className="btn-apply" onClick={handleApplyColumnVisibility}>Apply</Button>
+                          <Button size="sm" variant="cancel" onClick={handleCancelColumnVisibility}>Cancel</Button>
+                          <Button size="sm" variant="apply" onClick={handleApplyColumnVisibility}>Apply</Button>
                         </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <Button size="sm" className="btn-export" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
+                  <Button size="sm" variant="export" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
                     <Download className="mr-2 h-4 w-4" />
                     Export Selected
                   </Button>
-                  <Button size="sm" className="btn-delete" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
+                  <Button size="sm" variant="delete" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
                     <Trash2 className="mr-2 h-4 w-4" />
                     Delete Selected
                   </Button>
