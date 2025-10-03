@@ -619,7 +619,9 @@
 
 /* Individual header cells get solid background to blend seamlessly */
 .dark .asset-table th,
-.dark table th {
+.dark table th,
+.dark .asset-table thead th,
+.dark table thead th {
   background: transparent !important;
   background-color: transparent !important;
   color: var(--table-header-text) !important;
@@ -631,6 +633,18 @@
   letter-spacing: 0.05em;
   position: relative;
   z-index: 5;
+}
+
+/* FORCE header cells to NEVER be affected by selection state */
+.dark table tr[data-state="selected"] th,
+.dark .asset-table tr[data-state="selected"] th,
+.dark table thead tr th,
+.dark .asset-table thead tr th {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--table-header-text) !important;
+  border-left: none !important;
+  box-shadow: none !important;
 }
 
 .dark .asset-table td {
@@ -647,30 +661,22 @@
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
 }
 
-/* FINAL FIX - Override ALL global CSS conflicts */
-.dark table tr[data-state="selected"] th,
-.dark table tr[data-state="selected"] td,
-.dark .asset-table tr[data-state="selected"] th,
-.dark .asset-table tr[data-state="selected"] td {
+/* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
+.dark table tbody tr[data-state="selected"] td,
+.dark .asset-table tbody tr[data-state="selected"] td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
-  border-left: 1px solid rgb(79, 70, 229) !important;
-  border-bottom: 1px solid var(--table-data-border) !important;
-  border-right: 1px solid var(--table-data-border) !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Enhanced hover for selected rows */
-.dark table tr[data-state="selected"]:hover th,
-.dark table tr[data-state="selected"]:hover td,
-.dark .asset-table tr[data-state="selected"]:hover th,
-.dark .asset-table tr[data-state="selected"]:hover td {
+/* Enhanced hover for selected rows - DATA ROWS ONLY */
+.dark table tbody tr[data-state="selected"]:hover td,
+.dark .asset-table tbody tr[data-state="selected"]:hover td {
   background: var(--table-data-hover) !important;
   background-color: var(--table-data-hover) !important;
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25) !important;
-  border-left: 1px solid rgb(99, 102, 241) !important;
   z-index: 3 !important;
 }
 
