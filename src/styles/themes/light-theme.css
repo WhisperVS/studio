@@ -1966,6 +1966,22 @@ html.light [data-sidebar="footer"] {
   transform: none !important;
 }
 
+/* ===== RESTORE BUTTON HOVER ANIMATIONS ===== */
+/* Restore nice button behavior within stable toolbar */
+.light .flex.items-center.justify-between.gap-4 button,
+.light .bg-card button,
+.light [class*="h-[58px]"] button {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: none;
+}
+
+.light .flex.items-center.justify-between.gap-4 button:hover,
+.light .bg-card button:hover,
+.light [class*="h-[58px]"] button:hover {
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.15) !important;
+}
+
 /* ===== TOOLBAR BUTTON STABILITY ===== */
 /* Prevent movement/jumping in toolbar and action buttons */
 .light .flex.items-center.justify-between button,
