@@ -9,13 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 border border-[var(--primary)]",
+        primary: "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)] border border-[var(--btn-primary-bg)] hover:border-[var(--btn-primary-hover)] shadow-[var(--btn-primary-shadow)]",
         destructive:
           "bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:bg-[var(--destructive)]/90 border border-[var(--destructive)]",
         outline:
           "border border-[var(--input-border)] bg-[var(--background)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] text-[var(--page-text)]",
         secondary:
-          "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/80 border border-[var(--secondary)]",
+          "bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] hover:bg-[var(--btn-secondary-hover)] border border-[var(--btn-secondary-border)]",
         ghost: "hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] text-[var(--page-text)]",
         link: "text-[var(--primary)] underline-offset-4 hover:underline",
         // Clean button variants using CSS variables

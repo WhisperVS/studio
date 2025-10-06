@@ -18,10 +18,10 @@ html.light {
   /* TABLE STYLING - PEACHY CORAL DASHBOARD */
   /* ============================= */
   
-  /* Table Header Section - Enhanced for Dashboard */
+  /* Table Header Section - Coral Theme - Applied to Row, Not Individual Cells */
   --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(234, 88, 12) 100%); /* Warm coral gradient */
   --table-header-text: rgb(255, 255, 255);     /* Pure white text */
-  --table-header-border: rgb(251, 146, 60);    /* Coral accent border */
+  --table-header-border: rgba(251, 146, 60, 0.3); /* Subtle coral border */
   --table-header-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%); /* Darker coral on hover */
   
   /* Table Data Section - Optimized for Inventory */
@@ -763,19 +763,19 @@ html.light {
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
 }
 
-/* Table header row gets the gradient background */
+/* Table header row gets the coral gradient background */
 .light .asset-table thead tr,
 .light table thead tr {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%) !important;
+  background: var(--table-header-bg) !important;
   position: relative;
 }
 
-/* Individual header cells get solid background to blend seamlessly */
+/* Individual header cells - no background, no transitions */
 .light .asset-table th,
 .light table th,
 .light .asset-table thead th,
 .light table thead th {
-  background: transparent !important;
+  background: none !important;
   background-color: transparent !important;
   color: var(--table-header-text) !important;
   font-weight: 600;
@@ -786,6 +786,7 @@ html.light {
   letter-spacing: 0.05em;
   position: relative;
   z-index: 5;
+  transition: none !important; /* Remove all transitions from header cells */
 }
 
 /* FORCE header cells to NEVER be affected by selection state */
@@ -1699,4 +1700,74 @@ html.light {
 /* Additional specificity for button elements using these variants */
 .light button {
   /* Ensure Tailwind classes use these variables */
+}
+
+/* ============================= */
+/* MAXIMUM SPECIFICITY OVERRIDES FOR CORAL THEME */
+/* ============================= */
+/* Final layer to ensure coral theme is never overridden */
+
+html.light,
+html.light body,
+html.light [data-theme="light"],
+:root.light,
+:root.light body,
+:root.light [data-theme="light"] {
+  /* Primary theme colors - force coral */
+  --primary: rgb(251, 146, 60) !important;
+  --primary-foreground: rgb(255, 255, 255) !important;
+  
+  /* Accent colors - force coral theme */
+  --accent-color: rgb(251, 146, 60) !important;
+  --accent: rgb(254, 242, 242) !important;
+  --accent-foreground: rgb(120, 53, 15) !important;
+  
+  /* Border and ring colors - force coral theme */
+  --border: rgba(251, 146, 60, 0.3) !important;
+  --ring: rgb(251, 146, 60) !important;
+  --focus-ring: rgb(251, 146, 60) !important;
+  
+  /* Table headers - coral gradient applied to row */
+  --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(234, 88, 12) 100%) !important;
+  --table-header-text: rgb(255, 255, 255) !important;
+  
+  /* Button primary colors - force coral */
+  --btn-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%) !important;
+  --btn-primary-text: rgb(255, 255, 255) !important;
+  --btn-primary-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%) !important;
+  
+  /* Background - force coral theme */
+  --background: rgb(255, 255, 255) !important;
+  --page-background: linear-gradient(135deg, rgb(254, 242, 242) 0%, rgb(255, 237, 213) 100%) !important;
+  --page-text: rgb(120, 53, 15) !important;
+}
+
+/* Force coral theme on all buttons in light mode */
+html.light button,
+html.light .btn,
+html.light [role="button"],
+:root.light button,
+:root.light .btn,
+:root.light [role="button"] {
+  /* Ensure buttons respect coral theme variables */
+}
+
+/* Force table headers to use coral theme */
+html.light table thead,
+html.light .table-header-bg,
+:root.light table thead,
+:root.light .table-header-bg {
+  background: var(--table-header-bg) !important;
+  color: var(--table-header-text) !important;
+}
+
+/* Ensure header cells have no individual transitions or backgrounds */
+html.light table thead th,
+html.light .table-header-bg th,
+:root.light table thead th,
+:root.light .table-header-bg th {
+  background: none !important;
+  background-color: transparent !important;
+  transition: none !important;
+  color: var(--table-header-text) !important;
 }
