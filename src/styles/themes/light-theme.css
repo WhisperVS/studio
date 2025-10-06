@@ -1950,6 +1950,34 @@ html.light {
   display: none;
 }
 
+/* Perfect alignment for collapsed icons */
+.light [data-collapsible="icon"] {
+  width: 60px;
+}
+
+.light [data-collapsible="icon"] .sidebar-group {
+  width: 100%;
+  padding: 0;
+}
+
+.light [data-collapsible="icon"] a,
+.light [data-collapsible="icon"] button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 60px !important;
+  height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0;
+}
+
+.light [data-collapsible="icon"] svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 auto !important;
+}
+
 /* Tooltip for collapsed items */
 .light [data-collapsible="icon"] a:hover::before,
 .light [data-collapsible="icon"] button:hover::before,
@@ -1991,6 +2019,43 @@ html.light {
   margin-left: 8px;
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Match logo and theme toggle positioning exactly */
+.light [data-collapsible="icon"] [data-sidebar="header"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  padding: 16px 0;
+}
+
+.light [data-collapsible="icon"] [data-sidebar="header"] svg {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+}
+
+/* Ensure theme toggle matches the same alignment */
+.light [data-collapsible="icon"] [data-sidebar="footer"] .theme-toggle {
+  width: 60px;
+  margin: 0;
+  justify-content: center;
+}
+
+/* Collapsed sidebar container alignment */
+.light [data-collapsible="icon"] [data-sidebar="content"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  padding: 0;
+}
+
+.light [data-collapsible="icon"] [data-sidebar="content"] > * {
+  width: 60px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Basic sidebar text colors - no positioning overrides */
