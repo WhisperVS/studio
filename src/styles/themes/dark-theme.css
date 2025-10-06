@@ -280,6 +280,14 @@
   --checkbox-checked-border: rgb(59, 130, 246); /* Blue border when checked */
   --checkbox-checkmark: rgb(255, 255, 255);    /* White checkmark */
   
+  /* Dropdown Variables - Dark Theme */
+  --dropdown-hover: rgb(88, 101, 242);         /* Discord blurple hover */
+  --dropdown-item-selected-text: rgb(255, 255, 255);  /* White text on hover */
+  --dropdown-content-bg: rgb(47, 49, 54);      /* Discord dark gray */
+  --dropdown-content-border: rgb(75, 85, 99);  /* Gray border */
+  --dropdown-content-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.8), 0 10px 20px -15px rgba(0, 0, 0, 0.4);
+  --dropdown-focus-outline: rgb(88, 101, 242); /* Discord blurple focus */
+  
   /* ============================= */
   /* SIDEBAR NAVIGATION */
   /* ============================= */

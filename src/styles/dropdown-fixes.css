@@ -1,181 +1,46 @@
 /* ============================= */
-/* DROPDOWN/SELECT HOVER FIXES - VARIABLE-BASED SOLUTION */
+/* CLEAN DROPDOWN STYLING - THEME-BASED */
 /* ============================= */
-/* This file uses ONLY CSS variables - no hardcoded values */
-/* Shared between light and dark themes */
+/* Uses CSS variables from theme files - no forcing rules */
 
-/* DROPDOWN ITEM HOVER CLASS - Uses Theme Variables */
+/* Base dropdown item styling */
 .dropdown-item-hover:hover,
-.dropdown-item-hover[data-highlighted],
-.dropdown-item-hover[data-state="checked"],
-.dropdown-item-hover[data-state="open"],
-.dropdown-item-hover:focus {
-    background: var(--dropdown-hover) !important;
-    color: var(--dropdown-item-selected-text) !important;
-    transform: translateY(-1px) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    position: relative !important;
-    box-shadow: var(--dropdown-shadow) !important;
-    backdrop-filter: blur(12px) !important;
-    box-sizing: border-box !important;
-}
-
-/* Add subtle inner glow effect */
-.dropdown-item-hover:hover::before,
-.dropdown-item-hover[data-highlighted]::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background: var(--dropdown-glow) !important;
-    border-radius: 8px !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-}
-
-/* Enhanced focus state */
-.dropdown-item-hover:focus {
-    outline: 2px solid var(--dropdown-focus-outline) !important;
-    outline-offset: 1px !important;
-    box-shadow: var(--dropdown-focus-shadow) !important;
-}
-
-/* CRITICAL: Force hover effects for all dropdown items */
-/* Using maximum specificity to override any conflicting styles */
-
-/* Target all possible dropdown item selectors */
-[data-radix-select-content] [data-radix-select-item]:hover,
-[data-radix-select-content] [data-radix-select-item][data-highlighted],
-[data-radix-select-content] [data-radix-select-item][data-state="checked"],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-state="open"],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-state="checked"],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:hover,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-highlighted],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-state="checked"],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:hover,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-highlighted],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger][data-state="open"] {
-    background: var(--dropdown-hover) !important;
-    color: var(--dropdown-item-selected-text) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: var(--dropdown-shadow) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    backdrop-filter: blur(12px) !important;
-    box-sizing: border-box !important;
-    position: relative !important;
-}
-
-/* Add pseudo-element glow for all items */
-[data-radix-select-content] [data-radix-select-item]:hover::before,
-[data-radix-select-content] [data-radix-select-item][data-highlighted]::before,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover::before,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted]::before,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover::before,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted]::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background: var(--dropdown-glow) !important;
-    border-radius: 8px !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
+.dropdown-item-hover[data-highlighted] {
+    background: var(--dropdown-hover);
+    color: var(--dropdown-item-selected-text);
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Enhanced focus states */
-[data-radix-select-content] [data-radix-select-item]:focus,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:focus,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:focus,
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger]:focus {
-    background: var(--dropdown-hover) !important;
-    color: var(--dropdown-item-selected-text) !important;
-    outline: 2px solid var(--dropdown-focus-outline) !important;
-    outline-offset: 1px !important;
-    box-shadow: var(--dropdown-focus-shadow) !important;
-    transform: translateY(-1px) !important;
+.dropdown-item-hover:focus {
+    background: var(--dropdown-hover);
+    color: var(--dropdown-item-selected-text);
+    outline: 2px solid var(--dropdown-focus-outline);
+    outline-offset: 1px;
 }
 
-/* Fallback selectors for any items that might use different attributes */
-[role="option"]:hover,
-[role="option"][data-highlighted],
-[role="menuitem"]:hover,
-[role="menuitem"][data-highlighted],
-[role="menuitemcheckbox"]:hover,
-[role="menuitemcheckbox"][data-highlighted],
-[role="menuitemradio"]:hover,
-[role="menuitemradio"][data-highlighted] {
-    background: var(--dropdown-hover) !important;
-    color: var(--dropdown-item-selected-text) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: var(--dropdown-shadow) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-sizing: border-box !important;
+/* Radix dropdown items */
+[data-radix-select-content] [data-radix-select-item]:hover,
+[data-radix-select-content] [data-radix-select-item][data-highlighted],
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
+[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted] {
+    background: var(--dropdown-hover);
+    color: var(--dropdown-item-selected-text);
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Additional class-based targeting for components using className */
-.dropdown-menu-item:hover,
-.dropdown-menu-item[data-highlighted],
-.select-item:hover,
-.select-item[data-highlighted] {
-    background: var(--dropdown-hover) !important;
-    color: var(--dropdown-item-selected-text) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: var(--dropdown-shadow) !important;
-    border-radius: 8px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-sizing: border-box !important;
-}
-
-/* Override any Tailwind classes that might conflict */
-.hover\:bg-accent:hover,
-.focus\:bg-accent:focus,
-[data-highlighted].hover\:bg-accent,
-[data-highlighted].focus\:bg-accent {
-    background: var(--dropdown-hover) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: var(--dropdown-shadow) !important;
-    box-sizing: border-box !important;
-}
-
-.hover\:text-accent-foreground:hover,
-.focus\:text-accent-foreground:focus,
-[data-highlighted].hover\:text-accent-foreground,
-[data-highlighted].focus\:text-accent-foreground {
-    color: var(--dropdown-item-selected-text) !important;
-}
-
-/* Ensure the items have proper cursor and transition */
-[data-radix-select-content] [data-radix-select-item],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item],
-[data-radix-dropdown-menu-content] [data-radix-dropdown-menu-sub-trigger] {
-    cursor: pointer !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border-radius: 8px !important;
-    margin: 2px 4px !important;
-    position: relative !important;
-}
-
-/* Enhanced dropdown content container styling */
+/* Dropdown content styling */
 [data-radix-dropdown-menu-content],
 [data-radix-select-content] {
-    background: var(--dropdown-content-bg) !important;
-    border: 1px solid var(--dropdown-content-border) !important;
-    box-shadow: var(--dropdown-content-shadow) !important;
-    backdrop-filter: blur(20px) !important;
-    border-radius: 12px !important;
-    padding: 8px !important;
+    background: var(--dropdown-content-bg);
+    border: 1px solid var(--dropdown-content-border);
+    box-shadow: var(--dropdown-content-shadow);
+    border-radius: 12px;
+    padding: 8px;
 }
+
+/* ============================= */
+/* END OF DROPDOWN FIXES */
+/* ============================= */

@@ -1449,90 +1449,8 @@ html.light [data-sidebar="footer"] {
 }
 
 /* ============================= */
-/* HEADER BUTTON STYLING - DARK THEME */
+/* CLEAN THEME SEPARATION - NO FORCING RULES */
 /* ============================= */
-
-/* Header container styling */
-.light .page-header {
-  background: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 242, 242, 0.9) 100%);
-  border-bottom: 1px solid rgba(251, 146, 60, 0.4);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.2);
-}
-
-/* All header buttons */
-.light .page-header button {
-  border-radius: 12px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  backdrop-filter: blur(8px);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Export button styling */
-.light .page-header button[class*="bg-[var(--btn-export-bg)]"] {
-  background: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%) !important;
-  border: 1px solid rgba(16, 185, 129, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(16, 185, 129, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.light .page-header button[class*="bg-[var(--btn-export-bg)]"]:hover {
-  background: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(16, 185, 129, 0.5) !important;
-}
-
-/* Add Asset button styling */
-.light .page-header button[class*="bg-[var(--primary)]"] {
-  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%) !important;
-  border: 1px solid rgba(251, 146, 60, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.light .page-header button[class*="bg-[var(--primary)]"]:hover {
-  background: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(251, 146, 60, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.15);
-  border-color: rgba(251, 146, 60, 0.5) !important;
-}
-
-/* User dropdown button styling */
-.light .page-header button[role="combobox"] {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(51, 65, 85, 0.85) 100%) !important;
-  border: 1px solid rgba(71, 85, 105, 0.6) !important;
-  color: rgb(226, 232, 240) !important;
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-radius: 12px !important;
-}
-
-.light .page-header button[role="combobox"]:hover {
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
-  border-color: rgba(251, 146, 60, 0.3) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px -4px rgba(251, 146, 60, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Sidebar toggle button */
-.light .page-header button[data-sidebar="trigger"] {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(51, 65, 85, 0.75) 100%) !important;
-  border: 1px solid rgba(71, 85, 105, 0.5) !important;
-  color: rgb(148, 163, 184) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.15);
-}
-
-.light .page-header button[data-sidebar="trigger"]:hover {
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.9) 0%, rgba(71, 85, 105, 0.85) 100%) !important;
-  border-color: rgba(251, 146, 60, 0.3) !important;
-  color: rgb(251, 146, 60) !important;
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 4px 10px -4px rgba(251, 146, 60, 0.2);
-}
 
 /* ============================= */
 /* CLEAN THEME SEPARATION - NO FORCING RULES */
@@ -1626,6 +1544,14 @@ html.light [data-sidebar="footer"] {
   --checkbox-checked-bg: rgb(251, 146, 60);
   --checkbox-checked-border: rgb(251, 146, 60);
   --checkbox-checkmark: rgb(255, 255, 255);
+  
+  /* Dropdown Variables - Light Theme */
+  --dropdown-hover: rgb(251, 146, 60);
+  --dropdown-item-selected-text: rgb(255, 255, 255);
+  --dropdown-content-bg: rgb(255, 255, 255);
+  --dropdown-content-border: rgb(203, 213, 225);
+  --dropdown-content-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
+  --dropdown-focus-outline: rgb(251, 146, 60);
 }
 
 /* ============================= */

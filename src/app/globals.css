@@ -176,40 +176,6 @@ html {
     scrollbar-width: auto;
   }
 
-  /* ============================= */
-  /* DROPDOWN/SELECT HOVER FIXES */
-  /* ============================= */
-  
-  /* CRITICAL: Ensure all dropdown items get proper hover in dark mode */
-  /* Using high specificity to override any conflicting styles */
-  html.dark [data-radix-select-content] [data-radix-select-item],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item] {
-    transition: background-color 0.15s ease, color 0.15s ease !important;
-  }
-  
-  html.dark [data-radix-select-content] [data-radix-select-item]:hover,
-  html.dark [data-radix-select-content] [data-radix-select-item][data-highlighted],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted],
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:hover,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item][data-highlighted] {
-    background-color: var(--sidebar-link-hover) !important;
-    color: #ffffff !important;
-  }
-  
-  /* Ensure focus states also work */
-  html.dark [data-radix-select-content] [data-radix-select-item]:focus,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:focus,
-  html.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-radio-item]:focus {
-    background-color: var(--sidebar-link-hover) !important;
-    color: #ffffff !important;
-  }
-
   /* table header background variant */
   .table-header-bg {
     /* use dedicated table header background so header is distinct from table body */
