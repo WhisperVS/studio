@@ -348,7 +348,7 @@ export default function DashboardPage() {
             alignItems: 'center', 
             justifyContent: 'center', 
             borderTop: '1px solid var(--border)',
-            backgroundColor: '#ffffff',
+            backgroundColor: 'var(--background)',
             position: 'relative',
             zIndex: 1000,
             flexShrink: 0

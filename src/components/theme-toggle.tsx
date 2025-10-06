@@ -15,8 +15,8 @@ export function ThemeToggle() {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="theme-toggle text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent"
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        border: '1px solid rgba(203, 213, 225, 0.3)',
+        backgroundColor: 'var(--background)',
+        border: '1px solid var(--border)',
         borderRadius: '8px',
         width: '40px',
         height: '40px',

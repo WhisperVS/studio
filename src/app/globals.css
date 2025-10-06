@@ -5,7 +5,7 @@
 
 /* Prevent flash of unstyled content - simple approach */
 html {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #fef2f2 0%, #ffedd5 100%);
 }
 
 @tailwind base;
@@ -124,14 +124,14 @@ html {
   /* ensure ribbon thumb is easy to hit but overlay doesn't block row events */
   .ribbon-overlay::-webkit-scrollbar-thumb {
     border-radius: 9999px;
-    border: 3px solid rgba(0,0,0,0.04);
-    background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
-    box-shadow: 0 0 10px rgba(59,130,246,0.25);
+    border: 3px solid rgba(251, 146, 60, 0.1);
+    background: linear-gradient(90deg, var(--scrollbar-thumb), var(--accent-color));
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.3);
   }
 
   /* Ribbon handle affordance */
   .ribbon-handle {
-    @apply h-3 bg-gradient-to-r from-slate-300 to-slate-400 rounded cursor-grab hover:opacity-90;
+    @apply h-3 bg-gradient-to-r from-orange-300 to-orange-400 rounded cursor-grab hover:opacity-90;
   }
 
   /* Sticky header subtle separation */
@@ -141,7 +141,7 @@ html {
 
   /* Focus outline for buttons in sticky headers */
   .sticky-header-button:focus {
-    outline: 2px solid rgba(59,130,246,0.6);
+    outline: 2px solid rgba(251, 146, 60, 0.6);
     outline-offset: 2px;
   }
 
@@ -159,11 +159,11 @@ html {
     background: var(--scrollbar-thumb);
     border-radius: 9999px;
     border: 2px solid var(--scrollbar-thumb-border);
-    box-shadow: 0 0 12px rgba(59,130,246,0.35);
+    box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
   }
   .scrollbar-neon::-webkit-scrollbar-thumb:hover {
     background: var(--scrollbar-thumb-hover);
-    box-shadow: 0 0 18px rgba(59,130,246,0.5);
+    box-shadow: 0 0 18px rgba(251, 146, 60, 0.6);
   }
   .scrollbar-neon::-webkit-scrollbar-corner {
     background: var(--scrollbar-corner);
@@ -287,7 +287,7 @@ html {
   .ribbon::-webkit-scrollbar-thumb {
     border-radius: 9999px;
     border: 3px solid var(--table-header-bg); /* blend the thumb with the ribbon background */
-    background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
-    box-shadow: 0 0 8px rgba(59,130,246,0.22);
+    background: linear-gradient(90deg, var(--scrollbar-thumb), var(--accent-color));
+    box-shadow: 0 0 8px rgba(251, 146, 60, 0.3);
   }
 }

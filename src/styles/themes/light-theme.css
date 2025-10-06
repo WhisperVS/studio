@@ -224,6 +224,27 @@
   --input: rgb(203, 213, 225);                    /* Input borders */
   --ring: rgb(251, 146, 60);                   /* Focus rings */
   
+  /* Additional Tailwind variables for complete coverage */
+  --card: 0 0% 100%;                              /* White cards */
+  --card-foreground: 22 78% 34%;                  /* Brown card text */
+  --popover: 0 0% 100%;                           /* White popovers */
+  --popover-foreground: 22 78% 34%;               /* Brown popover text */
+  --chart-1: 33 78% 61%;                          /* Coral chart color */
+  --chart-2: 142 76% 36%;                         /* Green chart color */
+  --chart-3: 24 70% 56%;                          /* Orange chart color */
+  --chart-4: 262 83% 58%;                         /* Purple chart color */
+  --chart-5: 6 78% 57%;                           /* Red chart color */
+  
+  /* Sidebar Tailwind variables */
+  --sidebar: 33 100% 92%;                         /* Light peach sidebar */
+  --sidebar-foreground: 22 78% 34%;               /* Brown sidebar text */
+  --sidebar-primary: 33 78% 61%;                  /* Coral sidebar primary */
+  --sidebar-primary-foreground: 0 0% 100%;       /* White sidebar primary text */
+  --sidebar-accent: 24 100% 83%;                  /* Light orange sidebar accent */
+  --sidebar-accent-foreground: 22 78% 34%;       /* Brown sidebar accent text */
+  --sidebar-border: 33 78% 61%;                   /* Coral sidebar border */
+  --sidebar-ring: 33 78% 61%;                     /* Coral sidebar ring */
+  
   /* ============================= */
   /* SPECIFIC BUTTON COLORS - PEACHY CORAL */
   /* ============================= */
