@@ -402,167 +402,91 @@
   box-shadow: 0 4px 32px -8px rgba(0, 0, 0, 0.4);
 }
 
-/* Premium dark search input - FIXED SIZE AND POSITIONING */
+/* Clean input styling - dark theme */
 .dark .top-controls input[type="text"],
 .dark .top-controls input {
-  background: var(--background) !important;
-  border: 2px solid var(--input-border) !important;
-  color: var(--input-text) !important;
+  background: var(--background);
+  border: 2px solid var(--input-border);
+  color: var(--input-text);
   transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--input-shadow) !important;
+  box-shadow: var(--input-shadow);
   font-weight: 500;
   border-radius: 12px;
-  box-sizing: border-box !important;
-  width: 320px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 20px !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
 }
 
-.dark .top-controls input[type="text"]:focus,
 .dark .top-controls input:focus {
-  border: 2px solid var(--input-border-focus) !important;
-  background: var(--background) !important;
-  box-shadow: var(--input-shadow-focus) !important;
-  outline: none !important;
-  width: 320px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 20px !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
+  border: 2px solid var(--input-border-focus);
+  background: var(--background);
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
 }
 
-.dark .top-controls input[type="text"]::placeholder,
 .dark .top-controls input::placeholder {
-  color: var(--input-placeholder) !important;
-  font-weight: 400;
-  line-height: 20px !important;
-  font-size: 14px !important;
+  color: var(--input-placeholder);
 }
 
-/* Fix the search input container to maintain consistent layout */
-.dark .top-controls .relative {
-  position: relative !important;
-  display: block !important;
-  width: 320px !important;
-  height: 36px !important;
-  flex-shrink: 0 !important;
+.dark .top-controls input:focus + .lucide-search {
+  color: var(--input-border-focus);
 }
 
-/* Fix button positioning inside search box */
-.dark .top-controls .relative button {
-  position: absolute !important;
-  right: 4px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  z-index: 10 !important;
-  margin: 0 !important;
-  border-radius: 6px !important;
-}
-
-/* Search icon styling */
-.dark .top-controls .lucide-search {
-  color: var(--input-placeholder) !important;
-  transition: color 0.2s ease;
-}
-
-.dark .top-controls input[type="text"]:focus + .lucide-search,
-.dark .top-controls input[type="text"]:focus ~ .lucide-search {
-  color: var(--input-border-focus) !important;
-}
-
-/* Search icon positioning - make sure it's visible */
 .dark .top-controls .relative .lucide-search {
-  position: absolute !important;
-  left: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 16px !important;
-  height: 16px !important;
-  color: var(--input-placeholder) !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--input-placeholder);
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* When input is focused, change search icon color */
 .dark .top-controls .relative:focus-within .lucide-search {
-  color: var(--input-border-focus) !important;
+  color: var(--input-border-focus);
 }
 
-/* Premium dark combobox/dropdown buttons */
 .dark .top-controls button[role="combobox"] {
-  background: var(--dropdown-background) !important;
-  border: 2px solid var(--dropdown-border) !important;
-  color: var(--dropdown-text) !important;
+  background: var(--dropdown-background);
+  border: 2px solid var(--dropdown-border);
+  color: var(--dropdown-text);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow) !important;
-  font-weight: 500;
-  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
 }
 
 .dark .top-controls button[role="combobox"]:hover {
-  background: var(--dropdown-hover) !important;
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
+  background: var(--dropdown-hover);
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4) !important;
 }
 
 .dark .top-controls button[role="combobox"]:focus {
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
-  box-shadow: var(--input-shadow-focus) !important;
-  outline: none !important;
-  background: rgba(31, 41, 55, 0.9) !important;
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
   transform: translateY(-1px);
 }
 
 /* Premium dark clear filters button */
 .dark .btn-clear-filters {
-  background: var(--btn-clear-bg) !important;
-  border: 2px solid var(--btn-clear-border) !important;
-  color: var(--btn-clear-text) !important;
+  background: var(--btn-clear-bg);
+  border: 2px solid var(--btn-clear-border);
+  color: var(--btn-clear-text);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow) !important;
-  font-weight: 500;
-  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
 }
 
 .dark .btn-clear-filters:hover {
-  background: var(--btn-clear-hover) !important;
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
-  color: var(--text-primary) !important;
+  background: var(--btn-clear-hover);
+  color: var(--text-primary);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5) !important;
 }
 
 .dark .btn-clear-filters svg {
-  color: currentColor !important;
+  color: currentColor;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Premium dark focus ring for all interactive elements */
 .dark .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
-  border-radius: 12px;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* ============================= */
@@ -599,55 +523,37 @@
   height: 300px;
 }
 
-/* Dynamic dark primary button states */
-.dark button[class*="primary"], .dark .btn-primary {
-  background: var(--btn-primary-bg) !important;
-  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+/* Button States */
+.dark .btn-primary {
+  background: var(--btn-primary-bg);
+  box-shadow: var(--btn-primary-shadow);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark button[class*="primary"]:hover, .dark .btn-primary:hover {
+.dark .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.5), 0 8px 25px rgba(0, 0, 0, 0.4) !important;
   filter: brightness(1.2) saturate(1.1);
 }
 
-/* Dark secondary button states */
-.dark button[class*="secondary"], .dark .btn-secondary {
-  background: var(--btn-secondary-bg) !important;
-  border: 2px solid var(--btn-secondary-border) !important;
+.dark .btn-secondary {
+  background: var(--btn-secondary-bg);
+  border: 2px solid var(--btn-secondary-border);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark button[class*="secondary"]:hover, .dark .btn-secondary:hover {
-  background: var(--btn-secondary-hover) !important;
-  border-color: transparent !important;
-  background-image: var(--accent-color) !important;
-  color: var(--text-error) !important;
+.dark .btn-secondary:hover {
+  background: var(--btn-secondary-hover);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4) !important;
 }
 
-/* Dark success states */
-.dark .btn-success, .dark button[class*="success"] {
-  background: var(--success-color) !important;
+.dark .btn-success {
+  background: var(--success-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .btn-success:hover, .dark button[class*="success"]:hover {
+.dark .btn-success:hover {
   transform: translateY(-2px);
   filter: brightness(1.2) hue-rotate(5deg);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5) !important;
-}
-
-/* Dark floating action buttons */
-.dark .fab {
-  background: var(--accent-color) !important;
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.dark .fab:hover {
-  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* ============================= */
@@ -663,66 +569,64 @@
 
 /* Discord-style search input - dark theme */
 .dark .top-controls input[type="text"] {
-  background: var(--input-background) !important;
-  border: 1px solid var(--input-border) !important;
-  color: var(--input-text) !important;
+  background: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
   transition: all 0.15s ease;
-  box-shadow: none !important;
 }
 
 .dark .top-controls input[type="text"]:focus {
-  border-color: var(--input-border-focus) !important;
-  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
-  outline: none !important;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 1px var(--input-border-focus);
+  outline: none;
 }
 
 .dark .top-controls input[type="text"]::placeholder {
-  color: var(--input-placeholder) !important;
+  color: var(--input-placeholder);
 }
 
 /* Discord-style combobox/dropdown buttons - dark theme */
 .dark .top-controls button[role="combobox"] {
-  background: var(--btn-filter-bg) !important;
-  border: 1px solid var(--btn-filter-border) !important;
-  color: var(--btn-filter-text) !important;
+  background: var(--btn-filter-bg);
+  border: 1px solid var(--btn-filter-border);
+  color: var(--btn-filter-text);
   transition: all 0.15s ease;
-  box-shadow: none !important;
 }
 
 .dark .top-controls button[role="combobox"]:hover {
-  background: var(--btn-filter-hover) !important;
-  border-color: var(--input-border-focus) !important;
+  background: var(--btn-filter-hover);
+  border-color: var(--input-border-focus);
 }
 
 .dark .top-controls button[role="combobox"]:focus {
-  border-color: var(--input-border-focus) !important;
-  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
-  outline: none !important;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 1px var(--input-border-focus);
+  outline: none;
 }
 
 /* Discord-style clear filters button - dark theme */
 .dark .btn-clear-filters {
-  background: var(--btn-clear-bg) !important;
-  border: 1px solid var(--btn-clear-border) !important;
-  color: var(--btn-clear-text) !important;
+  background: var(--btn-clear-bg);
+  border: 1px solid var(--btn-clear-border);
+  color: var(--btn-clear-text);
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .dark .btn-clear-filters:hover {
-  background: var(--btn-clear-hover) !important;
-  border-color: var(--input-border-focus) !important;
-  color: var(--input-border-focus) !important;
+  background: var(--btn-clear-hover);
+  border-color: var(--input-border-focus);
+  color: var(--input-border-focus);
 }
 
 .dark .btn-clear-filters svg {
-  color: currentColor !important;
+  color: currentColor;
 }
 
 /* Discord-style focus ring for all interactive elements - dark theme */
 .dark .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* ============================= */
@@ -731,11 +635,11 @@
 
 /* Main page background override */
 .dark {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 .dark body {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Main content area background */
@@ -743,14 +647,14 @@
 .dark .main-content,
 .dark [class*="main"],
 .dark .flex-1.flex.flex-col.min-h-0 {
-  background: var(--page-background) !important;
+  background: var(--page-background);
   min-height: 100vh;
 }
 
 /* Dashboard main container */
 .dark .dashboard-page {
-  background: rgba(3, 7, 18, 0.95) !important;
-  border: 1px solid rgba(71, 85, 105, 0.3) !important;
+  background: rgba(3, 7, 18, 0.95);
+  border: 1px solid rgba(71, 85, 105, 0.3);
   backdrop-filter: blur(20px);
   border-radius: 16px;
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.6);
@@ -759,8 +663,8 @@
 
 /* Enhanced table styling for inventory */
 .dark .asset-table {
-  background: var(--table-data-bg) !important;
-  border: 1px solid var(--table-data-border) !important;
+  background: var(--table-data-bg);
+  border: 1px solid var(--table-data-border);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
@@ -769,7 +673,7 @@
 /* Table header row gets the gradient background */
 .dark .asset-table thead tr,
 .dark table thead tr {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%) !important;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%);
   position: relative;
 }
 
@@ -778,12 +682,12 @@
 .dark table th,
 .dark .asset-table thead th,
 .dark table thead th {
-  background: transparent !important;
-  background-color: transparent !important;
-  color: var(--table-header-text) !important;
+  background: transparent;
+  background-color: transparent;
+  color: var(--table-header-text);
   font-weight: 600;
   padding: 16px 12px;
-  border-bottom: 2px solid var(--table-header-border) !important;
+  border-bottom: 2px solid var(--table-header-border);
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
@@ -796,23 +700,23 @@
 .dark .asset-table tr[data-state="selected"] th,
 .dark table thead tr th,
 .dark .asset-table thead tr th {
-  background: transparent !important;
-  background-color: transparent !important;
-  color: var(--table-header-text) !important;
-  border-left: none !important;
-  box-shadow: none !important;
+  background: transparent;
+  background-color: transparent;
+  color: var(--table-header-text);
+  border-left: none;
+  box-shadow: none;
 }
 
 .dark .asset-table td {
-  background: var(--table-data-bg) !important;
-  color: var(--table-data-text) !important;
-  border-bottom: 1px solid var(--table-data-border) !important;
+  background: var(--table-data-bg);
+  color: var(--table-data-text);
+  border-bottom: 1px solid var(--table-data-border);
   padding: 12px;
   transition: all 0.2s ease;
 }
 
 .dark .asset-table tr:hover td {
-  background: var(--table-data-hover) !important;
+  background: var(--table-data-hover);
   transform: scale(1.005);
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
 }
@@ -820,20 +724,20 @@
 /* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
 .dark table tbody tr[data-state="selected"] td,
 .dark .asset-table tbody tr[data-state="selected"] td {
-  background: var(--table-data-hover) !important;
-  background-color: var(--table-data-hover) !important;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
-  position: relative !important;
-  z-index: 2 !important;
+  background: var(--table-data-hover);
+  background-color: var(--table-data-hover);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
 /* Enhanced hover for selected rows - DATA ROWS ONLY */
 .dark table tbody tr[data-state="selected"]:hover td,
 .dark .asset-table tbody tr[data-state="selected"]:hover td {
-  background: var(--table-data-hover) !important;
-  background-color: var(--table-data-hover) !important;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25) !important;
-  z-index: 3 !important;
+  background: var(--table-data-hover);
+  background-color: var(--table-data-hover);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  z-index: 3;
 }
 
 /* Dashboard stats cards */
@@ -845,8 +749,8 @@
 }
 
 .dark .stats-card {
-  background: var(--dashboard-stat-bg) !important;
-  border: 1px solid var(--dashboard-stat-border) !important;
+  background: var(--dashboard-stat-bg);
+  border: 1px solid var(--dashboard-stat-border);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
@@ -861,14 +765,14 @@
 }
 
 .dark .stats-value {
-  color: var(--dashboard-stat-accent) !important;
+  color: var(--dashboard-stat-accent);
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .dark .stats-label {
-  color: var(--dashboard-stat-text) !important;
+  color: var(--dashboard-stat-text);
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -877,8 +781,8 @@
 
 /* Enhanced action buttons for dashboard */
 .dark .btn-add-asset {
-  background: var(--btn-add-asset-bg) !important;
-  color: var(--btn-add-asset-text) !important;
+  background: var(--btn-add-asset-bg);
+  color: var(--btn-add-asset-text);
   box-shadow: var(--btn-add-asset-shadow);
   border: none;
   border-radius: 8px;
@@ -888,7 +792,7 @@
 }
 
 .dark .btn-add-asset:hover {
-  background: var(--btn-add-asset-hover) !important;
+  background: var(--btn-add-asset-hover);
   transform: translateY(-2px);
   box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
 }
@@ -903,22 +807,22 @@
 }
 
 .dark .status-in-use {
-  background: var(--inventory-in-stock) !important;
+  background: var(--inventory-in-stock);
   color: rgb(233, 233, 233);
 }
 
 .dark .status-spare {
-  background: var(--inventory-in-stock) !important;
+  background: var(--inventory-in-stock);
   color: white;
 }
 
 .dark .status-for-repair {
-  background: var(--inventory-out-stock) !important;
+  background: var(--inventory-out-stock);
   color: white;
 }
 
 .dark .status-for-parts {
-  background: var(--inventory-low-stock) !important;
+  background: var(--inventory-low-stock);
   color: white;
 }
 
@@ -970,27 +874,27 @@
 
 /* Override Tailwind bg-background class in dark mode */
 .dark .bg-background {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Specifically target the main dashboard container */
 .dark div[class*="flex h-screen bg-background"] {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Target all flex containers that might have background */
 .dark div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]) {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Override any overflow-hidden containers */
 .dark div[class*="overflow-hidden"]:not([class*="table"]) {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Main container background enforcement */
 .dark div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]) {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* ============================= */
@@ -999,26 +903,26 @@
 
 /* Theme toggle white styling */
 .dark .theme-toggle {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: var(--text-quaternary) !important;
-  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-quaternary);
+  border: 1px solid rgba(203, 213, 225, 0.3);
   border-radius: 8px;
-  width: 40px !important;
-  height: 40px !important;
+  width: 40px;
+  height: 40px;
   padding: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: visible;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dark .theme-toggle:hover {
-  background: rgb(255, 255, 255) !important;
-  color: rgb(51, 65, 85) !important;
+  background: rgb(255, 255, 255);
+  color: rgb(51, 65, 85);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
 }
@@ -1031,41 +935,41 @@
 
 /* Ensure sidebar footer is always visible */
 .dark [data-sidebar="sidebar"] {
-  height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .dark [data-sidebar="content"] {
-  flex: 1 !important;
-  overflow: visible !important;
-  padding: 8px !important;
+  flex: 1;
+  overflow: visible;
+  padding: 8px;
 }
 
 .dark [data-sidebar="footer"] {
-  flex-shrink: 0 !important;
-  background: var(--sidebar-background) !important;
-  z-index: 10 !important;
-  padding: 16px !important;
-  border-top: 1px solid var(--border) !important;
-  min-height: 64px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  flex-shrink: 0;
+  background: var(--sidebar-background);
+  z-index: 10;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main layout viewport constraints */
 .dark .main-layout {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow: hidden !important;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 /* Table container scrolling */
 .dark .table-container {
-  max-height: calc(100vh - 280px) !important;
-  overflow-y: auto !important;
-  overflow-x: auto !important;
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 /* ============================= */
@@ -1074,17 +978,17 @@
 
 /* Category counts proper spacing */
 .dark .sidebar-group {
-  margin-bottom: 8px !important;
+  margin-bottom: 8px;
 }
 
 .dark .sidebar-menu {
-  gap: 2px !important;
+  gap: 2px;
 }
 
 .dark .sidebar-menu-item {
-  margin-bottom: 1px !important;
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
+  margin-bottom: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 /* ============================= */
@@ -1230,11 +1134,11 @@
 .dark [data-radix-select-item][data-highlighted],
 .dark .dropdown-item[data-highlighted],
 .dark [role="menuitem"][data-highlighted] {
-  background: var(--dropdown-hover) !important;
-  color: var(--dropdown-item-selected-text) !important;
-  border-color: rgba(88, 101, 242, 0.3) !important;
-  transform: translateX(4px) !important;
-  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2) !important;
+  background: var(--dropdown-hover);
+  color: var(--dropdown-item-selected-text);
+  border-color: rgba(88, 101, 242, 0.3);
+  transform: translateX(4px);
+  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2);
 }
 
 .dark [data-radix-select-item]:hover::before,
@@ -1243,7 +1147,7 @@
 .dark [data-radix-select-item][data-highlighted]::before,
 .dark .dropdown-item[data-highlighted]::before,
 .dark [role="menuitem"][data-highlighted]::before {
-  left: 100% !important;
+  left: 100%;
 }
 
 .dark [data-radix-select-item] svg,
@@ -1262,17 +1166,17 @@
 .dark [data-radix-select-item][data-highlighted] svg,
 .dark .dropdown-item[data-highlighted] svg,
 .dark [role="menuitem"][data-highlighted] svg {
-  color: var(--sidebar-link-icon-active) !important;
-  transform: scale(1.1) !important;
+  color: var(--sidebar-link-icon-active);
+  transform: scale(1.1);
 }
 
 /* Override accent-foreground text colors */
 .dark [data-radix-select-item][data-state="checked"],
 .dark .dropdown-item[data-state="checked"],
 .dark [role="menuitem"][data-state="checked"] {
-  background: var(--dropdown-item-selected) !important;
-  color: var(--dropdown-item-selected-text) !important;
-  font-weight: 600 !important;
+  background: var(--dropdown-item-selected);
+  color: var(--dropdown-item-selected-text);
+  font-weight: 600;
 }
 
 /* ============================= */
@@ -1281,354 +1185,74 @@
 
 /* Theme toggle container ensures visibility */
 .dark .theme-toggle-container {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  min-height: 48px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
 }
 
 /* Simple theme toggle visibility - dark theme */
-.dark button.theme-toggle,
-.dark .theme-toggle,
-.dark [class*="theme-toggle"],
-html.dark button.theme-toggle,
-html.dark .theme-toggle,
-html.dark [class*="theme-toggle"] {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+.dark .theme-toggle {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* Simple theme toggle icons - dark theme */
-.dark .theme-toggle svg,
-.dark .theme-toggle [data-theme-icon],
-html.dark .theme-toggle svg,
-html.dark .theme-toggle [data-theme-icon] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+.dark .theme-toggle svg {
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* Show sun icon in dark theme */
-.dark .theme-toggle [data-lucide="sun-medium"],
-.dark .theme-toggle svg[data-theme-icon]:first-child {
-  transform: rotate(0deg) scale(1) !important;
-  opacity: 1 !important;
+.dark .theme-toggle [data-lucide="sun-medium"] {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
 }
 
-/* Hide moon icon in dark theme */
-.dark .theme-toggle [data-lucide="moon-star"],
-.dark .theme-toggle svg[data-theme-icon]:last-child {
-  transform: rotate(-90deg) scale(0) !important;
-  opacity: 0 !important;
+.dark .theme-toggle [data-lucide="moon-star"] {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
 }
 
-/* Ensure sidebar footer container is visible */
-.dark .sidebar-footer-manual,
-.dark [data-sidebar="footer"],
-html.dark .sidebar-footer-manual,
-html.dark [data-sidebar="footer"] {
-  display: flex !important;
-  visibility: visible !important;
-  background-color: var(--sidebar-background) !important;
-  border-top: 1px solid var(--border) !important;
-  position: relative !important;
-  z-index: 10 !important;
-  min-height: 80px !important;
+.dark [data-sidebar="footer"] {
+  display: flex;
+  visibility: visible;
+  background-color: var(--sidebar-background);
+  border-top: 1px solid var(--border);
 }
 
 /* Sidebar footer specific styling */
 .dark [data-sidebar="footer"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.3);
 }
 
 /* ============================= */
-/* ENHANCED DROPDOWN HOVER EFFECTS */
-/* ============================= */
-
-/* COMPREHENSIVE DROPDOWN/SELECT HOVER STYLES FOR DARK THEME */
-/* Target all possible Radix dropdown and select item states */
-.dark [data-radix-select-content] [data-radix-select-item]:hover,
-.dark [data-radix-select-content] [data-radix-select-item][data-highlighted],
-.dark [data-radix-select-content] [role="option"]:hover,
-.dark [data-radix-select-content] [role="option"][data-highlighted],
-.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-.dark [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
-.dark [data-radix-dropdown-menu-content] [role="menuitem"][data-highlighted],
-.dark [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover,
-.dark [data-radix-dropdown-menu-content] [role="menuitemcheckbox"][data-highlighted],
-.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
+/* Dropdown Components */
+.dark {
+  --dropdown-bg: rgb(30, 41, 59);
+  --dropdown-border: rgba(100, 116, 139, 0.2);
+  --dropdown-hover: rgba(59, 130, 246, 0.1);
+  --dropdown-focus: rgba(59, 130, 246, 0.25);
+  --dropdown-text: rgb(248, 250, 252);
 }
 
-/* SelectItem component hover - MATCH SIDEBAR STYLE */
-.dark div[class*="select-none"][class*="cursor-default"]:hover {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
+/* Header Components */
+.dark {
+  --header-bg: rgba(17, 24, 39, 0.95);
+  --header-border: rgba(71, 85, 105, 0.4);
+  --header-text: rgb(248, 250, 252);
 }
 
-/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
-.dark .dropdown-menu-item:hover,
-.dark .select-item:hover {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
-}
-
-/* Focus states enhancement */
-.dark [data-radix-select-content] [data-radix-select-item]:focus,
-.dark [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus {
-  background: rgba(59, 130, 246, 0.25) !important;
-  color: rgb(255, 255, 255) !important;
-  outline: none !important;
-}
-
-/* UNIVERSAL DROPDOWN ITEM FALLBACKS */
-/* Catch any items that might not be targeted by specific selectors */
-.dark [data-radix-select-viewport] > *:hover,
-.dark [data-radix-select-viewport] > *[data-highlighted],
-.dark [data-radix-dropdown-menu-content] > *:hover,
-.dark [data-radix-dropdown-menu-content] > *[data-highlighted] {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
-}
-
-/* TAILWIND CLASS OVERRIDES FOR DARK THEME */
-/* Override default Tailwind hover classes with sidebar colors */
-.dark .hover\:bg-accent:hover,
-.dark [data-highlighted].hover\:bg-accent,
-.dark .focus\:bg-accent:focus,
-.dark [data-highlighted].focus\:bg-accent {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-}
-
-/* Override accent-foreground text colors */
-.dark .hover\:text-accent-foreground:hover,
-.dark [data-highlighted].hover\:text-accent-foreground,
-.dark .focus\:text-accent-foreground:focus,
-.dark [data-highlighted].focus\:text-accent-foreground {
-  color: rgb(255, 255, 255) !important;
-}
-
-/* Force rounded corners on all Tailwind button classes */
-.dark .rounded-md,
-.dark .rounded,
-.dark .rounded-sm,
-.dark .rounded-lg {
-  border-radius: 12px !important;
-}
-
-/* Override Tailwind button border radius specifically */
-.dark button.rounded-md,
-.dark button.rounded,
-.dark button.rounded-sm,
-.dark button.rounded-lg,
-.dark [role="button"].rounded-md,
-.dark [role="button"].rounded,
-.dark [role="button"].rounded-sm,
-.dark [role="button"].rounded-lg {
-  border-radius: 12px !important;
-}
-
-/* Ensure all interactive elements have consistent radius */
-.dark input,
-.dark select,
-.dark textarea {
-  border-radius: 10px !important;
-}
-
-/* ============================= */
-/* HEADER BUTTON STYLING - DARK THEME */
-/* ============================= */
-
-/* Header container styling */
-.dark .page-header {
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.9) 100%);
-  border-bottom: 1px solid rgba(71, 85, 105, 0.4);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.2);
-}
-
-/* All header buttons */
-.dark .page-header button {
-  border-radius: 12px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  backdrop-filter: blur(8px);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Export button styling */
-.dark .page-header button[class*="bg-[var(--btn-export-bg)]"] {
-  background: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%) !important;
-  border: 1px solid rgba(16, 185, 129, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(16, 185, 129, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.dark .page-header button[class*="bg-[var(--btn-export-bg)]"]:hover {
-  background: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(16, 185, 129, 0.5) !important;
-}
-
-/* Add Asset button styling */
-.dark .page-header button[class*="bg-[var(--primary)]"] {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
-  border: 1px solid rgba(99, 102, 241, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.dark .page-header button[class*="bg-[var(--primary)]"]:hover {
-  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(99, 102, 241, 0.5) !important;
-}
-
-/* User dropdown button styling */
-.dark .page-header button[role="combobox"] {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(51, 65, 85, 0.85) 100%) !important;
-  border: 1px solid rgba(71, 85, 105, 0.6) !important;
-  color: rgb(226, 232, 240) !important;
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-radius: 12px !important;
-}
-
-.dark .page-header button[role="combobox"]:hover {
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Sidebar toggle button */
-.dark .page-header button[data-sidebar="trigger"] {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(51, 65, 85, 0.75) 100%) !important;
-  border: 1px solid rgba(71, 85, 105, 0.5) !important;
-  color: rgb(148, 163, 184) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.15);
-}
-
-.dark .page-header button[data-sidebar="trigger"]:hover {
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.9) 0%, rgba(71, 85, 105, 0.85) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  color: rgb(99, 102, 241) !important;
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 4px 10px -4px rgba(99, 102, 241, 0.2);
-}
-
-/* ============================= */
-/* GENERAL BUTTON ENHANCEMENTS - DARK THEME */
-/* ============================= */
-
-/* Universal button improvements */
-.dark button,
-.dark .btn,
-.dark [role="button"] {
-  border-radius: 12px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  backdrop-filter: blur(8px);
-  position: relative;
-  overflow: hidden;
-  font-weight: 500;
-}
-
-/* Primary button universal styling */
-.dark button[class*="primary"],
-.dark .btn-primary,
-.dark button[class*="bg-primary"] {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
-  border: 1px solid rgba(99, 102, 241, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.dark button[class*="primary"]:hover,
-.dark .btn-primary:hover,
-.dark button[class*="bg-primary"]:hover {
-  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(99, 102, 241, 0.5) !important;
-}
-
-/* Secondary button universal styling */
-.dark button[class*="secondary"],
-.dark .btn-secondary,
-.dark button[class*="outline"] {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(51, 65, 85, 0.85) 100%) !important;
-  border: 1px solid rgba(71, 85, 105, 0.6) !important;
-  color: rgb(226, 232, 240) !important;
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-radius: 12px !important;
-}
-
-.dark button[class*="secondary"]:hover,
-.dark .btn-secondary:hover,
-.dark button[class*="outline"]:hover {
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  color: rgb(99, 102, 241) !important;
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Success/Green button styling */
-.dark button[class*="success"],
-.dark .btn-success {
-  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%) !important;
-  border: 1px solid rgba(34, 197, 94, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.dark button[class*="success"]:hover,
-.dark .btn-success:hover {
-  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(34, 197, 94, 0.5) !important;
-}
-
-/* Danger/Red button styling */
-.dark button[class*="danger"],
-.dark button[class*="destructive"],
-.dark .btn-danger {
-  background: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%) !important;
-  border: 1px solid rgba(248, 113, 113, 0.3) !important;
-  color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(248, 113, 113, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 12px !important;
-}
-
-.dark button[class*="danger"]:hover,
-.dark button[class*="destructive"]:hover,
-.dark .btn-danger:hover {
-  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%) !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(248, 113, 113, 0.5) !important;
+/* Button Variants */
+.dark {
+  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%);
+  --btn-secondary-bg: rgba(31, 41, 55, 0.9);
+  --btn-secondary-hover: rgba(51, 65, 85, 0.95);
+  --btn-export-bg: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%);
+  --btn-export-hover: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%);
 }
 
 /* ============================= */
@@ -1637,25 +1261,25 @@ html.dark [data-sidebar="footer"] {
 
 /* Dialog close button visibility */
 .dark [data-radix-dialog-content] button[data-radix-dialog-close] {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: rgb(226, 232, 240) !important;
-  opacity: 0.8 !important;
-  z-index: 9999 !important;
-  transition: all 0.2s ease !important;
-  position: absolute !important;
-  top: 16px !important;
-  right: 16px !important;
-  order: -1 !important;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgb(226, 232, 240);
+  opacity: 0.8;
+  z-index: 9999;
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  order: -1;
 }
 
 .dark [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-  transform: scale(1.05) !important;
-  position: absolute !important;
-  top: 16px !important;
-  right: 16px !important;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  transform: scale(1.05);
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }

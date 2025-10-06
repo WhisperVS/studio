@@ -409,163 +409,163 @@ html.light {
 /* Light tropical search input - FIXED SIZE AND POSITIONING */
 .light .top-controls input[type="text"],
 .light .top-controls input {
-  background: var(--background) !important;
-  border: 2px solid var(--input-border) !important;
-  color: var(--input-text) !important;
+  background: var(--background);
+  border: 2px solid var(--input-border);
+  color: var(--input-text);
   transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--input-shadow) !important;
+  box-shadow: var(--input-shadow);
   font-weight: 500;
   border-radius: 12px;
-  box-sizing: border-box !important;
-  width: 320px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 20px !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
+  box-sizing: border-box;
+  width: 320px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
 }
 
 .light .top-controls input[type="text"]:focus,
 .light .top-controls input:focus {
-  border: 2px solid var(--input-border-focus) !important;
-  background: var(--background) !important;
-  box-shadow: var(--input-shadow-focus) !important;
-  outline: none !important;
-  width: 320px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 20px !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
+  border: 2px solid var(--input-border-focus);
+  background: var(--background);
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
+  width: 320px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
 }
 
 .light .top-controls input[type="text"]::placeholder,
 .light .top-controls input::placeholder {
-  color: var(--input-placeholder) !important;
+  color: var(--input-placeholder);
   font-weight: 400;
-  line-height: 20px !important;
-  font-size: 14px !important;
+  line-height: 20px;
+  font-size: 14px;
 }
 
 /* Fix the search input container to maintain consistent layout */
 .light .top-controls .relative {
-  position: relative !important;
-  display: block !important;
-  width: 320px !important;
-  height: 36px !important;
-  flex-shrink: 0 !important;
+  position: relative;
+  display: block;
+  width: 320px;
+  height: 36px;
+  flex-shrink: 0;
 }
 
 /* Fix button positioning inside search box */
 .light .top-controls .relative button {
-  position: absolute !important;
-  right: 4px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  z-index: 10 !important;
-  margin: 0 !important;
-  border-radius: 6px !important;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  z-index: 10;
+  margin: 0;
+  border-radius: 6px;
 }
 
 /* Search icon styling */
 .light .top-controls .lucide-search {
-  color: var(--input-placeholder) !important;
+  color: var(--input-placeholder);
   transition: color 0.2s ease;
 }
 
 .light .top-controls input[type="text"]:focus + .lucide-search,
 .light .top-controls input[type="text"]:focus ~ .lucide-search {
-  color: var(--input-border-focus) !important;
+  color: var(--input-border-focus);
 }
 
 /* Search icon positioning - make sure it's visible */
 .light .top-controls .relative .lucide-search {
-  position: absolute !important;
-  left: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 16px !important;
-  height: 16px !important;
-  color: var(--input-placeholder) !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--input-placeholder);
+  z-index: 5;
+  pointer-events: none;
 }
 
 /* When input is focused, change search icon color */
 .light .top-controls .relative:focus-within .lucide-search {
-  color: var(--input-border-focus) !important;
+  color: var(--input-border-focus);
 }
 
 /* Premium dark combobox/dropdown buttons */
 .light .top-controls button[role="combobox"] {
-  background: var(--dropdown-background) !important;
-  border: 2px solid var(--dropdown-border) !important;
-  color: var(--dropdown-text) !important;
+  background: var(--dropdown-background);
+  border: 2px solid var(--dropdown-border);
+  color: var(--dropdown-text);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow) !important;
+  box-shadow: var(--dropdown-shadow);
   font-weight: 500;
   border-radius: 12px;
 }
 
 .light .top-controls button[role="combobox"]:hover {
-  background: var(--dropdown-hover) !important;
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
+  background: var(--dropdown-hover);
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.4) !important;
+  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.4);
 }
 
 .light .top-controls button[role="combobox"]:focus {
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
-  box-shadow: var(--input-shadow-focus) !important;
-  outline: none !important;
-  background: rgba(31, 41, 55, 0.9) !important;
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
+  background: rgba(31, 41, 55, 0.9);
   transform: translateY(-1px);
 }
 
 /* Premium dark clear filters button */
 .light .btn-clear-filters {
-  background: var(--btn-clear-bg) !important;
-  border: 2px solid var(--btn-clear-border) !important;
-  color: var(--btn-clear-text) !important;
+  background: var(--btn-clear-bg);
+  border: 2px solid var(--btn-clear-border);
+  color: var(--btn-clear-text);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow) !important;
+  box-shadow: var(--dropdown-shadow);
   font-weight: 500;
   border-radius: 12px;
 }
 
 .light .btn-clear-filters:hover {
-  background: var(--btn-clear-hover) !important;
-  border: 2px solid transparent !important;
-  background-image: var(--input-border-focus) !important;
-  background-clip: padding-box !important;
-  color: var(--text-primary) !important;
+  background: var(--btn-clear-hover);
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
+  color: var(--text-primary);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.5) !important;
+  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.5);
 }
 
 .light .btn-clear-filters svg {
-  color: currentColor !important;
+  color: currentColor;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Premium dark focus ring for all interactive elements */
 .light .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
   border-radius: 12px;
 }
 
@@ -605,41 +605,41 @@ html.light {
 
 /* Dynamic light primary button states */
 .light button[class*="primary"], .light .btn-primary {
-  background: var(--btn-primary-bg) !important;
-  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  background: var(--btn-primary-bg);
+  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .light button[class*="primary"]:hover, .light .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 50px -12px rgba(251, 146, 60, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 16px 50px -12px rgba(251, 146, 60, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15);
   filter: brightness(1.1) saturate(1.1);
 }
 
 .light button[class*="secondary"]:hover, .light .btn-secondary:hover {
-  background: var(--btn-secondary-hover) !important;
-  border-color: transparent !important;
-  background-image: var(--accent-color) !important;
-  color: var(--text-error) !important;
+  background: var(--btn-secondary-hover);
+  border-color: transparent;
+  background-image: var(--accent-color);
+  color: var(--text-error);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px -10px rgba(251, 146, 60, 0.4) !important;
+  box-shadow: 0 12px 35px -10px rgba(251, 146, 60, 0.4);
 }
 
 /* Dark success states */
 .light .btn-success, .light button[class*="success"] {
-  background: var(--success-color) !important;
+  background: var(--success-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .light .btn-success:hover, .light button[class*="success"]:hover {
   transform: translateY(-2px);
   filter: brightness(1.2) hue-rotate(5deg);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5) !important;
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
 }
 
 /* Light floating action buttons */
 .light .fab {
-  background: var(--accent-color) !important;
+  background: var(--accent-color);
   box-shadow: 0 8px 30px rgba(251, 146, 60, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -660,66 +660,66 @@ html.light {
 
 /* Discord-style search input - dark theme */
 .light .top-controls input[type="text"] {
-  background: var(--input-background) !important;
-  border: 1px solid var(--input-border) !important;
-  color: var(--input-text) !important;
+  background: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
   transition: all 0.15s ease;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .light .top-controls input[type="text"]:focus {
-  border-color: var(--input-border-focus) !important;
-  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
-  outline: none !important;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 1px var(--input-border-focus);
+  outline: none;
 }
 
 .light .top-controls input[type="text"]::placeholder {
-  color: var(--input-placeholder) !important;
+  color: var(--input-placeholder);
 }
 
 /* Discord-style combobox/dropdown buttons - dark theme */
 .light .top-controls button[role="combobox"] {
-  background: var(--btn-filter-bg) !important;
-  border: 1px solid var(--btn-filter-border) !important;
-  color: var(--btn-filter-text) !important;
+  background: var(--btn-filter-bg);
+  border: 1px solid var(--btn-filter-border);
+  color: var(--btn-filter-text);
   transition: all 0.15s ease;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .light .top-controls button[role="combobox"]:hover {
-  background: var(--btn-filter-hover) !important;
-  border-color: var(--input-border-focus) !important;
+  background: var(--btn-filter-hover);
+  border-color: var(--input-border-focus);
 }
 
 .light .top-controls button[role="combobox"]:focus {
-  border-color: var(--input-border-focus) !important;
-  box-shadow: 0 0 0 1px var(--input-border-focus) !important;
-  outline: none !important;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 1px var(--input-border-focus);
+  outline: none;
 }
 
 /* Discord-style clear filters button - dark theme */
 .light .btn-clear-filters {
-  background: var(--btn-clear-bg) !important;
-  border: 1px solid var(--btn-clear-border) !important;
-  color: var(--btn-clear-text) !important;
+  background: var(--btn-clear-bg);
+  border: 1px solid var(--btn-clear-border);
+  color: var(--btn-clear-text);
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .light .btn-clear-filters:hover {
-  background: var(--btn-clear-hover) !important;
-  border-color: var(--input-border-focus) !important;
-  color: var(--input-border-focus) !important;
+  background: var(--btn-clear-hover);
+  border-color: var(--input-border-focus);
+  color: var(--input-border-focus);
 }
 
 .light .btn-clear-filters svg {
-  color: currentColor !important;
+  color: currentColor;
 }
 
 /* Discord-style focus ring for all interactive elements - dark theme */
 .light .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* ============================= */
@@ -728,11 +728,11 @@ html.light {
 
 /* Main page background override */
 .light {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 .light body {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Main content area background */
@@ -740,14 +740,14 @@ html.light {
 .light .main-content,
 .light [class*="main"],
 .light .flex-1.flex.flex-col.min-h-0 {
-  background: var(--page-background) !important;
+  background: var(--page-background);
   min-height: 100vh;
 }
 
 /* Dashboard main container */
 .light .dashboard-page {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(251, 146, 60, 0.3);
   backdrop-filter: blur(20px);
   border-radius: 16px;
   box-shadow: 0 8px 40px -12px rgba(251, 146, 60, 0.3);
@@ -756,8 +756,8 @@ html.light {
 
 /* Enhanced table styling for inventory */
 .light .asset-table {
-  background: var(--table-data-bg) !important;
-  border: 1px solid var(--table-data-border) !important;
+  background: var(--table-data-bg);
+  border: 1px solid var(--table-data-border);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
@@ -766,7 +766,7 @@ html.light {
 /* Table header row gets the coral gradient background */
 .light .asset-table thead tr,
 .light table thead tr {
-  background: var(--table-header-bg) !important;
+  background: var(--table-header-bg);
   position: relative;
 }
 
@@ -775,18 +775,18 @@ html.light {
 .light table th,
 .light .asset-table thead th,
 .light table thead th {
-  background: none !important;
-  background-color: transparent !important;
-  color: var(--table-header-text) !important;
+  background: none;
+  background-color: transparent;
+  color: var(--table-header-text);
   font-weight: 600;
   padding: 16px 12px;
-  border-bottom: 2px solid var(--table-header-border) !important;
+  border-bottom: 2px solid var(--table-header-border);
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   position: relative;
   z-index: 5;
-  transition: none !important; /* Remove all transitions from header cells */
+  transition: none; /* Remove all transitions from header cells */
 }
 
 /* FORCE header cells to NEVER be affected by selection state */
@@ -794,23 +794,23 @@ html.light {
 .light .asset-table tr[data-state="selected"] th,
 .light table thead tr th,
 .light .asset-table thead tr th {
-  background: transparent !important;
-  background-color: transparent !important;
-  color: var(--table-header-text) !important;
-  border-left: none !important;
-  box-shadow: none !important;
+  background: transparent;
+  background-color: transparent;
+  color: var(--table-header-text);
+  border-left: none;
+  box-shadow: none;
 }
 
 .light .asset-table td {
-  background: var(--table-data-bg) !important;
-  color: var(--table-data-text) !important;
-  border-bottom: 1px solid var(--table-data-border) !important;
+  background: var(--table-data-bg);
+  color: var(--table-data-text);
+  border-bottom: 1px solid var(--table-data-border);
   padding: 12px;
   transition: all 0.2s ease;
 }
 
 .light .asset-table tr:hover td {
-  background: var(--table-data-hover) !important;
+  background: var(--table-data-hover);
   transform: scale(1.005);
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
 }
@@ -818,20 +818,20 @@ html.light {
 /* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
 .light table tbody tr[data-state="selected"] td,
 .light .asset-table tbody tr[data-state="selected"] td {
-  background: var(--table-data-hover) !important;
-  background-color: var(--table-data-hover) !important;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
-  position: relative !important;
-  z-index: 2 !important;
+  background: var(--table-data-hover);
+  background-color: var(--table-data-hover);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
 /* Enhanced hover for selected rows - DATA ROWS ONLY */
 .light table tbody tr[data-state="selected"]:hover td,
 .light .asset-table tbody tr[data-state="selected"]:hover td {
-  background: var(--table-data-hover) !important;
-  background-color: var(--table-data-hover) !important;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25) !important;
-  z-index: 3 !important;
+  background: var(--table-data-hover);
+  background-color: var(--table-data-hover);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  z-index: 3;
 }
 
 /* Dashboard stats cards */
@@ -843,8 +843,8 @@ html.light {
 }
 
 .light .stats-card {
-  background: var(--dashboard-stat-bg) !important;
-  border: 1px solid var(--dashboard-stat-border) !important;
+  background: var(--dashboard-stat-bg);
+  border: 1px solid var(--dashboard-stat-border);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
@@ -859,14 +859,14 @@ html.light {
 }
 
 .light .stats-value {
-  color: var(--dashboard-stat-accent) !important;
+  color: var(--dashboard-stat-accent);
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .light .stats-label {
-  color: var(--dashboard-stat-text) !important;
+  color: var(--dashboard-stat-text);
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -875,8 +875,8 @@ html.light {
 
 /* Enhanced action buttons for dashboard */
 .light .btn-add-asset {
-  background: var(--btn-add-asset-bg) !important;
-  color: var(--btn-add-asset-text) !important;
+  background: var(--btn-add-asset-bg);
+  color: var(--btn-add-asset-text);
   box-shadow: var(--btn-add-asset-shadow);
   border: none;
   border-radius: 8px;
@@ -886,7 +886,7 @@ html.light {
 }
 
 .light .btn-add-asset:hover {
-  background: var(--btn-add-asset-hover) !important;
+  background: var(--btn-add-asset-hover);
   transform: translateY(-2px);
   box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
 }
@@ -901,22 +901,22 @@ html.light {
 }
 
 .light .status-in-use {
-  background: var(--inventory-in-stock) !important;
+  background: var(--inventory-in-stock);
   color: rgb(233, 233, 233);
 }
 
 .light .status-spare {
-  background: var(--inventory-in-stock) !important;
+  background: var(--inventory-in-stock);
   color: white;
 }
 
 .light .status-for-repair {
-  background: var(--inventory-out-stock) !important;
+  background: var(--inventory-out-stock);
   color: white;
 }
 
 .light .status-for-parts {
-  background: var(--inventory-low-stock) !important;
+  background: var(--inventory-low-stock);
   color: white;
 }
 
@@ -968,27 +968,17 @@ html.light {
 
 /* Override Tailwind bg-background class in dark mode */
 .light .bg-background {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
 /* Specifically target the main dashboard container */
 .light div[class*="flex h-screen bg-background"] {
-  background: var(--page-background) !important;
+  background: var(--page-background);
 }
 
-/* Target all flex containers that might have background */
-.light div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]) {
-  background: var(--page-background) !important;
-}
-
-/* Override any overflow-hidden containers */
-.light div[class*="overflow-hidden"]:not([class*="table"]) {
-  background: var(--page-background) !important;
-}
-
-/* Main container background enforcement */
-.light div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]) {
-  background: var(--page-background) !important;
+/* Main containers */
+.light .main-container {
+  background: var(--page-background);
 }
 
 /* ============================= */
@@ -997,26 +987,26 @@ html.light {
 
 /* Theme toggle coral styling */
 .light .theme-toggle {
-  background: rgba(251, 146, 60, 0.15) !important;
-  color: var(--text-quaternary) !important;
-  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  background: rgba(251, 146, 60, 0.15);
+  color: var(--text-quaternary);
+  border: 1px solid rgba(251, 146, 60, 0.3);
   border-radius: 8px;
-  width: 40px !important;
-  height: 40px !important;
+  width: 40px;
+  height: 40px;
   padding: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px -2px rgba(251, 146, 60, 0.2);
   position: relative;
   overflow: visible;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .light .theme-toggle:hover {
-  background: rgba(251, 146, 60, 0.25) !important;
-  color: rgb(154, 52, 18) !important;
+  background: rgba(251, 146, 60, 0.25);
+  color: rgb(154, 52, 18);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px -2px rgba(251, 146, 60, 0.3);
 }
@@ -1029,41 +1019,41 @@ html.light {
 
 /* Ensure sidebar footer is always visible */
 .light [data-sidebar="sidebar"] {
-  height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .light [data-sidebar="content"] {
-  flex: 1 !important;
-  overflow: visible !important;
-  padding: 8px !important;
+  flex: 1;
+  overflow: visible;
+  padding: 8px;
 }
 
 .light [data-sidebar="footer"] {
-  flex-shrink: 0 !important;
-  background: var(--sidebar-background) !important;
-  z-index: 10 !important;
-  padding: 16px !important;
-  border-top: 1px solid var(--border) !important;
-  min-height: 64px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  flex-shrink: 0;
+  background: var(--sidebar-background);
+  z-index: 10;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main layout viewport constraints */
 .light .main-layout {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow: hidden !important;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 /* Table container scrolling */
 .light .table-container {
-  max-height: calc(100vh - 280px) !important;
-  overflow-y: auto !important;
-  overflow-x: auto !important;
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 /* ============================= */
@@ -1072,17 +1062,17 @@ html.light {
 
 /* Category counts proper spacing */
 .light .sidebar-group {
-  margin-bottom: 8px !important;
+  margin-bottom: 8px;
 }
 
 .light .sidebar-menu {
-  gap: 2px !important;
+  gap: 2px;
 }
 
 .light .sidebar-menu-item {
-  margin-bottom: 1px !important;
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
+  margin-bottom: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 /* =============================*/
@@ -1222,55 +1212,16 @@ html.light {
   transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.light [data-radix-select-item]:hover,
-.light .dropdown-item:hover,
-.light [role="menuitem"]:hover,
-.light [data-radix-select-item][data-highlighted],
-.light .dropdown-item[data-highlighted],
-.light [role="menuitem"][data-highlighted] {
-  background: var(--dropdown-hover) !important;
-  color: var(--dropdown-item-selected-text) !important;
-  border-color: rgba(88, 101, 242, 0.3) !important;
-  transform: translateX(4px) !important;
-  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2) !important;
+/* Clean dropdown item styling */
+.light .dropdown-item {
+  background: var(--dropdown-bg);
+  color: var(--dropdown-text);
+  transition: all 0.2s ease;
 }
 
-.light [data-radix-select-item]:hover::before,
-.light .dropdown-item:hover::before,
-.light [role="menuitem"]:hover::before,
-.light [data-radix-select-item][data-highlighted]::before,
-.light .dropdown-item[data-highlighted]::before,
-.light [role="menuitem"][data-highlighted]::before {
-  left: 100% !important;
-}
-
-.light [data-radix-select-item] svg,
-.light .dropdown-item svg,
-.light [role="menuitem"] svg {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--sidebar-link-icon);
-}
-
-.light [data-radix-select-item]:hover svg,
-.light .dropdown-item:hover svg,
-.light [role="menuitem"]:hover svg,
-.light [data-radix-select-item][data-highlighted] svg,
-.light .dropdown-item[data-highlighted] svg,
-.light [role="menuitem"][data-highlighted] svg {
-  color: var(--sidebar-link-icon-active) !important;
-  transform: scale(1.1) !important;
-}
-
-/* Override accent-foreground text colors */
-.light [data-radix-select-item][data-state="checked"],
-.light .dropdown-item[data-state="checked"],
-.light [role="menuitem"][data-state="checked"] {
-  background: var(--dropdown-item-selected) !important;
-  color: var(--dropdown-item-selected-text) !important;
-  font-weight: 600 !important;
+.light .dropdown-item:hover {
+  background: var(--dropdown-hover);
+  color: var(--dropdown-text);
 }
 
 /* ============================= */
@@ -1279,173 +1230,76 @@ html.light {
 
 /* Theme toggle container ensures visibility */
 .light .theme-toggle-container {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  min-height: 48px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
 }
 
 /* Simple theme toggle visibility - dark theme */
-.light button.theme-toggle,
-.light .theme-toggle,
-.light [class*="theme-toggle"],
-html.light button.theme-toggle,
-html.light .theme-toggle,
-html.light [class*="theme-toggle"] {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+.light .theme-toggle {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* Simple theme toggle icons - dark theme */
-.light .theme-toggle svg,
-.light .theme-toggle [data-theme-icon],
-html.light .theme-toggle svg,
-html.light .theme-toggle [data-theme-icon] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+.light .theme-toggle svg {
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* Show sun icon in dark theme */
-.light .theme-toggle [data-lucide="sun-medium"],
-.light .theme-toggle svg[data-theme-icon]:first-child {
-  transform: rotate(0deg) scale(1) !important;
-  opacity: 1 !important;
+.light .theme-toggle [data-lucide="sun-medium"] {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
 }
 
-/* Hide moon icon in dark theme */
-.light .theme-toggle [data-lucide="moon-star"],
-.light .theme-toggle svg[data-theme-icon]:last-child {
-  transform: rotate(-90deg) scale(0) !important;
-  opacity: 0 !important;
+.light .theme-toggle [data-lucide="moon-star"] {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
 }
 
-/* Ensure sidebar footer container is visible */
-.light .sidebar-footer-manual,
-.light [data-sidebar="footer"],
-html.light .sidebar-footer-manual,
-html.light [data-sidebar="footer"] {
-  display: flex !important;
-  visibility: visible !important;
-  background-color: var(--sidebar-background) !important;
-  border-top: 1px solid var(--border) !important;
-  position: relative !important;
-  z-index: 10 !important;
-  min-height: 80px !important;
+.light [data-sidebar="footer"] {
+  display: flex;
+  visibility: visible;
+  background-color: var(--sidebar-background);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+  min-height: 80px;
 }
 
 /* Sidebar footer specific styling */
 .light [data-sidebar="footer"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.3);
 }
 
-/* ============================= */
-/* ENHANCED DROPDOWN HOVER EFFECTS */
-/* ============================= */
-
-/* COMPREHENSIVE DROPDOWN/SELECT HOVER STYLES FOR DARK THEME */
-/* Target all possible Radix dropdown and select item states */
-.light [data-radix-select-content] [data-radix-select-item]:hover,
-.light [data-radix-select-content] [data-radix-select-item][data-highlighted],
-.light [data-radix-select-content] [role="option"]:hover,
-.light [data-radix-select-content] [role="option"][data-highlighted],
-.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:hover,
-.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item][data-highlighted],
-.light [data-radix-dropdown-menu-content] [role="menuitem"]:hover,
-.light [data-radix-dropdown-menu-content] [role="menuitem"][data-highlighted],
-.light [data-radix-dropdown-menu-content] [role="menuitemcheckbox"]:hover,
-.light [data-radix-dropdown-menu-content] [role="menuitemcheckbox"][data-highlighted],
-.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item]:hover,
-.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-checkbox-item][data-highlighted] {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
+/* Dropdown Components */
+.light {
+  --dropdown-bg: rgb(255, 255, 255);
+  --dropdown-border: rgba(251, 146, 60, 0.2);
+  --dropdown-hover: rgba(251, 146, 60, 0.1);
+  --dropdown-focus: rgba(251, 146, 60, 0.25);
+  --dropdown-text: rgb(17, 24, 39);
 }
 
-/* SelectItem component hover - MATCH SIDEBAR STYLE */
-.light div[class*="select-none"][class*="cursor-default"]:hover {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
+/* Header Components */
+.light {
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-border: rgba(251, 146, 60, 0.2);
+  --header-text: rgb(17, 24, 39);
 }
 
-/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
-.light .dropdown-menu-item:hover,
-.light .select-item:hover {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
-}
-
-/* Focus states enhancement */
-.light [data-radix-select-content] [data-radix-select-item]:focus,
-.light [data-radix-dropdown-menu-content] [data-radix-dropdown-menu-item]:focus {
-  background: rgba(59, 130, 246, 0.25) !important;
-  color: rgb(255, 255, 255) !important;
-  outline: none !important;
-}
-
-/* UNIVERSAL DROPDOWN ITEM FALLBACKS */
-/* Catch any items that might not be targeted by specific selectors */
-.light [data-radix-select-viewport] > *:hover,
-.light [data-radix-select-viewport] > *[data-highlighted],
-.light [data-radix-dropdown-menu-content] > *:hover,
-.light [data-radix-dropdown-menu-content] > *[data-highlighted] {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-  transition: all 0.15s ease !important;
-  border-radius: 6px !important;
-}
-
-/* TAILWIND CLASS OVERRIDES FOR DARK THEME */
-/* Override default Tailwind hover classes with sidebar colors */
-.light .hover\:bg-accent:hover,
-.light [data-highlighted].hover\:bg-accent,
-.light .focus\:bg-accent:focus,
-.light [data-highlighted].focus\:bg-accent {
-  background: var(--sidebar-link-hover) !important;
-  color: rgb(255, 255, 255) !important;
-}
-
-/* Override accent-foreground text colors */
-.light .hover\:text-accent-foreground:hover,
-.light [data-highlighted].hover\:text-accent-foreground,
-.light .focus\:text-accent-foreground:focus,
-.light [data-highlighted].focus\:text-accent-foreground {
-  color: rgb(255, 255, 255) !important;
-}
-
-/* Force rounded corners on all Tailwind button classes */
-.light .rounded-md,
-.light .rounded,
-.light .rounded-sm,
-.light .rounded-lg {
-  border-radius: 12px !important;
-}
-
-/* Override Tailwind button border radius specifically */
-.light button.rounded-md,
-.light button.rounded,
-.light button.rounded-sm,
-.light button.rounded-lg,
-.light [role="button"].rounded-md,
-.light [role="button"].rounded,
-.light [role="button"].rounded-sm,
-.light [role="button"].rounded-lg {
-  border-radius: 12px !important;
-}
-
-/* Ensure all interactive elements have consistent radius */
-.light input,
-.light select,
-.light textarea {
-  border-radius: 10px !important;
+/* Button Variants */
+.light {
+  --btn-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
+  --btn-primary-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.9);
+  --btn-secondary-hover: rgba(251, 146, 60, 0.1);
+  --btn-export-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
+  --btn-export-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
 }
 
 /* ============================= */
@@ -1462,27 +1316,27 @@ html.light [data-sidebar="footer"] {
 
 /* Dialog close button visibility */
 .light [data-radix-dialog-content] button[data-radix-dialog-close] {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: rgb(226, 232, 240) !important;
-  opacity: 0.8 !important;
-  z-index: 9999 !important;
-  transition: all 0.2s ease !important;
-  position: absolute !important;
-  top: 16px !important;
-  right: 16px !important;
-  order: -1 !important;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgb(226, 232, 240);
+  opacity: 0.8;
+  z-index: 9999;
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  order: -1;
 }
 
 .light [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-  transform: scale(1.05) !important;
-  position: absolute !important;
-  top: 16px !important;
-  right: 16px !important;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  transform: scale(1.05);
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 /* ============================= */
