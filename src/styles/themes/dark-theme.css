@@ -666,24 +666,344 @@
 /* ADVANCED DYNAMIC BUTTON REACTIONS - DARK THEME */
 /* ============================= */
 
-/* Universal dark button enhancement */
+/* ============================= */
+/* PREMIUM BUTTON SYSTEM - DARK THEME */
+/* ============================= */
+
+/* Base button foundation - All buttons inherit this */
 .dark button, .dark .btn, .dark [role="button"] {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
   overflow: hidden;
   transform-origin: center;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: var(--radius-sm); /* Consistent rounded corners for all buttons */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+/* Premium ripple effect */
+.dark button::before, .dark .btn::before, .dark [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hover states */
+.dark button:hover, .dark .btn:hover, .dark [role="button"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dark button:hover::before, .dark .btn:hover::before, .dark [role="button"]:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Active states */
+.dark button:active, .dark .btn:active, .dark [role="button"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled states */
+.dark button:disabled, .dark .btn:disabled, .dark [role="button"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Universal input and form control styling */
 .dark input, .dark select, .dark textarea {
   border-radius: var(--radius-sm);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Universal card and panel styling */
 .dark .card, .dark .panel, .dark [class*="card"] {
   border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================= */
+/* PREMIUM BUTTON VARIANTS - DARK THEME */
+/* ============================= */
+
+/* Primary Action Buttons */
+.dark .btn-primary, .dark button[data-variant="primary"] {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(79, 70, 229);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark .btn-primary:hover, .dark button[data-variant="primary"]:hover {
+  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(67, 56, 202) 100%);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.5), 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Secondary Action Buttons */
+.dark .btn-secondary, .dark button[data-variant="secondary"] {
+  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
+  color: rgb(226, 232, 240);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
+}
+
+.dark .btn-secondary:hover, .dark button[data-variant="secondary"]:hover {
+  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Success/Confirmation Buttons */
+.dark .btn-success, .dark button[data-variant="success"] {
+  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(22, 163, 74);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+.dark .btn-success:hover, .dark button[data-variant="success"]:hover {
+  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.5);
+}
+
+/* Danger/Delete Buttons */
+.dark .btn-danger, .dark button[data-variant="danger"] {
+  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(220, 38, 38);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.dark .btn-danger:hover, .dark button[data-variant="danger"]:hover {
+  background: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.5);
+}
+
+/* Ghost/Outline Buttons */
+.dark .btn-ghost, .dark button[data-variant="ghost"] {
+  background: transparent;
+  color: rgb(226, 232, 240);
+  border: 1px solid rgba(71, 85, 105, 0.6);
+  box-shadow: none;
+}
+
+.dark .btn-ghost:hover, .dark button[data-variant="ghost"]:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: rgb(99, 102, 241);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
+}
+
+/* ============================= */
+/* SPECIALIZED ACTION BUTTONS - DARK THEME */
+/* ============================= */
+
+/* Size Variants */
+.dark .btn-sm, .dark button[data-size="sm"] {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  min-height: 2rem;
+}
+
+.dark .btn-lg, .dark button[data-size="lg"] {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  min-height: 3rem;
+  font-weight: 600;
+}
+
+/* Icon Buttons */
+.dark .btn-icon, .dark button[data-variant="icon"] {
+  padding: 0.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  justify-content: center;
+}
+
+.dark .btn-icon.btn-sm, .dark button[data-variant="icon"][data-size="sm"] {
+  padding: 0.375rem;
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+/* Loading States */
+.dark .btn-loading, .dark button[data-loading="true"] {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.dark .btn-loading::after, .dark button[data-loading="true"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: button-spin 0.8s linear infinite;
+  color: inherit;
+}
+
+@keyframes button-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Focus States */
+.dark button:focus-visible, .dark .btn:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+}
+
+/* Action Button Groups */
+.dark .btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark .btn-group button {
+  border-radius: 0;
+  border-right-width: 0;
+  box-shadow: none;
+}
+
+.dark .btn-group button:first-child {
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.dark .btn-group button:last-child {
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  border-right-width: 1px;
+}
+
+/* ============================= */
+/* PREMIUM INTERACTIVE COMPONENTS - DARK THEME */
+/* ============================= */
+
+/* Dropdown Triggers */
+.dark button[role="combobox"], .dark .dropdown-trigger {
+  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
+  color: rgb(226, 232, 240);
+  border: 1px solid rgba(71, 85, 105, 0.8);
+  position: relative;
+}
+
+.dark button[role="combobox"]:hover, .dark .dropdown-trigger:hover {
+  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+/* Toggle Switches */
+.dark .toggle-switch {
+  position: relative;
+  display: inline-flex;
+  width: 3rem;
+  height: 1.5rem;
+  background: rgba(71, 85, 105, 0.6);
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.dark .toggle-switch.active {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+}
+
+.dark .toggle-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: rgb(226, 232, 240);
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark .toggle-switch.active::before {
+  transform: translateX(1.5rem);
+  background: white;
+}
+
+/* Filter Tags/Chips */
+.dark .filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
+  color: rgb(226, 232, 240);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.dark .filter-chip:hover {
+  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+}
+
+.dark .filter-chip.active {
+  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  color: rgb(255, 255, 255);
+  border-color: rgb(79, 70, 229);
+}
+
+/* Action Menus */
+.dark .action-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  color: rgb(226, 232, 240);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.dark .action-menu-item:hover {
+  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
+  color: rgb(99, 102, 241);
+  transform: translateX(2px);
 }
 
 /* Dark theme ripple effect */
