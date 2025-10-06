@@ -1653,3 +1653,45 @@ html.light [data-sidebar="footer"] {
   top: 16px !important;
   right: 16px !important;
 }
+
+/* ============================= */
+/* BUTTON VARIANT OVERRIDES FOR CORAL THEME */
+/* ============================= */
+
+/* Force button variant CSS variables to use coral theme colors */
+.light {
+  /* Select All Button - Coral */
+  --btn-select-all-bg: rgb(251, 146, 60) !important;
+  --btn-select-all-text: rgb(255, 255, 255) !important;
+  --btn-select-all-hover: rgb(249, 115, 22) !important;
+  
+  /* Clear Selection Button - Light Peach */
+  --btn-clear-selection-bg: rgb(254, 242, 242) !important;
+  --btn-clear-selection-text: rgb(120, 53, 15) !important;
+  --btn-clear-selection-hover: rgb(255, 237, 213) !important;
+  
+  /* Export Button - Green */
+  --btn-export-bg: rgb(34, 197, 94) !important;
+  --btn-export-text: rgb(255, 255, 255) !important;
+  --btn-export-hover: rgb(22, 163, 74) !important;
+  
+  /* Delete Button - Red */
+  --btn-delete-bg: rgb(239, 68, 68) !important;
+  --btn-delete-text: rgb(255, 255, 255) !important;
+  --btn-delete-hover: rgb(220, 38, 38) !important;
+  
+  /* View Settings Button - Light Peach */
+  --btn-view-settings-bg: rgb(254, 242, 242) !important;
+  --btn-view-settings-text: rgb(120, 53, 15) !important;
+  --btn-view-settings-hover: rgb(255, 237, 213) !important;
+  
+  /* Clear Filters Button - Light Peach */
+  --btn-clear-filters-bg: rgb(254, 242, 242) !important;
+  --btn-clear-filters-text: rgb(120, 53, 15) !important;
+  --btn-clear-filters-hover: rgb(255, 237, 213) !important;
+}
+
+/* Additional specificity for button elements using these variants */
+.light button {
+  /* Ensure Tailwind classes use these variables */
+}
