@@ -268,6 +268,18 @@
   --btn-delete-text: rgb(255, 255, 255);       /* White text */
   --btn-delete-hover: rgb(185, 28, 28);        /* Darker red hover */
   
+  /* Connect Button - Dark Theme */
+  --btn-connect-bg: rgb(59, 130, 246);         /* Blue for Connect */
+  --btn-connect-text: rgb(255, 255, 255);      /* White text */
+  --btn-connect-hover: rgb(37, 99, 235);       /* Darker blue hover */
+  
+  /* Checkbox Variables - Dark Theme */
+  --checkbox-bg: rgb(31, 41, 55);              /* Dark background */
+  --checkbox-border: rgb(75, 85, 99);          /* Gray border */
+  --checkbox-checked-bg: rgb(59, 130, 246);    /* Blue when checked */
+  --checkbox-checked-border: rgb(59, 130, 246); /* Blue border when checked */
+  --checkbox-checkmark: rgb(255, 255, 255);    /* White checkmark */
+  
   /* ============================= */
   /* SIDEBAR NAVIGATION */
   /* ============================= */

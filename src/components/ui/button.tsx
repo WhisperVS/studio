@@ -28,6 +28,7 @@ const buttonVariants = cva(
         "apply": "bg-[var(--btn-apply-bg)] text-[var(--btn-apply-text)] hover:bg-[var(--btn-apply-hover)] border border-[var(--btn-apply-bg)] hover:border-[var(--btn-apply-hover)]",
         "cancel": "bg-[var(--btn-cancel-bg)] text-[var(--btn-cancel-text)] hover:bg-[var(--btn-cancel-hover)] border border-[var(--btn-cancel-bg)] hover:border-[var(--btn-cancel-hover)]",
         "delete": "bg-[var(--btn-delete-bg)] text-[var(--btn-delete-text)] hover:bg-[var(--btn-delete-hover)] border border-[var(--btn-delete-bg)] hover:border-[var(--btn-delete-hover)]",
+        "connect": "bg-[var(--btn-connect-bg)] text-[var(--btn-connect-text)] hover:bg-[var(--btn-connect-hover)] border border-[var(--btn-connect-bg)] hover:border-[var(--btn-connect-hover)]",
       },
       size: {
         default: "h-10 px-4 py-2",
