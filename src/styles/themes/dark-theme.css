@@ -1229,6 +1229,27 @@
 }
 
 /* ============================= */
+/* ============================= */
+/* COMPREHENSIVE UI COMPONENT VARIABLES - DARK THEME */
+/* ============================= */
+
+/* Sidebar Components */
+.dark {
+  --sidebar-background: rgba(15, 23, 42, 0.98);
+  --sidebar-foreground: rgb(248, 250, 252);
+  --sidebar-border: rgba(71, 85, 105, 0.6);
+  --sidebar-primary: rgb(99, 102, 241);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgba(59, 130, 246, 0.1);
+  --sidebar-accent-foreground: rgb(248, 250, 252);
+  --sidebar-muted: rgba(51, 65, 85, 0.5);
+  --sidebar-muted-foreground: rgb(148, 163, 184);
+  --sidebar-ring: rgba(99, 102, 241, 0.4);
+  --sidebar-link-hover: rgba(59, 130, 246, 0.15);
+  --sidebar-link-icon: rgb(148, 163, 184);
+  --sidebar-link-icon-active: rgb(99, 102, 241);
+}
+
 /* Dropdown Components */
 .dark {
   --dropdown-bg: rgb(30, 41, 59);
@@ -1236,6 +1257,9 @@
   --dropdown-hover: rgba(59, 130, 246, 0.1);
   --dropdown-focus: rgba(59, 130, 246, 0.25);
   --dropdown-text: rgb(248, 250, 252);
+  --dropdown-background: rgba(15, 23, 42, 0.98);
+  --dropdown-item-selected: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%);
+  --dropdown-item-selected-text: rgb(248, 250, 252);
 }
 
 /* Header Components */
@@ -1253,6 +1277,254 @@
   --btn-secondary-hover: rgba(51, 65, 85, 0.95);
   --btn-export-bg: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%);
   --btn-export-hover: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%);
+}
+
+/* Card Components */
+.dark {
+  --card-bg: rgba(15, 23, 42, 0.98);
+  --card-border: rgba(71, 85, 105, 0.6);
+  --card-hover: rgba(59, 130, 246, 0.05);
+  --card-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Toast & Notification Components */
+.dark {
+  --toast-bg: rgba(31, 41, 55, 0.95);
+  --toast-border: rgba(71, 85, 105, 0.6);
+  --toast-text: rgb(248, 250, 252);
+  --toast-success-bg: rgba(34, 197, 94, 0.1);
+  --toast-success-border: rgba(34, 197, 94, 0.3);
+  --toast-error-bg: rgba(239, 68, 68, 0.1);
+  --toast-error-border: rgba(239, 68, 68, 0.3);
+  --toast-warning-bg: rgba(251, 191, 36, 0.1);
+  --toast-warning-border: rgba(251, 191, 36, 0.3);
+}
+
+/* Form Components */
+.dark {
+  --form-label-color: rgb(248, 250, 252);
+  --form-description-color: rgb(148, 163, 184);
+  --form-error-color: rgb(248, 113, 113);
+}
+
+/* Dialog Components */
+.dark {
+  --dialog-bg: rgba(31, 41, 55, 0.98);
+  --dialog-border: rgba(71, 85, 105, 0.6);
+  --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --dialog-overlay: rgba(0, 0, 0, 0.6);
+}
+
+/* Scrollbar Components */
+.dark {
+  --scrollbar-track: rgba(51, 65, 85, 0.3);
+  --scrollbar-thumb: rgba(99, 102, 241, 0.4);
+  --scrollbar-thumb-hover: rgba(99, 102, 241, 0.6);
+}
+
+/* Text Colors */
+.dark {
+  --text-primary: rgb(248, 250, 252);
+  --text-secondary: rgb(203, 213, 225);
+  --text-tertiary: rgb(148, 163, 184);
+  --text-quaternary: rgb(100, 116, 139);
+  --text-muted: rgb(148, 163, 184);
+  --text-error: rgb(248, 113, 113);
+  --text-success: rgb(74, 222, 128);
+  --text-warning: rgb(251, 191, 36);
+  --text-info: rgb(96, 165, 250);
+}
+
+/* Border Colors */
+.dark {
+  --border: rgba(71, 85, 105, 0.4);
+  --border-subtle: rgba(51, 65, 85, 0.3);
+  --border-muted: rgba(30, 41, 59, 0.5);
+}
+
+/* Background Colors */
+.dark {
+  --background: rgb(15, 23, 42);
+  --background-subtle: rgba(30, 41, 59, 0.3);
+  --background-muted: rgba(51, 65, 85, 0.2);
+  --foreground: rgb(248, 250, 252);
+  --muted: rgba(51, 65, 85, 0.3);
+  --muted-foreground: rgb(148, 163, 184);
+}
+
+/* Accordion Components */
+.dark {
+  --accordion-trigger-bg: rgba(31, 41, 55, 0.9);
+  --accordion-trigger-hover: rgba(59, 130, 246, 0.1);
+  --accordion-content-bg: rgba(15, 23, 42, 0.95);
+  --accordion-border: rgba(71, 85, 105, 0.4);
+}
+
+/* Calendar Components */
+.dark {
+  --calendar-bg: rgba(31, 41, 55, 0.98);
+  --calendar-border: rgba(71, 85, 105, 0.4);
+  --calendar-cell-selected: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --calendar-cell-hover: rgba(59, 130, 246, 0.1);
+  --calendar-cell-today: rgba(59, 130, 246, 0.2);
+  --calendar-nav-hover: rgba(59, 130, 246, 0.15);
+}
+
+/* Collapsible Components */
+.dark {
+  --collapsible-trigger-bg: rgba(31, 41, 55, 0.9);
+  --collapsible-trigger-hover: rgba(59, 130, 246, 0.1);
+  --collapsible-content-bg: rgba(15, 23, 42, 0.95);
+}
+
+/* Combobox Components */
+.dark {
+  --combobox-bg: rgba(31, 41, 55, 0.98);
+  --combobox-border: rgba(71, 85, 105, 0.4);
+  --combobox-hover: rgba(59, 130, 246, 0.1);
+  --combobox-focus: rgba(59, 130, 246, 0.25);
+  --combobox-selected: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%);
+}
+
+/* Command Components */
+.dark {
+  --command-bg: rgba(31, 41, 55, 0.98);
+  --command-border: rgba(71, 85, 105, 0.4);
+  --command-item-hover: rgba(59, 130, 246, 0.1);
+  --command-item-selected: rgba(59, 130, 246, 0.15);
+  --command-shortcut-text: rgb(148, 163, 184);
+}
+
+/* MenuBar Components */
+.dark {
+  --menubar-bg: rgba(17, 24, 39, 0.95);
+  --menubar-border: rgba(71, 85, 105, 0.4);
+  --menubar-trigger-hover: rgba(59, 130, 246, 0.1);
+  --menubar-item-hover: rgba(59, 130, 246, 0.15);
+  --menubar-separator: rgba(71, 85, 105, 0.4);
+}
+
+/* Progress Components */
+.dark {
+  --progress-bg: rgba(51, 65, 85, 0.5);
+  --progress-fill: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --progress-border: rgba(71, 85, 105, 0.4);
+}
+
+/* Radio Group Components */
+.dark {
+  --radio-bg: rgba(31, 41, 55, 0.9);
+  --radio-border: rgba(99, 102, 241, 0.4);
+  --radio-checked: rgb(99, 102, 241);
+  --radio-hover: rgba(59, 130, 246, 0.1);
+  --radio-focus: rgba(59, 130, 246, 0.25);
+}
+
+/* Separator Components */
+.dark {
+  --separator-bg: rgba(71, 85, 105, 0.4);
+  --separator-gradient: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.3) 50%, transparent 100%);
+}
+
+/* Sheet Components */
+.dark {
+  --sheet-bg: rgba(31, 41, 55, 0.98);
+  --sheet-border: rgba(71, 85, 105, 0.4);
+  --sheet-overlay: rgba(0, 0, 0, 0.6);
+  --sheet-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Skeleton Components */
+.dark {
+  --skeleton-bg: rgba(51, 65, 85, 0.6);
+  --skeleton-shine: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.1) 50%, transparent 100%);
+}
+
+/* Slider Components */
+.dark {
+  --slider-track-bg: rgba(51, 65, 85, 0.5);
+  --slider-range-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --slider-thumb-bg: rgb(248, 250, 252);
+  --slider-thumb-border: rgb(99, 102, 241);
+  --slider-thumb-hover: rgba(59, 130, 246, 0.1);
+}
+
+/* Switch Components */
+.dark {
+  --switch-bg-off: rgba(71, 85, 105, 0.5);
+  --switch-bg-on: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --switch-thumb: rgb(248, 250, 252);
+  --switch-focus: rgba(59, 130, 246, 0.25);
+}
+
+/* Tabs Components */
+.dark {
+  --tabs-list-bg: rgba(51, 65, 85, 0.3);
+  --tabs-trigger-bg: transparent;
+  --tabs-trigger-hover: rgba(59, 130, 246, 0.1);
+  --tabs-trigger-active: rgba(31, 41, 55, 0.9);
+  --tabs-content-bg: rgba(15, 23, 42, 0.95);
+  --tabs-border: rgba(71, 85, 105, 0.4);
+}
+
+/* Textarea Components */
+.dark {
+  --textarea-bg: rgba(31, 41, 55, 0.9);
+  --textarea-border: rgba(71, 85, 105, 0.4);
+  --textarea-hover: rgba(59, 130, 246, 0.1);
+  --textarea-focus: rgba(59, 130, 246, 0.25);
+  --textarea-placeholder: rgb(148, 163, 184);
+}
+
+/* Tooltip Components */
+.dark {
+  --tooltip-bg: rgba(248, 250, 252, 0.95);
+  --tooltip-text: rgb(15, 23, 42);
+  --tooltip-border: rgba(71, 85, 105, 0.4);
+  --tooltip-arrow: rgba(248, 250, 252, 0.95);
+}
+
+/* Alert Components */
+.dark {
+  --alert-bg: rgba(31, 41, 55, 0.95);
+  --alert-border: rgba(71, 85, 105, 0.4);
+  --alert-text: rgb(248, 250, 252);
+  --alert-success-bg: rgba(34, 197, 94, 0.1);
+  --alert-success-border: rgba(34, 197, 94, 0.3);
+  --alert-error-bg: rgba(239, 68, 68, 0.1);
+  --alert-error-border: rgba(239, 68, 68, 0.3);
+  --alert-warning-bg: rgba(251, 191, 36, 0.1);
+  --alert-warning-border: rgba(251, 191, 36, 0.3);
+}
+
+/* Avatar Components */
+.dark {
+  --avatar-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(30, 41, 59, 0.8) 100%);
+  --avatar-fallback-bg: rgba(99, 102, 241, 0.8);
+  --avatar-fallback-text: rgb(255, 255, 255);
+  --avatar-border: rgba(71, 85, 105, 0.4);
+}
+
+/* Badge Components */
+.dark {
+  --badge-default-bg: rgba(51, 65, 85, 0.8);
+  --badge-default-text: rgb(248, 250, 252);
+  --badge-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --badge-primary-text: rgb(255, 255, 255);
+  --badge-success-bg: rgba(34, 197, 94, 0.8);
+  --badge-success-text: rgb(255, 255, 255);
+  --badge-error-bg: rgba(239, 68, 68, 0.8);
+  --badge-error-text: rgb(255, 255, 255);
+  --badge-warning-bg: rgba(251, 191, 36, 0.8);
+  --badge-warning-text: rgb(15, 23, 42);
+}
+
+/* Popover Components */
+.dark {
+  --popover-bg: rgba(31, 41, 55, 0.98);
+  --popover-border: rgba(71, 85, 105, 0.4);
+  --popover-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
+  --popover-overlay: rgba(0, 0, 0, 0.4);
 }
 
 /* ============================= */
