@@ -1,8 +1,11 @@
 /* ======================================== */
-/* LIGHT THEME - TROPICAL BEACH PARADISE */
+/* LIGHT THEME - PEACHY CORAL PARADISE */
 /* ======================================== */
 
-.light {
+/* Ensure light theme takes precedence when .light class is applied */
+.light,
+:root.light,
+html.light {
   /* ============================= */
   /* CORE LAYOUT COLORS - PEACHY CORAL PARADISE */
   /* ============================= */
@@ -1659,7 +1662,9 @@ html.light [data-sidebar="footer"] {
 /* ============================= */
 
 /* Force button variant CSS variables to use coral theme colors */
-.light {
+.light,
+:root.light,
+html.light {
   /* Select All Button - Coral */
   --btn-select-all-bg: rgb(251, 146, 60) !important;
   --btn-select-all-text: rgb(255, 255, 255) !important;
