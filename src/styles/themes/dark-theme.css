@@ -366,6 +366,8 @@
   --scrollbar-thumb-hover: rgb(37, 99, 235);   /* Darker blue hover */
   --scrollbar-thumb-border: rgb(30, 41, 59);   /* Track colored border */
   --scrollbar-corner: rgb(30, 41, 59);         /* Corner color */
+  --scrollbar-glow: 0 0 12px rgba(59, 130, 246, 0.4); /* Blue glow effect */
+  --scrollbar-glow-hover: 0 0 18px rgba(59, 130, 246, 0.6); /* Enhanced glow on hover */
   
   /* ============================= */
   /* TABLE STYLING HELPERS */

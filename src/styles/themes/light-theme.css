@@ -370,6 +370,8 @@ html.light {
   --scrollbar-thumb-hover: rgb(249, 115, 22);   /* Darker coral hover */
   --scrollbar-thumb-border: rgb(254, 242, 242);   /* Track colored border */
   --scrollbar-corner: rgb(254, 242, 242);         /* Corner color */
+  --scrollbar-glow: 0 0 12px rgba(251, 146, 60, 0.4); /* Coral glow effect */
+  --scrollbar-glow-hover: 0 0 18px rgba(251, 146, 60, 0.6); /* Enhanced glow on hover */
   
   /* ============================= */
   /* TABLE STYLING HELPERS - TROPICAL BEACH */
