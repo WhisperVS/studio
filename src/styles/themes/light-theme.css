@@ -74,6 +74,8 @@ html.light {
   /* Theme toggle icon colors */
   --theme-toggle-sun-color: #fb923c;
   --theme-toggle-moon-color: #f97316;
+  --theme-toggle-sun-glow: rgba(251, 146, 60, 0.4);
+  --theme-toggle-moon-glow: rgba(249, 115, 22, 0.4);
   
   /* ============================= */
   /* MODAL AND DIALOG COLORS - PEACHY CORAL */
@@ -960,6 +962,27 @@ html.light {
   background: var(--status-for-recycle-bg);
   border-color: var(--status-for-recycle-border);
   color: var(--status-for-recycle-text);
+}
+
+/* Status Badge Hover Effects - Light Theme */
+.light .status-badge.in-use:hover {
+  background-color: var(--status-in-use-hover);
+}
+
+.light .status-badge.spare:hover {
+  background-color: var(--status-spare-hover);
+}
+
+.light .status-badge.for-repair:hover {
+  background-color: var(--status-for-repair-hover);
+}
+
+.light .status-badge.for-parts:hover {
+  background-color: var(--status-for-parts-hover);
+}
+
+.light .status-badge.for-recycle:hover {
+  background-color: var(--status-for-recycle-hover);
 }
 
 /* ============================= */

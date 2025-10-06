@@ -43,18 +43,10 @@ html {
     border: none;
   }
 
-  .status-badge.in-use:hover {
-    background-color: var(--status-in-use-hover);
-  }
-
   .status-badge.spare {
     background-color: var(--status-spare-bg);
     color: var(--status-spare-text);
     border: none;
-  }
-
-  .status-badge.spare:hover {
-    background-color: var(--status-spare-hover);
   }
 
   .status-badge.for-repair {
@@ -63,28 +55,16 @@ html {
     border: none;
   }
 
-  .status-badge.for-repair:hover {
-    background-color: var(--status-for-repair-hover);
-  }
-
   .status-badge.for-parts {
     background-color: var(--status-for-parts-bg);
     color: var(--status-for-parts-text);
     border: 1px solid var(--status-for-parts-border);
   }
 
-  .status-badge.for-parts:hover {
-    background-color: var(--status-for-parts-hover);
-  }
-
   .status-badge.for-recycle {
     background-color: var(--status-for-recycle-bg);
     color: var(--status-for-recycle-text);
     border: none;
-  }
-
-  .status-badge.for-recycle:hover {
-    background-color: var(--status-for-recycle-hover);
   }
 
   .checkbox-root[data-state="unchecked"] {
