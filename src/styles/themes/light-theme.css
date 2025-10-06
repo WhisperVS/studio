@@ -1724,68 +1724,11 @@ html.light {
 }
 
 /* Sidebar group and navigation alignment */
-.light .sidebar-group {
-  padding: 8px;
-}
 
-.light .sidebar-group > div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
 
-/* Sidebar navigation items - Left aligned */
-.light [data-sidebar] .sidebar-nav-item,
-.light .sidebar-group a,
-.light .sidebar-group button,
-.light [role="menuitem"] {
-  display: flex !important;
-  align-items: center !important;
-  padding: 12px 16px !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
-  border-radius: var(--radius-sm);
-  margin: 2px 0;
-  transition: all 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
 
-.light [data-sidebar] .sidebar-nav-item:hover {
-  background: rgba(251, 146, 60, 0.1);
-  transform: translateX(2px);
-}
 
-.light [data-sidebar] .sidebar-nav-item.active {
-  background: rgba(251, 146, 60, 0.2);
-  color: rgb(92, 33, 4);
-  font-weight: 600;
-}
 
-/* Sidebar icons */
-.light [data-sidebar] .sidebar-nav-item svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: rgb(180, 83, 45);
-}
-
-.light [data-sidebar] .sidebar-nav-item.active svg {
-  color: rgb(92, 33, 4);
-}
-
-/* Sidebar text */
-.light [data-sidebar] .sidebar-nav-item span {
-  flex: 1;
-  color: rgb(120, 53, 15);
-  font-size: 0.925rem;
-}
-
-.light [data-sidebar] .sidebar-nav-item.active span {
-  color: rgb(92, 33, 4);
-  font-weight: 600;
-}
 
 /* Proper sidebar text colors with correct specificity */
 .light [data-sidebar="sidebar"] {
@@ -1833,41 +1776,7 @@ html.light {
   width: 60px;
 }
 
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item {
-  justify-content: center;
-  padding: 12px 8px;
-  margin: 2px 4px;
-}
 
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item span {
-  display: none;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item svg {
-  margin: 0;
-}
-
-/* Collapsed sidebar tooltip on hover */
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item {
-  position: relative;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgb(51, 65, 85);
-  color: white;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  white-space: nowrap;
-  margin-left: 8px;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
 
 /* Sidebar toggle button styling */
 .light .sidebar-toggle {
@@ -2056,6 +1965,88 @@ html.light {
   width: 60px;
   display: flex;
   justify-content: center;
+}
+
+/* Sidebar group styling */
+.light .sidebar-group {
+  padding: 8px;
+}
+
+.light .sidebar-group > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Sidebar navigation items - Left aligned */
+.light [data-sidebar] .sidebar-nav-item,
+.light .sidebar-group a,
+.light .sidebar-group button,
+.light [role="menuitem"] {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  border-radius: var(--radius-sm);
+  margin: 2px 0;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.light [data-sidebar] .sidebar-nav-item:hover {
+  background: rgba(251, 146, 60, 0.1);
+  transform: translateX(2px);
+}
+
+.light [data-sidebar] .sidebar-nav-item.active {
+  background: rgba(251, 146, 60, 0.2);
+  color: rgb(92, 33, 4);
+  font-weight: 600;
+}
+
+/* Sidebar icons */
+.light [data-sidebar] .sidebar-nav-item svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: rgb(180, 83, 45);
+}
+
+.light [data-sidebar] .sidebar-nav-item.active svg {
+  color: rgb(92, 33, 4);
+}
+
+/* Sidebar text */
+.light [data-sidebar] .sidebar-nav-item span {
+  flex: 1;
+  color: rgb(120, 53, 15);
+  font-size: 0.925rem;
+}
+
+.light [data-sidebar] .sidebar-nav-item.active span {
+  color: rgb(92, 33, 4);
+  font-weight: 600;
+}
+
+/* Navigation item badges/counts */
+.light [data-sidebar] .sidebar-nav-item .badge {
+  background: rgba(251, 146, 60, 0.15);
+  color: rgb(92, 33, 4);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.light [data-sidebar] .sidebar-nav-item.active .badge {
+  background: rgba(92, 33, 4, 0.15);
+  color: rgb(92, 33, 4);
 }
 
 /* Basic sidebar text colors - no positioning overrides */

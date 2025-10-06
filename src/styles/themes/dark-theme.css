@@ -300,16 +300,16 @@
   /* SIDEBAR NAVIGATION */
   /* ============================= */
   
-  --sidebar-background: rgb(47, 49, 54);       /* Discord sidebar gray */
-  --sidebar-text: rgb(220, 221, 222);          /* Discord light text */
-  --sidebar-link-text: rgb(142, 146, 151);     /* Discord muted text */
+  --sidebar-background: rgba(30, 41, 59, 0.95); /* Dark slate background */
+  --sidebar-text: rgb(226, 232, 240);          /* Light text on dark sidebar */
+  --sidebar-link-text: rgb(148, 163, 184);     /* Muted light text */
   --sidebar-link-bg: transparent;              /* Transparent background */
-  --sidebar-link-hover: rgba(88, 101, 242, 0.1); /* Discord blurple hover */
-  --sidebar-link-active: rgba(88, 101, 242, 0.2); /* Discord blurple active */
-  --sidebar-link-active-text: rgb(255, 255, 255); /* Pure white active text */
-  --sidebar-link-icon: rgb(142, 146, 151);     /* Discord muted icon */
-  --sidebar-link-icon-active: rgb(255, 255, 255); /* White active icon */
-  --sidebar-text-hover: rgb(255, 255, 255);    /* White hover text */
+  --sidebar-link-hover: rgba(99, 102, 241, 0.15); /* Purple hover */
+  --sidebar-link-active: rgba(99, 102, 241, 0.25); /* Purple active */
+  --sidebar-link-active-text: rgb(248, 250, 252); /* Light active text */
+  --sidebar-link-icon: rgb(148, 163, 184);     /* Light gray icons */
+  --sidebar-link-icon-active: rgb(248, 250, 252); /* Light active icons */
+  --sidebar-text-hover: rgb(248, 250, 252);    /* Light hover text */
   --sidebar-border: rgb(64, 68, 75);           /* Discord border gray */
   --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Dark shadow */
   
@@ -1835,8 +1835,28 @@
 
 /* Sidebar content styling */
 .dark [data-sidebar="content"] {
-  background: var(--sidebar-background);
+  background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
   color: var(--sidebar-text);
+}
+
+.dark [data-sidebar="sidebar"] {
+  background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
+  color: rgb(226, 232, 240);
+}
+
+/* Proper sidebar text colors with correct specificity */
+.dark [data-sidebar="sidebar"] button,
+.dark [data-sidebar="sidebar"] a,
+.dark [data-sidebar="sidebar"] span,
+.dark [data-sidebar="sidebar"] div {
+  color: rgb(226, 232, 240);
+}
+
+.dark [data-sidebar="content"] button,
+.dark [data-sidebar="content"] a,
+.dark [data-sidebar="content"] span,
+.dark [data-sidebar="content"] div {
+  color: rgb(226, 232, 240);
 }
 
 /* Sidebar footer specific styling */
@@ -1880,6 +1900,171 @@
 
 .dark [data-sidebar="footer"] button:hover {
   color: rgb(248, 250, 252);
+}
+
+/* ============================= */
+/* COLLAPSED SIDEBAR ALIGNMENT - DARK THEME */
+/* ============================= */
+
+/* Simple collapsed sidebar styling */
+.dark [data-collapsible="icon"] span:not(.sr-only) {
+  display: none;
+}
+
+.dark [data-collapsible="icon"] .badge {
+  display: none;
+}
+
+/* Perfect alignment for collapsed icons */
+.dark [data-collapsible="icon"] {
+  width: 60px;
+}
+
+.dark [data-collapsible="icon"] .sidebar-group {
+  width: 100%;
+  padding: 0;
+}
+
+.dark [data-collapsible="icon"] a,
+.dark [data-collapsible="icon"] button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 60px !important;
+  height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0;
+}
+
+.dark [data-collapsible="icon"] svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 auto !important;
+}
+
+/* Match logo and theme toggle positioning exactly */
+.dark [data-collapsible="icon"] [data-sidebar="header"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  padding: 16px 0;
+}
+
+.dark [data-collapsible="icon"] [data-sidebar="header"] svg {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+}
+
+/* Ensure theme toggle matches the same alignment */
+.dark [data-collapsible="icon"] [data-sidebar="footer"] .theme-toggle {
+  width: 60px;
+  margin: 0;
+  justify-content: center;
+}
+
+/* Collapsed sidebar container alignment */
+.dark [data-collapsible="icon"] [data-sidebar="content"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  padding: 0;
+}
+
+.dark [data-collapsible="icon"] [data-sidebar="content"] > * {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Sidebar group styling - matching light theme */
+.dark .sidebar-group {
+  padding: 8px;
+}
+
+.dark .sidebar-group > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Sidebar navigation items - matching light theme layout */
+.dark [data-sidebar] .sidebar-nav-item,
+.dark .sidebar-group a,
+.dark .sidebar-group button,
+.dark [role="menuitem"] {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  border-radius: var(--radius-sm);
+  margin: 2px 0;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dark [data-sidebar] .sidebar-nav-item:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateX(2px);
+}
+
+.dark [data-sidebar] .sidebar-nav-item.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: rgb(248, 250, 252);
+  font-weight: 600;
+}
+
+/* Sidebar icons - matching light theme */
+.dark [data-sidebar] .sidebar-nav-item svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: rgb(148, 163, 184);
+}
+
+.dark [data-sidebar] .sidebar-nav-item.active svg {
+  color: rgb(248, 250, 252);
+}
+
+/* Sidebar text - matching light theme */
+.dark [data-sidebar] .sidebar-nav-item span {
+  flex: 1;
+  color: rgb(226, 232, 240);
+  font-size: 0.925rem;
+}
+
+.dark [data-sidebar] .sidebar-nav-item.active span {
+  color: rgb(248, 250, 252);
+  font-weight: 600;
+}
+
+/* Navigation item badges/counts - matching light theme */
+.dark [data-sidebar] .sidebar-nav-item .badge {
+  background: rgba(99, 102, 241, 0.15);
+  color: rgb(248, 250, 252);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dark [data-sidebar] .sidebar-nav-item.active .badge {
+  background: rgba(248, 250, 252, 0.15);
+  color: rgb(248, 250, 252);
+}
+
+/* Basic sidebar text colors - no positioning overrides */
+.dark [data-sidebar] {
+  color: rgb(226, 232, 240);
 }
 
 /* ============================= */
