@@ -88,13 +88,13 @@ html {
   }
 
   .checkbox-root[data-state="unchecked"] {
-    border-color: var(--input-border) !important;
-    background-color: var(--input-background) !important;
+    border-color: var(--input-border);
+    background-color: var(--input-background);
   }
 
   .checkbox-root[data-state="checked"] {
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
+    background-color: var(--primary);
+    border-color: var(--primary);
   }
 }
 
@@ -196,11 +196,11 @@ html {
   html.theme-changing *,
   html.theme-changing *::before,
   html.theme-changing *::after {
-    transition: none !important;
+    transition: none;
   }
 
   html.theme-changing [data-theme-icon] {
-    transition: all 0.15s ease-out !important;
+    transition: all 0.15s ease-out;
   }
 
   /* table cell borders: use table border variables for consistency */
@@ -219,19 +219,18 @@ html {
     border-bottom: 1px solid var(--table-header-border);
   }
 
-  /* Ensure vertical (right) borders match horizontal separators exactly */
+  /* Table border styling */
   table tr th,
   table tr td {
-    /* force both bottom and right borders to match the theme border token */
-    border-bottom: 1px solid var(--table-data-border) !important;
-    border-right: 1px solid var(--table-data-border) !important;
+    border-bottom: 1px solid var(--table-data-border);
+    border-right: 1px solid var(--table-data-border);
   }
 
-  /* Ensure borders are visible on selected rows */
+  /* Selected row borders */
   table tr[data-state="selected"] th,
   table tr[data-state="selected"] td {
-    border-bottom: 1px solid var(--table-data-border) !important;
-    border-right: 1px solid var(--table-data-border) !important;
+    border-bottom: 1px solid var(--table-data-border);
+    border-right: 1px solid var(--table-data-border);
     background-color: var(--table-data-selected);
     position: relative;
     z-index: 1;
