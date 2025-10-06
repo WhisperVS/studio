@@ -1432,6 +1432,29 @@
   opacity: 0;
 }
 
+/* Theme toggle icon color classes - Dark Theme */
+.dark .theme-toggle-sun-icon {
+  color: var(--theme-toggle-sun-color);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 4px var(--theme-toggle-sun-glow));
+}
+
+.dark .theme-toggle-moon-icon {
+  color: var(--theme-toggle-moon-color);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 4px var(--theme-toggle-moon-glow));
+}
+
+.dark .theme-toggle-placeholder-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+.dark .theme-toggle-placeholder-icon svg {
+  stroke: var(--theme-toggle-moon-color);
+}
+
 .dark [data-sidebar="footer"] {
   display: flex;
   visibility: visible;
