@@ -236,13 +236,13 @@
   --chart-5: 6 78% 57%;                           /* Red chart color */
   
   /* Sidebar Tailwind variables */
-  --sidebar: 33 100% 92%;                         /* Light peach sidebar */
-  --sidebar-foreground: 22 78% 34%;               /* Brown sidebar text */
+  --sidebar: 217 33% 35%;                         /* Dark slate sidebar */
+  --sidebar-foreground: 210 40% 92%;              /* Light gray sidebar text */
   --sidebar-primary: 33 78% 61%;                  /* Coral sidebar primary */
   --sidebar-primary-foreground: 0 0% 100%;       /* White sidebar primary text */
   --sidebar-accent: 24 100% 83%;                  /* Light orange sidebar accent */
-  --sidebar-accent-foreground: 22 78% 34%;       /* Brown sidebar accent text */
-  --sidebar-border: 33 78% 61%;                   /* Coral sidebar border */
+  --sidebar-accent-foreground: 0 0% 100%;         /* White sidebar accent text */
+  --sidebar-border: 215 25% 47%;                  /* Slate sidebar border */
   --sidebar-ring: 33 78% 61%;                     /* Coral sidebar ring */
   
   /* ============================= */
@@ -293,23 +293,23 @@
   /* SIDEBAR NAVIGATION - PEACHY CORAL */
   /* ============================= */
   
-  --sidebar-background: rgb(255, 237, 213);       /* Light peach sidebar */
-  --sidebar-text: rgb(120, 53, 15);          /* Dark brown text */
-  --sidebar-link-text: rgb(146, 64, 14);     /* Muted brown text */
+  --sidebar-background: rgb(71, 85, 105);       /* Dark slate sidebar background */
+  --sidebar-text: rgb(248, 250, 252);          /* Light text on dark sidebar */
+  --sidebar-link-text: rgb(203, 213, 225);     /* Muted light text */
   --sidebar-link-bg: transparent;              /* Transparent background */
   --sidebar-link-hover: rgba(251, 146, 60, 0.15); /* Coral hover */
   --sidebar-link-active: rgba(251, 146, 60, 0.25); /* Coral active */
-  --sidebar-link-active-text: rgb(154, 52, 18); /* Dark coral active text */
-  --sidebar-link-icon: rgb(146, 64, 14);     /* Muted brown icon */
-  --sidebar-link-icon-active: rgb(154, 52, 18); /* Dark coral active icon */
-  --sidebar-text-hover: rgb(154, 52, 18);    /* Coral hover text */
-  --sidebar-border: rgb(251, 146, 60);           /* Coral border */
-  --sidebar-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.2); /* Coral shadow */
+  --sidebar-link-active-text: rgb(255, 255, 255); /* White active text */
+  --sidebar-link-icon: rgb(203, 213, 225);     /* Light gray icons */
+  --sidebar-link-icon-active: rgb(255, 255, 255); /* White active icons */
+  --sidebar-text-hover: rgb(255, 255, 255);    /* White hover text */
+  --sidebar-border: rgb(100, 116, 139);           /* Darker slate border */
+  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   
   /* Sidebar header */
-  --sidebar-header-bg: rgba(255, 237, 213, 0.9);  /* Light peach header */
-  --sidebar-header-text: rgb(120, 53, 15);   /* Dark brown header text */
-  --sidebar-header-border: rgba(251, 146, 60, 0.3); /* Coral border */
+  --sidebar-header-bg: rgba(71, 85, 105, 0.95);  /* Dark slate header */
+  --sidebar-header-text: rgb(248, 250, 252);   /* Light header text */
+  --sidebar-header-border: rgba(100, 116, 139, 0.5); /* Slate border */
   
   /* ============================= */
   /* DROPDOWN AND SELECT COLORS - PEACHY CORAL */
@@ -520,7 +520,7 @@
   background-image: var(--input-border-focus) !important;
   background-clip: padding-box !important;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.4) !important;
 }
 
 .light .top-controls button[role="combobox"]:focus {
@@ -551,7 +551,7 @@
   background-clip: padding-box !important;
   color: var(--text-primary) !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.5) !important;
 }
 
 .light .btn-clear-filters svg {
@@ -567,10 +567,10 @@
 }
 
 /* ============================= */
-/* ADVANCED DYNAMIC BUTTON REACTIONS - DARK THEME */
+/* ADVANCED DYNAMIC BUTTON REACTIONS - LIGHT THEME */
 /* ============================= */
 
-/* Universal dark button enhancement */
+/* Universal light button enhancement */
 .light button, .light .btn, .light [role="button"] {
   position: relative;
   overflow: hidden;
@@ -578,7 +578,7 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark theme ripple effect */
+/* Light theme ripple effect */
 .light button::before, .light .btn::before, .light [role="button"]::before {
   content: '';
   position: absolute;
@@ -594,30 +594,23 @@
   z-index: 1;
 }
 
-/* Dark ripple activation */
+/* Light ripple activation */
 .light button:hover::before, .light .btn:hover::before, .light [role="button"]:hover::before {
   width: 300px;
   height: 300px;
 }
 
-/* Dynamic dark primary button states */
+/* Dynamic light primary button states */
 .light button[class*="primary"], .light .btn-primary {
   background: var(--btn-primary-bg) !important;
-  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .light button[class*="primary"]:hover, .light .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.5), 0 8px 25px rgba(0, 0, 0, 0.4) !important;
-  filter: brightness(1.2) saturate(1.1);
-}
-
-/* Dark secondary button states */
-.light button[class*="secondary"], .light .btn-secondary {
-  background: var(--btn-secondary-bg) !important;
-  border: 2px solid var(--btn-secondary-border) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 16px 50px -12px rgba(251, 146, 60, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  filter: brightness(1.1) saturate(1.1);
 }
 
 .light button[class*="secondary"]:hover, .light .btn-secondary:hover {
@@ -626,7 +619,7 @@
   background-image: var(--accent-color) !important;
   color: var(--text-error) !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 12px 35px -10px rgba(251, 146, 60, 0.4) !important;
 }
 
 /* Dark success states */
@@ -641,14 +634,14 @@
   box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5) !important;
 }
 
-/* Dark floating action buttons */
+/* Light floating action buttons */
 .light .fab {
   background: var(--accent-color) !important;
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(251, 146, 60, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .light .fab:hover {
-  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 50px rgba(251, 146, 60, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ============================= */
@@ -1088,11 +1081,11 @@
   line-height: 1.25rem !important;
 }
 
-/* ============================= */
-/* SIDEBAR NAVIGATION - DARK THEME */
+/* =============================*/
+/* SIDEBAR NAVIGATION - LIGHT THEME */
 /* ============================= */
 
-/* Sidebar category links enhanced hover - Dark Theme */
+/* Sidebar category links enhanced hover - Light Theme */
 .light .sidebar-nav a,
 .light .sidebar-nav button,
 .light .sidebar-nav [role="button"] {
@@ -1101,7 +1094,7 @@
   width: 100%;
   padding: 12px 16px;
   border-radius: 12px;
-  color: var(--sidebar-text);
+  color: var(--sidebar-link-text);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -1121,7 +1114,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.2), transparent);
   transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1129,7 +1122,7 @@
 .light .sidebar-nav button:hover,
 .light .sidebar-nav [role="button"]:hover {
   background: var(--sidebar-link-hover);
-  color: var(--sidebar-text-hover);
+  color: var(--sidebar-link-text);
   border-color: rgba(251, 146, 60, 0.4);
   transform: translateX(4px);
   box-shadow: 4px 0 16px rgba(251, 146, 60, 0.2);
@@ -1146,9 +1139,9 @@
 .light .sidebar-nav [role="button"].active {
   background: var(--sidebar-link-active);
   color: var(--sidebar-link-active-text);
-  border-color: rgba(88, 101, 242, 0.4);
+  border-color: rgba(251, 146, 60, 0.4);
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(88, 101, 242, 0.3);
+  box-shadow: 0 4px 16px rgba(251, 146, 60, 0.3);
 }
 
 .light .sidebar-nav svg,
@@ -1490,18 +1483,18 @@ html.light [data-sidebar="footer"] {
 
 /* Add Asset button styling */
 .light .page-header button[class*="bg-[var(--primary)]"] {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
-  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%) !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
   color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
   border-radius: 12px !important;
 }
 
 .light .page-header button[class*="bg-[var(--primary)]"]:hover {
-  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  background: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%) !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 8px 25px -8px rgba(251, 146, 60, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.15);
+  border-color: rgba(251, 146, 60, 0.5) !important;
 }
 
 /* User dropdown button styling */
@@ -1515,9 +1508,9 @@ html.light [data-sidebar="footer"] {
 
 .light .page-header button[role="combobox"]:hover {
   background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
+  border-color: rgba(251, 146, 60, 0.3) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px -4px rgba(251, 146, 60, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Sidebar toggle button */
@@ -1531,10 +1524,10 @@ html.light [data-sidebar="footer"] {
 
 .light .page-header button[data-sidebar="trigger"]:hover {
   background: linear-gradient(135deg, rgba(51, 65, 85, 0.9) 0%, rgba(71, 85, 105, 0.85) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  color: rgb(99, 102, 241) !important;
+  border-color: rgba(251, 146, 60, 0.3) !important;
+  color: rgb(251, 146, 60) !important;
   transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 4px 10px -4px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 10px -4px rgba(251, 146, 60, 0.2);
 }
 
 /* ============================= */
@@ -1557,20 +1550,20 @@ html.light [data-sidebar="footer"] {
 .light button[class*="primary"],
 .light .btn-primary,
 .light button[class*="bg-primary"] {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%) !important;
-  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%) !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
   color: white !important;
-  box-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
   border-radius: 12px !important;
 }
 
 .light button[class*="primary"]:hover,
 .light .btn-primary:hover,
 .light button[class*="bg-primary"]:hover {
-  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%) !important;
+  background: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%) !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 8px 25px -8px rgba(251, 146, 60, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.15);
+  border-color: rgba(251, 146, 60, 0.5) !important;
 }
 
 /* Secondary button universal styling */
@@ -1588,10 +1581,10 @@ html.light [data-sidebar="footer"] {
 .light .btn-secondary:hover,
 .light button[class*="outline"]:hover {
   background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.9) 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  color: rgb(99, 102, 241) !important;
+  border-color: rgba(251, 146, 60, 0.3) !important;
+  color: rgb(251, 146, 60) !important;
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 12px -4px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px -4px rgba(251, 146, 60, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Success/Green button styling */
