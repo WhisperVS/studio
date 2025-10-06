@@ -383,6 +383,31 @@
   --btn-destructive-hover: rgb(185, 28, 28);
   
   /* ============================= */
+  /* TAILWIND INTEGRATION - ADDITIONAL VARIABLES */
+  /* ============================= */
+  
+  /* Additional Tailwind variables for complete coverage */
+  --card: 222 84% 5%;                              /* Dark cards */
+  --card-foreground: 210 40% 98%;                  /* Light card text */
+  --popover: 222 84% 5%;                           /* Dark popovers */
+  --popover-foreground: 210 40% 98%;               /* Light popover text */
+  --chart-1: 220 70% 50%;                          /* Blue chart color */
+  --chart-2: 142 76% 36%;                         /* Green chart color */
+  --chart-3: 32 95% 44%;                          /* Orange chart color */
+  --chart-4: 262 83% 58%;                         /* Purple chart color */
+  --chart-5: 6 78% 57%;                           /* Red chart color */
+  
+  /* Sidebar Tailwind variables */
+  --sidebar: 222 84% 5%;                          /* Dark sidebar */
+  --sidebar-foreground: 210 40% 98%;             /* Light sidebar text */
+  --sidebar-primary: 220 70% 50%;                /* Blue sidebar primary */
+  --sidebar-primary-foreground: 0 0% 100%;       /* White sidebar primary text */
+  --sidebar-accent: 216 87% 21%;                 /* Dark blue sidebar accent */
+  --sidebar-accent-foreground: 210 40% 98%;      /* Light sidebar accent text */
+  --sidebar-border: 215 25% 27%;                 /* Dark sidebar border */
+  --sidebar-ring: 220 70% 50%;                   /* Blue sidebar ring */
+  
+  /* ============================= */
   /* COMPONENT RADIUS */
   /* ============================= */
   
@@ -464,6 +489,136 @@
   transform: translateY(-1px);
 }
 
+/* Premium dark search input - FIXED SIZE AND POSITIONING */
+.dark .top-controls input[type="text"],
+.dark .top-controls input {
+  background: var(--background);
+  border: 2px solid var(--input-border);
+  color: var(--input-text);
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--input-shadow);
+  font-weight: 500;
+  border-radius: 12px;
+  box-sizing: border-box;
+  width: 320px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
+}
+
+.dark .top-controls input[type="text"]:focus,
+.dark .top-controls input:focus {
+  border: 2px solid var(--input-border-focus);
+  background: var(--background);
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
+  width: 320px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
+}
+
+.dark .top-controls input[type="text"]::placeholder,
+.dark .top-controls input::placeholder {
+  color: var(--input-placeholder);
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+/* Fix the search input container to maintain consistent layout */
+.dark .top-controls .relative {
+  position: relative;
+  display: block;
+  width: 320px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* Fix button positioning inside search box */
+.dark .top-controls .relative button {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  z-index: 10;
+  margin: 0;
+  border-radius: 6px;
+}
+
+/* Search icon styling */
+.dark .top-controls .lucide-search {
+  color: var(--input-placeholder);
+  transition: color 0.2s ease;
+}
+
+.dark .top-controls input[type="text"]:focus + .lucide-search,
+.dark .top-controls input[type="text"]:focus ~ .lucide-search {
+  color: var(--input-border-focus);
+}
+
+/* Search icon positioning - make sure it's visible */
+.dark .top-controls .relative .lucide-search {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--input-placeholder);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* When input is focused, change search icon color */
+.dark .top-controls .relative:focus-within .lucide-search {
+  color: var(--input-border-focus);
+}
+
+/* Premium dark combobox/dropdown buttons */
+.dark .top-controls button[role="combobox"] {
+  background: var(--dropdown-background);
+  border: 2px solid var(--dropdown-border);
+  color: var(--dropdown-text);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-shadow);
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.dark .top-controls button[role="combobox"]:hover {
+  background: var(--dropdown-hover);
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4);
+}
+
+.dark .top-controls button[role="combobox"]:focus {
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
+  box-shadow: var(--input-shadow-focus);
+  outline: none;
+  background: rgba(31, 41, 55, 0.9);
+  transform: translateY(-1px);
+}
+
 /* Premium dark clear filters button */
 .dark .btn-clear-filters {
   background: var(--btn-clear-bg);
@@ -471,12 +626,18 @@
   color: var(--btn-clear-text);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--dropdown-shadow);
+  font-weight: 500;
+  border-radius: 12px;
 }
 
 .dark .btn-clear-filters:hover {
   background: var(--btn-clear-hover);
+  border: 2px solid transparent;
+  background-image: var(--input-border-focus);
+  background-clip: padding-box;
   color: var(--text-primary);
   transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5);
 }
 
 .dark .btn-clear-filters svg {
@@ -484,9 +645,11 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Premium dark focus ring for all interactive elements */
 .dark .top-controls *:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
+  border-radius: 12px;
 }
 
 /* ============================= */
@@ -523,37 +686,48 @@
   height: 300px;
 }
 
-/* Button States */
-.dark .btn-primary {
+/* Dynamic dark primary button states */
+.dark button[class*="primary"], .dark .btn-primary {
   background: var(--btn-primary-bg);
-  box-shadow: var(--btn-primary-shadow);
+  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .btn-primary:hover {
+.dark button[class*="primary"]:hover, .dark .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  filter: brightness(1.2) saturate(1.1);
+  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1) saturate(1.1);
 }
 
-.dark .btn-secondary {
-  background: var(--btn-secondary-bg);
-  border: 2px solid var(--btn-secondary-border);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark .btn-secondary:hover {
+.dark button[class*="secondary"]:hover, .dark .btn-secondary:hover {
   background: var(--btn-secondary-hover);
+  border-color: transparent;
+  background-image: var(--accent-color);
+  color: var(--text-primary);
   transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4);
 }
 
-.dark .btn-success {
+/* Dark success states */
+.dark .btn-success, .dark button[class*="success"] {
   background: var(--success-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .btn-success:hover {
+.dark .btn-success:hover, .dark button[class*="success"]:hover {
   transform: translateY(-2px);
   filter: brightness(1.2) hue-rotate(5deg);
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
+}
+
+/* Dark floating action buttons */
+.dark .fab {
+  background: var(--accent-color);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark .fab:hover {
+  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ============================= */
@@ -1528,6 +1702,14 @@
 }
 
 /* ============================= */
+/* CLEAN THEME SEPARATION - NO FORCING RULES */
+/* ============================= */
+
+/* ============================= */
+/* CLEAN THEME SEPARATION - NO FORCING RULES */
+/* ============================= */
+
+/* ============================= */
 /* DIALOG CLOSE BUTTON ENHANCEMENT */
 /* ============================= */
 
@@ -1555,3 +1737,76 @@
   top: 16px;
   right: 16px;
 }
+
+/* ============================= */
+/* BUTTON VARIANT OVERRIDES FOR DARK THEME */
+/* ============================= */
+
+/* ============================= */
+/* BUTTON VARIANT VARIABLES - DARK THEME */
+/* ============================= */
+
+.dark {
+  /* Select All Button - Blue */
+  --btn-select-all-bg: rgb(59, 130, 246);
+  --btn-select-all-text: rgb(255, 255, 255);
+  --btn-select-all-hover: rgb(37, 99, 235);
+  
+  /* Clear Selection Button - Dark Slate */
+  --btn-clear-selection-bg: rgb(51, 65, 85);
+  --btn-clear-selection-text: rgb(203, 213, 225);
+  --btn-clear-selection-hover: rgb(71, 85, 105);
+  
+  /* Export Button - Green */
+  --btn-export-bg: rgb(16, 185, 129);
+  --btn-export-text: rgb(255, 255, 255);
+  --btn-export-hover: rgb(5, 150, 105);
+  
+  /* Delete Button - Red */
+  --btn-delete-bg: rgb(220, 38, 38);
+  --btn-delete-text: rgb(255, 255, 255);
+  --btn-delete-hover: rgb(185, 28, 28);
+  
+  /* View Settings Button - Dark Slate */
+  --btn-view-settings-bg: rgb(51, 65, 85);
+  --btn-view-settings-text: rgb(203, 213, 225);
+  --btn-view-settings-hover: rgb(71, 85, 105);
+  
+  /* Clear Filters Button - Dark Slate */
+  --btn-clear-filters-bg: rgb(51, 65, 85);
+  --btn-clear-filters-text: rgb(203, 213, 225);
+  --btn-clear-filters-hover: rgb(71, 85, 105);
+  
+  /* Apply/Cancel Button Variables */
+  --btn-apply-bg: rgb(16, 185, 129);
+  --btn-apply-text: rgb(255, 255, 255);
+  --btn-apply-hover: rgb(5, 150, 105);
+  
+  --btn-cancel-bg: rgb(51, 65, 85);
+  --btn-cancel-text: rgb(203, 213, 225);
+  --btn-cancel-hover: rgb(71, 85, 105);
+  
+  /* Connect Button - Clean Dark Theme */
+  --btn-connect-bg: rgb(59, 130, 246);
+  --btn-connect-text: rgb(255, 255, 255);
+  --btn-connect-hover: rgb(37, 99, 235);
+  
+  /* Checkbox Variables - Dark Theme */
+  --checkbox-bg: rgb(31, 41, 55);
+  --checkbox-border: rgb(75, 85, 99);
+  --checkbox-checked-bg: rgb(59, 130, 246);
+  --checkbox-checked-border: rgb(59, 130, 246);
+  --checkbox-checkmark: rgb(255, 255, 255);
+  
+  /* Dropdown Variables - Dark Theme */
+  --dropdown-hover: rgb(59, 130, 246);
+  --dropdown-item-selected-text: rgb(255, 255, 255);
+  --dropdown-content-bg: rgb(31, 41, 55);
+  --dropdown-content-border: rgb(75, 85, 99);
+  --dropdown-content-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
+  --dropdown-focus-outline: rgb(59, 130, 246);
+}
+
+/* ============================= */
+/* CLEAN THEME SEPARATION - NO FORCING RULES */
+/* ============================= */
