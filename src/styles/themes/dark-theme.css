@@ -11,6 +11,12 @@
   --page-background: linear-gradient(135deg, rgb(17, 24, 39) 25%, rgb(31, 41, 55) 50%); /* Premium dark gradient */
   --page-text: rgb(217, 221, 230);             /* Premium light text */
   
+  /* BORDER RADIUS SYSTEM - CONSISTENT ROUNDED DESIGN */
+  --radius-sm: 8px;   /* Small elements: buttons, inputs, badges */
+  --radius-md: 12px;  /* Medium elements: cards, panels */
+  --radius-lg: 16px;  /* Large elements: modals, major containers */
+  --radius-round: 50%; /* Circular elements: avatars, icons */
+  
   /* ============================= */
   /* TABLE STYLING - INVENTORY DASHBOARD DARK */
   /* ============================= */
@@ -559,7 +565,7 @@
   height: 28px;
   z-index: 10;
   margin: 0;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 /* Search icon styling */
@@ -664,6 +670,18 @@
   overflow: hidden;
   transform-origin: center;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-sm); /* Consistent rounded corners for all buttons */
+}
+
+/* Universal input and form control styling */
+.dark input, .dark select, .dark textarea {
+  border-radius: var(--radius-sm);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Universal card and panel styling */
+.dark .card, .dark .panel, .dark [class*="card"] {
+  border-radius: var(--radius-md);
 }
 
 /* Dark theme ripple effect */
@@ -832,7 +850,7 @@
   background: rgba(3, 7, 18, 0.95);
   border: 1px solid rgba(71, 85, 105, 0.3);
   backdrop-filter: blur(20px);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.6);
   padding: 24px;
 }
@@ -976,7 +994,7 @@
 /* Asset status indicators */
 .dark .badge {
   padding: 4px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.025em;
