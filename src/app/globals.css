@@ -144,16 +144,6 @@ html {
   }
 
   /* Action-specific button variants */
-  .btn-add-asset {
-    background: var(--btn-add-asset-bg);
-    color: var(--btn-add-asset-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-add-asset:hover {
-    background: var(--btn-add-asset-hover);
-  }
-
   .btn-export {
     background: var(--btn-export-bg);
     color: var(--btn-export-text);

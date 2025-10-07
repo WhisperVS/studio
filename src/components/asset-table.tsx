@@ -7,6 +7,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
+  TableHeaderRow,
   TableRow,
 } from "@/components/ui/table";
 import {
@@ -220,7 +221,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
           <div ref={scrollRef} className="w-full overflow-y-auto overflow-x-hidden relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
             <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableHeader>
-                <TableRow>
+                <TableHeaderRow>
                   <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center sticky top-0 z-20">
                     <ExternalLink className="h-4 w-4 inline-block" />
                     <span className="sr-only">Connect</span>
@@ -239,7 +240,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                       </TableHead>
                   ))}
                   <TableHead className="w-12 sticky top-0 z-10"><span className="sr-only">Actions</span></TableHead>
-                </TableRow>
+                </TableHeaderRow>
               </TableHeader>
               <TableBody>
                 {(() => {

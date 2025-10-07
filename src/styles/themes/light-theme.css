@@ -78,11 +78,6 @@
   --btn-secondary-glow: 0 0 15px rgba(251, 146, 60, 0.4);
   
   /* Specific action button colors */
-  --btn-add-asset-bg: linear-gradient(135deg, rgb(80, 200, 120) 0%, rgb(60, 255, 140) 30%, rgb(100, 220, 100) 70%, rgb(70, 180, 160) 100%);
-  --btn-add-asset-text: rgb(255, 255, 255);
-  --btn-add-asset-hover: linear-gradient(135deg, rgb(100, 220, 140) 0%, rgb(80, 255, 160) 30%, rgb(120, 240, 120) 70%, rgb(90, 200, 180) 100%);
-  --btn-add-asset-shadow: 0 8px 32px -8px rgba(80, 200, 120, 0.5), 0 0 30px rgba(60, 255, 140, 0.3);
-  --btn-add-asset-glow: 0 0 25px rgba(80, 200, 120, 0.7), 0 0 50px rgba(60, 255, 140, 0.4);
   --btn-export-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 180, 255) 30%, rgb(120, 120, 255) 70%, rgb(70, 200, 255) 100%);
   --btn-export-text: rgb(255, 255, 255);
   --btn-export-hover: linear-gradient(135deg, rgb(120, 170, 255) 0%, rgb(100, 200, 255) 30%, rgb(140, 140, 255) 70%, rgb(90, 220, 255) 100%);

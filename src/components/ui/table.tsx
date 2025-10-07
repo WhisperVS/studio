@@ -66,6 +66,22 @@ const TableRow = React.forwardRef<
 ))
 TableRow.displayName = "TableRow"
 
+const TableHeaderRow = React.forwardRef<
+  HTMLTableRowElement,
+  React.HTMLAttributes<HTMLTableRowElement>
+>(({ className, ...props }, ref) => (
+  <tr
+    ref={ref}
+    className={cn(
+      "h-12 static-header-row",
+      "text-[var(--table-header-text)]",
+      className
+    )}
+    {...props}
+  />
+))
+TableHeaderRow.displayName = "TableHeaderRow"
+
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
@@ -73,7 +89,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 table-header-bg px-4 text-left align-middle font-semibold table-border-r",
+      "h-12 px-4 text-left align-middle font-semibold table-border-r",
       "text-[var(--table-header-text)]",
       className
     )}
@@ -118,6 +134,7 @@ export {
   TableFooter,
   TableHead,
   TableRow,
+  TableHeaderRow,
   TableCell,
   TableCaption,
 }

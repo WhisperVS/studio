@@ -16,7 +16,6 @@ const buttonVariants = cva(
         ghost: "btn-ghost",
         link: "btn-link",
         // Action-specific button variants
-        "add-asset": "btn-add-asset",
         "export": "btn-export", 
         "view-settings": "btn-view-settings",
         "clear-filters": "btn-clear-filters",

@@ -66,11 +66,6 @@ button:hover, .btn:hover, [role="button"]:hover {
 }
 
 /* Specific button type glows */
-.btn-add-asset:hover {
-  box-shadow: var(--btn-add-asset-glow, 0 0 25px rgba(80, 200, 120, 0.6)), 
-              var(--btn-add-asset-shadow, 0 8px 32px -8px rgba(80, 200, 120, 0.4));
-}
-
 .btn-export:hover, button[data-export]:hover {
   box-shadow: var(--btn-export-glow, 0 0 25px rgba(100, 150, 255, 0.6)), 
               var(--btn-export-shadow, 0 8px 32px -8px rgba(100, 150, 255, 0.4));
@@ -281,7 +276,7 @@ input, select, textarea {
 }
 
 /* ============================= */
-/* TABLE STYLING - BASE */
+/* TABLE STYLING - CLEAN SEPARATION */
 /* ============================= */
 
 .asset-table, table {
@@ -289,15 +284,15 @@ input, select, textarea {
   overflow: hidden;
 }
 
-/* Table header row styling */
-.asset-table thead tr, table thead tr {
+/* Header Background - Unified Gradient */
+.table-header-bg {
+  background: var(--table-header-bg);
   position: relative;
 }
 
 /* Individual header cells */
-.asset-table th, table th, .asset-table thead th, table thead th {
+.asset-table th, table th {
   background: transparent;
-  background-color: transparent;
   font-weight: 600;
   padding: 16px 12px;
   text-transform: uppercase;
@@ -305,7 +300,15 @@ input, select, textarea {
   letter-spacing: 0.05em;
   position: relative;
   z-index: 5;
-  transition: none; /* Remove all transitions from header cells */
+}
+
+/* Static Header Row - No Hover Effects */
+.static-header-row {
+  background: transparent;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 5;
 }
 
 /* Data cells */
@@ -1009,24 +1012,17 @@ input, select, textarea {
 /* ENHANCED DASHBOARD STYLING */
 /* ============================= */
 
-.btn-add-asset {
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 12px 24px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn-add-asset:hover {
-  transform: translateY(-2px);
-}
-
 /* ============================= */
 /* TABLE STYLING */
 /* ============================= */
 
 .table-header-bg {
-  background-color: var(--table-header-bg);
+  background: var(--table-header-bg);
+}
+
+/* Individual header cells should be transparent to show the gradient */
+.table-header-bg th {
+  background: transparent !important;
 }
 
 .table-cell-border {

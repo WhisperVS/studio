@@ -61,7 +61,7 @@
   --dropdown-item-selected-text: rgb(255, 255, 255);
 
   /* Table Colors */
-  --table-header-bg: rgba(40, 25, 80, 0.8);
+  --table-header-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 30%, rgb(120, 100, 255) 70%, rgb(80, 120, 255) 100%);
   --table-header-text: rgb(255, 255, 255);
   --table-data-bg: rgba(20, 30, 60, 0.6);
   --table-data-hover: rgba(60, 40, 120, 0.7);
@@ -87,10 +87,6 @@
   --btn-secondary-border: rgba(120, 150, 255, 0.6);
   
   /* Specific action button colors */
-  --btn-add-asset-bg: linear-gradient(135deg, rgb(50, 200, 100) 0%, rgb(30, 255, 120) 30%, rgb(70, 220, 80) 70%, rgb(40, 180, 140) 100%);
-  --btn-add-asset-text: rgb(255, 255, 255);
-  --btn-add-asset-hover: linear-gradient(135deg, rgb(70, 220, 120) 0%, rgb(50, 255, 140) 30%, rgb(90, 240, 100) 70%, rgb(60, 200, 160) 100%);
-  --btn-add-asset-shadow: 0 8px 32px -8px rgba(50, 200, 100, 0.6), 0 0 30px rgba(30, 255, 120, 0.3);
   --btn-export-bg: linear-gradient(135deg, rgb(80, 150, 255) 0%, rgb(60, 180, 255) 30%, rgb(100, 120, 255) 70%, rgb(50, 200, 255) 100%);
   --btn-export-text: rgb(255, 255, 255);
   --btn-export-hover: linear-gradient(135deg, rgb(100, 170, 255) 0%, rgb(80, 200, 255) 30%, rgb(120, 140, 255) 70%, rgb(70, 220, 255) 100%);
