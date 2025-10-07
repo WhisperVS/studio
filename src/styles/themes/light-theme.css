@@ -295,6 +295,7 @@
   --search-focus-shadow: rgba(251, 146, 60, 0.15);
   --search-icon-color: rgba(120, 113, 108, 0.7);
   --search-icon-active: rgba(251, 146, 60, 0.9);
+  --search-clear-glow: rgba(239, 68, 68, 1);
   
   /* Progress Component */
   --progress-track-bg: rgb(254, 242, 242);
