@@ -247,7 +247,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                     return sortedAssets.map((asset) => (
                       <TableRow key={asset.id} data-state={selectedAssetIds.includes(asset.id) ? "selected" : ""}>
                         {asset.webui ? (
-                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center bg-transparent border-r border-border">
+                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
                             <Button
                               variant="outline"
                               size="icon"
@@ -259,9 +259,9 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                             </Button>
                           </TableCell>
                         ) : (
-                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 bg-transparent border-r border-border" />
+                          <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0" />
                         )}
-                        <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 bg-transparent border-r border-border">
+                        <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0">
                           <div className="flex items-center justify-center">
                             <Checkbox
                               checked={selectedAssetIds.includes(asset.id)}

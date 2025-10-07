@@ -949,3 +949,32 @@ input, select, textarea {
 .btn-add-asset:hover {
   transform: translateY(-2px);
 }
+
+/* ============================= */
+/* TABLE STYLING */
+/* ============================= */
+
+.table-header-bg {
+  background-color: var(--table-header-bg);
+}
+
+.table-cell-border {
+  border-color: var(--table-cell-border);
+}
+
+.table-border-r {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: var(--table-cell-border);
+}
+
+.table-border-b {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--table-cell-border);
+}
+
+/* Remove border from last column */
+.table-border-r:last-child {
+  border-right: none;
+}

@@ -8,20 +8,20 @@
   /* ============================= */
   
   /* Main page colors */
-  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 25%, rgb(31, 41, 55) 50%);
-  --page-text: rgb(217, 221, 230);
+  --page-background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 30%, rgb(51, 65, 85) 70%, rgb(30, 27, 75) 100%);
+  --page-text: rgb(226, 232, 240);
   
   /* Card colors */
-  --card-background: rgba(15, 23, 42, 0.98);
+  --card-background: linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(51, 65, 85, 0.95) 100%);
   --card-text: rgb(248, 250, 252);
-  --card-border: rgba(71, 85, 105, 0.8);
-  --card-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 4px 16px -4px rgba(0, 0, 0, 0.3);
+  --card-border: rgba(99, 102, 241, 0.3);
+  --card-shadow: 0 10px 40px -12px rgba(99, 102, 241, 0.15), 0 4px 16px -4px rgba(59, 130, 246, 0.1);
   
   /* Dashboard stat colors */
-  --dashboard-stat-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
-  --dashboard-stat-border: rgba(79, 70, 229, 0.3);
+  --dashboard-stat-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 50%, rgba(30, 27, 75, 0.9) 100%);
+  --dashboard-stat-border: rgba(99, 102, 241, 0.4);
   --dashboard-stat-text: rgb(248, 250, 252);
-  --dashboard-stat-accent: rgb(79, 70, 229);
+  --dashboard-stat-accent: rgb(99, 102, 241);
   
   /* Inventory status colors */
   --inventory-in-stock: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
@@ -30,13 +30,13 @@
   --inventory-reserved: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(99, 102, 241) 100%);
   
   /* Form input colors */
-  --input-background: rgb(64, 68, 75);
-  --input-text: rgb(220, 221, 222);
-  --input-border: rgb(64, 68, 75);
-  --input-border-focus: rgb(88, 101, 242);
-  --input-placeholder: rgb(142, 146, 151);
-  --input-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
-  --input-shadow-focus: 0 8px 32px -8px rgba(88, 101, 242, 0.4);
+  --input-background: rgba(30, 41, 59, 0.8);
+  --input-text: rgb(226, 232, 240);
+  --input-border: rgba(99, 102, 241, 0.2);
+  --input-border-focus: rgb(99, 102, 241);
+  --input-placeholder: rgb(148, 163, 184);
+  --input-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.1);
+  --input-shadow-focus: 0 8px 32px -8px rgba(99, 102, 241, 0.3);
   
   /* Dropdown & Select Colors */
   --dropdown-background: rgba(30, 41, 59, 0.95);
@@ -49,13 +49,13 @@
   --dropdown-item-selected-text: rgb(226, 232, 240);
 
   /* Table Colors */
-  --table-header-bg: rgba(71, 85, 105, 0.2);
+  --table-header-bg: rgba(99, 102, 241, 0.15);
   --table-header-text: rgb(226, 232, 240);
-  --table-data-bg: rgba(30, 41, 59, 0.4);
-  --table-data-hover: rgba(71, 85, 105, 0.3);
-  --table-data-selected: rgba(139, 92, 246, 0.2);
+  --table-data-bg: rgba(59, 130, 246, 0.08);
+  --table-data-hover: rgba(99, 102, 241, 0.12);
+  --table-data-selected: rgba(139, 92, 246, 0.18);
   --table-data-text: rgb(203, 213, 225);
-  --table-cell-border: rgba(71, 85, 105, 0.3);
+  --table-cell-border: rgba(99, 102, 241, 0.2);
 
   /* Checkbox Colors */
   --checkbox-bg: rgba(30, 41, 59, 0.8);
@@ -192,13 +192,13 @@
   /* Sidebar colors */
   --sidebar: rgb(15, 23, 42);
   --sidebar-foreground: rgb(248, 250, 252);
-  --sidebar-primary: rgb(59, 130, 246);
+  --sidebar-primary: rgb(99, 102, 241);
   --sidebar-primary-foreground: rgb(255, 255, 255);
-  --sidebar-accent: rgb(30, 41, 59);
+  --sidebar-accent: rgb(51, 65, 85);
   --sidebar-accent-foreground: rgb(248, 250, 252);
-  --sidebar-border: rgb(71, 85, 105);
-  --sidebar-ring: rgb(59, 130, 246);
-  --sidebar-background: rgba(30, 41, 59, 0.95);
+  --sidebar-border: rgba(99, 102, 241, 0.3);
+  --sidebar-ring: rgb(99, 102, 241);
+  --sidebar-background: linear-gradient(180deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 50%, rgba(30, 27, 75, 0.85) 100%);
   --sidebar-text: rgb(226, 232, 240);
   --sidebar-link-text: rgb(148, 163, 184);
   --sidebar-link-bg: transparent;
@@ -208,10 +208,10 @@
   --sidebar-link-icon: rgb(148, 163, 184);
   --sidebar-link-icon-active: rgb(248, 250, 252);
   --sidebar-text-hover: rgb(248, 250, 252);
-  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
-  --sidebar-header-bg: rgba(47, 49, 54, 0.9);
+  --sidebar-shadow: 0 4px 16px -4px rgba(99, 102, 241, 0.2);
+  --sidebar-header-bg: rgba(30, 41, 59, 0.95);
   --sidebar-header-text: rgb(255, 255, 255);
-  --sidebar-header-border: rgba(64, 68, 75, 0.6);
+  --sidebar-header-border: rgba(99, 102, 241, 0.3);
   
   /* Text colors */
   --text-primary: rgb(240, 240, 240);
