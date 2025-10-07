@@ -39,7 +39,7 @@ button, .btn, [role="button"] {
   cursor: pointer;
   overflow: hidden;
   transform-origin: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
   user-select: none;
 }
 
@@ -58,9 +58,48 @@ button::before, .btn::before, [role="button"]::before {
   z-index: 1;
 }
 
-/* Hover states */
+/* Glowing hover states */
 button:hover, .btn:hover, [role="button"]:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--btn-primary-glow, 0 0 20px rgba(120, 80, 255, 0.4)), 
+              var(--btn-primary-shadow, 0 8px 32px -8px rgba(120, 80, 255, 0.3));
+}
+
+/* Specific button type glows */
+.btn-add-asset:hover {
+  box-shadow: var(--btn-add-asset-glow, 0 0 25px rgba(80, 200, 120, 0.6)), 
+              var(--btn-add-asset-shadow, 0 8px 32px -8px rgba(80, 200, 120, 0.4));
+}
+
+.btn-export:hover, button[data-export]:hover {
+  box-shadow: var(--btn-export-glow, 0 0 25px rgba(100, 150, 255, 0.6)), 
+              var(--btn-export-shadow, 0 8px 32px -8px rgba(100, 150, 255, 0.4));
+}
+
+.btn-delete:hover, button[data-delete]:hover {
+  box-shadow: var(--btn-delete-glow, 0 0 25px rgba(255, 120, 150, 0.6)), 
+              var(--btn-delete-shadow, 0 8px 32px -8px rgba(255, 120, 150, 0.4));
+}
+
+.btn-clear:hover, .btn-filter:hover, .btn-cancel:hover {
+  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
+              var(--btn-clear-shadow, 0 4px 16px -4px rgba(120, 80, 255, 0.2));
+}
+
+/* Dropdown menu buttons special background */
+button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
+  background: var(--dropdown-background, rgba(250, 245, 255, 0.9));
+  border: 1px solid var(--dropdown-border, rgba(150, 100, 255, 0.3));
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
+  background: var(--dropdown-hover, rgba(240, 235, 255, 0.95));
+  border-color: var(--dropdown-border, rgba(150, 100, 255, 0.5));
+  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
+              0 4px 16px -4px rgba(120, 80, 255, 0.2);
+  backdrop-filter: blur(12px);
 }
 
 button:hover::before, .btn:hover::before, [role="button"]:hover::before {
