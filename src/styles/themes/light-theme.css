@@ -50,7 +50,7 @@
   --dropdown-item-selected-text: rgb(120, 53, 15);
 
   /* Table Colors */
-  --table-header-bg: rgba(249, 115, 22, 0.8);
+  --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 30%, rgb(245, 101, 101) 70%, rgb(234, 88, 12) 100%);
   --table-header-text: rgb(255, 255, 255);
   --table-data-bg: rgba(254, 242, 242, 0.4);
   --table-data-hover: rgba(251, 146, 60, 0.2);
