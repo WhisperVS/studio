@@ -376,6 +376,51 @@ input, select, textarea {
 }
 
 /* ============================= */
+/* PREMIUM SIDEBAR ACTIVE STATES */
+/* ============================= */
+
+/* Enhanced active state for SidebarMenuButton */
+[data-sidebar="menu-button"][data-active="true"] {
+  background: var(--sidebar-link-active) !important;
+  color: var(--sidebar-link-active-text) !important;
+  font-weight: 600;
+  transform: translateX(4px);
+  border-left: 3px solid var(--sidebar-primary);
+  box-shadow: 0 4px 12px -4px var(--sidebar-primary);
+}
+
+/* Light theme glow for active sidebar items */
+.light [data-sidebar="menu-button"][data-active="true"] {
+  box-shadow: 0 4px 12px -4px rgba(251, 146, 60, 0.4), 0 0 20px rgba(251, 146, 60, 0.15);
+}
+
+/* Dark theme glow for active sidebar items */
+.dark [data-sidebar="menu-button"][data-active="true"] {
+  box-shadow: 0 4px 12px -4px rgba(120, 150, 255, 0.4), 0 0 20px rgba(150, 120, 255, 0.15);
+}
+
+/* Icon styling for active items */
+[data-sidebar="menu-button"][data-active="true"] svg {
+  color: var(--sidebar-link-icon-active);
+  transform: scale(1.1);
+}
+
+/* Hover state adjustments for active items */
+[data-sidebar="menu-button"][data-active="true"]:hover {
+  transform: translateX(6px);
+}
+
+/* Light theme icon glow for active items */
+.light [data-sidebar="menu-button"][data-active="true"] svg {
+  filter: drop-shadow(0 0 6px rgba(251, 146, 60, 0.6));
+}
+
+/* Dark theme icon glow for active items */
+.dark [data-sidebar="menu-button"][data-active="true"] svg {
+  filter: drop-shadow(0 0 6px rgba(150, 120, 255, 0.6));
+}
+
+/* ============================= */
 /* DROPDOWN STYLING - BASE */
 /* ============================= */
 
@@ -515,6 +560,23 @@ input, select, textarea {
   transform: translateY(0px) scale(0.95);
 }
 
+/* Premium glow effects */
+.light .theme-toggle {
+  box-shadow: var(--theme-toggle-shadow), var(--theme-toggle-glow);
+}
+
+.light .theme-toggle:hover {
+  box-shadow: var(--theme-toggle-hover-shadow), var(--theme-toggle-hover-glow);
+}
+
+.dark .theme-toggle {
+  box-shadow: var(--theme-toggle-shadow), var(--theme-toggle-glow);
+}
+
+.dark .theme-toggle:hover {
+  box-shadow: var(--theme-toggle-hover-shadow), var(--theme-toggle-hover-glow);
+}
+
 .theme-toggle svg, .theme-toggle [data-lucide] {
   width: 20px;
   height: 20px;
@@ -532,12 +594,40 @@ input, select, textarea {
 /* Light theme toggle colors */
 .light .theme-toggle-sun-icon {
   color: var(--theme-toggle-sun-color);
-  filter: drop-shadow(0 0 4px var(--theme-toggle-sun-glow));
+  filter: drop-shadow(0 0 6px var(--theme-toggle-sun-glow)) drop-shadow(0 0 12px var(--theme-toggle-sun-glow));
 }
 
 .light .theme-toggle-moon-icon {
   color: var(--theme-toggle-moon-color);
-  filter: drop-shadow(0 0 4px var(--theme-toggle-moon-glow));
+  filter: drop-shadow(0 0 6px var(--theme-toggle-moon-glow)) drop-shadow(0 0 12px var(--theme-toggle-moon-glow));
+}
+
+/* Enhanced hover effects for icons */
+.light .theme-toggle:hover .theme-toggle-sun-icon {
+  filter: drop-shadow(0 0 8px var(--theme-toggle-sun-glow)) drop-shadow(0 0 16px var(--theme-toggle-sun-glow)) drop-shadow(0 0 24px var(--theme-toggle-sun-glow));
+}
+
+.light .theme-toggle:hover .theme-toggle-moon-icon {
+  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow)) drop-shadow(0 0 16px var(--theme-toggle-moon-glow)) drop-shadow(0 0 24px var(--theme-toggle-moon-glow));
+}
+
+/* Dark theme toggle colors */
+.dark .theme-toggle-sun-icon {
+  color: var(--theme-toggle-sun-color);
+  filter: drop-shadow(0 0 6px var(--theme-toggle-sun-glow)) drop-shadow(0 0 12px var(--theme-toggle-sun-glow));
+}
+
+.dark .theme-toggle-moon-icon {
+  color: var(--theme-toggle-moon-color);
+  filter: drop-shadow(0 0 6px var(--theme-toggle-moon-glow)) drop-shadow(0 0 12px var(--theme-toggle-moon-glow));
+}
+
+.dark .theme-toggle:hover .theme-toggle-sun-icon {
+  filter: drop-shadow(0 0 8px var(--theme-toggle-sun-glow)) drop-shadow(0 0 16px var(--theme-toggle-sun-glow)) drop-shadow(0 0 24px var(--theme-toggle-sun-glow));
+}
+
+.dark .theme-toggle:hover .theme-toggle-moon-icon {
+  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow)) drop-shadow(0 0 16px var(--theme-toggle-moon-glow)) drop-shadow(0 0 24px var(--theme-toggle-moon-glow));
 }
 
 .light .theme-toggle:hover .theme-toggle-sun-icon {
