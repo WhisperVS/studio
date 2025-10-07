@@ -5,30 +5,27 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)] border border-[var(--btn-primary-bg)] hover:border-[var(--btn-primary-hover)] shadow-[var(--btn-primary-shadow)]",
-        destructive:
-          "bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:bg-[var(--destructive)]/90 border border-[var(--destructive)]",
-        outline:
-          "border border-[var(--input-border)] bg-[var(--background)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] text-[var(--page-text)]",
-        secondary:
-          "bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] hover:bg-[var(--btn-secondary-hover)] border border-[var(--btn-secondary-border)]",
-        ghost: "hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] text-[var(--page-text)]",
-        link: "text-[var(--primary)] underline-offset-4 hover:underline",
-        // Clean button variants using CSS variables
-        "add-asset": "bg-[var(--btn-add-asset-bg)] text-[var(--btn-add-asset-text)] hover:bg-[var(--btn-add-asset-hover)] border border-[var(--btn-add-asset-bg)] hover:border-[var(--btn-add-asset-hover)]",
-        "export": "bg-[var(--btn-export-bg)] text-[var(--btn-export-text)] hover:bg-[var(--btn-export-hover)] border border-[var(--btn-export-bg)] hover:border-[var(--btn-export-hover)]", 
-        "view-settings": "bg-[var(--btn-view-settings-bg)] text-[var(--btn-view-settings-text)] hover:bg-[var(--btn-view-settings-hover)] border border-[var(--input-border)]",
-        "clear-filters": "bg-[var(--btn-clear-filters-bg)] text-[var(--btn-clear-filters-text)] hover:bg-[var(--btn-clear-filters-hover)] border border-[var(--input-border)]",
-        "select-all": "bg-[var(--btn-select-all-bg)] text-[var(--btn-select-all-text)] hover:bg-[var(--btn-select-all-hover)] border border-[var(--btn-select-all-bg)] hover:border-[var(--btn-select-all-hover)]",
-        "clear-selection": "bg-[var(--btn-clear-selection-bg)] text-[var(--btn-clear-selection-text)] hover:bg-[var(--btn-clear-selection-hover)] border border-[var(--input-border)]",
-        "apply": "bg-[var(--btn-apply-bg)] text-[var(--btn-apply-text)] hover:bg-[var(--btn-apply-hover)] border border-[var(--btn-apply-bg)] hover:border-[var(--btn-apply-hover)]",
-        "cancel": "bg-[var(--btn-cancel-bg)] text-[var(--btn-cancel-text)] hover:bg-[var(--btn-cancel-hover)] border border-[var(--btn-cancel-bg)] hover:border-[var(--btn-cancel-hover)]",
-        "delete": "bg-[var(--btn-delete-bg)] text-[var(--btn-delete-text)] hover:bg-[var(--btn-delete-hover)] border border-[var(--btn-delete-bg)] hover:border-[var(--btn-delete-hover)]",
-        "connect": "bg-[var(--btn-connect-bg)] text-[var(--btn-connect-text)] hover:bg-[var(--btn-connect-hover)] border border-[var(--btn-connect-bg)] hover:border-[var(--btn-connect-hover)]",
+        primary: "btn-primary",
+        destructive: "btn-destructive",
+        outline: "btn-outline", 
+        secondary: "btn-secondary",
+        ghost: "btn-ghost",
+        link: "btn-link",
+        // Action-specific button variants
+        "add-asset": "btn-add-asset",
+        "export": "btn-export", 
+        "view-settings": "btn-view-settings",
+        "clear-filters": "btn-clear-filters",
+        "select-all": "btn-select-all",
+        "clear-selection": "btn-clear-selection",
+        "apply": "btn-apply",
+        "cancel": "btn-cancel",
+        "delete": "btn-delete",
+        "connect": "btn-connect",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -1,5 +1,6 @@
-@import '../styles/themes/dark-theme.css';
+@import '../styles/themes/theme-base.css';
 @import '../styles/themes/light-theme.css';
+@import '../styles/themes/dark-theme.css';
 
 /* Prevent flash of unstyled content - simple approach */
 html {
@@ -73,6 +74,174 @@ html {
   .checkbox-root[data-state="checked"] {
     background-color: var(--primary);
     border-color: var(--primary);
+  }
+
+  /* Button Variants - Using CSS Variables for Complete Theme Support */
+  .btn-primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid transparent;
+    box-shadow: var(--btn-primary-shadow);
+  }
+
+  .btn-primary:hover {
+    background: var(--btn-primary-hover);
+    border-color: transparent;
+  }
+
+  .btn-secondary {
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 1px solid var(--btn-secondary-border);
+  }
+
+  .btn-secondary:hover {
+    background: var(--btn-secondary-hover);
+  }
+
+  .btn-destructive {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    border: 1px solid var(--destructive);
+  }
+
+  .btn-destructive:hover {
+    background: rgb(var(--destructive) / 0.9);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--input-border);
+    background: var(--background);
+    color: var(--page-text);
+  }
+
+  .btn-outline:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--page-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-ghost:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .btn-link {
+    background: transparent;
+    color: var(--primary);
+    border: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Action-specific button variants */
+  .btn-add-asset {
+    background: var(--btn-add-asset-bg);
+    color: var(--btn-add-asset-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-add-asset:hover {
+    background: var(--btn-add-asset-hover);
+  }
+
+  .btn-export {
+    background: var(--btn-export-bg);
+    color: var(--btn-export-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-export:hover {
+    background: var(--btn-export-hover);
+  }
+
+  .btn-view-settings {
+    background: var(--btn-view-settings-bg);
+    color: var(--btn-view-settings-text);
+    border: 1px solid var(--input-border);
+  }
+
+  .btn-view-settings:hover {
+    background: var(--btn-view-settings-hover);
+  }
+
+  .btn-clear-filters {
+    background: var(--btn-clear-filters-bg);
+    color: var(--btn-clear-filters-text);
+    border: 1px solid var(--input-border);
+  }
+
+  .btn-clear-filters:hover {
+    background: var(--btn-clear-filters-hover);
+  }
+
+  .btn-select-all {
+    background: var(--btn-select-all-bg);
+    color: var(--btn-select-all-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-select-all:hover {
+    background: var(--btn-select-all-hover);
+  }
+
+  .btn-clear-selection {
+    background: var(--btn-clear-selection-bg);
+    color: var(--btn-clear-selection-text);
+    border: 1px solid var(--input-border);
+  }
+
+  .btn-clear-selection:hover {
+    background: var(--btn-clear-selection-hover);
+  }
+
+  .btn-apply {
+    background: var(--btn-apply-bg);
+    color: var(--btn-apply-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-apply:hover {
+    background: var(--btn-apply-hover);
+  }
+
+  .btn-cancel {
+    background: var(--btn-cancel-bg);
+    color: var(--btn-cancel-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-cancel:hover {
+    background: var(--btn-cancel-hover);
+  }
+
+  .btn-delete {
+    background: var(--btn-delete-bg);
+    color: var(--btn-delete-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-delete:hover {
+    background: var(--btn-delete-hover);
+  }
+
+  .btn-connect {
+    background: var(--btn-connect-bg);
+    color: var(--btn-connect-text);
+    border: 1px solid transparent;
+  }
+
+  .btn-connect:hover {
+    background: var(--btn-connect-hover);
   }
 }
 

@@ -1,2477 +1,305 @@
 /* ======================================== */
-/* DARK THEME - PROFESSIONAL COLOR SCHEME */
+/* DARK THEME - PROFESSIONAL COLORS ONLY */
 /* ======================================== */
 
 .dark {
   /* ============================= */
-  /* CORE LAYOUT COLORS - PREMIUM DARK */
+  /* COLORS ONLY - PROFESSIONAL BLUE SCHEME */
   /* ============================= */
   
-  /* Main page background and text */
-  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 25%, rgb(31, 41, 55) 50%); /* Premium dark gradient */
-  --page-text: rgb(217, 221, 230);             /* Premium light text */
+  /* Main page colors */
+  --page-background: linear-gradient(135deg, rgb(17, 24, 39) 25%, rgb(31, 41, 55) 50%);
+  --page-text: rgb(217, 221, 230);
   
-  /* BORDER RADIUS SYSTEM - CONSISTENT ROUNDED DESIGN */
-  --radius-sm: 8px;   /* Small elements: buttons, inputs, badges */
-  --radius-md: 12px;  /* Medium elements: cards, panels */
-  --radius-lg: 16px;  /* Large elements: modals, major containers */
-  --radius-round: 50%; /* Circular elements: avatars, icons */
+  /* Card colors */
+  --card-background: rgba(15, 23, 42, 0.98);
+  --card-text: rgb(248, 250, 252);
+  --card-border: rgba(71, 85, 105, 0.8);
+  --card-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 4px 16px -4px rgba(0, 0, 0, 0.3);
   
-  /* ============================= */
-  /* TABLE STYLING - INVENTORY DASHBOARD DARK */
-  /* ============================= */
-  
-  /* Table Header Section - Enhanced for Dashboard */
-  --table-header-bg: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%); /* Much darker gradient */
-  --table-header-text: rgb(255, 255, 255);     /* Pure white text */
-  --table-header-border: rgb(99, 102, 241);    /* Purple accent border */
-  --table-header-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(109, 40, 217) 100%); /* Purple gradient on hover */
-  
-  /* Table Data Section - Optimized for Inventory */
-  --table-data-bg: rgba(15, 23, 42, 0.95);     /* Darker, more solid background */
-  --table-data-text: rgb(248, 250, 252);       /* Brighter text for readability */
-  --table-data-border: rgba(71, 85, 105, 0.8); /* More visible borders */
-  --table-data-hover: rgba(30, 41, 59, 0.9);   /* Stronger hover effect */
-  --table-data-selected: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.25) 100%); /* More vibrant selection */
-  
-  /* ============================= */
-  /* DASHBOARD CARDS - INVENTORY FOCUSED */
-  /* ============================= */
-  
-  --card-background: rgba(15, 23, 42, 0.98);   /* Darker, more solid cards for dashboard */
-  --card-text: rgb(248, 250, 252);             /* Brighter text for inventory data */
-  --card-border: rgba(71, 85, 105, 0.8);       /* More defined borders */
-  --card-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Enhanced depth */
-  
-  /* Dashboard Stat Cards */
+  /* Dashboard stat colors */
   --dashboard-stat-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
   --dashboard-stat-border: rgba(79, 70, 229, 0.3);
   --dashboard-stat-text: rgb(248, 250, 252);
   --dashboard-stat-accent: rgb(79, 70, 229);
   
-  /* Inventory Status Indicators */
+  /* Inventory status colors */
   --inventory-in-stock: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
   --inventory-low-stock: linear-gradient(135deg, rgb(251, 191, 36) 0%, rgb(245, 158, 11) 100%);
   --inventory-out-stock: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
   --inventory-reserved: linear-gradient(135deg, rgb(129, 140, 248) 0%, rgb(99, 102, 241) 100%);
   
-  /* ============================= */
-  /* DROPDOWN/SELECT VARIABLES - DARK */
-  /* ============================= */
+  /* Form input colors */
+  --input-background: rgb(64, 68, 75);
+  --input-text: rgb(220, 221, 222);
+  --input-border: rgb(64, 68, 75);
+  --input-border-focus: rgb(88, 101, 242);
+  --input-placeholder: rgb(142, 146, 151);
+  --input-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
+  --input-shadow-focus: 0 8px 32px -8px rgba(88, 101, 242, 0.4);
   
-  /* Dropdown hover effects */
-  --dropdown-hover: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.85) 50%, rgba(59, 130, 246, 0.1) 100%);
-  --dropdown-item-selected-text: rgb(248, 250, 252);
-  --dropdown-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(59, 130, 246, 0.2);
-  --dropdown-focus-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  --dropdown-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%);
-  --dropdown-content-bg: rgba(15, 23, 42, 0.98);
-  --dropdown-content-border: rgba(71, 85, 105, 0.8);
-  --dropdown-content-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 70, 229, 0.1);
-  --dropdown-focus-outline: rgba(59, 130, 246, 0.4);
+  /* Dropdown & Select Colors */
+  --dropdown-background: rgba(30, 41, 59, 0.95);
+  --dropdown-border: rgba(71, 85, 105, 0.4);
+  --dropdown-shadow: 0 16px 32px rgba(15, 23, 42, 0.5), 0 4px 16px rgba(71, 85, 105, 0.2);
+  --dropdown-text: rgb(203, 213, 225);
+  --dropdown-hover: rgba(71, 85, 105, 0.3);
+  --dropdown-focus-outline: rgba(139, 92, 246, 0.5);
+  --dropdown-item-selected: rgba(139, 92, 246, 0.2);
+  --dropdown-item-selected-text: rgb(226, 232, 240);
+
+  /* Table Colors */
+  --table-header-bg: rgba(71, 85, 105, 0.2);
+  --table-header-text: rgb(226, 232, 240);
+  --table-data-bg: rgba(30, 41, 59, 0.4);
+  --table-data-hover: rgba(71, 85, 105, 0.3);
+  --table-data-selected: rgba(139, 92, 246, 0.2);
+  --table-data-text: rgb(203, 213, 225);
+  --table-cell-border: rgba(71, 85, 105, 0.3);
+
+  /* Checkbox Colors */
+  --checkbox-bg: rgba(30, 41, 59, 0.8);
+  --checkbox-border: rgba(71, 85, 105, 0.5);
+  --checkbox-checked-bg: rgba(139, 92, 246, 0.9);
+  --checkbox-checked-border: rgba(139, 92, 246, 1);
+  --checkbox-checkmark: rgb(255, 255, 255);
+
+  /* Button Color Variables */
+  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --btn-primary-text: rgb(255, 255, 255);
+  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%);
+  --btn-primary-shadow: 0 8px 32px -8px rgba(99, 102, 241, 0.4);
+  --btn-secondary-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%);
+  --btn-secondary-text: rgb(99, 102, 241);
+  --btn-secondary-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%);
+  --btn-secondary-border: rgba(75, 85, 99, 0.8);
   
-  /* ============================= */
-  /* THEME TOGGLE VARIABLES - DARK */
-  /* ============================= */
-  
-  /* Theme toggle icon colors */
-  --theme-toggle-sun-color: #fbbf24;
-  --theme-toggle-moon-color: #6366f1;
-  --theme-toggle-sun-glow: rgba(251, 191, 36, 0.4);
-  --theme-toggle-moon-glow: rgba(99, 102, 241, 0.4);
-  
-  /* ============================= */
-  /* MODAL AND DIALOG COLORS - PREMIUM DARK */
-  /* ============================= */
-  
-  --modal-background: rgba(31, 41, 55, 0.98);  /* Premium dark modal */
-  --modal-text: rgb(243, 244, 246);            /* Premium light text */
-  --modal-overlay: rgba(0, 0, 0, 0.8);         /* Deep overlay */
-  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Premium dark shadow */
-  
-  /* ============================= */
-  /* FORM INPUT COLORS */
-  /* ============================= */
-  
-  --input-background: rgb(64, 68, 75);         /* Discord input gray */
-  --input-text: rgb(220, 221, 222);            /* Discord light text */
-  --input-border: rgb(64, 68, 75);             /* Matching border */
-  --input-border-focus: rgb(88, 101, 242);     /* Discord blurple focus */
-  --input-placeholder: rgb(142, 146, 151);     /* Discord placeholder gray */
-  --input-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Premium input shadow */
-  --input-shadow-focus: 0 8px 32px -8px rgba(88, 101, 242, 0.4); /* Premium focus shadow */
-  
-  /* ============================= */
-  /* BUTTON STYLING - PREMIUM DARK */
-  /* ============================= */
-  
-  /* Primary Buttons */
-  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium gradient */
-  --btn-primary-text: rgb(255, 255, 255);      /* Pure white text */
-  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%); /* Premium hover */
-  --btn-primary-shadow: 0 8px 32px -8px rgba(99, 102, 241, 0.4); /* Premium shadow */
-  
-  /* Secondary Buttons */
-  --btn-secondary-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium dark secondary */
-  --btn-secondary-text: rgb(99, 102, 241);     /* Premium accent text */
-  --btn-secondary-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
-  --btn-secondary-border: rgba(75, 85, 99, 0.8); /* Sophisticated border */
-  
-  /* Filter/Control Buttons */
-  --btn-filter-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium filter */
-  --btn-filter-text: rgb(209, 213, 219);       /* Premium gray text */
-  --btn-filter-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
-  --btn-filter-border: rgba(75, 85, 99, 0.8);  /* Sophisticated border */
-  --btn-filter-active: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%); /* Premium active */
-  --btn-filter-active-text: rgb(255, 255, 255); /* White active text */
-  
-  /* Clear Filters Button */
-  --btn-clear-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%); /* Premium clear */
-  --btn-clear-text: rgb(209, 213, 219);        /* Premium text */
-  --btn-clear-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%); /* Premium hover */
-  --btn-clear-border: rgba(75, 85, 99, 0.8);   /* Sophisticated border */
-  
-  /* ============================= */
-  /* DASHBOARD ACTION BUTTONS - INVENTORY */
-  /* ============================= */
-  
-  /* Add Asset Button - Enhanced for Dashboard */
+  /* Specific action button colors */
   --btn-add-asset-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
   --btn-add-asset-text: rgb(255, 255, 255);
   --btn-add-asset-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  --btn-add-asset-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4);
-  
-  /* Export Button - Dashboard Style */
+  --btn-add-asset-shadow: 0 8px 32px -8px rgba(34, 197, 94, 0.4);
   --btn-export-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
   --btn-export-text: rgb(255, 255, 255);
   --btn-export-hover: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
-  --btn-export-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.4);
+  --btn-export-shadow: 0 8px 32px -8px rgba(59, 130, 246, 0.4);
+  --btn-clear-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%);
+  --btn-clear-text: rgb(203, 213, 225);
+  --btn-clear-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%);
+  --btn-clear-border: rgba(75, 85, 99, 0.8);
+  --btn-filter-bg: linear-gradient(135deg, rgb(31, 41, 55) 0%, rgb(55, 65, 81) 100%);
+  --btn-filter-text: rgb(203, 213, 225);
+  --btn-filter-hover: linear-gradient(135deg, rgb(55, 65, 81) 0%, rgb(75, 85, 99) 100%);
+  --btn-filter-border: rgba(75, 85, 99, 0.8);
   
-  /* Delete/Remove Button - Enhanced */
-  --btn-delete-bg: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
+  /* Additional action buttons */
+  --btn-view-settings-bg: rgb(51, 65, 85);
+  --btn-view-settings-text: rgb(226, 232, 240);
+  --btn-view-settings-hover: rgb(71, 85, 105);
+  --btn-clear-filters-bg: rgb(31, 41, 55);
+  --btn-clear-filters-text: rgb(203, 213, 225);
+  --btn-clear-filters-hover: rgb(55, 65, 81);
+  --btn-select-all-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  --btn-select-all-text: rgb(255, 255, 255);
+  --btn-select-all-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(67, 56, 202) 100%);
+  --btn-clear-selection-bg: rgb(31, 41, 55);
+  --btn-clear-selection-text: rgb(203, 213, 225);
+  --btn-clear-selection-hover: rgb(55, 65, 81);
+  --btn-apply-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  --btn-apply-text: rgb(255, 255, 255);
+  --btn-apply-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(67, 56, 202) 100%);
+  --btn-cancel-bg: rgb(31, 41, 55);
+  --btn-cancel-text: rgb(203, 213, 225);
+  --btn-cancel-hover: rgb(55, 65, 81);
+  --btn-delete-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
   --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-hover: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  --btn-delete-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4);
+  --btn-delete-hover: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
+  --btn-connect-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
+  --btn-connect-text: rgb(255, 255, 255);
+  --btn-connect-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(67, 56, 202) 100%);
   
-  /* Dashboard Filter Pills */
-  --filter-pill-bg: rgba(30, 41, 59, 0.8);
-  --filter-pill-text: rgb(203, 213, 225);
-  --filter-pill-active-bg: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%);
-  --filter-pill-active-text: rgb(255, 255, 255);
-  --filter-pill-hover: rgba(51, 65, 85, 0.9);
+  /* Modal colors */
+  --modal-background: rgba(31, 41, 55, 0.98);
+  --modal-text: rgb(243, 244, 246);
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   
-  /* ============================= */
-  /* SYSTEM COLORS */
-  /* ============================= */
+  /* Toast colors */
+  --toast-destructive-text: rgb(248, 113, 113);
+  --toast-destructive-text-hover: rgb(239, 68, 68);
+  --toast-destructive-ring: rgb(248, 113, 113);
+  --toast-destructive-ring-offset: rgb(15, 23, 42);
   
-  /* Accent and highlight colors */
-  --accent-color: rgb(59, 130, 246);           /* Professional blue accent */
-  --accent-text: rgb(255, 255, 255);           /* White text on blue */
-  --focus-ring: rgb(59, 130, 246);             /* Consistent blue focus rings */
+  /* System colors */
+  --accent-color: rgb(59, 130, 246);
+  --accent-text: rgb(255, 255, 255);
+  --focus-ring: rgb(59, 130, 246);
+  --success-color: rgb(16, 185, 129);
+  --warning-color: rgb(245, 158, 11);
+  --error-color: rgb(220, 38, 38);
+  --info-color: rgb(59, 130, 246);
   
-  /* Status and notification colors */
-  --success-color: rgb(16, 185, 129);          /* Modern emerald green */
-  --warning-color: rgb(245, 158, 11);          /* Professional amber */
-  --error-color: rgb(220, 38, 38);             /* Clean red */
-  --info-color: rgb(59, 130, 246);             /* Consistent blue */
+  /* Status badge colors */
+  --status-in-use-bg: rgba(16, 185, 129, 0.15);
+  --status-in-use-text: rgb(52, 211, 153);
+  --status-in-use-border: rgba(16, 185, 129, 0.4);
+  --status-in-use-hover: rgba(16, 185, 129, 0.25);
+  --status-spare-bg: rgba(59, 130, 246, 0.15);
+  --status-spare-text: rgb(96, 165, 250);
+  --status-spare-border: rgba(59, 130, 246, 0.4);
+  --status-spare-hover: rgba(59, 130, 246, 0.25);
+  --status-for-repair-bg: rgba(248, 113, 113, 0.15);
+  --status-for-repair-text: rgb(248, 113, 113);
+  --status-for-repair-border: rgba(248, 113, 113, 0.4);
+  --status-for-repair-hover: rgba(248, 113, 113, 0.25);
+  --status-for-parts-bg: rgba(251, 191, 36, 0.15);
+  --status-for-parts-text: rgb(251, 191, 36);
+  --status-for-parts-border: rgba(251, 191, 36, 0.4);
+  --status-for-parts-hover: rgba(251, 191, 36, 0.25);
+  --status-for-recycle-bg: rgba(156, 163, 175, 0.15);
+  --status-for-recycle-text: rgb(156, 163, 175);
+  --status-for-recycle-border: rgba(156, 163, 175, 0.4);
+  --status-for-recycle-hover: rgba(156, 163, 175, 0.25);
   
-  /* ============================= */
-  /* STATUS BADGE COLORS */
-  /* ============================= */
-  
-  /* Status Badge - "In Use" */
-  --status-in-use-bg: rgba(16, 185, 129, 0.15);    /* Dark theme green background */
-  --status-in-use-text: rgb(52, 211, 153);         /* Bright green text */
-  --status-in-use-border: rgba(16, 185, 129, 0.4); /* Green border */
-  --status-in-use-hover: rgba(16, 185, 129, 0.25); /* Hover effect */
-  
-  /* Status Badge - "Spare" */
-  --status-spare-bg: rgba(59, 130, 246, 0.15);     /* Dark theme blue background */
-  --status-spare-text: rgb(96, 165, 250);          /* Bright blue text */
-  --status-spare-border: rgba(59, 130, 246, 0.4);  /* Blue border */
-  --status-spare-hover: rgba(59, 130, 246, 0.25);  /* Hover effect */
-  
-  /* Status Badge - "For Repair" */
-  --status-for-repair-bg: rgba(248, 113, 113, 0.15);   /* Dark theme red background */
-  --status-for-repair-text: rgb(248, 113, 113);        /* Bright red text */
-  --status-for-repair-border: rgba(248, 113, 113, 0.4); /* Red border */
-  --status-for-repair-hover: rgba(248, 113, 113, 0.25); /* Hover effect */
-  
-  /* Status Badge - "For Parts" */
-  --status-for-parts-bg: rgba(251, 191, 36, 0.15);     /* Dark theme amber background */
-  --status-for-parts-text: rgb(251, 191, 36);          /* Bright amber text */
-  --status-for-parts-border: rgba(251, 191, 36, 0.4);  /* Amber border */
-  --status-for-parts-hover: rgba(251, 191, 36, 0.25);  /* Hover effect */
-  
-  /* Status Badge - "For Recycle" */
-  --status-for-recycle-bg: rgba(156, 163, 175, 0.15);  /* Dark theme gray background */
-  --status-for-recycle-text: rgb(156, 163, 175);       /* Bright gray text */
-  --status-for-recycle-border: rgba(156, 163, 175, 0.4); /* Gray border */
-  --status-for-recycle-hover: rgba(156, 163, 175, 0.25); /* Hover effect */
-  
-  /* ============================= */
-  /* TAILWIND INTEGRATION */
-  /* ============================= */
-  
-  /* Core Tailwind variables */
-  --primary: rgb(59, 130, 246);                /* Blue primary for buttons */
-  --primary-foreground: rgb(252, 251, 251);    /* White text on blue */
-  --secondary: rgb(71, 85, 105);               /* Slate gray for secondary */
-  --secondary-foreground: rgb(226, 232, 240);  /* Light text on slate */
-  --destructive: rgb(220, 38, 38);             /* Red for destructive */
-  --destructive-foreground: rgb(255, 255, 255); /* White text on red */
-  --warning: rgb(245, 158, 11);                /* Amber for warning */
-  --warning-foreground: rgb(255, 255, 255);    /* White text on amber */
-  --foreground: rgb(226, 232, 240);            /* Main text color */
-  --background: rgb(15, 23, 42);               /* Main background */
-  --muted: rgb(30, 41, 59);                    /* Muted backgrounds */
-  --muted-foreground: rgb(148, 163, 184);      /* Muted text */
-  --accent: rgb(51, 65, 85);                   /* Accent backgrounds */
-  --accent-foreground: rgb(226, 232, 240);     /* Accent text */
-  --border: rgb(51, 65, 85);                   /* Borders */
-  --input: rgb(51, 65, 85);                    /* Input borders */
-  --ring: rgb(59, 130, 246);                   /* Focus rings */
-  
-  /* ============================= */
-  /* SPECIFIC BUTTON COLORS */
-  /* ============================= */
-  
-  /* Dashboard Action Buttons */
-  --btn-add-asset-bg: rgb(59, 130, 246);       /* Blue for Add Asset */
-  --btn-add-asset-text: rgb(255, 255, 255);    /* White text */
-  --btn-add-asset-hover: rgb(37, 99, 235);     /* Darker blue hover */
-  
-  --btn-export-bg: rgb(16, 185, 129);          /* Emerald for Export */
-  --btn-export-text: rgb(255, 255, 255);       /* White text */
-  --btn-export-hover: rgb(5, 150, 105);        /* Darker emerald hover */
-  
-  --btn-view-settings-bg: rgb(51, 65, 85);     /* Dark slate for View */
-  --btn-view-settings-text: rgb(226, 232, 240); /* Light text */
-  --btn-view-settings-hover: rgb(71, 85, 105); /* Lighter slate hover */
-  
-  /* Filter Control Buttons */
-  --btn-clear-filters-bg: rgb(51, 65, 85);     /* Dark slate for Clear Filters */
-  --btn-clear-filters-text: rgb(203, 213, 225); /* Light text */
-  --btn-clear-filters-hover: rgb(71, 85, 105); /* Lighter slate hover */
-  
-  /* Table Selection Buttons */
-  --btn-select-all-bg: rgb(59, 130, 246);      /* Blue for Select All */
-  --btn-select-all-text: rgb(255, 255, 255);   /* White text */
-  --btn-select-all-hover: rgb(37, 99, 235);    /* Darker blue hover */
-  
-  --btn-clear-selection-bg: rgb(51, 65, 85);   /* Dark slate for Clear Selection */
-  --btn-clear-selection-text: rgb(203, 213, 225); /* Light text */
-  --btn-clear-selection-hover: rgb(71, 85, 105); /* Lighter slate hover */
-  
-  /* Dialog/Modal Action Buttons */
-  --btn-apply-bg: rgb(59, 130, 246);           /* Blue for Apply */
-  --btn-apply-text: rgb(255, 255, 255);        /* White text */
-  --btn-apply-hover: rgb(37, 99, 235);         /* Darker blue hover */
-  
-  --btn-cancel-bg: rgb(51, 65, 85);            /* Dark slate for Cancel */
-  --btn-cancel-text: rgb(203, 213, 225);       /* Light text */
-  --btn-cancel-hover: rgb(71, 85, 105);        /* Lighter slate hover */
-  
-  --btn-delete-bg: rgb(220, 38, 38);           /* Red for Delete */
-  --btn-delete-text: rgb(255, 255, 255);       /* White text */
-  --btn-delete-hover: rgb(185, 28, 28);        /* Darker red hover */
-  
-  /* Connect Button - Dark Theme */
-  --btn-connect-bg: rgb(59, 130, 246);         /* Blue for Connect */
-  --btn-connect-text: rgb(255, 255, 255);      /* White text */
-  --btn-connect-hover: rgb(37, 99, 235);       /* Darker blue hover */
-  
-  /* Checkbox Variables - Dark Theme */
-  --checkbox-bg: rgb(31, 41, 55);              /* Dark background */
-  --checkbox-border: rgb(75, 85, 99);          /* Gray border */
-  --checkbox-checked-bg: rgb(59, 130, 246);    /* Blue when checked */
-  --checkbox-checked-border: rgb(59, 130, 246); /* Blue border when checked */
-  --checkbox-checkmark: rgb(255, 255, 255);    /* White checkmark */
-  
-  /* Dropdown Variables - Dark Theme */
-  --dropdown-hover: rgb(88, 101, 242);         /* Discord blurple hover */
-  --dropdown-item-selected-text: rgb(255, 255, 255);  /* White text on hover */
-  --dropdown-content-bg: rgb(47, 49, 54);      /* Discord dark gray */
-  --dropdown-content-border: rgb(75, 85, 99);  /* Gray border */
-  --dropdown-content-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.8), 0 10px 20px -15px rgba(0, 0, 0, 0.4);
-  --dropdown-focus-outline: rgb(88, 101, 242); /* Discord blurple focus */
-  
-  /* ============================= */
-  /* SIDEBAR NAVIGATION */
-  /* ============================= */
-  
-  --sidebar-background: rgba(30, 41, 59, 0.95); /* Dark slate background */
-  --sidebar-text: rgb(226, 232, 240);          /* Light text on dark sidebar */
-  --sidebar-link-text: rgb(148, 163, 184);     /* Muted light text */
-  --sidebar-link-bg: transparent;              /* Transparent background */
-  --sidebar-link-hover: rgba(99, 102, 241, 0.15); /* Purple hover */
-  --sidebar-link-active: rgba(99, 102, 241, 0.25); /* Purple active */
-  --sidebar-link-active-text: rgb(248, 250, 252); /* Light active text */
-  --sidebar-link-icon: rgb(148, 163, 184);     /* Light gray icons */
-  --sidebar-link-icon-active: rgb(248, 250, 252); /* Light active icons */
-  --sidebar-text-hover: rgb(248, 250, 252);    /* Light hover text */
-  --sidebar-border: rgb(64, 68, 75);           /* Discord border gray */
-  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3); /* Dark shadow */
-  
-  /* Sidebar header */
-  --sidebar-header-bg: rgba(47, 49, 54, 0.9);  /* Dark header */
-  --sidebar-header-text: rgb(255, 255, 255);   /* White header text */
-  --sidebar-header-border: rgba(64, 68, 75, 0.6); /* Dark border */
-  
-  /* ============================= */
-  /* DROPDOWN AND SELECT COLORS - DARK THEME */
-  /* ============================= */
-  
-  --dropdown-background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
-  --dropdown-text: rgb(220, 221, 222);
-  --dropdown-border: rgba(71, 85, 105, 0.6);
-  --dropdown-hover: rgba(88, 101, 242, 0.1);
-  --dropdown-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --dropdown-item-selected: rgba(88, 101, 242, 0.2);
-  --dropdown-item-selected-text: rgb(255, 255, 255);
-  
-  /* ============================= */
-  /* COMPONENT TEXT COLORS - DARK THEME */
-  /* ============================= */
-  
-  --text-primary: rgb(240, 240, 240);          /* Primary text */
-  --text-secondary: rgb(220, 221, 222);        /* Secondary text */
-  --text-tertiary: rgb(142, 146, 151);         /* Tertiary text */
-  --text-quaternary: rgb(100, 116, 139);       /* Quaternary text */
-  --text-error: rgb(206, 86, 86);              /* Error text */
-  --text-muted: rgb(142, 146, 151);            /* Muted text */
-  
-  /* Logo Colors */
-  --logo-icon-color: rgb(114, 137, 218);       /* Discord lighter blurple */
-  --logo-title-color: rgb(255, 255, 255);      /* Pure white title */
-  --logo-subtitle-color: rgb(142, 146, 151);   /* Discord muted text */
-  
-  /* ============================= */
-  /* CHART COLORS */
-  /* ============================= */
-  
-  --chart-color-1: rgb(59, 130, 246);          /* Professional blue */
-  --chart-color-2: rgb(16, 185, 129);          /* Emerald green */
-  --chart-color-3: rgb(245, 158, 11);          /* Amber */
-  --chart-color-4: rgb(168, 85, 247);          /* Purple */
-  --chart-color-5: rgb(220, 38, 38);           /* Red */
-  
-  /* ============================= */
-  /* SCROLLBAR STYLING */
-  /* ============================= */
-  
-  --scrollbar-track: rgb(30, 41, 59);          /* Dark track */
-  --scrollbar-track-border: rgb(51, 65, 85);   /* Subtle border */
-  --scrollbar-thumb: rgb(59, 130, 246);        /* Blue thumb */
-  --scrollbar-thumb-hover: rgb(37, 99, 235);   /* Darker blue hover */
-  --scrollbar-thumb-border: rgb(30, 41, 59);   /* Track colored border */
-  --scrollbar-corner: rgb(30, 41, 59);         /* Corner color */
-  --scrollbar-glow: 0 0 12px rgba(59, 130, 246, 0.4); /* Blue glow effect */
-  --scrollbar-glow-hover: 0 0 18px rgba(59, 130, 246, 0.6); /* Enhanced glow on hover */
-  
-  /* ============================= */
-  /* TABLE STYLING HELPERS */
-  /* ============================= */
-  
-  --table-cell-bg: var(--table-data-bg);
-  --table-cell-text: var(--table-data-text);
-  --table-cell-border: var(--table-data-border);
-  --table-row-hover: var(--table-data-hover);
-  --table-row-selected: var(--table-data-selected);
-  
-  /* ============================= */
-  /* BUTTON VARIANT HELPERS */
-  /* ============================= */
-  
-  --btn-outline-bg: rgb(51, 65, 85);
-  --btn-outline-text: rgb(226, 232, 240);
-  --btn-outline-border: rgb(71, 85, 105);
-  --btn-outline-hover: rgb(71, 85, 105);
-  --btn-destructive-bg: rgb(220, 38, 38);
-  --btn-destructive-text: rgb(255, 255, 255);
-  --btn-destructive-border: rgb(220, 38, 38);
-  --btn-destructive-hover: rgb(185, 28, 28);
-  
-  /* ============================= */
-  /* TAILWIND INTEGRATION - ADDITIONAL VARIABLES */
-  /* ============================= */
-  
-  /* Additional Tailwind variables for complete coverage */
-  --card: 222 84% 5%;                              /* Dark cards */
-  --card-foreground: 210 40% 98%;                  /* Light card text */
-  --popover: 222 84% 5%;                           /* Dark popovers */
-  --popover-foreground: 210 40% 98%;               /* Light popover text */
-  --chart-1: 220 70% 50%;                          /* Blue chart color */
-  --chart-2: 142 76% 36%;                         /* Green chart color */
-  --chart-3: 32 95% 44%;                          /* Orange chart color */
-  --chart-4: 262 83% 58%;                         /* Purple chart color */
-  --chart-5: 6 78% 57%;                           /* Red chart color */
-  
-  /* Sidebar Tailwind variables */
-  --sidebar: 222 84% 5%;                          /* Dark sidebar */
-  --sidebar-foreground: 210 40% 98%;             /* Light sidebar text */
-  --sidebar-primary: 220 70% 50%;                /* Blue sidebar primary */
-  --sidebar-primary-foreground: 0 0% 100%;       /* White sidebar primary text */
-  --sidebar-accent: 216 87% 21%;                 /* Dark blue sidebar accent */
-  --sidebar-accent-foreground: 210 40% 98%;      /* Light sidebar accent text */
-  --sidebar-border: 215 25% 27%;                 /* Dark sidebar border */
-  --sidebar-ring: 220 70% 50%;                   /* Blue sidebar ring */
-  
-  /* ============================= */
-  /* COMPONENT RADIUS */
-  /* ============================= */
-  
-  --radius: 0.5rem;
-}
-
-/* ============================= */
-/* PREMIUM DARK FILTER CONTROLS STYLING */
-/* ============================= */
-
-/* Enhanced styling for filter controls section - Premium Dark */
-.dark .top-controls {
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
-  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
-  padding: 20px 0;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4px 32px -8px rgba(0, 0, 0, 0.4);
-}
-
-/* Clean input styling - dark theme */
-.dark .top-controls input[type="text"],
-.dark .top-controls input {
-  background: var(--background);
-  border: 2px solid var(--input-border);
-  color: var(--input-text);
-  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--input-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-}
-
-.dark .top-controls input:focus {
-  border: 2px solid var(--input-border-focus);
-  background: var(--background);
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-}
-
-.dark .top-controls input::placeholder {
-  color: var(--input-placeholder);
-}
-
-.dark .top-controls input:focus + .lucide-search {
-  color: var(--input-border-focus);
-}
-
-.dark .top-controls .relative .lucide-search {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: var(--input-placeholder);
-  z-index: 5;
-  pointer-events: none;
-}
-
-.dark .top-controls .relative:focus-within .lucide-search {
-  color: var(--input-border-focus);
-}
-
-.dark .top-controls button[role="combobox"] {
-  background: var(--dropdown-background);
-  border: 2px solid var(--dropdown-border);
-  color: var(--dropdown-text);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow);
-}
-
-.dark .top-controls button[role="combobox"]:hover {
-  background: var(--dropdown-hover);
-  transform: translateY(-2px);
-}
-
-.dark .top-controls button[role="combobox"]:focus {
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-  transform: translateY(-1px);
-}
-
-/* Premium dark search input - FIXED SIZE AND POSITIONING */
-.dark .top-controls input[type="text"],
-.dark .top-controls input {
-  background: var(--background);
-  border: 2px solid var(--input-border);
-  color: var(--input-text);
-  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--input-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-  box-sizing: border-box;
-  width: 320px;
-  height: 36px;
-  min-height: 36px;
-  max-height: 36px;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 8px 40px 8px 40px;
-  margin: 0;
-  position: relative;
-  display: block;
-}
-
-.dark .top-controls input[type="text"]:focus,
-.dark .top-controls input:focus {
-  border: 2px solid var(--input-border-focus);
-  background: var(--background);
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-  width: 320px;
-  height: 36px;
-  min-height: 36px;
-  max-height: 36px;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 8px 40px 8px 40px;
-  margin: 0;
-  position: relative;
-  display: block;
-}
-
-.dark .top-controls input[type="text"]::placeholder,
-.dark .top-controls input::placeholder {
-  color: var(--input-placeholder);
-  font-weight: 400;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-/* Fix the search input container to maintain consistent layout */
-.dark .top-controls .relative {
-  position: relative;
-  display: block;
-  width: 320px;
-  height: 36px;
-  flex-shrink: 0;
-}
-
-/* Fix button positioning inside search box */
-.dark .top-controls .relative button {
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  z-index: 10;
-  margin: 0;
-  border-radius: 8px;
-}
-
-/* Search icon styling */
-.dark .top-controls .lucide-search {
-  color: var(--input-placeholder);
-  transition: color 0.2s ease;
-}
-
-.dark .top-controls input[type="text"]:focus + .lucide-search,
-.dark .top-controls input[type="text"]:focus ~ .lucide-search {
-  color: var(--input-border-focus);
-}
-
-/* Search icon positioning - make sure it's visible */
-.dark .top-controls .relative .lucide-search {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: var(--input-placeholder);
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* When input is focused, change search icon color */
-.dark .top-controls .relative:focus-within .lucide-search {
-  color: var(--input-border-focus);
-}
-
-/* Premium dark combobox/dropdown buttons */
-.dark .top-controls button[role="combobox"] {
-  background: var(--dropdown-background);
-  border: 2px solid var(--dropdown-border);
-  color: var(--dropdown-text);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-}
-
-.dark .top-controls button[role="combobox"]:hover {
-  background: var(--dropdown-hover);
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.4);
-}
-
-.dark .top-controls button[role="combobox"]:focus {
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-  background: rgba(31, 41, 55, 0.9);
-  transform: translateY(-1px);
-}
-
-/* Premium dark clear filters button */
-.dark .btn-clear-filters {
-  background: var(--btn-clear-bg);
-  border: 2px solid var(--btn-clear-border);
-  color: var(--btn-clear-text);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-}
-
-.dark .btn-clear-filters:hover {
-  background: var(--btn-clear-hover);
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  color: var(--text-primary);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.5);
-}
-
-.dark .btn-clear-filters svg {
-  color: currentColor;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Premium dark focus ring for all interactive elements */
-.dark .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: 12px;
-}
-
-/* ============================= */
-/* ADVANCED DYNAMIC BUTTON REACTIONS - DARK THEME */
-/* ============================= */
-
-/* ============================= */
-/* PREMIUM BUTTON SYSTEM - DARK THEME */
-/* ============================= */
-
-/* Base button foundation - All buttons inherit this */
-.dark button, .dark .btn, .dark [role="button"] {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  overflow: hidden;
-  transform-origin: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  user-select: none;
-}
-
-/* Premium ripple effect */
-.dark button::before, .dark .btn::before, .dark [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Hover states */
-.dark button:hover, .dark .btn:hover, .dark [role="button"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.dark button:hover::before, .dark .btn:hover::before, .dark [role="button"]:hover::before {
-  width: 200px;
-  height: 200px;
-}
-
-/* Active states */
-.dark button:active, .dark .btn:active, .dark [role="button"]:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Disabled states */
-.dark button:disabled, .dark .btn:disabled, .dark [role="button"]:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* Universal input and form control styling */
-.dark input, .dark select, .dark textarea {
-  border-radius: var(--radius-sm);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* Universal card and panel styling */
-.dark .card, .dark .panel, .dark [class*="card"] {
-  border-radius: var(--radius-md);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-/* ============================= */
-/* PREMIUM BUTTON VARIANTS - DARK THEME */
-/* ============================= */
-
-/* Primary Action Buttons */
-.dark .btn-primary, .dark button[data-variant="primary"] {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(79, 70, 229);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.dark .btn-primary:hover, .dark button[data-variant="primary"]:hover {
-  background: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(67, 56, 202) 100%);
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.5), 0 2px 6px rgba(0, 0, 0, 0.25);
-}
-
-/* Secondary Action Buttons */
-.dark .btn-secondary, .dark button[data-variant="secondary"] {
-  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
-  color: rgb(226, 232, 240);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
-}
-
-.dark .btn-secondary:hover, .dark button[data-variant="secondary"]:hover {
-  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-/* Success/Confirmation Buttons */
-.dark .btn-success, .dark button[data-variant="success"] {
-  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(22, 163, 74);
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
-}
-
-.dark .btn-success:hover, .dark button[data-variant="success"]:hover {
-  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.5);
-}
-
-/* Danger/Delete Buttons */
-.dark .btn-danger, .dark button[data-variant="danger"] {
-  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(220, 38, 38);
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
-}
-
-.dark .btn-danger:hover, .dark button[data-variant="danger"]:hover {
-  background: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Ghost/Outline Buttons */
-.dark .btn-ghost, .dark button[data-variant="ghost"] {
-  background: transparent;
-  color: rgb(226, 232, 240);
-  border: 1px solid rgba(71, 85, 105, 0.6);
-  box-shadow: none;
-}
-
-.dark .btn-ghost:hover, .dark button[data-variant="ghost"]:hover {
-  background: rgba(99, 102, 241, 0.1);
-  color: rgb(99, 102, 241);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
-}
-
-/* ============================= */
-/* SPECIALIZED ACTION BUTTONS - DARK THEME */
-/* ============================= */
-
-/* Size Variants */
-.dark .btn-sm, .dark button[data-size="sm"] {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  min-height: 2rem;
-}
-
-.dark .btn-lg, .dark button[data-size="lg"] {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  min-height: 3rem;
-  font-weight: 600;
-}
-
-/* Icon Buttons */
-.dark .btn-icon, .dark button[data-variant="icon"] {
-  padding: 0.5rem;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  justify-content: center;
-}
-
-.dark .btn-icon.btn-sm, .dark button[data-variant="icon"][data-size="sm"] {
-  padding: 0.375rem;
-  min-width: 2rem;
-  min-height: 2rem;
-}
-
-/* Loading States */
-.dark .btn-loading, .dark button[data-loading="true"] {
-  position: relative;
-  color: transparent !important;
-  pointer-events: none;
-}
-
-.dark .btn-loading::after, .dark button[data-loading="true"]::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1rem;
-  height: 1rem;
-  margin: -0.5rem;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: button-spin 0.8s linear infinite;
-  color: inherit;
-}
-
-@keyframes button-spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Focus States */
-.dark button:focus-visible, .dark .btn:focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.5);
-  outline-offset: 2px;
-}
-
-/* Action Button Groups */
-.dark .btn-group {
-  display: inline-flex;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.dark .btn-group button {
-  border-radius: 0;
-  border-right-width: 0;
-  box-shadow: none;
-}
-
-.dark .btn-group button:first-child {
-  border-top-left-radius: var(--radius-sm);
-  border-bottom-left-radius: var(--radius-sm);
-}
-
-.dark .btn-group button:last-child {
-  border-top-right-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
-  border-right-width: 1px;
-}
-
-/* ============================= */
-/* PREMIUM INTERACTIVE COMPONENTS - DARK THEME */
-/* ============================= */
-
-/* Dropdown Triggers */
-.dark button[role="combobox"], .dark .dropdown-trigger {
-  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
-  color: rgb(226, 232, 240);
-  border: 1px solid rgba(71, 85, 105, 0.8);
-  position: relative;
-}
-
-.dark button[role="combobox"]:hover, .dark .dropdown-trigger:hover {
-  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
-}
-
-/* Toggle Switches */
-.dark .toggle-switch {
-  position: relative;
-  display: inline-flex;
-  width: 3rem;
-  height: 1.5rem;
-  background: rgba(71, 85, 105, 0.6);
-  border-radius: 0.75rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.dark .toggle-switch.active {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
-}
-
-.dark .toggle-switch::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: rgb(226, 232, 240);
-  border-radius: 50%;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.dark .toggle-switch.active::before {
-  transform: translateX(1.5rem);
-  background: white;
-}
-
-/* Filter Tags/Chips */
-.dark .filter-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
-  color: rgb(226, 232, 240);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.dark .filter-chip:hover {
-  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
-  border-color: rgba(99, 102, 241, 0.4);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
-}
-
-.dark .filter-chip.active {
-  background: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%);
-  color: rgb(255, 255, 255);
-  border-color: rgb(79, 70, 229);
-}
-
-/* Action Menus */
-.dark .action-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 1rem;
-  color: rgb(226, 232, 240);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-}
-
-.dark .action-menu-item:hover {
-  background: linear-gradient(135deg, rgb(71, 85, 105) 0%, rgb(100, 116, 139) 100%);
-  color: rgb(99, 102, 241);
-  transform: translateX(2px);
-}
-
-/* Dark theme ripple effect */
-.dark button::before, .dark .btn::before, .dark [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Dark ripple activation */
-.dark button:hover::before, .dark .btn:hover::before, .dark [role="button"]:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Dynamic dark primary button states */
-.dark button[class*="primary"], .dark .btn-primary {
-  background: var(--btn-primary-bg);
-  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark button[class*="primary"]:hover, .dark .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 50px -12px rgba(99, 102, 241, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15);
-  filter: brightness(1.1) saturate(1.1);
-}
-
-.dark button[class*="secondary"]:hover, .dark .btn-secondary:hover {
-  background: var(--btn-secondary-hover);
-  border-color: transparent;
-  background-image: var(--accent-color);
-  color: var(--text-primary);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.4);
-}
-
-/* Dark success states */
-.dark .btn-success, .dark button[class*="success"] {
-  background: var(--success-color);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark .btn-success:hover, .dark button[class*="success"]:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.2) hue-rotate(5deg);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
-}
-
-/* Dark floating action buttons */
-.dark .fab {
-  background: var(--accent-color);
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.dark .fab:hover {
-  box-shadow: 0 16px 50px rgba(99, 102, 241, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* ============================= */
-/* DISCORD-STYLE FILTER CONTROLS - DARK THEME */
-/* ============================= */
-
-/* Enhanced styling for filter controls section */
-.dark .top-controls {
-  background: var(--page-background);
-  border-bottom: 1px solid var(--input-border);
-  padding: 16px 0;
-}
-
-/* Discord-style search input - dark theme */
-.dark .top-controls input[type="text"] {
-  background: var(--input-background);
-  border: 1px solid var(--input-border);
-  color: var(--input-text);
-  transition: all 0.15s ease;
-}
-
-.dark .top-controls input[type="text"]:focus {
-  border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 1px var(--input-border-focus);
-  outline: none;
-}
-
-.dark .top-controls input[type="text"]::placeholder {
-  color: var(--input-placeholder);
-}
-
-/* Discord-style combobox/dropdown buttons - dark theme */
-.dark .top-controls button[role="combobox"] {
-  background: var(--btn-filter-bg);
-  border: 1px solid var(--btn-filter-border);
-  color: var(--btn-filter-text);
-  transition: all 0.15s ease;
-}
-
-.dark .top-controls button[role="combobox"]:hover {
-  background: var(--btn-filter-hover);
-  border-color: var(--input-border-focus);
-}
-
-.dark .top-controls button[role="combobox"]:focus {
-  border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 1px var(--input-border-focus);
-  outline: none;
-}
-
-/* Discord-style clear filters button - dark theme */
-.dark .btn-clear-filters {
-  background: var(--btn-clear-bg);
-  border: 1px solid var(--btn-clear-border);
-  color: var(--btn-clear-text);
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  box-shadow: none;
-}
-
-.dark .btn-clear-filters:hover {
-  background: var(--btn-clear-hover);
-  border-color: var(--input-border-focus);
-  color: var(--input-border-focus);
-}
-
-.dark .btn-clear-filters svg {
-  color: currentColor;
-}
-
-/* Discord-style focus ring for all interactive elements - dark theme */
-.dark .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-/* ============================= */
-/* INVENTORY DASHBOARD SPECIFIC STYLING - DARK THEME */
-/* ============================= */
-
-/* Main page background override */
-.dark {
-  background: var(--page-background);
-}
-
-.dark body {
-  background: var(--page-background);
-}
-
-/* Main content area background */
-.dark main,
-.dark .main-content,
-.dark [class*="main"],
-.dark .flex-1.flex.flex-col.min-h-0 {
-  background: var(--page-background);
-  min-height: 100vh;
-}
-
-/* Dashboard main container */
-.dark .dashboard-page {
-  background: rgba(3, 7, 18, 0.95);
-  border: 1px solid rgba(71, 85, 105, 0.3);
-  backdrop-filter: blur(20px);
-  border-radius: 12px;
-  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.6);
-  padding: 24px;
-}
-
-/* Enhanced table styling for inventory */
-.dark .asset-table {
-  background: var(--table-data-bg);
-  border: 1px solid var(--table-data-border);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
-}
-
-/* Table header row gets the gradient background */
-.dark .asset-table thead tr,
-.dark table thead tr {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(51, 65, 85) 100%);
-  position: relative;
-}
-
-/* Individual header cells get solid background to blend seamlessly */
-.dark .asset-table th,
-.dark table th,
-.dark .asset-table thead th,
-.dark table thead th {
-  background: transparent;
-  background-color: transparent;
-  color: var(--table-header-text);
-  font-weight: 600;
-  padding: 16px 12px;
-  border-bottom: 2px solid var(--table-header-border);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  position: relative;
-  z-index: 5;
-}
-
-/* FORCE header cells to NEVER be affected by selection state */
-.dark table tr[data-state="selected"] th,
-.dark .asset-table tr[data-state="selected"] th,
-.dark table thead tr th,
-.dark .asset-table thead tr th {
-  background: transparent;
-  background-color: transparent;
-  color: var(--table-header-text);
-  border-left: none;
-  box-shadow: none;
-}
-
-.dark .asset-table td {
-  background: var(--table-data-bg);
-  color: var(--table-data-text);
-  border-bottom: 1px solid var(--table-data-border);
-  padding: 12px;
-  transition: all 0.2s ease;
-}
-
-.dark .asset-table tr:hover td {
-  background: var(--table-data-hover);
-  transform: scale(1.005);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
-}
-
-/* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
-.dark table tbody tr[data-state="selected"] td,
-.dark .asset-table tbody tr[data-state="selected"] td {
-  background: var(--table-data-hover);
-  background-color: var(--table-data-hover);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
-  position: relative;
-  z-index: 2;
-}
-
-/* Enhanced hover for selected rows - DATA ROWS ONLY */
-.dark table tbody tr[data-state="selected"]:hover td,
-.dark .asset-table tbody tr[data-state="selected"]:hover td {
-  background: var(--table-data-hover);
-  background-color: var(--table-data-hover);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  z-index: 3;
-}
-
-/* Dashboard stats cards */
-.dark .category-counts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.dark .stats-card {
-  background: var(--dashboard-stat-bg);
-  border: 1px solid var(--dashboard-stat-border);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.dark .stats-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px -8px rgba(79, 70, 229, 0.3);
-  border-color: rgba(79, 70, 229, 0.5);
-}
-
-.dark .stats-value {
-  color: var(--dashboard-stat-accent);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.dark .stats-label {
-  color: var(--dashboard-stat-text);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-}
-
-/* Enhanced action buttons for dashboard */
-.dark .btn-add-asset {
-  background: var(--btn-add-asset-bg);
-  color: var(--btn-add-asset-text);
-  box-shadow: var(--btn-add-asset-shadow);
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.dark .btn-add-asset:hover {
-  background: var(--btn-add-asset-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
-}
-
-/* Asset status indicators */
-.dark .badge {
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-}
-
-.dark .status-in-use {
-  background: var(--inventory-in-stock);
-  color: rgb(233, 233, 233);
-}
-
-.dark .status-spare {
-  background: var(--inventory-in-stock);
-  color: white;
-}
-
-.dark .status-for-repair {
-  background: var(--inventory-out-stock);
-  color: white;
-}
-
-.dark .status-for-parts {
-  background: var(--inventory-low-stock);
-  color: white;
-}
-
-.dark .status-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  border: 1px solid;
-  transition: all 0.2s ease;
-}
-
-.dark .status-badge.in-use {
-  background: var(--status-in-use-bg);
-  border-color: var(--status-in-use-border);
-  color: var(--status-in-use-text);
-}
-
-.dark .status-badge.spare {
-  background: var(--status-spare-bg);
-  border-color: var(--status-spare-border);
-  color: var(--status-spare-text);
-}
-
-.dark .status-badge.for-repair {
-  background: var(--status-for-repair-bg);
-  border-color: var(--status-for-repair-border);
-  color: var(--status-for-repair-text);
-}
-
-.dark .status-badge.for-parts {
-  background: var(--status-for-parts-bg);
-  border-color: var(--status-for-parts-border);
-  color: var(--status-for-parts-text);
-}
-
-.dark .status-badge.for-recycle {
-  background: var(--status-for-recycle-bg);
-  border-color: var(--status-for-recycle-border);
-  color: var(--status-for-recycle-text);
-}
-
-/* Status Badge Hover Effects - Dark Theme */
-.dark .status-badge.in-use:hover {
-  background-color: var(--status-in-use-hover);
-}
-
-.dark .status-badge.spare:hover {
-  background-color: var(--status-spare-hover);
-}
-
-.dark .status-badge.for-repair:hover {
-  background-color: var(--status-for-repair-hover);
-}
-
-.dark .status-badge.for-parts:hover {
-  background-color: var(--status-for-parts-hover);
-}
-
-.dark .status-badge.for-recycle:hover {
-  background-color: var(--status-for-recycle-hover);
-}
-
-/* ============================= */
-/* TAILWIND CLASS OVERRIDES */
-/* ============================= */
-
-/* Override Tailwind bg-background class in dark mode */
-.dark .bg-background {
-  background: var(--page-background);
-}
-
-/* Specifically target the main dashboard container */
-.dark div[class*="flex h-screen bg-background"] {
-  background: var(--page-background);
-}
-
-/* Target all flex containers that might have background */
-.dark div[class*="flex"][class*="bg-"]:not([class*="table"]):not([class*="tbody"]):not([class*="thead"]) {
-  background: var(--page-background);
-}
-
-/* Override any overflow-hidden containers */
-.dark div[class*="overflow-hidden"]:not([class*="table"]) {
-  background: var(--page-background);
-}
-
-/* Main container background enforcement */
-.dark div[class*="flex-1"][class*="flex"][class*="flex-col"]:not([class*="table"]) {
-  background: var(--page-background);
-}
-
-/* ============================= */
-/* THEME TOGGLE WHITE STYLING */
-/* ============================= */
-
-/* Theme toggle white styling */
-.dark .theme-toggle {
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--text-quaternary);
-  border: 1px solid rgba(203, 213, 225, 0.3);
-  border-radius: 8px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dark .theme-toggle:hover {
-  background: rgb(255, 255, 255);
-  color: rgb(51, 65, 85);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
-}
-
-/* REMOVED - No cross-theme references allowed for complete separation */
-
-/* ============================= */
-/* LAYOUT AND VIEWPORT FIXES */
-/* ============================= */
-
-/* Ensure sidebar footer is always visible */
-.dark [data-sidebar="sidebar"] {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.dark [data-sidebar="content"] {
-  flex: 1;
-  overflow: visible;
-  padding: 8px;
-}
-
-.dark [data-sidebar="footer"] {
-  flex-shrink: 0;
-  background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
-  z-index: 10;
-  padding: 16px;
-  border-top: 1px solid rgba(99, 102, 241, 0.2);
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 -2px 8px rgba(99, 102, 241, 0.15);
-}
-
-/* Main layout viewport constraints */
-.dark .main-layout {
-  height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-}
-
-/* Table container scrolling */
-.dark .table-container {
-  max-height: calc(100vh - 280px);
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-/* ============================= */
-/* SIDEBAR CONTENT OPTIMIZATION */
-/* ============================= */
-
-/* Category counts proper spacing */
-.dark .sidebar-group {
-  margin-bottom: 8px;
-}
-
-.dark .sidebar-menu {
-  gap: 2px;
-}
-
-.dark .sidebar-menu-item {
-  margin-bottom: 1px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-/* ============================= */
-/* SIDEBAR NAVIGATION - DARK THEME */
-/* ============================= */
-
-/* Sidebar category links enhanced hover - Dark Theme */
-.dark .sidebar-nav a,
-.dark .sidebar-nav button,
-.dark .sidebar-nav [role="button"] {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  color: var(--sidebar-text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--sidebar-link-bg);
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.dark .sidebar-nav a::before,
-.dark .sidebar-nav button::before,
-.dark .sidebar-nav [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark .sidebar-nav a:hover,
-.dark .sidebar-nav button:hover,
-.dark .sidebar-nav [role="button"]:hover {
-  background: var(--sidebar-link-hover);
-  color: var(--sidebar-text-hover);
-  border-color: rgba(88, 101, 242, 0.3);
-  transform: translateX(4px);
-  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2);
-}
-
-.dark .sidebar-nav a:hover::before,
-.dark .sidebar-nav button:hover::before,
-.dark .sidebar-nav [role="button"]:hover::before {
-  left: 100%;
-}
-
-.dark .sidebar-nav a.active,
-.dark .sidebar-nav button.active,
-.dark .sidebar-nav [role="button"].active {
-  background: var(--sidebar-link-active);
-  color: var(--sidebar-link-active-text);
-  border-color: rgba(88, 101, 242, 0.4);
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(88, 101, 242, 0.3);
-}
-
-.dark .sidebar-nav svg,
-.dark .sidebar-nav .lucide {
-  width: 18px;
-  height: 18px;
-  margin-right: 12px;
-  color: var(--sidebar-link-icon);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark .sidebar-nav a:hover svg,
-.dark .sidebar-nav button:hover svg,
-.dark .sidebar-nav [role="button"]:hover .lucide,
-.dark .sidebar-nav a.active svg,
-.dark .sidebar-nav button.active svg,
-.dark .sidebar-nav [role="button"].active .lucide {
-  color: var(--sidebar-link-icon-active);
-  transform: scale(1.1);
-}
-
-/* ============================= */
-/* DROPDOWN STYLING - DARK THEME */
-/* ============================= */
-
-/* Dropdown content styling - Premium Dark */
-.dark [data-radix-popper-content-wrapper] {
-  z-index: 1000;
-}
-
-.dark .dropdown-content,
-.dark [role="menu"],
-.dark [data-radix-select-content] {
-  background: var(--dropdown-background);
-  border: 1px solid var(--dropdown-border);
-  border-radius: 12px;
-  box-shadow: var(--dropdown-shadow);
-  backdrop-filter: blur(16px);
-  padding: 8px;
-  min-width: 200px;
-  overflow: hidden;
-}
-
-/* SelectItem component hover - MATCH SIDEBAR STYLE */
-.dark [data-radix-select-item],
-.dark .dropdown-item,
-.dark [role="menuitem"] {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  border-radius: 8px;
-  color: var(--dropdown-text);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
-.dark [data-radix-select-item]::before,
-.dark .dropdown-item::before,
-.dark [role="menuitem"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark [data-radix-select-item]:hover,
-.dark .dropdown-item:hover,
-.dark [role="menuitem"]:hover,
-.dark [data-radix-select-item][data-highlighted],
-.dark .dropdown-item[data-highlighted],
-.dark [role="menuitem"][data-highlighted] {
-  background: var(--dropdown-hover);
-  color: var(--dropdown-item-selected-text);
-  border-color: rgba(88, 101, 242, 0.3);
-  transform: translateX(4px);
-  box-shadow: 4px 0 16px rgba(88, 101, 242, 0.2);
-}
-
-.dark [data-radix-select-item]:hover::before,
-.dark .dropdown-item:hover::before,
-.dark [role="menuitem"]:hover::before,
-.dark [data-radix-select-item][data-highlighted]::before,
-.dark .dropdown-item[data-highlighted]::before,
-.dark [role="menuitem"][data-highlighted]::before {
-  left: 100%;
-}
-
-.dark [data-radix-select-item] svg,
-.dark .dropdown-item svg,
-.dark [role="menuitem"] svg {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--sidebar-link-icon);
-}
-
-.dark [data-radix-select-item]:hover svg,
-.dark .dropdown-item:hover svg,
-.dark [role="menuitem"]:hover svg,
-.dark [data-radix-select-item][data-highlighted] svg,
-.dark .dropdown-item[data-highlighted] svg,
-.dark [role="menuitem"][data-highlighted] svg {
-  color: var(--sidebar-link-icon-active);
-  transform: scale(1.1);
-}
-
-/* Override accent-foreground text colors */
-.dark [data-radix-select-item][data-state="checked"],
-.dark .dropdown-item[data-state="checked"],
-.dark [role="menuitem"][data-state="checked"] {
-  background: var(--dropdown-item-selected);
-  color: var(--dropdown-item-selected-text);
-  font-weight: 600;
-}
-
-/* ============================= */
-/* THEME TOGGLE VISIBILITY FIXES */
-/* ============================= */
-
-/* Theme toggle container ensures visibility */
-.dark .theme-toggle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 48px;
-}
-
-/* Simple theme toggle visibility - dark theme */
-.dark .theme-toggle {
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-}
-
-.dark .theme-toggle svg {
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-.dark .theme-toggle [data-lucide="sun-medium"] {
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-}
-
-.dark .theme-toggle [data-lucide="moon-star"] {
-  transform: rotate(-90deg) scale(0);
-  opacity: 0;
-}
-
-/* Theme toggle icon color classes - Dark Theme */
-.dark .theme-toggle-sun-icon {
-  color: var(--theme-toggle-sun-color);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 4px var(--theme-toggle-sun-glow));
-}
-
-.dark .theme-toggle-moon-icon {
-  width: 40px;
-  height: 40px;
-  color: rgb(99, 102, 241);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
-}
-
-.dark .theme-toggle:hover .theme-toggle-moon-icon {
-  transform: scale(1.7) rotate(-10deg);
-  color: rgb(129, 140, 248);
-  filter: drop-shadow(0 0 16px rgba(129, 140, 248, 0.7)) drop-shadow(0 0 28px rgba(129, 140, 248, 0.4));
-  stroke-width: 3;
-}
-
-/* Universal theme toggle icon sizing */
-.dark .theme-toggle svg,
-.dark .theme-toggle [data-lucide] {
-  width: 40px;
-  height: 40px;
-  transition: all 0.3s ease;
-}
-
-.dark .theme-toggle:hover svg,
-.dark .theme-toggle:hover [data-lucide] {
-  transform: scale(1.1) rotate(-10deg);
-  color: rgb(129, 140, 248);
-}
-
-.dark .theme-toggle-placeholder-icon {
-  width: 20px;
-  height: 20px;
-  opacity: 0.5;
-}
-
-.dark .theme-toggle-placeholder-icon svg {
-  stroke: var(--theme-toggle-moon-color);
-}
-
-.dark [data-sidebar="footer"] {
-  display: flex;
-  visibility: visible;
-  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
-  border-top: 1px solid rgba(99, 102, 241, 0.2);
-}
-
-/* ============================= */
-/* ENHANCED SIDEBAR STYLING - DARK THEME */
-/* ============================= */
-
-/* Sidebar text colors */
-.dark [data-sidebar] {
-  color: var(--sidebar-text);
-}
-
-.dark [data-sidebar] .sidebar-text {
-  color: rgb(226, 232, 240);
-  font-weight: 500;
-}
-
-.dark [data-sidebar] .sidebar-text-muted {
-  color: rgb(148, 163, 184);
-  font-size: 0.875rem;
-}
-
-/* Sidebar header styling */
-.dark [data-sidebar="header"] {
-  background: linear-gradient(135deg, rgb(51, 65, 85) 0%, rgb(71, 85, 105) 100%);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-  color: rgb(226, 232, 240);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
-}
-
-/* Sidebar content styling */
-.dark [data-sidebar="content"] {
-  background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
-  color: var(--sidebar-text);
-}
-
-.dark [data-sidebar="sidebar"] {
-  background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
-  color: rgb(226, 232, 240);
-}
-
-/* Proper sidebar text colors with correct specificity */
-.dark [data-sidebar="sidebar"] button,
-.dark [data-sidebar="sidebar"] a,
-.dark [data-sidebar="sidebar"] span,
-.dark [data-sidebar="sidebar"] div {
-  color: rgb(226, 232, 240);
-}
-
-.dark [data-sidebar="content"] button,
-.dark [data-sidebar="content"] a,
-.dark [data-sidebar="content"] span,
-.dark [data-sidebar="content"] div {
-  color: rgb(226, 232, 240);
-}
-
-/* Sidebar footer specific styling */
-.dark [data-sidebar="footer"] .theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(99, 102, 241, 0.12);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  min-height: 72px;
-  min-width: 72px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark [data-sidebar="footer"] .theme-toggle:hover {
-  background: rgba(99, 102, 241, 0.18);
-  border-color: rgba(99, 102, 241, 0.3);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-}
-
-/* Sidebar footer text colors */
-.dark [data-sidebar="footer"] {
-  color: rgb(226, 232, 240);
-}
-
-.dark [data-sidebar="footer"] * {
-  color: rgb(226, 232, 240);
-}
-
-.dark [data-sidebar="footer"] .text-muted,
-.dark [data-sidebar="footer"] .text-secondary {
-  color: rgb(148, 163, 184);
-}
-
-.dark [data-sidebar="footer"] button {
-  color: rgb(226, 232, 240);
-}
-
-.dark [data-sidebar="footer"] button:hover {
-  color: rgb(248, 250, 252);
-}
-
-/* ============================= */
-/* COLLAPSED SIDEBAR ALIGNMENT - DARK THEME */
-/* ============================= */
-
-/* Simple collapsed sidebar styling */
-.dark [data-collapsible="icon"] span:not(.sr-only) {
-  display: none;
-}
-
-.dark [data-collapsible="icon"] .badge {
-  display: none;
-}
-
-/* Perfect alignment for collapsed icons */
-.dark [data-collapsible="icon"] {
-  width: 60px;
-}
-
-.dark [data-collapsible="icon"] .sidebar-group {
-  width: 100%;
-  padding: 0;
-}
-
-.dark [data-collapsible="icon"] a,
-.dark [data-collapsible="icon"] button {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 60px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0;
-}
-
-.dark [data-collapsible="icon"] svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 auto !important;
-}
-
-/* Match logo and theme toggle positioning exactly */
-.dark [data-collapsible="icon"] [data-sidebar="header"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  padding: 16px 0;
-}
-
-.dark [data-collapsible="icon"] [data-sidebar="header"] svg {
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-}
-
-/* Ensure theme toggle matches the same alignment */
-.dark [data-collapsible="icon"] [data-sidebar="footer"] .theme-toggle {
-  width: 60px;
-  margin: 0;
-  justify-content: center;
-}
-
-/* Collapsed sidebar container alignment */
-.dark [data-collapsible="icon"] [data-sidebar="content"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 60px;
-  padding: 0;
-}
-
-.dark [data-collapsible="icon"] [data-sidebar="content"] > * {
-  width: 60px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Sidebar group styling - matching light theme */
-.dark .sidebar-group {
-  padding: 8px;
-}
-
-.dark .sidebar-group > div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-/* Sidebar navigation items - matching light theme layout */
-.dark [data-sidebar] .sidebar-nav-item,
-.dark .sidebar-group a,
-.dark .sidebar-group button,
-.dark [role="menuitem"] {
-  display: flex !important;
-  align-items: center !important;
-  padding: 12px 16px !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
-  border-radius: var(--radius-sm);
-  margin: 2px 0;
-  transition: all 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.dark [data-sidebar] .sidebar-nav-item:hover {
-  background: rgba(99, 102, 241, 0.1);
-  transform: translateX(2px);
-}
-
-.dark [data-sidebar] .sidebar-nav-item.active {
-  background: rgba(99, 102, 241, 0.2);
-  color: rgb(248, 250, 252);
-  font-weight: 600;
-}
-
-/* Sidebar icons - matching light theme */
-.dark [data-sidebar] .sidebar-nav-item svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: rgb(148, 163, 184);
-}
-
-.dark [data-sidebar] .sidebar-nav-item.active svg {
-  color: rgb(248, 250, 252);
-}
-
-/* Sidebar text - matching light theme */
-.dark [data-sidebar] .sidebar-nav-item span {
-  flex: 1;
-  color: rgb(226, 232, 240);
-  font-size: 0.925rem;
-}
-
-.dark [data-sidebar] .sidebar-nav-item.active span {
-  color: rgb(248, 250, 252);
-  font-weight: 600;
-}
-
-/* Navigation item badges/counts - matching light theme */
-.dark [data-sidebar] .sidebar-nav-item .badge {
-  background: rgba(99, 102, 241, 0.15);
-  color: rgb(248, 250, 252);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 18px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.dark [data-sidebar] .sidebar-nav-item.active .badge {
-  background: rgba(248, 250, 252, 0.15);
-  color: rgb(248, 250, 252);
-}
-
-/* Basic sidebar text colors - no positioning overrides */
-.dark [data-sidebar] {
-  color: rgb(226, 232, 240);
-}
-
-/* ============================= */
-/* ============================= */
-/* COMPREHENSIVE UI COMPONENT VARIABLES - DARK THEME */
-/* ============================= */
-
-/* Sidebar Components */
-.dark {
-  --sidebar-background: rgba(15, 23, 42, 0.98);
-  --sidebar-foreground: rgb(248, 250, 252);
-  --sidebar-border: rgba(71, 85, 105, 0.6);
-  --sidebar-primary: rgb(99, 102, 241);
-  --sidebar-primary-foreground: rgb(255, 255, 255);
-  --sidebar-accent: rgba(59, 130, 246, 0.1);
-  --sidebar-accent-foreground: rgb(248, 250, 252);
-  --sidebar-muted: rgba(51, 65, 85, 0.5);
-  --sidebar-muted-foreground: rgb(148, 163, 184);
-  --sidebar-ring: rgba(99, 102, 241, 0.4);
-  --sidebar-link-hover: rgba(59, 130, 246, 0.15);
-  --sidebar-link-icon: rgb(148, 163, 184);
-  --sidebar-link-icon-active: rgb(99, 102, 241);
-}
-
-/* Dropdown Components */
-.dark {
-  --dropdown-bg: rgb(30, 41, 59);
-  --dropdown-border: rgba(100, 116, 139, 0.2);
-  --dropdown-hover: rgba(59, 130, 246, 0.1);
-  --dropdown-focus: rgba(59, 130, 246, 0.25);
-  --dropdown-text: rgb(248, 250, 252);
-  --dropdown-background: rgba(15, 23, 42, 0.98);
-  --dropdown-item-selected: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%);
-  --dropdown-item-selected-text: rgb(248, 250, 252);
-}
-
-/* Header Components */
-.dark {
-  --header-bg: rgba(17, 24, 39, 0.95);
-  --header-border: rgba(71, 85, 105, 0.4);
-  --header-text: rgb(248, 250, 252);
-}
-
-/* Button Variants */
-.dark {
-  --btn-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --btn-primary-hover: linear-gradient(135deg, rgb(79, 70, 229) 0%, rgb(124, 58, 237) 100%);
-  --btn-secondary-bg: rgba(31, 41, 55, 0.9);
-  --btn-secondary-hover: rgba(51, 65, 85, 0.95);
-  --btn-export-bg: linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(5, 150, 105) 100%);
-  --btn-export-hover: linear-gradient(135deg, rgb(5, 150, 105) 0%, rgb(4, 120, 87) 100%);
-}
-
-/* Card Components */
-.dark {
-  --card-bg: rgba(15, 23, 42, 0.98);
-  --card-border: rgba(71, 85, 105, 0.6);
-  --card-hover: rgba(59, 130, 246, 0.05);
-  --card-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4);
-}
-
-/* Toast & Notification Components */
-.dark {
-  --toast-bg: rgba(31, 41, 55, 0.95);
-  --toast-border: rgba(71, 85, 105, 0.6);
-  --toast-text: rgb(248, 250, 252);
-  --toast-success-bg: rgba(34, 197, 94, 0.1);
-  --toast-success-border: rgba(34, 197, 94, 0.3);
-  --toast-error-bg: rgba(239, 68, 68, 0.1);
-  --toast-error-border: rgba(239, 68, 68, 0.3);
-  --toast-warning-bg: rgba(251, 191, 36, 0.1);
-  --toast-warning-border: rgba(251, 191, 36, 0.3);
-}
-
-/* Form Components */
-.dark {
-  --form-label-color: rgb(248, 250, 252);
-  --form-description-color: rgb(148, 163, 184);
-  --form-error-color: rgb(248, 113, 113);
-}
-
-/* Dialog Components */
-.dark {
-  --dialog-bg: rgba(31, 41, 55, 0.98);
-  --dialog-border: rgba(71, 85, 105, 0.6);
-  --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  --dialog-overlay: rgba(0, 0, 0, 0.6);
-}
-
-/* Scrollbar Components */
-.dark {
-  --scrollbar-track: rgba(51, 65, 85, 0.3);
-  --scrollbar-thumb: rgba(99, 102, 241, 0.4);
-  --scrollbar-thumb-hover: rgba(99, 102, 241, 0.6);
-}
-
-/* Text Colors */
-.dark {
-  --text-primary: rgb(248, 250, 252);
-  --text-secondary: rgb(203, 213, 225);
-  --text-tertiary: rgb(148, 163, 184);
-  --text-quaternary: rgb(100, 116, 139);
-  --text-muted: rgb(148, 163, 184);
-  --text-error: rgb(248, 113, 113);
-  --text-success: rgb(74, 222, 128);
-  --text-warning: rgb(251, 191, 36);
-  --text-info: rgb(96, 165, 250);
-}
-
-/* Border Colors */
-.dark {
-  --border: rgba(71, 85, 105, 0.4);
-  --border-subtle: rgba(51, 65, 85, 0.3);
-  --border-muted: rgba(30, 41, 59, 0.5);
-}
-
-/* Background Colors */
-.dark {
+  /* Tailwind integration */
+  --primary: rgb(59, 130, 246);
+  --primary-foreground: rgb(252, 251, 251);
+  --secondary: rgb(71, 85, 105);
+  --secondary-foreground: rgb(226, 232, 240);
+  --destructive: rgb(220, 38, 38);
+  --destructive-foreground: rgb(255, 255, 255);
+  --warning: rgb(245, 158, 11);
+  --warning-foreground: rgb(255, 255, 255);
+  --foreground: rgb(226, 232, 240);
   --background: rgb(15, 23, 42);
-  --background-subtle: rgba(30, 41, 59, 0.3);
-  --background-muted: rgba(51, 65, 85, 0.2);
-  --foreground: rgb(248, 250, 252);
-  --muted: rgba(51, 65, 85, 0.3);
+  --muted: rgb(30, 41, 59);
   --muted-foreground: rgb(148, 163, 184);
-}
-
-/* Accordion Components */
-.dark {
-  --accordion-trigger-bg: rgba(31, 41, 55, 0.9);
-  --accordion-trigger-hover: rgba(59, 130, 246, 0.1);
-  --accordion-content-bg: rgba(15, 23, 42, 0.95);
-  --accordion-border: rgba(71, 85, 105, 0.4);
-}
-
-/* Calendar Components */
-.dark {
-  --calendar-bg: rgba(31, 41, 55, 0.98);
-  --calendar-border: rgba(71, 85, 105, 0.4);
-  --calendar-cell-selected: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --calendar-cell-hover: rgba(59, 130, 246, 0.1);
-  --calendar-cell-today: rgba(59, 130, 246, 0.2);
-  --calendar-nav-hover: rgba(59, 130, 246, 0.15);
-}
-
-/* Collapsible Components */
-.dark {
-  --collapsible-trigger-bg: rgba(31, 41, 55, 0.9);
-  --collapsible-trigger-hover: rgba(59, 130, 246, 0.1);
-  --collapsible-content-bg: rgba(15, 23, 42, 0.95);
-}
-
-/* Combobox Components */
-.dark {
-  --combobox-bg: rgba(31, 41, 55, 0.98);
-  --combobox-border: rgba(71, 85, 105, 0.4);
-  --combobox-hover: rgba(59, 130, 246, 0.1);
-  --combobox-focus: rgba(59, 130, 246, 0.25);
-  --combobox-selected: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%);
-}
-
-/* Command Components */
-.dark {
-  --command-bg: rgba(31, 41, 55, 0.98);
-  --command-border: rgba(71, 85, 105, 0.4);
-  --command-item-hover: rgba(59, 130, 246, 0.1);
-  --command-item-selected: rgba(59, 130, 246, 0.15);
-  --command-shortcut-text: rgb(148, 163, 184);
-}
-
-/* MenuBar Components */
-.dark {
-  --menubar-bg: rgba(17, 24, 39, 0.95);
-  --menubar-border: rgba(71, 85, 105, 0.4);
-  --menubar-trigger-hover: rgba(59, 130, 246, 0.1);
-  --menubar-item-hover: rgba(59, 130, 246, 0.15);
-  --menubar-separator: rgba(71, 85, 105, 0.4);
-}
-
-/* Progress Components */
-.dark {
-  --progress-bg: rgba(51, 65, 85, 0.5);
-  --progress-fill: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --progress-border: rgba(71, 85, 105, 0.4);
-}
-
-/* Radio Group Components */
-.dark {
-  --radio-bg: rgba(31, 41, 55, 0.9);
-  --radio-border: rgba(99, 102, 241, 0.4);
-  --radio-checked: rgb(99, 102, 241);
-  --radio-hover: rgba(59, 130, 246, 0.1);
-  --radio-focus: rgba(59, 130, 246, 0.25);
-}
-
-/* Separator Components */
-.dark {
-  --separator-bg: rgba(71, 85, 105, 0.4);
-  --separator-gradient: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.3) 50%, transparent 100%);
-}
-
-/* Sheet Components */
-.dark {
-  --sheet-bg: rgba(31, 41, 55, 0.98);
-  --sheet-border: rgba(71, 85, 105, 0.4);
-  --sheet-overlay: rgba(0, 0, 0, 0.6);
-  --sheet-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
-}
-
-/* Skeleton Components */
-.dark {
-  --skeleton-bg: rgba(51, 65, 85, 0.6);
-  --skeleton-shine: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.1) 50%, transparent 100%);
-}
-
-/* Slider Components */
-.dark {
-  --slider-track-bg: rgba(51, 65, 85, 0.5);
-  --slider-range-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
+  --accent: rgb(51, 65, 85);
+  --accent-foreground: rgb(226, 232, 240);
+  --border: rgb(51, 65, 85);
+  --input: rgb(51, 65, 85);
+  --ring: rgb(59, 130, 246);
+  --card: rgb(15, 23, 42);
+  --card-foreground: rgb(248, 250, 252);
+  --popover: rgb(15, 23, 42);
+  --popover-foreground: rgb(248, 250, 252);
+  --chart-1: rgb(59, 130, 246);
+  --chart-2: rgb(34, 197, 94);
+  --chart-3: rgb(251, 191, 36);
+  --chart-4: rgb(168, 85, 247);
+  --chart-5: rgb(239, 68, 68);
+  
+  /* Sidebar colors */
+  --sidebar: rgb(15, 23, 42);
+  --sidebar-foreground: rgb(248, 250, 252);
+  --sidebar-primary: rgb(59, 130, 246);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(30, 41, 59);
+  --sidebar-accent-foreground: rgb(248, 250, 252);
+  --sidebar-border: rgb(71, 85, 105);
+  --sidebar-ring: rgb(59, 130, 246);
+  --sidebar-background: rgba(30, 41, 59, 0.95);
+  --sidebar-text: rgb(226, 232, 240);
+  --sidebar-link-text: rgb(148, 163, 184);
+  --sidebar-link-bg: transparent;
+  --sidebar-link-hover: rgba(99, 102, 241, 0.15);
+  --sidebar-link-active: rgba(99, 102, 241, 0.25);
+  --sidebar-link-active-text: rgb(248, 250, 252);
+  --sidebar-link-icon: rgb(148, 163, 184);
+  --sidebar-link-icon-active: rgb(248, 250, 252);
+  --sidebar-text-hover: rgb(248, 250, 252);
+  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
+  --sidebar-header-bg: rgba(47, 49, 54, 0.9);
+  --sidebar-header-text: rgb(255, 255, 255);
+  --sidebar-header-border: rgba(64, 68, 75, 0.6);
+  
+  /* Text colors */
+  --text-primary: rgb(240, 240, 240);
+  --text-secondary: rgb(220, 221, 222);
+  --text-tertiary: rgb(142, 146, 151);
+  --text-quaternary: rgb(100, 116, 139);
+  --text-error: rgb(206, 86, 86);
+  --text-muted: rgb(142, 146, 151);
+  
+  /* Logo colors */
+  --logo-icon-color: rgb(114, 137, 218);
+  --logo-title-color: rgb(255, 255, 255);
+  --logo-subtitle-color: rgb(142, 146, 151);
+  
+  /* Chart colors */
+  --chart-color-1: rgb(59, 130, 246);
+  --chart-color-2: rgb(16, 185, 129);
+  --chart-color-3: rgb(245, 158, 11);
+  --chart-color-4: rgb(168, 85, 247);
+  --chart-color-5: rgb(220, 38, 38);
+  
+  /* Scrollbar colors */
+  --scrollbar-track: rgb(30, 41, 59);
+  --scrollbar-track-border: rgb(51, 65, 85);
+  --scrollbar-thumb: rgb(59, 130, 246);
+  --scrollbar-thumb-hover: rgb(37, 99, 235);
+  --scrollbar-thumb-border: rgb(30, 41, 59);
+  --scrollbar-corner: rgb(30, 41, 59);
+  --scrollbar-glow: 0 0 12px rgba(59, 130, 246, 0.4);
+  --scrollbar-glow-hover: 0 0 18px rgba(59, 130, 246, 0.6);
+  
+  /* Theme toggle colors */
+  --theme-toggle-sun-color: rgb(251, 191, 36);
+  --theme-toggle-moon-color: rgb(99, 102, 241);
+  --theme-toggle-sun-glow: rgba(251, 191, 36, 0.4);
+  --theme-toggle-moon-glow: rgba(99, 102, 241, 0.4);
+  
+  /* Theme toggle specific styling */
+  --theme-toggle-bg: rgba(31, 41, 55, 0.95);
+  --theme-toggle-border: rgba(99, 102, 241, 0.3);
+  --theme-toggle-hover-bg: rgba(51, 65, 85, 0.95);
+  --theme-toggle-hover-border: rgba(99, 102, 241, 0.6);
+  --theme-toggle-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+  --theme-toggle-hover-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.3);
+  
+  /* Progress Component */
+  --progress-track-bg: rgb(30, 41, 59);
+  --progress-fill-bg: rgb(99, 102, 241);
+  
+  /* Slider Component */
+  --slider-track-bg: rgb(30, 41, 59);
+  --slider-range-bg: rgb(99, 102, 241);
   --slider-thumb-bg: rgb(248, 250, 252);
   --slider-thumb-border: rgb(99, 102, 241);
-  --slider-thumb-hover: rgba(59, 130, 246, 0.1);
-}
-
-/* Switch Components */
-.dark {
-  --switch-bg-off: rgba(71, 85, 105, 0.5);
-  --switch-bg-on: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --switch-thumb: rgb(248, 250, 252);
-  --switch-focus: rgba(59, 130, 246, 0.25);
-}
-
-/* Tabs Components */
-.dark {
-  --tabs-list-bg: rgba(51, 65, 85, 0.3);
+  
+  /* Switch Component */
+  --switch-checked-bg: rgb(99, 102, 241);
+  --switch-unchecked-bg: rgb(51, 65, 85);
+  --switch-thumb-bg: rgb(248, 250, 252);
+  
+  /* Tabs Component */
+  --tabs-list-bg: rgb(30, 41, 59);
   --tabs-trigger-bg: transparent;
-  --tabs-trigger-hover: rgba(59, 130, 246, 0.1);
-  --tabs-trigger-active: rgba(31, 41, 55, 0.9);
-  --tabs-content-bg: rgba(15, 23, 42, 0.95);
-  --tabs-border: rgba(71, 85, 105, 0.4);
+  --tabs-trigger-active-bg: rgb(51, 65, 85);
+  --tabs-trigger-text: rgb(148, 163, 184);
+  --tabs-trigger-active-text: rgb(226, 232, 240);
+  
+  /* Alert Component */
+  --alert-default-bg: rgb(15, 23, 42);
+  --alert-default-border: rgb(51, 65, 85);
+  --alert-info-bg: rgba(59, 130, 246, 0.1);
+  --alert-info-border: rgba(59, 130, 246, 0.3);
+  --alert-warning-bg: rgba(245, 158, 11, 0.1);
+  --alert-warning-border: rgba(245, 158, 11, 0.3);
+  --alert-success-bg: rgba(16, 185, 129, 0.1);
+  --alert-success-border: rgba(16, 185, 129, 0.3);
+  
+  /* Avatar Component */
+  --avatar-fallback-bg: rgb(30, 41, 59);
+  --avatar-fallback-text: rgb(148, 163, 184);
+  
+  /* Radio Group */
+  --radio-border: rgb(51, 65, 85);
+  --radio-checked-bg: rgb(99, 102, 241);
+  --radio-indicator-color: rgb(248, 250, 252);
+  
+  /* Skeleton Component */
+  --skeleton-bg: rgba(30, 41, 59, 0.8);
 }
 
-/* Textarea Components */
-.dark {
-  --textarea-bg: rgba(31, 41, 55, 0.9);
-  --textarea-border: rgba(71, 85, 105, 0.4);
-  --textarea-hover: rgba(59, 130, 246, 0.1);
-  --textarea-focus: rgba(59, 130, 246, 0.25);
-  --textarea-placeholder: rgb(148, 163, 184);
-}
 
-/* Tooltip Components */
-.dark {
-  --tooltip-bg: rgba(248, 250, 252, 0.95);
-  --tooltip-text: rgb(15, 23, 42);
-  --tooltip-border: rgba(71, 85, 105, 0.4);
-  --tooltip-arrow: rgba(248, 250, 252, 0.95);
-}
-
-/* Alert Components */
-.dark {
-  --alert-bg: rgba(31, 41, 55, 0.95);
-  --alert-border: rgba(71, 85, 105, 0.4);
-  --alert-text: rgb(248, 250, 252);
-  --alert-success-bg: rgba(34, 197, 94, 0.1);
-  --alert-success-border: rgba(34, 197, 94, 0.3);
-  --alert-error-bg: rgba(239, 68, 68, 0.1);
-  --alert-error-border: rgba(239, 68, 68, 0.3);
-  --alert-warning-bg: rgba(251, 191, 36, 0.1);
-  --alert-warning-border: rgba(251, 191, 36, 0.3);
-}
-
-/* Avatar Components */
-.dark {
-  --avatar-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(30, 41, 59, 0.8) 100%);
-  --avatar-fallback-bg: rgba(99, 102, 241, 0.8);
-  --avatar-fallback-text: rgb(255, 255, 255);
-  --avatar-border: rgba(71, 85, 105, 0.4);
-}
-
-/* Badge Components */
-.dark {
-  --badge-default-bg: rgba(51, 65, 85, 0.8);
-  --badge-default-text: rgb(248, 250, 252);
-  --badge-primary-bg: linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(139, 92, 246) 100%);
-  --badge-primary-text: rgb(255, 255, 255);
-  --badge-success-bg: rgba(34, 197, 94, 0.8);
-  --badge-success-text: rgb(255, 255, 255);
-  --badge-error-bg: rgba(239, 68, 68, 0.8);
-  --badge-error-text: rgb(255, 255, 255);
-  --badge-warning-bg: rgba(251, 191, 36, 0.8);
-  --badge-warning-text: rgb(15, 23, 42);
-}
-
-/* Popover Components */
-.dark {
-  --popover-bg: rgba(31, 41, 55, 0.98);
-  --popover-border: rgba(71, 85, 105, 0.4);
-  --popover-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
-  --popover-overlay: rgba(0, 0, 0, 0.4);
-}
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */
-
-/* ============================= */
-/* DIALOG CLOSE BUTTON ENHANCEMENT */
-/* ============================= */
-
-/* Dialog close button visibility */
-.dark [data-radix-dialog-content] button[data-radix-dialog-close] {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgb(226, 232, 240);
-  opacity: 0.8;
-  z-index: 9999;
-  transition: all 0.2s ease;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  order: -1;
-}
-
-.dark [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgb(255, 255, 255);
-  opacity: 1;
-  transform: scale(1.05);
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-/* ============================= */
-/* BUTTON VARIANT OVERRIDES FOR DARK THEME */
-/* ============================= */
-
-/* ============================= */
-/* BUTTON VARIANT VARIABLES - DARK THEME */
-/* ============================= */
-
-.dark {
-  /* Select All Button - Blue */
-  --btn-select-all-bg: rgb(59, 130, 246);
-  --btn-select-all-text: rgb(255, 255, 255);
-  --btn-select-all-hover: rgb(37, 99, 235);
-  
-  /* Clear Selection Button - Dark Slate */
-  --btn-clear-selection-bg: rgb(51, 65, 85);
-  --btn-clear-selection-text: rgb(203, 213, 225);
-  --btn-clear-selection-hover: rgb(71, 85, 105);
-  
-  /* Export Button - Green */
-  --btn-export-bg: rgb(16, 185, 129);
-  --btn-export-text: rgb(255, 255, 255);
-  --btn-export-hover: rgb(5, 150, 105);
-  
-  /* Delete Button - Red */
-  --btn-delete-bg: rgb(220, 38, 38);
-  --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-hover: rgb(185, 28, 28);
-  
-  /* View Settings Button - Dark Slate */
-  --btn-view-settings-bg: rgb(51, 65, 85);
-  --btn-view-settings-text: rgb(203, 213, 225);
-  --btn-view-settings-hover: rgb(71, 85, 105);
-  
-  /* Clear Filters Button - Dark Slate */
-  --btn-clear-filters-bg: rgb(51, 65, 85);
-  --btn-clear-filters-text: rgb(203, 213, 225);
-  --btn-clear-filters-hover: rgb(71, 85, 105);
-  
-  /* Apply/Cancel Button Variables */
-  --btn-apply-bg: rgb(16, 185, 129);
-  --btn-apply-text: rgb(255, 255, 255);
-  --btn-apply-hover: rgb(5, 150, 105);
-  
-  --btn-cancel-bg: rgb(51, 65, 85);
-  --btn-cancel-text: rgb(203, 213, 225);
-  --btn-cancel-hover: rgb(71, 85, 105);
-  
-  /* Connect Button - Clean Dark Theme */
-  --btn-connect-bg: rgb(59, 130, 246);
-  --btn-connect-text: rgb(255, 255, 255);
-  --btn-connect-hover: rgb(37, 99, 235);
-  
-  /* Checkbox Variables - Dark Theme */
-  --checkbox-bg: rgb(31, 41, 55);
-  --checkbox-border: rgb(75, 85, 99);
-  --checkbox-checked-bg: rgb(59, 130, 246);
-  --checkbox-checked-border: rgb(59, 130, 246);
-  --checkbox-checkmark: rgb(255, 255, 255);
-  
-  /* Dropdown Variables - Dark Theme */
-  --dropdown-hover: rgb(59, 130, 246);
-  --dropdown-item-selected-text: rgb(255, 255, 255);
-  --dropdown-content-bg: rgb(31, 41, 55);
-  --dropdown-content-border: rgb(75, 85, 99);
-  --dropdown-content-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
-  --dropdown-focus-outline: rgb(59, 130, 246);
-}
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */

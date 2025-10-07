@@ -18,7 +18,7 @@ export function ThemeToggle() {
         backgroundColor: 'var(--background)',
         border: '1px solid var(--border)',
         borderRadius: '8px',
-        width: '40px',
+        width: '60px',
         height: '40px',
         display: 'flex',
         alignItems: 'center',

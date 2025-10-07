@@ -1,2493 +1,303 @@
 /* ======================================== */
-/* LIGHT THEME - PEACHY CORAL PARADISE */
+/* LIGHT THEME - PEACHY CORAL COLORS ONLY */
 /* ======================================== */
 
-/* Ensure light theme takes precedence when .light class is applied */
-.light,
-:root.light,
-html.light {
+.light {
   /* ============================= */
-  /* CORE LAYOUT COLORS - PEACHY CORAL PARADISE */
+  /* COLORS ONLY - PEACHY CORAL PARADISE */
   /* ============================= */
   
-  /* Main page background and text */
-  --page-background: linear-gradient(135deg, rgb(254, 242, 242) 25%, rgb(255, 237, 213) 50%); /* Soft peach gradient */
-  --page-text: rgb(120, 53, 15);                /* Deep brown text */
+  /* Main page colors */
+  --page-background: linear-gradient(135deg, rgb(254, 242, 242) 25%, rgb(255, 237, 213) 50%);
+  --page-text: rgb(120, 53, 15);
   
-  /* BORDER RADIUS SYSTEM - CONSISTENT ROUNDED DESIGN */
-  --radius-sm: 8px;   /* Small elements: buttons, inputs, badges */
-  --radius-md: 12px;  /* Medium elements: cards, panels */
-  --radius-lg: 16px;  /* Large elements: modals, major containers */
-  --radius-round: 50%; /* Circular elements: avatars, icons */
+  /* Card colors */
+  --card-background: rgba(255, 255, 255, 0.98);
+  --card-text: rgb(120, 53, 15);
+  --card-border: rgba(251, 146, 60, 0.3);
+  --card-shadow: 0 10px 40px -12px rgba(251, 146, 60, 0.3), 0 4px 16px -4px rgba(249, 115, 22, 0.2);
   
-  /* ============================= */
-  /* TABLE STYLING - PEACHY CORAL DASHBOARD */
-  /* ============================= */
-  
-  /* Table Header Section - Coral Theme - Applied to Row, Not Individual Cells */
-  --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(234, 88, 12) 100%); /* Warm coral gradient */
-  --table-header-text: rgb(255, 255, 255);     /* Pure white text */
-  --table-header-border: rgba(251, 146, 60, 0.3); /* Subtle coral border */
-  --table-header-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%); /* Darker coral on hover */
-  
-  /* Table Data Section - Optimized for Inventory */
-  --table-data-bg: rgba(255, 255, 255, 0.95);     /* Light background */
-  --table-data-text: rgb(120, 53, 15);       /* Dark brown text for readability */
-  --table-data-border: rgba(251, 146, 60, 0.3); /* Coral borders */
-  --table-data-hover: rgba(255, 237, 213, 0.7);   /* Soft peach hover */
-  --table-data-selected: linear-gradient(135deg, rgba(251, 146, 60, 0.25) 0%, rgba(249, 115, 22, 0.25) 100%); /* Coral selection */
-  
-  /* ============================= */
-  /* DASHBOARD CARDS - PEACHY CORAL FOCUSED */
-  /* ============================= */
-  
-  --card-background: rgba(255, 255, 255, 0.98);   /* Light cards for dashboard */
-  --card-text: rgb(120, 53, 15);             /* Dark brown text for inventory data */
-  --card-border: rgba(251, 146, 60, 0.3);       /* Coral borders */
-  --card-shadow: 0 10px 40px -12px rgba(251, 146, 60, 0.3), 0 4px 16px -4px rgba(249, 115, 22, 0.2); /* Warm coral shadow */
-  
-  /* Dashboard Stat Cards */
+  /* Dashboard stat colors */
   --dashboard-stat-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 237, 213, 0.95) 100%);
   --dashboard-stat-border: rgba(251, 146, 60, 0.4);
   --dashboard-stat-text: rgb(120, 53, 15);
   --dashboard-stat-accent: rgb(251, 146, 60);
   
-  /* Inventory Status Indicators */
+  /* Inventory status colors */
   --inventory-in-stock: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
   --inventory-low-stock: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
   --inventory-out-stock: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
   --inventory-reserved: linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(147, 51, 234) 100%);
   
-  /* ============================= */
-  /* DROPDOWN/SELECT VARIABLES - PEACHY CORAL */
-  /* ============================= */
+  /* Form input colors */
+  --input-background: rgb(255, 255, 255);
+  --input-text: rgb(120, 53, 15);
+  --input-border: rgb(203, 213, 225);
+  --input-border-focus: rgb(251, 146, 60);
+  --input-placeholder: rgb(148, 163, 184);
+  --input-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.1);
+  --input-shadow-focus: 0 8px 32px -8px rgba(251, 146, 60, 0.3);
   
-  /* Dropdown hover effects */
-  --dropdown-hover: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 242, 242, 0.85) 50%, rgba(251, 146, 60, 0.2) 100%);
-  --dropdown-item-selected-text: rgb(120, 53, 15);
-  --dropdown-shadow: 0 4px 12px -2px rgba(251, 146, 60, 0.3), 0 2px 8px -1px rgba(249, 115, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px rgba(251, 146, 60, 0.2);
-  --dropdown-focus-shadow: 0 4px 16px -2px rgba(251, 146, 60, 0.4), 0 0 20px rgba(249, 115, 22, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --dropdown-glow: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, transparent 50%, rgba(249, 115, 22, 0.1) 100%);
-  --dropdown-content-bg: rgba(255, 255, 255, 0.98);
-  --dropdown-content-border: rgba(251, 146, 60, 0.4);
-  --dropdown-content-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.2), 0 0 20px rgba(249, 115, 22, 0.1);
-  --dropdown-focus-outline: rgba(251, 146, 60, 0.6);
+  /* Dropdown & Select Colors */
+  --dropdown-background: rgba(254, 249, 195, 0.95);
+  --dropdown-border: rgba(253, 186, 116, 0.3);
+  --dropdown-shadow: 0 16px 32px rgba(255, 107, 107, 0.15), 0 4px 16px rgba(253, 186, 116, 0.1);
+  --dropdown-text: rgb(139, 90, 43);
+  --dropdown-hover: rgba(253, 186, 116, 0.2);
+  --dropdown-focus-outline: rgba(255, 107, 107, 0.4);
+  --dropdown-item-selected: rgba(255, 107, 107, 0.15);
+  --dropdown-item-selected-text: rgb(139, 90, 43);
+
+  /* Table Colors */
+  --table-header-bg: rgba(253, 186, 116, 0.15);
+  --table-header-text: rgb(139, 90, 43);
+  --table-data-bg: rgba(254, 249, 195, 0.3);
+  --table-data-hover: rgba(253, 186, 116, 0.2);
+  --table-data-selected: rgba(255, 107, 107, 0.15);
+  --table-data-text: rgb(139, 90, 43);
+  --table-cell-border: rgba(253, 186, 116, 0.2);
+
+  /* Checkbox Colors */
+  --checkbox-bg: rgba(254, 249, 195, 0.8);
+  --checkbox-border: rgba(253, 186, 116, 0.4);
+  --checkbox-checked-bg: rgba(255, 107, 107, 0.9);
+  --checkbox-checked-border: rgba(255, 107, 107, 1);
+  --checkbox-checkmark: rgb(255, 255, 255);
+
+  /* Button Color Variables */
+  --btn-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
+  --btn-primary-text: rgb(255, 255, 255);
+  --btn-primary-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
+  --btn-primary-shadow: 0 8px 32px -8px rgba(251, 146, 60, 0.4);
+  --btn-secondary-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
+  --btn-secondary-text: rgb(251, 146, 60);
+  --btn-secondary-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
+  --btn-secondary-border: rgba(251, 146, 60, 0.4);
   
-  /* ============================= */
-  /* THEME TOGGLE VARIABLES - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Theme toggle icon colors */
-  --theme-toggle-sun-color: #fb923c;
-  --theme-toggle-moon-color: #f97316;
-  --theme-toggle-sun-glow: rgba(251, 146, 60, 0.4);
-  --theme-toggle-moon-glow: rgba(249, 115, 22, 0.4);
-  
-  /* ============================= */
-  /* MODAL AND DIALOG COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  --modal-background: rgba(255, 255, 255, 0.98);  /* Light modal */
-  --modal-text: rgb(120, 53, 15);            /* Dark brown text */
-  --modal-overlay: rgba(251, 146, 60, 0.3);         /* Coral overlay */
-  --modal-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.3); /* Warm coral shadow */
-  
-  /* ============================= */
-  /* FORM INPUT COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  --input-background: rgb(255, 255, 255);         /* White input background */
-  --input-text: rgb(120, 53, 15);            /* Dark brown text */
-  --input-border: rgb(203, 213, 225);             /* Light border */
-  --input-border-focus: rgb(251, 146, 60);     /* Coral focus */
-  --input-placeholder: rgb(148, 163, 184);     /* Gray placeholder */
-  --input-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.1); /* Coral input shadow */
-  --input-shadow-focus: 0 8px 32px -8px rgba(251, 146, 60, 0.3); /* Coral focus shadow */
-  
-  /* ============================= */
-  /* BUTTON STYLING - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Primary Buttons */
-  --btn-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%); /* Coral gradient */
-  --btn-primary-text: rgb(255, 255, 255);      /* Pure white text */
-  --btn-primary-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%); /* Darker coral hover */
-  --btn-primary-shadow: 0 8px 32px -8px rgba(251, 146, 60, 0.4); /* Coral shadow */
-  
-  /* Secondary Buttons */
-  --btn-secondary-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%); /* Light secondary */
-  --btn-secondary-text: rgb(251, 146, 60);     /* Coral text */
-  --btn-secondary-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%); /* Light hover */
-  --btn-secondary-border: rgba(251, 146, 60, 0.4); /* Coral border */
-  
-  /* Filter/Control Buttons */
-  --btn-filter-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%); /* Light filter */
-  --btn-filter-text: rgb(120, 53, 15);       /* Dark brown text */
-  --btn-filter-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%); /* Light hover */
-  --btn-filter-border: rgba(203, 213, 225, 0.6);  /* Light border */
-  --btn-filter-active: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%); /* Coral active */
-  --btn-filter-active-text: rgb(255, 255, 255); /* White active text */
-  
-  /* Clear Filters Button */
-  --btn-clear-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%); /* Light clear */
-  --btn-clear-text: rgb(120, 53, 15);        /* Dark brown text */
-  --btn-clear-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%); /* Light hover */
-  --btn-clear-border: rgba(203, 213, 225, 0.6);   /* Light border */
-  
-  /* ============================= */
-  /* DASHBOARD ACTION BUTTONS - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Add Asset Button - Enhanced for Dashboard */
+  /* Specific action button colors */
   --btn-add-asset-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
   --btn-add-asset-text: rgb(255, 255, 255);
   --btn-add-asset-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
-  --btn-add-asset-shadow: 0 8px 25px -8px rgba(251, 146, 60, 0.4);
-  
-  /* Export Button - Dashboard Style */
+  --btn-add-asset-shadow: 0 8px 32px -8px rgba(251, 146, 60, 0.4);
   --btn-export-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
   --btn-export-text: rgb(255, 255, 255);
   --btn-export-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  --btn-export-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4);
+  --btn-export-shadow: 0 8px 32px -8px rgba(34, 197, 94, 0.4);
+  --btn-clear-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
+  --btn-clear-text: rgb(146, 64, 14);
+  --btn-clear-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
+  --btn-clear-border: rgba(251, 146, 60, 0.3);
+  --btn-filter-bg: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
+  --btn-filter-text: rgb(146, 64, 14);
+  --btn-filter-hover: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
+  --btn-filter-border: rgba(251, 146, 60, 0.3);
   
-  /* Delete/Remove Button - Enhanced */
-  --btn-delete-bg: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
-  --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-hover: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  --btn-delete-shadow: 0 8px 25px -8px rgba(248, 113, 113, 0.4);
-  
-  /* Dashboard Filter Pills */
-  --filter-pill-bg: rgba(255, 255, 255, 0.8);
-  --filter-pill-text: rgb(120, 53, 15);
-  --filter-pill-active-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --filter-pill-active-text: rgb(255, 255, 255);
-  --filter-pill-hover: rgba(255, 237, 213, 0.9);
-  
-  /* ============================= */
-  /* SYSTEM COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Accent and highlight colors */
-  --accent-color: rgb(251, 146, 60);           /* Coral accent */
-  --accent-text: rgb(255, 255, 255);           /* White text on coral */
-  --focus-ring: rgb(251, 146, 60);             /* Consistent coral focus rings */
-  
-  /* Status and notification colors */
-  --success-color: rgb(34, 197, 94);          /* Modern emerald green */
-  --warning-color: rgb(251, 146, 60);          /* Coral orange */
-  --error-color: rgb(239, 68, 68);             /* Clean red */
-  --info-color: rgb(168, 85, 247);             /* Purple info */
-  
-  /* ============================= */
-  /* STATUS BADGE COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Status Badge - "In Use" */
-  --status-in-use-bg: rgba(34, 197, 94, 0.15);    /* Light green background */
-  --status-in-use-text: rgb(21, 128, 61);         /* Dark green text */
-  --status-in-use-border: rgba(34, 197, 94, 0.4); /* Green border */
-  --status-in-use-hover: rgba(34, 197, 94, 0.25); /* Hover effect */
-  
-  /* Status Badge - "Spare" */
-  --status-spare-bg: rgba(168, 85, 247, 0.15);     /* Light purple background */
-  --status-spare-text: rgb(107, 33, 168);          /* Dark purple text */
-  --status-spare-border: rgba(168, 85, 247, 0.4);  /* Purple border */
-  --status-spare-hover: rgba(168, 85, 247, 0.25);  /* Hover effect */
-  
-  /* Status Badge - "For Repair" */
-  --status-for-repair-bg: rgba(239, 68, 68, 0.15);   /* Light red background */
-  --status-for-repair-text: rgb(185, 28, 28);        /* Dark red text */
-  --status-for-repair-border: rgba(239, 68, 68, 0.4); /* Red border */
-  --status-for-repair-hover: rgba(239, 68, 68, 0.25); /* Hover effect */
-  
-  /* Status Badge - "For Parts" */
-  --status-for-parts-bg: rgba(251, 146, 60, 0.15);     /* Light coral background */
-  --status-for-parts-text: rgb(154, 52, 18);          /* Dark coral text */
-  --status-for-parts-border: rgba(251, 146, 60, 0.4);  /* Coral border */
-  --status-for-parts-hover: rgba(251, 146, 60, 0.25);  /* Hover effect */
-  
-  /* Status Badge - "For Recycle" */
-  --status-for-recycle-bg: rgba(148, 163, 184, 0.15);  /* Light gray background */
-  --status-for-recycle-text: rgb(71, 85, 105);       /* Dark gray text */
-  --status-for-recycle-border: rgba(148, 163, 184, 0.4); /* Gray border */
-  --status-for-recycle-hover: rgba(148, 163, 184, 0.25); /* Hover effect */
-  
-  /* ============================= */
-  /* TAILWIND INTEGRATION - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Core Tailwind variables */
-  --primary: rgb(251, 146, 60);                /* Coral primary for buttons */
-  --primary-foreground: rgb(255, 255, 255);    /* White text on coral */
-  --secondary: rgb(203, 213, 225);               /* Light gray for secondary */
-  --secondary-foreground: rgb(120, 53, 15);  /* Dark brown text on light */
-  --destructive: rgb(239, 68, 68);             /* Red for destructive */
-  --destructive-foreground: rgb(255, 255, 255); /* White text on red */
-  --warning: rgb(251, 146, 60);                /* Coral for warning */
-  --warning-foreground: rgb(255, 255, 255);    /* White text on coral */
-  --foreground: rgb(120, 53, 15);            /* Main brown text color */
-  --background: rgb(255, 255, 255);               /* Main background */
-  --muted: rgb(254, 242, 242);                    /* Muted backgrounds */
-  --muted-foreground: rgb(120, 53, 15);      /* Brown muted text */
-  --accent: rgb(255, 237, 213);                   /* Accent backgrounds */
-  --accent-foreground: rgb(120, 53, 15);     /* Brown accent text */
-  --border: rgb(203, 213, 225);                   /* Borders */
-  --input: rgb(203, 213, 225);                    /* Input borders */
-  --ring: rgb(251, 146, 60);                   /* Focus rings */
-  
-  /* Additional Tailwind variables for complete coverage */
-  --card: 0 0% 100%;                              /* White cards */
-  --card-foreground: 22 78% 34%;                  /* Brown card text */
-  --popover: 0 0% 100%;                           /* White popovers */
-  --popover-foreground: 22 78% 34%;               /* Brown popover text */
-  --chart-1: 33 78% 61%;                          /* Coral chart color */
-  --chart-2: 142 76% 36%;                         /* Green chart color */
-  --chart-3: 24 70% 56%;                          /* Orange chart color */
-  --chart-4: 262 83% 58%;                         /* Purple chart color */
-  --chart-5: 6 78% 57%;                           /* Red chart color */
-  
-  /* Sidebar Tailwind variables */
-  --sidebar: 217 33% 35%;                         /* Dark slate sidebar */
-  --sidebar-foreground: 210 40% 92%;              /* Light gray sidebar text */
-  --sidebar-primary: 33 78% 61%;                  /* Coral sidebar primary */
-  --sidebar-primary-foreground: 0 0% 100%;       /* White sidebar primary text */
-  --sidebar-accent: 24 100% 83%;                  /* Light orange sidebar accent */
-  --sidebar-accent-foreground: 0 0% 100%;         /* White sidebar accent text */
-  --sidebar-border: 215 25% 47%;                  /* Slate sidebar border */
-  --sidebar-ring: 33 78% 61%;                     /* Coral sidebar ring */
-  
-  /* ============================= */
-  /* SPECIFIC BUTTON COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  /* Dashboard Action Buttons */
-  --btn-add-asset-bg: rgb(251, 146, 60);       /* Coral for Add Asset */
-  --btn-add-asset-text: rgb(255, 255, 255);    /* White text */
-  --btn-add-asset-hover: rgb(249, 115, 22);     /* Darker coral hover */
-  
-  --btn-export-bg: rgb(34, 197, 94);          /* Emerald for Export */
-  --btn-export-text: rgb(255, 255, 255);       /* White text */
-  --btn-export-hover: rgb(22, 163, 74);        /* Darker emerald hover */
-  
-  --btn-view-settings-bg: rgb(254, 242, 242);     /* Light peach for View */
-  --btn-view-settings-text: rgb(120, 53, 15); /* Dark brown text */
-  --btn-view-settings-hover: rgb(255, 237, 213); /* Light hover */
-  
-  /* Filter Control Buttons */
-  --btn-clear-filters-bg: rgb(254, 242, 242);     /* Light peach for Clear Filters */
-  --btn-clear-filters-text: rgb(120, 53, 15); /* Dark brown text */
-  --btn-clear-filters-hover: rgb(255, 237, 213); /* Light hover */
-  
-  /* Table Selection Buttons */
-  --btn-select-all-bg: rgb(251, 146, 60);      /* Coral for Select All */
-  --btn-select-all-text: rgb(255, 255, 255);   /* White text */
-  --btn-select-all-hover: rgb(249, 115, 22);    /* Darker coral hover */
-  
-  --btn-clear-selection-bg: rgb(254, 242, 242);   /* Light peach for Clear Selection */
-  --btn-clear-selection-text: rgb(120, 53, 15); /* Dark brown text */
-  --btn-clear-selection-hover: rgb(255, 237, 213); /* Light hover */
-  
-  /* Dialog/Modal Action Buttons */
-  --btn-apply-bg: rgb(251, 146, 60);           /* Coral for Apply */
-  --btn-apply-text: rgb(255, 255, 255);        /* White text */
-  --btn-apply-hover: rgb(249, 115, 22);         /* Darker coral hover */
-  
-  --btn-cancel-bg: rgb(254, 242, 242);            /* Light peach for Cancel */
-  --btn-cancel-text: rgb(120, 53, 15);       /* Dark brown text */
-  --btn-cancel-hover: rgb(255, 237, 213);        /* Light hover */
-  
-  --btn-delete-bg: rgb(239, 68, 68);           /* Red for Delete */
-  --btn-delete-text: rgb(255, 255, 255);       /* White text */
-  --btn-delete-hover: rgb(220, 38, 38);        /* Darker red hover */
-  
-  /* ============================= */
-  /* SIDEBAR NAVIGATION - PEACHY CORAL */
-  /* ============================= */
-  
-  --sidebar-background: rgba(254, 242, 242, 0.95); /* Light coral background */
-  --sidebar-text: rgb(120, 53, 15);            /* Dark coral text on light sidebar */
-  --sidebar-link-text: rgb(180, 83, 45);       /* Medium coral text */
-  --sidebar-link-bg: transparent;              /* Transparent background */
-  --sidebar-link-hover: rgba(251, 146, 60, 0.15); /* Coral hover */
-  --sidebar-link-active: rgba(251, 146, 60, 0.25); /* Coral active */
-  --sidebar-link-active-text: rgb(92, 33, 4);  /* Dark active text */
-  --sidebar-link-icon: rgb(180, 83, 45);       /* Medium coral icons */
-  --sidebar-link-icon-active: rgb(92, 33, 4);  /* Dark active icons */
-  --sidebar-text-hover: rgb(92, 33, 4);        /* Dark hover text */
-  --sidebar-border: rgb(100, 116, 139);           /* Darker slate border */
-  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  
-  /* Sidebar header */
-  --sidebar-header-bg: rgba(71, 85, 105, 0.95);  /* Dark slate header */
-  --sidebar-header-text: rgb(248, 250, 252);   /* Light header text */
-  --sidebar-header-border: rgba(100, 116, 139, 0.5); /* Slate border */
-  
-  /* ============================= */
-  /* DROPDOWN AND SELECT COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  --dropdown-background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 237, 213, 0.95) 100%);
-  --dropdown-text: rgb(120, 53, 15);
-  --dropdown-border: rgba(251, 146, 60, 0.3);
-  --dropdown-hover: rgba(251, 146, 60, 0.15);
-  --dropdown-shadow: 0 16px 48px rgba(251, 146, 60, 0.2);
-  --dropdown-item-selected: rgba(251, 146, 60, 0.25);
-  --dropdown-item-selected-text: rgb(154, 52, 18);
-  
-  /* ============================= */
-  /* COMPONENT TEXT COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  --text-primary: rgb(120, 53, 15);          /* Primary brown text */
-  --text-secondary: rgb(146, 64, 14);        /* Secondary brown text */
-  --text-tertiary: rgb(180, 83, 9);         /* Tertiary brown text */
-  --text-quaternary: rgb(146, 64, 14);       /* Quaternary muted text */
-  --text-error: rgb(220, 38, 38);              /* Error text */
-  --text-muted: rgb(146, 64, 14);            /* Muted text */
-  
-  /* Logo Colors */
-  --logo-icon-color: rgb(251, 146, 60);       /* Coral logo */
-  --logo-title-color: rgb(120, 53, 15);      /* Dark brown title */
-  --logo-subtitle-color: rgb(146, 64, 14);   /* Muted brown text */
-  
-  /* ============================= */
-  /* CHART COLORS - PEACHY CORAL */
-  /* ============================= */
-  
-  --chart-color-1: rgb(251, 146, 60);          /* Coral */
-  --chart-color-2: rgb(34, 197, 94);          /* Emerald green */
-  --chart-color-3: rgb(249, 115, 22);          /* Orange */
-  --chart-color-4: rgb(168, 85, 247);          /* Purple */
-  --chart-color-5: rgb(239, 68, 68);           /* Red */
-  
-  /* ============================= */
-  /* SCROLLBAR STYLING - PEACHY CORAL */
-  /* ============================= */
-  
-  --scrollbar-track: rgb(254, 242, 242);          /* Light peach track */
-  --scrollbar-track-border: rgb(251, 146, 60);   /* Coral border */
-  --scrollbar-thumb: rgb(251, 146, 60);        /* Coral thumb */
-  --scrollbar-thumb-hover: rgb(249, 115, 22);   /* Darker coral hover */
-  --scrollbar-thumb-border: rgb(254, 242, 242);   /* Track colored border */
-  --scrollbar-corner: rgb(254, 242, 242);         /* Corner color */
-  --scrollbar-glow: 0 0 12px rgba(251, 146, 60, 0.4); /* Coral glow effect */
-  --scrollbar-glow-hover: 0 0 18px rgba(251, 146, 60, 0.6); /* Enhanced glow on hover */
-  
-  /* ============================= */
-  /* TABLE STYLING HELPERS - TROPICAL BEACH */
-  /* ============================= */
-  
-  --table-cell-bg: var(--table-data-bg);
-  --table-cell-text: var(--table-data-text);
-  --table-cell-border: var(--table-data-border);
-  --table-row-hover: var(--table-data-hover);
-  --table-row-selected: var(--table-data-selected);
-  
-  /* ============================= */
-  /* BUTTON VARIANT HELPERS - TROPICAL BEACH */
-  /* ============================= */
-  
-  --btn-outline-bg: rgb(255, 255, 255);
-  --btn-outline-text: rgb(64, 224, 208);
-  --btn-outline-border: rgb(64, 224, 208);
-  --btn-outline-hover: rgb(240, 253, 250);
-  --btn-destructive-bg: rgb(239, 68, 68);
-  --btn-destructive-text: rgb(255, 255, 255);
-  --btn-destructive-border: rgb(239, 68, 68);
-  --btn-destructive-hover: rgb(220, 38, 38);
-  
-  /* ============================= */
-  /* COMPONENT RADIUS */
-  /* ============================= */
-  
-  --radius: 0.5rem;
-}
-
-/* ============================= */
-/* PEACHY CORAL FILTER CONTROLS STYLING */
-/* ============================= */
-
-/* Enhanced styling for filter controls section - Peachy Coral */
-.light .top-controls {
-  background: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 242, 242, 0.95) 100%);
-  border-bottom: 1px solid rgba(251, 146, 60, 0.3);
-  padding: 20px 0;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4px 32px -8px rgba(251, 146, 60, 0.2);
-}
-
-/* Light tropical search input - FIXED SIZE AND POSITIONING */
-.light .top-controls input[type="text"],
-.light .top-controls input {
-  background: var(--background);
-  border: 2px solid var(--input-border);
-  color: var(--input-text);
-  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--input-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-  box-sizing: border-box;
-  width: 320px;
-  height: 36px;
-  min-height: 36px;
-  max-height: 36px;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 8px 40px 8px 40px;
-  margin: 0;
-  position: relative;
-  display: block;
-}
-
-.light .top-controls input[type="text"]:focus,
-.light .top-controls input:focus {
-  border: 2px solid var(--input-border-focus);
-  background: var(--background);
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-  width: 320px;
-  height: 36px;
-  min-height: 36px;
-  max-height: 36px;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 8px 40px 8px 40px;
-  margin: 0;
-  position: relative;
-  display: block;
-}
-
-.light .top-controls input[type="text"]::placeholder,
-.light .top-controls input::placeholder {
-  color: var(--input-placeholder);
-  font-weight: 400;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-/* Fix the search input container to maintain consistent layout */
-.light .top-controls .relative {
-  position: relative;
-  display: block;
-  width: 320px;
-  height: 36px;
-  flex-shrink: 0;
-}
-
-/* Fix button positioning inside search box */
-.light .top-controls .relative button {
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  z-index: 10;
-  margin: 0;
-  border-radius: 8px;
-}
-
-/* Search icon styling */
-.light .top-controls .lucide-search {
-  color: var(--input-placeholder);
-  transition: color 0.2s ease;
-}
-
-.light .top-controls input[type="text"]:focus + .lucide-search,
-.light .top-controls input[type="text"]:focus ~ .lucide-search {
-  color: var(--input-border-focus);
-}
-
-/* Search icon positioning - make sure it's visible */
-.light .top-controls .relative .lucide-search {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: var(--input-placeholder);
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* When input is focused, change search icon color */
-.light .top-controls .relative:focus-within .lucide-search {
-  color: var(--input-border-focus);
-}
-
-/* Premium dark combobox/dropdown buttons */
-.light .top-controls button[role="combobox"] {
-  background: var(--dropdown-background);
-  border: 2px solid var(--dropdown-border);
-  color: var(--dropdown-text);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-}
-
-.light .top-controls button[role="combobox"]:hover {
-  background: var(--dropdown-hover);
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.4);
-}
-
-.light .top-controls button[role="combobox"]:focus {
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  box-shadow: var(--input-shadow-focus);
-  outline: none;
-  background: rgba(31, 41, 55, 0.9);
-  transform: translateY(-1px);
-}
-
-/* Premium dark clear filters button */
-.light .btn-clear-filters {
-  background: var(--btn-clear-bg);
-  border: 2px solid var(--btn-clear-border);
-  color: var(--btn-clear-text);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--dropdown-shadow);
-  font-weight: 500;
-  border-radius: 12px;
-}
-
-.light .btn-clear-filters:hover {
-  background: var(--btn-clear-hover);
-  border: 2px solid transparent;
-  background-image: var(--input-border-focus);
-  background-clip: padding-box;
-  color: var(--text-primary);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px -12px rgba(251, 146, 60, 0.5);
-}
-
-.light .btn-clear-filters svg {
-  color: currentColor;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Premium dark focus ring for all interactive elements */
-.light .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: 12px;
-}
-
-/* ============================= */
-/* ADVANCED DYNAMIC BUTTON REACTIONS - LIGHT THEME */
-/* ============================= */
-
-/* ============================= */
-/* PREMIUM BUTTON SYSTEM - LIGHT THEME */
-/* ============================= */
-
-/* Base button foundation - All buttons inherit this */
-.light button, .light .btn, .light [role="button"] {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  overflow: hidden;
-  transform-origin: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  user-select: none;
-}
-
-/* Premium ripple effect */
-.light button::before, .light .btn::before, .light [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Hover states */
-.light button:hover, .light .btn:hover, .light [role="button"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.light button:hover::before, .light .btn:hover::before, .light [role="button"]:hover::before {
-  width: 200px;
-  height: 200px;
-}
-
-/* Active states */
-.light button:active, .light .btn:active, .light [role="button"]:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Disabled states */
-.light button:disabled, .light .btn:disabled, .light [role="button"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* Universal input and form control styling */
-.light input, .light select, .light textarea {
-  border-radius: var(--radius-sm);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-/* Universal card and panel styling */
-.light .card, .light .panel, .light [class*="card"] {
-  border-radius: var(--radius-md);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-}
-
-/* ============================= */
-/* PREMIUM BUTTON VARIANTS - LIGHT THEME */
-/* ============================= */
-
-/* Primary Action Buttons */
-.light .btn-primary, .light button[data-variant="primary"] {
-  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(249, 115, 22);
-  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.light .btn-primary:hover, .light button[data-variant="primary"]:hover {
-  background: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
-  box-shadow: 0 4px 16px rgba(251, 146, 60, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-/* Secondary Action Buttons */
-.light .btn-secondary, .light button[data-variant="secondary"] {
-  background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
-  color: rgb(251, 146, 60);
-  border: 1px solid rgba(251, 146, 60, 0.3);
-  box-shadow: 0 1px 3px rgba(251, 146, 60, 0.1);
-}
-
-.light .btn-secondary:hover, .light button[data-variant="secondary"]:hover {
-  background: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
-  border-color: rgba(251, 146, 60, 0.5);
-  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Success/Confirmation Buttons */
-.light .btn-success, .light button[data-variant="success"] {
-  background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(22, 163, 74);
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
-}
-
-.light .btn-success:hover, .light button[data-variant="success"]:hover {
-  background: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
-}
-
-/* Danger/Delete Buttons */
-.light .btn-danger, .light button[data-variant="danger"] {
-  background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(220, 38, 38);
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-}
-
-.light .btn-danger:hover, .light button[data-variant="danger"]:hover {
-  background: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
-}
-
-/* Ghost/Outline Buttons */
-.light .btn-ghost, .light button[data-variant="ghost"] {
-  background: transparent;
-  color: rgb(120, 53, 15);
-  border: 1px solid rgba(203, 213, 225, 0.4);
-  box-shadow: none;
-}
-
-.light .btn-ghost:hover, .light button[data-variant="ghost"]:hover {
-  background: rgba(251, 146, 60, 0.05);
-  color: rgb(251, 146, 60);
-  border-color: rgba(251, 146, 60, 0.3);
-  box-shadow: 0 1px 3px rgba(251, 146, 60, 0.1);
-}
-
-/* ============================= */
-/* SPECIALIZED ACTION BUTTONS - LIGHT THEME */
-/* ============================= */
-
-/* Size Variants */
-.light .btn-sm, .light button[data-size="sm"] {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  min-height: 2rem;
-}
-
-.light .btn-lg, .light button[data-size="lg"] {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  min-height: 3rem;
-  font-weight: 600;
-}
-
-/* Icon Buttons */
-.light .btn-icon, .light button[data-variant="icon"] {
-  padding: 0.5rem;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  justify-content: center;
-}
-
-.light .btn-icon.btn-sm, .light button[data-variant="icon"][data-size="sm"] {
-  padding: 0.375rem;
-  min-width: 2rem;
-  min-height: 2rem;
-}
-
-/* Loading States */
-.light .btn-loading, .light button[data-loading="true"] {
-  position: relative;
-  color: transparent !important;
-  pointer-events: none;
-}
-
-.light .btn-loading::after, .light button[data-loading="true"]::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1rem;
-  height: 1rem;
-  margin: -0.5rem;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: button-spin 0.8s linear infinite;
-  color: inherit;
-}
-
-@keyframes button-spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Focus States */
-.light button:focus-visible, .light .btn:focus-visible {
-  outline: 2px solid rgba(251, 146, 60, 0.5);
-  outline-offset: 2px;
-}
-
-/* Action Button Groups */
-.light .btn-group {
-  display: inline-flex;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.light .btn-group button {
-  border-radius: 0;
-  border-right-width: 0;
-  box-shadow: none;
-}
-
-.light .btn-group button:first-child {
-  border-top-left-radius: var(--radius-sm);
-  border-bottom-left-radius: var(--radius-sm);
-}
-
-.light .btn-group button:last-child {
-  border-top-right-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
-  border-right-width: 1px;
-}
-
-/* ============================= */
-/* PREMIUM INTERACTIVE COMPONENTS - LIGHT THEME */
-/* ============================= */
-
-/* Dropdown Triggers */
-.light button[role="combobox"], .light .dropdown-trigger {
-  background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
-  color: rgb(120, 53, 15);
-  border: 1px solid rgba(203, 213, 225, 0.6);
-  position: relative;
-}
-
-.light button[role="combobox"]:hover, .light .dropdown-trigger:hover {
-  background: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
-  border-color: rgba(251, 146, 60, 0.4);
-  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.15);
-}
-
-/* Toggle Switches */
-.light .toggle-switch {
-  position: relative;
-  display: inline-flex;
-  width: 3rem;
-  height: 1.5rem;
-  background: rgba(203, 213, 225, 0.4);
-  border-radius: 0.75rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.light .toggle-switch.active {
-  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.3);
-}
-
-.light .toggle-switch::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.light .toggle-switch.active::before {
-  transform: translateX(1.5rem);
-}
-
-/* Filter Tags/Chips */
-.light .filter-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
-  color: rgb(120, 53, 15);
-  border: 1px solid rgba(251, 146, 60, 0.2);
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.light .filter-chip:hover {
-  background: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
-  border-color: rgba(251, 146, 60, 0.4);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(251, 146, 60, 0.2);
-}
-
-.light .filter-chip.active {
-  background: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  color: rgb(255, 255, 255);
-  border-color: rgb(249, 115, 22);
-}
-
-/* Action Menus */
-.light .action-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 1rem;
-  color: rgb(120, 53, 15);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-}
-
-.light .action-menu-item:hover {
-  background: linear-gradient(135deg, rgb(255, 237, 213) 0%, rgb(254, 242, 242) 100%);
-  color: rgb(251, 146, 60);
-  transform: translateX(2px);
-}
-
-/* Light theme ripple effect */
-.light button::before, .light .btn::before, .light [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Light ripple activation */
-.light button:hover::before, .light .btn:hover::before, .light [role="button"]:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Dynamic light primary button states */
-.light button[class*="primary"], .light .btn-primary {
-  background: var(--btn-primary-bg);
-  box-shadow: var(--btn-primary-shadow), 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light button[class*="primary"]:hover, .light .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 50px -12px rgba(251, 146, 60, 0.5), 0 8px 25px rgba(0, 0, 0, 0.15);
-  filter: brightness(1.1) saturate(1.1);
-}
-
-.light button[class*="secondary"]:hover, .light .btn-secondary:hover {
-  background: var(--btn-secondary-hover);
-  border-color: transparent;
-  background-image: var(--accent-color);
-  color: var(--text-error);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 35px -10px rgba(251, 146, 60, 0.4);
-}
-
-/* Dark success states */
-.light .btn-success, .light button[class*="success"] {
-  background: var(--success-color);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .btn-success:hover, .light button[class*="success"]:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.2) hue-rotate(5deg);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
-}
-
-/* Light floating action buttons */
-.light .fab {
-  background: var(--accent-color);
-  box-shadow: 0 8px 30px rgba(251, 146, 60, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.light .fab:hover {
-  box-shadow: 0 16px 50px rgba(251, 146, 60, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* ============================= */
-/* DISCORD-STYLE FILTER CONTROLS - DARK THEME */
-/* ============================= */
-
-/* Enhanced styling for filter controls section */
-.light .top-controls {
-  background: var(--page-background);
-  border-bottom: 1px solid var(--input-border);
-  padding: 16px 0;
-}
-
-/* Discord-style search input - dark theme */
-.light .top-controls input[type="text"] {
-  background: var(--input-background);
-  border: 1px solid var(--input-border);
-  color: var(--input-text);
-  transition: all 0.15s ease;
-  box-shadow: none;
-}
-
-.light .top-controls input[type="text"]:focus {
-  border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 1px var(--input-border-focus);
-  outline: none;
-}
-
-.light .top-controls input[type="text"]::placeholder {
-  color: var(--input-placeholder);
-}
-
-/* Discord-style combobox/dropdown buttons - dark theme */
-.light .top-controls button[role="combobox"] {
-  background: var(--btn-filter-bg);
-  border: 1px solid var(--btn-filter-border);
-  color: var(--btn-filter-text);
-  transition: all 0.15s ease;
-  box-shadow: none;
-}
-
-.light .top-controls button[role="combobox"]:hover {
-  background: var(--btn-filter-hover);
-  border-color: var(--input-border-focus);
-}
-
-.light .top-controls button[role="combobox"]:focus {
-  border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 1px var(--input-border-focus);
-  outline: none;
-}
-
-/* Discord-style clear filters button - dark theme */
-.light .btn-clear-filters {
-  background: var(--btn-clear-bg);
-  border: 1px solid var(--btn-clear-border);
-  color: var(--btn-clear-text);
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  box-shadow: none;
-}
-
-.light .btn-clear-filters:hover {
-  background: var(--btn-clear-hover);
-  border-color: var(--input-border-focus);
-  color: var(--input-border-focus);
-}
-
-.light .btn-clear-filters svg {
-  color: currentColor;
-}
-
-/* Discord-style focus ring for all interactive elements - dark theme */
-.light .top-controls *:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-/* ============================= */
-/* INVENTORY DASHBOARD SPECIFIC STYLING - DARK THEME */
-/* ============================= */
-
-/* Main page background override */
-.light {
-  background: var(--page-background);
-}
-
-.light body {
-  background: var(--page-background);
-}
-
-/* Main content area background */
-.light main,
-.light .main-content,
-.light [class*="main"],
-.light .flex-1.flex.flex-col.min-h-0 {
-  background: var(--page-background);
-  min-height: 100vh;
-}
-
-/* Dashboard main container */
-.light .dashboard-page {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(251, 146, 60, 0.3);
-  backdrop-filter: blur(20px);
-  border-radius: 12px;
-  box-shadow: 0 8px 40px -12px rgba(251, 146, 60, 0.3);
-  padding: 24px;
-}
-
-/* Enhanced table styling for inventory */
-.light .asset-table {
-  background: var(--table-data-bg);
-  border: 1px solid var(--table-data-border);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
-}
-
-/* Table header row gets the coral gradient background */
-.light .asset-table thead tr,
-.light table thead tr {
-  background: var(--table-header-bg);
-  position: relative;
-}
-
-/* Individual header cells - no background, no transitions */
-.light .asset-table th,
-.light table th,
-.light .asset-table thead th,
-.light table thead th {
-  background: none;
-  background-color: transparent;
-  color: var(--table-header-text);
-  font-weight: 600;
-  padding: 16px 12px;
-  border-bottom: 2px solid var(--table-header-border);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  position: relative;
-  z-index: 5;
-  transition: none; /* Remove all transitions from header cells */
-}
-
-/* FORCE header cells to NEVER be affected by selection state */
-.light table tr[data-state="selected"] th,
-.light .asset-table tr[data-state="selected"] th,
-.light table thead tr th,
-.light .asset-table thead tr th {
-  background: transparent;
-  background-color: transparent;
-  color: var(--table-header-text);
-  border-left: none;
-  box-shadow: none;
-}
-
-.light .asset-table td {
-  background: var(--table-data-bg);
-  color: var(--table-data-text);
-  border-bottom: 1px solid var(--table-data-border);
-  padding: 12px;
-  transition: all 0.2s ease;
-}
-
-.light .asset-table tr:hover td {
-  background: var(--table-data-hover);
-  transform: scale(1.005);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
-}
-
-/* FINAL FIX - Override ALL global CSS conflicts - DATA ROWS ONLY */
-.light table tbody tr[data-state="selected"] td,
-.light .asset-table tbody tr[data-state="selected"] td {
-  background: var(--table-data-hover);
-  background-color: var(--table-data-hover);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
-  position: relative;
-  z-index: 2;
-}
-
-/* Enhanced hover for selected rows - DATA ROWS ONLY */
-.light table tbody tr[data-state="selected"]:hover td,
-.light .asset-table tbody tr[data-state="selected"]:hover td {
-  background: var(--table-data-hover);
-  background-color: var(--table-data-hover);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  z-index: 3;
-}
-
-/* Dashboard stats cards */
-.light .category-counts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.light .stats-card {
-  background: var(--dashboard-stat-bg);
-  border: 1px solid var(--dashboard-stat-border);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.light .stats-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px -8px rgba(79, 70, 229, 0.3);
-  border-color: rgba(79, 70, 229, 0.5);
-}
-
-.light .stats-value {
-  color: var(--dashboard-stat-accent);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.light .stats-label {
-  color: var(--dashboard-stat-text);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-}
-
-/* Enhanced action buttons for dashboard */
-.light .btn-add-asset {
-  background: var(--btn-add-asset-bg);
-  color: var(--btn-add-asset-text);
-  box-shadow: var(--btn-add-asset-shadow);
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.light .btn-add-asset:hover {
-  background: var(--btn-add-asset-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.5);
-}
-
-/* Asset status indicators */
-.light .badge {
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-}
-
-.light .status-in-use {
-  background: var(--inventory-in-stock);
-  color: rgb(233, 233, 233);
-}
-
-.light .status-spare {
-  background: var(--inventory-in-stock);
-  color: white;
-}
-
-.light .status-for-repair {
-  background: var(--inventory-out-stock);
-  color: white;
-}
-
-.light .status-for-parts {
-  background: var(--inventory-low-stock);
-  color: white;
-}
-
-.light .status-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  border: 1px solid;
-  transition: all 0.2s ease;
-}
-
-.light .status-badge.in-use {
-  background: var(--status-in-use-bg);
-  border-color: var(--status-in-use-border);
-  color: var(--status-in-use-text);
-}
-
-.light .status-badge.spare {
-  background: var(--status-spare-bg);
-  border-color: var(--status-spare-border);
-  color: var(--status-spare-text);
-}
-
-.light .status-badge.for-repair {
-  background: var(--status-for-repair-bg);
-  border-color: var(--status-for-repair-border);
-  color: var(--status-for-repair-text);
-}
-
-.light .status-badge.for-parts {
-  background: var(--status-for-parts-bg);
-  border-color: var(--status-for-parts-border);
-  color: var(--status-for-parts-text);
-}
-
-.light .status-badge.for-recycle {
-  background: var(--status-for-recycle-bg);
-  border-color: var(--status-for-recycle-border);
-  color: var(--status-for-recycle-text);
-}
-
-/* Status Badge Hover Effects - Light Theme */
-.light .status-badge.in-use:hover {
-  background-color: var(--status-in-use-hover);
-}
-
-.light .status-badge.spare:hover {
-  background-color: var(--status-spare-hover);
-}
-
-.light .status-badge.for-repair:hover {
-  background-color: var(--status-for-repair-hover);
-}
-
-.light .status-badge.for-parts:hover {
-  background-color: var(--status-for-parts-hover);
-}
-
-.light .status-badge.for-recycle:hover {
-  background-color: var(--status-for-recycle-hover);
-}
-
-/* ============================= */
-/* TAILWIND CLASS OVERRIDES */
-/* ============================= */
-
-/* Override Tailwind bg-background class in dark mode */
-.light .bg-background {
-  background: var(--page-background);
-}
-
-/* Specifically target the main dashboard container */
-.light div[class*="flex h-screen bg-background"] {
-  background: var(--page-background);
-}
-
-/* Main containers */
-.light .main-container {
-  background: var(--page-background);
-}
-
-/* ============================= */
-/* THEME TOGGLE WHITE STYLING */
-/* ============================= */
-
-/* Theme toggle coral styling */
-.light .theme-toggle {
-  background: rgba(251, 146, 60, 0.15);
-  color: var(--text-quaternary);
-  border: 1px solid rgba(251, 146, 60, 0.3);
-  border-radius: 8px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px -2px rgba(251, 146, 60, 0.2);
-  position: relative;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.light .theme-toggle:hover {
-  background: rgba(251, 146, 60, 0.25);
-  color: rgb(154, 52, 18);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px -2px rgba(251, 146, 60, 0.3);
-}
-
-/* REMOVED - No cross-theme references allowed for complete separation */
-
-/* ============================= */
-/* LAYOUT AND VIEWPORT FIXES */
-/* ============================= */
-
-/* Ensure sidebar footer is always visible */
-.light [data-sidebar="sidebar"] {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.light [data-sidebar="content"] {
-  flex: 1;
-  overflow: visible;
-  padding: 8px;
-}
-
-.light [data-sidebar="footer"] {
-  flex-shrink: 0;
-  background: linear-gradient(135deg, rgb(254, 242, 242) 0%, rgb(255, 237, 213) 100%);
-  z-index: 10;
-  padding: 16px;
-  border-top: 1px solid rgba(251, 146, 60, 0.2);
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 -2px 8px rgba(251, 146, 60, 0.1);
-}
-
-/* Main layout viewport constraints */
-.light .main-layout {
-  height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-}
-
-/* Table container scrolling */
-.light .table-container {
-  max-height: calc(100vh - 280px);
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-/* ============================= */
-/* SIDEBAR CONTENT OPTIMIZATION */
-/* ============================= */
-
-/* Category counts proper spacing */
-.light .sidebar-group {
-  margin-bottom: 8px;
-}
-
-.light .sidebar-menu {
-  gap: 2px;
-}
-
-.light .sidebar-menu-item {
-  margin-bottom: 1px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-/* =============================*/
-/* SIDEBAR NAVIGATION - LIGHT THEME */
-/* ============================= */
-
-/* Sidebar category links enhanced hover - Light Theme */
-.light .sidebar-nav a,
-.light .sidebar-nav button,
-.light .sidebar-nav [role="button"] {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  color: var(--sidebar-link-text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--sidebar-link-bg);
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.light .sidebar-nav a::before,
-.light .sidebar-nav button::before,
-.light .sidebar-nav [role="button"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.2), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .sidebar-nav a:hover,
-.light .sidebar-nav button:hover,
-.light .sidebar-nav [role="button"]:hover {
-  background: var(--sidebar-link-hover);
-  color: var(--sidebar-link-text);
-  border-color: rgba(251, 146, 60, 0.4);
-  transform: translateX(4px);
-  box-shadow: 4px 0 16px rgba(251, 146, 60, 0.2);
-}
-
-.light .sidebar-nav a:hover::before,
-.light .sidebar-nav button:hover::before,
-.light .sidebar-nav [role="button"]:hover::before {
-  left: 100%;
-}
-
-.light .sidebar-nav a.active,
-.light .sidebar-nav button.active,
-.light .sidebar-nav [role="button"].active {
-  background: var(--sidebar-link-active);
-  color: var(--sidebar-link-active-text);
-  border-color: rgba(251, 146, 60, 0.4);
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(251, 146, 60, 0.3);
-}
-
-.light .sidebar-nav svg,
-.light .sidebar-nav .lucide {
-  width: 18px;
-  height: 18px;
-  margin-right: 12px;
-  color: var(--sidebar-link-icon);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .sidebar-nav a:hover svg,
-.light .sidebar-nav button:hover svg,
-.light .sidebar-nav [role="button"]:hover .lucide,
-.light .sidebar-nav a.active svg,
-.light .sidebar-nav button.active svg,
-.light .sidebar-nav [role="button"].active .lucide {
-  color: var(--sidebar-link-icon-active);
-  transform: scale(1.1);
-}
-
-/* ============================= */
-/* DROPDOWN STYLING - DARK THEME */
-/* ============================= */
-
-/* Dropdown content styling - Premium Dark */
-.light [data-radix-popper-content-wrapper] {
-  z-index: 1000;
-}
-
-.light .dropdown-content,
-.light [role="menu"],
-.light [data-radix-select-content] {
-  background: var(--dropdown-background);
-  border: 1px solid var(--dropdown-border);
-  border-radius: 12px;
-  box-shadow: var(--dropdown-shadow);
-  backdrop-filter: blur(16px);
-  padding: 8px;
-  min-width: 200px;
-  overflow: hidden;
-}
-
-/* SelectItem component hover - MATCH SIDEBAR STYLE */
-.light [data-radix-select-item],
-.light .dropdown-item,
-.light [role="menuitem"] {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  border-radius: 8px;
-  color: var(--dropdown-text);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dropdown menu items with class-based targeting - MATCH SIDEBAR STYLE */
-.light [data-radix-select-item]::before,
-.light .dropdown-item::before,
-.light [role="menuitem"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Clean dropdown item styling */
-.light .dropdown-item {
-  background: var(--dropdown-bg);
-  color: var(--dropdown-text);
-  transition: all 0.2s ease;
-}
-
-.light .dropdown-item:hover {
-  background: var(--dropdown-hover);
-  color: var(--dropdown-text);
-}
-
-/* ============================= */
-/* THEME TOGGLE VISIBILITY FIXES */
-/* ============================= */
-
-/* Theme toggle container ensures visibility */
-.light .theme-toggle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 48px;
-}
-
-/* Simple theme toggle visibility - dark theme */
-.light .theme-toggle {
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-}
-
-.light .theme-toggle svg {
-  display: block;
-  visibility: visible;
-  opacity: 1;
-  width: 24px;  /* Increased from default 20px */
-  height: 24px; /* Increased from default 20px */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light .theme-toggle [data-lucide="sun-medium"] {
-  transform: rotate(0deg) scale(1.2); /* Made bigger with scale */
-  opacity: 1;
-  color: var(--theme-toggle-sun-color);
-  filter: drop-shadow(0 0 6px var(--theme-toggle-sun-glow));
-}
-
-.light .theme-toggle [data-lucide="moon-star"] {
-  transform: rotate(-90deg) scale(0);
-  opacity: 0;
-  color: var(--theme-toggle-moon-color);
-}
-
-/* Theme toggle icon color classes - Light Theme */
-.light .theme-toggle-sun-icon {
-  width: 40px;
-  height: 40px;
-  color: rgb(251, 146, 60);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.5));
-}
-
-.light .theme-toggle:hover .theme-toggle-sun-icon {
-  transform: scale(1.7) rotate(15deg);
-  color: rgb(234, 88, 12);
-  filter: drop-shadow(0 0 16px rgba(234, 88, 12, 0.7)) drop-shadow(0 0 28px rgba(234, 88, 12, 0.4));
-  stroke-width: 3;
-}
-
-.light .theme-toggle-moon-icon {
-  color: var(--theme-toggle-moon-color);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 4px var(--theme-toggle-moon-glow));
-}
-
-/* Universal theme toggle icon sizing */
-.light .theme-toggle svg,
-.light .theme-toggle [data-lucide] {
-  width: 40px;
-  height: 40px;
-  transition: all 0.3s ease;
-}
-
-.light .theme-toggle:hover svg,
-.light .theme-toggle:hover [data-lucide] {
-  transform: scale(1.1) rotate(15deg);
-  color: rgb(234, 88, 12);
-}
-
-.light .theme-toggle-placeholder-icon {
-  width: 20px;
-  height: 20px;
-  opacity: 0.5;
-}
-
-.light .theme-toggle-placeholder-icon svg {
-  stroke: var(--theme-toggle-moon-color);
-}
-
-.light [data-sidebar="footer"] {
-  display: flex;
-  visibility: visible;
-  background: linear-gradient(135deg, rgb(254, 242, 242) 0%, rgb(255, 237, 213) 100%);
-  border-top: 1px solid rgba(251, 146, 60, 0.2);
-  position: relative;
-  z-index: 10;
-  min-height: 80px;
-}
-
-/* ============================= */
-/* ENHANCED SIDEBAR STYLING - LIGHT THEME */
-/* ============================= */
-
-/* Sidebar text colors */
-.light [data-sidebar] {
-  color: var(--sidebar-text);
-}
-
-.light [data-sidebar] .sidebar-text {
-  color: rgb(120, 53, 15);
-  font-weight: 500;
-}
-
-.light [data-sidebar] .sidebar-text-muted {
-  color: rgb(180, 83, 45);
-  font-size: 0.875rem;
-}
-
-/* Sidebar header styling */
-.light [data-sidebar="header"] {
-  background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(254, 242, 242) 100%);
-  border-bottom: 1px solid rgba(251, 146, 60, 0.2);
-  color: rgb(120, 53, 15);
-  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.1);
-}
-
-/* Sidebar content styling */
-.light [data-sidebar="content"] {
-  background: linear-gradient(135deg, rgb(254, 242, 242) 0%, rgb(255, 237, 213) 100%);
-  color: var(--sidebar-text);
-}
-
-.light [data-sidebar="sidebar"] {
-  background: linear-gradient(135deg, rgb(254, 242, 242) 0%, rgb(255, 237, 213) 100%);
-  color: rgb(120, 53, 15);
-}
-
-/* Sidebar group and navigation alignment */
-
-
-
-
-
-
-/* Proper sidebar text colors with correct specificity */
-.light [data-sidebar="sidebar"] {
-  color: rgb(120, 53, 15);
-}
-
-.light [data-sidebar="sidebar"] button,
-.light [data-sidebar="sidebar"] a,
-.light [data-sidebar="sidebar"] span,
-.light [data-sidebar="sidebar"] div {
-  color: rgb(120, 53, 15);
-}
-
-.light [data-sidebar="content"] button,
-.light [data-sidebar="content"] a,
-.light [data-sidebar="content"] span,
-.light [data-sidebar="content"] div {
-  color: rgb(120, 53, 15);
-}
-
-/* Sidebar footer specific styling */
-.light [data-sidebar="footer"] .theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(251, 146, 60, 0.08);
-  border: 1px solid rgba(251, 146, 60, 0.15);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  min-height: 72px;
-  min-width: 72px;
-  min-width: 60px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.light [data-sidebar="footer"] .theme-toggle:hover {
-  background: rgba(251, 146, 60, 0.12);
-  border-color: rgba(251, 146, 60, 0.25);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.15);
-}
-
-/* Collapsed sidebar - Icons only */
-.light [data-sidebar][data-state="collapsed"] {
-  width: 60px;
-}
-
-
-
-/* Sidebar toggle button styling */
-.light .sidebar-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  background: rgba(251, 146, 60, 0.1);
-  border: 1px solid rgba(251, 146, 60, 0.2);
-  border-radius: var(--radius-sm);
-  color: rgb(180, 83, 45);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.light .sidebar-toggle:hover {
-  background: rgba(251, 146, 60, 0.15);
-  color: rgb(92, 33, 4);
-  transform: translateX(2px);
-}
-
-.light .sidebar-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Collapsed sidebar - Icons only */
-.light [data-sidebar][data-state="collapsed"] {
-  width: 60px;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item {
-  justify-content: center;
-  padding: 12px 8px;
-  margin: 2px 4px;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item span {
-  display: none;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item svg {
-  margin: 0;
-}
-
-/* Navigation item badges/counts */
-.light [data-sidebar] .sidebar-nav-item .badge {
-  background: rgba(251, 146, 60, 0.15);
-  color: rgb(92, 33, 4);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 18px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.light [data-sidebar] .sidebar-nav-item.active .badge {
-  background: rgba(92, 33, 4, 0.15);
-  color: rgb(92, 33, 4);
-}
-
-
-
-
-
-
-
-
-
-
-
-/* Simple collapsed sidebar styling */
-.light [data-collapsible="icon"] span:not(.sr-only) {
-  display: none;
-}
-
-.light [data-collapsible="icon"] .badge {
-  display: none;
-}
-
-/* Perfect alignment for collapsed icons */
-.light [data-collapsible="icon"] {
-  width: 60px;
-}
-
-.light [data-collapsible="icon"] .sidebar-group {
-  width: 100%;
-  padding: 0;
-}
-
-.light [data-collapsible="icon"] a,
-.light [data-collapsible="icon"] button {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 60px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0;
-}
-
-.light [data-collapsible="icon"] svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 auto !important;
-}
-
-/* Tooltip for collapsed items */
-.light [data-collapsible="icon"] a:hover::before,
-.light [data-collapsible="icon"] button:hover::before,
-.light .group-data-\[collapsible\=icon\]\:overflow-hidden a:hover::before {
-  content: attr(title);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgb(51, 65, 85);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  white-space: nowrap;
-  margin-left: 8px;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  pointer-events: none;
-}
-
-/* Collapsed sidebar tooltip on hover */
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item {
-  position: relative;
-}
-
-.light [data-sidebar][data-state="collapsed"] .sidebar-nav-item:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgb(51, 65, 85);
-  color: white;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  white-space: nowrap;
-  margin-left: 8px;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Match logo and theme toggle positioning exactly */
-.light [data-collapsible="icon"] [data-sidebar="header"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  padding: 16px 0;
-}
-
-.light [data-collapsible="icon"] [data-sidebar="header"] svg {
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-}
-
-/* Ensure theme toggle matches the same alignment */
-.light [data-collapsible="icon"] [data-sidebar="footer"] .theme-toggle {
-  width: 60px;
-  margin: 0;
-  justify-content: center;
-}
-
-/* Collapsed sidebar container alignment */
-.light [data-collapsible="icon"] [data-sidebar="content"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 60px;
-  padding: 0;
-}
-
-.light [data-collapsible="icon"] [data-sidebar="content"] > * {
-  width: 60px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Sidebar group styling */
-.light .sidebar-group {
-  padding: 8px;
-}
-
-.light .sidebar-group > div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-/* Sidebar navigation items - Left aligned */
-.light [data-sidebar] .sidebar-nav-item,
-.light .sidebar-group a,
-.light .sidebar-group button,
-.light [role="menuitem"] {
-  display: flex !important;
-  align-items: center !important;
-  padding: 12px 16px !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
-  border-radius: var(--radius-sm);
-  margin: 2px 0;
-  transition: all 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.light [data-sidebar] .sidebar-nav-item:hover {
-  background: rgba(251, 146, 60, 0.1);
-  transform: translateX(2px);
-}
-
-.light [data-sidebar] .sidebar-nav-item.active {
-  background: rgba(251, 146, 60, 0.2);
-  color: rgb(92, 33, 4);
-  font-weight: 600;
-}
-
-/* Sidebar icons */
-.light [data-sidebar] .sidebar-nav-item svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: rgb(180, 83, 45);
-}
-
-.light [data-sidebar] .sidebar-nav-item.active svg {
-  color: rgb(92, 33, 4);
-}
-
-/* Sidebar text */
-.light [data-sidebar] .sidebar-nav-item span {
-  flex: 1;
-  color: rgb(120, 53, 15);
-  font-size: 0.925rem;
-}
-
-.light [data-sidebar] .sidebar-nav-item.active span {
-  color: rgb(92, 33, 4);
-  font-weight: 600;
-}
-
-/* Navigation item badges/counts */
-.light [data-sidebar] .sidebar-nav-item .badge {
-  background: rgba(251, 146, 60, 0.15);
-  color: rgb(92, 33, 4);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 18px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.light [data-sidebar] .sidebar-nav-item.active .badge {
-  background: rgba(92, 33, 4, 0.15);
-  color: rgb(92, 33, 4);
-}
-
-/* Basic sidebar text colors - no positioning overrides */
-.light [data-sidebar] {
-  color: rgb(120, 53, 15);
-}
-
-/* Sidebar footer text colors with proper specificity */
-.light [data-sidebar="footer"] {
-  color: rgb(92, 33, 4);
-}
-
-.light [data-sidebar="footer"] button,
-.light [data-sidebar="footer"] a,
-.light [data-sidebar="footer"] span,
-.light [data-sidebar="footer"] div,
-.light [data-sidebar="footer"] .theme-toggle {
-  color: rgb(92, 33, 4);
-}
-
-.light [data-sidebar="footer"] .theme-toggle button {
-  color: rgb(92, 33, 4);
-}
-
-.light [data-sidebar="footer"] .text-muted,
-.light [data-sidebar="footer"] .text-secondary {
-  color: rgb(180, 83, 45);
-}
-
-.light [data-sidebar="footer"] button {
-  color: rgb(120, 53, 15);
-}
-
-.light [data-sidebar="footer"] button:hover {
-  color: rgb(92, 33, 4);
-}
-
-/* ============================= */
-/* COMPREHENSIVE UI COMPONENT VARIABLES - LIGHT THEME */
-/* ============================= */
-
-/* Sidebar Components */
-.light {
-  --sidebar-background: rgba(207, 162, 162, 0.98);
-  --sidebar-foreground: rgb(120, 53, 15);
-  --sidebar-border: rgba(251, 146, 60, 0.3);
-  --sidebar-primary: rgb(251, 146, 60);
-  --sidebar-primary-foreground: rgb(255, 255, 255);
-  --sidebar-accent: rgba(251, 146, 60, 0.1);
-  --sidebar-accent-foreground: rgb(120, 53, 15);
-  --sidebar-muted: rgba(255, 237, 213, 0.5);
-  --sidebar-muted-foreground: rgb(148, 163, 184);
-  --sidebar-ring: rgba(251, 146, 60, 0.4);
-  --sidebar-link-hover: rgba(251, 146, 60, 0.15);
-  --sidebar-link-icon: rgb(148, 163, 184);
-  --sidebar-link-icon-active: rgb(251, 146, 60);
-}
-
-/* Dropdown Components */
-.light {
-  --dropdown-bg: rgb(255, 255, 255);
-  --dropdown-border: rgba(251, 146, 60, 0.2);
-  --dropdown-hover: rgba(251, 146, 60, 0.1);
-  --dropdown-focus: rgba(251, 146, 60, 0.25);
-  --dropdown-text: rgb(17, 24, 39);
-  --dropdown-background: rgba(255, 255, 255, 0.98);
-  --dropdown-item-selected: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(255, 237, 213, 0.8) 100%);
-  --dropdown-item-selected-text: rgb(120, 53, 15);
-}
-
-/* Header Components */
-.light {
-  --header-bg: rgba(255, 255, 255, 0.95);
-  --header-border: rgba(251, 146, 60, 0.2);
-  --header-text: rgb(17, 24, 39);
-}
-
-/* Button Variants */
-.light {
-  --btn-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --btn-primary-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.9);
-  --btn-secondary-hover: rgba(251, 146, 60, 0.1);
-  --btn-export-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
-  --btn-export-hover: linear-gradient(135deg, rgb(22, 163, 74) 0%, rgb(21, 128, 61) 100%);
-}
-
-/* Card Components */
-.light {
-  --card-bg: rgba(255, 255, 255, 0.98);
-  --card-border: rgba(251, 146, 60, 0.2);
-  --card-hover: rgba(251, 146, 60, 0.05);
-  --card-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.2);
-}
-
-/* Toast & Notification Components */
-.light {
-  --toast-bg: rgba(255, 255, 255, 0.95);
-  --toast-border: rgba(251, 146, 60, 0.3);
-  --toast-text: rgb(120, 53, 15);
-  --toast-success-bg: rgba(34, 197, 94, 0.1);
-  --toast-success-border: rgba(34, 197, 94, 0.3);
-  --toast-error-bg: rgba(239, 68, 68, 0.1);
-  --toast-error-border: rgba(239, 68, 68, 0.3);
-  --toast-warning-bg: rgba(251, 146, 60, 0.1);
-  --toast-warning-border: rgba(251, 146, 60, 0.3);
-}
-
-/* Form Components */
-.light {
-  --form-label-color: rgb(120, 53, 15);
-  --form-description-color: rgb(148, 163, 184);
-  --form-error-color: rgb(239, 68, 68);
-}
-
-/* Dialog Components */
-.light {
-  --dialog-bg: rgba(255, 255, 255, 0.98);
-  --dialog-border: rgba(251, 146, 60, 0.2);
-  --dialog-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.25);
-  --dialog-overlay: rgba(0, 0, 0, 0.4);
-}
-
-/* Scrollbar Components */
-.light {
-  --scrollbar-track: rgba(255, 237, 213, 0.3);
-  --scrollbar-thumb: rgba(251, 146, 60, 0.4);
-  --scrollbar-thumb-hover: rgba(251, 146, 60, 0.6);
-}
-
-/* Text Colors */
-.light {
-  --text-primary: rgb(120, 53, 15);
-  --text-secondary: rgb(148, 163, 184);
-  --text-tertiary: rgb(168, 162, 158);
-  --text-quaternary: rgb(203, 213, 225);
-  --text-muted: rgb(148, 163, 184);
-  --text-error: rgb(239, 68, 68);
-  --text-success: rgb(34, 197, 94);
-  --text-warning: rgb(251, 146, 60);
-  --text-info: rgb(59, 130, 246);
-}
-
-/* Border Colors */
-.light {
-  --border: rgba(251, 146, 60, 0.2);
-  --border-subtle: rgba(203, 213, 225, 0.4);
-  --border-muted: rgba(148, 163, 184, 0.3);
-}
-
-/* Background Colors */
-.light {
-  --background: rgb(255, 255, 255);
-  --background-subtle: rgba(255, 237, 213, 0.3);
-  --background-muted: rgba(254, 242, 242, 0.5);
-  --foreground: rgb(120, 53, 15);
-  --muted: rgba(255, 237, 213, 0.3);
-  --muted-foreground: rgb(148, 163, 184);
-}
-
-/* Accordion Components */
-.light {
-  --accordion-trigger-bg: rgba(255, 255, 255, 0.9);
-  --accordion-trigger-hover: rgba(251, 146, 60, 0.1);
-  --accordion-content-bg: rgba(255, 255, 255, 0.95);
-  --accordion-border: rgba(251, 146, 60, 0.2);
-}
-
-/* Calendar Components */
-.light {
-  --calendar-bg: rgba(255, 255, 255, 0.98);
-  --calendar-border: rgba(251, 146, 60, 0.2);
-  --calendar-cell-selected: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --calendar-cell-hover: rgba(251, 146, 60, 0.1);
-  --calendar-cell-today: rgba(251, 146, 60, 0.2);
-  --calendar-nav-hover: rgba(251, 146, 60, 0.15);
-}
-
-/* Collapsible Components */
-.light {
-  --collapsible-trigger-bg: rgba(255, 255, 255, 0.9);
-  --collapsible-trigger-hover: rgba(251, 146, 60, 0.1);
-  --collapsible-content-bg: rgba(255, 255, 255, 0.95);
-}
-
-/* Combobox Components */
-.light {
-  --combobox-bg: rgba(255, 255, 255, 0.98);
-  --combobox-border: rgba(251, 146, 60, 0.2);
-  --combobox-hover: rgba(251, 146, 60, 0.1);
-  --combobox-focus: rgba(251, 146, 60, 0.25);
-  --combobox-selected: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(255, 237, 213, 0.8) 100%);
-}
-
-/* Command Components */
-.light {
-  --command-bg: rgba(255, 255, 255, 0.98);
-  --command-border: rgba(251, 146, 60, 0.2);
-  --command-item-hover: rgba(251, 146, 60, 0.1);
-  --command-item-selected: rgba(251, 146, 60, 0.15);
-  --command-shortcut-text: rgb(148, 163, 184);
-}
-
-/* MenuBar Components */
-.light {
-  --menubar-bg: rgba(255, 255, 255, 0.95);
-  --menubar-border: rgba(251, 146, 60, 0.2);
-  --menubar-trigger-hover: rgba(251, 146, 60, 0.1);
-  --menubar-item-hover: rgba(251, 146, 60, 0.15);
-  --menubar-separator: rgba(203, 213, 225, 0.4);
-}
-
-/* Progress Components */
-.light {
-  --progress-bg: rgba(255, 237, 213, 0.5);
-  --progress-fill: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --progress-border: rgba(251, 146, 60, 0.2);
-}
-
-/* Radio Group Components */
-.light {
-  --radio-bg: rgba(255, 255, 255, 0.9);
-  --radio-border: rgba(251, 146, 60, 0.3);
-  --radio-checked: rgb(251, 146, 60);
-  --radio-hover: rgba(251, 146, 60, 0.1);
-  --radio-focus: rgba(251, 146, 60, 0.25);
-}
-
-/* Separator Components */
-.light {
-  --separator-bg: rgba(203, 213, 225, 0.4);
-  --separator-gradient: linear-gradient(90deg, transparent 0%, rgba(251, 146, 60, 0.3) 50%, transparent 100%);
-}
-
-/* Sheet Components */
-.light {
-  --sheet-bg: rgba(255, 255, 255, 0.98);
-  --sheet-border: rgba(251, 146, 60, 0.2);
-  --sheet-overlay: rgba(0, 0, 0, 0.4);
-  --sheet-shadow: 0 10px 40px -10px rgba(251, 146, 60, 0.2);
-}
-
-/* Skeleton Components */
-.light {
-  --skeleton-bg: rgba(255, 237, 213, 0.6);
-  --skeleton-shine: linear-gradient(90deg, transparent 0%, rgba(251, 146, 60, 0.1) 50%, transparent 100%);
-}
-
-/* Slider Components */
-.light {
-  --slider-track-bg: rgba(255, 237, 213, 0.5);
-  --slider-range-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --slider-thumb-bg: rgb(255, 255, 255);
-  --slider-thumb-border: rgb(251, 146, 60);
-  --slider-thumb-hover: rgba(251, 146, 60, 0.1);
-}
-
-/* Switch Components */
-.light {
-  --switch-bg-off: rgba(203, 213, 225, 0.5);
-  --switch-bg-on: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --switch-thumb: rgb(255, 255, 255);
-  --switch-focus: rgba(251, 146, 60, 0.25);
-}
-
-/* Tabs Components */
-.light {
-  --tabs-list-bg: rgba(255, 237, 213, 0.3);
-  --tabs-trigger-bg: transparent;
-  --tabs-trigger-hover: rgba(251, 146, 60, 0.1);
-  --tabs-trigger-active: rgba(255, 255, 255, 0.9);
-  --tabs-content-bg: rgba(255, 255, 255, 0.95);
-  --tabs-border: rgba(251, 146, 60, 0.2);
-}
-
-/* Textarea Components */
-.light {
-  --textarea-bg: rgba(255, 255, 255, 0.9);
-  --textarea-border: rgba(251, 146, 60, 0.2);
-  --textarea-hover: rgba(251, 146, 60, 0.1);
-  --textarea-focus: rgba(251, 146, 60, 0.25);
-  --textarea-placeholder: rgb(148, 163, 184);
-}
-
-/* Tooltip Components */
-.light {
-  --tooltip-bg: rgba(120, 53, 15, 0.95);
-  --tooltip-text: rgb(255, 255, 255);
-  --tooltip-border: rgba(251, 146, 60, 0.3);
-  --tooltip-arrow: rgba(120, 53, 15, 0.95);
-}
-
-/* Alert Components */
-.light {
-  --alert-bg: rgba(255, 255, 255, 0.95);
-  --alert-border: rgba(251, 146, 60, 0.3);
-  --alert-text: rgb(120, 53, 15);
-  --alert-success-bg: rgba(34, 197, 94, 0.1);
-  --alert-success-border: rgba(34, 197, 94, 0.3);
-  --alert-error-bg: rgba(239, 68, 68, 0.1);
-  --alert-error-border: rgba(239, 68, 68, 0.3);
-  --alert-warning-bg: rgba(251, 146, 60, 0.1);
-  --alert-warning-border: rgba(251, 146, 60, 0.3);
-}
-
-/* Avatar Components */
-.light {
-  --avatar-bg: linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(255, 237, 213, 0.8) 100%);
-  --avatar-fallback-bg: rgba(251, 146, 60, 0.8);
-  --avatar-fallback-text: rgb(255, 255, 255);
-  --avatar-border: rgba(251, 146, 60, 0.3);
-}
-
-/* Badge Components */
-.light {
-  --badge-default-bg: rgba(255, 237, 213, 0.8);
-  --badge-default-text: rgb(120, 53, 15);
-  --badge-primary-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
-  --badge-primary-text: rgb(255, 255, 255);
-  --badge-success-bg: rgba(34, 197, 94, 0.8);
-  --badge-success-text: rgb(255, 255, 255);
-  --badge-error-bg: rgba(239, 68, 68, 0.8);
-  --badge-error-text: rgb(255, 255, 255);
-  --badge-warning-bg: rgba(251, 146, 60, 0.8);
-  --badge-warning-text: rgb(255, 255, 255);
-}
-
-/* Popover Components */
-.light {
-  --popover-bg: rgba(255, 255, 255, 0.98);
-  --popover-border: rgba(251, 146, 60, 0.2);
-  --popover-shadow: 0 10px 40px -10px rgba(251, 146, 60, 0.2);
-  --popover-overlay: rgba(0, 0, 0, 0.2);
-}
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */
-
-/* ============================= */
-/* DIALOG CLOSE BUTTON ENHANCEMENT */
-/* ============================= */
-
-/* Dialog close button visibility */
-.light [data-radix-dialog-content] button[data-radix-dialog-close] {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgb(226, 232, 240);
-  opacity: 0.8;
-  z-index: 9999;
-  transition: all 0.2s ease;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  order: -1;
-}
-
-.light [data-radix-dialog-content] button[data-radix-dialog-close]:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgb(255, 255, 255);
-  opacity: 1;
-  transform: scale(1.05);
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-/* ============================= */
-/* BUTTON VARIANT OVERRIDES FOR CORAL THEME */
-/* ============================= */
-
-/* ============================= */
-/* BUTTON VARIANT VARIABLES - LIGHT THEME */
-/* ============================= */
-
-.light {
-  /* Select All Button - Coral */
-  --btn-select-all-bg: rgb(251, 146, 60);
-  --btn-select-all-text: rgb(255, 255, 255);
-  --btn-select-all-hover: rgb(249, 115, 22);
-  
-  /* Clear Selection Button - Light Peach */
-  --btn-clear-selection-bg: rgb(254, 242, 242);
-  --btn-clear-selection-text: rgb(120, 53, 15);
-  --btn-clear-selection-hover: rgb(255, 237, 213);
-  
-  /* Export Button - Green */
-  --btn-export-bg: rgb(34, 197, 94);
-  --btn-export-text: rgb(255, 255, 255);
-  --btn-export-hover: rgb(22, 163, 74);
-  
-  /* Delete Button - Red */
-  --btn-delete-bg: rgb(239, 68, 68);
-  --btn-delete-text: rgb(255, 255, 255);
-  --btn-delete-hover: rgb(220, 38, 38);
-  
-  /* View Settings Button - Light Peach */
-  --btn-view-settings-bg: rgb(254, 242, 242);
+  /* Additional action buttons */
+  --btn-view-settings-bg: rgb(255, 255, 255);
   --btn-view-settings-text: rgb(120, 53, 15);
   --btn-view-settings-hover: rgb(255, 237, 213);
-  
-  /* Clear Filters Button - Light Peach */
-  --btn-clear-filters-bg: rgb(254, 242, 242);
-  --btn-clear-filters-text: rgb(120, 53, 15);
+  --btn-clear-filters-bg: rgb(255, 255, 255);
+  --btn-clear-filters-text: rgb(146, 64, 14);
   --btn-clear-filters-hover: rgb(255, 237, 213);
-  
-  /* Apply/Cancel Button Variables */
-  --btn-apply-bg: rgb(34, 197, 94);
+  --btn-select-all-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
+  --btn-select-all-text: rgb(255, 255, 255);
+  --btn-select-all-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
+  --btn-clear-selection-bg: rgb(255, 255, 255);
+  --btn-clear-selection-text: rgb(146, 64, 14);
+  --btn-clear-selection-hover: rgb(255, 237, 213);
+  --btn-apply-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
   --btn-apply-text: rgb(255, 255, 255);
-  --btn-apply-hover: rgb(22, 163, 74);
-  
-  --btn-cancel-bg: rgb(248, 250, 252);
-  --btn-cancel-text: rgb(71, 85, 105);
-  --btn-cancel-hover: rgb(241, 245, 249);
-  
-  /* Connect Button - Clean Light Theme */
-  --btn-connect-bg: rgb(59, 130, 246);
+  --btn-apply-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
+  --btn-cancel-bg: rgb(255, 255, 255);
+  --btn-cancel-text: rgb(146, 64, 14);
+  --btn-cancel-hover: rgb(255, 237, 213);
+  --btn-delete-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
+  --btn-delete-text: rgb(255, 255, 255);
+  --btn-delete-hover: linear-gradient(135deg, rgb(220, 38, 38) 0%, rgb(185, 28, 28) 100%);
+  --btn-connect-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 100%);
   --btn-connect-text: rgb(255, 255, 255);
-  --btn-connect-hover: rgb(37, 99, 235);
+  --btn-connect-hover: linear-gradient(135deg, rgb(249, 115, 22) 0%, rgb(234, 88, 12) 100%);
   
-  /* Checkbox Variables - Light Theme */
-  --checkbox-bg: rgb(255, 255, 255);
-  --checkbox-border: rgb(203, 213, 225);
-  --checkbox-checked-bg: rgb(251, 146, 60);
-  --checkbox-checked-border: rgb(251, 146, 60);
-  --checkbox-checkmark: rgb(255, 255, 255);
+  /* Modal colors */
+  --modal-background: rgba(255, 255, 255, 0.98);
+  --modal-text: rgb(120, 53, 15);
+  --modal-overlay: rgba(251, 146, 60, 0.3);
+  --modal-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.3);
   
-  /* Dropdown Variables - Light Theme */
-  --dropdown-hover: rgb(251, 146, 60);
-  --dropdown-item-selected-text: rgb(255, 255, 255);
-  --dropdown-content-bg: rgb(255, 255, 255);
-  --dropdown-content-border: rgb(203, 213, 225);
-  --dropdown-content-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
-  --dropdown-focus-outline: rgb(251, 146, 60);
+  /* Toast colors */
+  --toast-destructive-text: rgb(239, 68, 68);
+  --toast-destructive-text-hover: rgb(220, 38, 38);
+  --toast-destructive-ring: rgb(239, 68, 68);
+  --toast-destructive-ring-offset: rgb(255, 255, 255);
+  
+  /* System colors */
+  --accent-color: rgb(251, 146, 60);
+  --accent-text: rgb(255, 255, 255);
+  --focus-ring: rgb(251, 146, 60);
+  --success-color: rgb(34, 197, 94);
+  --warning-color: rgb(251, 146, 60);
+  --error-color: rgb(239, 68, 68);
+  --info-color: rgb(168, 85, 247);
+  
+  /* Status badge colors */
+  --status-in-use-bg: rgba(34, 197, 94, 0.15);
+  --status-in-use-text: rgb(21, 128, 61);
+  --status-in-use-border: rgba(34, 197, 94, 0.4);
+  --status-in-use-hover: rgba(34, 197, 94, 0.25);
+  --status-spare-bg: rgba(168, 85, 247, 0.15);
+  --status-spare-text: rgb(107, 33, 168);
+  --status-spare-border: rgba(168, 85, 247, 0.4);
+  --status-spare-hover: rgba(168, 85, 247, 0.25);
+  --status-for-repair-bg: rgba(239, 68, 68, 0.15);
+  --status-for-repair-text: rgb(185, 28, 28);
+  --status-for-repair-border: rgba(239, 68, 68, 0.4);
+  --status-for-repair-hover: rgba(239, 68, 68, 0.25);
+  --status-for-parts-bg: rgba(251, 146, 60, 0.15);
+  --status-for-parts-text: rgb(154, 52, 18);
+  --status-for-parts-border: rgba(251, 146, 60, 0.4);
+  --status-for-parts-hover: rgba(251, 146, 60, 0.25);
+  --status-for-recycle-bg: rgba(148, 163, 184, 0.15);
+  --status-for-recycle-text: rgb(71, 85, 105);
+  --status-for-recycle-border: rgba(148, 163, 184, 0.4);
+  --status-for-recycle-hover: rgba(148, 163, 184, 0.25);
+  
+  /* Tailwind integration */
+  --primary: rgb(251, 146, 60);
+  --primary-foreground: rgb(255, 255, 255);
+  --secondary: rgb(203, 213, 225);
+  --secondary-foreground: rgb(120, 53, 15);
+  --destructive: rgb(239, 68, 68);
+  --destructive-foreground: rgb(255, 255, 255);
+  --warning: rgb(251, 146, 60);
+  --warning-foreground: rgb(255, 255, 255);
+  --foreground: rgb(120, 53, 15);
+  --background: rgb(255, 255, 255);
+  --muted: rgb(254, 242, 242);
+  --muted-foreground: rgb(120, 53, 15);
+  --accent: rgb(255, 237, 213);
+  --accent-foreground: rgb(120, 53, 15);
+  --border: rgb(203, 213, 225);
+  --input: rgb(203, 213, 225);
+  --ring: rgb(251, 146, 60);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(120, 53, 15);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(120, 53, 15);
+  --chart-1: rgb(251, 146, 60);
+  --chart-2: rgb(34, 197, 94);
+  --chart-3: rgb(249, 115, 22);
+  --chart-4: rgb(168, 85, 247);
+  --chart-5: rgb(239, 68, 68);
+  
+  /* Sidebar colors */
+  --sidebar: rgb(71, 85, 105);
+  --sidebar-foreground: rgb(226, 232, 240);
+  --sidebar-primary: rgb(251, 146, 60);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(255, 237, 213);
+  --sidebar-accent-foreground: rgb(255, 255, 255);
+  --sidebar-border: rgb(100, 116, 139);
+  --sidebar-ring: rgb(251, 146, 60);
+  --sidebar-background: rgba(254, 242, 242, 0.95);
+  --sidebar-text: rgb(120, 53, 15);
+  --sidebar-link-text: rgb(180, 83, 45);
+  --sidebar-link-bg: transparent;
+  --sidebar-link-hover: rgba(251, 146, 60, 0.15);
+  --sidebar-link-active: rgba(251, 146, 60, 0.25);
+  --sidebar-link-active-text: rgb(92, 33, 4);
+  --sidebar-link-icon: rgb(180, 83, 45);
+  --sidebar-link-icon-active: rgb(92, 33, 4);
+  --sidebar-text-hover: rgb(92, 33, 4);
+  --sidebar-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1);
+  --sidebar-header-bg: rgba(71, 85, 105, 0.95);
+  --sidebar-header-text: rgb(248, 250, 252);
+  --sidebar-header-border: rgba(100, 116, 139, 0.5);
+  
+  /* Text colors */
+  --text-primary: rgb(120, 53, 15);
+  --text-secondary: rgb(146, 64, 14);
+  --text-tertiary: rgb(180, 83, 9);
+  --text-quaternary: rgb(146, 64, 14);
+  --text-error: rgb(220, 38, 38);
+  --text-muted: rgb(146, 64, 14);
+  
+  /* Logo colors */
+  --logo-icon-color: rgb(251, 146, 60);
+  --logo-title-color: rgb(120, 53, 15);
+  --logo-subtitle-color: rgb(146, 64, 14);
+  
+  /* Chart colors */
+  --chart-color-1: rgb(251, 146, 60);
+  --chart-color-2: rgb(34, 197, 94);
+  --chart-color-3: rgb(249, 115, 22);
+  --chart-color-4: rgb(168, 85, 247);
+  --chart-color-5: rgb(239, 68, 68);
+  
+  /* Scrollbar colors */
+  --scrollbar-track: rgb(254, 242, 242);
+  --scrollbar-track-border: rgb(251, 146, 60);
+  --scrollbar-thumb: rgb(251, 146, 60);
+  --scrollbar-thumb-hover: rgb(249, 115, 22);
+  --scrollbar-thumb-border: rgb(254, 242, 242);
+  --scrollbar-corner: rgb(254, 242, 242);
+  --scrollbar-glow: 0 0 12px rgba(251, 146, 60, 0.4);
+  --scrollbar-glow-hover: 0 0 18px rgba(251, 146, 60, 0.6);
+  
+  /* Theme toggle colors */
+  --theme-toggle-sun-color: rgb(251, 146, 60);
+  --theme-toggle-moon-color: rgb(249, 115, 22);
+  --theme-toggle-sun-glow: rgba(251, 146, 60, 0.4);
+  --theme-toggle-moon-glow: rgba(249, 115, 22, 0.4);
+  
+  /* Theme toggle specific styling */
+  --theme-toggle-bg: rgba(255, 255, 255, 0.95);
+  --theme-toggle-border: rgba(251, 146, 60, 0.3);
+  --theme-toggle-hover-bg: rgba(255, 237, 213, 0.95);
+  --theme-toggle-hover-border: rgba(251, 146, 60, 0.6);
+  --theme-toggle-shadow: 0 2px 8px -2px rgba(251, 146, 60, 0.2);
+  --theme-toggle-hover-shadow: 0 4px 12px -2px rgba(251, 146, 60, 0.3);
+  
+  /* Progress Component */
+  --progress-track-bg: rgb(254, 242, 242);
+  --progress-fill-bg: rgb(251, 146, 60);
+  
+  /* Slider Component */
+  --slider-track-bg: rgb(254, 242, 242);
+  --slider-range-bg: rgb(251, 146, 60);
+  --slider-thumb-bg: rgb(255, 255, 255);
+  --slider-thumb-border: rgb(251, 146, 60);
+  
+  /* Switch Component */
+  --switch-checked-bg: rgb(251, 146, 60);
+  --switch-unchecked-bg: rgb(203, 213, 225);
+  --switch-thumb-bg: rgb(255, 255, 255);
+  
+  /* Tabs Component */
+  --tabs-list-bg: rgb(254, 242, 242);
+  --tabs-trigger-bg: transparent;
+  --tabs-trigger-active-bg: rgb(255, 255, 255);
+  --tabs-trigger-text: rgb(146, 64, 14);
+  --tabs-trigger-active-text: rgb(120, 53, 15);
+  
+  /* Alert Component */
+  --alert-default-bg: rgb(255, 255, 255);
+  --alert-default-border: rgb(203, 213, 225);
+  --alert-info-bg: rgba(59, 130, 246, 0.1);
+  --alert-info-border: rgba(59, 130, 246, 0.3);
+  --alert-warning-bg: rgba(251, 146, 60, 0.1);
+  --alert-warning-border: rgba(251, 146, 60, 0.3);
+  --alert-success-bg: rgba(34, 197, 94, 0.1);
+  --alert-success-border: rgba(34, 197, 94, 0.3);
+  
+  /* Avatar Component */
+  --avatar-fallback-bg: rgb(254, 242, 242);
+  --avatar-fallback-text: rgb(146, 64, 14);
+  
+  /* Radio Group */
+  --radio-border: rgb(203, 213, 225);
+  --radio-checked-bg: rgb(251, 146, 60);
+  --radio-indicator-color: rgb(255, 255, 255);
+  
+  /* Skeleton Component */
+  --skeleton-bg: rgba(254, 242, 242, 0.8);
 }
-
-/* ============================= */
-/* CLEAN THEME SEPARATION - NO FORCING RULES */
-/* ============================= */
