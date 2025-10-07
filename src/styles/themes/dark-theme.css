@@ -282,6 +282,12 @@
   --theme-toggle-glow: 0 0 25px rgba(120, 150, 255, 0.4), 0 0 50px rgba(150, 120, 255, 0.2);
   --theme-toggle-hover-glow: 0 0 40px rgba(150, 180, 255, 0.6), 0 0 80px rgba(120, 150, 255, 0.3), 0 0 100px rgba(150, 120, 255, 0.2);
   
+  /* Search Bar Theme Variables */
+  --search-focus-border: rgba(120, 150, 255, 0.6);
+  --search-focus-shadow: rgba(120, 150, 255, 0.15);
+  --search-icon-color: rgba(156, 163, 175, 0.8);
+  --search-icon-active: rgba(120, 150, 255, 0.9);
+  
   /* Progress Component */
   --progress-track-bg: rgb(20, 30, 60);
   --progress-fill-bg: rgb(120, 180, 255);

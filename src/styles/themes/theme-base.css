@@ -275,6 +275,156 @@ input, select, textarea {
   transform: translateY(-1px);
 }
 
+/* =============================================================================
+   SEARCH BAR STYLING - Premium liquid glass effects
+   ============================================================================= */
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* Ensure top-controls search container aligns properly */
+.top-controls .search-container {
+  height: 36px !important;
+  align-self: center !important;
+}
+
+.search-input {
+  /* Liquid Glass Base */
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  
+  /* Glass Refraction Effect */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  height: 36px !important;
+  line-height: 1 !important;
+}
+
+.search-input::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.15) 50%, 
+    transparent 100%);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.search-input:focus::before {
+  left: 100%;
+}
+
+.search-input::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-input:hover::after {
+  opacity: 1;
+}
+
+/* Focus State */
+.search-input:focus {
+  border-color: var(--search-focus-border, rgba(59, 130, 246, 0.5)) !important;
+  box-shadow: 
+    0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Hover Effects */
+.search-input:hover {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    0 10px 36px rgba(0, 0, 0, 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-0.5px);
+}
+
+/* Liquid Animation */
+@keyframes searchLiquidFloat {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  50% { 
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.15),
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+.search-input:focus {
+  animation: searchLiquidFloat 3s ease-in-out infinite;
+}
+
+/* Search Icon Styling */
+.search-icon {
+  color: var(--search-icon-color, rgba(156, 163, 175, 0.8)) !important;
+  transition: all 0.3s ease !important;
+  z-index: 2 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+/* Search Container Fixes */
+.search-container:focus-within .search-icon,
+.search-container:hover .search-icon {
+  color: var(--search-icon-active, rgba(59, 130, 246, 0.8)) !important;
+  transform: scale(1.05);
+}
+
+/* Clear Button Styling */
+.search-clear-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 2 !important;
+}
+
+.search-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.05);
+}
+
 /* ============================= */
 /* TABLE STYLING - CLEAN SEPARATION */
 /* ============================= */
@@ -874,24 +1024,31 @@ input, select, textarea {
 /* ============================= */
 
 .top-controls {
-  padding: 20px 0;
-  backdrop-filter: blur(20px);
+  /* Remove padding that causes vertical displacement */
+  padding: 0;
+  backdrop-filter: none;
+  /* Ensure proper flex alignment */
+  display: flex;
+  align-items: center;
+  height: 58px;
 }
 
-.top-controls input[type="text"], .top-controls input {
-  font-weight: 500;
-  border-radius: var(--radius-md);
-  box-sizing: border-box;
-  width: 320px;
-  height: 36px;
-  min-height: 36px;
-  max-height: 36px;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 8px 40px 8px 40px;
-  margin: 0;
-  position: relative;
-  display: block;
+/* Override old input styling for search specifically */
+.top-controls .search-container input[type="text"], 
+.top-controls .search-input {
+  font-weight: 400 !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  line-height: 1 !important;
+  font-size: 14px !important;
+  padding: 8px 40px 8px 40px !important;
+  margin: 0 !important;
+  position: relative !important;
+  display: block !important;
 }
 
 .top-controls .relative {
@@ -923,6 +1080,18 @@ input, select, textarea {
   height: 16px;
   z-index: 5;
   pointer-events: none;
+}
+
+/* Override for our new search icon */
+.top-controls .search-container .search-icon {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 16px !important;
+  height: 16px !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
 }
 
 .top-controls button[role="combobox"] {

@@ -392,11 +392,11 @@ export default function DashboardPage() {
             {/* Main content area */}
             <div className="flex-1 flex flex-col min-w-0 min-h-0">
               <div className="top-controls flex items-center gap-2 mb-4 h-[58px] shrink-0">
-                <div className="relative w-80 max-w-sm">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <div className="relative w-80 max-w-sm search-container">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 search-icon" />
                   <Input
                       placeholder="Search all fields..."
-                      className="pl-10 pr-10 h-9 w-full"
+                      className="pl-10 pr-10 h-9 w-full search-input"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -404,7 +404,7 @@ export default function DashboardPage() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 search-clear-btn"
                       onClick={() => setSearchQuery("")}
                     >
                       <X className="h-4 w-4" />
