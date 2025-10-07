@@ -7,6 +7,18 @@
   /* ULTRA PREMIUM $10M APP THEME */
   /* ============================= */
   
+  /* Theme toggle colors */
+  --theme-toggle-sun-color: rgb(255, 180, 100);
+  --theme-toggle-moon-color: rgb(150, 100, 255);
+  --theme-toggle-sun-glow: rgba(255, 180, 100, 0.5);
+  --theme-toggle-moon-glow: rgba(150, 100, 255, 0.5);
+  
+  /* Modal and Dialog colors */
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+  --dialog-background: rgb(12, 8, 25);
+  --dialog-border: rgb(40, 25, 70);
+  --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  
   /* Main page colors */
   --page-background: linear-gradient(135deg, rgb(5, 10, 25) 0%, rgb(15, 25, 45) 20%, rgb(25, 35, 60) 40%, rgb(35, 25, 55) 60%, rgb(20, 15, 40) 80%, rgb(10, 5, 30) 100%);
   --page-text: rgb(240, 245, 255);
@@ -91,6 +103,21 @@
   --btn-filter-text: rgb(220, 230, 255);
   --btn-filter-hover: linear-gradient(135deg, rgba(60, 70, 120, 0.8) 0%, rgba(80, 60, 140, 0.75) 50%, rgba(70, 80, 160, 0.8) 100%);
   --btn-filter-border: rgba(120, 150, 255, 0.6);
+  
+  /* General button variant colors */
+  --button-secondary-bg: rgba(60, 40, 120, 0.6);
+  --button-secondary-text: rgb(200, 180, 255);
+  --button-secondary-border: rgba(120, 80, 255, 0.4);
+  --button-secondary-bg-hover: rgba(80, 60, 140, 0.8);
+  --button-secondary-text-hover: rgb(220, 200, 255);
+  --button-secondary-border-hover: rgba(150, 100, 255, 0.6);
+  
+  --button-destructive-bg: linear-gradient(135deg, rgb(255, 100, 140) 0%, rgb(255, 120, 160) 100%);
+  --button-destructive-text: rgb(255, 255, 255);
+  --button-destructive-border: rgba(255, 120, 160, 0.6);
+  --button-destructive-bg-hover: linear-gradient(135deg, rgb(255, 120, 160) 0%, rgb(255, 140, 180) 100%);
+  --button-destructive-text-hover: rgb(255, 255, 255);
+  --button-destructive-border-hover: rgba(255, 140, 180, 0.8);
   
   /* Additional action buttons */
   --btn-view-settings-bg: rgb(40, 60, 120);

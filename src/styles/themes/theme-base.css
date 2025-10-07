@@ -960,6 +960,38 @@ input, select, textarea {
   transform: translateY(-2px) scale(1.02);
 }
 
+/* Outline Button Styles */
+.btn-outline {
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--button-secondary-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  background: var(--button-secondary-bg-hover);
+  color: var(--button-secondary-text-hover);
+  border-color: var(--button-secondary-border-hover);
+  box-shadow: var(--glow-secondary);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Destructive Button Styles */
+.btn-destructive {
+  background: var(--button-destructive-bg);
+  color: var(--button-destructive-text);
+  border: 1px solid var(--button-destructive-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-destructive:hover {
+  background: var(--button-destructive-bg-hover);
+  color: var(--button-destructive-text-hover);
+  border-color: var(--button-destructive-border-hover);
+  box-shadow: var(--glow-destructive);
+  transform: translateY(-2px) scale(1.02);
+}
+
 .btn-success, button[class*="success"] {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
