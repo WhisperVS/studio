@@ -436,6 +436,22 @@
   /* Additional Glow Variables */
   --glow-secondary: 0 0 15px rgba(120, 150, 255, 0.4);
   --glow-destructive: 0 0 20px rgba(255, 120, 150, 0.5);
+  
+  /* Sidebar Active State Colors */
+  --sidebar-active-glow: 0 4px 12px -4px rgba(120, 150, 255, 0.4), 0 0 20px rgba(150, 120, 255, 0.15);
+  --sidebar-icon-glow-active: drop-shadow(0 0 6px rgba(150, 120, 255, 0.6));
+  
+  /* Shadow System Colors */
+  --shadow-text: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-light: 0 8px 24px -4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px -4px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 8px 32px -8px rgba(0, 0, 0, 0.15);
+  --shadow-inset-light: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-inset-medium: 0 4px 16px -4px rgba(0, 0, 0, 0.2);
+  --shadow-inset-dark: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  --shadow-depth-light: 0 8px 32px -8px rgba(0, 0, 0, 0.2);
+  --shadow-inset-dark-hover: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --shadow-depth-heavy: 0 16px 48px -8px rgba(0, 0, 0, 0.3);
 }
 
 
