@@ -365,6 +365,58 @@ input, select, textarea {
 }
 
 /* =============================================================================
+   TOGGLE COLUMNS DIALOG - Premium Glass Integration
+   ============================================================================= */
+
+/* Toggle Columns Dialog specific styling */
+[data-radix-popover-content] {
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(16px);
+  padding: 8px;
+  min-width: 200px;
+  overflow: hidden;
+  border: 1px solid var(--dropdown-border);
+  background: var(--dropdown-background);
+  box-shadow: var(--dropdown-shadow);
+}
+
+/* Toggle column items - ensure they get hover effects */
+[data-radix-popover-content] > div > label,
+[data-radix-popover-content] > div > div,
+[data-radix-popover-content] .space-y-2 > label,
+[data-radix-popover-content] .space-y-2 > div {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  color: var(--dropdown-text);
+  margin: 2px 0;
+}
+
+/* Toggle column items hover effects */
+[data-radix-popover-content] > div > label:hover,
+[data-radix-popover-content] > div > div:hover,
+[data-radix-popover-content] .space-y-2 > label:hover,
+[data-radix-popover-content] .space-y-2 > div:hover {
+  background: var(--dropdown-hover);
+  color: var(--dropdown-item-selected-text);
+  border-color: var(--dropdown-focus-outline);
+  transform: translateX(2px);
+  box-shadow: 
+    0 0 0 1px var(--dropdown-focus-outline),
+    0 2px 8px -2px var(--dropdown-focus-outline),
+    0 0 20px -8px var(--dropdown-focus-outline);
+}
+
+/* =============================================================================
    VIEW SETTINGS BUTTON - Premium Glass Integration with Exclusive Colors
    ============================================================================= */
 
@@ -983,9 +1035,14 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item],
 [data-radix-menubar-item],
 [data-radix-command-item],
+[data-radix-dropdown-menu-checkbox-item],
+[data-radix-popover-content] [role="menuitemcheckbox"],
+[data-radix-popover-content] label,
+[data-radix-popover-content] .checkbox-item,
 .dropdown-item, 
 [role="menuitem"],
-[role="option"] {
+[role="option"],
+[role="menuitemcheckbox"] {
   display: flex;
   align-items: center;
   padding: 12px 16px;
@@ -1034,9 +1091,14 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item]::before,
 [data-radix-menubar-item]::before,
 [data-radix-command-item]::before,
+[data-radix-dropdown-menu-checkbox-item]::before,
+[data-radix-popover-content] [role="menuitemcheckbox"]::before,
+[data-radix-popover-content] label::before,
+[data-radix-popover-content] .checkbox-item::before,
 .dropdown-item::before, 
 [role="menuitem"]::before,
-[role="option"]::before {
+[role="option"]::before,
+[role="menuitemcheckbox"]::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1069,16 +1131,26 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item]:hover,
 [data-radix-menubar-item]:hover,
 [data-radix-command-item]:hover,
+[data-radix-dropdown-menu-checkbox-item]:hover,
+[data-radix-popover-content] [role="menuitemcheckbox"]:hover,
+[data-radix-popover-content] label:hover,
+[data-radix-popover-content] .checkbox-item:hover,
 .dropdown-item:hover, 
 [role="menuitem"]:hover,
 [role="option"]:hover,
+[role="menuitemcheckbox"]:hover,
 [data-radix-select-item][data-highlighted], 
 [data-radix-dropdown-menu-item][data-highlighted],
 [data-radix-menubar-item][data-highlighted],
 [data-radix-command-item][data-highlighted],
+[data-radix-dropdown-menu-checkbox-item][data-highlighted],
+[data-radix-popover-content] [role="menuitemcheckbox"][data-highlighted],
+[data-radix-popover-content] label[data-highlighted],
+[data-radix-popover-content] .checkbox-item[data-highlighted],
 .dropdown-item[data-highlighted], 
 [role="menuitem"][data-highlighted],
-[role="option"][data-highlighted] {
+[role="option"][data-highlighted],
+[role="menuitemcheckbox"][data-highlighted] {
   background: var(--dropdown-hover);
   color: var(--dropdown-item-selected-text);
   border-color: var(--dropdown-focus-outline);
@@ -1093,16 +1165,26 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item]:hover::before,
 [data-radix-menubar-item]:hover::before,
 [data-radix-command-item]:hover::before,
+[data-radix-dropdown-menu-checkbox-item]:hover::before,
+[data-radix-popover-content] [role="menuitemcheckbox"]:hover::before,
+[data-radix-popover-content] label:hover::before,
+[data-radix-popover-content] .checkbox-item:hover::before,
 .dropdown-item:hover::before, 
 [role="menuitem"]:hover::before,
 [role="option"]:hover::before,
+[role="menuitemcheckbox"]:hover::before,
 [data-radix-select-item][data-highlighted]::before, 
 [data-radix-dropdown-menu-item][data-highlighted]::before,
 [data-radix-menubar-item][data-highlighted]::before,
 [data-radix-command-item][data-highlighted]::before,
+[data-radix-dropdown-menu-checkbox-item][data-highlighted]::before,
+[data-radix-popover-content] [role="menuitemcheckbox"][data-highlighted]::before,
+[data-radix-popover-content] label[data-highlighted]::before,
+[data-radix-popover-content] .checkbox-item[data-highlighted]::before,
 .dropdown-item[data-highlighted]::before, 
 [role="menuitem"][data-highlighted]::before,
-[role="option"][data-highlighted]::before {
+[role="option"][data-highlighted]::before,
+[role="menuitemcheckbox"][data-highlighted]::before {
   opacity: 1;
 }
 
