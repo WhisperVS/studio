@@ -325,8 +325,8 @@
   --modal-btn-secondary-border: rgba(251, 146, 60, 0.3);
   --modal-btn-secondary-text: rgb(120, 53, 15);
   --modal-btn-secondary-hover: rgba(251, 146, 60, 0.1);
-  --modal-btn-primary-bg: rgb(251, 146, 60);
-  --modal-btn-primary-text: rgb(255, 255, 255);
+  --modal-btn-primary-bg: var(--btn-primary-bg);
+  --modal-btn-primary-text: var(--btn-primary-text);
   --modal-btn-destructive-bg: rgb(239, 68, 68);
   --modal-btn-destructive-text: rgb(255, 255, 255);
   
