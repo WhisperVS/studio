@@ -2154,10 +2154,10 @@ button[class*="primary"]:hover::after, button[class*="secondary"]:hover::after, 
   50% { opacity: 0.2; height: 50%; }
 }
 
-/* Liquid glass morphing border */
+/* Liquid glass morphing border - consistent with base button radius */
 .btn-primary:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover,
 button[class*="primary"]:hover {
-  border-radius: 16px;
+  border-radius: var(--radius-sm);
   transition: border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
