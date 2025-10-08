@@ -399,6 +399,18 @@
   --btn-clear-glow: 0 0 15px rgba(120, 150, 255, 0.4);
   --btn-clear-shadow: 0 4px 16px -4px rgba(120, 150, 255, 0.2);
   
+  /* Search Clear Button - Premium Glass Design */
+  --search-clear-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(120, 150, 255, 0.1) 50%, rgba(60, 80, 180, 0.15) 100%);
+  --search-clear-border: rgba(120, 150, 255, 0.4);
+  --search-clear-icon: rgba(200, 220, 255, 0.8);
+  --search-clear-shadow: 0 2px 8px rgba(120, 150, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --search-clear-hover-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(120, 150, 255, 0.2) 50%, rgba(60, 80, 180, 0.25) 100%);
+  --search-clear-hover-border: rgba(120, 150, 255, 0.7);
+  --search-clear-hover-icon: rgb(220, 230, 255);
+  --search-clear-hover-shadow: 0 4px 16px rgba(120, 150, 255, 0.3), 0 0 0 2px rgba(120, 150, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --search-clear-active-bg: linear-gradient(135deg, rgba(60, 80, 180, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --search-clear-active-shadow: inset 0 2px 4px rgba(120, 150, 255, 0.4);
+  
   /* Dropdown System Colors - Missing Variables */
   --dropdown-border-hover: rgba(120, 150, 255, 0.5);
   --dropdown-hover-shadow: 0 4px 16px -4px rgba(120, 150, 255, 0.2);

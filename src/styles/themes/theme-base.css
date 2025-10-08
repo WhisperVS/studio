@@ -297,7 +297,7 @@ input, select, textarea {
   background: var(--input-background);
   border: 1px solid var(--input-border);
   border-radius: 10px;
-  box-shadow: var(--search-input-shadow);
+  box-shadow: var(--input-shadow);
   
   /* Remove liquid glass effects */
   backdrop-filter: none;
@@ -307,6 +307,11 @@ input, select, textarea {
   height: 36px;
   line-height: 1;
   color: var(--input-text);
+}
+
+/* Placeholder styling for inactive state */
+.search-input::placeholder {
+  color: var(--input-placeholder);
 }
 
 /* Remove glass refraction effects */
@@ -359,35 +364,99 @@ input, select, textarea {
   transform: scale(1.05);
 }
 
-/* Clear Button Styling - Enhanced with theme integration */
-.search-clear-btn {
-  background: var(--input-background);
-  backdrop-filter: blur(12px);
-  border-radius: 6px;
-  border: 1px solid var(--input-border);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
+/* =============================================================================
+   SEARCH CLEAR BUTTON - Premium Glass Integration (Structure Only)
+   ============================================================================= */
+
+button.search-clear-new {
+  /* Complete reset of all button defaults */
+  all: unset;
+  
+  /* Perfect positioning within search input */
   position: absolute;
-  right: 4px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  box-shadow: var(--input-shadow);
-  color: var(--input-icon);
+  
+  /* Premium dimensions */
+  width: 24px;
+  height: 24px;
+  
+  /* Glass morphism structure */
+  background: var(--search-clear-bg);
+  border: 1px solid var(--search-clear-border);
+  border-radius: 50%;
+  
+  /* Glass blur effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Perfect centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Interaction setup */
+  cursor: pointer;
+  z-index: 5;
+  
+  /* Override any inherited transitions */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  
+  /* Theme-aware shadows */
+  box-shadow: var(--search-clear-shadow);
+  
+  /* Prevent any dropdown behavior */
+  pointer-events: auto;
+  overflow: visible;
 }
 
-.search-clear-btn:hover {
-  background: var(--input-hover);
-  border-color: var(--input-border-focus);
-  transform: translateY(-50%);
-  box-shadow: var(--input-shadow-focus);
-  color: var(--input-icon-active);
+/* Icon within clear button */
+button.search-clear-new svg {
+  width: 12px;
+  height: 12px;
+  color: var(--search-clear-icon);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
 }
 
-.search-clear-btn:active {
+/* Premium hover effects - NO dropdown animations */
+button.search-clear-new:hover {
+  background: var(--search-clear-hover-bg);
+  border-color: var(--search-clear-hover-border);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: var(--search-clear-hover-shadow);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+button.search-clear-new:hover svg {
+  color: var(--search-clear-hover-icon);
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 4px var(--search-clear-hover-border));
+}
+
+/* Active state - simple scale only */
+button.search-clear-new:active {
   transform: translateY(-50%) scale(0.95);
-  box-shadow: var(--input-shadow);
+  background: var(--search-clear-active-bg);
+  box-shadow: var(--search-clear-active-shadow);
+}
+
+button.search-clear-new:active svg {
+  transform: scale(0.9);
+}
+
+/* Focus state for accessibility */
+button.search-clear-new:focus {
+  outline: none;
+  box-shadow: var(--search-clear-hover-shadow);
+}
+
+/* Ensure search container has proper relative positioning */
+.search-container {
+  position: relative;
+  display: inline-block;
 }
 
 /* =============================================================================
