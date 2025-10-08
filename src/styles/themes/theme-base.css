@@ -186,12 +186,16 @@ button:focus-visible, .btn:focus-visible {
 .btn-group {
   display: inline-flex;
   border-radius: var(--radius-sm);
+  gap: 0; /* Explicitly no gap between flex items */
 }
 
 .btn-group button {
   border-radius: 0;
   border-right-width: 0;
   box-shadow: none;
+  margin: 0; /* Remove any default margins */
+  flex-shrink: 0; /* Prevent button shrinking */
+  outline-offset: 0; /* Prevent outline from creating gaps */
 }
 
 .btn-group button:first-child {
