@@ -189,7 +189,7 @@
   /* Tailwind integration */
   --primary: rgb(251, 146, 60);
   --primary-foreground: rgb(255, 255, 255);
-  --secondary: rgb(203, 213, 225);
+  --secondary: rgb(254, 215, 170);
   --secondary-foreground: rgb(120, 53, 15);
   --destructive: rgb(239, 68, 68);
   --destructive-foreground: rgb(255, 255, 255);
@@ -201,8 +201,8 @@
   --muted-foreground: rgb(120, 53, 15);
   --accent: rgb(255, 237, 213);
   --accent-foreground: rgb(120, 53, 15);
-  --border: rgb(203, 213, 225);
-  --input: rgb(203, 213, 225);
+  --border: rgb(249, 115, 22);
+  --input: rgb(254, 215, 170);
   --ring: rgb(251, 146, 60);
   --card: rgb(255, 255, 255);
   --card-foreground: rgb(120, 53, 15);
@@ -355,7 +355,7 @@
   
   /* Switch Component */
   --switch-checked-bg: rgb(251, 146, 60);
-  --switch-unchecked-bg: rgb(203, 213, 225);
+  --switch-unchecked-bg: rgb(254, 215, 170);
   --switch-thumb-bg: rgb(255, 255, 255);
   
   /* Tabs Component */
@@ -367,7 +367,7 @@
   
   /* Alert Component */
   --alert-default-bg: rgb(255, 255, 255);
-  --alert-default-border: rgb(203, 213, 225);
+  --alert-default-border: rgb(249, 115, 22);
   --alert-info-bg: rgba(59, 130, 246, 0.1);
   --alert-info-border: rgba(59, 130, 246, 0.3);
   --alert-warning-bg: rgba(251, 146, 60, 0.1);
@@ -380,7 +380,7 @@
   --avatar-fallback-text: rgb(146, 64, 14);
   
   /* Radio Group */
-  --radio-border: rgb(203, 213, 225);
+  --radio-border: rgb(249, 115, 22);
   --radio-checked-bg: rgb(251, 146, 60);
   --radio-indicator-color: rgb(255, 255, 255);
   
