@@ -776,7 +776,7 @@ button[data-dialog-close]:active {
   z-index: 1000;
 }
 
-.dropdown-content, [role="menu"], [data-radix-select-content] {
+.dropdown-content, [role="menu"], [data-radix-select-content], [data-radix-dropdown-menu-content], [data-radix-popover-content], [data-radix-menubar-content], .bg-popover {
   border-radius: var(--radius-md);
   backdrop-filter: blur(16px);
   padding: 8px;
@@ -788,7 +788,13 @@ button[data-dialog-close]:active {
 }
 
 /* SelectItem component hover */
-[data-radix-select-item], .dropdown-item, [role="menuitem"] {
+[data-radix-select-item], 
+[data-radix-dropdown-menu-item],
+[data-radix-menubar-item],
+[data-radix-command-item],
+.dropdown-item, 
+[role="menuitem"],
+[role="option"] {
   display: flex;
   align-items: center;
   padding: 12px 16px;

@@ -206,8 +206,8 @@
   --ring: rgb(251, 146, 60);
   --card: rgb(255, 255, 255);
   --card-foreground: rgb(120, 53, 15);
-  --popover: rgb(255, 255, 255);
-  --popover-foreground: rgb(120, 53, 15);
+  --popover: var(--dropdown-background);
+  --popover-foreground: var(--dropdown-text);
   --chart-1: rgb(251, 146, 60);
   --chart-2: rgb(34, 197, 94);
   --chart-3: rgb(249, 115, 22);
