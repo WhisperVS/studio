@@ -365,6 +365,101 @@ input, select, textarea {
 }
 
 /* =============================================================================
+   VIEW SETTINGS BUTTON - Premium Glass Integration with Exclusive Colors
+   ============================================================================= */
+
+/* View Settings Button - Exclusive background with premium hover effects */
+.btn-view-settings {
+  /* Exclusive positioning and sizing */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  /* Exclusive dimensions */
+  height: 36px;
+  padding: 8px 12px;
+  min-width: 120px;
+  
+  /* Exclusive exclusive colors */
+  background: var(--btn-view-settings-bg);
+  color: var(--btn-view-settings-text);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  
+  /* Premium glass morphism */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Premium interactions */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  
+  /* Text styling */
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  user-select: none;
+  
+  /* Exclusive shadow */
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Premium hover effects matching dropdown menu style */
+.btn-view-settings:hover {
+  /* Exclusive hover background */
+  background: var(--btn-view-settings-hover);
+  
+  /* Premium transform effect like dropdown items */
+  transform: translateY(-2px) scale(1.02);
+  
+  /* Enhanced glass blur */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Premium glow effect */
+  box-shadow: 
+    var(--btn-view-settings-glow),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Active state */
+.btn-view-settings:active {
+  transform: translateY(-1px) scale(0.98);
+  background: var(--btn-view-settings-bg);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Focus state */
+.btn-view-settings:focus {
+  outline: none;
+  box-shadow: 
+    var(--btn-view-settings-glow),
+    0 0 0 2px var(--focus-ring);
+}
+
+/* Icon styling within view button */
+.btn-view-settings svg {
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: currentColor;
+}
+
+/* Premium icon hover effect */
+.btn-view-settings:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* =============================================================================
    SEARCH CLEAR BUTTON - Premium Glass Integration (Structure Only)
    ============================================================================= */
 

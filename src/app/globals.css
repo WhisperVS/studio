@@ -154,16 +154,6 @@ html {
     background: var(--btn-export-hover);
   }
 
-  .btn-view-settings {
-    background: var(--btn-view-settings-bg);
-    color: var(--btn-view-settings-text);
-    border: 1px solid var(--input-border);
-  }
-
-  .btn-view-settings:hover {
-    background: var(--btn-view-settings-hover);
-  }
-
   .btn-clear-filters {
     background: var(--btn-clear-filters-bg);
     color: var(--btn-clear-filters-text);
