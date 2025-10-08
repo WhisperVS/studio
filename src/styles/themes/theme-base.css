@@ -81,40 +81,62 @@ button:hover, .btn:hover, [role="button"]:hover {
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
   background: var(--dropdown-trigger-bg);
   border: 2px solid var(--dropdown-trigger-border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   position: relative;
   overflow: hidden;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--dropdown-trigger-shadow);
   color: var(--dropdown-trigger-text);
 }
 
-/* Glass shimmer effect for combobox buttons */
+/* Advanced glass refraction for combobox buttons */
 button[role="combobox"]::before, .dropdown-trigger::before, [data-dropdown-trigger]::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dropdown-shimmer-light) 50%, 
-    transparent 100%);
-  transition: left 0.6s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-refraction);
   pointer-events: none;
+  border-radius: inherit;
 }
 
-button[role="combobox"]:hover::before, .dropdown-trigger:hover::before, [data-dropdown-trigger]:hover::before {
-  left: 100%;
+/* Liquid shimmer for combobox buttons */
+button[role="combobox"]::after, .dropdown-trigger::after, [data-dropdown-trigger]::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg, 
+    var(--glass-highlight) 45deg, 
+    transparent 90deg, 
+    transparent 270deg, 
+    var(--glass-highlight) 315deg, 
+    transparent 360deg);
+  transform: rotate(0deg);
+  opacity: 0;
+  transition: all 0.6s ease;
+  pointer-events: none;
+  animation: liquidRotate 3s linear infinite paused;
+}
+
+button[role="combobox"]:hover::after, .dropdown-trigger:hover::after, [data-dropdown-trigger]:hover::after {
+  opacity: 0.3;
+  animation-play-state: running;
 }
 
 button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
   background: var(--dropdown-trigger-hover-bg);
   border-color: var(--dropdown-trigger-hover-border);
-  backdrop-filter: blur(16px);
-  transform: translateY(-1px);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  transform: translateY(-2px) scale(1.01);
   box-shadow: var(--dropdown-trigger-hover-shadow);
 }
 
@@ -122,7 +144,8 @@ button[role="combobox"]:focus, .dropdown-trigger:focus, [data-dropdown-trigger]:
   outline: none;
   background: var(--dropdown-trigger-focus-bg);
   border-color: var(--dropdown-trigger-focus-border);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
   box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
@@ -1207,42 +1230,69 @@ button[data-dialog-close]:active {
   border-radius: var(--radius-sm);
   border: 2px solid var(--dropdown-trigger-border);
   background: var(--dropdown-trigger-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   color: var(--dropdown-trigger-text);
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   box-shadow: var(--dropdown-trigger-shadow);
 }
 
-/* Glass shimmer effect */
+/* Advanced glass refraction effect */
 [data-radix-select-trigger]::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dropdown-shimmer-light) 50%, 
-    transparent 100%);
-  transition: left 0.6s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-refraction);
   pointer-events: none;
+  border-radius: inherit;
 }
 
-[data-radix-select-trigger]:hover::before {
-  left: 100%;
+/* Liquid shimmer effect */
+[data-radix-select-trigger]::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg, 
+    var(--glass-highlight) 45deg, 
+    transparent 90deg, 
+    transparent 270deg, 
+    var(--glass-highlight) 315deg, 
+    transparent 360deg);
+  transform: rotate(0deg);
+  opacity: 0;
+  transition: all 0.6s ease;
+  pointer-events: none;
+  animation: liquidRotate 3s linear infinite paused;
+}
+
+@keyframes liquidRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+[data-radix-select-trigger]:hover::after {
+  opacity: 0.3;
+  animation-play-state: running;
 }
 
 [data-radix-select-trigger]:hover {
   border-color: var(--dropdown-trigger-hover-border);
   background: var(--dropdown-trigger-hover-bg);
-  backdrop-filter: blur(16px);
-  transform: translateY(-1px);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  transform: translateY(-2px) scale(1.01);
   box-shadow: var(--dropdown-trigger-hover-shadow);
 }
 
@@ -1250,7 +1300,8 @@ button[data-dialog-close]:active {
   outline: none;
   border-color: var(--dropdown-trigger-focus-border);
   background: var(--dropdown-trigger-focus-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
   box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
@@ -2142,38 +2193,61 @@ button[data-dialog-close]:active {
   border-radius: var(--radius-md);
   background: var(--dropdown-trigger-bg);
   border: 2px solid var(--dropdown-trigger-border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   color: var(--dropdown-trigger-text);
   box-shadow: var(--dropdown-trigger-shadow);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
+/* Advanced glass refraction for top-controls */
 .top-controls button[role="combobox"]::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dropdown-shimmer-light) 50%, 
-    transparent 100%);
-  transition: left 0.6s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-refraction);
   pointer-events: none;
+  border-radius: inherit;
 }
 
-.top-controls button[role="combobox"]:hover::before {
-  left: 100%;
+/* Liquid shimmer for top-controls */
+.top-controls button[role="combobox"]::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg, 
+    var(--glass-highlight) 45deg, 
+    transparent 90deg, 
+    transparent 270deg, 
+    var(--glass-highlight) 315deg, 
+    transparent 360deg);
+  transform: rotate(0deg);
+  opacity: 0;
+  transition: all 0.6s ease;
+  pointer-events: none;
+  animation: liquidRotate 3s linear infinite paused;
+}
+
+.top-controls button[role="combobox"]:hover::after {
+  opacity: 0.3;
+  animation-play-state: running;
 }
 
 .top-controls button[role="combobox"]:hover {
   background: var(--dropdown-trigger-hover-bg);
   border-color: var(--dropdown-trigger-hover-border);
-  backdrop-filter: blur(16px);
-  transform: translateY(-1px);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  transform: translateY(-2px) scale(1.01);
   box-shadow: var(--dropdown-trigger-hover-shadow);
 }
 
@@ -2181,7 +2255,8 @@ button[data-dialog-close]:active {
   outline: none;
   background: var(--dropdown-trigger-focus-bg);
   border-color: var(--dropdown-trigger-focus-border);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
   box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
