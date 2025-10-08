@@ -71,11 +71,11 @@
   --btn-primary-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 30%, rgb(249, 115, 22) 70%, rgb(245, 101, 101) 100%);
   --btn-primary-shadow: 0 8px 32px -8px rgba(251, 146, 60, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
   --btn-primary-glow: 0 0 20px rgba(251, 146, 60, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
-  --btn-secondary-bg: linear-gradient(135deg, rgba(255, 237, 213, 0.9) 0%, rgba(254, 215, 170, 0.85) 50%, rgba(253, 186, 116, 0.9) 100%);
-  --btn-secondary-text: rgb(146, 64, 14);
-  --btn-secondary-hover: linear-gradient(135deg, rgba(254, 215, 170, 0.9) 0%, rgba(253, 186, 116, 0.85) 50%, rgba(251, 146, 60, 0.9) 100%);
-  --btn-secondary-border: rgba(249, 115, 22, 0.4);
-  --btn-secondary-glow: 0 0 15px rgba(251, 146, 60, 0.4);
+  --btn-secondary-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 120, 200) 50%, rgb(60, 100, 180) 100%);
+  --btn-secondary-text: rgb(255, 255, 255);
+  --btn-secondary-hover: linear-gradient(135deg, rgb(120, 170, 255) 0%, rgb(100, 150, 255) 50%, rgb(80, 120, 200) 100%);
+  --btn-secondary-border: rgba(100, 150, 255, 0.5);
+  --btn-secondary-glow: 0 0 15px rgba(100, 150, 255, 0.5), 0 0 30px rgba(80, 120, 200, 0.3);
   
   /* Specific action button colors */
   --btn-export-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 180, 255) 30%, rgb(120, 120, 255) 70%, rgb(70, 200, 255) 100%);
@@ -83,24 +83,24 @@
   --btn-export-hover: linear-gradient(135deg, rgb(120, 170, 255) 0%, rgb(100, 200, 255) 30%, rgb(140, 140, 255) 70%, rgb(90, 220, 255) 100%);
   --btn-export-shadow: 0 8px 32px -8px rgba(100, 150, 255, 0.5), 0 0 30px rgba(80, 180, 255, 0.3);
   --btn-export-glow: 0 0 25px rgba(100, 150, 255, 0.7), 0 0 50px rgba(80, 180, 255, 0.4);
-  --btn-clear-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(254, 242, 242, 0.75) 50%, rgba(255, 237, 213, 0.8) 100%);
-  --btn-clear-text: rgb(146, 64, 14);
-  --btn-clear-hover: linear-gradient(135deg, rgba(254, 215, 170, 0.8) 0%, rgba(253, 186, 116, 0.75) 50%, rgba(251, 146, 60, 0.8) 100%);
-  --btn-clear-border: rgba(249, 115, 22, 0.4);
-  --btn-clear-glow: 0 0 15px rgba(251, 146, 60, 0.4);
-  --btn-filter-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(254, 242, 242, 0.75) 50%, rgba(255, 237, 213, 0.8) 100%);
-  --btn-filter-text: rgb(146, 64, 14);
-  --btn-filter-hover: linear-gradient(135deg, rgba(254, 215, 170, 0.8) 0%, rgba(253, 186, 116, 0.75) 50%, rgba(251, 146, 60, 0.8) 100%);
-  --btn-filter-border: rgba(249, 115, 22, 0.4);
-  --btn-filter-glow: 0 0 15px rgba(251, 146, 60, 0.4);
+  --btn-clear-bg: linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(147, 51, 234) 50%, rgb(126, 34, 206) 100%);
+  --btn-clear-text: rgb(255, 255, 255);
+  --btn-clear-hover: linear-gradient(135deg, rgb(196, 121, 253) 0%, rgb(168, 85, 247) 50%, rgb(147, 51, 234) 100%);
+  --btn-clear-border: rgba(168, 85, 247, 0.5);
+  --btn-clear-glow: 0 0 15px rgba(168, 85, 247, 0.5), 0 0 30px rgba(147, 51, 234, 0.3);
+  --btn-filter-bg: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 50%, rgb(29, 78, 216) 100%);
+  --btn-filter-text: rgb(255, 255, 255);
+  --btn-filter-hover: linear-gradient(135deg, rgb(96, 165, 250) 0%, rgb(59, 130, 246) 50%, rgb(37, 99, 235) 100%);
+  --btn-filter-border: rgba(59, 130, 246, 0.5);
+  --btn-filter-glow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 30px rgba(37, 99, 235, 0.3);
   
-  /* General button variant colors */
-  --button-secondary-bg: rgba(255, 237, 213, 0.8);
-  --button-secondary-text: rgb(146, 64, 14);
-  --button-secondary-border: rgba(249, 115, 22, 0.35);
-  --button-secondary-bg-hover: rgba(254, 215, 170, 0.9);
-  --button-secondary-text-hover: rgb(120, 53, 15);
-  --button-secondary-border-hover: rgba(234, 88, 12, 0.55);
+  /* General button variant colors - Enhanced visibility */
+  --button-secondary-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 120, 200) 100%);
+  --button-secondary-text: rgb(255, 255, 255);
+  --button-secondary-border: rgba(100, 150, 255, 0.6);
+  --button-secondary-bg-hover: linear-gradient(135deg, rgb(120, 170, 255) 0%, rgb(100, 150, 255) 100%);
+  --button-secondary-text-hover: rgb(255, 255, 255);
+  --button-secondary-border-hover: rgba(80, 120, 200, 0.8);
   
   --button-destructive-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
   --button-destructive-text: rgb(255, 255, 255);
@@ -109,11 +109,11 @@
   --button-destructive-text-hover: rgb(255, 255, 255);
   --button-destructive-border-hover: rgba(239, 68, 68, 0.8);
   
-  /* Additional action buttons */
-  --btn-view-settings-bg: rgb(255, 237, 213);
-  --btn-view-settings-text: rgb(146, 64, 14);
-  --btn-view-settings-hover: rgb(254, 215, 170);
-  --btn-view-settings-glow: 0 0 12px rgba(251, 146, 60, 0.3);
+  /* Additional action buttons - Enhanced for better visibility */
+  --btn-view-settings-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(234, 88, 12) 100%);
+  --btn-view-settings-text: rgb(255, 255, 255);
+  --btn-view-settings-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 50%, rgb(249, 115, 22) 100%);
+  --btn-view-settings-glow: 0 0 15px rgba(251, 146, 60, 0.5), 0 0 30px rgba(249, 115, 22, 0.3);
   
   /* Shadow Variables - Light Theme */
   --view-button-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -126,34 +126,53 @@
   --ribbon-overlay-gradient: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.02));
   --sticky-header-shadow: 0 2px 4px rgba(0,0,0,0.06);
   
-  --btn-clear-filters-bg: rgb(254, 242, 242);
-  --btn-clear-filters-text: rgb(146, 64, 14);
-  --btn-clear-filters-hover: rgb(254, 215, 170);
-  --btn-clear-filters-glow: 0 0 12px rgba(251, 146, 60, 0.3);
+  --btn-clear-filters-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 50%, rgb(185, 28, 28) 100%);
+  --btn-clear-filters-text: rgb(255, 255, 255);
+  --btn-clear-filters-hover: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 50%, rgb(220, 38, 38) 100%);
+  --btn-clear-filters-glow: 0 0 15px rgba(239, 68, 68, 0.5), 0 0 30px rgba(220, 38, 38, 0.3);
   --btn-select-all-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(245, 101, 101) 100%);
   --btn-select-all-text: rgb(255, 255, 255);
   --btn-select-all-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 50%, rgb(249, 115, 22) 100%);
   --btn-select-all-glow: 0 0 20px rgba(251, 146, 60, 0.6);
-  --btn-clear-selection-bg: rgb(254, 242, 242);
-  --btn-clear-selection-text: rgb(146, 64, 14);
-  --btn-clear-selection-hover: rgb(254, 215, 170);
-  --btn-clear-selection-glow: 0 0 12px rgba(251, 146, 60, 0.3);
+  --btn-clear-selection-bg: linear-gradient(135deg, rgb(107, 114, 128) 0%, rgb(75, 85, 99) 50%, rgb(55, 65, 81) 100%);
+  --btn-clear-selection-text: rgb(255, 255, 255);
+  --btn-clear-selection-hover: linear-gradient(135deg, rgb(156, 163, 175) 0%, rgb(107, 114, 128) 50%, rgb(75, 85, 99) 100%);
+  --btn-clear-selection-glow: 0 0 15px rgba(107, 114, 128, 0.5), 0 0 30px rgba(75, 85, 99, 0.3);
   --btn-apply-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(245, 101, 101) 100%);
   --btn-apply-text: rgb(255, 255, 255);
   --btn-apply-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 50%, rgb(249, 115, 22) 100%);
   --btn-apply-glow: 0 0 20px rgba(251, 146, 60, 0.6);
-  --btn-cancel-bg: rgb(254, 242, 242);
-  --btn-cancel-text: rgb(146, 64, 14);
-  --btn-cancel-hover: rgb(254, 215, 170);
-  --btn-cancel-glow: 0 0 12px rgba(251, 146, 60, 0.3);
+  --btn-cancel-bg: linear-gradient(135deg, rgb(107, 114, 128) 0%, rgb(75, 85, 99) 50%, rgb(55, 65, 81) 100%);
+  --btn-cancel-text: rgb(255, 255, 255);
+  --btn-cancel-hover: linear-gradient(135deg, rgb(156, 163, 175) 0%, rgb(107, 114, 128) 50%, rgb(75, 85, 99) 100%);
+  --btn-cancel-glow: 0 0 15px rgba(107, 114, 128, 0.5), 0 0 30px rgba(75, 85, 99, 0.3);
   --btn-delete-bg: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 30%, rgb(248, 113, 113) 70%, rgb(239, 68, 68) 100%);
   --btn-delete-text: rgb(255, 255, 255);
   --btn-delete-hover: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 30%, rgb(254, 202, 202) 70%, rgb(248, 113, 113) 100%);
   --btn-delete-glow: 0 0 25px rgba(239, 68, 68, 0.7);
-  --btn-connect-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 50%, rgb(245, 101, 101) 100%);
+  --btn-connect-bg: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 50%, rgb(21, 128, 61) 100%);
   --btn-connect-text: rgb(255, 255, 255);
-  --btn-connect-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 50%, rgb(249, 115, 22) 100%);
-  --btn-connect-glow: 0 0 20px rgba(251, 146, 60, 0.6);
+  --btn-connect-hover: linear-gradient(135deg, rgb(74, 222, 128) 0%, rgb(34, 197, 94) 50%, rgb(22, 163, 74) 100%);
+  --btn-connect-glow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(22, 163, 74, 0.3);
+  
+  /* Additional Button Variants - Enhanced */
+  --btn-outline-bg: transparent;
+  --btn-outline-text: rgb(100, 150, 255);
+  --btn-outline-border: rgb(100, 150, 255);
+  --btn-outline-hover-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 120, 200) 100%);
+  --btn-outline-hover-text: rgb(255, 255, 255);
+  --btn-outline-hover-border: rgb(80, 120, 200);
+  --btn-outline-glow: 0 0 15px rgba(100, 150, 255, 0.4);
+  
+  --btn-ghost-bg: transparent;
+  --btn-ghost-text: rgb(107, 114, 128);
+  --btn-ghost-hover-bg: linear-gradient(135deg, rgb(107, 114, 128) 0%, rgb(75, 85, 99) 100%);
+  --btn-ghost-hover-text: rgb(255, 255, 255);
+  --btn-ghost-glow: 0 0 12px rgba(107, 114, 128, 0.3);
+  
+  --btn-link-text: rgb(59, 130, 246);
+  --btn-link-hover-text: rgb(37, 99, 235);
+  --btn-link-glow: 0 0 8px rgba(59, 130, 246, 0.3);
   
   /* Modal colors */
   --modal-background: rgba(254, 242, 242, 0.98);
@@ -198,21 +217,21 @@
   --status-for-recycle-border: rgba(146, 64, 14, 0.5);
   --status-for-recycle-hover: rgba(146, 64, 14, 0.3);
   
-  /* Tailwind integration */
+  /* Tailwind integration - Enhanced for better visibility */
   --primary: rgb(251, 146, 60);
   --primary-foreground: rgb(255, 255, 255);
-  --secondary: rgb(254, 215, 170);
-  --secondary-foreground: rgb(120, 53, 15);
+  --secondary: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 120, 200) 100%);
+  --secondary-foreground: rgb(255, 255, 255);
   --destructive: rgb(239, 68, 68);
   --destructive-foreground: rgb(255, 255, 255);
   --warning: rgb(251, 146, 60);
   --warning-foreground: rgb(255, 255, 255);
   --foreground: rgb(120, 53, 15);
-  --background: rgb(255, 255, 255);
-  --muted: rgb(254, 242, 242);
-  --muted-foreground: rgb(120, 53, 15);
-  --accent: rgb(255, 237, 213);
-  --accent-foreground: rgb(120, 53, 15);
+  --background: rgba(255, 255, 255, 0.95);
+  --muted: linear-gradient(135deg, rgb(107, 114, 128) 0%, rgb(75, 85, 99) 100%);
+  --muted-foreground: rgb(255, 255, 255);
+  --accent: linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(147, 51, 234) 100%);
+  --accent-foreground: rgb(255, 255, 255);
   --border: rgb(249, 115, 22);
   --input: rgb(254, 215, 170);
   --ring: rgb(251, 146, 60);

@@ -1080,6 +1080,26 @@ button[data-dialog-close]:active {
   border: 1px solid var(--dropdown-border);
   background: var(--dropdown-background);
   box-shadow: var(--dropdown-shadow);
+  animation: dropdownSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+}
+
+/* Premium dropdown entrance animation */
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-2px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: var(--dropdown-shadow);
+  }
 }
 
 /* SelectItem component hover */
@@ -1176,7 +1196,33 @@ button[data-dialog-close]:active {
 [role="menuitem"],
 [role="option"] {
   position: relative;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Premium shimmer effect on hover */
+[data-radix-select-item]:hover::after, 
+[data-radix-dropdown-menu-item]:hover::after,
+[data-radix-menubar-item]:hover::after,
+[data-radix-command-item]:hover::after,
+.dropdown-item:hover::after, 
+[role="menuitem"]:hover::after,
+[role="option"]:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 0.8s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 [data-radix-select-item]:hover, 
@@ -1206,11 +1252,12 @@ button[data-dialog-close]:active {
   background: var(--dropdown-hover);
   color: var(--dropdown-item-selected-text);
   border-color: var(--dropdown-focus-outline);
-  transform: translateX(2px);
+  transform: translateX(4px) scale(1.02);
   box-shadow: 
     0 0 0 1px var(--dropdown-focus-outline),
-    0 2px 8px -2px var(--dropdown-focus-outline),
-    0 0 20px -8px var(--dropdown-focus-outline);
+    0 4px 16px -4px var(--dropdown-focus-outline),
+    0 0 32px -8px var(--dropdown-focus-outline),
+    0 8px 24px -8px rgba(0, 0, 0, 0.1);
 }
 
 [data-radix-select-item]:hover::before, 
@@ -1760,36 +1807,39 @@ button[data-dialog-close]:active {
 
 /* Outline Button */
 .btn-outline {
-  border: 1px solid var(--input-border);
-  background: var(--background);
-  color: var(--page-text);
+  border: 1px solid var(--btn-outline-border);
+  background: var(--btn-outline-bg);
+  color: var(--btn-outline-text);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline:hover {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--btn-outline-hover-bg);
+  color: var(--btn-outline-hover-text);
+  border-color: var(--btn-outline-hover-border);
+  box-shadow: var(--btn-outline-glow);
   transform: translateY(-1px);
 }
 
 /* Ghost Button */
 .btn-ghost {
-  background: transparent;
-  color: var(--page-text);
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-text);
   border: 1px solid transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-ghost:hover {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--btn-ghost-hover-bg);
+  color: var(--btn-ghost-hover-text);
+  box-shadow: var(--btn-ghost-glow);
   transform: translateY(-1px);
 }
 
 /* Link Button */
 .btn-link {
   background: transparent;
-  color: var(--primary);
+  color: var(--btn-link-text);
   border: none;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -1797,7 +1847,9 @@ button[data-dialog-close]:active {
 }
 
 .btn-link:hover {
+  color: var(--btn-link-hover-text);
   text-decoration: underline;
+  box-shadow: var(--btn-link-glow);
 }
 
 /* Action-specific button variants */
