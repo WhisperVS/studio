@@ -273,8 +273,11 @@
   --sidebar-link-text: rgb(146, 64, 14);
   --sidebar-link-bg: transparent;
   --sidebar-link-hover: rgba(251, 146, 60, 0.15);
-  --sidebar-link-active: rgba(249, 115, 22, 0.25);
+  --sidebar-link-active: linear-gradient(135deg, rgba(251, 146, 60, 0.3) 0%, rgba(249, 115, 22, 0.25) 50%, rgba(234, 88, 12, 0.2) 100%);
   --sidebar-link-active-text: rgb(120, 53, 15);
+  --sidebar-link-active-border: rgb(251, 146, 60);
+  --sidebar-link-active-glow: 0 4px 16px rgba(251, 146, 60, 0.4), 0 0 24px rgba(249, 115, 22, 0.3);
+  --sidebar-link-active-shadow: 0 4px 12px rgba(251, 146, 60, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   --sidebar-link-icon: rgb(180, 83, 9);
   --sidebar-link-icon-active: rgb(120, 53, 15);
   --sidebar-text-hover: rgb(120, 53, 15);

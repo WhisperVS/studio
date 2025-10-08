@@ -1072,27 +1072,58 @@ button[data-dialog-close]:active {
   color: var(--sidebar-link-active-text);
   font-weight: 600;
   transform: translateX(4px);
-  border-left: 3px solid var(--sidebar-primary);
-  box-shadow: 0 4px 12px -4px var(--sidebar-primary);
+  border-left: 4px solid var(--sidebar-link-active-border);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--sidebar-link-active-shadow);
+}
+
+/* Glass shimmer effect for active items */
+[data-sidebar="menu-button"][data-active="true"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--dropdown-shimmer-light) 50%, 
+    transparent 100%);
+  animation: shimmer 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% { left: -100%; }
+  50% { left: 100%; }
 }
 
 /* Active sidebar item glow effects */
 [data-sidebar="menu-button"][data-active="true"] {
-  box-shadow: var(--sidebar-active-glow);
+  box-shadow: var(--sidebar-link-active-glow);
 }
 
 /* Icon styling for active items */
 [data-sidebar="menu-button"][data-active="true"] svg {
-  color: var(--sidebar-link-icon-active);
+  color: var(--sidebar-link-active-border);
   transform: scale(1.1);
+  filter: drop-shadow(0 0 4px var(--sidebar-link-active-border));
 }
 
 /* Hover state adjustments for active items */
 [data-sidebar="menu-button"][data-active="true"]:hover {
-  transform: translateX(6px);
+  transform: translateX(6px) scale(1.02);
+  box-shadow: var(--sidebar-link-active-glow), var(--sidebar-link-active-shadow);
 }
 
-/* Icon glow for active items */
+/* Enhanced hover effects for active item icons */
+[data-sidebar="menu-button"][data-active="true"]:hover svg {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px var(--sidebar-link-active-border));
+}
 [data-sidebar="menu-button"][data-active="true"] svg {
   filter: var(--sidebar-icon-glow-active);
 }
