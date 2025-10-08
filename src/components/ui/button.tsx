@@ -27,14 +27,14 @@ const buttonVariants = cva(
         "connect": "btn-connect",
       },
       size: {
-        default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
+        md: "h-10 px-4 py-2",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
     },
   }
 )

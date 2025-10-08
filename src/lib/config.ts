@@ -111,5 +111,5 @@ export const STATUS_NAMES = [
 
 export function getStatusVariant(statusName: (typeof STATUS_NAMES)[number]): BadgeProps['variant'] {
   const status = APP_CONFIG.statuses.find(s => s.name === statusName);
-  return status ? status.variant : 'default';
+  return status ? status.variant : 'secondary';
 }

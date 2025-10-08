@@ -358,8 +358,6 @@
   --tabs-trigger-active-text: rgb(255, 255, 255);
   
   /* Alert Component */
-  --alert-default-bg: rgb(20, 30, 60);
-  --alert-default-border: rgb(80, 120, 200);
   --alert-info-bg: rgba(120, 180, 255, 0.2);
   --alert-info-border: rgba(120, 180, 255, 0.5);
   --alert-warning-bg: rgba(255, 200, 100, 0.2);
@@ -401,6 +399,13 @@
   
   /* Base font system */
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Loading spinner colors */
+  --loading-spinner-track: rgba(120, 150, 255, 0.3);
+  --btn-loading-spinner: rgb(220, 230, 255);
+  
+  /* Table header cell background */
+  --table-header-cell-bg: rgba(255, 255, 255, 0.02);
   
   /* Search Clear Button - Premium Glass Design */
   --search-clear-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(120, 150, 255, 0.1) 50%, rgba(60, 80, 180, 0.15) 100%);

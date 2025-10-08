@@ -30,46 +30,32 @@ export default {
         foreground: 'rgb(var(--foreground))',
         
         // Card/Panel colors
-        card: {
-          DEFAULT: 'rgb(var(--card))',
-          foreground: 'rgb(var(--card-foreground))',
-        },
+        card: 'rgb(var(--card))',
+        'card-foreground': 'rgb(var(--card-foreground))',
         
         // Modal/Dialog colors
-        popover: {
-          DEFAULT: 'rgb(var(--popover))',
-          foreground: 'rgb(var(--popover-foreground))',
-        },
+        popover: 'rgb(var(--popover))',
+        'popover-foreground': 'rgb(var(--popover-foreground))',
         
         // Primary button colors
-        primary: {
-          DEFAULT: 'rgb(var(--primary))',
-          foreground: 'rgb(var(--primary-foreground))',
-        },
+        primary: 'rgb(var(--primary))',
+        'primary-foreground': 'rgb(var(--primary-foreground))',
         
         // Secondary colors
-        secondary: {
-          DEFAULT: 'rgb(var(--secondary))',
-          foreground: 'rgb(var(--secondary-foreground))',
-        },
+        secondary: 'rgb(var(--secondary))',
+        'secondary-foreground': 'rgb(var(--secondary-foreground))',
         
         // Muted/disabled colors
-        muted: {
-          DEFAULT: 'rgb(var(--muted))',
-          foreground: 'rgb(var(--muted-foreground))',
-        },
+        muted: 'rgb(var(--muted))',
+        'muted-foreground': 'rgb(var(--muted-foreground))',
         
         // Accent colors
-        accent: {
-          DEFAULT: 'rgb(var(--accent))',
-          foreground: 'rgb(var(--accent-foreground))',
-        },
+        accent: 'rgb(var(--accent))',
+        'accent-foreground': 'rgb(var(--accent-foreground))',
         
         // Destructive/Delete button colors
-        destructive: {
-          DEFAULT: 'rgb(var(--destructive))',
-          foreground: 'rgb(var(--destructive-foreground))',
-        },
+        destructive: 'rgb(var(--destructive))',
+        'destructive-foreground': 'rgb(var(--destructive-foreground))',
         
         // Input and border colors
         border: 'rgb(var(--border))',
@@ -86,16 +72,14 @@ export default {
         },
         
         // Sidebar colors
-        sidebar: {
-          DEFAULT: 'rgb(var(--sidebar))',
-          foreground: 'rgb(var(--sidebar-foreground))',
-          primary: 'rgb(var(--sidebar-primary))',
-          'primary-foreground': 'rgb(var(--sidebar-primary-foreground))',
-          accent: 'rgb(var(--sidebar-accent))',
-          'accent-foreground': 'rgb(var(--sidebar-accent-foreground))',
-          border: 'rgb(var(--sidebar-border))',
-          ring: 'rgb(var(--sidebar-ring))',
-        },
+        sidebar: 'rgb(var(--sidebar))',
+        'sidebar-foreground': 'rgb(var(--sidebar-foreground))',
+        'sidebar-primary': 'rgb(var(--sidebar-primary))',
+        'sidebar-primary-foreground': 'rgb(var(--sidebar-primary-foreground))',
+        'sidebar-accent': 'rgb(var(--sidebar-accent))',
+        'sidebar-accent-foreground': 'rgb(var(--sidebar-accent-foreground))',
+        'sidebar-border': 'rgb(var(--sidebar-border))',
+        'sidebar-ring': 'rgb(var(--sidebar-ring))',
       },
       borderRadius: {
         lg: 'var(--radius)',
