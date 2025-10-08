@@ -79,17 +79,51 @@ button:hover, .btn:hover, [role="button"]:hover {
 
 /* Dropdown menu buttons special background */
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
-  background: var(--dropdown-background);
-  border: 1px solid var(--dropdown-border);
-  backdrop-filter: blur(8px);
+  background: var(--dropdown-trigger-bg);
+  border: 2px solid var(--dropdown-trigger-border);
+  backdrop-filter: blur(12px);
   position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--dropdown-trigger-shadow);
+  color: var(--dropdown-trigger-text);
+}
+
+/* Glass shimmer effect for combobox buttons */
+button[role="combobox"]::before, .dropdown-trigger::before, [data-dropdown-trigger]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+button[role="combobox"]:hover::before, .dropdown-trigger:hover::before, [data-dropdown-trigger]:hover::before {
+  left: 100%;
 }
 
 button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
-  background: var(--dropdown-hover);
-  border-color: var(--dropdown-border-hover);
-  box-shadow: var(--btn-clear-glow), var(--dropdown-hover-shadow);
-  backdrop-filter: blur(12px);
+  background: var(--dropdown-trigger-hover-bg);
+  border-color: var(--dropdown-trigger-hover-border);
+  backdrop-filter: blur(16px);
+  transform: translateY(-1px);
+  box-shadow: var(--dropdown-trigger-hover-shadow);
+}
+
+button[role="combobox"]:focus, .dropdown-trigger:focus, [data-dropdown-trigger]:focus {
+  outline: none;
+  background: var(--dropdown-trigger-focus-bg);
+  border-color: var(--dropdown-trigger-focus-border);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
 button:hover::before, .btn:hover::before, [role="button"]:hover::before {
@@ -1139,23 +1173,53 @@ button[data-dialog-close]:active {
   height: 36px;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  border: 2px solid var(--input-border);
-  background: var(--input-background);
-  color: var(--input-text);
+  border: 2px solid var(--dropdown-trigger-border);
+  background: var(--dropdown-trigger-bg);
+  backdrop-filter: blur(12px);
+  color: var(--dropdown-trigger-text);
   font-size: 14px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--dropdown-trigger-shadow);
+}
+
+/* Glass shimmer effect */
+[data-radix-select-trigger]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+[data-radix-select-trigger]:hover::before {
+  left: 100%;
 }
 
 [data-radix-select-trigger]:hover {
-  border-color: var(--input-border-focus);
-  background: var(--dropdown-hover);
+  border-color: var(--dropdown-trigger-hover-border);
+  background: var(--dropdown-trigger-hover-bg);
+  backdrop-filter: blur(16px);
+  transform: translateY(-1px);
+  box-shadow: var(--dropdown-trigger-hover-shadow);
 }
 
 [data-radix-select-trigger]:focus {
   outline: none;
-  border-color: var(--input-border-focus);
-  box-shadow: var(--input-shadow-focus);
+  border-color: var(--dropdown-trigger-focus-border);
+  background: var(--dropdown-trigger-focus-bg);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
 /* Dropdown menu items animations */
@@ -2043,6 +2107,49 @@ button[data-dialog-close]:active {
 .top-controls button[role="combobox"] {
   font-weight: 500;
   border-radius: var(--radius-md);
+  background: var(--dropdown-trigger-bg);
+  border: 2px solid var(--dropdown-trigger-border);
+  backdrop-filter: blur(12px);
+  color: var(--dropdown-trigger-text);
+  box-shadow: var(--dropdown-trigger-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.top-controls button[role="combobox"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.top-controls button[role="combobox"]:hover::before {
+  left: 100%;
+}
+
+.top-controls button[role="combobox"]:hover {
+  background: var(--dropdown-trigger-hover-bg);
+  border-color: var(--dropdown-trigger-hover-border);
+  backdrop-filter: blur(16px);
+  transform: translateY(-1px);
+  box-shadow: var(--dropdown-trigger-hover-shadow);
+}
+
+.top-controls button[role="combobox"]:focus {
+  outline: none;
+  background: var(--dropdown-trigger-focus-bg);
+  border-color: var(--dropdown-trigger-focus-border);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--dropdown-trigger-focus-shadow);
 }
 
 .btn-clear-filters {
