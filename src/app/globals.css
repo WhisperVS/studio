@@ -35,194 +35,6 @@ html {
   .status-badge {
     @apply inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset;
   }
-
-  .status-badge.in-use {
-    background-color: var(--status-in-use-bg);
-    color: var(--status-in-use-text);
-    border: none;
-  }
-
-  .status-badge.spare {
-    background-color: var(--status-spare-bg);
-    color: var(--status-spare-text);
-    border: none;
-  }
-
-  .status-badge.for-repair {
-    background-color: var(--status-for-repair-bg);
-    color: var(--status-for-repair-text);
-    border: none;
-  }
-
-  .status-badge.for-parts {
-    background-color: var(--status-for-parts-bg);
-    color: var(--status-for-parts-text);
-    border: 1px solid var(--status-for-parts-border);
-  }
-
-  .status-badge.for-recycle {
-    background-color: var(--status-for-recycle-bg);
-    color: var(--status-for-recycle-text);
-    border: none;
-  }
-
-  .checkbox-root[data-state="unchecked"] {
-    border-color: var(--input-border);
-    background-color: var(--input-background);
-  }
-
-  .checkbox-root[data-state="checked"] {
-    background-color: var(--primary);
-    border-color: var(--primary);
-  }
-
-  /* Button Variants - Using CSS Variables for Complete Theme Support */
-  .btn-primary {
-    background: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-    border: 1px solid transparent;
-    box-shadow: var(--btn-primary-shadow);
-  }
-
-  .btn-primary:hover {
-    background: var(--btn-primary-hover);
-    border-color: transparent;
-  }
-
-  .btn-secondary {
-    background: var(--btn-secondary-bg);
-    color: var(--btn-secondary-text);
-    border: 1px solid var(--btn-secondary-border);
-  }
-
-  .btn-secondary:hover {
-    background: var(--btn-secondary-hover);
-  }
-
-  .btn-destructive {
-    background: var(--destructive);
-    color: var(--destructive-foreground);
-    border: 1px solid var(--destructive);
-  }
-
-  .btn-destructive:hover {
-    background: rgb(var(--destructive) / 0.9);
-  }
-
-  .btn-outline {
-    border: 1px solid var(--input-border);
-    background: var(--background);
-    color: var(--page-text);
-  }
-
-  .btn-outline:hover {
-    background: var(--accent);
-    color: var(--accent-foreground);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--page-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-ghost:hover {
-    background: var(--accent);
-    color: var(--accent-foreground);
-  }
-
-  .btn-link {
-    background: transparent;
-    color: var(--primary);
-    border: none;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  .btn-link:hover {
-    text-decoration: underline;
-  }
-
-  /* Action-specific button variants */
-  .btn-export {
-    background: var(--btn-export-bg);
-    color: var(--btn-export-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-export:hover {
-    background: var(--btn-export-hover);
-  }
-
-  .btn-clear-filters {
-    background: var(--btn-clear-filters-bg);
-    color: var(--btn-clear-filters-text);
-    border: 1px solid var(--input-border);
-  }
-
-  .btn-clear-filters:hover {
-    background: var(--btn-clear-filters-hover);
-  }
-
-  .btn-select-all {
-    background: var(--btn-select-all-bg);
-    color: var(--btn-select-all-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-select-all:hover {
-    background: var(--btn-select-all-hover);
-  }
-
-  .btn-clear-selection {
-    background: var(--btn-clear-selection-bg);
-    color: var(--btn-clear-selection-text);
-    border: 1px solid var(--input-border);
-  }
-
-  .btn-clear-selection:hover {
-    background: var(--btn-clear-selection-hover);
-  }
-
-  .btn-apply {
-    background: var(--btn-apply-bg);
-    color: var(--btn-apply-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-apply:hover {
-    background: var(--btn-apply-hover);
-  }
-
-  .btn-cancel {
-    background: var(--btn-cancel-bg);
-    color: var(--btn-cancel-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-cancel:hover {
-    background: var(--btn-cancel-hover);
-  }
-
-  .btn-delete {
-    background: var(--btn-delete-bg);
-    color: var(--btn-delete-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-delete:hover {
-    background: var(--btn-delete-hover);
-  }
-
-  .btn-connect {
-    background: var(--btn-connect-bg);
-    color: var(--btn-connect-text);
-    border: 1px solid transparent;
-  }
-
-  .btn-connect:hover {
-    background: var(--btn-connect-hover);
-  }
 }
 
 @layer utilities {
@@ -241,7 +53,7 @@ html {
 
   .ribbon-overlay {
     pointer-events: auto; /* allow scrolling */
-    background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.02));
+    background: var(--ribbon-overlay-gradient);
     border-radius: var(--radius-sm);
     z-index: 25; /* above rows but below header */
   }
@@ -273,7 +85,7 @@ html {
 
   /* Sticky header subtle separation */
   .sticky-header-shadow {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    box-shadow: var(--sticky-header-shadow);
   }
 
   /* Focus outline for buttons in sticky headers */

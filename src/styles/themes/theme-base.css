@@ -1510,6 +1510,258 @@ button[data-dialog-close]:active {
   transition: all 0.2s ease;
 }
 
+/* ============================= */
+/* STATUS BADGES - BASE */
+/* ============================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.status-badge.in-use {
+  background-color: var(--status-in-use-bg);
+  color: var(--status-in-use-text);
+  border: none;
+}
+
+.status-badge.spare {
+  background-color: var(--status-spare-bg);
+  color: var(--status-spare-text);
+  border: none;
+}
+
+.status-badge.for-repair {
+  background-color: var(--status-for-repair-bg);
+  color: var(--status-for-repair-text);
+  border: none;
+}
+
+.status-badge.for-parts {
+  background-color: var(--status-for-parts-bg);
+  color: var(--status-for-parts-text);
+  border: 1px solid var(--status-for-parts-border);
+}
+
+.status-badge.for-recycle {
+  background-color: var(--status-for-recycle-bg);
+  color: var(--status-for-recycle-text);
+  border: none;
+}
+
+/* ============================= */
+/* CHECKBOX STYLING */
+/* ============================= */
+
+.checkbox-root[data-state="unchecked"] {
+  border-color: var(--input-border);
+  background-color: var(--input-background);
+}
+
+.checkbox-root[data-state="checked"] {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ============================= */
+/* BUTTON VARIANTS - COMPLETE THEME INTEGRATION */
+/* ============================= */
+
+/* Primary Button */
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  box-shadow: var(--btn-primary-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+  border-color: transparent;
+  box-shadow: var(--btn-primary-shadow), var(--btn-primary-glow);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+  box-shadow: var(--btn-secondary-glow);
+}
+
+/* Destructive Button */
+.btn-destructive {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  border: 1px solid var(--destructive);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-destructive:hover {
+  background: rgb(var(--destructive) / 0.9);
+  transform: translateY(-2px);
+}
+
+/* Outline Button */
+.btn-outline {
+  border: 1px solid var(--input-border);
+  background: var(--background);
+  color: var(--page-text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  transform: translateY(-1px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--page-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-ghost:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  transform: translateY(-1px);
+}
+
+/* Link Button */
+.btn-link {
+  background: transparent;
+  color: var(--primary);
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Action-specific button variants */
+.btn-export {
+  background: var(--btn-export-bg);
+  color: var(--btn-export-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-export:hover {
+  background: var(--btn-export-hover);
+  box-shadow: var(--btn-export-shadow), var(--btn-export-glow);
+  transform: translateY(-2px);
+}
+
+.btn-clear-filters {
+  background: var(--btn-clear-filters-bg);
+  color: var(--btn-clear-filters-text);
+  border: 1px solid var(--input-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-clear-filters:hover {
+  background: var(--btn-clear-filters-hover);
+  box-shadow: var(--btn-clear-filters-glow);
+  transform: translateY(-1px);
+}
+
+.btn-select-all {
+  background: var(--btn-select-all-bg);
+  color: var(--btn-select-all-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-select-all:hover {
+  background: var(--btn-select-all-hover);
+  box-shadow: var(--btn-select-all-glow);
+  transform: translateY(-2px);
+}
+
+.btn-clear-selection {
+  background: var(--btn-clear-selection-bg);
+  color: var(--btn-clear-selection-text);
+  border: 1px solid var(--input-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-clear-selection:hover {
+  background: var(--btn-clear-selection-hover);
+  box-shadow: var(--btn-clear-selection-glow);
+  transform: translateY(-1px);
+}
+
+.btn-apply {
+  background: var(--btn-apply-bg);
+  color: var(--btn-apply-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-apply:hover {
+  background: var(--btn-apply-hover);
+  box-shadow: var(--btn-apply-glow);
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  background: var(--btn-cancel-bg);
+  color: var(--btn-cancel-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cancel:hover {
+  background: var(--btn-cancel-hover);
+  box-shadow: var(--btn-cancel-glow);
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: var(--btn-delete-bg);
+  color: var(--btn-delete-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-delete:hover {
+  background: var(--btn-delete-hover);
+  box-shadow: var(--btn-delete-shadow), var(--btn-delete-glow);
+  transform: translateY(-2px);
+}
+
+.btn-connect {
+  background: var(--btn-connect-bg);
+  color: var(--btn-connect-text);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-connect:hover {
+  background: var(--btn-connect-hover);
+  box-shadow: var(--btn-connect-glow);
+  transform: translateY(-2px);
+}
+
 .badge {
   padding: 4px 12px;
   border-radius: var(--radius-sm);
