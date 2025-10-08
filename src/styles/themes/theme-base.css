@@ -293,9 +293,9 @@ input, select, textarea {
 }
 
 .search-input {
-  /* Clean modern input styling */
-  background: var(--background);
-  border: 1px solid var(--border);
+  /* Clean modern input styling with theme integration */
+  background: var(--input-background);
+  border: 1px solid var(--input-border);
   border-radius: 10px;
   box-shadow: var(--search-input-shadow);
   
@@ -306,6 +306,7 @@ input, select, textarea {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 36px;
   line-height: 1;
+  color: var(--input-text);
 }
 
 /* Remove glass refraction effects */
@@ -316,25 +317,25 @@ input, select, textarea {
 
 /* Focus State - Clean glow effect */
 .search-input:focus {
-  border-color: var(--search-focus-border);
-  box-shadow: var(--search-focus-box-shadow);
-  background: var(--background);
+  border-color: var(--input-border-focus);
+  box-shadow: var(--input-shadow-focus);
+  background: var(--input-background);
   outline: none;
 }
 
 /* Hover Effects - Subtle glow */
 .search-input:hover {
-  border-color: var(--search-hover-border);
-  box-shadow: var(--search-hover-box-shadow);
+  border-color: var(--input-border-focus);
+  box-shadow: var(--input-shadow);
 }
 
 /* Animation for search focus state */
 @keyframes searchLiquidFloat {
   0%, 100% { 
-    box-shadow: var(--search-focus-box-shadow-start);
+    box-shadow: var(--input-shadow-focus);
   }
   50% { 
-    box-shadow: var(--search-focus-box-shadow-mid);
+    box-shadow: var(--input-shadow-focus), 0 0 20px -8px var(--input-border-focus);
   }
 }
 
@@ -344,7 +345,7 @@ input, select, textarea {
 
 /* Search Icon Styling */
 .search-icon {
-  color: var(--search-icon-color);
+  color: var(--input-icon);
   transition: all 0.3s ease;
   z-index: 2;
   position: absolute;
@@ -354,16 +355,16 @@ input, select, textarea {
 /* Search Container Fixes */
 .search-container:focus-within .search-icon,
 .search-container:hover .search-icon {
-  color: var(--search-icon-active);
+  color: var(--input-icon-active);
   transform: scale(1.05);
 }
 
-/* Clear Button Styling - Enhanced liquid glass */
+/* Clear Button Styling - Enhanced with theme integration */
 .search-clear-btn {
-  background: var(--search-clear-bg);
+  background: var(--input-background);
   backdrop-filter: blur(12px);
   border-radius: 6px;
-  border: 1px solid var(--search-clear-border);
+  border: 1px solid var(--input-border);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
   position: absolute;
@@ -372,19 +373,21 @@ input, select, textarea {
   transform: translateY(-50%);
   width: 28px;
   height: 28px;
-  box-shadow: var(--search-clear-box-shadow);
+  box-shadow: var(--input-shadow);
+  color: var(--input-icon);
 }
 
 .search-clear-btn:hover {
-  background: var(--search-clear-hover-bg);
-  border-color: var(--search-clear-hover-border);
+  background: var(--input-hover);
+  border-color: var(--input-border-focus);
   transform: translateY(-50%);
-  box-shadow: var(--search-clear-hover-box-shadow);
+  box-shadow: var(--input-shadow-focus);
+  color: var(--input-icon-active);
 }
 
 .search-clear-btn:active {
   transform: translateY(-50%) scale(0.95);
-  box-shadow: var(--search-clear-active-box-shadow);
+  box-shadow: var(--input-shadow);
 }
 
 /* =============================================================================
