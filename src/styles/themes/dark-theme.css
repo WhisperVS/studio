@@ -289,6 +289,52 @@
   --search-icon-active: rgba(120, 150, 255, 0.9);
   --search-clear-glow: rgba(239, 68, 68, 1);
   
+  /* Modal Theme Variables */
+  --modal-border: rgba(120, 150, 255, 0.3);
+  --modal-input-bg: rgb(30, 41, 59);
+  --modal-input-border: rgba(120, 150, 255, 0.2);
+  --modal-input-text: rgb(203, 213, 225);
+  --modal-input-hover: rgba(120, 150, 255, 0.05);
+  --modal-focus-border: rgba(120, 150, 255, 0.6);
+  --modal-focus-ring: rgba(120, 150, 255, 0.2);
+  --modal-placeholder: rgba(156, 163, 175, 0.8);
+  --modal-text: rgb(203, 213, 225);
+  --modal-muted-text: rgba(156, 163, 175, 0.8);
+  --modal-card-bg: rgba(30, 41, 59, 0.8);
+  --modal-card-border: rgba(120, 150, 255, 0.2);
+  --modal-readonly-bg: rgba(120, 150, 255, 0.1);
+  --modal-readonly-text: rgba(156, 163, 175, 0.7);
+  
+  /* Modal Special Fields (Import/Script) */
+  --modal-special-bg: rgba(120, 150, 255, 0.1);
+  --modal-special-border: rgb(120, 150, 255);
+  --modal-special-text: rgb(203, 213, 225);
+  --modal-special-focus: rgb(150, 180, 255);
+  --modal-special-ring: rgba(120, 150, 255, 0.3);
+  
+  /* Modal Buttons */
+  --modal-btn-secondary-bg: rgb(51, 65, 85);
+  --modal-btn-secondary-border: rgba(120, 150, 255, 0.3);
+  --modal-btn-secondary-text: rgb(203, 213, 225);
+  --modal-btn-secondary-hover: rgba(120, 150, 255, 0.1);
+  --modal-btn-primary-bg: rgb(120, 150, 255);
+  --modal-btn-primary-text: rgb(15, 23, 42);
+  --modal-btn-destructive-bg: rgb(239, 68, 68);
+  --modal-btn-destructive-text: rgb(255, 255, 255);
+  
+  /* Modal Radio Buttons */
+  --modal-radio-border: rgba(120, 150, 255, 0.3);
+  --modal-radio-checked-bg: rgb(120, 150, 255);
+  --modal-radio-checked-border: rgb(120, 150, 255);
+  
+  /* Modal Close Button */
+  --modal-close-bg: rgb(51, 65, 85);
+  --modal-close-border: rgba(120, 150, 255, 0.3);
+  --modal-close-text: rgb(203, 213, 225);
+  --modal-close-hover-bg: rgb(239, 68, 68);
+  --modal-close-hover-text: rgb(255, 255, 255);
+  --modal-close-hover-border: rgb(239, 68, 68);
+  
   /* Progress Component */
   --progress-track-bg: rgb(20, 30, 60);
   --progress-fill-bg: rgb(120, 180, 255);
@@ -343,45 +389,53 @@
   --chart-4: rgb(200, 120, 255);
   --chart-5: rgb(255, 120, 150);
   
-  /* Status badge colors */
-  --status-in-use-bg: rgba(100, 255, 150, 0.25);
-  --status-in-use-text: rgb(150, 255, 200);
-  --status-in-use-border: rgba(100, 255, 150, 0.6);
-  --status-in-use-hover: rgba(100, 255, 150, 0.35);
-  --status-spare-bg: rgba(120, 180, 255, 0.25);
-  --status-spare-text: rgb(170, 210, 255);
-  --status-spare-border: rgba(120, 180, 255, 0.6);
-  --status-spare-hover: rgba(120, 180, 255, 0.35);
-  --status-for-repair-bg: rgba(255, 120, 150, 0.25);
-  --status-for-repair-text: rgb(255, 170, 190);
-  --status-for-repair-border: rgba(255, 120, 150, 0.6);
-  --status-for-repair-hover: rgba(255, 120, 150, 0.35);
-  --status-for-parts-bg: rgba(255, 200, 100, 0.25);
-  --status-for-parts-text: rgb(255, 220, 150);
-  --status-for-parts-border: rgba(255, 200, 100, 0.6);
-  --status-for-parts-hover: rgba(255, 200, 100, 0.35);
-  --status-for-recycle-bg: rgba(180, 180, 220, 0.25);
-  --status-for-recycle-text: rgb(220, 220, 240);
-  --status-for-recycle-border: rgba(180, 180, 220, 0.6);
-  --status-for-recycle-hover: rgba(180, 180, 220, 0.35);
+  /* Button System Colors - Missing Variables */
+  --btn-primary-glow: 0 0 20px rgba(120, 150, 255, 0.4);
+  --btn-primary-shadow: 0 8px 32px -8px rgba(120, 150, 255, 0.3);
+  --btn-export-glow: 0 0 25px rgba(80, 150, 255, 0.6);
+  --btn-export-shadow: 0 8px 32px -8px rgba(80, 150, 255, 0.4);
+  --btn-delete-glow: 0 0 25px rgba(255, 120, 150, 0.6);
+  --btn-delete-shadow: 0 8px 32px -8px rgba(255, 120, 150, 0.4);
+  --btn-clear-glow: 0 0 15px rgba(120, 150, 255, 0.4);
+  --btn-clear-shadow: 0 4px 16px -4px rgba(120, 150, 255, 0.2);
   
-  /* Tailwind integration */
-  --primary: rgb(120, 180, 255);
-  --primary-foreground: rgb(255, 255, 255);
-  --secondary: rgb(60, 80, 140);
-  --secondary-foreground: rgb(240, 245, 255);
-  --destructive: rgb(255, 120, 150);
-  --destructive-foreground: rgb(255, 255, 255);
-  --warning: rgb(255, 200, 100);
-  --warning-foreground: rgb(255, 255, 255);
-  --foreground: rgb(255, 255, 255);
-  --background: rgb(10, 20, 45);
-  --muted: rgb(30, 40, 80);
-  --muted-foreground: rgb(180, 200, 240);
-  --accent: rgb(50, 70, 120);
-  --accent-foreground: rgb(240, 245, 255);
-  --border: rgb(80, 120, 200);
-  --input: rgb(40, 60, 120);
+  /* Dropdown System Colors - Missing Variables */
+  --dropdown-border-hover: rgba(120, 150, 255, 0.5);
+  --dropdown-hover-shadow: 0 4px 16px -4px rgba(120, 150, 255, 0.2);
+  
+  /* Search System Colors - Missing Variables */
+  --search-input-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --search-focus-box-shadow: 0 0 0 3px rgba(120, 150, 255, 0.1), 0 0 20px rgba(120, 150, 255, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --search-hover-border: rgba(120, 150, 255, 0.3);
+  --search-hover-box-shadow: 0 0 10px rgba(120, 150, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --search-focus-box-shadow-start: 0 0 0 3px rgba(120, 150, 255, 0.1), 0 0 20px rgba(120, 150, 255, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --search-focus-box-shadow-mid: 0 0 0 3px rgba(120, 150, 255, 0.15), 0 0 25px rgba(120, 150, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --search-clear-bg: rgba(255, 255, 255, 0.1);
+  --search-clear-border: rgba(255, 255, 255, 0.15);
+  --search-clear-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --search-clear-hover-bg: rgba(255, 255, 255, 0.2);
+  --search-clear-hover-border: rgba(255, 255, 255, 0.3);
+  --search-clear-hover-box-shadow: 0 0 15px rgba(239, 68, 68, 0.5), 0 0 30px rgba(239, 68, 68, 0.3), 0 6px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  --search-clear-active-box-shadow: 0 0 10px rgba(239, 68, 68, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  /* Modal System Colors - Missing Variables */
+  --modal-close-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --modal-close-hover-box-shadow: 0 0 15px rgba(239, 68, 68, 0.5), 0 0 30px rgba(239, 68, 68, 0.3), 0 6px 20px rgba(0, 0, 0, 0.15);
+  --modal-close-active-box-shadow: 0 0 10px rgba(239, 68, 68, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+  
+  /* Liquid Glass System Colors */
+  --glass-shine-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  --glass-refraction-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  --glass-inset-light: rgba(255, 255, 255, 0.1);
+  --glass-inset-light-hover: rgba(255, 255, 255, 0.15);
+  --glass-inset-light-active: rgba(255, 255, 255, 0.2);
+  --glass-border-light: rgba(255, 255, 255, 0.05);
+  --glass-border-light-hover: rgba(255, 255, 255, 0.08);
+    --glass-border-light-active: rgba(255, 255, 255, 0.1);
+  
+  /* Additional Glow Variables */
+  --glow-secondary: 0 0 15px rgba(120, 150, 255, 0.4);
+  --glow-destructive: 0 0 20px rgba(255, 120, 150, 0.5);
 }
 
 

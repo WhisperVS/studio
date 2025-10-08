@@ -61,39 +61,34 @@ button::before, .btn::before, [role="button"]::before {
 /* Glowing hover states */
 button:hover, .btn:hover, [role="button"]:hover {
   transform: translateY(-2px);
-  box-shadow: var(--btn-primary-glow, 0 0 20px rgba(120, 80, 255, 0.4)), 
-              var(--btn-primary-shadow, 0 8px 32px -8px rgba(120, 80, 255, 0.3));
+  box-shadow: var(--btn-primary-glow), var(--btn-primary-shadow);
 }
 
 /* Specific button type glows */
 .btn-export:hover, button[data-export]:hover {
-  box-shadow: var(--btn-export-glow, 0 0 25px rgba(100, 150, 255, 0.6)), 
-              var(--btn-export-shadow, 0 8px 32px -8px rgba(100, 150, 255, 0.4));
+  box-shadow: var(--btn-export-glow), var(--btn-export-shadow);
 }
 
 .btn-delete:hover, button[data-delete]:hover {
-  box-shadow: var(--btn-delete-glow, 0 0 25px rgba(255, 120, 150, 0.6)), 
-              var(--btn-delete-shadow, 0 8px 32px -8px rgba(255, 120, 150, 0.4));
+  box-shadow: var(--btn-delete-glow), var(--btn-delete-shadow);
 }
 
 .btn-clear:hover, .btn-filter:hover, .btn-cancel:hover {
-  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
-              var(--btn-clear-shadow, 0 4px 16px -4px rgba(120, 80, 255, 0.2));
+  box-shadow: var(--btn-clear-glow), var(--btn-clear-shadow);
 }
 
 /* Dropdown menu buttons special background */
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
-  background: var(--dropdown-background, rgba(250, 245, 255, 0.9));
-  border: 1px solid var(--dropdown-border, rgba(150, 100, 255, 0.3));
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
   backdrop-filter: blur(8px);
   position: relative;
 }
 
 button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
-  background: var(--dropdown-hover, rgba(240, 235, 255, 0.95));
-  border-color: var(--dropdown-border, rgba(150, 100, 255, 0.5));
-  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
-              0 4px 16px -4px rgba(120, 80, 255, 0.2);
+  background: var(--dropdown-hover);
+  border-color: var(--dropdown-border-hover);
+  box-shadow: var(--btn-clear-glow), var(--dropdown-hover-shadow);
   backdrop-filter: blur(12px);
 }
 
@@ -152,7 +147,7 @@ button:disabled, .btn:disabled, [role="button"]:disabled {
 
 .btn-loading, button[data-loading="true"] {
   position: relative;
-  color: transparent !important;
+  color: transparent;
   pointer-events: none;
 }
 
@@ -289,24 +284,24 @@ input, select, textarea {
 
 /* Ensure top-controls search container aligns properly */
 .top-controls .search-container {
-  height: 36px !important;
-  align-self: center !important;
+  height: 36px;
+  align-self: center;
 }
 
 .search-input {
   /* Clean modern input styling */
-  background: var(--background) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--search-input-shadow);
   
   /* Remove liquid glass effects */
-  backdrop-filter: none !important;
+  backdrop-filter: none;
   position: relative;
   overflow: visible;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  height: 36px !important;
-  line-height: 1 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 36px;
+  line-height: 1;
 }
 
 /* Remove glass refraction effects */
@@ -317,36 +312,25 @@ input, select, textarea {
 
 /* Focus State - Clean glow effect */
 .search-input:focus {
-  border-color: var(--search-focus-border, rgba(59, 130, 246, 0.5)) !important;
-  box-shadow: 
-    0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-    0 0 20px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-    0 1px 3px rgba(0, 0, 0, 0.1) !important;
-  background: var(--background) !important;
-  outline: none !important;
+  border-color: var(--search-focus-border);
+  box-shadow: var(--search-focus-box-shadow);
+  background: var(--background);
+  outline: none;
 }
 
 /* Hover Effects - Subtle glow */
 .search-input:hover {
-  border-color: var(--search-focus-border, rgba(59, 130, 246, 0.3)) !important;
-  box-shadow: 
-    0 0 10px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-    0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--search-hover-border);
+  box-shadow: var(--search-hover-box-shadow);
 }
 
-/* Remove liquid animation */
+/* Animation for search focus state */
 @keyframes searchLiquidFloat {
   0%, 100% { 
-    box-shadow: 
-      0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-      0 0 20px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-      0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--search-focus-box-shadow-start);
   }
   50% { 
-    box-shadow: 
-      0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-      0 0 25px var(--search-focus-shadow, rgba(59, 130, 246, 0.2)),
-      0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--search-focus-box-shadow-mid);
   }
 }
 
@@ -356,84 +340,90 @@ input, select, textarea {
 
 /* Search Icon Styling */
 .search-icon {
-  color: var(--search-icon-color, rgba(156, 163, 175, 0.8)) !important;
-  transition: all 0.3s ease !important;
-  z-index: 2 !important;
-  position: absolute !important;
-  pointer-events: none !important;
+  color: var(--search-icon-color);
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: absolute;
+  pointer-events: none;
 }
 
 /* Search Container Fixes */
 .search-container:focus-within .search-icon,
 .search-container:hover .search-icon {
-  color: var(--search-icon-active, rgba(59, 130, 246, 0.8)) !important;
+  color: var(--search-icon-active);
   transform: scale(1.05);
 }
 
 /* Clear Button Styling - Enhanced liquid glass */
 .search-clear-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(12px) !important;
-  border-radius: 6px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  z-index: 2 !important;
-  position: absolute !important;
-  right: 4px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  background: var(--search-clear-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 6px;
+  border: 1px solid var(--search-clear-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  box-shadow: var(--search-clear-box-shadow);
 }
 
 .search-clear-btn:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  transform: translateY(-50%) !important;
-  box-shadow: 
-    0 0 15px var(--search-clear-glow, rgba(239, 68, 68, 0.5)),
-    0 0 30px var(--search-clear-glow, rgba(239, 68, 68, 0.3)),
-    0 6px 20px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  background: var(--search-clear-hover-bg);
+  border-color: var(--search-clear-hover-border);
+  transform: translateY(-50%);
+  box-shadow: var(--search-clear-hover-box-shadow);
 }
 
 .search-clear-btn:active {
-  transform: translateY(-50%) scale(0.95) !important;
-  box-shadow: 
-    0 0 10px var(--search-clear-glow, rgba(239, 68, 68, 0.4)),
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-50%) scale(0.95);
+  box-shadow: var(--search-clear-active-box-shadow);
 }
 
 /* =============================================================================
-   MODAL DIALOG STYLING - Theme integration
+   MODAL DIALOG STYLING - Structure only, colors in theme files
    ============================================================================= */
 
 /* Modal Dialog Base */
 .fixed[role="dialog"] {
   background: var(--modal-background);
-  border: 1px solid var(--sidebar-border);
+  border: 1px solid var(--modal-border);
   box-shadow: var(--modal-shadow);
   backdrop-filter: blur(16px);
-  border-radius: var(--radius);
+  border-radius: 16px;
 }
 
-/* All Form Fields Consistency */
+/* All Form Fields */
 .fixed[role="dialog"] input,
 .fixed[role="dialog"] textarea,
 .fixed[role="dialog"] button[role="combobox"],
 .fixed[role="dialog"] button[aria-haspopup="dialog"] {
-  background: var(--input);
-  border: 1px solid var(--border);
-  color: var(--foreground);
-  border-radius: var(--radius);
+  background: var(--modal-input-bg);
+  border: 1px solid var(--modal-input-border);
+  color: var(--modal-input-text);
+  border-radius: 8px;
   height: 40px;
   padding: 8px 12px;
   font-size: 14px;
   transition: all 0.2s ease;
+}
+
+/* Import JSON and Script fields - different styling */
+.fixed[role="dialog"] textarea[placeholder*="JSON"],
+.fixed[role="dialog"] textarea[placeholder*="script"] {
+  background: var(--modal-special-bg);
+  border: 2px solid var(--modal-special-border);
+  color: var(--modal-special-text);
+  font-family: monospace;
+}
+
+.fixed[role="dialog"] textarea[placeholder*="JSON"]:focus,
+.fixed[role="dialog"] textarea[placeholder*="script"]:focus {
+  border-color: var(--modal-special-focus);
+  box-shadow: 0 0 0 2px var(--modal-special-ring);
 }
 
 /* Textarea specific */
@@ -450,17 +440,17 @@ input, select, textarea {
 .fixed[role="dialog"] button[role="combobox"]:focus,
 .fixed[role="dialog"] button[aria-haspopup="dialog"]:focus {
   outline: none;
-  border-color: var(--ring);
-  box-shadow: 0 0 0 2px var(--ring);
+  border-color: var(--modal-focus-border);
+  box-shadow: 0 0 0 2px var(--modal-focus-ring);
 }
 
 /* Placeholder text */
 .fixed[role="dialog"] input::placeholder,
 .fixed[role="dialog"] textarea::placeholder {
-  color: var(--muted-foreground);
+  color: var(--modal-placeholder);
 }
 
-/* Dropdown specific */
+/* Dropdown styling */
 .fixed[role="dialog"] button[role="combobox"],
 .fixed[role="dialog"] button[aria-haspopup="dialog"] {
   display: flex;
@@ -472,44 +462,44 @@ input, select, textarea {
 
 .fixed[role="dialog"] button[role="combobox"]:hover,
 .fixed[role="dialog"] button[aria-haspopup="dialog"]:hover {
-  background: var(--accent);
+  background: var(--modal-input-hover);
 }
 
 /* Card sections */
 .fixed[role="dialog"] .border.rounded-lg.bg-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: var(--modal-card-bg);
+  border: 1px solid var(--modal-card-border);
+  border-radius: 12px;
 }
 
 /* Button styling */
 .fixed[role="dialog"] .btn-outline {
-  background: var(--secondary);
-  border: 1px solid var(--border);
-  color: var(--secondary-foreground);
-  border-radius: var(--radius);
+  background: var(--modal-btn-secondary-bg);
+  border: 1px solid var(--modal-btn-secondary-border);
+  color: var(--modal-btn-secondary-text);
+  border-radius: 8px;
   height: 36px;
   padding: 0 16px;
 }
 
 .fixed[role="dialog"] .btn-outline:hover {
-  background: var(--accent);
+  background: var(--modal-btn-secondary-hover);
 }
 
 .fixed[role="dialog"] .btn-primary {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--modal-btn-primary-bg);
+  color: var(--modal-btn-primary-text);
   border: none;
-  border-radius: var(--radius);
+  border-radius: 8px;
   height: 36px;
   padding: 0 16px;
 }
 
 .fixed[role="dialog"] .btn-destructive {
-  background: var(--destructive);
-  color: var(--destructive-foreground);
+  background: var(--modal-btn-destructive-bg);
+  color: var(--modal-btn-destructive-text);
   border: none;
-  border-radius: var(--radius);
+  border-radius: 8px;
   height: 36px;
   padding: 0 16px;
 }
@@ -518,50 +508,125 @@ input, select, textarea {
 .fixed[role="dialog"] button[role="radio"] {
   width: 16px;
   height: 16px;
-  border: 2px solid var(--border);
+  border: 2px solid var(--modal-radio-border);
   background: transparent;
   border-radius: 50%;
   padding: 0;
 }
 
 .fixed[role="dialog"] button[role="radio"][data-state="checked"] {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--modal-radio-checked-bg);
+  border-color: var(--modal-radio-checked-border);
 }
 
 /* Text elements */
 .fixed[role="dialog"] label {
-  color: var(--foreground);
+  color: var(--modal-text);
   font-weight: 500;
   font-size: 14px;
 }
 
 .fixed[role="dialog"] h2 {
-  color: var(--foreground);
+  color: var(--modal-text);
 }
 
 .fixed[role="dialog"] .text-muted-foreground {
-  color: var(--muted-foreground);
+  color: var(--modal-muted-text);
 }
 
 /* Readonly fields */
 .fixed[role="dialog"] input[readonly] {
-  background: var(--muted);
-  color: var(--muted-foreground);
+  background: var(--modal-readonly-bg);
+  color: var(--modal-readonly-text);
   cursor: not-allowed;
 }
 
 /* Close button */
+.fixed[role="dialog"] button.absolute.right-4.top-4 {
+  background: var(--modal-close-bg);
+  border: 1px solid var(--modal-close-border);
+  color: var(--modal-close-text);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.fixed[role="dialog"] button.absolute.right-4.top-4:hover {
+  background: var(--modal-close-hover-bg);
+  color: var(--modal-close-hover-text);
+  border-color: var(--modal-close-hover-border);
+}
+
+/* Modal overlay */
+.fixed.inset-0.z-50 {
+  background: var(--modal-overlay);
+  backdrop-filter: blur(8px);
+}
+
+/* Close button - Complete recreation */
 .fixed[role="dialog"] > button:last-child {
   background: var(--background);
   border: 1px solid var(--border);
-  color: var(--muted-foreground);
-  border-radius: var(--radius);
+  color: var(--foreground);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
 }
 
 .fixed[role="dialog"] > button:last-child:hover {
   background: var(--destructive);
   color: var(--destructive-foreground);
+}
+
+/* Modal close button - theme-aware visibility */
+.fixed[role="dialog"] button.absolute.right-4.top-4,
+.fixed[role="dialog"] button[aria-label*="Close"],
+button[data-dialog-close] {
+  background: var(--secondary);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--secondary-foreground);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  transform: translateY(0);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: var(--modal-close-box-shadow);
+}
+
+.fixed[role="dialog"] button.absolute.right-4.top-4:hover,
+.fixed[role="dialog"] button[aria-label*="Close"]:hover,
+button[data-dialog-close]:hover {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  border-color: var(--destructive);
+  transform: translateY(0);
+  box-shadow: var(--modal-close-hover-box-shadow);
+}
+
+.fixed[role="dialog"] button.absolute.right-4.top-4:active,
+.fixed[role="dialog"] button[aria-label*="Close"]:active,
+button[data-dialog-close]:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow: var(--modal-close-active-box-shadow);
 }
 
 /* ============================= */
@@ -670,8 +735,8 @@ input, select, textarea {
 
 /* Enhanced active state for SidebarMenuButton */
 [data-sidebar="menu-button"][data-active="true"] {
-  background: var(--sidebar-link-active) !important;
-  color: var(--sidebar-link-active-text) !important;
+  background: var(--sidebar-link-active);
+  color: var(--sidebar-link-active-text);
   font-weight: 600;
   transform: translateX(4px);
   border-left: 3px solid var(--sidebar-primary);
@@ -1052,20 +1117,20 @@ input, select, textarea {
 }
 
 [data-collapsible="icon"] a, [data-collapsible="icon"] button {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 60px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
   border-radius: 0;
 }
 
 [data-collapsible="icon"] svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 auto !important;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
 }
 
 [data-collapsible="icon"] [data-sidebar="header"] {
@@ -1107,12 +1172,12 @@ input, select, textarea {
 /* ============================= */
 
 [data-sidebar] .sidebar-nav-item, .sidebar-group a, .sidebar-group button, [role="menuitem"] {
-  display: flex !important;
-  align-items: center !important;
-  padding: 12px 16px !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 12px;
   border-radius: var(--radius-sm);
   margin: 2px 0;
   transition: all 0.2s ease;
@@ -1175,19 +1240,19 @@ input, select, textarea {
 /* Override old input styling for search specifically */
 .top-controls .search-container input[type="text"], 
 .top-controls .search-input {
-  font-weight: 400 !important;
-  border-radius: 10px !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 1 !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
+  font-weight: 400;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 1;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
 }
 
 .top-controls .relative {
@@ -1223,14 +1288,14 @@ input, select, textarea {
 
 /* Override for our new search icon */
 .top-controls .search-container .search-icon {
-  position: absolute !important;
-  left: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 16px !important;
-  height: 16px !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  z-index: 5;
+  pointer-events: none;
 }
 
 .top-controls button[role="combobox"] {
@@ -1373,7 +1438,7 @@ button[class*="primary"]::before, button[class*="secondary"]::before, button[cla
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: var(--glass-shine-gradient);
   transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
@@ -1393,7 +1458,7 @@ button[class*="primary"]::after, button[class*="secondary"]::after, button[class
   left: 1px;
   right: 1px;
   height: 40%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  background: var(--glass-refraction-gradient);
   border-radius: 11px 11px 0 0;
   pointer-events: none;
   z-index: 2;
@@ -1410,27 +1475,27 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
 .btn-primary, button[class*="primary"] {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 8px 32px -8px var(--btn-primary-shadow, rgba(120, 80, 255, 0.3)),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 var(--glass-inset-light),
+    var(--btn-primary-shadow),
+    0 0 0 1px var(--glass-border-light);
 }
 
 .btn-primary:hover, button[class*="primary"]:hover {
   transform: translateY(-4px) scale(1.03);
   filter: brightness(1.15) saturate(1.2);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 12px 48px -8px var(--btn-primary-shadow, rgba(120, 80, 255, 0.4)),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    var(--btn-primary-glow, 0 0 30px rgba(120, 80, 255, 0.5));
+    inset 0 1px 0 var(--glass-inset-light-hover),
+    var(--btn-primary-shadow),
+    0 0 0 1px var(--glass-border-light-hover),
+    var(--btn-primary-glow);
 }
 
 .btn-secondary:hover, button[class*="secondary"]:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 var(--glass-inset-light-hover),
     0 8px 24px -4px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+    0 0 0 1px var(--glass-border-light-hover);
 }
 
 /* Outline Button Styles with Liquid Glass */
@@ -1440,9 +1505,9 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   border: 1px solid var(--button-secondary-border);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 var(--glass-inset-light),
     0 4px 16px -4px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+    0 0 0 1px var(--glass-border-light);
 }
 
 .btn-outline:hover {
@@ -1450,10 +1515,10 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   color: var(--button-secondary-text-hover);
   border-color: var(--button-secondary-border-hover);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 var(--glass-inset-light-hover),
     var(--glow-secondary),
     0 8px 32px -8px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+    0 0 0 1px var(--glass-border-light-hover);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -1464,9 +1529,9 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   border: 1px solid var(--button-destructive-border);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 8px 32px -8px rgba(239, 68, 68, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 var(--glass-inset-light),
+    var(--btn-delete-shadow),
+    0 0 0 1px var(--glass-border-light);
 }
 
 .btn-destructive:hover {
@@ -1474,11 +1539,11 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   color: var(--button-destructive-text-hover);
   border-color: var(--button-destructive-border-hover);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 var(--glass-inset-light-hover),
     var(--glow-destructive),
-    0 12px 48px -8px rgba(239, 68, 68, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 30px rgba(239, 68, 68, 0.3);
+    var(--btn-delete-shadow),
+    0 0 0 1px var(--glass-border-light-hover),
+    var(--btn-delete-glow);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -1552,19 +1617,19 @@ button[class*="primary"]:hover {
 /* Premium glass depth effect */
 .btn-export, .btn-delete {
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 var(--glass-inset-light),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1),
     0 8px 32px -8px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+    0 0 0 1px var(--glass-border-light);
 }
 
 .btn-export:hover, .btn-delete:hover {
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 var(--glass-inset-light-hover),
     inset 0 -1px 0 rgba(0, 0, 0, 0.15),
     0 16px 48px -8px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 40px var(--btn-export-glow, var(--btn-delete-glow, rgba(100, 150, 255, 0.4)));
+    0 0 0 1px var(--glass-border-light-hover),
+    var(--btn-export-glow);
 }
 
 .btn-success:hover, button[class*="success"]:hover {
@@ -1590,7 +1655,7 @@ button[class*="primary"]:hover {
 
 /* Individual header cells should be transparent to show the gradient */
 .table-header-bg th {
-  background: transparent !important;
+  background: transparent;
 }
 
 .table-cell-border {
@@ -1620,11 +1685,11 @@ button[class*="primary"]:hover {
 
 /* Modal Dialog Base */
 [role="dialog"] {
-  background: var(--modal-background) !important;
-  border: 1px solid var(--sidebar-border) !important;
-  box-shadow: var(--modal-shadow) !important;
-  backdrop-filter: blur(16px) !important;
-  border-radius: var(--radius) !important;
+  background: var(--modal-background);
+  border: 1px solid var(--sidebar-border);
+  box-shadow: var(--modal-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius);
 }
 
 /* All Form Fields Consistency */
@@ -1632,22 +1697,22 @@ button[class*="primary"]:hover {
 [role="dialog"] textarea,
 [role="dialog"] button[role="combobox"],
 [role="dialog"] button[aria-haspopup="dialog"] {
-  background: var(--input) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--foreground) !important;
-  border-radius: var(--radius) !important;
-  height: 40px !important;
-  padding: 8px 12px !important;
-  font-size: 14px !important;
-  transition: all 0.2s ease !important;
+  background: var(--input);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  border-radius: var(--radius);
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: all 0.2s ease;
 }
 
 /* Textarea specific */
 [role="dialog"] textarea {
-  height: auto !important;
-  min-height: 80px !important;
-  padding: 12px !important;
-  resize: vertical !important;
+  height: auto;
+  min-height: 80px;
+  padding: 12px;
+  resize: vertical;
 }
 
 /* Focus states */
@@ -1655,117 +1720,117 @@ button[class*="primary"]:hover {
 [role="dialog"] textarea:focus,
 [role="dialog"] button[role="combobox"]:focus,
 [role="dialog"] button[aria-haspopup="dialog"]:focus {
-  outline: none !important;
-  border-color: var(--ring) !important;
-  box-shadow: 0 0 0 2px var(--ring) !important;
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
 }
 
 /* Placeholder text */
 [role="dialog"] input::placeholder,
 [role="dialog"] textarea::placeholder {
-  color: var(--muted-foreground) !important;
+  color: var(--muted-foreground);
 }
 
 /* Dropdown specific */
 [role="dialog"] button[role="combobox"],
 [role="dialog"] button[aria-haspopup="dialog"] {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  cursor: pointer !important;
-  text-align: left !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
 }
 
 [role="dialog"] button[role="combobox"]:hover,
 [role="dialog"] button[aria-haspopup="dialog"]:hover {
-  background: var(--accent) !important;
+  background: var(--accent);
 }
 
 /* Card sections */
 [role="dialog"] .border.rounded-lg.bg-card {
-  background: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius) !important;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 /* Button styling */
 [role="dialog"] .btn-outline {
-  background: var(--secondary) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--secondary-foreground) !important;
-  border-radius: var(--radius) !important;
-  height: 36px !important;
-  padding: 0 16px !important;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--secondary-foreground);
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
 }
 
 [role="dialog"] .btn-outline:hover {
-  background: var(--accent) !important;
+  background: var(--accent);
 }
 
 [role="dialog"] .btn-primary {
-  background: var(--primary) !important;
-  color: var(--primary-foreground) !important;
-  border: none !important;
-  border-radius: var(--radius) !important;
-  height: 36px !important;
-  padding: 0 16px !important;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
 }
 
 [role="dialog"] .btn-destructive {
-  background: var(--destructive) !important;
-  color: var(--destructive-foreground) !important;
-  border: none !important;
-  border-radius: var(--radius) !important;
-  height: 36px !important;
-  padding: 0 16px !important;
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  border: none;
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
 }
 
 /* Radio buttons */
 [role="dialog"] button[role="radio"] {
-  width: 16px !important;
-  height: 16px !important;
-  border: 2px solid var(--border) !important;
-  background: transparent !important;
-  border-radius: 50% !important;
-  padding: 0 !important;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  background: transparent;
+  border-radius: 50%;
+  padding: 0;
 }
 
 [role="dialog"] button[role="radio"][data-state="checked"] {
-  background: var(--primary) !important;
-  border-color: var(--primary) !important;
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 /* Text elements */
 [role="dialog"] label {
-  color: var(--foreground) !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
+  color: var(--foreground);
+  font-weight: 500;
+  font-size: 14px;
 }
 
 [role="dialog"] h2 {
-  color: var(--foreground) !important;
+  color: var(--foreground);
 }
 
 [role="dialog"] .text-muted-foreground {
-  color: var(--muted-foreground) !important;
+  color: var(--muted-foreground);
 }
 
 /* Readonly fields */
 [role="dialog"] input[readonly] {
-  background: var(--muted) !important;
-  color: var(--muted-foreground) !important;
-  cursor: not-allowed !important;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
 }
 
 /* Close button */
 [role="dialog"] > button:last-child {
-  background: var(--background) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--muted-foreground) !important;
-  border-radius: var(--radius) !important;
+  background: var(--background);
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  border-radius: var(--radius);
 }
 
 [role="dialog"] > button:last-child:hover {
-  background: var(--destructive) !important;
-  color: var(--destructive-foreground) !important;
+  background: var(--destructive);
+  color: var(--destructive-foreground);
 }
