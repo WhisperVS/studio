@@ -416,6 +416,58 @@ input, select, textarea {
     0 0 20px -8px var(--dropdown-focus-outline);
 }
 
+/* Toggle column items selected/checked state */
+[data-radix-popover-content] > div > label[data-state="checked"],
+[data-radix-popover-content] > div > div[data-state="checked"],
+[data-radix-popover-content] .space-y-2 > label[data-state="checked"],
+[data-radix-popover-content] .space-y-2 > div[data-state="checked"],
+[data-radix-popover-content] label:has(input[type="checkbox"]:checked),
+[data-radix-popover-content] div:has(input[type="checkbox"]:checked) {
+  background: var(--dropdown-item-selected);
+  color: var(--dropdown-item-selected-text);
+  font-weight: 600;
+  transform: translateX(2px);
+  box-shadow: 
+    0 0 0 1px var(--dropdown-focus-outline),
+    0 2px 8px -2px var(--dropdown-focus-outline),
+    0 0 20px -8px var(--dropdown-focus-outline);
+}
+
+/* Selected items shimmer effect */
+[data-radix-popover-content] > div > label[data-state="checked"]::before,
+[data-radix-popover-content] > div > div[data-state="checked"]::before,
+[data-radix-popover-content] .space-y-2 > label[data-state="checked"]::before,
+[data-radix-popover-content] .space-y-2 > div[data-state="checked"]::before,
+[data-radix-popover-content] label:has(input[type="checkbox"]:checked)::before,
+[data-radix-popover-content] div:has(input[type="checkbox"]:checked)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--dropdown-shimmer-overlay) 50%, 
+    transparent
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Checkbox styling within toggle items */
+[data-radix-popover-content] input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-radix-popover-content] input[type="checkbox"]:checked {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 4px var(--dropdown-focus-outline));
+}
+
 /* =============================================================================
    VIEW SETTINGS BUTTON - Premium Glass Integration with Exclusive Colors
    ============================================================================= */
@@ -1225,9 +1277,12 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item][data-state="checked"],
 [data-radix-menubar-item][data-state="checked"],
 [data-radix-command-item][data-state="checked"],
+[data-radix-dropdown-menu-checkbox-item][data-state="checked"],
+[data-radix-popover-content] [role="menuitemcheckbox"][data-state="checked"],
 .dropdown-item[data-state="checked"], 
 [role="menuitem"][data-state="checked"],
-[role="option"][data-state="checked"] {
+[role="option"][data-state="checked"],
+[role="menuitemcheckbox"][data-state="checked"] {
   background: var(--dropdown-item-selected);
   color: var(--dropdown-item-selected-text);
   font-weight: 600;
@@ -1242,9 +1297,12 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item][data-state="checked"]::before,
 [data-radix-menubar-item][data-state="checked"]::before,
 [data-radix-command-item][data-state="checked"]::before,
+[data-radix-dropdown-menu-checkbox-item][data-state="checked"]::before,
+[data-radix-popover-content] [role="menuitemcheckbox"][data-state="checked"]::before,
 .dropdown-item[data-state="checked"]::before, 
 [role="menuitem"][data-state="checked"]::before,
-[role="option"][data-state="checked"]::before {
+[role="option"][data-state="checked"]::before,
+[role="menuitemcheckbox"][data-state="checked"]::before {
   opacity: 0.7;
 }
 
@@ -1252,9 +1310,12 @@ button[data-dialog-close]:active {
 [data-radix-dropdown-menu-item][data-state="checked"] svg,
 [data-radix-menubar-item][data-state="checked"] svg,
 [data-radix-command-item][data-state="checked"] svg,
+[data-radix-dropdown-menu-checkbox-item][data-state="checked"] svg,
+[data-radix-popover-content] [role="menuitemcheckbox"][data-state="checked"] svg,
 .dropdown-item[data-state="checked"] svg, 
 [role="menuitem"][data-state="checked"] svg,
-[role="option"][data-state="checked"] svg {
+[role="option"][data-state="checked"] svg,
+[role="menuitemcheckbox"][data-state="checked"] svg {
   color: var(--dropdown-item-selected-text);
   transform: scale(1.05);
   filter: drop-shadow(0 0 4px var(--dropdown-focus-outline));
