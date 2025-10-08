@@ -408,6 +408,162 @@ input, select, textarea {
     inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
+/* =============================================================================
+   MODAL DIALOG STYLING - Theme integration
+   ============================================================================= */
+
+/* Modal Dialog Base */
+.fixed[role="dialog"] {
+  background: var(--modal-background);
+  border: 1px solid var(--sidebar-border);
+  box-shadow: var(--modal-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius);
+}
+
+/* All Form Fields Consistency */
+.fixed[role="dialog"] input,
+.fixed[role="dialog"] textarea,
+.fixed[role="dialog"] button[role="combobox"],
+.fixed[role="dialog"] button[aria-haspopup="dialog"] {
+  background: var(--input);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  border-radius: var(--radius);
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+/* Textarea specific */
+.fixed[role="dialog"] textarea {
+  height: auto;
+  min-height: 80px;
+  padding: 12px;
+  resize: vertical;
+}
+
+/* Focus states */
+.fixed[role="dialog"] input:focus,
+.fixed[role="dialog"] textarea:focus,
+.fixed[role="dialog"] button[role="combobox"]:focus,
+.fixed[role="dialog"] button[aria-haspopup="dialog"]:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* Placeholder text */
+.fixed[role="dialog"] input::placeholder,
+.fixed[role="dialog"] textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+/* Dropdown specific */
+.fixed[role="dialog"] button[role="combobox"],
+.fixed[role="dialog"] button[aria-haspopup="dialog"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+}
+
+.fixed[role="dialog"] button[role="combobox"]:hover,
+.fixed[role="dialog"] button[aria-haspopup="dialog"]:hover {
+  background: var(--accent);
+}
+
+/* Card sections */
+.fixed[role="dialog"] .border.rounded-lg.bg-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Button styling */
+.fixed[role="dialog"] .btn-outline {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--secondary-foreground);
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
+}
+
+.fixed[role="dialog"] .btn-outline:hover {
+  background: var(--accent);
+}
+
+.fixed[role="dialog"] .btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
+}
+
+.fixed[role="dialog"] .btn-destructive {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  border: none;
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Radio buttons */
+.fixed[role="dialog"] button[role="radio"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  background: transparent;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.fixed[role="dialog"] button[role="radio"][data-state="checked"] {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Text elements */
+.fixed[role="dialog"] label {
+  color: var(--foreground);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.fixed[role="dialog"] h2 {
+  color: var(--foreground);
+}
+
+.fixed[role="dialog"] .text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
+/* Readonly fields */
+.fixed[role="dialog"] input[readonly] {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+}
+
+/* Close button */
+.fixed[role="dialog"] > button:last-child {
+  background: var(--background);
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  border-radius: var(--radius);
+}
+
+.fixed[role="dialog"] > button:last-child:hover {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
 /* ============================= */
 /* TABLE STYLING - CLEAN SEPARATION */
 /* ============================= */
@@ -1456,4 +1612,160 @@ button[class*="primary"]:hover {
 /* Remove border from last column */
 .table-border-r:last-child {
   border-right: none;
+}
+
+/* =============================================================================
+   MODAL DIALOG STYLING - Theme Integration
+   ============================================================================= */
+
+/* Modal Dialog Base */
+[role="dialog"] {
+  background: var(--modal-background) !important;
+  border: 1px solid var(--sidebar-border) !important;
+  box-shadow: var(--modal-shadow) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: var(--radius) !important;
+}
+
+/* All Form Fields Consistency */
+[role="dialog"] input,
+[role="dialog"] textarea,
+[role="dialog"] button[role="combobox"],
+[role="dialog"] button[aria-haspopup="dialog"] {
+  background: var(--input) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+  border-radius: var(--radius) !important;
+  height: 40px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Textarea specific */
+[role="dialog"] textarea {
+  height: auto !important;
+  min-height: 80px !important;
+  padding: 12px !important;
+  resize: vertical !important;
+}
+
+/* Focus states */
+[role="dialog"] input:focus,
+[role="dialog"] textarea:focus,
+[role="dialog"] button[role="combobox"]:focus,
+[role="dialog"] button[aria-haspopup="dialog"]:focus {
+  outline: none !important;
+  border-color: var(--ring) !important;
+  box-shadow: 0 0 0 2px var(--ring) !important;
+}
+
+/* Placeholder text */
+[role="dialog"] input::placeholder,
+[role="dialog"] textarea::placeholder {
+  color: var(--muted-foreground) !important;
+}
+
+/* Dropdown specific */
+[role="dialog"] button[role="combobox"],
+[role="dialog"] button[aria-haspopup="dialog"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  text-align: left !important;
+}
+
+[role="dialog"] button[role="combobox"]:hover,
+[role="dialog"] button[aria-haspopup="dialog"]:hover {
+  background: var(--accent) !important;
+}
+
+/* Card sections */
+[role="dialog"] .border.rounded-lg.bg-card {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+}
+
+/* Button styling */
+[role="dialog"] .btn-outline {
+  background: var(--secondary) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--secondary-foreground) !important;
+  border-radius: var(--radius) !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+}
+
+[role="dialog"] .btn-outline:hover {
+  background: var(--accent) !important;
+}
+
+[role="dialog"] .btn-primary {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+}
+
+[role="dialog"] .btn-destructive {
+  background: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+}
+
+/* Radio buttons */
+[role="dialog"] button[role="radio"] {
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid var(--border) !important;
+  background: transparent !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+}
+
+[role="dialog"] button[role="radio"][data-state="checked"] {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Text elements */
+[role="dialog"] label {
+  color: var(--foreground) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+[role="dialog"] h2 {
+  color: var(--foreground) !important;
+}
+
+[role="dialog"] .text-muted-foreground {
+  color: var(--muted-foreground) !important;
+}
+
+/* Readonly fields */
+[role="dialog"] input[readonly] {
+  background: var(--muted) !important;
+  color: var(--muted-foreground) !important;
+  cursor: not-allowed !important;
+}
+
+/* Close button */
+[role="dialog"] > button:last-child {
+  background: var(--background) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted-foreground) !important;
+  border-radius: var(--radius) !important;
+}
+
+[role="dialog"] > button:last-child:hover {
+  background: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
 }
