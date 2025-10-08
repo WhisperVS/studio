@@ -404,9 +404,7 @@ input, select, textarea {
   user-select: none;
   
   /* Exclusive shadow */
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--view-button-shadow);
 }
 
 /* Premium hover effects matching dropdown menu style */
@@ -424,8 +422,7 @@ input, select, textarea {
   /* Premium glow effect */
   box-shadow: 
     var(--btn-view-settings-glow),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 2px 4px rgba(0, 0, 0, 0.08);
+    var(--view-button-hover-shadow);
 }
 
 /* Active state */
@@ -433,8 +430,8 @@ input, select, textarea {
   transform: translateY(-1px) scale(0.98);
   background: var(--btn-view-settings-bg);
   box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.1),
-    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    var(--view-button-active-shadow),
+    var(--view-button-active-inset);
 }
 
 /* Focus state */
@@ -1048,7 +1045,7 @@ button[data-dialog-close]:active {
   bottom: 0;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(255, 255, 255, 0.1) 50%, 
+    var(--dropdown-shimmer-overlay) 50%, 
     transparent
   );
   opacity: 0;

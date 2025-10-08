@@ -119,6 +119,14 @@
   --btn-view-settings-bg: rgb(40, 60, 120);
   --btn-view-settings-text: rgb(255, 255, 255);
   --btn-view-settings-hover: rgb(60, 80, 140);
+  
+  /* Shadow Variables - Dark Theme */
+  --view-button-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --view-button-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+  --view-button-active-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --view-button-active-inset: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  --dropdown-shimmer-overlay: rgba(255, 255, 255, 0.05);
+  
   --btn-clear-filters-bg: rgb(30, 50, 100);
   --btn-clear-filters-text: rgb(220, 230, 255);
   --btn-clear-filters-hover: rgb(50, 70, 120);
