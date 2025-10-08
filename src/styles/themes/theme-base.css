@@ -1139,7 +1139,7 @@ button[data-dialog-close]:active {
 .dropdown-content, [role="menu"], [data-radix-select-content], [data-radix-dropdown-menu-content], [data-radix-popover-content], [data-radix-menubar-content], .bg-popover {
   border-radius: var(--radius-md);
   backdrop-filter: blur(16px);
-  padding: 8px;
+  padding: 6px;
   min-width: 200px;
   overflow: hidden;
   border: 1px solid var(--dropdown-border);
@@ -1182,7 +1182,8 @@ button[data-dialog-close]:active {
 [role="menuitemcheckbox"] {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 10px 12px;
+  margin: 2px 4px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
@@ -1347,12 +1348,12 @@ button[data-dialog-close]:active {
   background: var(--dropdown-hover);
   color: var(--dropdown-item-selected-text);
   border-color: var(--dropdown-focus-outline);
-  transform: translateX(4px) scale(1.02);
+  transform: translateX(2px);
   box-shadow: 
     0 0 0 1px var(--dropdown-focus-outline),
-    0 4px 16px -4px var(--dropdown-focus-outline),
-    0 0 32px -8px var(--dropdown-focus-outline),
-    0 8px 24px -8px var(--dropdown-shadow-dark);
+    0 2px 8px -2px var(--dropdown-focus-outline),
+    0 0 20px -8px var(--dropdown-focus-outline),
+    0 4px 12px -4px var(--dropdown-shadow-dark);
 }
 
 [data-radix-select-item]:hover::before, 
