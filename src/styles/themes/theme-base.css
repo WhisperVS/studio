@@ -100,7 +100,7 @@ button[role="combobox"]::before, .dropdown-trigger::before, [data-dropdown-trigg
   height: 100%;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
+    var(--dropdown-shimmer-light) 50%, 
     transparent 100%);
   transition: left 0.6s ease;
   pointer-events: none;
@@ -1123,7 +1123,7 @@ button[data-dialog-close]:active {
   0% {
     opacity: 0;
     transform: translateY(-8px) scale(0.95);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 transparent;
   }
   50% {
     opacity: 0.8;
@@ -1196,7 +1196,7 @@ button[data-dialog-close]:active {
   height: 100%;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
+    var(--dropdown-shimmer-light) 50%, 
     transparent 100%);
   transition: left 0.6s ease;
   pointer-events: none;
@@ -1278,7 +1278,7 @@ button[data-dialog-close]:active {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, var(--dropdown-shimmer-light), transparent);
   animation: shimmer 0.8s ease-out;
   pointer-events: none;
   z-index: 1;
@@ -1321,7 +1321,7 @@ button[data-dialog-close]:active {
     0 0 0 1px var(--dropdown-focus-outline),
     0 4px 16px -4px var(--dropdown-focus-outline),
     0 0 32px -8px var(--dropdown-focus-outline),
-    0 8px 24px -8px rgba(0, 0, 0, 0.1);
+    0 8px 24px -8px var(--dropdown-shadow-dark);
 }
 
 [data-radix-select-item]:hover::before, 
@@ -1865,7 +1865,8 @@ button[data-dialog-close]:active {
 }
 
 .btn-destructive:hover {
-  background: rgb(var(--destructive) / 0.9);
+  background: var(--destructive);
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 
@@ -2126,7 +2127,7 @@ button[data-dialog-close]:active {
   height: 100%;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
+    var(--dropdown-shimmer-light) 50%, 
     transparent 100%);
   transition: left 0.6s ease;
   pointer-events: none;
