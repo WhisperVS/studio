@@ -6,6 +6,18 @@
 /* behaviors that are shared between light and dark themes. */
 /* Color-specific variables are defined in light-theme.css and dark-theme.css */
 
+/* Global scrollbar settings - Force visibility on all platforms */
+* {
+  /* Ensure scrollbars are always visible on macOS */
+  scrollbar-width: auto !important;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+}
+
 /* ============================= */
 /* BORDER RADIUS SYSTEM */
 /* ============================= */
@@ -61,39 +73,34 @@ button::before, .btn::before, [role="button"]::before {
 /* Glowing hover states */
 button:hover, .btn:hover, [role="button"]:hover {
   transform: translateY(-2px);
-  box-shadow: var(--btn-primary-glow, 0 0 20px rgba(120, 80, 255, 0.4)), 
-              var(--btn-primary-shadow, 0 8px 32px -8px rgba(120, 80, 255, 0.3));
+  box-shadow: var(--btn-primary-glow), var(--btn-primary-shadow);
 }
 
 /* Specific button type glows */
 .btn-export:hover, button[data-export]:hover {
-  box-shadow: var(--btn-export-glow, 0 0 25px rgba(100, 150, 255, 0.6)), 
-              var(--btn-export-shadow, 0 8px 32px -8px rgba(100, 150, 255, 0.4));
+  box-shadow: var(--btn-export-glow), var(--btn-export-shadow);
 }
 
 .btn-delete:hover, button[data-delete]:hover {
-  box-shadow: var(--btn-delete-glow, 0 0 25px rgba(255, 120, 150, 0.6)), 
-              var(--btn-delete-shadow, 0 8px 32px -8px rgba(255, 120, 150, 0.4));
+  box-shadow: var(--btn-delete-glow), var(--btn-delete-shadow);
 }
 
 .btn-clear:hover, .btn-filter:hover, .btn-cancel:hover {
-  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
-              var(--btn-clear-shadow, 0 4px 16px -4px rgba(120, 80, 255, 0.2));
+  box-shadow: var(--btn-clear-glow), var(--btn-clear-shadow);
 }
 
 /* Dropdown menu buttons special background */
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
-  background: var(--dropdown-background, rgba(250, 245, 255, 0.9));
-  border: 1px solid var(--dropdown-border, rgba(150, 100, 255, 0.3));
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
   backdrop-filter: blur(8px);
   position: relative;
 }
 
 button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
-  background: var(--dropdown-hover, rgba(240, 235, 255, 0.95));
-  border-color: var(--dropdown-border, rgba(150, 100, 255, 0.5));
-  box-shadow: var(--btn-clear-glow, 0 0 15px rgba(120, 80, 255, 0.4)), 
-              0 4px 16px -4px rgba(120, 80, 255, 0.2);
+  background: var(--dropdown-hover);
+  border-color: var(--dropdown-border-hover);
+  box-shadow: var(--btn-clear-glow), var(--btn-clear-shadow);
   backdrop-filter: blur(12px);
 }
 
@@ -317,36 +324,25 @@ input, select, textarea {
 
 /* Focus State - Clean glow effect */
 .search-input:focus {
-  border-color: var(--search-focus-border, rgba(59, 130, 246, 0.5)) !important;
-  box-shadow: 
-    0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-    0 0 20px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-    0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--search-focus-border) !important;
+  box-shadow: var(--search-focus-ring), var(--search-focus-glow), var(--search-focus-base-shadow) !important;
   background: var(--background) !important;
   outline: none !important;
 }
 
 /* Hover Effects - Subtle glow */
 .search-input:hover {
-  border-color: var(--search-focus-border, rgba(59, 130, 246, 0.3)) !important;
-  box-shadow: 
-    0 0 10px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-    0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--search-hover-border) !important;
+  box-shadow: var(--search-hover-glow), var(--search-hover-base-shadow) !important;
 }
 
 /* Remove liquid animation */
 @keyframes searchLiquidFloat {
   0%, 100% { 
-    box-shadow: 
-      0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.1)),
-      0 0 20px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-      0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--search-focus-ring), var(--search-focus-glow), var(--search-focus-base-shadow);
   }
   50% { 
-    box-shadow: 
-      0 0 0 3px var(--search-focus-shadow, rgba(59, 130, 246, 0.15)),
-      0 0 25px var(--search-focus-shadow, rgba(59, 130, 246, 0.2)),
-      0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--search-focus-ring-intense), var(--search-focus-glow-intense), var(--search-focus-base-shadow);
   }
 }
 
@@ -356,7 +352,7 @@ input, select, textarea {
 
 /* Search Icon Styling */
 .search-icon {
-  color: var(--search-icon-color, rgba(156, 163, 175, 0.8)) !important;
+  color: var(--search-icon-color) !important;
   transition: all 0.3s ease !important;
   z-index: 2 !important;
   position: absolute !important;
@@ -366,16 +362,16 @@ input, select, textarea {
 /* Search Container Fixes */
 .search-container:focus-within .search-icon,
 .search-container:hover .search-icon {
-  color: var(--search-icon-active, rgba(59, 130, 246, 0.8)) !important;
+  color: var(--search-icon-active) !important;
   transform: scale(1.05);
 }
 
 /* Clear Button Styling - Enhanced liquid glass */
 .search-clear-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: var(--search-clear-bg) !important;
   backdrop-filter: blur(12px) !important;
   border-radius: 6px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid var(--search-clear-border) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   z-index: 2 !important;
   position: absolute !important;
@@ -384,28 +380,19 @@ input, select, textarea {
   transform: translateY(-50%) !important;
   width: 28px !important;
   height: 28px !important;
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--search-clear-shadow) !important;
 }
 
 .search-clear-btn:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: var(--search-clear-bg-hover) !important;
+  border-color: var(--search-clear-border-hover) !important;
   transform: translateY(-50%) !important;
-  box-shadow: 
-    0 0 15px var(--search-clear-glow, rgba(239, 68, 68, 0.5)),
-    0 0 30px var(--search-clear-glow, rgba(239, 68, 68, 0.3)),
-    0 6px 20px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  box-shadow: var(--search-clear-glow), var(--search-clear-shadow-hover) !important;
 }
 
 .search-clear-btn:active {
   transform: translateY(-50%) scale(0.95) !important;
-  box-shadow: 
-    0 0 10px var(--search-clear-glow, rgba(239, 68, 68, 0.4)),
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--search-clear-glow-active), var(--search-clear-shadow-active) !important;
 }
 
 /* ============================= */
@@ -415,6 +402,8 @@ input, select, textarea {
 .asset-table, table {
   border-radius: var(--radius-md);
   overflow: hidden;
+  min-width: 100%;
+  width: max-content; /* Allow table to grow beyond container width */
 }
 
 /* Header Background - Unified Gradient */
@@ -524,12 +513,12 @@ input, select, textarea {
 
 /* Light theme glow for active sidebar items */
 .light [data-sidebar="menu-button"][data-active="true"] {
-  box-shadow: 0 4px 12px -4px rgba(251, 146, 60, 0.4), 0 0 20px rgba(251, 146, 60, 0.15);
+  box-shadow: var(--sidebar-active-glow-light);
 }
 
 /* Dark theme glow for active sidebar items */
 .dark [data-sidebar="menu-button"][data-active="true"] {
-  box-shadow: 0 4px 12px -4px rgba(120, 150, 255, 0.4), 0 0 20px rgba(150, 120, 255, 0.15);
+  box-shadow: var(--sidebar-active-glow-dark);
 }
 
 /* Icon styling for active items */
@@ -545,12 +534,12 @@ input, select, textarea {
 
 /* Light theme icon glow for active items */
 .light [data-sidebar="menu-button"][data-active="true"] svg {
-  filter: drop-shadow(0 0 6px rgba(251, 146, 60, 0.6));
+  filter: var(--sidebar-icon-glow-light);
 }
 
 /* Dark theme icon glow for active items */
 .dark [data-sidebar="menu-button"][data-active="true"] svg {
-  filter: drop-shadow(0 0 6px rgba(150, 120, 255, 0.6));
+  filter: var(--sidebar-icon-glow-dark);
 }
 
 /* ============================= */
@@ -727,71 +716,72 @@ input, select, textarea {
 /* Light theme toggle colors */
 .light .theme-toggle-sun-icon {
   color: var(--theme-toggle-sun-color);
-  filter: drop-shadow(0 0 6px var(--theme-toggle-sun-glow)) drop-shadow(0 0 12px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter);
 }
 
 .light .theme-toggle-moon-icon {
   color: var(--theme-toggle-moon-color);
-  filter: drop-shadow(0 0 6px var(--theme-toggle-moon-glow)) drop-shadow(0 0 12px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter);
 }
 
 /* Enhanced hover effects for icons */
 .light .theme-toggle:hover .theme-toggle-sun-icon {
-  filter: drop-shadow(0 0 8px var(--theme-toggle-sun-glow)) drop-shadow(0 0 16px var(--theme-toggle-sun-glow)) drop-shadow(0 0 24px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter-hover);
 }
 
 .light .theme-toggle:hover .theme-toggle-moon-icon {
-  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow)) drop-shadow(0 0 16px var(--theme-toggle-moon-glow)) drop-shadow(0 0 24px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter-hover);
 }
 
 /* Dark theme toggle colors */
 .dark .theme-toggle-sun-icon {
   color: var(--theme-toggle-sun-color);
-  filter: drop-shadow(0 0 6px var(--theme-toggle-sun-glow)) drop-shadow(0 0 12px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter);
 }
 
 .dark .theme-toggle-moon-icon {
   color: var(--theme-toggle-moon-color);
-  filter: drop-shadow(0 0 6px var(--theme-toggle-moon-glow)) drop-shadow(0 0 12px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter);
 }
 
 .dark .theme-toggle:hover .theme-toggle-sun-icon {
-  filter: drop-shadow(0 0 8px var(--theme-toggle-sun-glow)) drop-shadow(0 0 16px var(--theme-toggle-sun-glow)) drop-shadow(0 0 24px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter-hover);
 }
 
 .dark .theme-toggle:hover .theme-toggle-moon-icon {
-  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow)) drop-shadow(0 0 16px var(--theme-toggle-moon-glow)) drop-shadow(0 0 24px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter-hover);
 }
 
+/* Light theme hover effects with clean variables */
 .light .theme-toggle:hover .theme-toggle-sun-icon {
   transform: scale(1.1) rotate(10deg);
-  filter: drop-shadow(0 0 8px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter-hover);
 }
 
 .light .theme-toggle:hover .theme-toggle-moon-icon {
   transform: scale(1.1) rotate(-10deg);
-  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter-hover);
 }
 
-/* Dark theme toggle colors */
+/* Dark theme toggle colors with clean variables */
 .dark .theme-toggle-sun-icon {
   color: var(--theme-toggle-sun-color);
-  filter: drop-shadow(0 0 4px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter);
 }
 
 .dark .theme-toggle-moon-icon {
   color: var(--theme-toggle-moon-color);
-  filter: drop-shadow(0 0 8px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter);
 }
 
 .dark .theme-toggle:hover .theme-toggle-sun-icon {
   transform: scale(1.1) rotate(10deg);
-  filter: drop-shadow(0 0 12px var(--theme-toggle-sun-glow));
+  filter: var(--theme-toggle-sun-filter-hover);
 }
 
 .dark .theme-toggle:hover .theme-toggle-moon-icon {
   transform: scale(1.1) rotate(-10deg);
-  filter: drop-shadow(0 0 16px var(--theme-toggle-moon-glow)) drop-shadow(0 0 28px var(--theme-toggle-moon-glow));
+  filter: var(--theme-toggle-moon-filter-hover);
 }
 
 .theme-toggle-placeholder-icon {
@@ -845,8 +835,39 @@ input, select, textarea {
 /* Table container scrolling */
 .table-container {
   max-height: calc(100vh - 280px);
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow: auto;
+}
+
+/* Force scrollbars to be visible on all platforms */
+.scrollbar-neon {
+  /* Force scrollbars to be visible on macOS */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: auto; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* Firefox */
+}
+
+.scrollbar-neon::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.scrollbar-neon::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 6px;
+}
+
+.scrollbar-neon::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+.scrollbar-neon::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.scrollbar-neon::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
 }
 
 /* ============================= */
@@ -1217,7 +1238,7 @@ button[class*="primary"]::before, button[class*="secondary"]::before, button[cla
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: var(--btn-shine-gradient);
   transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
@@ -1237,7 +1258,7 @@ button[class*="primary"]::after, button[class*="secondary"]::after, button[class
   left: 1px;
   right: 1px;
   height: 40%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  background: var(--btn-refraction-gradient);
   border-radius: 11px 11px 0 0;
   pointer-events: none;
   z-index: 2;
@@ -1248,33 +1269,23 @@ button[class*="primary"]::after, button[class*="secondary"]::after, button[class
 button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="outline"] > *, button[class*="destructive"] > * {
   position: relative;
   z-index: 3;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: var(--btn-text-shadow);
 }
 
 .btn-primary, button[class*="primary"] {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 8px 32px -8px var(--btn-primary-shadow, rgba(120, 80, 255, 0.3)),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: var(--btn-primary-inset), var(--btn-primary-shadow), var(--btn-primary-border);
 }
 
 .btn-primary:hover, button[class*="primary"]:hover {
   transform: translateY(-4px) scale(1.03);
   filter: brightness(1.15) saturate(1.2);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 12px 48px -8px var(--btn-primary-shadow, rgba(120, 80, 255, 0.4)),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    var(--btn-primary-glow, 0 0 30px rgba(120, 80, 255, 0.5));
+  box-shadow: var(--btn-primary-inset-hover), var(--btn-primary-shadow-hover), var(--btn-primary-border-hover), var(--btn-primary-glow);
 }
 
 .btn-secondary:hover, button[class*="secondary"]:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 8px 24px -4px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: var(--btn-secondary-inset-hover), var(--btn-secondary-shadow-hover), var(--btn-secondary-border-hover);
 }
 
 /* Outline Button Styles with Liquid Glass */
@@ -1283,21 +1294,14 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   color: var(--button-secondary-text);
   border: 1px solid var(--button-secondary-border);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 4px 16px -4px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+  box-shadow: var(--btn-outline-inset), var(--btn-outline-shadow), var(--btn-outline-border);
 }
 
 .btn-outline:hover {
   background: var(--button-secondary-bg-hover);
   color: var(--button-secondary-text-hover);
   border-color: var(--button-secondary-border-hover);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    var(--glow-secondary),
-    0 8px 32px -8px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: var(--btn-outline-inset-hover), var(--glow-secondary), var(--btn-outline-shadow-hover), var(--btn-outline-border-hover);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -1307,22 +1311,14 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   color: var(--button-destructive-text);
   border: 1px solid var(--button-destructive-border);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 8px 32px -8px rgba(239, 68, 68, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: var(--btn-destructive-inset), var(--btn-destructive-shadow), var(--btn-destructive-border);
 }
 
 .btn-destructive:hover {
   background: var(--button-destructive-bg-hover);
   color: var(--button-destructive-text-hover);
   border-color: var(--button-destructive-border-hover);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    var(--glow-destructive),
-    0 12px 48px -8px rgba(239, 68, 68, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 30px rgba(239, 68, 68, 0.3);
+  box-shadow: var(--btn-destructive-inset-hover), var(--glow-destructive), var(--btn-destructive-shadow-hover), var(--btn-destructive-border-hover), var(--btn-destructive-glow);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -1338,9 +1334,7 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
 .btn-primary:active, .btn-secondary:active, .btn-outline:active, .btn-destructive:active, .btn-export:active, .btn-connect:active, .btn-apply:active, .btn-select-all:active, .btn-delete:active,
 button[class*="primary"]:active, button[class*="secondary"]:active, button[class*="outline"]:active, button[class*="destructive"]:active {
   transform: translateY(-1px) scale(0.98);
-  box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.1),
-    0 4px 16px -4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--btn-active-inset), var(--btn-active-shadow);
 }
 
 /* Floating bubble effect for primary buttons */
@@ -1395,20 +1389,11 @@ button[class*="primary"]:hover {
 
 /* Premium glass depth effect */
 .btn-export, .btn-delete {
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-    0 8px 32px -8px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: var(--btn-special-inset), var(--btn-special-inset-bottom), var(--btn-special-shadow), var(--btn-special-border);
 }
 
 .btn-export:hover, .btn-delete:hover {
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-    0 16px 48px -8px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 40px var(--btn-export-glow, var(--btn-delete-glow, rgba(100, 150, 255, 0.4)));
+  box-shadow: var(--btn-special-inset-hover), var(--btn-special-inset-bottom-hover), var(--btn-special-shadow-hover), var(--btn-special-border-hover), var(--btn-special-glow);
 }
 
 .btn-success:hover, button[class*="success"]:hover {
