@@ -215,7 +215,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   return (
     <>
       {/* create an isolated stacking context so the table's sticky elements can't escape and overlap higher-level UI like the sidebar */}
-      <div className="rounded-lg border overflow-hidden flex-1 isolate">
+      <div className="rounded-md border overflow-hidden flex-1 isolate">
         <div className="relative w-full h-full flex flex-col">
           {/* Scrollable table area - fixed height so table content scrolls internally */}
           <div ref={scrollRef} className="w-full overflow-auto relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '1.5rem', paddingRight: '1rem' }}>

@@ -400,7 +400,7 @@ input, select, textarea {
 /* ============================= */
 
 .asset-table, table {
-  border-radius: var(--radius-md);
+  border-radius: calc(var(--radius) - 2px); /* Match rounded-md */
   overflow: hidden;
   min-width: 100%;
   width: max-content; /* Allow table to grow beyond container width */

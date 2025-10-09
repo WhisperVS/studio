@@ -511,9 +511,9 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="table-container flex-1 min-h-0 overflow-auto flex max-h-[calc(100vh-300px)] border rounded-lg">
+              <div className="table-container flex-1 min-h-0 overflow-auto flex max-h-[calc(100vh-300px)] border rounded-md">
                 {!isClient || isInitialLoad ? (
-                  <div className="rounded-lg border overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
+                  <div className="rounded-md border overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
                     <table className="w-full caption-bottom text-sm">
                       <thead className="[&_tr]:border-b">
                         <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
