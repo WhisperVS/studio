@@ -81,7 +81,7 @@ button::before, .btn::before, [role="button"]::before {
   left: 50%;
   width: 0;
   height: 0;
-  border-radius: 50%;
+  border-radius: inherit;
   transform: translate(-50%, -50%);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
@@ -94,18 +94,13 @@ button:hover, .btn:hover, [role="button"]:hover {
   box-shadow: var(--btn-primary-glow), var(--btn-primary-shadow);
 }
 
-/* Specific button type glows */
-.btn-export:hover, button[data-export]:hover {
-  box-shadow: var(--btn-export-glow), var(--btn-export-shadow);
+/* Standard glow effects for ALL action buttons */
+.btn-primary:hover, .btn-secondary:hover, .btn-outline:hover, .btn-destructive:hover, .btn-export:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover, .btn-delete:hover, .btn-cancel:hover, .btn-clear-filters:hover, .btn-clear-selection:hover, .btn-view-settings:hover,
+button[data-export]:hover, button[data-delete]:hover {
+  box-shadow: var(--glow-primary);
 }
 
-.btn-delete:hover, button[data-delete]:hover {
-  box-shadow: var(--btn-delete-glow), var(--btn-delete-shadow);
-}
-
-.btn-clear:hover, .btn-filter:hover, .btn-cancel:hover {
-  box-shadow: var(--btn-clear-glow), var(--btn-clear-shadow);
-}
+/* Removed inconsistent hover effects */
 
 /* Dropdown menu buttons special background */
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
@@ -1169,10 +1164,7 @@ input, select, textarea {
   border-radius: var(--radius-md);
 }
 
-.btn-clear-filters {
-  font-weight: 500;
-  border-radius: var(--radius-md);
-}
+/* Removed special clear-filters styling - using standard button effects now */
 
 .top-controls *:focus-visible {
   outline: 2px solid var(--focus-ring);
@@ -1284,19 +1276,19 @@ input, select, textarea {
 /* LIQUID GLASS MORPHISM EFFECTS */
 /* ============================= */
 
-/* Base liquid glass effect for all buttons */
-.btn-primary, .btn-secondary, .btn-outline, .btn-destructive, .btn-export, .btn-connect, .btn-apply, .btn-select-all, .btn-delete,
+/* Base liquid glass effect for ALL action buttons */
+.btn-primary, .btn-secondary, .btn-outline, .btn-destructive, .btn-export, .btn-connect, .btn-apply, .btn-select-all, .btn-delete, .btn-cancel, .btn-clear-filters, .btn-clear-selection, .btn-view-settings,
 button[class*="primary"], button[class*="secondary"], button[class*="outline"], button[class*="destructive"] {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
+  border-radius: var(--radius);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Liquid glass shine effect */
-.btn-primary::before, .btn-secondary::before, .btn-outline::before, .btn-destructive::before, .btn-export::before, .btn-connect::before, .btn-apply::before, .btn-select-all::before, .btn-delete::before,
+/* Liquid glass shine effect for ALL action buttons */
+.btn-primary::before, .btn-secondary::before, .btn-outline::before, .btn-destructive::before, .btn-export::before, .btn-connect::before, .btn-apply::before, .btn-select-all::before, .btn-delete::before, .btn-cancel::before, .btn-clear-filters::before, .btn-clear-selection::before, .btn-view-settings::before,
 button[class*="primary"]::before, button[class*="secondary"]::before, button[class*="outline"]::before, button[class*="destructive"]::before {
   content: '';
   position: absolute;
@@ -1310,13 +1302,14 @@ button[class*="primary"]::before, button[class*="secondary"]::before, button[cla
 }
 
 /* Animated liquid shine on hover */
-.btn-primary:hover::before, .btn-secondary:hover::before, .btn-outline:hover::before, .btn-destructive:hover::before, .btn-export:hover::before, .btn-connect:hover::before, .btn-apply:hover::before, .btn-select-all:hover::before, .btn-delete:hover::before,
+/* Ripple effect on hover for ALL action buttons */
+.btn-primary:hover::before, .btn-secondary:hover::before, .btn-outline:hover::before, .btn-destructive:hover::before, .btn-export:hover::before, .btn-connect:hover::before, .btn-apply:hover::before, .btn-select-all:hover::before, .btn-delete:hover::before, .btn-cancel:hover::before, .btn-clear-filters:hover::before, .btn-clear-selection:hover::before, .btn-view-settings:hover::before,
 button[class*="primary"]:hover::before, button[class*="secondary"]:hover::before, button[class*="outline"]:hover::before, button[class*="destructive"]:hover::before {
   left: 100%;
 }
 
-/* Liquid glass refraction effect */
-.btn-primary::after, .btn-secondary::after, .btn-outline::after, .btn-destructive::after, .btn-export::after, .btn-connect::after, .btn-apply::after, .btn-select-all::after, .btn-delete::after,
+/* Liquid glass refraction effect for ALL action buttons */
+.btn-primary::after, .btn-secondary::after, .btn-outline::after, .btn-destructive::after, .btn-export::after, .btn-connect::after, .btn-apply::after, .btn-select-all::after, .btn-delete::after, .btn-cancel::after, .btn-clear-filters::after, .btn-clear-selection::after, .btn-view-settings::after,
 button[class*="primary"]::after, button[class*="secondary"]::after, button[class*="outline"]::after, button[class*="destructive"]::after {
   content: '';
   position: absolute;
@@ -1325,13 +1318,14 @@ button[class*="primary"]::after, button[class*="secondary"]::after, button[class
   right: 1px;
   height: 40%;
   background: var(--btn-refraction-gradient);
-  border-radius: 11px 11px 0 0;
+  border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
   pointer-events: none;
   z-index: 2;
 }
 
 /* Enhanced button text with glass effect */
-.btn-primary > *, .btn-secondary > *, .btn-outline > *, .btn-destructive > *, .btn-export > *, .btn-connect > *, .btn-apply > *, .btn-select-all > *, .btn-delete > *,
+/* Content positioning for ALL action buttons */
+.btn-primary > *, .btn-secondary > *, .btn-outline > *, .btn-destructive > *, .btn-export > *, .btn-connect > *, .btn-apply > *, .btn-select-all > *, .btn-delete > *, .btn-cancel > *, .btn-clear-filters > *, .btn-clear-selection > *, .btn-view-settings > *,
 button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="outline"] > *, button[class*="destructive"] > * {
   position: relative;
   z-index: 3;
@@ -1349,10 +1343,7 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   box-shadow: var(--btn-primary-inset-hover), var(--btn-primary-shadow-hover), var(--btn-primary-border-hover), var(--btn-primary-glow);
 }
 
-.btn-secondary:hover, button[class*="secondary"]:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: var(--btn-secondary-inset-hover), var(--btn-secondary-shadow-hover), var(--btn-secondary-border-hover);
-}
+/* Removed - now using standardized hover effects */
 
 /* Outline Button Styles with Liquid Glass */
 .btn-outline {
@@ -1363,13 +1354,7 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   box-shadow: var(--btn-outline-inset), var(--btn-outline-shadow), var(--btn-outline-border);
 }
 
-.btn-outline:hover {
-  background: var(--button-secondary-bg-hover);
-  color: var(--button-secondary-text-hover);
-  border-color: var(--button-secondary-border-hover);
-  box-shadow: var(--btn-outline-inset-hover), var(--glow-secondary), var(--btn-outline-shadow-hover), var(--btn-outline-border-hover);
-  transform: translateY(-3px) scale(1.02);
-}
+/* Using standardized hover effects now */
 
 /* Destructive Button Styles with Liquid Glass */
 .btn-destructive {
@@ -1380,13 +1365,7 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
   box-shadow: var(--btn-destructive-inset), var(--btn-destructive-shadow), var(--btn-destructive-border);
 }
 
-.btn-destructive:hover {
-  background: var(--button-destructive-bg-hover);
-  color: var(--button-destructive-text-hover);
-  border-color: var(--button-destructive-border-hover);
-  box-shadow: var(--btn-destructive-inset-hover), var(--glow-destructive), var(--btn-destructive-shadow-hover), var(--btn-destructive-border-hover), var(--btn-destructive-glow);
-  transform: translateY(-3px) scale(1.02);
-}
+/* Using standardized hover effects now */
 
 .btn-success, button[class*="success"] {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1396,49 +1375,26 @@ button[class*="primary"] > *, button[class*="secondary"] > *, button[class*="out
 /* ADVANCED LIQUID GLASS EFFECTS */
 /* ============================= */
 
-/* Liquid ripple effect on click */
-.btn-primary:active, .btn-secondary:active, .btn-outline:active, .btn-destructive:active, .btn-export:active, .btn-connect:active, .btn-apply:active, .btn-select-all:active, .btn-delete:active,
+/* Active state for ALL action buttons */
+.btn-primary:active, .btn-secondary:active, .btn-outline:active, .btn-destructive:active, .btn-export:active, .btn-connect:active, .btn-apply:active, .btn-select-all:active, .btn-delete:active, .btn-cancel:active, .btn-clear-filters:active, .btn-clear-selection:active, .btn-view-settings:active,
 button[class*="primary"]:active, button[class*="secondary"]:active, button[class*="outline"]:active, button[class*="destructive"]:active {
   transform: translateY(-1px) scale(0.98);
   box-shadow: var(--btn-active-inset), var(--btn-active-shadow);
 }
 
-/* Floating bubble effect for primary buttons */
-.btn-primary:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover,
-button[class*="primary"]:hover {
-  animation: liquidFloat 3s ease-in-out infinite;
+/* Standard hover transform for ALL action buttons */
+.btn-primary:hover, .btn-secondary:hover, .btn-outline:hover, .btn-destructive:hover, .btn-export:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover, .btn-delete:hover, .btn-cancel:hover, .btn-clear-filters:hover, .btn-clear-selection:hover, .btn-view-settings:hover,
+button[class*="primary"]:hover, button[class*="secondary"]:hover, button[class*="outline"]:hover, button[class*="destructive"]:hover {
+  transform: translateY(-2px) scale(1.02);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@keyframes liquidFloat {
-  0%, 100% { transform: translateY(-4px) scale(1.03) rotate(0deg); }
-  25% { transform: translateY(-5px) scale(1.035) rotate(0.5deg); }
-  50% { transform: translateY(-3px) scale(1.025) rotate(0deg); }
-  75% { transform: translateY(-4.5px) scale(1.032) rotate(-0.5deg); }
-}
+/* Removed complex surface animations for consistency */
 
-/* Liquid surface tension effect */
-.btn-primary, .btn-connect, .btn-apply, .btn-select-all,
-button[class*="primary"] {
-  background-size: 200% 200%;
-  background-position: 0% 0%;
-}
-
-.btn-primary:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover,
-button[class*="primary"]:hover {
-  animation: liquidSurface 4s ease-in-out infinite;
-}
-
-@keyframes liquidSurface {
-  0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 50% 0%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 50% 100%; }
-}
-
-/* Glass refraction shimmer */
-.btn-primary:hover::after, .btn-secondary:hover::after, .btn-outline:hover::after, .btn-destructive:hover::after, .btn-export:hover::after, .btn-connect:hover::after, .btn-apply:hover::after, .btn-select-all:hover::after, .btn-delete:hover::after,
+/* Glass refraction shimmer for ALL action buttons */
+.btn-primary:hover::after, .btn-secondary:hover::after, .btn-outline:hover::after, .btn-destructive:hover::after, .btn-export:hover::after, .btn-connect:hover::after, .btn-apply:hover::after, .btn-select-all:hover::after, .btn-delete:hover::after, .btn-cancel:hover::after, .btn-clear-filters:hover::after, .btn-clear-selection:hover::after, .btn-view-settings:hover::after,
 button[class*="primary"]:hover::after, button[class*="secondary"]:hover::after, button[class*="outline"]:hover::after, button[class*="destructive"]:hover::after {
-  animation: glassShimmer 2s ease-in-out infinite;
+  animation: glassShimmer 4s ease-in-out infinite;
 }
 
 @keyframes glassShimmer {
@@ -1446,21 +1402,9 @@ button[class*="primary"]:hover::after, button[class*="secondary"]:hover::after, 
   50% { opacity: 0.2; height: 50%; }
 }
 
-/* Liquid glass morphing border */
-.btn-primary:hover, .btn-connect:hover, .btn-apply:hover, .btn-select-all:hover,
-button[class*="primary"]:hover {
-  border-radius: 16px;
-  transition: border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+/* Removed complex border morphing for consistency */
 
-/* Premium glass depth effect */
-.btn-export, .btn-delete {
-  box-shadow: var(--btn-special-inset), var(--btn-special-inset-bottom), var(--btn-special-shadow), var(--btn-special-border);
-}
-
-.btn-export:hover, .btn-delete:hover {
-  box-shadow: var(--btn-special-inset-hover), var(--btn-special-inset-bottom-hover), var(--btn-special-shadow-hover), var(--btn-special-border-hover), var(--btn-special-glow);
-}
+/* Removed special shadow system - using standard effects now */
 
 .btn-success:hover, button[class*="success"]:hover {
   transform: translateY(-2px);
