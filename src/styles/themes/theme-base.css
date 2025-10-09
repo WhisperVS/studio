@@ -9,7 +9,7 @@
 /* Global scrollbar settings - Force visibility on all platforms */
 * {
   /* Ensure scrollbars are always visible on macOS */
-  scrollbar-width: auto !important;
+  scrollbar-width: auto;
 }
 
 ::-webkit-scrollbar {
@@ -172,7 +172,7 @@ button:disabled, .btn:disabled, [role="button"]:disabled {
 
 .btn-loading, button[data-loading="true"] {
   position: relative;
-  color: transparent !important;
+  color: transparent;
   pointer-events: none;
 }
 
@@ -309,24 +309,24 @@ input, select, textarea {
 
 /* Ensure top-controls search container aligns properly */
 .top-controls .search-container {
-  height: 36px !important;
-  align-self: center !important;
+  height: 36px;
+  align-self: center;
 }
 
 .search-input {
   /* Clean modern input styling */
-  background: var(--background) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--search-base-shadow);
   
   /* Remove liquid glass effects */
-  backdrop-filter: none !important;
+  backdrop-filter: none;
   position: relative;
   overflow: visible;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  height: 36px !important;
-  line-height: 1 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 36px;
+  line-height: 1;
 }
 
 /* Remove glass refraction effects */
@@ -337,16 +337,16 @@ input, select, textarea {
 
 /* Focus State - Clean glow effect */
 .search-input:focus {
-  border-color: var(--search-focus-border) !important;
-  box-shadow: var(--search-focus-ring), var(--search-focus-glow), var(--search-focus-base-shadow) !important;
-  background: var(--background) !important;
-  outline: none !important;
+  border-color: var(--search-focus-border);
+  box-shadow: var(--search-focus-ring), var(--search-focus-glow), var(--search-focus-base-shadow);
+  background: var(--background);
+  outline: none;
 }
 
 /* Hover Effects - Subtle glow */
 .search-input:hover {
-  border-color: var(--search-hover-border) !important;
-  box-shadow: var(--search-hover-glow), var(--search-hover-base-shadow) !important;
+  border-color: var(--search-hover-border);
+  box-shadow: var(--search-hover-glow), var(--search-hover-base-shadow);
 }
 
 /* Remove liquid animation */
@@ -365,47 +365,47 @@ input, select, textarea {
 
 /* Search Icon Styling */
 .search-icon {
-  color: var(--search-icon-color) !important;
-  transition: all 0.3s ease !important;
-  z-index: 2 !important;
-  position: absolute !important;
-  pointer-events: none !important;
+  color: var(--search-icon-color);
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: absolute;
+  pointer-events: none;
 }
 
 /* Search Container Fixes */
 .search-container:focus-within .search-icon,
 .search-container:hover .search-icon {
-  color: var(--search-icon-active) !important;
+  color: var(--search-icon-active);
   transform: scale(1.05);
 }
 
 /* Clear Button Styling - Enhanced liquid glass */
 .search-clear-btn {
-  background: var(--search-clear-bg) !important;
-  backdrop-filter: blur(12px) !important;
-  border-radius: 6px !important;
-  border: 1px solid var(--search-clear-border) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  z-index: 2 !important;
-  position: absolute !important;
-  right: 4px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  box-shadow: var(--search-clear-shadow) !important;
+  background: var(--search-clear-bg);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--search-clear-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  box-shadow: var(--search-clear-shadow);
 }
 
 .search-clear-btn:hover {
-  background: var(--search-clear-bg-hover) !important;
-  border-color: var(--search-clear-border-hover) !important;
-  transform: translateY(-50%) !important;
-  box-shadow: var(--search-clear-glow), var(--search-clear-shadow-hover) !important;
+  background: var(--search-clear-bg-hover);
+  border-color: var(--search-clear-border-hover);
+  transform: translateY(-50%);
+  box-shadow: var(--search-clear-glow), var(--search-clear-shadow-hover);
 }
 
 .search-clear-btn:active {
-  transform: translateY(-50%) scale(0.95) !important;
-  box-shadow: var(--search-clear-glow-active), var(--search-clear-shadow-active) !important;
+  transform: translateY(-50%) scale(0.95);
+  box-shadow: var(--search-clear-glow-active), var(--search-clear-shadow-active);
 }
 
 /* ============================= */
@@ -516,8 +516,8 @@ input, select, textarea {
 
 /* Enhanced active state for SidebarMenuButton */
 [data-sidebar="menu-button"][data-active="true"] {
-  background: var(--sidebar-link-active) !important;
-  color: var(--sidebar-link-active-text) !important;
+  background: var(--sidebar-link-active);
+  color: var(--sidebar-link-active-text);
   font-weight: 600;
   transform: translateX(4px);
   border-left: 3px solid var(--sidebar-primary);
@@ -978,20 +978,20 @@ input, select, textarea {
 }
 
 [data-collapsible="icon"] a, [data-collapsible="icon"] button {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 60px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
   border-radius: 0;
 }
 
 [data-collapsible="icon"] svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 auto !important;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
 }
 
 [data-collapsible="icon"] [data-sidebar="header"] {
@@ -1033,12 +1033,12 @@ input, select, textarea {
 /* ============================= */
 
 [data-sidebar] .sidebar-nav-item, .sidebar-group a, .sidebar-group button, [role="menuitem"] {
-  display: flex !important;
-  align-items: center !important;
-  padding: 12px 16px !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 12px;
   border-radius: var(--radius-sm);
   margin: 2px 0;
   transition: all 0.2s ease;
@@ -1101,19 +1101,19 @@ input, select, textarea {
 /* Override old input styling for search specifically */
 .top-controls .search-container input[type="text"], 
 .top-controls .search-input {
-  font-weight: 400 !important;
-  border-radius: 10px !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-  line-height: 1 !important;
-  font-size: 14px !important;
-  padding: 8px 40px 8px 40px !important;
-  margin: 0 !important;
-  position: relative !important;
-  display: block !important;
+  font-weight: 400;
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  line-height: 1;
+  font-size: 14px;
+  padding: 8px 40px 8px 40px;
+  margin: 0;
+  position: relative;
+  display: block;
 }
 
 .top-controls .relative {
@@ -1149,14 +1149,14 @@ input, select, textarea {
 
 /* Override for our new search icon */
 .top-controls .search-container .search-icon {
-  position: absolute !important;
-  left: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 16px !important;
-  height: 16px !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  z-index: 5;
+  pointer-events: none;
 }
 
 .top-controls button[role="combobox"] {
@@ -1429,7 +1429,7 @@ button[class*="primary"]:hover::after, button[class*="secondary"]:hover::after, 
 
 /* Individual header cells should be transparent to show the gradient */
 .table-header-bg th {
-  background: transparent !important;
+  background: transparent;
 }
 
 .table-cell-border {

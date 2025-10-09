@@ -39,6 +39,10 @@
   --input-shadow: 0 4px 16px -4px rgba(251, 146, 60, 0.1);
   --input-shadow-focus: 0 8px 32px -8px rgba(249, 115, 22, 0.3);
   
+  /* Search specific colors */
+  --search-base-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --radius-sm: 4px;
+  
   /* Dropdown & Select Colors */
   --dropdown-background: rgba(254, 242, 242, 0.98);
   --dropdown-border: rgba(251, 146, 60, 0.4);
