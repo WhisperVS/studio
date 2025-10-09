@@ -33,7 +33,7 @@ import { Badge } from "@/components/ui/badge";
 import type { Asset } from "@/lib/types";
 import { useToast } from '@/hooks/use-toast';
 import { APP_CONFIG, getStatusVariant } from '@/lib/config';
-import { Checkbox } from './ui/checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 
 type SortKey = keyof Asset | '';
@@ -138,7 +138,13 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
 
   if (assets.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center text-center p-12 border-2 border-dashed rounded-lg">
+      <div 
+        className="flex flex-col items-center justify-center text-center p-12 border rounded-md flex-1 min-h-0 max-h-[calc(100vh-300px)]"
+        style={{
+          borderColor: 'var(--card-border)',
+          background: 'var(--card-background)'
+        }}
+      >
         <h3 className="text-xl font-semibold tracking-tight font-headline">No Assets Found</h3>
         <p className="text-muted-foreground mt-2">
           Get started by adding your first asset to the inventory or try a different search.
@@ -215,10 +221,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   return (
     <>
       {/* create an isolated stacking context so the table's sticky elements can't escape and overlap higher-level UI like the sidebar */}
-      <div className="rounded-md border overflow-hidden flex-1 isolate">
+      <div className="overflow-hidden flex-1 isolate h-full">
         <div className="relative w-full h-full flex flex-col">
           {/* Scrollable table area - fixed height so table content scrolls internally */}
-          <div ref={scrollRef} className="w-full overflow-auto relative scrollbar-neon" style={{ height: tableHeight ?? '98%', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
+          <div ref={scrollRef} className="w-full overflow-auto relative scrollbar-neon" style={{ height: tableHeight ?? '98%' }}>
             <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableHeader>
                 <TableHeaderRow>
@@ -302,7 +308,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
                               <DropdownMenuItem
-                                className="text-destructive focus:text-destructive focus:bg-destructive/10"
+                                className="text-destructive  "
                                 onClick={() => openDeleteDialog(asset.id)}
                               >
                                 <Trash2 className="mr-2 h-4 w-4" />
@@ -346,7 +352,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete} className="bg-destructive hover:bg-destructive/90">
+            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground">
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>

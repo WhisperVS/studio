@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Asset } from "@/lib/types";
 import { format } from "date-fns";
-import { Badge } from "./ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { APP_CONFIG, getStatusVariant } from "@/lib/config";
 import { ExternalLink } from "lucide-react";
 
@@ -71,7 +71,7 @@ export function AssetDetailsDialog({ asset, isOpen, onOpenChange }: AssetDetails
             <DetailItem 
               label={APP_CONFIG.labels.webui} 
               value={
-                <a href={asset.webui} target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">
+                <a href={asset.webui} target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4">
                   {asset.webui}
                 </a>
               } 

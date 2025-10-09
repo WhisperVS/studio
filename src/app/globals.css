@@ -87,19 +87,10 @@ html {
     box-shadow: var(--btn-primary-shadow);
   }
 
-  .btn-primary:hover {
-    background: var(--btn-primary-hover);
-    border-color: transparent;
-  }
-
   .btn-secondary {
     background: var(--btn-secondary-bg);
     color: var(--btn-secondary-text);
     border: 1px solid var(--btn-secondary-border);
-  }
-
-  .btn-secondary:hover {
-    background: var(--btn-secondary-hover);
   }
 
   .btn-destructive {
@@ -108,30 +99,16 @@ html {
     border: 1px solid var(--destructive);
   }
 
-  .btn-destructive:hover {
-    background: rgb(var(--destructive) / 0.9);
-  }
-
   .btn-outline {
     border: 1px solid var(--input-border);
     background: var(--background);
     color: var(--page-text);
   }
 
-  .btn-outline:hover {
-    background: var(--accent);
-    color: var(--accent-foreground);
-  }
-
   .btn-ghost {
     background: transparent;
     color: var(--page-text);
     border: 1px solid transparent;
-  }
-
-  .btn-ghost:hover {
-    background: var(--accent);
-    color: var(--accent-foreground);
   }
 
   .btn-link {
@@ -142,19 +119,11 @@ html {
     text-underline-offset: 4px;
   }
 
-  .btn-link:hover {
-    text-decoration: underline;
-  }
-
   /* Action-specific button variants */
   .btn-export {
     background: var(--btn-export-bg);
     color: var(--btn-export-text);
     border: 1px solid transparent;
-  }
-
-  .btn-export:hover {
-    background: var(--btn-export-hover);
   }
 
   .btn-view-settings {
@@ -163,18 +132,10 @@ html {
     border: 1px solid var(--input-border);
   }
 
-  .btn-view-settings:hover {
-    background: var(--btn-view-settings-hover);
-  }
-
   .btn-clear-filters {
     background: var(--btn-clear-filters-bg);
     color: var(--btn-clear-filters-text);
     border: 1px solid var(--input-border);
-  }
-
-  .btn-clear-filters:hover {
-    background: var(--btn-clear-filters-hover);
   }
 
   .btn-select-all {
@@ -183,18 +144,10 @@ html {
     border: 1px solid transparent;
   }
 
-  .btn-select-all:hover {
-    background: var(--btn-select-all-hover);
-  }
-
   .btn-clear-selection {
     background: var(--btn-clear-selection-bg);
     color: var(--btn-clear-selection-text);
     border: 1px solid var(--input-border);
-  }
-
-  .btn-clear-selection:hover {
-    background: var(--btn-clear-selection-hover);
   }
 
   .btn-apply {
@@ -203,18 +156,10 @@ html {
     border: 1px solid transparent;
   }
 
-  .btn-apply:hover {
-    background: var(--btn-apply-hover);
-  }
-
   .btn-cancel {
     background: var(--btn-cancel-bg);
     color: var(--btn-cancel-text);
     border: 1px solid transparent;
-  }
-
-  .btn-cancel:hover {
-    background: var(--btn-cancel-hover);
   }
 
   .btn-delete {
@@ -223,18 +168,10 @@ html {
     border: 1px solid transparent;
   }
 
-  .btn-delete:hover {
-    background: var(--btn-delete-hover);
-  }
-
   .btn-connect {
     background: var(--btn-connect-bg);
     color: var(--btn-connect-text);
     border: 1px solid transparent;
-  }
-
-  .btn-connect:hover {
-    background: var(--btn-connect-hover);
   }
 }
 
@@ -277,11 +214,6 @@ html {
     background: linear-gradient(to right, var(--accent-color), var(--primary));
     border-radius: var(--radius-sm);
     cursor: grab;
-    transition: opacity 0.2s ease;
-  }
-  
-  .ribbon-handle:hover {
-    opacity: 0.9;
   }
 
   /* Sticky header subtle separation */
@@ -311,10 +243,6 @@ html {
     border: 2px solid var(--scrollbar-thumb-border);
     box-shadow: var(--scrollbar-glow);
   }
-  .scrollbar-neon::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover);
-    box-shadow: var(--scrollbar-glow-hover);
-  }
   .scrollbar-neon::-webkit-scrollbar-corner {
     background: var(--scrollbar-corner);
     border: 1px solid var(--scrollbar-track-border);
@@ -343,15 +271,7 @@ html {
     z-index: 30;
   }
   
-  html.theme-changing *,
-  html.theme-changing *::before,
-  html.theme-changing *::after {
-    transition: none;
-  }
-
-  html.theme-changing [data-theme-icon] {
-    transition: all 0.15s ease-out;
-  }
+  /* Theme changing effects removed */
 
   /* table cell borders: use table border variables for consistency */
   .table-cell-border {

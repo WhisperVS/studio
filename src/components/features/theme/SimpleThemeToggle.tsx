@@ -1,7 +1,7 @@
 "use client";
 
 import { MoonStar, SunMedium } from "lucide-react";
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "@/components/providers";
 import { useEffect, useState } from "react";
 
 export function SimpleThemeToggle() {
@@ -19,19 +19,15 @@ export function SimpleThemeToggle() {
       <button
         className="theme-toggle-btn"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '40px',
-          height: '40px',
-          backgroundColor: 'var(--background)',
-          border: '1px solid var(--border)',
-          borderRadius: '10px',
+          width: '28px',
+          height: '28px',
+          border: 'none',
+          borderRadius: '50%',
+          background: 'var(--theme-toggle-bg)',
+          color: 'var(--theme-toggle-text)',
           cursor: 'pointer',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          position: 'relative',
-          zIndex: 1000,
-          boxShadow: 'var(--shadow)'
+          outline: 'none',
+          boxShadow: 'var(--theme-toggle-shadow)'
         }}
       >
         {/* Placeholder icon during SSR */}
@@ -58,28 +54,9 @@ export function SimpleThemeToggle() {
         border: '1px solid var(--border)',
         borderRadius: '10px',
         cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         position: 'relative',
         zIndex: 1000,
         boxShadow: 'var(--shadow)'
-      }}
-      onMouseOver={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
-        e.currentTarget.style.backgroundColor = 'var(--accent)';
-        e.currentTarget.style.borderColor = 'var(--primary)';
-        e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.transform = 'translateY(0px) scale(1)';
-        e.currentTarget.style.backgroundColor = 'var(--background)';
-        e.currentTarget.style.borderColor = 'var(--border)';
-        e.currentTarget.style.boxShadow = 'var(--shadow)';
-      }}
-      onMouseDown={(e) => {
-        e.currentTarget.style.transform = 'translateY(0px) scale(0.95)';
-      }}
-      onMouseUp={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)';
       }}
     >
       {theme === "dark" ? (

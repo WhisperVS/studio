@@ -8,7 +8,7 @@ const Table = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <table
     ref={ref}
-    className={cn("w-full caption-bottom text-sm", className)}
+    className={cn("w-full caption-bottom text-sm border-collapse", className)}
     {...props}
   />
 ))
@@ -56,8 +56,8 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "table-border-b transition-colors h-9",
-      "bg-[var(--table-data-bg)] hover:bg-[var(--table-data-hover)] data-[state=selected]:bg-[var(--table-data-selected)]",
+      "table-border-b  h-9",
+      "bg-[var(--table-data-bg)]  data-[state=selected]:bg-[var(--table-data-selected)]",
       "text-[var(--table-data-text)]",
       className
     )}

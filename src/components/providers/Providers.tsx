@@ -2,9 +2,9 @@
 "use client";
 
 import React from "react";
-import { ThemeProvider } from "@/components/theme-provider";
-import { UserProvider } from "@/components/user-provider";
-import { PlatformProvider } from "@/components/platform-provider";
+import { ThemeProvider } from "./ThemeProvider";
+import { UserProvider } from "./UserProvider";
+import { PlatformProvider } from "./PlatformProvider";
 
 
 export function Providers({ children }: { children: React.ReactNode }) {

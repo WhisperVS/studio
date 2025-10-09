@@ -5,25 +5,21 @@ import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Download, PlusCircle, Search, Trash2, User, X, Check, Settings2 } from "lucide-react";
-import { AssetTable } from "@/components/asset-table";
-import { AddAssetDialog } from "@/components/add-asset-dialog";
-import { EditAssetDialog } from "@/components/edit-asset-dialog";
-import { AssetDetailsDialog } from "@/components/asset-details-dialog";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { SimpleThemeToggle } from "@/components/simple-theme-toggle";
-import { Logo } from "@/components/logo";
+import { AssetTable, AddAssetDialog, EditAssetDialog, AssetDetailsDialog } from "@/components/features/assets";
+import { ThemeToggle, SimpleThemeToggle } from "@/components/features/theme";
+import { Logo } from "@/components/layout";
+import { useUser } from "@/components/providers";
+import { CategoryCounts } from "./CategoryCounts";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { APP_CONFIG } from "@/lib/config";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
-import { useUser } from "@/components/user-provider";
-import { CategoryCounts } from "./category-counts";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog";
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { ErrorBoundary } from "./ui/error-boundary";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 type ColumnVisibility = Record<string, boolean>;
 
@@ -511,12 +507,12 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="table-container flex-1 min-h-0 overflow-auto flex max-h-[calc(100vh-300px)] border rounded-md">
+              <div className="table-container flex-1 min-h-0 overflow-hidden flex max-h-[calc(100vh-300px)] border rounded-md">
                 {!isClient || isInitialLoad ? (
-                  <div className="rounded-md border overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
+                  <div className="overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
                     <table className="w-full caption-bottom text-sm">
                       <thead className="[&_tr]:border-b">
-                        <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <tr className="border-b data-[state=selected]:bg-muted">
                           <th className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r-0 first:border-r-0 w-[40px]"><Skeleton className="h-5 w-5" /></th>
                           {APP_CONFIG.tableColumns.map(col => (
                             <th key={col.id} className="h-12 px-4 text-left align-middle font-semibold text-foreground bg-muted [&:has([role=checkbox])]:pr-0 border-r last:border-r-0">
@@ -528,7 +524,7 @@ export default function DashboardPage() {
                       </thead>
                        <tbody className="[&_tr:last-child]:border-0">
                         {Array.from({ length: 5 }).map((_, i) => (
-                          <tr key={i} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted h-9">
+                          <tr key={i} className="border-b data-[state=selected]:bg-muted h-9">
                             <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-5" /></td>
                             <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-5 w-[80px]" /></td>
                             <td className="p-4 align-middle border-r last:border-r-0"><Skeleton className="h-8 w-[100px]" /></td>
@@ -576,7 +572,7 @@ export default function DashboardPage() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleBulkDelete} className="bg-destructive hover:bg-destructive/90">
+                    <AlertDialogAction onClick={handleBulkDelete} className="bg-destructive text-destructive-foreground">
                         Continue
                     </AlertDialogAction>
                 </AlertDialogFooter>
