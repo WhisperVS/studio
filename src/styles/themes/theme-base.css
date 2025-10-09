@@ -18,6 +18,24 @@
   height: 12px;
 }
 
+/* Cross-platform keyboard navigation and focus improvements */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Windows-specific touch improvements */
+@media (pointer: coarse) {
+  button, .btn, [role="button"] {
+    min-height: 44px; /* Better touch targets for Windows tablets */
+  }
+  
+  .scrollbar-neon::-webkit-scrollbar {
+    width: 16px; /* Wider scrollbars for touch devices */
+    height: 16px;
+  }
+}
+
 /* ============================= */
 /* BORDER RADIUS SYSTEM */
 /* ============================= */
@@ -870,6 +888,54 @@ input, select, textarea {
   background: var(--scrollbar-track);
 }
 
+/* Platform-specific optimizations */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  /* Safari/WebKit specific enhancements */
+  .search-input, .dropdown-content {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  /* Modern browsers including Edge, Chrome, Firefox */
+  .search-input, .dropdown-content {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Windows-specific font rendering improvements */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  body {
+    font-feature-settings: "liga" 0; /* Disable ligatures for Windows */
+  }
+}
+
+/* Platform-specific adjustments */
+.platform-windows .scrollbar-neon::-webkit-scrollbar {
+  width: 16px; /* Wider scrollbars for Windows */
+  height: 16px;
+}
+
+.platform-windows button, 
+.platform-windows .btn, 
+.platform-windows [role="button"] {
+  /* Slightly larger touch targets for Windows */
+  min-height: 40px;
+}
+
+.platform-macos .scrollbar-neon::-webkit-scrollbar {
+  width: 12px; /* Thinner scrollbars for macOS */
+  height: 12px;
+}
+
+.platform-macos button,
+.platform-macos .btn,
+.platform-macos [role="button"] {
+  /* Standard button sizes for macOS */
+  min-height: 36px;
+}
+
 /* ============================= */
 /* SIDEBAR CONTENT OPTIMIZATION */
 /* ============================= */
@@ -1442,3 +1508,17 @@ button[class*="primary"]:hover {
 .table-border-r:last-child {
   border-right: none;
 }
+
+/* ===== PLATFORM PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Reduce animations on lower-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .platform-macos *,
+  .platform-windows * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== END PLATFORM OPTIMIZATIONS ===== */

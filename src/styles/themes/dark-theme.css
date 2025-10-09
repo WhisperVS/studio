@@ -141,6 +141,26 @@
   --btn-connect-text: rgb(255, 255, 255);
   --btn-connect-hover: linear-gradient(135deg, rgb(120, 100, 255) 0%, rgb(170, 80, 255) 50%, rgb(140, 120, 255) 100%);
   
+  /* Button Glow Effects for Dark Theme */
+  --btn-primary-glow: 0 0 20px rgba(100, 80, 255, 0.6), 0 0 40px rgba(150, 60, 255, 0.3);
+  --btn-secondary-glow: 0 0 15px rgba(120, 150, 255, 0.4);
+  --btn-export-glow: 0 0 25px rgba(100, 150, 255, 0.7), 0 0 50px rgba(80, 180, 255, 0.4);
+  --btn-clear-glow: 0 0 15px rgba(120, 150, 255, 0.4);
+  --btn-filter-glow: 0 0 15px rgba(120, 150, 255, 0.4);
+  --btn-view-settings-glow: 0 0 12px rgba(120, 150, 255, 0.3);
+  --btn-clear-filters-glow: 0 0 12px rgba(120, 150, 255, 0.3);
+  --btn-select-all-glow: 0 0 20px rgba(100, 80, 255, 0.6);
+  --btn-clear-selection-glow: 0 0 12px rgba(120, 150, 255, 0.3);
+  --btn-apply-glow: 0 0 20px rgba(100, 80, 255, 0.6);
+  --btn-cancel-glow: 0 0 12px rgba(120, 150, 255, 0.3);
+  --btn-delete-glow: 0 0 25px rgba(255, 80, 120, 0.7);
+  --btn-connect-glow: 0 0 20px rgba(100, 80, 255, 0.6);
+  --btn-special-glow: 0 0 20px rgba(100, 80, 255, 0.6);
+
+  /* General Glow Effects */
+  --glow-secondary: 0 0 15px rgba(120, 150, 255, 0.4);
+  --glow-destructive: 0 0 20px rgba(255, 80, 120, 0.6);
+  
   /* Modal colors */
   --modal-background: rgba(15, 25, 50, 0.98);
   --modal-text: rgb(255, 255, 255);
@@ -235,6 +255,12 @@
   --sidebar-header-bg: rgba(20, 30, 65, 0.98);
   --sidebar-header-text: rgb(255, 255, 255);
   --sidebar-header-border: rgba(120, 150, 255, 0.4);
+
+  /* Sidebar Glow Effects */
+  --sidebar-active-glow-light: 0 0 15px rgba(120, 150, 255, 0.4);
+  --sidebar-active-glow-dark: 0 0 15px rgba(100, 80, 255, 0.5);
+  --sidebar-icon-glow-light: drop-shadow(0 0 8px rgba(120, 150, 255, 0.3));
+  --sidebar-icon-glow-dark: drop-shadow(0 0 8px rgba(100, 80, 255, 0.4));
   
   /* Text colors */
   --text-primary: rgb(255, 255, 255);
@@ -288,6 +314,12 @@
   --search-icon-color: rgba(156, 163, 175, 0.8);
   --search-icon-active: rgba(120, 150, 255, 0.9);
   --search-clear-glow: rgba(239, 68, 68, 1);
+
+  /* Additional Search Glow Effects */
+  --search-focus-glow: 0 0 15px rgba(120, 150, 255, 0.5);
+  --search-hover-glow: 0 0 10px rgba(120, 150, 255, 0.3);
+  --search-focus-glow-intense: 0 0 25px rgba(120, 150, 255, 0.7);
+  --search-clear-glow-active: 0 0 15px rgba(239, 68, 68, 0.8);
   
   /* Progress Component */
   --progress-track-bg: rgb(20, 30, 60);

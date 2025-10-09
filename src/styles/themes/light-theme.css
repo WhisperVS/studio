@@ -142,6 +142,11 @@
   --btn-connect-text: rgb(255, 255, 255);
   --btn-connect-hover: linear-gradient(135deg, rgb(253, 186, 116) 0%, rgb(251, 146, 60) 50%, rgb(249, 115, 22) 100%);
   --btn-connect-glow: 0 0 20px rgba(251, 146, 60, 0.6);
+  --btn-special-glow: 0 0 20px rgba(251, 146, 60, 0.6);
+
+  /* General Glow Effects */
+  --glow-secondary: 0 0 15px rgba(251, 146, 60, 0.4);
+  --glow-destructive: 0 0 20px rgba(239, 68, 68, 0.6);
   
   /* Modal colors */
   --modal-background: rgba(254, 242, 242, 0.98);
@@ -237,6 +242,12 @@
   --sidebar-header-bg: rgba(255, 237, 213, 0.98);
   --sidebar-header-text: rgb(120, 53, 15);
   --sidebar-header-border: rgba(251, 146, 60, 0.3);
+
+  /* Sidebar Glow Effects */
+  --sidebar-active-glow-light: 0 0 15px rgba(251, 146, 60, 0.4);
+  --sidebar-active-glow-dark: 0 0 15px rgba(251, 146, 60, 0.4);
+  --sidebar-icon-glow-light: drop-shadow(0 0 8px rgba(251, 146, 60, 0.3));
+  --sidebar-icon-glow-dark: drop-shadow(0 0 8px rgba(251, 146, 60, 0.3));
   
   /* Text colors */
   --text-primary: rgb(120, 53, 15);
@@ -296,6 +307,12 @@
   --search-icon-color: rgba(120, 113, 108, 0.7);
   --search-icon-active: rgba(251, 146, 60, 0.9);
   --search-clear-glow: rgba(239, 68, 68, 1);
+
+  /* Additional Search Glow Effects */
+  --search-focus-glow: 0 0 15px rgba(251, 146, 60, 0.5);
+  --search-hover-glow: 0 0 10px rgba(251, 146, 60, 0.3);
+  --search-focus-glow-intense: 0 0 25px rgba(251, 146, 60, 0.7);
+  --search-clear-glow-active: 0 0 15px rgba(239, 68, 68, 0.8);
   
   /* Progress Component */
   --progress-track-bg: rgb(254, 242, 242);
