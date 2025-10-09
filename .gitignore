@@ -51,3 +51,4 @@ tmp_query.sql
 
 # Database backups
 backups/
+backup/

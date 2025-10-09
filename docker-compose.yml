@@ -12,7 +12,7 @@ services:
       timeout: 3s
       retries: 10
     ports:
-      - "5432:5432" # you can remove this if the DB doesn't need host access
+      - "5433:5432" # Changed to port 5433 to avoid conflicts
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
