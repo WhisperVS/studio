@@ -172,72 +172,119 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
     if (!scrollEl || !headerScrollEl || !ribbonEl) return;
 
     const autoCalibrate = () => {
-      // Create a temporary single table to measure natural column widths
+      // Create a temporary container to measure natural content widths
       const tempContainer = document.createElement('div');
       tempContainer.style.position = 'absolute';
       tempContainer.style.visibility = 'hidden';
       tempContainer.style.top = '-9999px';
+      tempContainer.style.width = 'max-content';
       document.body.appendChild(tempContainer);
 
-      // Clone both header and data table structures into temp container
       const headerTable = headerScrollEl.querySelector('table');
       const dataTable = scrollEl.querySelector('table');
       
       if (headerTable && dataTable) {
+        // Create temporary table to measure natural widths
         const tempTable = document.createElement('table');
         tempTable.className = 'border-collapse';
-        tempTable.style.tableLayout = 'auto'; // Let browser calculate natural widths
+        tempTable.style.tableLayout = 'auto';
+        tempTable.style.width = 'max-content';
         
         // Clone header
-        const tempHeader = headerTable.querySelector('thead')?.cloneNode(true);
-        if (tempHeader) tempTable.appendChild(tempHeader);
+        const tempHeader = headerTable.querySelector('thead')?.cloneNode(true) as HTMLElement;
+        if (tempHeader) {
+          // Remove width constraints from header cells for natural measurement
+          const headerCells = tempHeader.querySelectorAll('th');
+          headerCells.forEach(cell => {
+            const htmlCell = cell as HTMLElement;
+            htmlCell.style.width = 'auto';
+            htmlCell.style.minWidth = 'auto';
+            htmlCell.style.maxWidth = 'none';
+            htmlCell.style.padding = '8px 12px'; // Standard padding
+          });
+          tempTable.appendChild(tempHeader);
+        }
         
-        // Clone a few data rows for measurement
+        // Clone ALL data rows to get accurate width measurements
         const tempBody = document.createElement('tbody');
         const dataRows = dataTable.querySelectorAll('tbody tr');
-        for (let i = 0; i < Math.min(3, dataRows.length); i++) {
-          const clonedRow = dataRows[i].cloneNode(true);
+        dataRows.forEach(row => {
+          const clonedRow = row.cloneNode(true) as HTMLElement;
+          // Remove width constraints from data cells
+          const dataCells = clonedRow.querySelectorAll('td');
+          dataCells.forEach(cell => {
+            const htmlCell = cell as HTMLElement;
+            htmlCell.style.width = 'auto';
+            htmlCell.style.minWidth = 'auto';
+            htmlCell.style.maxWidth = 'none';
+            htmlCell.style.padding = '8px 12px'; // Standard padding
+            htmlCell.style.whiteSpace = 'nowrap'; // Prevent wrapping for measurement
+          });
           tempBody.appendChild(clonedRow);
-        }
+        });
         tempTable.appendChild(tempBody);
         tempContainer.appendChild(tempTable);
 
         // Force layout calculation
         tempTable.offsetWidth;
 
-        // Measure the natural column widths
+        // Measure the natural column widths with extra padding for comfort
         const tempHeaderCells = tempTable.querySelectorAll('thead th');
         const realHeaderCells = headerTable.querySelectorAll('thead th');
-        const realDataTable = scrollEl.querySelector('table');
-
-        // Apply measured widths to both header and data tables
+        
+        // Calculate optimal widths for each column
+        const columnWidths: number[] = [];
         tempHeaderCells.forEach((tempCell, index) => {
-          const width = (tempCell as HTMLElement).offsetWidth;
-          const headerCell = realHeaderCells[index] as HTMLElement;
-          if (headerCell) {
-            headerCell.style.width = `${width}px`;
-            headerCell.style.minWidth = `${width}px`;
-            headerCell.style.maxWidth = `${width}px`;
+          const headerWidth = (tempCell as HTMLElement).offsetWidth;
+          
+          // Find the widest data cell in this column
+          let maxDataWidth = 0;
+          const tempDataCells = tempTable.querySelectorAll(`tbody tr td:nth-child(${index + 1})`);
+          tempDataCells.forEach(dataCell => {
+            const width = (dataCell as HTMLElement).offsetWidth;
+            maxDataWidth = Math.max(maxDataWidth, width);
+          });
+          
+          // Use the larger of header or data width, plus some padding
+          const optimalWidth = Math.max(headerWidth, maxDataWidth) + 16; // 16px extra padding
+          columnWidths[index] = optimalWidth;
+        });
+
+        // Apply calculated widths to header table
+        realHeaderCells.forEach((headerCell, index) => {
+          const htmlCell = headerCell as HTMLElement;
+          const width = columnWidths[index];
+          if (width) {
+            htmlCell.style.width = `${width}px`;
+            htmlCell.style.minWidth = `${width}px`;
+            htmlCell.style.maxWidth = `${width}px`;
           }
         });
 
-        // Apply same widths to data table using CSS variables or direct styling
-        if (realDataTable) {
-          const style = document.createElement('style');
-          let css = '';
-          tempHeaderCells.forEach((tempCell, index) => {
-            const width = (tempCell as HTMLElement).offsetWidth;
-            css += `
-              .asset-table tbody tr td:nth-child(${index + 1}) {
-                width: ${width}px !important;
-                min-width: ${width}px !important;
-                max-width: ${width}px !important;
-              }
-            `;
-          });
-          style.textContent = css;
-          realDataTable.appendChild(style);
+        // Apply same widths to data table by injecting CSS
+        const existingStyle = dataTable.querySelector('style[data-auto-calibrate]');
+        if (existingStyle) {
+          existingStyle.remove();
         }
+        
+        const style = document.createElement('style');
+        style.setAttribute('data-auto-calibrate', 'true');
+        let css = '';
+        columnWidths.forEach((width, index) => {
+          css += `
+            .asset-table tbody tr td:nth-child(${index + 1}) {
+              width: ${width}px !important;
+              min-width: ${width}px !important;
+              max-width: ${width}px !important;
+              padding: 6px 8px !important;
+            }
+            .asset-table thead tr th:nth-child(${index + 1}) {
+              padding: 8px 12px !important;
+            }
+          `;
+        });
+        style.textContent = css;
+        dataTable.appendChild(style);
       }
 
       // Clean up
