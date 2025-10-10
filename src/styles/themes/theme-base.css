@@ -829,7 +829,8 @@ button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
 }
 
 .table-header-border {
-  border-bottom: 2px solid var(--table-header-border);
+  border-bottom: 3px solid var(--table-header-border);
+  box-shadow: var(--table-header-border-glow);
 }
 
 /* ----------------------------------------------------------------------

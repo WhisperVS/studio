@@ -55,7 +55,8 @@
   /* Table Colors */
   --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 30%, rgb(245, 101, 101) 70%, rgb(234, 88, 12) 100%);
   --table-header-text: rgb(255, 255, 255);
-  --table-header-border: rgba(251, 146, 60, 0.4);
+  --table-header-border: rgb(249, 115, 22);
+  --table-header-border-glow: 0 0 8px rgba(249, 115, 22, 0.8), 0 0 16px rgba(251, 146, 60, 0.4);
   --table-data-bg: rgba(254, 242, 242, 0.4);
   --table-data-hover: rgba(251, 146, 60, 0.2);
   --table-data-selected: rgba(251, 146, 60, 0.25);
