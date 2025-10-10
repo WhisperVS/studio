@@ -1,0 +1,832 @@
+/* ======================================================================
+   PREMIUM EFFECTS & LIQUID GLASS LIBRARY
+   ======================================================================
+   
+   Ultra-premium hover effects, transitions, and liquid glass morphism
+   Works seamlessly with both light and dark themes
+   No !important rules - pure CSS elegance
+   
+   EFFECTS INCLUDED:
+   - Liquid Glass Morphism
+   - Premium Hover Animations
+   - Glow & Shimmer Effects
+   - 3D Depth & Elevation
+   - Smooth Transitions
+   - Gradient Animations
+   - Ripple Effects
+   - Floating Animations
+   ====================================================================== */
+
+/* ======================================================================
+   KEYFRAME ANIMATIONS
+   ====================================================================== */
+
+@keyframes liquid-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 70% 70% 30%;
+  }
+  75% {
+    border-radius: 60% 30% 60% 50% / 70% 40% 50% 60%;
+  }
+}
+
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 0 0 30px currentColor, 0 0 60px currentColor, 0 0 90px currentColor;
+    opacity: 1;
+  }
+}
+
+@keyframes float-up {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate-gradient {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes ripple-out {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes border-dance {
+  0%, 100% {
+    border-radius: 12px 28px 12px 28px;
+  }
+  25% {
+    border-radius: 28px 12px 28px 12px;
+  }
+  50% {
+    border-radius: 12px 28px 12px 28px;
+  }
+  75% {
+    border-radius: 28px 12px 28px 12px;
+  }
+}
+
+@keyframes scale-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blur-focus {
+  from {
+    backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* ======================================================================
+   LIQUID GLASS MORPHISM BASE CLASSES
+   ====================================================================== */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-effect {
+  background: rgba(20, 30, 60, 0.4);
+  border: 1px solid var(--card-border);
+}
+
+.light .glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--card-border);
+}
+
+.glass-effect:hover {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .glass-effect:hover {
+  background: rgba(40, 25, 70, 0.6);
+  box-shadow: var(--card-shadow);
+}
+
+.light .glass-effect:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--card-shadow);
+}
+
+/* ======================================================================
+   PREMIUM HOVER EFFECTS - CARDS & CONTAINERS
+   ====================================================================== */
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 16px;
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  border-radius: 16px;
+  z-index: -1;
+}
+
+.premium-card:hover::before {
+  opacity: 1;
+  animation: shimmer-slide 2s infinite;
+}
+
+.premium-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.dark .premium-card:hover {
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.light .premium-card:hover {
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ======================================================================
+   LIQUID BUTTON EFFECTS
+   ====================================================================== */
+
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.liquid-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.liquid-button:hover {
+  transform: translateY(-2px);
+  animation: border-dance 3s ease-in-out infinite;
+}
+
+.dark .liquid-button:hover {
+  box-shadow: var(--btn-primary-shadow);
+}
+
+.light .liquid-button:hover {
+  box-shadow: var(--card-shadow);
+}
+
+/* ======================================================================
+   SHIMMER OVERLAY EFFECT
+   ====================================================================== */
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shimmer-effect:hover::after {
+  left: 100%;
+}
+
+/* ======================================================================
+   3D DEPTH & ELEVATION EFFECTS
+   ====================================================================== */
+
+.depth-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.depth-3d:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(20px);
+}
+
+.dark .depth-3d:hover {
+  box-shadow: 
+    0 40px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 100px rgba(100, 120, 255, 0.3),
+    -20px 20px 60px rgba(120, 80, 255, 0.2);
+}
+
+.light .depth-3d:hover {
+  box-shadow: 
+    0 40px 80px -20px rgba(0, 0, 0, 0.2),
+    0 0 100px rgba(251, 146, 60, 0.3),
+    -20px 20px 60px rgba(249, 115, 22, 0.2);
+}
+
+/* ======================================================================
+   GLOW BORDER EFFECTS
+   ====================================================================== */
+
+.glow-border {
+  position: relative;
+  border-radius: 16px;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(45deg, 
+    transparent 0%,
+    currentColor 50%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.glow-border:hover::before {
+  opacity: 0.8;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.dark .glow-border:hover::before {
+  color: var(--dashboard-stat-accent);
+}
+
+.light .glow-border:hover::before {
+  color: var(--dashboard-stat-accent);
+}
+
+/* ======================================================================
+   FLOATING ANIMATION EFFECTS
+   ====================================================================== */
+
+.float-on-hover {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.float-on-hover:hover {
+  animation: float-up 3s ease-in-out infinite;
+}
+
+.dark .float-on-hover:hover {
+  box-shadow: 
+    0 20px 60px -15px rgba(100, 120, 255, 0.5),
+    0 40px 80px -20px rgba(120, 80, 255, 0.3);
+}
+
+.light .float-on-hover:hover {
+  box-shadow: 
+    0 20px 60px -15px rgba(251, 146, 60, 0.5),
+    0 40px 80px -20px rgba(249, 115, 22, 0.3);
+}
+
+/* ======================================================================
+   GRADIENT BACKGROUND ANIMATIONS
+   ====================================================================== */
+
+.gradient-animate {
+  background-size: 200% 200%;
+  transition: all 0.6s ease;
+}
+
+.gradient-animate:hover {
+  animation: gradient-shift 4s ease infinite;
+}
+
+.dark .gradient-animate {
+  background: var(--dashboard-stat-bg);
+  opacity: 0.6;
+}
+
+.light .gradient-animate {
+  background: var(--dashboard-stat-bg);
+  opacity: 0.6;
+}
+
+/* ======================================================================
+   RIPPLE CLICK EFFECT
+   ====================================================================== */
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.ripple-effect:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: width 0.8s ease, height 0.8s ease, opacity 0.8s ease;
+}
+
+/* ======================================================================
+   FROSTED GLASS EFFECT
+   ====================================================================== */
+
+.frosted-glass {
+  backdrop-filter: blur(16px) saturate(180%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .frosted-glass {
+  background: var(--input-background);
+  border: 1px solid var(--input-border);
+}
+
+.light .frosted-glass {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--card-border);
+}
+
+.frosted-glass:hover {
+  backdrop-filter: blur(24px) saturate(200%);
+}
+
+.dark .frosted-glass:hover {
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+  box-shadow: var(--dropdown-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.light .frosted-glass:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--card-border-hover);
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* ======================================================================
+   METALLIC SHEEN EFFECT
+   ====================================================================== */
+
+.metallic-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.metallic-sheen::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.metallic-sheen:hover::before {
+  opacity: 1;
+  animation: shimmer-slide 2.5s ease-in-out infinite;
+}
+
+/* ======================================================================
+   NEON GLOW EFFECT
+   ====================================================================== */
+
+.neon-glow {
+  transition: all 0.4s ease;
+}
+
+.dark .neon-glow:hover {
+  text-shadow: 
+    0 0 10px rgba(100, 120, 255, 0.8),
+    0 0 20px rgba(100, 120, 255, 0.6),
+    0 0 30px rgba(100, 120, 255, 0.4),
+    0 0 40px rgba(120, 80, 255, 0.3);
+  box-shadow:
+    0 0 20px rgba(100, 120, 255, 0.6),
+    0 0 40px rgba(100, 120, 255, 0.4),
+    0 0 60px rgba(120, 80, 255, 0.3),
+    inset 0 0 20px rgba(100, 120, 255, 0.2);
+}
+
+.light .neon-glow:hover {
+  text-shadow: 
+    0 0 10px rgba(251, 146, 60, 0.8),
+    0 0 20px rgba(251, 146, 60, 0.6),
+    0 0 30px rgba(249, 115, 22, 0.4),
+    0 0 40px rgba(234, 88, 12, 0.3);
+  box-shadow:
+    0 0 20px rgba(251, 146, 60, 0.6),
+    0 0 40px rgba(249, 115, 22, 0.4),
+    0 0 60px rgba(234, 88, 12, 0.3),
+    inset 0 0 20px rgba(251, 146, 60, 0.2);
+}
+
+/* ======================================================================
+   SCALE BOUNCE EFFECT
+   ====================================================================== */
+
+.scale-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scale-bounce:hover {
+  animation: scale-bounce 1.5s ease-in-out infinite;
+}
+
+/* ======================================================================
+   RAINBOW BORDER EFFECT
+   ====================================================================== */
+
+.rainbow-border {
+  position: relative;
+  border-radius: 16px;
+}
+
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 16px;
+  padding: 3px;
+  background: linear-gradient(
+    45deg,
+    #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000
+  );
+  background-size: 400% 400%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.rainbow-border:hover::before {
+  opacity: 1;
+  animation: gradient-shift 3s linear infinite;
+}
+
+/* ======================================================================
+   PERSPECTIVE TILT EFFECT
+   ====================================================================== */
+
+.perspective-tilt {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+}
+
+.perspective-tilt:hover {
+  transform: perspective(1000px) rotateY(10deg) translateZ(30px);
+}
+
+.dark .perspective-tilt:hover {
+  box-shadow: 
+    -30px 30px 80px rgba(100, 120, 255, 0.4),
+    -10px 10px 40px rgba(120, 80, 255, 0.3);
+}
+
+.light .perspective-tilt:hover {
+  box-shadow: 
+    -30px 30px 80px rgba(251, 146, 60, 0.4),
+    -10px 10px 40px rgba(249, 115, 22, 0.3);
+}
+
+/* ======================================================================
+   LIQUID MORPHING EFFECT
+   ====================================================================== */
+
+.liquid-morph {
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.liquid-morph:hover {
+  animation: liquid-morph 8s ease-in-out infinite;
+}
+
+.dark .liquid-morph:hover {
+  box-shadow: 
+    0 20px 60px rgba(100, 120, 255, 0.5),
+    0 0 80px rgba(120, 80, 255, 0.3);
+}
+
+.light .liquid-morph:hover {
+  box-shadow: 
+    0 20px 60px rgba(251, 146, 60, 0.5),
+    0 0 80px rgba(249, 115, 22, 0.3);
+}
+
+/* ======================================================================
+   HOLOGRAPHIC EFFECT
+   ====================================================================== */
+
+.holographic {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 255, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    rgba(0, 255, 255, 0.1) 75%,
+    rgba(255, 0, 255, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  transition: all 0.6s ease;
+}
+
+.holographic:hover {
+  animation: gradient-shift 3s ease infinite;
+}
+
+.dark .holographic:hover {
+  box-shadow: 
+    0 0 40px rgba(100, 120, 255, 0.6),
+    0 0 80px rgba(120, 80, 255, 0.4),
+    inset 0 0 40px rgba(100, 120, 255, 0.2);
+}
+
+.light .holographic:hover {
+  box-shadow: 
+    0 0 40px rgba(251, 146, 60, 0.6),
+    0 0 80px rgba(249, 115, 22, 0.4),
+    inset 0 0 40px rgba(251, 146, 60, 0.2);
+}
+
+/* ======================================================================
+   MAGNETIC EFFECT (Follows cursor)
+   ====================================================================== */
+
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.magnetic:hover {
+  transform: scale(1.05);
+}
+
+/* Note: For true magnetic effect, JavaScript is needed to track cursor position */
+
+/* ======================================================================
+   AURORA GLOW EFFECT
+   ====================================================================== */
+
+.aurora-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-glow::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.dark .aurora-glow::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(100, 120, 255, 0.3) 0%,
+    rgba(120, 80, 255, 0.2) 30%,
+    transparent 70%
+  );
+}
+
+.light .aurora-glow::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(251, 146, 60, 0.3) 0%,
+    rgba(249, 115, 22, 0.2) 30%,
+    transparent 70%
+  );
+}
+
+.aurora-glow:hover::before {
+  opacity: 1;
+  animation: rotate-gradient 10s linear infinite;
+}
+
+/* ======================================================================
+   UTILITY CLASSES - MIX AND MATCH
+   ====================================================================== */
+
+.smooth-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bounce-transition {
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.elastic-transition {
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.soft-glow {
+  transition: box-shadow 0.4s ease;
+}
+
+.dark .soft-glow:hover {
+  box-shadow: 0 8px 32px rgba(100, 120, 255, 0.3);
+}
+
+.light .soft-glow:hover {
+  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.3);
+}
+
+.intense-glow {
+  transition: box-shadow 0.4s ease;
+}
+
+.dark .intense-glow:hover {
+  box-shadow: 
+    0 0 40px rgba(100, 120, 255, 0.8),
+    0 0 80px rgba(120, 80, 255, 0.6);
+}
+
+.light .intense-glow:hover {
+  box-shadow: 
+    0 0 40px rgba(251, 146, 60, 0.8),
+    0 0 80px rgba(249, 115, 22, 0.6);
+}
+
+/* ======================================================================
+   COMBINED EFFECTS - ULTRA PREMIUM PRESETS
+   ====================================================================== */
+
+.ultra-premium-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  backdrop-filter: blur(20px) saturate(180%);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dark .ultra-premium-card {
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+}
+
+.light .ultra-premium-card {
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+}
+
+.ultra-premium-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.dark .ultra-premium-card::before {
+  background: var(--table-header-bg);
+  background-size: 200% 200%;
+}
+
+.light .ultra-premium-card::before {
+  background: var(--table-header-bg);
+  background-size: 200% 200%;
+}
+
+.ultra-premium-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  backdrop-filter: blur(30px) saturate(200%);
+}
+
+.ultra-premium-card:hover::before {
+  opacity: 1;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.dark .ultra-premium-card:hover {
+  background: var(--dropdown-background);
+  box-shadow: var(--card-shadow), var(--dropdown-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.light .ultra-premium-card:hover {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* ======================================================================
+   END OF PREMIUM EFFECTS LIBRARY
+   ====================================================================== */

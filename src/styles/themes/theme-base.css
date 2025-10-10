@@ -350,7 +350,7 @@ button:focus-visible, .btn:focus-visible {
    ---------------------------------------------------------------------- */
 
 /* Separate text input fields from other form controls */
-/* Text input fields - for typing content */
+/* Text input fields - for typing content - MUST match button styling exactly */
 input[type="text"], 
 input[type="email"], 
 input[type="password"], 
@@ -362,12 +362,15 @@ textarea,
 .text-input-field {
   background: var(--text-input-background);
   border: 1px solid var(--text-input-border);
-  border-radius: var(--text-input-radius);
+  border-radius: var(--radius-sm);
   color: var(--text-input-text);
   box-shadow: var(--text-input-shadow);
   padding: var(--text-input-padding);
   font-size: var(--text-input-font-size);
   line-height: var(--text-input-line-height);
+  height: 2.25rem; /* Same as h-9 */
+  display: flex;
+  align-items: center;
 }
 
 /* Text input focus states */
@@ -401,8 +404,28 @@ textarea::placeholder,
 
 /* Other form controls (buttons, selects, checkboxes, etc.) keep generic styling */
 button, select, input[type="button"], input[type="submit"], input[type="reset"], 
-input[type="checkbox"], input[type="radio"], input[type="file"], input[type="range"] {
+input[type="checkbox"], input[type="radio"], input[type="file"], input[type="range"],
+[data-radix-select-trigger] {
   border-radius: var(--radius-sm);
+}
+
+/* Form select triggers - MUST match text input colors exactly with higher specificity */
+button.form-select-trigger,
+button[data-radix-select-trigger],
+[role="combobox"].form-select-trigger {
+  background: var(--text-input-background);
+  border: 1px solid var(--text-input-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-input-text);
+  box-shadow: var(--text-input-shadow);
+}
+
+button.form-select-trigger:focus,
+button[data-radix-select-trigger]:focus,
+[role="combobox"].form-select-trigger:focus {
+  border-color: var(--text-input-border-focus);
+  box-shadow: var(--text-input-shadow-focus);
+  outline: none;
 }
 
 /* Search input */
