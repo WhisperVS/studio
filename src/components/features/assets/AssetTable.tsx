@@ -375,14 +375,16 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                         <TableHead 
                           key={col.id}
                           onClick={() => handleSort(col.id as keyof Asset)}
-                          className={cn("cursor-pointer whitespace-nowrap", col.className)}
+                          className={cn("cursor-pointer whitespace-nowrap h-16 text-base font-semibold text-center align-middle", col.className)}
                         >
-                          {col.label}
-                          {sortKey === col.id && (
-                            <span className="ml-2 inline-block">
-                              {sortOrder === 'asc' ? '↑' : '↓'}
-                            </span>
-                          )}
+                          <div className="flex items-center justify-center h-full">
+                            {col.label}
+                            {sortKey === col.id && (
+                              <span className="ml-2 inline-block">
+                                {sortOrder === 'asc' ? '↑' : '↓'}
+                              </span>
+                            )}
+                          </div>
                         </TableHead>
                     ))}
                     <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
@@ -436,7 +438,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                         {columnVisibility.assignedUser && <TableCell>{asset.assignedUser || 'N/A'}</TableCell>}
                         {columnVisibility.userId && <TableCell className="hidden sm:table-cell">{asset.userId || 'N/A'}</TableCell>}
                         {columnVisibility.location && <TableCell className="hidden 2xl:table-cell">{asset.location}</TableCell>}
-                        <TableCell>
+                        <TableCell className="text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" className="h-8 w-8 p-0">
