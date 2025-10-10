@@ -358,11 +358,11 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
         <div className="relative w-full h-full flex flex-col">
           
           {/* Separate header container - syncs with data table column widths */}
-          <div className="flex-shrink-0 rounded-t-md table-header-border">
-            <div ref={headerScrollRef} className="w-full overflow-hidden">
-              <Table className="border-collapse" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
-                <TableHeader>
-                  <TableHeaderRow>
+          <div className="flex-shrink-0 table-header-border rounded-none">
+            <div ref={headerScrollRef} className="w-full overflow-hidden rounded-none">
+              <Table className="border-collapse rounded-none" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
+                <TableHeader className="rounded-none">
+                  <TableHeaderRow className="rounded-none">
                     <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
                       <ExternalLink className="h-4 w-4 inline-block" />
                       <span className="sr-only">Connect</span>
