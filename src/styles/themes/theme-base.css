@@ -115,6 +115,16 @@
 /* ----------------------------------------------------------------------
    3.1 BUTTONS - Base & Variants
    ---------------------------------------------------------------------- */
+/* 
+   ALL BUTTON DEFINITIONS ARE NOW CENTRALIZED HERE FOR CONSISTENCY:
+   - Base button styles
+   - Size variants (sm, lg, icon)
+   - Theme variants (primary, secondary, outline, ghost, link, destructive)  
+   - Action-specific variants (export, view-settings, clear-filters, etc.)
+   - Loading and group states
+   
+   Color variables are defined in light-theme.css and dark-theme.css
+*/
 
 /* Base button styles - inherited by all buttons */
 button, .btn, [role="button"] {
@@ -177,13 +187,16 @@ button:focus-visible, .btn:focus-visible {
 
 /* Button theme variants */
 .btn-primary, button[class*="primary"] {
-  box-shadow: var(--btn-primary-inset), var(--btn-primary-shadow), var(--btn-primary-border);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  box-shadow: var(--btn-primary-shadow);
 }
 
 .btn-outline {
-  background: var(--button-secondary-bg);
-  color: var(--button-secondary-text);
-  border: 1px solid var(--button-secondary-border);
+  border: 1px solid var(--input-border);
+  background: var(--background);
+  color: var(--page-text);
   box-shadow: var(--btn-outline-inset), var(--btn-outline-shadow), var(--btn-outline-border);
 }
 
@@ -241,6 +254,82 @@ button:focus-visible, .btn:focus-visible {
 
 @keyframes button-spin {
   to { transform: rotate(360deg); }
+}
+
+/* Additional button variants */
+.btn-secondary {
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--button-secondary-border);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--page-text);
+  border: 1px solid transparent;
+}
+
+.btn-link {
+  background: transparent;
+  color: var(--primary);
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Action-specific button variants */
+.btn-export {
+  background: var(--btn-export-bg);
+  color: var(--btn-export-text);
+  border: 1px solid transparent;
+}
+
+.btn-view-settings {
+  background: var(--btn-view-settings-bg);
+  color: var(--btn-view-settings-text);
+  border: 1px solid var(--input-border);
+}
+
+.btn-clear-filters {
+  background: var(--btn-clear-filters-bg);
+  color: var(--btn-clear-filters-text);
+  border: 1px solid var(--input-border);
+}
+
+.btn-select-all {
+  background: var(--btn-select-all-bg);
+  color: var(--btn-select-all-text);
+  border: 1px solid transparent;
+}
+
+.btn-clear-selection {
+  background: var(--btn-clear-selection-bg);
+  color: var(--btn-clear-selection-text);
+  border: 1px solid var(--input-border);
+}
+
+.btn-apply {
+  background: var(--btn-apply-bg);
+  color: var(--btn-apply-text);
+  border: 1px solid transparent;
+}
+
+.btn-cancel {
+  background: var(--btn-cancel-bg);
+  color: var(--btn-cancel-text);
+  border: 1px solid transparent;
+}
+
+.btn-delete {
+  background: var(--btn-delete-bg);
+  color: var(--btn-delete-text);
+  border: 1px solid transparent;
+}
+
+.btn-connect {
+  background: var(--btn-connect-bg);
+  color: var(--btn-connect-text);
+  border: 1px solid transparent;
 }
 
 /* ----------------------------------------------------------------------
