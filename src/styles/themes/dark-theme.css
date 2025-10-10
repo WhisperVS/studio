@@ -13,21 +13,22 @@
   --theme-toggle-sun-glow: rgba(255, 180, 100, 0.5);
   --theme-toggle-moon-glow: rgba(150, 100, 255, 0.5);
   
-  /* Modal and Dialog colors */
-  --modal-overlay: rgba(0, 0, 0, 0.8);
-  --dialog-background: linear-gradient(135deg, rgb(5, 10, 25) 0%, rgb(15, 25, 45) 20%, rgb(25, 35, 60) 40%, rgb(35, 25, 55) 60%, rgb(20, 15, 40) 80%, rgb(10, 5, 30) 100%);
-  --dialog-border: rgb(40, 25, 70);
-  --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  /* Modal and Dialog colors - SOLID, NO TRANSPARENCY */
+  --modal-overlay: rgba(0, 0, 0, 0.85);
+  --dialog-background: linear-gradient(135deg, rgb(8, 15, 35) 0%, rgb(18, 28, 52) 20%, rgb(28, 38, 65) 40%, rgb(38, 28, 60) 60%, rgb(23, 18, 45) 80%, rgb(13, 10, 35) 100%);
+  --dialog-border: rgb(45, 30, 80);
+  --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 100px rgba(100, 120, 255, 0.2);
   
   /* Main page colors */
   --page-background: linear-gradient(135deg, rgb(5, 10, 25) 0%, rgb(15, 25, 45) 20%, rgb(25, 35, 60) 40%, rgb(35, 25, 55) 60%, rgb(20, 15, 40) 80%, rgb(10, 5, 30) 100%);
   --page-text: rgb(240, 245, 255);
   
-  /* Card colors */
-  --card-background: linear-gradient(135deg, rgba(20, 30, 60, 0.95) 0%, rgba(40, 25, 70, 0.92) 30%, rgba(25, 45, 80, 0.94) 70%, rgba(35, 20, 65, 0.96) 100%);
+  /* Card colors - SOLID, NO TRANSPARENCY */
+  --card-background: linear-gradient(135deg, rgb(23, 33, 65) 0%, rgb(43, 28, 75) 30%, rgb(28, 48, 85) 70%, rgb(38, 23, 70) 100%);
   --card-text: rgb(255, 255, 255);
-  --card-border: rgba(100, 120, 255, 0.4);
-  --card-shadow: 0 12px 40px -8px rgba(100, 120, 255, 0.3), 0 4px 20px rgba(80, 100, 200, 0.2), 0 0 60px rgba(120, 80, 255, 0.1);
+  --card-border: rgba(100, 120, 255, 0.5);
+  --card-border-hover: rgba(100, 120, 255, 0.7);
+  --card-shadow: 0 12px 40px -8px rgba(100, 120, 255, 0.4), 0 4px 20px rgba(80, 100, 200, 0.3), 0 0 60px rgba(120, 80, 255, 0.15);
   
   /* Dashboard stat colors */
   --dashboard-stat-bg: linear-gradient(135deg, rgba(15, 25, 50, 0.98) 0%, rgba(35, 20, 70, 0.95) 25%, rgba(25, 40, 80, 0.96) 50%, rgba(45, 15, 75, 0.94) 75%, rgba(20, 30, 65, 0.97) 100%);
@@ -53,10 +54,10 @@
   /* Search specific colors */
   --search-base-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   
-  /* Dropdown & Select Colors */
-  --dropdown-background: linear-gradient(135deg, rgba(15, 20, 35, 0.96) 0%, rgba(20, 18, 40, 0.94) 30%, rgba(18, 25, 45, 0.95) 70%, rgba(22, 18, 38, 0.97) 100%);
-  --dropdown-border: rgba(100, 150, 255, 0.5);
-  --dropdown-shadow: 0 16px 40px rgba(0, 0, 20, 0.6), 0 4px 20px rgba(100, 120, 255, 0.3);
+  /* Dropdown & Select Colors - SOLID, NO TRANSPARENCY */
+  --dropdown-background: linear-gradient(135deg, rgb(18, 23, 40) 0%, rgb(23, 21, 45) 30%, rgb(21, 28, 50) 70%, rgb(25, 21, 43) 100%);
+  --dropdown-border: rgba(100, 150, 255, 0.6);
+  --dropdown-shadow: 0 16px 40px rgba(0, 0, 20, 0.8), 0 4px 20px rgba(100, 120, 255, 0.4), 0 0 80px rgba(120, 80, 255, 0.15);
 
   /* Dropdown Trigger Button Colors (match view button) */
   --btn-dropdown-trigger-bg: rgb(40, 60, 120);

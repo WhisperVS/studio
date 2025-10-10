@@ -38,15 +38,18 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 flex flex-col w-full max-w-lg translate-x-[-50%] translate-y-[-50%] border bg-card p-6 shadow-[var(--dialog-shadow)] overflow-y-auto max-h-[90vh] scrollbar-neon",
+        "fixed left-[50%] top-[50%] z-50 flex flex-col w-full max-w-lg translate-x-[-50%] translate-y-[-50%] border p-6 overflow-y-auto max-h-[90vh] scrollbar-neon",
         className
       )}
       style={{
+        background: 'var(--dialog-background)',
         borderColor: 'var(--dialog-border)',
         borderRadius: 'var(--radius-lg)',
         borderWidth: '1px',
         outline: 'none',
-        backgroundClip: 'padding-box'
+        backgroundClip: 'padding-box',
+        boxShadow: 'var(--dialog-shadow)',
+        color: 'var(--card-text)'
       }}
       {...props}
     >

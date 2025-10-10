@@ -31,7 +31,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-lg     ",
+  "fixed z-50 gap-4 p-6 shadow-lg",
   {
     variants: {
       side: {
@@ -62,6 +62,12 @@ const SheetContent = React.forwardRef<
     <SheetPrimitive.Content
       ref={ref}
       className={cn(sheetVariants({ side }), className)}
+      style={{
+        background: 'var(--dialog-background)',
+        borderColor: 'var(--dialog-border)',
+        boxShadow: 'var(--dialog-shadow)',
+        color: 'var(--card-text)'
+      }}
       {...props}
     >
       {children}
