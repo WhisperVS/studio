@@ -139,7 +139,7 @@
    Color variables are defined in light-theme.css and dark-theme.css
 */
 
-/* Base button styles - inherited by all buttons */
+/* Base button styles - inherited by all buttons with PREMIUM EFFECTS */
 button, .btn, [role="button"] {
   position: relative;
   display: inline-flex;
@@ -156,6 +156,34 @@ button, .btn, [role="button"] {
   cursor: pointer;
   overflow: hidden;
   user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+/* Premium shimmer effect on all buttons */
+button::before, .btn::before, [role="button"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--button-shimmer-color, rgba(255, 255, 255, 0.2)) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover::before, .btn:hover::before, [role="button"]:hover::before {
+  left: 100%;
+}
+
+/* Premium hover state for all buttons */
+button:hover, .btn:hover, [role="button"]:hover {
+  transform: translateY(-2px);
 }
 
 /* Button states */
@@ -198,19 +226,62 @@ button:focus-visible, .btn:focus-visible {
   min-height: 2rem;
 }
 
-/* Button theme variants */
+/* Button theme variants - WITH PREMIUM LIQUID GLASS EFFECTS */
 .btn-primary, button[class*="primary"] {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
   border: 1px solid transparent;
   box-shadow: var(--btn-primary-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Liquid ripple effect on primary buttons */
+.btn-primary::after, button[class*="primary"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--button-ripple-color, rgba(255, 255, 255, 0.3)) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-primary:hover::after, button[class*="primary"]:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary:hover, button[class*="primary"]:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--btn-primary-shadow), var(--shadow-hover, 0 12px 40px rgba(0, 0, 0, 0.2));
+}
+
+.btn-primary:active, button[class*="primary"]:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn-outline {
   border: 1px solid var(--input-border);
-  background: var(--background);
+  background: transparent;
+  backdrop-filter: blur(12px);
   color: var(--page-text);
   box-shadow: var(--btn-outline-inset), var(--btn-outline-shadow), var(--btn-outline-border);
+  position: relative;
+}
+
+.btn-outline:hover {
+  background: var(--card-background);
+  border-color: var(--card-border);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline:active {
+  transform: translateY(0px);
 }
 
 .btn-destructive {
@@ -218,6 +289,18 @@ button:focus-visible, .btn:focus-visible {
   color: var(--button-destructive-text);
   border: 1px solid var(--button-destructive-border);
   box-shadow: var(--btn-destructive-inset), var(--btn-destructive-shadow), var(--btn-destructive-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-destructive:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: var(--btn-destructive-shadow-hover, 0 10px 30px rgba(239, 68, 68, 0.4));
+}
+
+.btn-destructive:active {
+  transform: translateY(0px);
 }
 
 /* Button groups */
@@ -274,12 +357,36 @@ button:focus-visible, .btn:focus-visible {
   background: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   border: 1px solid var(--button-secondary-border);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--card-border);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.1);
+}
+
+.btn-secondary:active {
+  transform: translateY(0px);
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--page-text);
   border: 1px solid transparent;
+  position: relative;
+}
+
+.btn-ghost:hover {
+  background: var(--button-ghost-hover-bg, rgba(100, 120, 255, 0.1));
+  backdrop-filter: blur(8px);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0px);
 }
 
 .btn-link {
@@ -290,11 +397,23 @@ button:focus-visible, .btn:focus-visible {
   text-underline-offset: 4px;
 }
 
-/* Action-specific button variants */
+/* Action-specific button variants - WITH PREMIUM EFFECTS */
 .btn-export {
   background: var(--btn-export-bg);
   color: var(--btn-export-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-export-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-export:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--btn-export-shadow), var(--shadow-hover, 0 10px 30px rgba(0, 0, 0, 0.2));
+}
+
+.btn-export:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn-view-settings {
@@ -664,7 +783,7 @@ button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
 
 button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
   background: var(--btn-dropdown-trigger-hover);
-  box-shadow: var(--btn-dropdown-trigger-glow), 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--btn-dropdown-trigger-glow), var(--shadow-sm);
 }
 
 /* Dropdown content container */
@@ -694,12 +813,12 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 [role="menu"],
 [role="listbox"],
 [role="combobox"][aria-expanded="true"] + [role="listbox"] {
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-radius: var(--radius-md) !important;
-  background: var(--dropdown-background) !important;
-  border: 1px solid var(--dropdown-border) !important;
-  box-shadow: var(--dropdown-shadow) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-md);
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+  box-shadow: var(--dropdown-shadow);
 }
 
 /* Dropdown items */
@@ -1604,13 +1723,13 @@ table tr[data-state="selected"] td {
   }
 }
 
-/* Reduced motion preference */
+/* Reduced motion preference - These !important rules are needed for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .platform-macos *,
   .platform-windows * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }
 

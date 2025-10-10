@@ -89,6 +89,13 @@
   --btn-secondary-border: rgba(251, 146, 60, 0.5);
   --btn-secondary-glow: 0 0 15px rgba(251, 146, 60, 0.4);
   
+  /* Button Effect Colors */
+  --button-shimmer-color: rgba(255, 255, 255, 0.3);
+  --button-ripple-color: rgba(251, 146, 60, 0.3);
+  --button-ghost-hover-bg: rgba(251, 146, 60, 0.1);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --btn-destructive-shadow-hover: 0 10px 30px rgba(239, 68, 68, 0.4);
+  
   /* Specific action button colors */
   --btn-export-bg: linear-gradient(135deg, rgb(100, 150, 255) 0%, rgb(80, 180, 255) 30%, rgb(120, 120, 255) 70%, rgb(70, 200, 255) 100%);
   --btn-export-text: rgb(255, 255, 255);
