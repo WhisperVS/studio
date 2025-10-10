@@ -887,19 +887,24 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 }
 
 /* ----------------------------------------------------------------------
-   4.2 TABLES
+   4.2 TABLES & DATA CONTAINERS
    ---------------------------------------------------------------------- */
+/* 
+   ALL TABLE & CONTAINER DEFINITIONS ARE NOW CENTRALIZED HERE:
+   - Table structure and layout
+   - Header and data row styling  
+   - Container utilities for data display
+   - Border and cell styling
+   - Selection and hover states
+   
+   Color variables are defined in light-theme.css and dark-theme.css
+*/
 
 .asset-table, table {
-  border-radius: calc(var(--radius) - 2px);
+  border-radius: 0;
   overflow: hidden;
   min-width: 100%;
   width: max-content;
-}
-
-.table-header-bg {
-  background: var(--table-header-bg);
-  position: relative;
 }
 
 .asset-table th, table th {
@@ -1021,6 +1026,175 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 .table-container {
   max-height: calc(100vh - 280px);
   overflow: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  max-height: calc(100vh - 300px);
+}
+
+/* Extended table styling */
+.table-header-bg {
+  background: var(--table-header-bg);
+  position: relative;
+  /* Use dedicated table header background so header is distinct from table body */
+  background-color: var(--table-header-bg);
+  color: var(--table-header-text);
+  backdrop-filter: blur(0px);
+  /* Match header bottom border color with table cell borders */
+  border-bottom: 1px solid var(--table-header-border);
+  /* Subtle separation without adding a different color line */
+  box-shadow: none;
+}
+
+/* Sticky header should be above table rows */
+.table-header-bg.sticky {
+  z-index: 30;
+}
+
+/* Table cell borders: use table border variables for consistency */
+.table-cell-border {
+  border-color: var(--table-data-border);
+}
+
+/* Apply to table cells and headers within table components */
+table tr th,
+table tr td {
+  border-color: var(--table-data-border);
+  border-bottom: 1px solid var(--table-data-border);
+  border-right: 1px solid var(--table-data-border);
+}
+
+/* Selected row borders */
+table tr[data-state="selected"] th,
+table tr[data-state="selected"] td {
+  border-bottom: 1px solid var(--table-data-border);
+  border-right: 1px solid var(--table-data-border);
+  background-color: var(--table-data-selected);
+  position: relative;
+  z-index: 1;
+}
+
+/* Data container utilities */
+.data-container {
+  background: var(--table-data-bg);
+  color: var(--table-data-text);
+  overflow: hidden;
+}
+
+.data-container-scrollable {
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+  position: relative;
+}
+
+.data-container-header {
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
+  border-bottom: 2px solid var(--table-header-border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.data-container-row {
+  background: var(--table-data-bg);
+  color: var(--table-data-text);
+  border-bottom: 1px solid var(--table-cell-border);
+  transition: background-color 0.2s ease;
+}
+
+.data-container-row:hover {
+  background: var(--table-data-hover);
+}
+
+.data-container-row[data-state="selected"] {
+  background: var(--table-data-selected);
+}
+
+.data-container-cell {
+  padding: 12px 16px;
+  border-right: 1px solid var(--table-cell-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-container-cell:last-child {
+  border-right: none;
+}
+
+/* Header container utilities */
+.header-container {
+  background: var(--card-background);
+  border-bottom: 1px solid var(--card-border);
+  padding: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.header-container-title {
+  color: var(--card-text);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.header-container-subtitle {
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  margin-top: var(--spacing-xs);
+}
+
+/* Content container utilities */
+.content-container {
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--card-shadow);
+}
+
+.content-container-scrollable {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content-container-grid {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* List container utilities */
+.list-container {
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.list-container-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card-background);
+  transition: background-color 0.2s ease;
+}
+
+.list-container-item:last-child {
+  border-bottom: none;
+}
+
+.list-container-item:hover {
+  background: var(--dropdown-hover);
+}
+
+.list-container-item[data-state="selected"] {
+  background: var(--dropdown-item-selected);
+  color: var(--dropdown-item-selected-text);
 }
 
 /* ----------------------------------------------------------------------

@@ -506,7 +506,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="table-container flex-1 min-h-0 overflow-hidden flex max-h-[calc(100vh-300px)] border rounded-md">
+              <div className="table-container">
                 {!isClient || isInitialLoad ? (
                   <div className="overflow-auto h-full flex-1 max-h-[calc(100vh-300px)]">
                     <table className="w-full caption-bottom text-sm">

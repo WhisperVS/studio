@@ -161,58 +161,6 @@ html {
     scrollbar-width: auto;
   }
 
-  /* table header background variant */
-  .table-header-bg {
-    /* use dedicated table header background so header is distinct from table body */
-    background-color: var(--table-header-bg);
-    color: var(--table-header-text);
-    backdrop-filter: blur(0px);
-    /* match header bottom border color with table cell borders */
-    border-bottom: 1px solid var(--table-header-border);
-    /* subtle separation without adding a different color line */
-    box-shadow: none;
-  }
-
-  /* sticky header should be above table rows */
-  .table-header-bg.sticky {
-    z-index: 30;
-  }
-  
-  /* Theme changing effects removed */
-
-  /* table cell borders: use table border variables for consistency */
-  .table-cell-border {
-    border-color: var(--table-data-border);
-  }
-
-  /* apply to table cells and headers within table components */
-  table tr th,
-  table tr td {
-    border-color: var(--table-data-border);
-  }
-
-  /* ensure header and body separation lines match exactly */
-  .table-header-bg {
-    border-bottom: 1px solid var(--table-header-border);
-  }
-
-  /* Table border styling */
-  table tr th,
-  table tr td {
-    border-bottom: 1px solid var(--table-data-border);
-    border-right: 1px solid var(--table-data-border);
-  }
-
-  /* Selected row borders */
-  table tr[data-state="selected"] th,
-  table tr[data-state="selected"] td {
-    border-bottom: 1px solid var(--table-data-border);
-    border-right: 1px solid var(--table-data-border);
-    background-color: var(--table-data-selected);
-    position: relative;
-    z-index: 1;
-  }
-
   /* Ribbon should visually match the table header background and separators */
   .ribbon-spacer {
     min-width: 1px;
