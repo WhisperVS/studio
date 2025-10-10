@@ -79,6 +79,32 @@
   --radius-lg: 20px;   /* Modals, containers - balanced for proper corner fit */
   --radius-round: 50%; /* Avatars, icons */
   --radius: 0.75rem;   /* Tailwind compatibility */
+  
+  /* Spacing System */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Typography Scale */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Transition System */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.25s ease-in-out;
+  --transition-slow: 0.35s ease-in-out;
 }
 
 /* ======================================================================
@@ -314,6 +340,134 @@ input, select, textarea {
 
 .toggle-switch.active::before {
   transform: translateX(1.5rem);
+}
+
+/* ----------------------------------------------------------------------
+   3.4 CHECKBOX & RADIO STYLING
+   ---------------------------------------------------------------------- */
+
+/* Base checkbox styling */
+.checkbox-theme {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--checkbox-border);
+  border-radius: var(--radius-sm);
+  background: var(--checkbox-bg);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.checkbox-theme:checked {
+  background: var(--checkbox-checked-bg);
+  border-color: var(--checkbox-checked-border);
+}
+
+.checkbox-theme:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--checkbox-checkmark);
+  font-size: var(--text-xs);
+  font-weight: bold;
+  line-height: 1;
+}
+
+.checkbox-theme:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Radio button styling */
+.radio-theme {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--checkbox-border);
+  border-radius: var(--radius-round);
+  background: var(--checkbox-bg);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.radio-theme:checked {
+  background: var(--checkbox-checked-bg);
+  border-color: var(--checkbox-checked-border);
+}
+
+.radio-theme:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--checkbox-checkmark);
+}
+
+/* ----------------------------------------------------------------------
+   3.5 SELECT & ENHANCED DROPDOWN STYLING
+   ---------------------------------------------------------------------- */
+
+/* Base select styling */
+.select-theme {
+  appearance: none;
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+  border-radius: var(--radius-sm);
+  color: var(--dropdown-text);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right var(--spacing-sm) center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: calc(var(--spacing-md) + 20px);
+}
+
+.select-theme:focus {
+  border-color: var(--input-border-focus);
+  outline: none;
+  box-shadow: var(--input-shadow-focus);
+}
+
+/* Dropdown menu styling */
+.dropdown-menu-theme {
+  background: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--dropdown-shadow);
+  padding: var(--spacing-xs);
+  min-width: 160px;
+  z-index: 1000;
+}
+
+.dropdown-item-theme {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--dropdown-text);
+  text-decoration: none;
+  border-radius: calc(var(--radius-sm) - 2px);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.dropdown-item-theme:hover {
+  background: var(--dropdown-hover);
+}
+
+.dropdown-item-theme.selected {
+  background: var(--dropdown-item-selected);
+  color: var(--dropdown-item-selected-text);
 }
 
 /* ----------------------------------------------------------------------
@@ -677,6 +831,73 @@ button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
 .table-header-border {
   border-bottom: 2px solid var(--table-header-border);
 }
+
+/* ----------------------------------------------------------------------
+   4.4 UTILITY CLASSES FOR THEME INTEGRATION
+   ---------------------------------------------------------------------- */
+
+/* Background utilities */
+.bg-page { background: var(--page-background); }
+.bg-card { background: var(--card-background); }
+.bg-table-header { background: var(--table-header-bg); }
+.bg-table-data { background: var(--table-data-bg); }
+.bg-input { background: var(--input-background); }
+.bg-dropdown { background: var(--dropdown-background); }
+.bg-modal { background: var(--modal-background); }
+
+/* Text color utilities */
+.text-page { color: var(--page-text); }
+.text-card { color: var(--card-text); }
+.text-table-header { color: var(--table-header-text); }
+.text-table-data { color: var(--table-data-text); }
+.text-input { color: var(--input-text); }
+.text-dropdown { color: var(--dropdown-text); }
+.text-modal { color: var(--modal-text); }
+
+/* Border utilities */
+.border-card { border-color: var(--card-border); }
+.border-table-cell { border-color: var(--table-cell-border); }
+.border-table-header { border-color: var(--table-header-border); }
+.border-input { border-color: var(--input-border); }
+.border-dropdown { border-color: var(--dropdown-border); }
+
+/* Shadow utilities */
+.shadow-card { box-shadow: var(--card-shadow); }
+.shadow-input { box-shadow: var(--input-shadow); }
+.shadow-dropdown { box-shadow: var(--dropdown-shadow); }
+.shadow-btn-primary { box-shadow: var(--btn-primary-shadow); }
+
+/* Button theme utilities */
+.btn-theme-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: var(--btn-primary-shadow);
+}
+
+.btn-theme-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border-color: var(--btn-secondary-border);
+}
+
+.btn-theme-destructive {
+  background: var(--button-destructive-bg);
+  color: var(--button-destructive-text);
+  border-color: var(--button-destructive-border);
+}
+
+/* State utilities */
+.state-selected { background: var(--table-data-selected); }
+.state-hover:hover { background: var(--table-data-hover); }
+.state-focus:focus { 
+  border-color: var(--input-border-focus);
+  box-shadow: var(--input-shadow-focus);
+}
+
+/* Glow effects */
+.glow-primary { box-shadow: var(--btn-primary-glow); }
+.glow-secondary { box-shadow: var(--btn-secondary-glow); }
+.glow-special { box-shadow: var(--btn-special-glow); }
 
 /* Table container with scrolling */
 .table-container {
