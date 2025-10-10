@@ -189,33 +189,7 @@
   --status-for-recycle-text: rgb(180, 180, 180);
   --status-for-recycle-border: rgba(120, 120, 120, 0.5);
   
-  /* Tailwind integration */
-  --primary: rgb(80, 80, 80);
-  --primary-foreground: rgb(255, 255, 255);
-  --secondary: rgb(40, 40, 40);
-  --secondary-foreground: rgb(220, 220, 220);
-  --destructive: rgb(180, 60, 60);
-  --destructive-foreground: rgb(255, 255, 255);
-  --warning: rgb(200, 150, 50);
-  --warning-foreground: rgb(255, 255, 255);
-  --foreground: rgb(220, 220, 220);
-  --background: rgb(5, 5, 5);
-  --muted: rgb(20, 20, 20);
-  --muted-foreground: rgb(140, 140, 140);
-  --accent: rgb(30, 30, 30);
-  --accent-foreground: rgb(210, 210, 210);
-  --border: rgb(40, 40, 40);
-  --input: rgb(25, 25, 25);
-  --ring: rgb(59, 130, 246);
-  --card: rgb(15, 23, 42);
-  --card-foreground: rgb(248, 250, 252);
-  --popover: rgb(15, 23, 42);
-  --popover-foreground: rgb(248, 250, 252);
-  --chart-1: rgb(59, 130, 246);
-  --chart-2: rgb(34, 197, 94);
-  --chart-3: rgb(251, 191, 36);
-  --chart-4: rgb(168, 85, 247);
-  --chart-5: rgb(239, 68, 68);
+  /* NOTE: Tailwind integration variables moved to end of file to avoid conflicts */
   
   /* Sidebar colors */
   --sidebar: rgb(10, 20, 45);

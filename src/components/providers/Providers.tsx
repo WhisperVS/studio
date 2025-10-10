@@ -9,10 +9,12 @@ import { PlatformProvider } from "./PlatformProvider";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="gaim-theme">
-      <UserProvider>
-        {children}
-      </UserProvider>
-    </ThemeProvider>
+    <PlatformProvider>
+      <ThemeProvider defaultTheme="dark" storageKey="gaim-theme">
+        <UserProvider>
+          {children}
+        </UserProvider>
+      </ThemeProvider>
+    </PlatformProvider>
   );
 }

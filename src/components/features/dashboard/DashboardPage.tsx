@@ -36,8 +36,7 @@ export default function DashboardPage() {
     status: 'all',
     location: 'all',
   });
-  // isMobile not used yet; keep hook for future responsive tweaks
-  useIsMobile();
+  const isMobile = useIsMobile();
   const [isClient, setIsClient] = useState(false);
   const { currentUser, setCurrentUser } = useUser();
 
