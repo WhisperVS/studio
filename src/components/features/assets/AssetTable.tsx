@@ -154,6 +154,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   }
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const headerScrollRef = useRef<HTMLDivElement | null>(null);
   const ribbonRef = useRef<HTMLDivElement | null>(null);
 
   // compute how many dynamic columns are visible (used to set min-width so horizontal scroll appears)
@@ -166,25 +167,102 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
 
   useEffect(() => {
     const scrollEl = scrollRef.current;
+    const headerScrollEl = headerScrollRef.current;
     const ribbonEl = ribbonRef.current;
-    if (!scrollEl || !ribbonEl) return;
+    if (!scrollEl || !headerScrollEl || !ribbonEl) return;
 
-    const onScroll = () => {
-      // keep ribbon in sync with table scroll
+    const autoCalibrate = () => {
+      // Create a temporary single table to measure natural column widths
+      const tempContainer = document.createElement('div');
+      tempContainer.style.position = 'absolute';
+      tempContainer.style.visibility = 'hidden';
+      tempContainer.style.top = '-9999px';
+      document.body.appendChild(tempContainer);
+
+      // Clone both header and data table structures into temp container
+      const headerTable = headerScrollEl.querySelector('table');
+      const dataTable = scrollEl.querySelector('table');
+      
+      if (headerTable && dataTable) {
+        const tempTable = document.createElement('table');
+        tempTable.className = 'border-collapse';
+        tempTable.style.tableLayout = 'auto'; // Let browser calculate natural widths
+        
+        // Clone header
+        const tempHeader = headerTable.querySelector('thead')?.cloneNode(true);
+        if (tempHeader) tempTable.appendChild(tempHeader);
+        
+        // Clone a few data rows for measurement
+        const tempBody = document.createElement('tbody');
+        const dataRows = dataTable.querySelectorAll('tbody tr');
+        for (let i = 0; i < Math.min(3, dataRows.length); i++) {
+          const clonedRow = dataRows[i].cloneNode(true);
+          tempBody.appendChild(clonedRow);
+        }
+        tempTable.appendChild(tempBody);
+        tempContainer.appendChild(tempTable);
+
+        // Force layout calculation
+        tempTable.offsetWidth;
+
+        // Measure the natural column widths
+        const tempHeaderCells = tempTable.querySelectorAll('thead th');
+        const realHeaderCells = headerTable.querySelectorAll('thead th');
+        const realDataTable = scrollEl.querySelector('table');
+
+        // Apply measured widths to both header and data tables
+        tempHeaderCells.forEach((tempCell, index) => {
+          const width = (tempCell as HTMLElement).offsetWidth;
+          const headerCell = realHeaderCells[index] as HTMLElement;
+          if (headerCell) {
+            headerCell.style.width = `${width}px`;
+            headerCell.style.minWidth = `${width}px`;
+            headerCell.style.maxWidth = `${width}px`;
+          }
+        });
+
+        // Apply same widths to data table using CSS variables or direct styling
+        if (realDataTable) {
+          const style = document.createElement('style');
+          let css = '';
+          tempHeaderCells.forEach((tempCell, index) => {
+            const width = (tempCell as HTMLElement).offsetWidth;
+            css += `
+              .asset-table tbody tr td:nth-child(${index + 1}) {
+                width: ${width}px !important;
+                min-width: ${width}px !important;
+                max-width: ${width}px !important;
+              }
+            `;
+          });
+          style.textContent = css;
+          realDataTable.appendChild(style);
+        }
+      }
+
+      // Clean up
+      document.body.removeChild(tempContainer);
+    };
+
+    const onDataScroll = () => {
+      // sync header position with data scroll
+      const headerTable = headerScrollEl.querySelector('table');
+      if (headerTable) {
+        headerTable.style.transform = `translateX(-${scrollEl.scrollLeft}px)`;
+      }
       ribbonEl.scrollLeft = scrollEl.scrollLeft;
     };
+    
     const onRibbonScroll = () => {
-      // allow user to drag the ribbon to scroll the table
       scrollEl.scrollLeft = ribbonEl.scrollLeft;
     };
 
-    scrollEl.addEventListener('scroll', onScroll);
+    scrollEl.addEventListener('scroll', onDataScroll);
     ribbonEl.addEventListener('scroll', onRibbonScroll);
 
     const setSpacerWidth = () => {
       const inner = ribbonEl.querySelector('.ribbon-spacer') as HTMLDivElement | null;
       if (inner) inner.style.width = `${scrollEl.scrollWidth}px`;
-      // Show ribbon only when table is wider than its visible area
       if (scrollEl.scrollWidth > scrollEl.clientWidth) {
         ribbonEl.style.display = 'block';
       } else {
@@ -192,17 +270,22 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       }
     };
 
+    // Initial calibration and setup
+    autoCalibrate();
     setSpacerWidth();
 
-    const resizeObserver = new ResizeObserver(() => setSpacerWidth());
+    const resizeObserver = new ResizeObserver(() => {
+      autoCalibrate();
+      setSpacerWidth();
+    });
     resizeObserver.observe(scrollEl);
 
     return () => {
-      scrollEl.removeEventListener('scroll', onScroll);
+      scrollEl.removeEventListener('scroll', onDataScroll);
       ribbonEl.removeEventListener('scroll', onRibbonScroll);
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [assets, columnVisibility]);
 
   // when visible columns change, recalc the ribbon spacer to match new scrollWidth
   useEffect(() => {
@@ -223,31 +306,45 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       {/* create an isolated stacking context so the table's sticky elements can't escape and overlap higher-level UI like the sidebar */}
       <div className="overflow-hidden flex-1 isolate h-full">
         <div className="relative w-full h-full flex flex-col">
-          {/* Scrollable table area - fixed height so table content scrolls internally */}
-          <div ref={scrollRef} className="w-full overflow-auto relative scrollbar-neon" style={{ height: tableHeight ?? '98%' }}>
-            <Table style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
-              <TableHeader>
-                <TableHeaderRow>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center sticky top-0 z-20">
-                    <ExternalLink className="h-4 w-4 inline-block" />
-                    <span className="sr-only">Connect</span>
-                  </TableHead>
-                  <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center sticky top-0 z-20">
-                    <CheckSquare className="h-4 w-4 inline-block" />
-                    <span className="sr-only">Select</span>
-                  </TableHead>
-                  {APP_CONFIG.tableColumns.map(col => columnVisibility[col.id] && (
-                      <TableHead 
-                        key={col.id}
-                        onClick={() => handleSort(col.id as keyof Asset)}
-                        className={cn("cursor-pointer sticky top-0 z-10", col.className)}
-                      >
-                        {col.label}
-                      </TableHead>
-                  ))}
-                  <TableHead className="w-12 sticky top-0 z-10"><span className="sr-only">Actions</span></TableHead>
-                </TableHeaderRow>
-              </TableHeader>
+          
+          {/* Separate header container - syncs with data table column widths */}
+          <div className="flex-shrink-0 border-b">
+            <div ref={headerScrollRef} className="w-full overflow-hidden">
+              <Table className="border-collapse" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
+                <TableHeader>
+                  <TableHeaderRow>
+                    <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
+                      <ExternalLink className="h-4 w-4 inline-block" />
+                      <span className="sr-only">Connect</span>
+                    </TableHead>
+                    <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
+                      <CheckSquare className="h-4 w-4 inline-block" />
+                      <span className="sr-only">Select</span>
+                    </TableHead>
+                    {APP_CONFIG.tableColumns.map(col => columnVisibility[col.id] && (
+                        <TableHead 
+                          key={col.id}
+                          onClick={() => handleSort(col.id as keyof Asset)}
+                          className={cn("cursor-pointer", col.className)}
+                        >
+                          {col.label}
+                          {sortKey === col.id && (
+                            <span className="ml-2 inline-block">
+                              {sortOrder === 'asc' ? '↑' : '↓'}
+                            </span>
+                          )}
+                        </TableHead>
+                    ))}
+                    <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
+                  </TableHeaderRow>
+                </TableHeader>
+              </Table>
+            </div>
+          </div>
+          
+          {/* Data container - auto-calibrates column widths based on content */}
+          <div ref={scrollRef} className="flex-1 overflow-auto relative scrollbar-neon pb-3">
+            <Table className="border-collapse asset-table" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
               <TableBody>
                 {(() => {
                   try {
