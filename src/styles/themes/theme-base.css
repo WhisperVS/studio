@@ -474,12 +474,20 @@ input, select, textarea {
    3.3 DROPDOWNS & SELECTS
    ---------------------------------------------------------------------- */
 
-/* Dropdown button styling */
+/* Dropdown trigger button styling (separate from dropdown content) */
 button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
-  background: var(--dropdown-background);
-  border: 1px solid var(--dropdown-border);
+  background: var(--btn-dropdown-trigger-bg);
+  border: 1px solid var(--btn-dropdown-trigger-border);
+  color: var(--btn-dropdown-trigger-text);
   backdrop-filter: blur(8px);
+  box-shadow: var(--btn-dropdown-trigger-glow);
+  transition: all 0.2s ease;
   position: relative;
+}
+
+button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:hover {
+  background: var(--btn-dropdown-trigger-hover);
+  box-shadow: var(--btn-dropdown-trigger-glow), 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Dropdown content container */
@@ -496,6 +504,25 @@ button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
   border: 1px solid var(--dropdown-border);
   background: var(--dropdown-background);
   box-shadow: var(--dropdown-shadow);
+}
+
+/* Apply glassmorphism blur effect to ALL dropdown menus */
+[data-radix-dropdown-menu-content],
+[data-radix-select-content],
+[data-radix-popover-content],
+[data-radix-menubar-content],
+[data-radix-context-menu-content],
+.dropdown-menu-content,
+.dropdown-content,
+[role="menu"],
+[role="listbox"],
+[role="combobox"][aria-expanded="true"] + [role="listbox"] {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--dropdown-background) !important;
+  border: 1px solid var(--dropdown-border) !important;
+  box-shadow: var(--dropdown-shadow) !important;
 }
 
 /* Dropdown items */

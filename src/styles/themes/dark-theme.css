@@ -54,9 +54,16 @@
   --search-base-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   
   /* Dropdown & Select Colors */
-  --dropdown-background: rgba(15, 25, 50, 0.98);
+  --dropdown-background: linear-gradient(135deg, rgba(15, 20, 35, 0.96) 0%, rgba(20, 18, 40, 0.94) 30%, rgba(18, 25, 45, 0.95) 70%, rgba(22, 18, 38, 0.97) 100%);
   --dropdown-border: rgba(100, 150, 255, 0.5);
   --dropdown-shadow: 0 16px 40px rgba(0, 0, 20, 0.6), 0 4px 20px rgba(100, 120, 255, 0.3);
+
+  /* Dropdown Trigger Button Colors (match view button) */
+  --btn-dropdown-trigger-bg: rgb(40, 60, 120);
+  --btn-dropdown-trigger-text: rgb(255, 255, 255);
+  --btn-dropdown-trigger-border: rgba(120, 150, 255, 0.4);
+  --btn-dropdown-trigger-hover: rgb(50, 70, 140);
+  --btn-dropdown-trigger-glow: 0 0 12px rgba(120, 150, 255, 0.3);
   --dropdown-text: rgb(240, 245, 255);
   --dropdown-focus-outline: rgba(150, 100, 255, 0.6);
   --dropdown-item-selected: rgba(120, 80, 255, 0.4);
