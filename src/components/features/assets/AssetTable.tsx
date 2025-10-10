@@ -200,7 +200,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             htmlCell.style.width = 'auto';
             htmlCell.style.minWidth = 'auto';
             htmlCell.style.maxWidth = 'none';
-            htmlCell.style.padding = '8px 12px'; // Standard padding
+            htmlCell.style.padding = '6px 8px'; // Reduced header padding
+            htmlCell.style.whiteSpace = 'nowrap'; // Prevent header text wrapping
           });
           tempTable.appendChild(tempHeader);
         }
@@ -217,7 +218,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             htmlCell.style.width = 'auto';
             htmlCell.style.minWidth = 'auto';
             htmlCell.style.maxWidth = 'none';
-            htmlCell.style.padding = '8px 12px'; // Standard padding
+            htmlCell.style.padding = '4px 6px'; // Reduced padding for measurement
             htmlCell.style.whiteSpace = 'nowrap'; // Prevent wrapping for measurement
           });
           tempBody.appendChild(clonedRow);
@@ -246,7 +247,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
           });
           
           // Use the larger of header or data width, plus some padding
-          const optimalWidth = Math.max(headerWidth, maxDataWidth) + 16; // 16px extra padding
+          const optimalWidth = Math.max(headerWidth, maxDataWidth) + 8; // Reduced to 8px extra padding
           columnWidths[index] = optimalWidth;
         });
 
@@ -276,10 +277,12 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
               width: ${width}px !important;
               min-width: ${width}px !important;
               max-width: ${width}px !important;
-              padding: 6px 8px !important;
+              padding: 4px 6px !important;
+              white-space: nowrap !important;
             }
             .asset-table thead tr th:nth-child(${index + 1}) {
-              padding: 8px 12px !important;
+              padding: 6px 8px !important;
+              white-space: nowrap !important;
             }
           `;
         });
@@ -372,7 +375,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                         <TableHead 
                           key={col.id}
                           onClick={() => handleSort(col.id as keyof Asset)}
-                          className={cn("cursor-pointer", col.className)}
+                          className={cn("cursor-pointer whitespace-nowrap", col.className)}
                         >
                           {col.label}
                           {sortKey === col.id && (
