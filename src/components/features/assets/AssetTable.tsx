@@ -358,7 +358,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
         <div className="relative w-full h-full flex flex-col">
           
           {/* Separate header container - syncs with data table column widths */}
-          <div className="flex-shrink-0 border-b">
+          <div className="flex-shrink-0 rounded-t-md table-header-border">
             <div ref={headerScrollRef} className="w-full overflow-hidden">
               <Table className="border-collapse" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
                 <TableHeader>

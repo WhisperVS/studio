@@ -66,6 +66,7 @@
   /* Table Colors */
   --table-header-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 30%, rgb(120, 100, 255) 70%, rgb(80, 120, 255) 100%);
   --table-header-text: rgb(255, 255, 255);
+  --table-header-border: rgba(120, 100, 255, 0.5);
   --table-data-bg: rgba(20, 30, 60, 0.6);
   --table-data-selected: rgba(100, 50, 200, 0.6);
   --table-data-text: rgb(240, 245, 255);

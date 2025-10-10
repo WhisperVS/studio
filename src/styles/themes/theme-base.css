@@ -674,6 +674,10 @@ button[role="combobox"], .dropdown-trigger, [data-dropdown-trigger] {
   border-right: none;
 }
 
+.table-header-border {
+  border-bottom: 2px solid var(--table-header-border);
+}
+
 /* Table container with scrolling */
 .table-container {
   max-height: calc(100vh - 280px);
