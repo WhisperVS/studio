@@ -63,7 +63,7 @@ export function Combobox({
           aria-expanded={open}
           disabled={disabled}
           className={cn(
-            "w-full justify-between font-normal form-control",
+            "w-full justify-between font-normal h-9 px-3 py-2 text-sm",
             "border border-input bg-background text-foreground",
             "   ",
             className

@@ -816,7 +816,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormLabel htmlFor="model-number-input">{APP_CONFIG.labels.modelNumber}</FormLabel>
                     <div className="relative">
                       <Input
-                        className="form-control"
                         aria-autocomplete="list"
                         aria-controls="model-suggestion-list"
                         aria-expanded={modelSuggestions.length > 0}
@@ -869,7 +868,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <div className="relative">
                       <FormControl>
                         <Input
-                          className="form-control"
                           placeholder="e.g., HJVX6"
                           {...field}
                           id="part-number-input"
@@ -1064,7 +1062,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       <div className="relative">
                         <FormControl>
                           <Input
-                            className="form-control"
                             aria-autocomplete="list"
                             aria-controls="user-suggestion-list"
                             aria-expanded={userSuggestions.length > 0}
@@ -1114,7 +1111,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                       <FormLabel htmlFor="user-id-input">{APP_CONFIG.labels.userId}</FormLabel>
                       <div className="relative">
                         <FormControl>
-                          <Input className="form-control" type="text" placeholder="e.g., 0005" {...field} id="user-id-input" name="userId" value={field.value ?? ''} />
+                          <Input type="text" placeholder="e.g., 0005" {...field} id="user-id-input" name="userId" value={field.value ?? ''} />
                         </FormControl>
                       </div>
                       <FormMessage />

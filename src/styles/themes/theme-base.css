@@ -88,6 +88,19 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   
+  /* Text Input Field System - Dedicated styling for typing fields */
+  --text-input-radius: var(--radius-sm);           /* Border radius for text inputs */
+  --text-input-padding: 8px 12px;                  /* Padding inside text inputs */
+  --text-input-font-size: var(--text-sm);          /* Font size for text inputs */
+  --text-input-line-height: 1.5;                   /* Line height for text inputs */
+  --text-input-background: var(--input-background); /* Background color - references theme */
+  --text-input-border: var(--input-border);        /* Border color - references theme */
+  --text-input-border-focus: var(--input-border-focus); /* Focus border - references theme */
+  --text-input-text: var(--input-text);            /* Text color - references theme */
+  --text-input-placeholder: var(--input-placeholder); /* Placeholder color - references theme */
+  --text-input-shadow: var(--input-shadow);        /* Box shadow - references theme */
+  --text-input-shadow-focus: var(--input-shadow-focus); /* Focus shadow - references theme */
+  
   /* Typography Scale */
   --text-xs: 0.75rem;    /* 12px */
   --text-sm: 0.875rem;   /* 14px */
@@ -336,8 +349,59 @@ button:focus-visible, .btn:focus-visible {
    3.2 FORMS & INPUTS
    ---------------------------------------------------------------------- */
 
-/* Base form control styling */
-input, select, textarea {
+/* Separate text input fields from other form controls */
+/* Text input fields - for typing content */
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="number"],
+textarea,
+.text-input-field {
+  background: var(--text-input-background);
+  border: 1px solid var(--text-input-border);
+  border-radius: var(--text-input-radius);
+  color: var(--text-input-text);
+  box-shadow: var(--text-input-shadow);
+  padding: var(--text-input-padding);
+  font-size: var(--text-input-font-size);
+  line-height: var(--text-input-line-height);
+}
+
+/* Text input focus states */
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="password"]:focus, 
+input[type="url"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="number"]:focus,
+textarea:focus,
+.text-input-field:focus {
+  border-color: var(--text-input-border-focus);
+  box-shadow: var(--text-input-shadow-focus);
+  outline: none;
+}
+
+/* Text input placeholder styling */
+input[type="text"]::placeholder, 
+input[type="email"]::placeholder, 
+input[type="password"]::placeholder, 
+input[type="url"]::placeholder, 
+input[type="search"]::placeholder, 
+input[type="tel"]::placeholder, 
+input[type="number"]::placeholder,
+textarea::placeholder,
+.text-input-field::placeholder {
+  color: var(--text-input-placeholder);
+  opacity: 1;
+}
+
+/* Other form controls (buttons, selects, checkboxes, etc.) keep generic styling */
+button, select, input[type="button"], input[type="submit"], input[type="reset"], 
+input[type="checkbox"], input[type="radio"], input[type="file"], input[type="range"] {
   border-radius: var(--radius-sm);
 }
 
