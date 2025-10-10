@@ -15,7 +15,7 @@
   
   /* Modal and Dialog colors */
   --modal-overlay: rgba(0, 0, 0, 0.8);
-  --dialog-background: rgb(12, 8, 25);
+  --dialog-background: linear-gradient(135deg, rgb(5, 10, 25) 0%, rgb(15, 25, 45) 20%, rgb(25, 35, 60) 40%, rgb(35, 25, 55) 60%, rgb(20, 15, 40) 80%, rgb(10, 5, 30) 100%);
   --dialog-border: rgb(40, 25, 70);
   --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
   
@@ -391,5 +391,3 @@
   --border: rgb(80, 120, 200);
   --input: rgb(40, 60, 120);
 }
-
-
