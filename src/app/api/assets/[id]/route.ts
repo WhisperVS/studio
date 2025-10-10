@@ -30,7 +30,8 @@ const mapEnumToDisplay = (asset: any) => {
   return {
     ...asset,
     location: locationMap[asset.location] || asset.location,
-    status: statusMap[asset.status] || asset.status
+    status: statusMap[asset.status] || asset.status,
+    category: asset.category
   };
 };
 
@@ -48,20 +49,10 @@ const mapDisplayToEnum = (data: any) => {
     'For Recycle': 'ForRecycle'
   };
   
-  const categoryMap: Record<string, string> = {
-    'laptops': 'laptops',
-    'servers': 'servers',
-    'systems': 'systems',
-    'networks': 'networks',
-    'printers': 'printers',
-    'misc': 'misc'
-  };
-  
   return {
     ...data,
     location: locationMap[data.location] || data.location,
     status: statusMap[data.status] || data.status,
-    category: categoryMap[data.category] || data.category
   };
 };
 
@@ -75,33 +66,35 @@ export async function OPTIONS() {
 // GET handler to fetch a single asset
 export async function GET(
   request: Request,
-    { params }: { params: { id: string } }
-    ) {
-      try {
-          const asset = await prisma.asset.findUnique({
-                where: { id: params.id },
-                    });
-                        if (!asset) {
-                              return NextResponse.json({ error: 'Asset not found' }, { status: 404, headers: corsHeaders });
-                                  }
-                                  
-                                  // Map enum values to display values
-                                  const mappedAsset = mapEnumToDisplay(asset);
-                                  
-                                      return NextResponse.json(mappedAsset, { headers: corsHeaders });
-                                        } catch (error) {
-                                            console.error('Failed to fetch asset:', error);
-                                                return NextResponse.json({ error: 'Failed to fetch asset' }, { status: 500, headers: corsHeaders });
-                                                  }
-                                                  }
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const asset = await prisma.asset.findUnique({
+      where: { id },
+    });
+    if (!asset) {
+      return NextResponse.json({ error: 'Asset not found' }, { status: 404, headers: corsHeaders });
+    }
+    
+    // Map enum values to display values
+    const mappedAsset = mapEnumToDisplay(asset);
+    
+    return NextResponse.json(mappedAsset, { headers: corsHeaders });
+  } catch (error) {
+    console.error('Failed to fetch asset:', error);
+    return NextResponse.json({ error: 'Failed to fetch asset' }, { status: 500, headers: corsHeaders });
+  }
+}
 
 
 // PUT handler to update an asset
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const validatedData = UpdateAssetAPISchema.parse(body);
 
@@ -112,7 +105,7 @@ export async function PUT(
     });
 
     const updatedAsset = await prisma.asset.update({
-      where: { id: params.id },
+      where: { id },
       data: mappedData,
     });
     
@@ -132,11 +125,12 @@ export async function PUT(
 // DELETE handler
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.asset.delete({
-      where: { id: params.id },
+      where: { id },
     });
     return new NextResponse(null, { status: 204, headers: corsHeaders }); // No Content
   } catch (error) {

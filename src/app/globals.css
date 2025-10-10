@@ -72,11 +72,13 @@ html {
   .checkbox-root[data-state="unchecked"] {
     border-color: var(--input-border);
     background-color: var(--input-background);
+    border-radius: var(--radius-checkbox);
   }
 
   .checkbox-root[data-state="checked"] {
     background-color: var(--primary);
     border-color: var(--primary);
+    border-radius: var(--radius-checkbox);
   }
 
   /* Button Variants - Using CSS Variables for Complete Theme Support */

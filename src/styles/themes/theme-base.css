@@ -79,6 +79,7 @@
   --radius-lg: 20px;   /* Modals, containers - balanced for proper corner fit */
   --radius-round: 50%; /* Avatars, icons */
   --radius: 0.75rem;   /* Tailwind compatibility */
+  --radius-checkbox: 50%; /* Checkbox border radius - perfect circle shape */
   
   /* Spacing System */
   --spacing-xs: 4px;
@@ -352,7 +353,7 @@ input, select, textarea {
   width: 16px;
   height: 16px;
   border: 2px solid var(--checkbox-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-checkbox);
   background: var(--checkbox-bg);
   cursor: pointer;
   position: relative;
