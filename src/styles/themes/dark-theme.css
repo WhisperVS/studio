@@ -128,10 +128,11 @@
   --table-header-text: rgb(255, 255, 255);
   --table-header-border: rgb(120, 100, 255);
   --table-header-border-glow: 0 0 8px rgba(120, 100, 255, 0.9), 0 0 16px rgba(150, 60, 255, 0.5);
+  --table-header-cell-border: rgba(255, 255, 255, 0.3);
   --table-data-bg: rgba(20, 30, 60, 0.6);
   --table-data-selected: rgba(100, 50, 200, 0.6);
   --table-data-text: rgb(240, 245, 255);
-  --table-cell-border: rgba(120, 100, 255, 0.3);
+  --table-cell-border: rgba(184, 174, 243, 0.6);
 
   /* Checkbox Colors */
   --checkbox-bg: rgba(20, 30, 60, 0.9);

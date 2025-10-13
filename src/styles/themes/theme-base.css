@@ -1483,6 +1483,17 @@ button.dialog-close-btn:active {
   border-right: none;
 }
 
+/* Header cell specific borders */
+.table-header-border-r {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: var(--table-header-cell-border);
+}
+
+.table-header-border-r:last-child {
+  border-right: none;
+}
+
 .table-header-border {
   border-bottom: 3px solid var(--table-header-border);
   box-shadow: var(--table-header-border-glow);

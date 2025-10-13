@@ -107,11 +107,12 @@
   --table-header-text: rgb(255, 255, 255);
   --table-header-border: rgb(249, 115, 22);
   --table-header-border-glow: 0 0 8px rgba(249, 115, 22, 0.8), 0 0 16px rgba(251, 146, 60, 0.4);
+  --table-header-cell-border: rgba(255, 255, 255, 0.4);
   --table-data-bg: rgba(254, 242, 242, 0.4);
   --table-data-hover: rgba(251, 146, 60, 0.2);
   --table-data-selected: rgba(251, 146, 60, 0.25);
   --table-data-text: rgb(120, 53, 15);
-  --table-cell-border: rgba(251, 146, 60, 0.2);
+  --table-cell-border: rgba(251, 146, 60, 0.5);
 
   /* Checkbox Colors */
   --checkbox-bg: rgba(255, 255, 255, 0.9);
