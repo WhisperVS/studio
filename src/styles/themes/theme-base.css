@@ -252,7 +252,7 @@ button:focus-visible, .btn:focus-visible {
 
 .btn-primary:hover, button[class*="primary"]:hover {
   transform: scale(1.02);
-  box-shadow: var(--btn-primary-shadow), var(--shadow-hover, 0 12px 40px rgba(0, 0, 0, 0.2));
+  box-shadow: var(--btn-primary-shadow);
 }
 
 .btn-primary:active, button[class*="primary"]:active {
@@ -273,6 +273,13 @@ button:focus-visible, .btn:focus-visible {
   background: var(--btn-outline-bg-hover);
   border-color: var(--btn-outline-border-hover);
   box-shadow: var(--btn-outline-glow-hover);
+  transform: scale(1.02);
+}
+
+/* Form select triggers should not scale */
+.form-select-trigger.btn-outline:hover,
+button.form-select-trigger:hover {
+  transform: none;
 }
 
 .btn-destructive {
@@ -286,7 +293,7 @@ button:focus-visible, .btn:focus-visible {
 
 .btn-destructive:hover {
   filter: brightness(1.1);
-  box-shadow: var(--btn-destructive-shadow-hover, 0 10px 30px rgba(239, 68, 68, 0.4));
+  transform: scale(1.02);
 }
 
 .btn-destructive:active {
@@ -360,6 +367,7 @@ button:focus-visible, .btn:focus-visible {
   border-color: var(--card-border);
   box-shadow: var(--shadow-md);
   filter: brightness(1.1);
+  transform: scale(1.02);
 }
 
 .btn-secondary:active {
@@ -376,6 +384,7 @@ button:focus-visible, .btn:focus-visible {
 .btn-ghost:hover {
   background: var(--button-ghost-hover-bg, rgba(100, 120, 255, 0.1));
   backdrop-filter: blur(8px);
+  transform: scale(1.02);
 }
 
 .btn-ghost:active {
@@ -402,7 +411,7 @@ button:focus-visible, .btn:focus-visible {
 
 .btn-export:hover {
   transform: scale(1.02);
-  box-shadow: var(--btn-export-shadow), var(--shadow-hover, 0 10px 30px rgba(0, 0, 0, 0.2));
+  box-shadow: var(--btn-export-shadow);
 }
 
 .btn-export:active {
@@ -415,10 +424,29 @@ button:focus-visible, .btn:focus-visible {
   border: 1px solid var(--input-border);
 }
 
+.btn-view-settings:hover {
+  background: var(--btn-view-settings-hover);
+  box-shadow: var(--btn-view-settings-glow);
+  transform: scale(1.02);
+}
+
+.btn-view-settings:active {
+  transform: scale(0.98);
+}
+
 .btn-clear-filters {
   background: var(--btn-clear-filters-bg);
   color: var(--btn-clear-filters-text);
   border: 1px solid var(--input-border);
+}
+
+.btn-clear-filters:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+.btn-clear-filters:active {
+  transform: scale(0.98);
 }
 
 .btn-select-all {
@@ -427,10 +455,28 @@ button:focus-visible, .btn:focus-visible {
   border: 1px solid transparent;
 }
 
+.btn-select-all:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+.btn-select-all:active {
+  transform: scale(0.98);
+}
+
 .btn-clear-selection {
   background: var(--btn-clear-selection-bg);
   color: var(--btn-clear-selection-text);
   border: 1px solid var(--input-border);
+}
+
+.btn-clear-selection:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+.btn-clear-selection:active {
+  transform: scale(0.98);
 }
 
 .btn-apply {
@@ -439,16 +485,46 @@ button:focus-visible, .btn:focus-visible {
   border: 1px solid transparent;
 }
 
+.btn-apply:hover {
+  background: var(--btn-apply-hover);
+  box-shadow: var(--btn-apply-glow);
+  transform: scale(1.02);
+}
+
+.btn-apply:active {
+  transform: scale(0.98);
+}
+
 .btn-cancel {
   background: var(--btn-cancel-bg);
   color: var(--btn-cancel-text);
   border: 1px solid transparent;
 }
 
+.btn-cancel:hover {
+  background: var(--btn-cancel-hover);
+  box-shadow: var(--btn-cancel-glow);
+  transform: scale(1.02);
+}
+
+.btn-cancel:active {
+  transform: scale(0.98);
+}
+
 .btn-delete {
   background: var(--btn-delete-bg);
   color: var(--btn-delete-text);
   border: 1px solid transparent;
+}
+
+.btn-delete:hover {
+  background: var(--btn-delete-hover);
+  box-shadow: var(--btn-delete-glow);
+  transform: scale(1.02);
+}
+
+.btn-delete:active {
+  transform: scale(0.98);
 }
 
 .btn-connect {

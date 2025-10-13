@@ -117,8 +117,6 @@
   --button-glow-color: rgba(251, 146, 60, 0.25);
   --button-ripple-color: rgba(251, 146, 60, 0.3);
   --button-ghost-hover-bg: rgba(251, 146, 60, 0.1);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
-  --btn-destructive-shadow-hover: 0 10px 30px rgba(239, 68, 68, 0.4);
   
   /* Outline Button Colors */
   --btn-outline-bg: rgba(255, 255, 255, 0.5);
