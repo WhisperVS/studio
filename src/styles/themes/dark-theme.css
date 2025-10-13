@@ -98,6 +98,11 @@
   --select-item-hover-bg: rgba(100, 80, 255, 0.2);
   --select-item-hover-border: rgba(120, 100, 255, 0.4);
   --select-item-hover-glow: 0 0 10px rgba(120, 100, 255, 0.3);
+  
+  /* Command Item Effects */
+  --command-item-hover-bg: rgba(100, 80, 255, 0.2);
+  --command-item-hover-border: rgba(120, 100, 255, 0.4);
+  --command-item-hover-glow: 0 0 10px rgba(120, 100, 255, 0.3);
 
   /* Table Colors */
   --table-header-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 30%, rgb(120, 100, 255) 70%, rgb(80, 120, 255) 100%);
