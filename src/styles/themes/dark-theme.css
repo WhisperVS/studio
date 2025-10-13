@@ -102,6 +102,15 @@
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.3);
   --btn-destructive-shadow-hover: 0 10px 30px rgba(239, 68, 68, 0.5);
   
+  /* Outline Button Colors */
+  --btn-outline-bg: rgba(20, 30, 60, 0.3);
+  --btn-outline-bg-hover: rgba(40, 60, 120, 0.5);
+  --btn-outline-border: rgba(120, 150, 255, 0.4);
+  --btn-outline-border-hover: rgba(150, 120, 255, 0.6);
+  --btn-outline-text: rgb(200, 220, 255);
+  --btn-outline-glow: 0 0 8px rgba(120, 100, 255, 0.2);
+  --btn-outline-glow-hover: 0 0 12px rgba(120, 100, 255, 0.4);
+  
   /* Specific action button colors */
   --btn-export-bg: linear-gradient(135deg, rgb(80, 150, 255) 0%, rgb(60, 180, 255) 30%, rgb(100, 120, 255) 70%, rgb(50, 200, 255) 100%);
   --btn-export-text: rgb(255, 255, 255);

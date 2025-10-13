@@ -260,18 +260,20 @@ button:focus-visible, .btn:focus-visible {
 }
 
 .btn-outline {
-  border: 1px solid var(--input-border);
-  background: transparent;
+  background: var(--btn-outline-bg);
+  border: 1px solid var(--btn-outline-border);
   backdrop-filter: blur(12px);
-  color: var(--page-text);
-  box-shadow: var(--btn-outline-inset), var(--btn-outline-shadow), var(--btn-outline-border);
+  color: var(--btn-outline-text);
+  box-shadow: var(--btn-outline-glow);
   position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline:hover {
-  background: var(--card-background);
-  border-color: var(--card-border);
-  box-shadow: var(--shadow-md);
+  background: var(--btn-outline-bg-hover);
+  border-color: var(--btn-outline-border-hover);
+  box-shadow: var(--btn-outline-glow-hover);
+  transform: scale(1.02);
 }
 
 .btn-outline:active {
