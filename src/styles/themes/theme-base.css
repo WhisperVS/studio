@@ -458,6 +458,18 @@ button:focus-visible, .btn:focus-visible {
   background: var(--btn-connect-bg);
   color: var(--btn-connect-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-connect-glow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-connect:hover {
+  box-shadow: var(--btn-connect-glow-hover);
+  transform: scale(1.02);
+}
+
+.btn-connect:active {
+  box-shadow: var(--btn-connect-glow-active);
+  transform: scale(0.98);
 }
 
 /* ----------------------------------------------------------------------
@@ -964,6 +976,13 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-nav a:hover, 
+.sidebar-nav button:hover, 
+.sidebar-nav [role="button"]:hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-nav a.active, 
@@ -988,6 +1007,10 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
   box-shadow: 0 4px 12px -4px var(--sidebar-primary);
 }
 
+[data-sidebar="menu-button"]:hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .light [data-sidebar="menu-button"][data-active="true"] {
   box-shadow: var(--sidebar-active-glow-light);
 }
@@ -1006,6 +1029,47 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 
 .dark [data-sidebar="menu-button"][data-active="true"] svg {
   filter: var(--sidebar-icon-glow-dark);
+}
+
+/* Sidebar Menu Action Buttons (external link icon) */
+[data-sidebar="menu-action"] {
+  background: var(--sidebar-action-bg);
+  border: 1px solid var(--sidebar-action-border);
+  color: var(--sidebar-action-text);
+  box-shadow: var(--sidebar-action-glow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-md);
+}
+
+[data-sidebar="menu-action"]:hover {
+  background: var(--sidebar-action-bg-hover);
+  box-shadow: var(--sidebar-action-glow-hover);
+  transform: scale(1.05);
+}
+
+[data-sidebar="menu-action"]:active {
+  transform: scale(0.95);
+}
+
+/* Sidebar Three-Dot Menu Buttons */
+button[role="menuitem"] > svg[class*="ellipsis"],
+button[data-sidebar] > svg[class*="ellipsis"],
+.sidebar-menu-action > svg[class*="ellipsis"] {
+  background: var(--sidebar-menu-dots-bg);
+  border: 1px solid var(--sidebar-menu-dots-border);
+  color: var(--sidebar-menu-dots-text);
+  box-shadow: var(--sidebar-menu-dots-glow);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button[role="menuitem"]:hover > svg[class*="ellipsis"],
+button[data-sidebar]:hover > svg[class*="ellipsis"],
+.sidebar-menu-action:hover > svg[class*="ellipsis"] {
+  background: var(--sidebar-menu-dots-bg-hover);
+  box-shadow: var(--sidebar-menu-dots-glow-hover);
+  transform: scale(1.1);
 }
 
 /* Sidebar groups and items */
