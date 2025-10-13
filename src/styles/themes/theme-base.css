@@ -1190,11 +1190,22 @@ button.dialog-close-btn:active {
   border-radius: var(--radius-sm);
 }
 
-.command-item:hover,
-.command-item[aria-selected="true"] {
+.command-item:hover {
   background: var(--command-item-hover-bg);
   border-color: var(--command-item-hover-border);
   box-shadow: var(--command-item-hover-glow);
+  transform: translateX(2px);
+}
+
+/* Selected item keeps effect active */
+.command-item.command-item-selected {
+  background: var(--command-item-hover-bg);
+  border-color: var(--command-item-hover-border);
+  box-shadow: var(--command-item-hover-glow);
+  font-weight: 500;
+}
+
+.command-item.command-item-selected:hover {
   transform: translateX(2px);
 }
 

@@ -93,6 +93,7 @@ export function Combobox({
                   key={opt.value}
                   value={opt.value}
                   onSelect={handleSelect}
+                  className={opt.value === value ? "command-item-selected" : ""}
                 >
                   <Check
                     className={cn(
