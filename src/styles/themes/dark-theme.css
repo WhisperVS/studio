@@ -182,8 +182,10 @@
   --btn-apply-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 50%, rgb(120, 100, 255) 100%);
   --btn-apply-text: rgb(255, 255, 255);
   --btn-cancel-bg: rgb(30, 50, 100);
+  --btn-cancel-hover: rgb(40, 65, 130);
   --btn-cancel-text: rgb(220, 230, 255);
   --btn-delete-bg: linear-gradient(135deg, rgb(255, 80, 120) 0%, rgb(255, 60, 100) 30%, rgb(220, 100, 140) 70%, rgb(200, 120, 160) 100%);
+  --btn-delete-hover: linear-gradient(135deg, rgb(255, 100, 140) 0%, rgb(255, 80, 120) 30%, rgb(240, 120, 160) 70%, rgb(220, 140, 180) 100%);
   --btn-delete-text: rgb(255, 255, 255);
   --btn-connect-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 50%, rgb(120, 100, 255) 100%);
   --btn-connect-text: rgb(255, 255, 255);
