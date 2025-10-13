@@ -19,6 +19,16 @@
   --dialog-border: rgb(45, 30, 80);
   --dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 100px rgba(100, 120, 255, 0.2);
   
+  /* Dialog Close Button */
+  --dialog-close-bg: rgba(239, 68, 68, 0.15);
+  --dialog-close-bg-hover: rgba(239, 68, 68, 0.25);
+  --dialog-close-border: rgba(239, 68, 68, 0.4);
+  --dialog-close-border-hover: rgba(220, 38, 38, 0.6);
+  --dialog-close-text: rgb(248, 113, 113);
+  --dialog-close-text-hover: rgb(239, 68, 68);
+  --dialog-close-glow: 0 0 10px rgba(239, 68, 68, 0.3);
+  --dialog-close-glow-hover: 0 0 16px rgba(239, 68, 68, 0.5);
+  
   /* Main page colors */
   --page-background: linear-gradient(135deg, rgb(5, 10, 25) 0%, rgb(15, 25, 45) 20%, rgb(25, 35, 60) 40%, rgb(35, 25, 55) 60%, rgb(20, 15, 40) 80%, rgb(10, 5, 30) 100%);
   --page-text: rgb(240, 245, 255);

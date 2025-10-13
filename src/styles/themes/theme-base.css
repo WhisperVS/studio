@@ -1096,6 +1096,29 @@ button.table-menu-btn:active {
   transform: scale(0.95);
 }
 
+/* Dialog Close Button (X button) */
+button.dialog-close-btn {
+  background: var(--dialog-close-bg);
+  border: 1px solid var(--dialog-close-border);
+  color: var(--dialog-close-text);
+  box-shadow: var(--dialog-close-glow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+}
+
+button.dialog-close-btn:hover {
+  background: var(--dialog-close-bg-hover);
+  border-color: var(--dialog-close-border-hover);
+  color: var(--dialog-close-text-hover);
+  box-shadow: var(--dialog-close-glow-hover);
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+button.dialog-close-btn:active {
+  transform: scale(0.95);
+}
+
 /* Sidebar groups and items */
 .sidebar-group {
   margin-bottom: 8px;

@@ -337,6 +337,16 @@
   --dialog-border: rgb(251, 146, 60);
   --dialog-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.3);
   
+  /* Dialog Close Button */
+  --dialog-close-bg: rgba(239, 68, 68, 0.12);
+  --dialog-close-bg-hover: rgba(239, 68, 68, 0.22);
+  --dialog-close-border: rgba(220, 38, 38, 0.4);
+  --dialog-close-border-hover: rgba(220, 38, 38, 0.6);
+  --dialog-close-text: rgb(220, 38, 38);
+  --dialog-close-text-hover: rgb(185, 28, 28);
+  --dialog-close-glow: 0 0 10px rgba(239, 68, 68, 0.3);
+  --dialog-close-glow-hover: 0 0 16px rgba(239, 68, 68, 0.5);
+  
   /* Theme toggle specific styling */
   --theme-toggle-bg: rgba(255, 255, 255, 0.95);
   --theme-toggle-border: rgba(251, 146, 60, 0.3);
