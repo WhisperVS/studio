@@ -407,7 +407,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                             <Button
                               variant="outline"
                               size="icon"
-                              className="h-7 w-7"
+                              className="h-7 w-7 table-action-btn"
                               onClick={() => handleConnect(asset.webui!)}
                               aria-label={`Connect to ${asset.machineName}`}
                             >
@@ -441,7 +441,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                         <TableCell className="text-center">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0">
+                              <Button variant="ghost" className="h-8 w-8 p-0 table-menu-btn">
                                 <span className="sr-only">Open menu</span>
                                 <MoreHorizontal className="h-4 w-4" />
                               </Button>
