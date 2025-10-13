@@ -485,6 +485,7 @@ input[type="url"],
 input[type="search"], 
 input[type="tel"], 
 input[type="number"],
+input.text-input-field,
 textarea,
 .text-input-field {
   background: var(--text-input-background);
@@ -508,6 +509,7 @@ input[type="url"]:focus,
 input[type="search"]:focus, 
 input[type="tel"]:focus, 
 input[type="number"]:focus,
+input.text-input-field:focus,
 textarea:focus,
 .text-input-field:focus {
   border-color: var(--text-input-border-focus);
@@ -523,6 +525,7 @@ input[type="url"]::placeholder,
 input[type="search"]::placeholder, 
 input[type="tel"]::placeholder, 
 input[type="number"]::placeholder,
+input.text-input-field::placeholder,
 textarea::placeholder,
 .text-input-field::placeholder {
   color: var(--text-input-placeholder);
