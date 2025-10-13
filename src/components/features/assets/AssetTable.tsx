@@ -410,7 +410,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                             <Button
                               variant="outline"
                               size="icon"
-                              className="h-7 w-7 table-action-btn"
+                              className="h-8 w-8 table-action-btn"
                               onClick={() => handleConnect(asset.webui!)}
                               aria-label={`Connect to ${asset.machineName}`}
                             >
@@ -423,6 +423,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                         <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0">
                           <div className="flex items-center justify-center">
                             <Checkbox
+                              className="!h-8 !w-5 !min-h-[15px] !min-w-[15px] !max-h-[40px] !max-w-[40px]"
                               checked={selectedAssetIds.includes(asset.id)}
                               onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect(asset.id, !!checked)}
                               aria-label={`Select row for ${asset.machineName}`}

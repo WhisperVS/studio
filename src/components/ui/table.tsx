@@ -56,7 +56,7 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "table-border-b  h-9",
+      "table-border-b  h-6",
       "bg-[var(--table-data-bg)]  data-[state=selected]:bg-[var(--table-data-selected)]",
       "text-[var(--table-data-text)]",
       className

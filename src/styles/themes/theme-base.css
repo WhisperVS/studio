@@ -1123,7 +1123,7 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 /* External Link Buttons in Table */
 button.table-action-btn {
   background: var(--sidebar-action-bg);
-  border-color: var(--sidebar-action-border);
+  border: 2px solid var(--sidebar-action-border);
   color: var(--sidebar-action-text);
   box-shadow: var(--sidebar-action-glow);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1143,7 +1143,7 @@ button.table-action-btn:active {
 /* Three-Dot Menu Buttons */
 button.table-menu-btn {
   background: var(--sidebar-menu-dots-bg);
-  border: 1px solid var(--sidebar-menu-dots-border);
+  border: 2px solid var(--sidebar-menu-dots-border);
   color: var(--sidebar-menu-dots-text);
   box-shadow: var(--sidebar-menu-dots-glow);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2028,6 +2028,12 @@ table tr[data-state="selected"] td {
   min-height: 36px;
 }
 
+/* Allow table buttons to be smaller */
+.platform-macos .table-action-btn,
+.platform-macos .table-menu-btn {
+  min-height: 24px;
+}
+
 /* Windows specific */
 .platform-windows .scrollbar-neon::-webkit-scrollbar {
   width: 16px;
@@ -2038,6 +2044,12 @@ table tr[data-state="selected"] td {
 .platform-windows .btn, 
 .platform-windows [role="button"] {
   min-height: 40px;
+}
+
+/* Allow table buttons to be smaller */
+.platform-windows .table-action-btn,
+.platform-windows .table-menu-btn {
+  min-height: 24px;
 }
 
 /* Windows font rendering */
