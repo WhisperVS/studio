@@ -273,11 +273,6 @@ button:focus-visible, .btn:focus-visible {
   background: var(--btn-outline-bg-hover);
   border-color: var(--btn-outline-border-hover);
   box-shadow: var(--btn-outline-glow-hover);
-  transform: scale(1.02);
-}
-
-.btn-outline:active {
-  transform: scale(0.98);
 }
 
 .btn-destructive {
