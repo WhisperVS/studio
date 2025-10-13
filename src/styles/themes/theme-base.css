@@ -487,7 +487,7 @@ button.form-select-trigger:hover {
 .btn-cancel {
   background: var(--btn-cancel-bg);
   color: var(--btn-cancel-text);
-  border: 1px solid transparent;
+  border: 2px solid var(--btn-cancel-border);
   box-shadow: var(--btn-cancel-shadow);
   transition: all 0.3s ease;
 }
@@ -496,6 +496,7 @@ button.form-select-trigger:hover {
   background: var(--btn-cancel-hover);
   box-shadow: var(--btn-cancel-glow);
   transform: scale(1.02);
+  border-color: var(--btn-cancel-border-hover);
 }
 
 .btn-cancel:active {
