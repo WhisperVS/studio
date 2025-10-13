@@ -1230,6 +1230,29 @@ button.dialog-close-btn:active {
   transform: translateX(2px);
 }
 
+/* Destructive Dropdown Menu Items with Red Glow */
+.dropdown-menu-item.text-destructive {
+  color: var(--dropdown-destructive-text);
+}
+
+.dropdown-menu-item.text-destructive svg {
+  color: var(--dropdown-destructive-text);
+}
+
+.dropdown-menu-item.text-destructive:hover,
+.dropdown-menu-item.text-destructive[data-highlighted] {
+  background: var(--dropdown-destructive-hover-bg);
+  border-color: var(--dropdown-destructive-hover-border);
+  box-shadow: var(--dropdown-destructive-hover-glow);
+  color: var(--dropdown-destructive-text);
+}
+
+.dropdown-menu-item.text-destructive:hover svg,
+.dropdown-menu-item.text-destructive[data-highlighted] svg {
+  color: var(--dropdown-destructive-text);
+  filter: drop-shadow(0 0 4px var(--dropdown-destructive-icon-glow));
+}
+
 /* Select Items with Hover Effects */
 .select-item {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);

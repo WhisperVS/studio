@@ -563,16 +563,15 @@ export default function DashboardPage() {
         <AlertDialog open={isBulkDeleteAlertOpen} onOpenChange={setIsBulkDeleteAlertOpen}>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>Delete {selectedAssetIds.length} Asset{selectedAssetIds.length !== 1 ? 's' : ''}</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This will permanently delete the selected {selectedAssetIds.length} asset(s)
-                        from your inventory. This action cannot be undone.
+                        This will permanently <span className="font-bold" style={{ color: 'var(--destructive)' }}>DELETE</span> {selectedAssetIds.length} selected asset{selectedAssetIds.length !== 1 ? 's' : ''} from your inventory. This action cannot be undone.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleBulkDelete} className="bg-destructive text-destructive-foreground">
-                        Continue
+                    <AlertDialogCancel className="btn-cancel">Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleBulkDelete} className="btn-delete">
+                        Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>

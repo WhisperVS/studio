@@ -493,16 +493,15 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Delete Asset</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the asset
-              from your inventory.
+              This will permanently <span className="font-bold" style={{ color: 'var(--destructive)' }}>DELETE</span> 1 selected asset from your inventory. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground">
-              Continue
+            <AlertDialogCancel className="btn-cancel">Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="btn-delete">
+              Confirm
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
