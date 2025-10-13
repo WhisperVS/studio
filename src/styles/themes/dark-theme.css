@@ -363,7 +363,7 @@
   --chart-color-5: rgb(255, 120, 150);
   
   /* Scrollbar colors */
-  --scrollbar-track: rgb(20, 30, 60);
+  --scrollbar-track: rgba(20, 30, 60, 0);
   --scrollbar-track-border: rgb(40, 50, 80);
   --scrollbar-thumb: rgb(120, 180, 255);
   --scrollbar-thumb-border: rgb(20, 30, 60);
