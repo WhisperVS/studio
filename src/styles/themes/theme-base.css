@@ -1119,6 +1119,37 @@ button.dialog-close-btn:active {
   transform: scale(0.95);
 }
 
+/* Dropdown Checkbox Items with Hover Effects */
+.dropdown-checkbox-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  margin: 2px 4px;
+  border-radius: var(--radius-sm);
+}
+
+.dropdown-checkbox-item:hover {
+  background: var(--dropdown-item-hover-bg);
+  border-color: var(--dropdown-item-hover-border);
+  box-shadow: var(--dropdown-item-hover-glow);
+  transform: translateX(2px);
+}
+
+/* Checked items maintain hover effect */
+.dropdown-checkbox-item.dropdown-item-checked {
+  background: var(--dropdown-item-checked-bg);
+  border-color: var(--dropdown-item-checked-border);
+  box-shadow: var(--dropdown-item-checked-glow);
+  color: var(--dropdown-item-checked-text);
+  font-weight: 500;
+}
+
+.dropdown-checkbox-item.dropdown-item-checked:hover {
+  background: var(--dropdown-item-checked-bg);
+  border-color: var(--dropdown-item-checked-border);
+  box-shadow: var(--dropdown-item-checked-glow);
+  transform: translateX(2px);
+}
+
 /* Sidebar groups and items */
 .sidebar-group {
   margin-bottom: 8px;

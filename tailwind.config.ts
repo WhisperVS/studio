@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      spacing: {
+        '1': '0.5rem',  // 8px - customized for p-1, m-1, etc.
+      },
       fontSize: {
         sm: ['0.829rem', '1.25rem'], // Override text-sm with custom values
       },
