@@ -387,7 +387,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                           </div>
                         </TableHead>
                     ))}
-                    <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
+                    <TableHead className="w-12 text-center">
+                      <MoreHorizontal className="h-4 w-4 inline-block" />
+                      <span className="sr-only">Actions</span>
+                    </TableHead>
                   </TableHeaderRow>
                 </TableHeader>
               </Table>
