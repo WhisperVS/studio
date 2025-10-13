@@ -42,6 +42,18 @@
   /* Search specific colors */
   --search-base-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   
+  /* Search Clear Button */
+  --search-clear-btn-bg: rgba(239, 68, 68, 0.15);
+  --search-clear-btn-text: rgb(239, 68, 68);
+  --search-clear-btn-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+  --search-clear-btn-hover-bg: rgba(239, 68, 68, 0.25);
+  --search-clear-btn-hover-text: rgb(220, 38, 38);
+  --search-clear-btn-hover-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+  --search-clear-btn-active-bg: rgba(239, 68, 68, 0.35);
+  --search-clear-btn-active-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+  --search-clear-btn-focus-outline: rgba(239, 68, 68, 0.6);
+  --search-clear-btn-icon-glow: rgba(239, 68, 68, 0.4);
+  
   /* Dropdown & Select Colors - SOLID, NO TRANSPARENCY */
   --dropdown-background: linear-gradient(135deg, rgb(248, 252, 255) 0%, rgb(238, 243, 255) 30%, rgb(243, 248, 254) 70%, rgb(252, 254, 255) 100%);
   --dropdown-border: rgba(251, 146, 60, 0.4);

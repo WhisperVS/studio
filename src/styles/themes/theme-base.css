@@ -687,10 +687,10 @@ button[data-radix-select-trigger]:focus,
   max-height: 22px;
   padding: 0;
   margin: 0;
-  background: rgba(239, 68, 68, 0.15);
+  background: var(--search-clear-btn-bg);
   border: none;
   border-radius: 50%;
-  color: rgb(239, 68, 68);
+  color: var(--search-clear-btn-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -699,26 +699,26 @@ button[data-radix-select-trigger]:focus,
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   overflow: hidden;
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+  box-shadow: var(--search-clear-btn-shadow);
 }
 
 .search-container button.search-clear-btn:hover {
-  background: rgba(239, 68, 68, 0.25);
-  color: rgb(220, 38, 38);
+  background: var(--search-clear-btn-hover-bg);
+  color: var(--search-clear-btn-hover-text);
   transform: translateY(-50%) scale(1.1);
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+  box-shadow: var(--search-clear-btn-hover-shadow);
 }
 
 .search-container button.search-clear-btn:active {
   transform: translateY(-50%) scale(0.9);
-  background: rgba(239, 68, 68, 0.35);
+  background: var(--search-clear-btn-active-bg);
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+  box-shadow: var(--search-clear-btn-active-shadow);
 }
 
 .search-container button.search-clear-btn:focus-visible {
-  outline: 2px solid rgba(239, 68, 68, 0.6);
+  outline: 2px solid var(--search-clear-btn-focus-outline);
   outline-offset: 1px;
   border-radius: 50%;
 }
@@ -726,7 +726,7 @@ button[data-radix-select-trigger]:focus,
 .search-container button.search-clear-btn svg {
   width: 14px;
   height: 14px;
-  filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4));
+  filter: drop-shadow(0 0 2px var(--search-clear-btn-icon-glow));
 }
 
 /* Toggle switches */
