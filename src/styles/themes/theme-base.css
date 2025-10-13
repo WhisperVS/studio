@@ -181,11 +181,6 @@ button:hover::before, .btn:hover::before, [role="button"]:hover::before {
   animation: subtle-pulse 2s ease-in-out infinite;
 }
 
-/* Premium hover state for all buttons */
-button:hover, .btn:hover, [role="button"]:hover {
-  transform: translateY(-2px);
-}
-
 /* Button states */
 button:disabled, .btn:disabled, [role="button"]:disabled {
   opacity: 0.5;
@@ -256,12 +251,12 @@ button:focus-visible, .btn:focus-visible {
 }
 
 .btn-primary:hover, button[class*="primary"]:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: scale(1.02);
   box-shadow: var(--btn-primary-shadow), var(--shadow-hover, 0 12px 40px rgba(0, 0, 0, 0.2));
 }
 
 .btn-primary:active, button[class*="primary"]:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: scale(0.98);
 }
 
 .btn-outline {
@@ -276,12 +271,11 @@ button:focus-visible, .btn:focus-visible {
 .btn-outline:hover {
   background: var(--card-background);
   border-color: var(--card-border);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .btn-outline:active {
-  transform: translateY(0px);
+  transform: scale(0.98);
 }
 
 .btn-destructive {
@@ -294,13 +288,12 @@ button:focus-visible, .btn:focus-visible {
 }
 
 .btn-destructive:hover {
-  transform: translateY(-2px);
   filter: brightness(1.1);
   box-shadow: var(--btn-destructive-shadow-hover, 0 10px 30px rgba(239, 68, 68, 0.4));
 }
 
 .btn-destructive:active {
-  transform: translateY(0px);
+  transform: scale(0.98);
 }
 
 /* Button groups */
@@ -367,14 +360,13 @@ button:focus-visible, .btn:focus-visible {
 }
 
 .btn-secondary:hover {
-  transform: translateY(-2px);
   border-color: var(--card-border);
   box-shadow: var(--shadow-md);
   filter: brightness(1.1);
 }
 
 .btn-secondary:active {
-  transform: translateY(0px);
+  transform: scale(0.98);
 }
 
 .btn-ghost {
@@ -387,11 +379,10 @@ button:focus-visible, .btn:focus-visible {
 .btn-ghost:hover {
   background: var(--button-ghost-hover-bg, rgba(100, 120, 255, 0.1));
   backdrop-filter: blur(8px);
-  transform: translateY(-1px);
 }
 
 .btn-ghost:active {
-  transform: translateY(0px);
+  transform: scale(0.98);
 }
 
 .btn-link {
@@ -413,12 +404,12 @@ button:focus-visible, .btn:focus-visible {
 }
 
 .btn-export:hover {
-  transform: translateY(-2px) scale(1.02);
+  transform: scale(1.02);
   box-shadow: var(--btn-export-shadow), var(--shadow-hover, 0 10px 30px rgba(0, 0, 0, 0.2));
 }
 
 .btn-export:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: scale(0.98);
 }
 
 .btn-view-settings {
