@@ -1150,6 +1150,43 @@ button.dialog-close-btn:active {
   transform: translateX(2px);
 }
 
+/* Regular Dropdown Menu Items with Hover Effects */
+.dropdown-menu-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  margin: 2px 4px;
+  border-radius: var(--radius-sm);
+}
+
+.dropdown-menu-item:hover,
+.dropdown-menu-item[data-highlighted] {
+  background: var(--dropdown-menu-item-hover-bg);
+  border-color: var(--dropdown-menu-item-hover-border);
+  box-shadow: var(--dropdown-menu-item-hover-glow);
+  transform: translateX(2px);
+}
+
+/* Select Items with Hover Effects */
+.select-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  margin: 2px 4px;
+  border-radius: var(--radius-sm);
+}
+
+.select-item:hover,
+.select-item[data-highlighted],
+.select-item[data-state="checked"] {
+  background: var(--select-item-hover-bg);
+  border-color: var(--select-item-hover-border);
+  box-shadow: var(--select-item-hover-glow);
+  transform: translateX(2px);
+}
+
+.select-item[data-state="checked"] {
+  font-weight: 500;
+}
+
 /* Sidebar groups and items */
 .sidebar-group {
   margin-bottom: 8px;

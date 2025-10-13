@@ -67,6 +67,16 @@
   --dropdown-item-checked-border: rgba(249, 115, 22, 0.5);
   --dropdown-item-checked-glow: 0 0 12px rgba(251, 146, 60, 0.35);
   --dropdown-item-checked-text: rgb(120, 53, 15);
+  
+  /* Regular Dropdown Menu Item Effects */
+  --dropdown-menu-item-hover-bg: rgba(251, 146, 60, 0.15);
+  --dropdown-menu-item-hover-border: rgba(249, 115, 22, 0.3);
+  --dropdown-menu-item-hover-glow: 0 0 10px rgba(251, 146, 60, 0.25);
+  
+  /* Select Item Effects */
+  --select-item-hover-bg: rgba(251, 146, 60, 0.15);
+  --select-item-hover-border: rgba(249, 115, 22, 0.3);
+  --select-item-hover-glow: 0 0 10px rgba(251, 146, 60, 0.25);
 
   /* Table Colors */
   --table-header-bg: linear-gradient(135deg, rgb(251, 146, 60) 0%, rgb(249, 115, 22) 30%, rgb(245, 101, 101) 70%, rgb(234, 88, 12) 100%);
