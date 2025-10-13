@@ -181,23 +181,55 @@
   --btn-connect-bg: linear-gradient(135deg, rgb(100, 80, 255) 0%, rgb(150, 60, 255) 50%, rgb(120, 100, 255) 100%);
   --btn-connect-text: rgb(255, 255, 255);
   
-  /* Button Glow Effects for Dark Theme */
-  --btn-primary-glow: 0 0 20px rgba(100, 80, 255, 0.6), 0 0 40px rgba(150, 60, 255, 0.3);
-  --btn-secondary-glow: 0 0 15px rgba(120, 150, 255, 0.4);
-  --btn-export-glow: 0 0 25px rgba(100, 150, 255, 0.7), 0 0 50px rgba(80, 180, 255, 0.4);
-  --btn-clear-glow: 0 0 15px rgba(120, 150, 255, 0.4);
-  --btn-filter-glow: 0 0 15px rgba(120, 150, 255, 0.4);
-  --btn-view-settings-glow: 0 0 12px rgba(120, 150, 255, 0.3);
-  --btn-clear-filters-glow: 0 0 12px rgba(120, 150, 255, 0.3);
-  --btn-select-all-glow: 0 0 20px rgba(100, 80, 255, 0.6);
-  --btn-clear-selection-glow: 0 0 12px rgba(120, 150, 255, 0.3);
-  --btn-apply-glow: 0 0 20px rgba(100, 80, 255, 0.6);
-  --btn-cancel-glow: 0 0 12px rgba(120, 150, 255, 0.3);
-  --btn-delete-glow: 0 0 25px rgba(255, 80, 120, 0.7);
-  --btn-connect-glow: 0 0 12px rgba(100, 80, 255, 0.4);
-  --btn-connect-glow-hover: 0 0 20px rgba(120, 100, 255, 0.6), 0 0 8px rgba(100, 80, 255, 0.4);
-  --btn-connect-glow-active: 0 0 8px rgba(100, 80, 255, 0.3);
-  --btn-special-glow: 0 0 20px rgba(100, 80, 255, 0.6);
+  /* Button Shadow & Glow Effects for Dark Theme */
+  /* Primary Button */
+  --btn-primary-glow: 0 0 24px rgba(100, 80, 255, 0.7), 0 0 48px rgba(150, 60, 255, 0.4), 0 8px 32px rgba(120, 80, 255, 0.5);
+  
+  /* Secondary Button */
+  --btn-secondary-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-secondary-glow: 0 0 18px rgba(120, 150, 255, 0.5), 0 0 36px rgba(100, 120, 255, 0.3), 0 4px 20px rgba(120, 150, 255, 0.4);
+  
+  /* Ghost Button */
+  --btn-ghost-shadow: none;
+  --btn-ghost-glow: 0 0 16px rgba(100, 120, 255, 0.4), 0 0 32px rgba(120, 100, 255, 0.2);
+  
+  /* Destructive Button */
+  --btn-destructive-glow: 0 0 24px rgba(255, 80, 120, 0.7), 0 0 48px rgba(255, 100, 140, 0.4), 0 8px 32px rgba(255, 80, 120, 0.5);
+  
+  /* Export Button */
+  --btn-export-glow: 0 0 28px rgba(100, 150, 255, 0.8), 0 0 56px rgba(80, 180, 255, 0.5), 0 8px 36px rgba(100, 150, 255, 0.6);
+  
+  /* View Settings Button */
+  --btn-view-settings-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-view-settings-glow: 0 0 16px rgba(120, 150, 255, 0.4), 0 0 32px rgba(100, 120, 255, 0.25);
+  
+  /* Clear Filters Button */
+  --btn-clear-filters-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-clear-filters-glow: 0 0 16px rgba(120, 150, 255, 0.4), 0 0 32px rgba(100, 120, 255, 0.25);
+  
+  /* Select All Button */
+  --btn-select-all-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-select-all-glow: 0 0 24px rgba(100, 80, 255, 0.7), 0 0 48px rgba(150, 60, 255, 0.4), 0 8px 32px rgba(120, 80, 255, 0.5);
+  
+  /* Clear Selection Button */
+  --btn-clear-selection-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-clear-selection-glow: 0 0 16px rgba(120, 150, 255, 0.4), 0 0 32px rgba(100, 120, 255, 0.25);
+  
+  /* Apply Button */
+  --btn-apply-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-apply-glow: 0 0 24px rgba(100, 80, 255, 0.7), 0 0 48px rgba(150, 60, 255, 0.4), 0 8px 32px rgba(120, 80, 255, 0.5);
+  
+  /* Cancel Button */
+  --btn-cancel-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-cancel-glow: 0 0 16px rgba(120, 150, 255, 0.4), 0 0 32px rgba(100, 120, 255, 0.25);
+  
+  /* Delete Button */
+  --btn-delete-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-delete-glow: 0 0 28px rgba(255, 80, 120, 0.8), 0 0 56px rgba(255, 60, 100, 0.5), 0 8px 36px rgba(255, 80, 120, 0.6);
+  
+  /* Connect Button */
+  --btn-connect-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --btn-connect-glow: 0 0 20px rgba(120, 100, 255, 0.6), 0 0 40px rgba(100, 80, 255, 0.4), 0 8px 28px rgba(120, 100, 255, 0.5);
 
   /* General Glow Effects */
   --glow-secondary: 0 0 15px rgba(120, 150, 255, 0.4);

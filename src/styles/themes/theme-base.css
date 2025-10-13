@@ -221,38 +221,18 @@ button:focus-visible, .btn:focus-visible {
   min-height: 2rem;
 }
 
-/* Button theme variants - WITH PREMIUM LIQUID GLASS EFFECTS */
+/* Button theme variants - WITH PREMIUM GLOW EFFECTS */
 .btn-primary, button[class*="primary"] {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
   border: 1px solid transparent;
   box-shadow: var(--btn-primary-shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Liquid ripple effect on primary buttons */
-.btn-primary::after, button[class*="primary"]::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--button-ripple-color, rgba(255, 255, 255, 0.3)) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.btn-primary:hover::after, button[class*="primary"]:hover::after {
-  width: 300px;
-  height: 300px;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover, button[class*="primary"]:hover {
   transform: scale(1.02);
-  box-shadow: var(--btn-primary-shadow);
+  box-shadow: var(--btn-primary-glow);
 }
 
 .btn-primary:active, button[class*="primary"]:active {
@@ -265,8 +245,7 @@ button:focus-visible, .btn:focus-visible {
   backdrop-filter: blur(12px);
   color: var(--btn-outline-text);
   box-shadow: var(--btn-outline-glow);
-  position: relative;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
@@ -287,12 +266,11 @@ button.form-select-trigger:hover {
   color: var(--button-destructive-text);
   border: 1px solid var(--button-destructive-border);
   box-shadow: var(--btn-destructive-inset), var(--btn-destructive-shadow), var(--btn-destructive-border);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .btn-destructive:hover {
-  filter: brightness(1.1);
+  box-shadow: var(--btn-destructive-glow);
   transform: scale(1.02);
 }
 
@@ -360,13 +338,13 @@ button.form-select-trigger:hover {
   color: var(--button-secondary-text);
   border: 1px solid var(--button-secondary-border);
   backdrop-filter: blur(10px);
-  position: relative;
+  box-shadow: var(--btn-secondary-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
   border-color: var(--card-border);
-  box-shadow: var(--shadow-md);
-  filter: brightness(1.1);
+  box-shadow: var(--btn-secondary-glow);
   transform: scale(1.02);
 }
 
@@ -378,12 +356,14 @@ button.form-select-trigger:hover {
   background: transparent;
   color: var(--page-text);
   border: 1px solid transparent;
-  position: relative;
+  box-shadow: var(--btn-ghost-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-ghost:hover {
-  background: var(--button-ghost-hover-bg, rgba(100, 120, 255, 0.1));
+  background: var(--button-ghost-hover-bg);
   backdrop-filter: blur(8px);
+  box-shadow: var(--btn-ghost-glow);
   transform: scale(1.02);
 }
 
@@ -399,19 +379,18 @@ button.form-select-trigger:hover {
   text-underline-offset: 4px;
 }
 
-/* Action-specific button variants - WITH PREMIUM EFFECTS */
+/* Action-specific button variants - WITH PREMIUM GLOW EFFECTS */
 .btn-export {
   background: var(--btn-export-bg);
   color: var(--btn-export-text);
   border: 1px solid transparent;
   box-shadow: var(--btn-export-shadow);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .btn-export:hover {
   transform: scale(1.02);
-  box-shadow: var(--btn-export-shadow);
+  box-shadow: var(--btn-export-glow);
 }
 
 .btn-export:active {
@@ -422,6 +401,8 @@ button.form-select-trigger:hover {
   background: var(--btn-view-settings-bg);
   color: var(--btn-view-settings-text);
   border: 1px solid var(--input-border);
+  box-shadow: var(--btn-view-settings-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-view-settings:hover {
@@ -438,10 +419,12 @@ button.form-select-trigger:hover {
   background: var(--btn-clear-filters-bg);
   color: var(--btn-clear-filters-text);
   border: 1px solid var(--input-border);
+  box-shadow: var(--btn-clear-filters-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-clear-filters:hover {
-  filter: brightness(1.1);
+  box-shadow: var(--btn-clear-filters-glow);
   transform: scale(1.02);
 }
 
@@ -453,10 +436,12 @@ button.form-select-trigger:hover {
   background: var(--btn-select-all-bg);
   color: var(--btn-select-all-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-select-all-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-select-all:hover {
-  filter: brightness(1.1);
+  box-shadow: var(--btn-select-all-glow);
   transform: scale(1.02);
 }
 
@@ -468,10 +453,12 @@ button.form-select-trigger:hover {
   background: var(--btn-clear-selection-bg);
   color: var(--btn-clear-selection-text);
   border: 1px solid var(--input-border);
+  box-shadow: var(--btn-clear-selection-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-clear-selection:hover {
-  filter: brightness(1.1);
+  box-shadow: var(--btn-clear-selection-glow);
   transform: scale(1.02);
 }
 
@@ -483,6 +470,8 @@ button.form-select-trigger:hover {
   background: var(--btn-apply-bg);
   color: var(--btn-apply-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-apply-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-apply:hover {
@@ -499,6 +488,8 @@ button.form-select-trigger:hover {
   background: var(--btn-cancel-bg);
   color: var(--btn-cancel-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-cancel-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-cancel:hover {
@@ -515,6 +506,8 @@ button.form-select-trigger:hover {
   background: var(--btn-delete-bg);
   color: var(--btn-delete-text);
   border: 1px solid transparent;
+  box-shadow: var(--btn-delete-shadow);
+  transition: all 0.3s ease;
 }
 
 .btn-delete:hover {
