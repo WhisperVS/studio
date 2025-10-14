@@ -529,12 +529,14 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{APP_CONFIG.labels.manufacturer}</FormLabel>
-                    <Combobox
-                      options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
-                      value={field.value}
-                      onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
-                      placeholder="Select or type manufacturer..."
-                    />
+                    <FormControl>
+                      <Combobox
+                        options={APP_CONFIG.manufacturers.map(m => ({ value: m, label: m }))}
+                        value={field.value}
+                        onChange={(value) => form.setValue('manufacturer', value || '', { shouldValidate: true })}
+                        placeholder="Select or type manufacturer..."
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -567,8 +569,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="model-number-input">{APP_CONFIG.labels.modelNumber}</FormLabel>
-                    <div className="relative">
-                      <FormControl>
+                    <FormControl>
+                      <div className="relative">
                         <Input
                           aria-autocomplete="list"
                           aria-controls="model-suggestion-list"
@@ -585,8 +587,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                           ref={modelInputRef}
                           autoComplete="off"
                         />
-                      </FormControl>
-                      {modelSuggestions.length > 0 && (
+                        {modelSuggestions.length > 0 && (
                         <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
                           <ul
                             id="model-suggestion-list"
@@ -608,8 +609,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                             ))}
                           </ul>
                         </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -620,18 +622,16 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="part-number-input">{APP_CONFIG.labels.partNumber}</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Input
-                          placeholder="e.g., HJVX6"
-                          {...field}
-                          id="part-number-input"
-                          name="partNumber"
-                          value={field.value ?? ''}
-                          autoComplete="off"
-                        />
-                      </FormControl>
-                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="e.g., HJVX6"
+                        {...field}
+                        id="part-number-input"
+                        name="partNumber"
+                        value={field.value ?? ''}
+                        autoComplete="off"
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -743,8 +743,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
-                      <div className="relative">
-                        <div className="flex items-center">
+                      <FormControl>
+                        <div className="flex">
                           <Select
                             value={field.value?.startsWith('https://') ? 'https' : field.value?.startsWith('http://') ? 'http' : 'https'}
                             onValueChange={(protocol: string) => {
@@ -761,22 +761,20 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                               <SelectItem value="http">HTTP</SelectItem>
                             </SelectContent>
                           </Select>
-                          <FormControl>
-                            <Input
-                              placeholder="192.168.1.1"
-                              {...field}
-                              id="webui-input"
-                              name="webui"
-                              value={field.value?.replace(/^https?:\/\//, '') ?? ''}
-                              onChange={(e) => {
-                                const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
-                                field.onChange(`${protocol}://${e.target.value}`);
-                              }}
-                              className="rounded-l-none"
-                            />
-                          </FormControl>
+                          <Input
+                            placeholder="192.168.1.1"
+                            {...field}
+                            id="webui-input"
+                            name="webui"
+                            value={field.value?.replace(/^https?:\/\//, '') ?? ''}
+                            onChange={(e) => {
+                              const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
+                              field.onChange(`${protocol}://${e.target.value}`);
+                            }}
+                            className="rounded-l-none"
+                          />
                         </div>
-                      </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}

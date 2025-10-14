@@ -814,24 +814,25 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="model-number-input">{APP_CONFIG.labels.modelNumber}</FormLabel>
-                    <div className="relative">
-                      <Input
-                        aria-autocomplete="list"
-                        aria-controls="model-suggestion-list"
-                        aria-expanded={modelSuggestions.length > 0}
-                        aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
-                        placeholder="e.g., Latitude 5420"
-                        {...field}
-                        id="model-number-input"
-                        name="modelNumber"
-                        value={field.value ?? ''}
-                        onChange={handleModelChange}
-                        onKeyDown={handleModelKeyDown}
-                        onBlur={handleModelBlur}
-                        ref={modelInputRef}
-                        autoComplete="off"
-                      />
-                      {modelSuggestions.length > 0 && (
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          aria-autocomplete="list"
+                          aria-controls="model-suggestion-list"
+                          aria-expanded={modelSuggestions.length > 0}
+                          aria-activedescendant={modelSuggestions.length ? `model-suggestion-${activeModelSuggestionIndex}` : undefined}
+                          placeholder="e.g., Latitude 5420"
+                          {...field}
+                          id="model-number-input"
+                          name="modelNumber"
+                          value={field.value ?? ''}
+                          onChange={handleModelChange}
+                          onKeyDown={handleModelKeyDown}
+                          onBlur={handleModelBlur}
+                          ref={modelInputRef}
+                          autoComplete="off"
+                        />
+                        {modelSuggestions.length > 0 && (
                         <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
                           <ul
                             id="model-suggestion-list"
@@ -853,8 +854,9 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                             ))}
                           </ul>
                         </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -865,17 +867,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="part-number-input">{APP_CONFIG.labels.partNumber}</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Input
-                          placeholder="e.g., HJVX6"
-                          {...field}
-                          id="part-number-input"
-                          name="partNumber"
-                          value={field.value ?? ''}
-                        />
-                      </FormControl>
-                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="e.g., HJVX6"
+                        {...field}
+                        id="part-number-input"
+                        name="partNumber"
+                        value={field.value ?? ''}
+                        autoComplete="off"
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -985,8 +986,8 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
-                      <div className="relative">
-                        <div className="flex items-center">
+                      <FormControl>
+                        <div className="flex">
                           <Select
                             value={field.value?.startsWith('https://') ? 'https' : field.value?.startsWith('http://') ? 'http' : 'https'}
                             onValueChange={(protocol: string) => {
@@ -1003,22 +1004,20 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                               <SelectItem value="http">HTTP</SelectItem>
                             </SelectContent>
                           </Select>
-                          <FormControl>
-                            <Input
-                              placeholder="192.168.1.1"
-                              {...field}
-                              id="webui-input"
-                              name="webui"
-                              value={field.value?.replace(/^https?:\/\//, '') ?? ''}
-                              onChange={(e) => {
-                                const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
-                                field.onChange(`${protocol}://${e.target.value}`);
-                              }}
-                              className="rounded-l-none"
-                            />
-                          </FormControl>
+                          <Input
+                            placeholder="192.168.1.1"
+                            {...field}
+                            id="webui-input"
+                            name="webui"
+                            value={field.value?.replace(/^https?:\/\//, '') ?? ''}
+                            onChange={(e) => {
+                              const protocol = field.value?.startsWith('http://') ? 'http' : 'https';
+                              field.onChange(`${protocol}://${e.target.value}`);
+                            }}
+                            className="rounded-l-none"
+                          />
                         </div>
-                      </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
