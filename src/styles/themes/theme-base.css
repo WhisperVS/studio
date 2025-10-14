@@ -569,7 +569,7 @@ textarea,
   padding: var(--text-input-padding);
   font-size: var(--text-input-font-size);
   line-height: var(--text-input-line-height);
-  height: 2.25rem; /* Same as h-9 */
+  height: 2.5rem; /* Same as h-10 = 40px */
   display: flex;
   align-items: center;
 }

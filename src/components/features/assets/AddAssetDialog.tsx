@@ -996,7 +996,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                               field.onChange(`${protocol}://${cleanValue}`);
                             }}
                           >
-                            <SelectTrigger className="h-9 w-24 rounded-r-none border-r-0">
+                            <SelectTrigger className="w-32 rounded-r-none border-r-0">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
