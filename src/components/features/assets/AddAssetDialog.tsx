@@ -833,7 +833,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                           autoComplete="off"
                         />
                         {modelSuggestions.length > 0 && (
-                        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                        <div className="absolute z-50 mt-1 w-full rounded-md bg-popover text-popover-foreground shadow">
                           <ul
                             id="model-suggestion-list"
                             role="listbox"
@@ -927,7 +927,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                             autoComplete="off"
                           />
                           {osSuggestions.length > 0 && (
-                          <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
+                          <div className="absolute z-50 mt-1 w-full rounded-md bg-popover text-popover-foreground shadow">
                             <ul
                               id="os-suggestion-list"
                               role="listbox"

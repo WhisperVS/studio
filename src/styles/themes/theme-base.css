@@ -953,7 +953,7 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
   font-weight: 500;
   cursor: pointer;
   background: transparent;
-  border: 1px solid transparent;
+  border: none;
   position: relative;
   overflow: hidden;
   color: var(--dropdown-text);
@@ -966,7 +966,6 @@ button[role="combobox"]:hover, .dropdown-trigger:hover, [data-dropdown-trigger]:
 [role="option"]:hover,
 ul[role="listbox"] li[role="option"]:hover {
   background: var(--command-item-hover-bg);
-  border-color: var(--command-item-hover-border);
   box-shadow: var(--command-item-hover-glow);
 }
 
@@ -976,7 +975,12 @@ ul[role="listbox"] li[role="option"]:hover {
 [role="option"][aria-selected="true"] {
   background: var(--dropdown-hover);
   color: var(--dropdown-item-selected-text);
-  border-color: var(--dropdown-focus-outline);
+}
+
+/* Active suggestion items (arrow key navigation) */
+ul[role="listbox"] li[role="option"][aria-selected="true"] {
+  background: var(--command-item-hover-bg);
+  box-shadow: var(--command-item-hover-glow);
 }
 
 [data-radix-select-item][data-state="checked"], 
