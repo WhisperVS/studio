@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import "@/styles/themes/premium-effects.css";
 
 export default function EffectsDemo() {
   const [activeEffect, setActiveEffect] = useState<string | null>(null);

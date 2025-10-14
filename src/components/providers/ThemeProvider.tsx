@@ -28,14 +28,14 @@ function applyThemeWithNoTransition(theme: Theme) {
   // Add the guard class to disable transitions
   root.classList.add("theme-changing");
 
-  // Apply the theme class on the next frame for reliability
-  requestAnimationFrame(() => {
-    applyThemeClass(theme);
-    // Remove the guard after a tiny delay so variables have settled
-    setTimeout(() => {
-      root.classList.remove("theme-changing");
-    }, 150);
-  });
+  // Apply the theme immediately - no need for requestAnimationFrame
+  applyThemeClass(theme);
+  
+  // Force a reflow to ensure theme variables are applied
+  void root.offsetHeight;
+  
+  // Remove the guard class immediately - CSS variables are synchronous
+  root.classList.remove("theme-changing");
 }
 
 export function ThemeProvider({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useRef, useEffect } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -49,20 +49,31 @@ interface AssetTableProps {
   tableHeight?: string; // CSS height (e.g. '600px' or 'calc(100vh - 260px)')
 }
 
-export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility, tableHeight }: AssetTableProps) {
+export const AssetTable = React.memo(function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility, tableHeight }: AssetTableProps) {
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
 
-  const handleRowSelect = (assetId: string, checked: boolean) => {
+  const handleRowSelect = useRef((assetId: string, checked: boolean) => {
     onSelectedAssetIdsChange(
       checked
         ? [...selectedAssetIds, assetId]
         : selectedAssetIds.filter(id => id !== assetId)
     );
-  };
+  });
+  
+  // Update ref when dependencies change
+  useEffect(() => {
+    handleRowSelect.current = (assetId: string, checked: boolean) => {
+      onSelectedAssetIdsChange(
+        checked
+          ? [...selectedAssetIds, assetId]
+          : selectedAssetIds.filter(id => id !== assetId)
+      );
+    };
+  }, [selectedAssetIds, onSelectedAssetIdsChange]);
 
 
   const handleDelete = async () => {
@@ -156,6 +167,9 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const headerScrollRef = useRef<HTMLDivElement | null>(null);
   const ribbonRef = useRef<HTMLDivElement | null>(null);
+
+  // Memoize selected IDs set for faster lookups
+  const selectedIdsSet = useMemo(() => new Set(selectedAssetIds), [selectedAssetIds]);
 
   // compute how many dynamic columns are visible (used to set min-width so horizontal scroll appears)
   const visibleDynamicColumns = APP_CONFIG.tableColumns.filter(col => columnVisibility[col.id]).length;
@@ -424,7 +438,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                 {(() => {
                   try {
                     return sortedAssets.map((asset) => (
-                      <TableRow key={asset.id} data-state={selectedAssetIds.includes(asset.id) ? "selected" : ""}>
+                      <TableRow key={asset.id} data-state={selectedIdsSet.has(asset.id) ? "selected" : ""}>
                         {asset.webui ? (
                           <TableCell className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
                             <Button
@@ -444,8 +458,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
                           <div className="flex items-center justify-center">
                             <Checkbox
                               className="!h-8 !w-5 !min-h-[15px] !min-w-[15px] !max-h-[40px] !max-w-[40px]"
-                              checked={selectedAssetIds.includes(asset.id)}
-                              onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect(asset.id, !!checked)}
+                              checked={selectedIdsSet.has(asset.id)}
+                              onCheckedChange={(checked: boolean | 'indeterminate') => handleRowSelect.current(asset.id, !!checked)}
                               aria-label={`Select row for ${asset.machineName}`}
                             />
                           </div>
@@ -532,4 +546,4 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       </AlertDialog>
     </>
   );
-}
+});

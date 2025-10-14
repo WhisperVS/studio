@@ -1,7 +1,6 @@
 @import '../styles/themes/theme-base.css';
 @import '../styles/themes/light-theme.css';
 @import '../styles/themes/dark-theme.css';
-@import '../styles/themes/premium-effects.css';
 
 @tailwind base;
 @tailwind components;
