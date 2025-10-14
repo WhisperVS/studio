@@ -602,7 +602,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                                 aria-selected={i === activeModelSuggestionIndex}
                                 ref={el => { modelSuggestionItemRefs.current[i] = el }}
                                 onMouseDown={(e) => { e.preventDefault(); acceptModelSuggestion(s); }}
-                                className={`px-3 py-2 text-sm cursor-pointer ${i === activeModelSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
+                                className={`px-3 py-2 text-sm cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground ${i === activeModelSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
                               >
                                 {s}
                               </li>
@@ -696,7 +696,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                                   aria-selected={i === activeOsSuggestionIndex}
                                   ref={el => { osSuggestionItemRefs.current[i] = el }}
                                   onMouseDown={(e) => { e.preventDefault(); acceptOsSuggestion(s); }}
-                                  className={`px-3 py-2 text-sm cursor-pointer ${i === activeOsSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
+                                  className={`px-3 py-2 text-sm cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground ${i === activeOsSuggestionIndex ? 'bg-accent text-accent-foreground' : ''}`}
                                 >
                                   {s}
                                 </li>
