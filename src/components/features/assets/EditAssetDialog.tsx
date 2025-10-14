@@ -664,8 +664,8 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="os-input">{APP_CONFIG.labels.os}</FormLabel>
-                      <div className="relative">
-                        <FormControl>
+                      <FormControl>
+                        <div className="relative">
                           <Input
                             aria-autocomplete="list"
                             aria-controls="os-suggestion-list"
@@ -681,8 +681,7 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                             ref={osInputRef}
                             autoComplete="off"
                           />
-                        </FormControl>
-                        {osSuggestions.length > 0 && (
+                          {osSuggestions.length > 0 && (
                           <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
                             <ul
                               id="os-suggestion-list"
@@ -704,8 +703,9 @@ export function EditAssetDialog({ asset, isOpen, onOpenChange, onAssetUpdated }:
                               ))}
                             </ul>
                           </div>
-                        )}
-                      </div>
+                          )}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}

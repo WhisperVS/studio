@@ -909,23 +909,24 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="os-input">{APP_CONFIG.labels.os}</FormLabel>
-                      <div className="relative">
-                        <Input
-                          aria-autocomplete="list"
-                          aria-controls="os-suggestion-list"
-                          aria-expanded={osSuggestions.length > 0}
-                          aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
-                          placeholder="e.g., Windows 11 Pro"
-                          {...field}
-                          id="os-input"
-                          name="os"
-                          value={field.value ?? ''}
-                          onChange={handleOsChange}
-                          onKeyDown={handleOsKeyDown}
-                          ref={osInputRef}
-                          autoComplete="off"
-                        />
-                        {osSuggestions.length > 0 && (
+                      <FormControl>
+                        <div className="relative">
+                          <Input
+                            aria-autocomplete="list"
+                            aria-controls="os-suggestion-list"
+                            aria-expanded={osSuggestions.length > 0}
+                            aria-activedescendant={osSuggestions.length ? `os-suggestion-${activeOsSuggestionIndex}` : undefined}
+                            placeholder="e.g., Windows 11 Pro"
+                            {...field}
+                            id="os-input"
+                            name="os"
+                            value={field.value ?? ''}
+                            onChange={handleOsChange}
+                            onKeyDown={handleOsKeyDown}
+                            ref={osInputRef}
+                            autoComplete="off"
+                          />
+                          {osSuggestions.length > 0 && (
                           <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow">
                             <ul
                               id="os-suggestion-list"
@@ -947,8 +948,9 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                               ))}
                             </ul>
                           </div>
-                        )}
-                      </div>
+                          )}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
