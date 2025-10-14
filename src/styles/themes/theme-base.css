@@ -1990,7 +1990,7 @@ table tr[data-state="selected"] td {
 .scrollbar-neon {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: auto;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 .scrollbar-neon::-webkit-scrollbar {
@@ -1999,18 +1999,18 @@ table tr[data-state="selected"] td {
 }
 
 .scrollbar-neon::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
+  background: transparent;
   border-radius: 6px;
 }
 
 .scrollbar-neon::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   border-radius: 6px;
-  border: 2px solid var(--scrollbar-track);
+  border: 2px solid transparent;
 }
 
 .scrollbar-neon::-webkit-scrollbar-corner {
-  background: var(--scrollbar-track);
+  background: transparent;
 }
 
 /* ======================================================================

@@ -89,7 +89,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 px-4 text-left align-middle font-semibold table-header-border-r",
+      "h-12 text-left align-middle font-semibold table-header-border-r",
       "text-[var(--table-header-text)]",
       className
     )}
@@ -105,7 +105,7 @@ const TableCell = React.forwardRef<
   <td
     ref={ref}
     className={cn(
-      "px-4 align-middle table-border-r",
+      "align-middle table-border-r",
       "whitespace-nowrap overflow-hidden text-ellipsis",
       "text-[var(--table-data-text)]",
       className

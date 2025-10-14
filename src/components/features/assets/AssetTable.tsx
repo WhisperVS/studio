@@ -189,6 +189,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
         tempTable.className = 'border-collapse';
         tempTable.style.tableLayout = 'auto';
         tempTable.style.width = 'max-content';
+        tempTable.style.borderCollapse = 'collapse';
         
         // Clone header
         const tempHeader = headerTable.querySelector('thead')?.cloneNode(true) as HTMLElement;
@@ -200,8 +201,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             htmlCell.style.width = 'auto';
             htmlCell.style.minWidth = 'auto';
             htmlCell.style.maxWidth = 'none';
-            htmlCell.style.padding = '6px 8px'; // Reduced header padding
+            htmlCell.style.padding = '8px 6px'; // Same horizontal padding as data cells
             htmlCell.style.whiteSpace = 'nowrap'; // Prevent header text wrapping
+            htmlCell.style.borderRight = '1px solid transparent'; // Include border in measurement
+            htmlCell.style.boxSizing = 'border-box';
           });
           tempTable.appendChild(tempHeader);
         }
@@ -220,6 +223,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             htmlCell.style.maxWidth = 'none';
             htmlCell.style.padding = '4px 6px'; // Reduced padding for measurement
             htmlCell.style.whiteSpace = 'nowrap'; // Prevent wrapping for measurement
+            htmlCell.style.borderRight = '1px solid transparent'; // Include border in measurement
+            htmlCell.style.boxSizing = 'border-box';
           });
           tempBody.appendChild(clonedRow);
         });
@@ -246,8 +251,8 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             maxDataWidth = Math.max(maxDataWidth, width);
           });
           
-          // Use the larger of header or data width, plus some padding
-          const optimalWidth = Math.max(headerWidth, maxDataWidth) + 8; // Reduced to 8px extra padding
+          // Use the exact larger width (border already included in offsetWidth)
+          const optimalWidth = Math.max(headerWidth, maxDataWidth);
           columnWidths[index] = optimalWidth;
         });
 
@@ -259,6 +264,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
             htmlCell.style.width = `${width}px`;
             htmlCell.style.minWidth = `${width}px`;
             htmlCell.style.maxWidth = `${width}px`;
+            htmlCell.style.boxSizing = 'border-box';
           }
         });
 
@@ -279,10 +285,12 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
               max-width: ${width}px !important;
               padding: 4px 6px !important;
               white-space: nowrap !important;
+              box-sizing: border-box !important;
             }
             .asset-table thead tr th:nth-child(${index + 1}) {
-              padding: 6px 8px !important;
+              padding: 8px 6px !important;
               white-space: nowrap !important;
+              box-sizing: border-box !important;
             }
           `;
         });
@@ -301,6 +309,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
         headerTable.style.transform = `translateX(-${scrollEl.scrollLeft}px)`;
       }
       ribbonEl.scrollLeft = scrollEl.scrollLeft;
+      
+      // Adjust header inner padding to match scrollbar width (hidden behind overflow)
+      const scrollbarWidth = scrollEl.offsetWidth - scrollEl.clientWidth;
+      headerScrollEl.style.paddingRight = `${scrollbarWidth}px`;
     };
     
     const onRibbonScroll = () => {
@@ -318,6 +330,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
       } else {
         ribbonEl.style.display = 'none';
       }
+      
+      // Update header inner padding to match scrollbar width (hidden behind overflow)
+      const scrollbarWidth = scrollEl.offsetWidth - scrollEl.clientWidth;
+      headerScrollEl.style.paddingRight = `${scrollbarWidth}px`;
     };
 
     // Initial calibration and setup
@@ -327,6 +343,10 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
     const resizeObserver = new ResizeObserver(() => {
       autoCalibrate();
       setSpacerWidth();
+      
+      // Update header inner padding on resize (hidden behind overflow)
+      const scrollbarWidth = scrollEl.offsetWidth - scrollEl.clientWidth;
+      headerScrollEl.style.paddingRight = `${scrollbarWidth}px`;
     });
     resizeObserver.observe(scrollEl);
 
@@ -360,7 +380,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
           {/* Separate header container - syncs with data table column widths */}
           <div className="flex-shrink-0 table-header-border rounded-none table-header-bg">
             <div ref={headerScrollRef} className="w-full overflow-hidden rounded-none">
-              <Table className="border-collapse rounded-none" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
+              <Table className="border-collapse rounded-none" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px`, tableLayout: 'fixed' } : { tableLayout: 'fixed' } }>
                 <TableHeader className="rounded-none">
                   <TableHeaderRow className="rounded-none">
                     <TableHead className="w-10 min-w-[2.5rem] max-w-[2.5rem] p-0 text-center">
@@ -399,7 +419,7 @@ export function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds,
           
           {/* Data container - auto-calibrates column widths based on content */}
           <div ref={scrollRef} className="flex-1 overflow-auto relative scrollbar-neon pb-3">
-            <Table className="border-collapse asset-table" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px` } : undefined }>
+            <Table className="border-collapse asset-table" style={ forceHorizontal ? { minWidth: `${tableMinWidthPx}px`, tableLayout: 'fixed' } : { tableLayout: 'fixed' } }>
               <TableBody>
                 {(() => {
                   try {
