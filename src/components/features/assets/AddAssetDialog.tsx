@@ -986,7 +986,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                     <FormItem>
                       <FormLabel htmlFor="webui-input">{APP_CONFIG.labels.webui}</FormLabel>
                       <div className="relative">
-                        <div className="flex">
+                        <div className="flex items-center">
                           <Select
                             value={field.value?.startsWith('https://') ? 'https' : field.value?.startsWith('http://') ? 'http' : 'https'}
                             onValueChange={(protocol: string) => {
@@ -995,7 +995,7 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
                               field.onChange(`${protocol}://${cleanValue}`);
                             }}
                           >
-                            <SelectTrigger className="w-24 rounded-r-none border-r-0">
+                            <SelectTrigger className="h-9 w-24 rounded-r-none border-r-0">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
