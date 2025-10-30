@@ -143,6 +143,8 @@ export default function DashboardPage() {
 
   const handleFilterChange = (filterName: keyof typeof filters) => (value: string) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
+    // Clear selections when filters change to prevent issues with stale IDs
+    setSelectedAssetIds([]);
   }
 
   const handleClearFilters = () => {
@@ -151,6 +153,8 @@ export default function DashboardPage() {
       status: 'all',
       location: 'all',
     });
+    // Clear selections when clearing filters
+    setSelectedAssetIds([]);
   }
   
   const filteredAssets = useMemo(() => {
@@ -159,6 +163,12 @@ export default function DashboardPage() {
 
       const matches = assets.filter(asset => {
         try {
+          // Ensure asset has required properties
+          if (!asset || !asset.id) {
+            console.warn('Asset missing required properties:', asset);
+            return false;
+          }
+
           const searchMatch = !q || Object.values(asset).some(val => {
             try {
               if (val === null || val === undefined) return false;
@@ -539,7 +549,7 @@ export default function DashboardPage() {
                      </table>
                   </div>
                 ) : (
-                  <ErrorBoundary key={`${searchQuery}-${filters.category}-${filters.status}-${filters.location}`}>
+                  <ErrorBoundary key={`${searchQuery}-${filters.category}-${filters.status}-${filters.location}-${filteredAssets.length}`}>
                     <AssetTable
                       assets={filteredAssets}
                       onEdit={handleEdit}
