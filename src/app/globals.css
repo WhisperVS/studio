@@ -11,6 +11,14 @@ html {
   background: var(--page-background);
 }
 
+/* CSS Custom Properties for consistent values */
+:root {
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1440px;
+  --breakpoint-large: 1920px;
+}
+
 @layer base {
   * {
     border-color: var(--border);
@@ -147,36 +155,36 @@ html {
     
     /* Stack controls vertically on mobile */
     .mobile-stack {
-      flex-direction: column !important;
-      align-items: stretch !important;
+      flex-direction: column;
+      align-items: stretch;
     }
     
     /* Full width on mobile */
     .mobile-full {
-      width: 100% !important;
+      width: 100%;
     }
     
     /* Hide text on mobile for compact buttons */
     .mobile-hide-text {
-      display: none !important;
+      display: none;
     }
     
     /* Smaller padding on mobile */
     .mobile-compact {
-      padding: 0.5rem !important;
+      padding: 0.5rem;
     }
     
     /* Responsive dropdown menus */
     [data-radix-popper-content-wrapper] {
-      max-width: 95vw !important;
-      max-height: 80vh !important;
+      max-width: 95vw;
+      max-height: 80vh;
     }
     
     /* Ensure dropdowns don't overflow viewport */
     .dropdown-content-responsive {
-      max-width: 90vw !important;
-      max-height: 70vh !important;
-      overflow-y: auto !important;
+      max-width: 90vw;
+      max-height: 70vh;
+      overflow-y: auto;
     }
   }
 
@@ -296,8 +304,8 @@ html {
   }
   
   .search-input {
-    padding-left: 2.5rem !important; /* 40px - ensure enough space for icon */
-    padding-right: 2.5rem !important; /* 40px - space for clear button */
+    padding-left: 2.5rem; /* Space for search icon */
+    padding-right: 2.5rem; /* Space for clear button */
   }
   
   .search-clear-btn {

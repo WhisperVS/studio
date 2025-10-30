@@ -3,6 +3,44 @@ import { Laptop, Network, Printer, Server, HardDrive, LayoutGrid, Circle, CheckS
 import React from "react";
 import type { BadgeProps } from "@/components/ui/badge";
 
+// Responsive breakpoints
+export const BREAKPOINTS = {
+  mobile: 768,
+  tablet: 1024,
+  desktop: 1440,
+  large: 1920,
+} as const;
+
+// Design tokens for consistent spacing and sizing
+export const DESIGN_TOKENS = {
+  spacing: {
+    xs: 'p-2',
+    sm: 'p-4', 
+    md: 'p-6',
+    lg: 'p-8',
+  },
+  height: {
+    control: 'h-10',
+    input: 'h-10',
+    button: 'h-10',
+    sidebar: 'min-h-[80px]',
+  },
+  width: {
+    select: 'w-[200px]',
+    filterSelect: 'w-[160px]',
+    full: 'w-full',
+  },
+  gap: {
+    xs: 'gap-2',
+    sm: 'gap-4',
+    md: 'gap-6',
+  },
+  icon: {
+    sm: 'h-4 w-4',
+    md: 'h-5 w-5',
+    lg: 'h-6 w-6',
+  },
+} as const;
 
 export const APP_CONFIG = {
   categories: [
