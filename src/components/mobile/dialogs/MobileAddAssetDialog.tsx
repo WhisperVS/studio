@@ -167,7 +167,7 @@ function CommandDisplayDialog({
 }
 
 
-export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
+export function MobileAddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
   const { currentUser } = useUser();
   const [isJsonImportOpen, setIsJsonImportOpen] = useState(false);
@@ -674,16 +674,16 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
   useEffect(() => {
     if (!isOpen) return;
 
+    // Always hide theme button on mobile when dialog is open
     const handleResize = () => {
       const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
       if (themeBtn) {
-        if (window.innerWidth <= 767) {
-          themeBtn.style.display = 'none';
-        } else {
-          themeBtn.style.display = 'flex';
-        }
+        themeBtn.style.display = 'none';
       }
     };
+
+    // Hide immediately when dialog opens
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -705,19 +705,15 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         setUserSuggestions([]);
         
         // Show theme button again when dialog closes on mobile
-        if (window.innerWidth <= 767) {
-          const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
-          if (themeBtn) {
-            themeBtn.style.display = 'flex';
-          }
+        const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
+        if (themeBtn) {
+          themeBtn.style.display = 'flex';
         }
       } else {
         // Hide theme button on mobile when dialog opens
-        if (window.innerWidth <= 767) {
-          const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
-          if (themeBtn) {
-            themeBtn.style.display = 'none';
-          }
+        const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
+        if (themeBtn) {
+          themeBtn.style.display = 'none';
         }
       }
       onOpenChange(open);

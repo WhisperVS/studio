@@ -2,10 +2,10 @@
 "use client";
 
 import { APP_CONFIG } from "@/lib/config";
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/shared/ui/sidebar";
+import { Button } from "@/components/shared/ui/button";
+import { Badge } from "@/components/shared/ui/badge";
+import { Skeleton } from "@/components/shared/ui/skeleton";
 import React from "react";
 
 interface CategoryCountsProps {
@@ -55,7 +55,7 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
           {allCategories.map((category) => (
             <Button
               key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
+              variant={selectedCategory === category.id ? "primary" : "outline"}
               size="sm"
               onClick={() => onSelectCategory(category.id)}
               className="h-auto p-3 flex flex-col items-center gap-1 text-center"

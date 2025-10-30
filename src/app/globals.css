@@ -186,6 +186,167 @@ html {
       max-height: 70vh;
       overflow-y: auto;
     }
+    
+    /* Mobile dialog optimizations - using higher specificity */
+    .fixed[data-radix-dialog-content] {
+      max-width: 95vw !important;
+      max-height: 90vh !important;
+      margin: 0.5rem !important;
+      border-radius: 0.5rem !important;
+      width: calc(100vw - 1rem) !important;
+      position: fixed !important;
+      z-index: 100 !important;
+    }
+    
+    /* Dialog overlay should block background content */
+    [data-radix-dialog-overlay] {
+      z-index: 99 !important;
+      background: rgba(0, 0, 0, 0.8) !important;
+    }
+    
+    /* Ensure dialog close button has space - target the specific close button */
+    .dialog-close-btn.absolute.right-4.top-4 {
+      position: absolute !important;
+      top: 1rem !important;
+      right: 1rem !important;
+      z-index: 101 !important;
+      width: 32px !important;
+      height: 32px !important;
+      background: rgba(0, 0, 0, 0.2) !important;
+      border-radius: 6px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      padding: 0.25rem !important;
+    }
+    
+    /* Alternative selector for close button */
+    [data-radix-dialog-content] button[data-radix-dialog-close] {
+      position: absolute !important;
+      top: 1rem !important;
+      right: 1rem !important;
+      z-index: 101 !important;
+      width: 32px !important;
+      height: 32px !important;
+      background: rgba(0, 0, 0, 0.2) !important;
+      border-radius: 6px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      padding: 0.25rem !important;
+    }
+    
+    /* Dialog header container with proper spacing */
+    [data-radix-dialog-content] [data-radix-dialog-header] {
+      padding-bottom: 1rem !important;
+      padding-right: 3.5rem !important;
+    }
+    
+    /* Dialog header spacing to avoid close button overlap */
+    [data-radix-dialog-content] h2[data-radix-dialog-title] {
+      padding-right: 3.5rem !important;
+      margin-right: 0 !important;
+      line-height: 1.4 !important;
+      font-size: 1.25rem !important;
+    }
+    
+    /* Dialog description spacing */
+    [data-radix-dialog-content] p[data-radix-dialog-description] {
+      padding-right: 3.5rem !important;
+      margin-right: 0 !important;
+      margin-bottom: 1rem !important;
+      font-size: 0.875rem !important;
+    }
+    
+    /* Mobile dialog specific fixes with higher specificity */
+    .mobile-dialog-fix .dialog-close-btn {
+      position: absolute !important;
+      top: 1rem !important;
+      right: 1rem !important;
+      z-index: 102 !important;
+      width: 32px !important;
+      height: 32px !important;
+      background: rgba(0, 0, 0, 0.3) !important;
+      border-radius: 6px !important;
+      padding: 0.25rem !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    .mobile-dialog-fix h2 {
+      padding-right: 3.5rem !important;
+    }
+    
+    .mobile-dialog-fix p {
+      padding-right: 3.5rem !important;
+    }
+    
+    /* Hide theme button when dialog is open on mobile */
+    @media (max-width: 767px) {
+      body:has([data-radix-dialog-content]) .mobile-header .theme-toggle,
+      body:has([data-radix-dialog-content]) .mobile-header button[aria-label*="theme"],
+      body:has([data-radix-dialog-content]) .mobile-header [data-theme-toggle] {
+        display: none !important;
+      }
+      
+      /* Alternative approach - hide any button in mobile header when dialog is open */
+      body:has([data-radix-dialog-content]) .mobile-header button:not([data-radix-dialog-close]) {
+        visibility: hidden !important;
+      }
+    }
+    
+    /* Mobile form field spacing */
+    .mobile-form-spacing .space-y-4 > * + * {
+      margin-top: 1rem !important;
+    }
+    
+    /* Mobile select and input adjustments */
+    .mobile-form-spacing select,
+    .mobile-form-spacing input,
+    .mobile-form-spacing textarea {
+      font-size: 16px !important; /* Prevent zoom on iOS */
+      min-height: 44px !important; /* Better touch targets */
+    }
+    
+    /* Mobile button optimizations */
+    .mobile-form-spacing button {
+      font-size: 14px !important;
+      white-space: nowrap !important;
+      overflow: visible !important;
+      min-height: 40px !important;
+      padding: 0.5rem 0.75rem !important;
+    }
+    
+    /* Mobile button text should not wrap */
+    .mobile-form-spacing button span {
+      white-space: nowrap !important;
+    }
+    
+    /* Button container should allow proper spacing */
+    .mobile-form-spacing .flex.gap-2 {
+      gap: 0.5rem !important;
+      flex-wrap: wrap !important;
+    }
+    
+    /* Mobile dialog text and labels */
+    .mobile-form-spacing label {
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+      margin-bottom: 0.5rem !important;
+      display: block !important;
+    }
+    
+    /* Ensure dialog title and description are readable */
+    [data-radix-dialog-content] h2 {
+      font-size: 1.25rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    [data-radix-dialog-content] p {
+      font-size: 0.875rem !important;
+      line-height: 1.4 !important;
+    }
   }
 
   /* Desktop enhancements for large screens */
@@ -306,6 +467,23 @@ html {
   .search-input {
     padding-left: 2.5rem; /* Space for search icon */
     padding-right: 2.5rem; /* Space for clear button */
+  }
+  
+  /* Mobile-specific search adjustments */
+  @media (max-width: 767px) {
+    .search-input {
+      padding-left: 3rem !important; /* More space for search icon on mobile */
+      padding-right: 3rem !important; /* More space for clear button on mobile */
+      font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+    
+    .search-icon {
+      left: 1rem !important; /* 16px - more space on mobile */
+    }
+    
+    .search-clear-btn {
+      right: 1rem !important; /* 16px - more space on mobile */
+    }
   }
   
   .search-clear-btn {

@@ -4,7 +4,9 @@ import { SidebarProvider, Sidebar, SidebarInset, SidebarHeader, SidebarContent, 
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/shared/ui/input";
 import { Download, PlusCircle, Search, Trash2, User, X, Check, Settings2 } from "lucide-react";
-import { AssetTable, AddAssetDialog, EditAssetDialog, AssetDetailsDialog } from "@/components/features/assets";
+import { DesktopAssetTable } from "../tables/DesktopAssetTable";
+import { DesktopAddAssetDialog } from "../dialogs/DesktopAddAssetDialog";
+import { EditAssetDialog, AssetDetailsDialog } from "@/components/features/assets";
 import { SimpleThemeToggle } from "@/components/features/theme";
 import { Logo } from "@/components/layout";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shared/ui/select";
@@ -13,8 +15,8 @@ import { Skeleton } from "@/components/shared/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/shared/ui/alert-dialog";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/shared/ui/dropdown-menu";
 import { ErrorBoundary } from "@/components/shared/ui/error-boundary";
-import { CategoryCounts } from "./CategoryCounts";
-import { DashboardProps } from "./types";
+import { CategoryCounts } from "../../features/dashboard/CategoryCounts";
+import { DashboardProps } from "../../shared/types";
 import { useUser } from "@/components/shared/providers";
 
 export function DesktopDashboard(props: DashboardProps) {
@@ -306,7 +308,7 @@ export function DesktopDashboard(props: DashboardProps) {
                 </div>
               ) : (
                 <ErrorBoundary key={`desktop-${searchQuery}-${filters.category}-${filters.status}-${filters.location}-${filteredAssets.length}`}>
-                  <AssetTable
+                  <DesktopAssetTable
                     assets={filteredAssets}
                     onEdit={handleEdit}
                     onInfo={handleInfo}
@@ -323,7 +325,7 @@ export function DesktopDashboard(props: DashboardProps) {
         </div>
 
         {/* Dialogs */}
-        <AddAssetDialog 
+        <DesktopAddAssetDialog 
           isOpen={isAddAssetOpen} 
           onOpenChange={setAddAssetOpen} 
           onAssetAdded={fetchAssets} 

@@ -8,11 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+} from "@/components/shared/ui/dialog";
+import { Button } from "@/components/shared/ui/button";
 import { Asset } from "@/lib/types";
 import { format } from "date-fns";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/shared/ui/badge";
 import { APP_CONFIG, getStatusVariant } from "@/lib/config";
 import { ExternalLink } from "lucide-react";
 

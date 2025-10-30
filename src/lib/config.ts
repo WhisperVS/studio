@@ -1,7 +1,7 @@
 
 import { Laptop, Network, Printer, Server, HardDrive, LayoutGrid, Circle, CheckSquare } from "lucide-react";
 import React from "react";
-import type { BadgeProps } from "@/components/ui/badge";
+import type { BadgeProps } from "@/components/shared/ui/badge";
 
 // Responsive breakpoints
 export const BREAKPOINTS = {

@@ -1,7 +1,7 @@
 "use client";
 
 import { MoonStar, SunMedium } from "lucide-react";
-import { useTheme } from "@/components/providers";
+import { useTheme } from "@/components/shared/providers";
 import { useEffect, useState } from "react";
 
 export function SimpleThemeToggle() {

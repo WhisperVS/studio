@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Providers } from '@/components/providers';
-import { Toaster } from '@/components/ui/toaster';
+import { Providers } from '@/components/shared/providers';
+import { Toaster } from '@/components/shared/ui/toaster';
 import { PT_Sans, Space_Grotesk } from 'next/font/google';
 
 const ptSans = PT_Sans({ weight: ['400', '700'], subsets: ['latin'], display: 'swap' });

@@ -4,12 +4,12 @@ import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils"; // <- keep this import if you have cn; otherwise inline className join
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/shared/ui/button";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "@/components/ui/popover";
+} from "@/components/shared/ui/popover";
 import {
   Command,
   CommandInput,
@@ -17,7 +17,7 @@ import {
   CommandGroup,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@/components/shared/ui/command";
 
 type Option = { value: string; label: string };
 

@@ -12,7 +12,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/shared/ui/form";
 import {
   Dialog,
   DialogContent,
@@ -20,24 +20,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from "@/components/shared/ui/dialog";
+import { Button } from "@/components/shared/ui/button";
+import { Input } from "@/components/shared/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { DatePicker } from "@/components/ui/datepicker";
-import { Combobox } from "@/components/ui/combobox";
+} from "@/components/shared/ui/select";
+import { Textarea } from "@/components/shared/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/shared/ui/radio-group";
+import { DatePicker } from "@/components/shared/ui/datepicker";
+import { Combobox } from "@/components/shared/ui/combobox";
 import { Asset, AssetFormSchema, AssetFormValues } from "@/lib/types";
 import { APP_CONFIG } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
-import { useUser } from "@/components/providers";
+import { useUser } from "@/components/shared/providers";
 import { manufacturerCatalog, osCatalog } from "@/lib/catalog";
 import { userNames } from "@/lib/user-catalog";
 

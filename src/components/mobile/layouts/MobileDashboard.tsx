@@ -3,7 +3,9 @@
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/shared/ui/input";
 import { Download, PlusCircle, Search, Trash2, User, X, Check, Settings2 } from "lucide-react";
-import { AssetTable, AddAssetDialog, EditAssetDialog, AssetDetailsDialog } from "@/components/features/assets";
+import { MobileAssetTable } from "../tables/MobileAssetTable";
+import { MobileAddAssetDialog } from "../dialogs/MobileAddAssetDialog";
+import { EditAssetDialog, AssetDetailsDialog } from "@/components/features/assets";
 import { SimpleThemeToggle } from "@/components/features/theme";
 import { Logo } from "@/components/layout";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shared/ui/select";
@@ -12,8 +14,8 @@ import { Skeleton } from "@/components/shared/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/shared/ui/alert-dialog";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/shared/ui/dropdown-menu";
 import { ErrorBoundary } from "@/components/shared/ui/error-boundary";
-import { CategoryCounts } from "./CategoryCounts";
-import { DashboardProps } from "./types";
+import { CategoryCounts } from "../../features/dashboard/CategoryCounts";
+import { DashboardProps } from "../../shared/types";
 import { useUser } from "@/components/shared/providers";
 
 export function MobileDashboard(props: DashboardProps) {
@@ -307,7 +309,7 @@ export function MobileDashboard(props: DashboardProps) {
           ) : (
             <div className="h-full">
               <ErrorBoundary key={`mobile-${searchQuery}-${filters.category}-${filters.status}-${filters.location}-${filteredAssets.length}`}>
-                <AssetTable
+                <MobileAssetTable
                   assets={filteredAssets}
                   onEdit={handleEdit}
                   onInfo={handleInfo}
@@ -325,7 +327,7 @@ export function MobileDashboard(props: DashboardProps) {
       </div>
 
       {/* Dialogs */}
-      <AddAssetDialog 
+      <MobileAddAssetDialog 
         isOpen={isAddAssetOpen} 
         onOpenChange={setAddAssetOpen} 
         onAssetAdded={fetchAssets} 

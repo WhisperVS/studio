@@ -50,7 +50,7 @@ interface AssetTableProps {
   isMobile?: boolean;
 }
 
-export const AssetTable = React.memo(function AssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility, tableHeight, isMobile = false }: AssetTableProps) {
+export const DesktopAssetTable = React.memo(function DesktopAssetTable({ assets, onEdit, onInfo, onDelete, selectedAssetIds, onSelectedAssetIdsChange, columnVisibility, tableHeight, isMobile = false }: AssetTableProps) {
   const { toast } = useToast();
   const [sortKey, setSortKey] = useState<SortKey>('machineName');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');

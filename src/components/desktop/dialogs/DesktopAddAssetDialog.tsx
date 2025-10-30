@@ -167,7 +167,7 @@ function CommandDisplayDialog({
 }
 
 
-export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
+export function DesktopAddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetDialogProps) {
   const { toast } = useToast();
   const { currentUser } = useUser();
   const [isJsonImportOpen, setIsJsonImportOpen] = useState(false);
@@ -670,25 +670,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
     }
   }, [isOpen, form]);
 
-  // Handle theme button visibility on window resize when dialog is open
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleResize = () => {
-      const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
-      if (themeBtn) {
-        if (window.innerWidth <= 767) {
-          themeBtn.style.display = 'none';
-        } else {
-          themeBtn.style.display = 'flex';
-        }
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isOpen]);
-
   return (
     <>
   <Dialog open={isOpen} onOpenChange={(open: boolean) => {
@@ -703,22 +684,6 @@ export function AddAssetDialog({ isOpen, onOpenChange, onAssetAdded }: AddAssetD
         setModelSuggestions([]);
         setOsSuggestions([]);
         setUserSuggestions([]);
-        
-        // Show theme button again when dialog closes on mobile
-        if (window.innerWidth <= 767) {
-          const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
-          if (themeBtn) {
-            themeBtn.style.display = 'flex';
-          }
-        }
-      } else {
-        // Hide theme button on mobile when dialog opens
-        if (window.innerWidth <= 767) {
-          const themeBtn = document.querySelector('.theme-toggle-btn') as HTMLElement;
-          if (themeBtn) {
-            themeBtn.style.display = 'none';
-          }
-        }
       }
       onOpenChange(open);
     }}>
