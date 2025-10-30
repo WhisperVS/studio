@@ -93,125 +93,98 @@ html {
 }
 
 @layer utilities {
-  /* Fluid responsive design - no hardcoded breakpoints */
+  /* Proper responsive design with logical breakpoints */
   
-  /* Base scaling using viewport units for fluid responsiveness */
+  /* Base mobile-first approach */
   .main-layout {
-    font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+    font-size: 0.875rem; /* 14px base */
   }
   
-  /* Fluid typography scaling */
-  .text-responsive {
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  /* Tablet and up */
+  @media (min-width: 768px) {
+    .main-layout {
+      font-size: 0.9rem; /* 14.4px */
+    }
   }
   
-  .text-responsive-lg {
-    font-size: clamp(1rem, 2.5vw, 2rem);
+  /* Desktop and up */
+  @media (min-width: 1024px) {
+    .main-layout {
+      font-size: 1rem; /* 16px */
+    }
   }
   
-  .text-responsive-sm {
-    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  /* Large screens */
+  @media (min-width: 1440px) {
+    .main-layout {
+      font-size: 1rem; /* Keep at 16px for readability */
+    }
   }
   
-  /* Fluid spacing using viewport units */
-  .spacing-responsive {
-    padding: clamp(0.5rem, 2vw, 2rem);
-  }
-  
-  .spacing-responsive-sm {
-    padding: clamp(0.25rem, 1vw, 1rem);
-  }
-  
-  .gap-responsive {
-    gap: clamp(0.25rem, 1vw, 1rem);
-  }
-  
-  /* Fluid button sizing */
-  .btn-responsive {
-    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.5rem, 2vw, 1.5rem);
-    font-size: clamp(0.7rem, 1.5vw, 1rem);
-  }
-  
-  /* Fluid input sizing */
-  .input-responsive {
-    height: clamp(2rem, 4vw, 3rem);
-    font-size: clamp(0.7rem, 1.5vw, 1rem);
-    padding: clamp(0.25rem, 1vw, 0.75rem);
-  }
-  
-  /* Fluid icon sizing */
-  .icon-responsive {
-    width: clamp(0.8rem, 2vw, 1.5rem);
-    height: clamp(0.8rem, 2vw, 1.5rem);
-  }
-  
-  /* Container fluid widths */
-  .container-responsive {
-    width: clamp(200px, 20vw, 400px);
-  }
-  
-  .container-responsive-lg {
-    width: clamp(300px, 30vw, 600px);
-  }
-  
-  /* Flexible grid layouts */
-  .grid-responsive {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-    gap: clamp(0.5rem, 2vw, 2rem);
-  }
-  
-  /* Fluid sidebar width */
-  .sidebar-responsive {
-    width: clamp(200px, 15vw, 280px);
-  }
-  
-  /* Small screen scaling utility */
-  .scale-small-screen {
-    transform: scale(0.9);
-    transform-origin: top left;
-    width: 111.11%; /* Compensate for scale */
-    height: 111.11%; /* Compensate for scale */
-  }
-  
-  .scale-tiny-screen {
-    transform: scale(0.8);
-    transform-origin: top left;
-    width: 125%; /* Compensate for scale */
-    height: 125%; /* Compensate for scale */
+  /* Very large screens (TV-sized) */
+  @media (min-width: 1920px) {
+    .main-layout {
+      font-size: 1.1rem; /* 17.6px for large displays */
+    }
   }
   
   /* Centralized form control sizing to keep Input/Select consistency */
   .form-control {
-    height: clamp(2rem, 4vh, 3rem);      /* Fluid height */
-    padding-left: clamp(0.5rem, 1.5vw, 1rem); /* Fluid padding */
-    padding-right: clamp(0.5rem, 1.5vw, 1rem);
-    padding-top: clamp(0.25rem, 1vh, 0.75rem);
-    padding-bottom: clamp(0.25rem, 1vh, 0.75rem);
-    font-size: clamp(0.7rem, 1.5vw, 1rem);    /* Fluid text */
+    height: 2.25rem;      /* h-9 - 36px */
+    padding-left: 0.75rem; /* px-3 */
+    padding-right: 0.75rem; /* px-3 */
+    padding-top: 0.5rem;    /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+    font-size: 0.875rem;    /* text-sm */
   }
 
-  /* Override base body font size to be fluid */
-  body {
-    font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+  /* Mobile responsive adjustments */
+  @media (max-width: 767px) {
+    .form-control {
+      height: 2.5rem; /* Slightly larger for mobile touch */
+      font-size: 1rem; /* Prevent zoom on iOS */
+    }
+    
+    /* Stack controls vertically on mobile */
+    .mobile-stack {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    
+    /* Full width on mobile */
+    .mobile-full {
+      width: 100% !important;
+    }
+    
+    /* Hide text on mobile for compact buttons */
+    .mobile-hide-text {
+      display: none !important;
+    }
+    
+    /* Smaller padding on mobile */
+    .mobile-compact {
+      padding: 0.5rem !important;
+    }
+    
+    /* Responsive dropdown menus */
+    [data-radix-popper-content-wrapper] {
+      max-width: 95vw !important;
+      max-height: 80vh !important;
+    }
+    
+    /* Ensure dropdowns don't overflow viewport */
+    .dropdown-content-responsive {
+      max-width: 90vw !important;
+      max-height: 70vh !important;
+      overflow-y: auto !important;
+    }
   }
 
-  /* Fluid table cell sizing */
-  .asset-table td, .asset-table th {
-    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.5rem, 1.5vw, 1rem);
-    font-size: clamp(0.7rem, 1.4vw, 1rem);
-  }
-
-  /* Fluid button sizing for all buttons */
-  button {
-    padding: clamp(0.25rem, 1vh, 0.75rem) clamp(0.5rem, 2vw, 1.5rem) !important;
-    font-size: clamp(0.7rem, 1.5vw, 1rem) !important;
-  }
-
-  /* Fluid icon sizing for all icons */
-  .lucide, svg {
-    width: clamp(0.8rem, 2vw, 1.5rem) !important;
-    height: clamp(0.8rem, 2vw, 1.5rem) !important;
+  /* Desktop enhancements for large screens */
+  @media (min-width: 1440px) {
+    .form-control {
+      height: 2.5rem; /* Slightly larger for better usability */
+    }
   }
 
   /* Horizontal ribbon spacer used beneath wide tables to provide a synced horizontal scrollbar */
@@ -305,5 +278,39 @@ html {
     border: 3px solid var(--table-header-bg); /* blend the thumb with the ribbon background */
     background: linear-gradient(90deg, var(--scrollbar-thumb), var(--accent-color));
     box-shadow: var(--scrollbar-glow);
+  }
+
+  /* Search field styling to prevent text overlap */
+  .search-container {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem; /* 12px */
+    top: 50%;
+    transform: translateY(-50%);
+    color: hsl(var(--muted-foreground));
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .search-input {
+    padding-left: 2.5rem !important; /* 40px - ensure enough space for icon */
+    padding-right: 2.5rem !important; /* 40px - space for clear button */
+  }
+  
+  .search-clear-btn {
+    position: absolute;
+    right: 0.75rem; /* 12px */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

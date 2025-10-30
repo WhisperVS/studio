@@ -47,8 +47,10 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
                 {category.icon}
                 <span className="capitalize truncate">{category.name}</span>
               </div>
+              <SidebarMenuBadge className="text-xs px-1.5 py-0.5 ml-auto">
+                {category.id === 'all' ? totalCount : (counts[category.id] || 0)}
+              </SidebarMenuBadge>
             </SidebarMenuButton>
-            <SidebarMenuBadge className="text-xs px-1.5 py-0.5">{category.id === 'all' ? totalCount : (counts[category.id] || 0)}</SidebarMenuBadge>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
