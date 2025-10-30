@@ -3,6 +3,9 @@
 
 import { APP_CONFIG } from "@/lib/config";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
 interface CategoryCountsProps {
@@ -10,11 +13,25 @@ interface CategoryCountsProps {
   isLoading: boolean;
   selectedCategory: string;
   onSelectCategory: (category: string) => void;
+  isMobile?: boolean;
 }
 
-export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCategory }: CategoryCountsProps) {
+export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCategory, isMobile = false }: CategoryCountsProps) {
 
   if (isLoading) {
+    if (isMobile) {
+      return (
+        <div className="space-y-2">
+          <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Product Families</h3>
+          <div className="grid grid-cols-2 gap-2">
+            {Array.from({ length: APP_CONFIG.categories.length + 1 }).map((_, i) => (
+              <Skeleton key={i} className="h-10 w-full" />
+            ))}
+          </div>
+        </div>
+      );
+    }
+    
     return (
       <SidebarGroup>
         <SidebarGroupLabel>Product Families</SidebarGroupLabel>
@@ -30,6 +47,32 @@ export function CategoryCounts({ counts, isLoading, selectedCategory, onSelectCa
   const allCategories = [APP_CONFIG.allCategory, ...APP_CONFIG.categories];
   const totalCount = Object.values(counts).reduce((sum, count) => sum + count, 0);
 
+  if (isMobile) {
+    return (
+      <div className="space-y-3">
+        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Product Families</h3>
+        <div className="grid grid-cols-2 gap-2">
+          {allCategories.map((category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
+              size="sm"
+              onClick={() => onSelectCategory(category.id)}
+              className="h-auto p-3 flex flex-col items-center gap-1 text-center"
+            >
+              <div className="flex items-center gap-1">
+                {category.icon}
+                <span className="text-xs truncate">{category.name}</span>
+              </div>
+              <Badge variant="secondary" className="text-xs">
+                {category.id === 'all' ? totalCount : (counts[category.id] || 0)}
+              </Badge>
+            </Button>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <SidebarGroup className="sidebar-group">

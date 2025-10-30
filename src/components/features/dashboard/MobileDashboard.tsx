@@ -112,14 +112,12 @@ export function MobileDashboard(props: DashboardProps) {
       {/* Categories Section */}
       <div className="bg-card border-b">
         <div className={DESIGN_TOKENS.spacing.sm}>
-          <h3 className="font-medium mb-3 text-sm text-muted-foreground uppercase tracking-wide">
-            Product Categories
-          </h3>
           <CategoryCounts
             counts={categoryCounts}
             isLoading={isLoading}
             selectedCategory={filters.category}
             onSelectCategory={handleFilterChange('category')}
+            isMobile={true}
           />
         </div>
       </div>
