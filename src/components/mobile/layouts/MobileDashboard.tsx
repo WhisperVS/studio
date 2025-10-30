@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/shared/ui/input";
 import { Download, PlusCircle, Search, Trash2, User, X, Check, Settings2 } from "lucide-react";
@@ -60,23 +61,45 @@ export function MobileDashboard(props: DashboardProps) {
   
   const { currentUser, setCurrentUser } = useUser();
 
+  // Track orientation for layout adjustments
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isLandscapeMode = window.innerHeight <= 767 && window.innerWidth > window.innerHeight;
+      setIsLandscape(isLandscapeMode);
+    };
+
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', () => {
+      // Add a small delay to ensure dimensions are updated after orientation change
+      setTimeout(checkOrientation, 100);
+    });
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
+
   return (
-    <div className="mobile-dashboard flex flex-col min-h-screen bg-background">
-      {/* Mobile Header */}
-      <div className="mobile-header flex flex-col bg-background border-b">
+    <div className={`mobile-dashboard flex flex-col min-h-screen bg-background ${isLandscape ? 'landscape-mode' : 'portrait-mode'}`}>
+      {/* Mobile Header - Adaptive to orientation */}
+      <div className={`mobile-header flex flex-col bg-background border-b ${isLandscape ? 'pb-2' : ''}`}>
         {/* Top row with logo and theme toggle */}
-        <div className={`flex items-center justify-between ${DESIGN_TOKENS.spacing.sm} pb-2`}>
+        <div className={`flex items-center justify-between ${isLandscape ? 'px-4 py-1' : DESIGN_TOKENS.spacing.sm} ${isLandscape ? 'pb-1' : 'pb-2'}`}>
           <Logo />
           <SimpleThemeToggle />
         </div>
         
-        {/* Title and user selection */}
-        <div className="px-4 pb-3">
-          <h1 className="text-lg font-bold tracking-tight font-headline mb-3">
+        {/* Title and user selection - More compact in landscape */}
+        <div className={isLandscape ? 'px-4 pb-2' : 'px-4 pb-3'}>
+          <h1 className={`font-bold tracking-tight font-headline ${isLandscape ? 'text-base mb-1' : 'text-lg mb-3'}`}>
             Inventory Dashboard
           </h1>
           <Select value={currentUser} onValueChange={setCurrentUser}>
-            <SelectTrigger className={`${DESIGN_TOKENS.height.control} ${DESIGN_TOKENS.width.full}`}>
+            <SelectTrigger className={`${isLandscape ? 'h-8' : DESIGN_TOKENS.height.control} ${DESIGN_TOKENS.width.full}`}>
               <div className={`flex items-center ${DESIGN_TOKENS.gap.xs}`}>
                 <User className={`${DESIGN_TOKENS.icon.sm} text-muted-foreground`} />
                 <SelectValue placeholder="Select user..." />
@@ -90,51 +113,53 @@ export function MobileDashboard(props: DashboardProps) {
           </Select>
         </div>
 
-        {/* Quick Actions */}
-        <div className={`flex ${DESIGN_TOKENS.gap.xs} px-4 pb-4`}>
+        {/* Quick Actions - More compact in landscape */}
+        <div className={`flex ${DESIGN_TOKENS.gap.xs} px-4 ${isLandscape ? 'pb-2' : 'pb-4'}`}>
           <Button 
-            className={`flex-1 ${DESIGN_TOKENS.height.button}`} 
+            className={`flex-1 ${isLandscape ? 'h-8 text-sm' : DESIGN_TOKENS.height.button}`} 
             variant="export" 
             onClick={() => handleExport()}
           >
             <Download className={`mr-2 ${DESIGN_TOKENS.icon.sm}`} />
-            Export
+            {isLandscape ? 'Export' : 'Export'}
           </Button>
           <Button 
-            className={`flex-1 ${DESIGN_TOKENS.height.button}`} 
+            className={`flex-1 ${isLandscape ? 'h-8 text-sm' : DESIGN_TOKENS.height.button}`} 
             variant="primary" 
             onClick={() => setAddAssetOpen(true)}
           >
             <PlusCircle className={`mr-2 ${DESIGN_TOKENS.icon.sm}`} />
-            Add Asset
+            {isLandscape ? 'Add' : 'Add Asset'}
           </Button>
         </div>
       </div>
 
-      {/* Categories Section */}
-      <div className="bg-card border-b">
-        <div className={DESIGN_TOKENS.spacing.sm}>
-          <CategoryCounts
-            counts={categoryCounts}
-            isLoading={isLoading}
-            selectedCategory={filters.category}
-            onSelectCategory={handleFilterChange('category')}
-            isMobile={true}
-          />
+      {/* Categories Section - Hidden in landscape for space */}
+      {!isLandscape && (
+        <div className="bg-card border-b">
+          <div className={DESIGN_TOKENS.spacing.sm}>
+            <CategoryCounts
+              counts={categoryCounts}
+              isLoading={isLoading}
+              selectedCategory={filters.category}
+              onSelectCategory={handleFilterChange('category')}
+              isMobile={true}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-0">
-        {/* Search and Filters */}
+        {/* Search and Filters - More compact in landscape */}
         <div className="search-filters-section bg-background border-b">
-          <div className={`${DESIGN_TOKENS.spacing.sm} space-y-4`}>
+          <div className={`${isLandscape ? 'p-3 space-y-3' : `${DESIGN_TOKENS.spacing.sm} space-y-4`}`}>
             {/* Search */}
             <div className="relative search-container">
               <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${DESIGN_TOKENS.icon.sm} text-muted-foreground search-icon`} />
               <Input
                 placeholder="Search all fields..."
-                className={`${DESIGN_TOKENS.height.input} ${DESIGN_TOKENS.width.full} search-input`}
+                className={`${isLandscape ? 'h-8' : DESIGN_TOKENS.height.input} ${DESIGN_TOKENS.width.full} search-input`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -150,10 +175,10 @@ export function MobileDashboard(props: DashboardProps) {
               )}
             </div>
 
-            {/* Filters Grid */}
-            <div className={`grid grid-cols-1 gap-y-3`}>
+            {/* Filters Grid - Horizontal layout in landscape */}
+            <div className={`grid ${isLandscape ? 'grid-cols-3 gap-2' : 'grid-cols-1 gap-y-3'}`}>
               <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                <SelectTrigger className="h-10">
+                <SelectTrigger className={isLandscape ? "h-8" : "h-10"}>
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -165,7 +190,7 @@ export function MobileDashboard(props: DashboardProps) {
               </Select>
               
               <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                <SelectTrigger className="h-10">
+                <SelectTrigger className={isLandscape ? "h-8" : "h-10"}>
                   <SelectValue placeholder="Location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -177,12 +202,12 @@ export function MobileDashboard(props: DashboardProps) {
               </Select>
               
               <Button 
-                className="h-10" 
+                className={isLandscape ? "h-8" : "h-10"} 
                 variant="clear-filters" 
                 onClick={handleClearFilters}
               >
                 <X className="mr-2 h-4 w-4" />
-                Clear Filters
+                {isLandscape ? 'Clear' : 'Clear Filters'}
               </Button>
             </div>
           </div>

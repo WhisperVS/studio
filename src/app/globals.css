@@ -19,6 +19,19 @@ html {
   --breakpoint-large: 1920px;
 }
 
+/* Orientation-aware mobile detection */
+@media (max-width: 1023px) and (orientation: portrait) {
+  :root {
+    --is-mobile-portrait: 1;
+  }
+}
+
+@media (max-height: 767px) and (orientation: landscape) {
+  :root {
+    --is-mobile-landscape: 1;
+  }
+}
+
 @layer base {
   * {
     border-color: var(--border);
@@ -146,8 +159,8 @@ html {
     font-size: 0.875rem;    /* text-sm */
   }
 
-  /* Mobile responsive adjustments */
-  @media (max-width: 767px) {
+  /* Mobile responsive adjustments - Portrait and Mobile Detection */
+  @media (max-width: 767px), (max-width: 1023px) and (orientation: portrait), (max-height: 767px) and (orientation: landscape) {
     .form-control {
       height: 2.5rem; /* Slightly larger for mobile touch */
       font-size: 1rem; /* Prevent zoom on iOS */
@@ -283,17 +296,15 @@ html {
     }
     
     /* Hide theme button when dialog is open on mobile */
-    @media (max-width: 767px) {
-      body:has([data-radix-dialog-content]) .mobile-header .theme-toggle,
-      body:has([data-radix-dialog-content]) .mobile-header button[aria-label*="theme"],
-      body:has([data-radix-dialog-content]) .mobile-header [data-theme-toggle] {
-        display: none !important;
-      }
-      
-      /* Alternative approach - hide any button in mobile header when dialog is open */
-      body:has([data-radix-dialog-content]) .mobile-header button:not([data-radix-dialog-close]) {
-        visibility: hidden !important;
-      }
+    body:has([data-radix-dialog-content]) .mobile-header .theme-toggle,
+    body:has([data-radix-dialog-content]) .mobile-header button[aria-label*="theme"],
+    body:has([data-radix-dialog-content]) .mobile-header [data-theme-toggle] {
+      display: none !important;
+    }
+    
+    /* Alternative approach - hide any button in mobile header when dialog is open */
+    body:has([data-radix-dialog-content]) .mobile-header button:not([data-radix-dialog-close]) {
+      visibility: hidden !important;
     }
     
     /* Mobile form field spacing */
@@ -346,6 +357,43 @@ html {
     [data-radix-dialog-content] p {
       font-size: 0.875rem !important;
       line-height: 1.4 !important;
+    }
+  }
+
+  /* Mobile Landscape Specific Adjustments - iPhone and similar devices */
+  @media (max-height: 767px) and (orientation: landscape) {
+    /* Reduce header height in landscape */
+    .mobile-header {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    
+    /* Compact spacing in landscape */
+    .mobile-dashboard .mobile-header h1 {
+      font-size: 1rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    /* Optimize table for landscape */
+    .mobile-asset-table {
+      font-size: 0.875rem !important;
+    }
+    
+    /* Reduce dialog padding in landscape */
+    .fixed[data-radix-dialog-content] {
+      padding: 1rem !important;
+      margin: 0.25rem !important;
+    }
+    
+    /* More compact form spacing in landscape */
+    .mobile-form-spacing .space-y-4 > * + * {
+      margin-top: 0.75rem !important;
+    }
+    
+    /* Smaller buttons in landscape */
+    .mobile-form-spacing button {
+      min-height: 36px !important;
+      padding: 0.375rem 0.625rem !important;
     }
   }
 
@@ -470,7 +518,7 @@ html {
   }
   
   /* Mobile-specific search adjustments */
-  @media (max-width: 767px) {
+  @media (max-width: 767px), (max-width: 1023px) and (orientation: portrait), (max-height: 767px) and (orientation: landscape) {
     .search-input {
       padding-left: 3rem !important; /* More space for search icon on mobile */
       padding-right: 3rem !important; /* More space for clear button on mobile */
@@ -483,6 +531,24 @@ html {
     
     .search-clear-btn {
       right: 1rem !important; /* 16px - more space on mobile */
+    }
+  }
+
+  /* Mobile landscape search adjustments */
+  @media (max-height: 767px) and (orientation: landscape) {
+    .search-input {
+      padding-left: 2.5rem !important; /* Less padding in landscape */
+      padding-right: 2.5rem !important;
+      font-size: 14px !important; /* Smaller font in landscape */
+      height: 2.25rem !important; /* Shorter input in landscape */
+    }
+    
+    .search-icon {
+      left: 0.75rem !important;
+    }
+    
+    .search-clear-btn {
+      right: 0.75rem !important;
     }
   }
   
