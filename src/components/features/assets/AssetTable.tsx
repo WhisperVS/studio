@@ -294,17 +294,17 @@ export const AssetTable = React.memo(function AssetTable({ assets, onEdit, onInf
         columnWidths.forEach((width, index) => {
           css += `
             .asset-table tbody tr td:nth-child(${index + 1}) {
-              width: ${width}px !important;
-              min-width: ${width}px !important;
-              max-width: ${width}px !important;
-              padding: 4px 6px !important;
-              white-space: nowrap !important;
-              box-sizing: border-box !important;
+              width: ${width}px;
+              min-width: ${width}px;
+              max-width: ${width}px;
+              padding: 4px 6px;
+              white-space: nowrap;
+              box-sizing: border-box;
             }
             .asset-table thead tr th:nth-child(${index + 1}) {
-              padding: 8px 6px !important;
-              white-space: nowrap !important;
-              box-sizing: border-box !important;
+              padding: 8px 6px;
+              white-space: nowrap;
+              box-sizing: border-box;
             }
           `;
         });

@@ -7,7 +7,7 @@ import { AssetTable, AddAssetDialog, EditAssetDialog, AssetDetailsDialog } from 
 import { SimpleThemeToggle } from "@/components/features/theme";
 import { Logo } from "@/components/layout";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { APP_CONFIG } from "@/lib/config";
+import { APP_CONFIG, DESIGN_TOKENS } from "@/lib/config";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -63,7 +63,7 @@ export function MobileDashboard(props: DashboardProps) {
       {/* Mobile Header */}
       <div className="mobile-header flex flex-col bg-background border-b">
         {/* Top row with logo and theme toggle */}
-        <div className="flex items-center justify-between p-4 pb-2">
+        <div className={`flex items-center justify-between ${DESIGN_TOKENS.spacing.sm} pb-2`}>
           <Logo />
           <SimpleThemeToggle />
         </div>
@@ -74,9 +74,9 @@ export function MobileDashboard(props: DashboardProps) {
             Inventory Dashboard
           </h1>
           <Select value={currentUser} onValueChange={setCurrentUser}>
-            <SelectTrigger className="h-10 w-full">
-              <div className="flex items-center gap-2">
-                <User className="h-4 w-4 text-muted-foreground" />
+            <SelectTrigger className={`${DESIGN_TOKENS.height.control} ${DESIGN_TOKENS.width.full}`}>
+              <div className={`flex items-center ${DESIGN_TOKENS.gap.xs}`}>
+                <User className={`${DESIGN_TOKENS.icon.sm} text-muted-foreground`} />
                 <SelectValue placeholder="Select user..." />
               </div>
             </SelectTrigger>
@@ -89,21 +89,21 @@ export function MobileDashboard(props: DashboardProps) {
         </div>
 
         {/* Quick Actions */}
-        <div className="flex gap-2 px-4 pb-4">
+        <div className={`flex ${DESIGN_TOKENS.gap.xs} px-4 pb-4`}>
           <Button 
-            className="flex-1 h-10" 
+            className={`flex-1 ${DESIGN_TOKENS.height.button}`} 
             variant="export" 
             onClick={() => handleExport()}
           >
-            <Download className="mr-2 h-4 w-4" />
+            <Download className={`mr-2 ${DESIGN_TOKENS.icon.sm}`} />
             Export
           </Button>
           <Button 
-            className="flex-1 h-10" 
+            className={`flex-1 ${DESIGN_TOKENS.height.button}`} 
             variant="primary" 
             onClick={() => setAddAssetOpen(true)}
           >
-            <PlusCircle className="mr-2 h-4 w-4" />
+            <PlusCircle className={`mr-2 ${DESIGN_TOKENS.icon.sm}`} />
             Add Asset
           </Button>
         </div>
@@ -111,7 +111,7 @@ export function MobileDashboard(props: DashboardProps) {
 
       {/* Categories Section */}
       <div className="bg-card border-b">
-        <div className="p-4">
+        <div className={DESIGN_TOKENS.spacing.sm}>
           <h3 className="font-medium mb-3 text-sm text-muted-foreground uppercase tracking-wide">
             Product Categories
           </h3>
@@ -128,13 +128,13 @@ export function MobileDashboard(props: DashboardProps) {
       <div className="flex-1 flex flex-col min-h-0">
         {/* Search and Filters */}
         <div className="search-filters-section bg-background border-b">
-          <div className="p-4 space-y-4">
+          <div className={`${DESIGN_TOKENS.spacing.sm} space-y-4`}>
             {/* Search */}
             <div className="relative search-container">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground search-icon" />
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${DESIGN_TOKENS.icon.sm} text-muted-foreground search-icon`} />
               <Input
                 placeholder="Search all fields..."
-                className="pl-10 pr-10 h-10 w-full search-input"
+                className={`pl-10 pr-10 ${DESIGN_TOKENS.height.input} ${DESIGN_TOKENS.width.full} search-input`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -145,13 +145,13 @@ export function MobileDashboard(props: DashboardProps) {
                   onClick={() => setSearchQuery("")}
                   aria-label="Clear search"
                 >
-                  <X className="h-4 w-4" />
+                  <X className={DESIGN_TOKENS.icon.sm} />
                 </button>
               )}
             </div>
 
             {/* Filters Grid */}
-            <div className="grid grid-cols-1 gap-3">
+            <div className={`grid grid-cols-1 gap-y-3`}>
               <Select value={filters.status} onValueChange={handleFilterChange('status')}>
                 <SelectTrigger className="h-10">
                   <SelectValue placeholder="Status" />

@@ -8,7 +8,7 @@ import { AssetTable, AddAssetDialog, EditAssetDialog, AssetDetailsDialog } from 
 import { SimpleThemeToggle } from "@/components/features/theme";
 import { Logo } from "@/components/layout";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { APP_CONFIG } from "@/lib/config";
+import { APP_CONFIG, DESIGN_TOKENS } from "@/lib/config";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -75,7 +75,7 @@ export function DesktopDashboard(props: DashboardProps) {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className="sidebar-footer flex-shrink-0 border-t p-4 flex items-center justify-center min-h-[80px] bg-sidebar-background">
+          <div className={`sidebar-footer flex-shrink-0 border-t ${DESIGN_TOKENS.spacing.sm} flex items-center justify-center ${DESIGN_TOKENS.height.sidebar} bg-sidebar-background`}>
             <SimpleThemeToggle />
           </div>
         </Sidebar>
@@ -83,19 +83,19 @@ export function DesktopDashboard(props: DashboardProps) {
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <header className="page-header flex items-center justify-between p-4 lg:p-6 border-b gap-4 flex-wrap shrink-0">
-            <div className="flex items-center gap-4">
+          <header className={`page-header flex items-center justify-between ${DESIGN_TOKENS.responsive.padding} border-b ${DESIGN_TOKENS.responsive.gap} flex-wrap shrink-0`}>
+            <div className={`flex items-center ${DESIGN_TOKENS.responsive.gap}`}>
               <SidebarTrigger className="md:hidden" />
               <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold tracking-tight font-headline">
                 Inventory Dashboard
               </h1>
             </div>
-            <div className="flex items-center gap-4 flex-1 justify-end">
+            <div className={`flex items-center ${DESIGN_TOKENS.responsive.gap} flex-1 justify-end`}>
               <div className="w-full max-w-[200px]">
                 <Select value={currentUser} onValueChange={setCurrentUser}>
-                  <SelectTrigger className="h-10">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-muted-foreground" />
+                  <SelectTrigger className={DESIGN_TOKENS.height.control}>
+                    <div className={`flex items-center ${DESIGN_TOKENS.gap.xs}`}>
+                      <User className={`${DESIGN_TOKENS.icon.sm} text-muted-foreground`} />
                       <SelectValue placeholder="Select user..." />
                     </div>
                   </SelectTrigger>
@@ -107,25 +107,25 @@ export function DesktopDashboard(props: DashboardProps) {
                 </Select>
               </div>
               <Button size="sm" variant="export" onClick={() => handleExport()}>
-                <Download className="h-4 w-4" />
+                <Download className={DESIGN_TOKENS.icon.sm} />
                 <span>Export All</span>
               </Button>
               <Button size="sm" variant="primary" onClick={() => setAddAssetOpen(true)}>
-                <PlusCircle className="h-4 w-4" />
+                <PlusCircle className={DESIGN_TOKENS.icon.sm} />
                 <span>Add Asset</span>
               </Button>
             </div>
           </header>
 
           {/* Main Content Area */}
-          <main className="flex-1 flex flex-col min-h-0 p-4 lg:p-6">
+          <main className={`flex-1 flex flex-col min-h-0 ${DESIGN_TOKENS.responsive.padding}`}>
             {/* Search and Filters Row - Single horizontal row like v1.5 */}
-            <div className="top-controls flex flex-col lg:flex-row items-start lg:items-center gap-4 mb-4 shrink-0">
+            <div className={`top-controls flex flex-col lg:flex-row items-start lg:items-center ${DESIGN_TOKENS.responsive.gap} mb-4 shrink-0`}>
               <div className="relative w-full lg:flex-1 max-w-full lg:max-w-md search-container">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 search-icon text-muted-foreground" />
+                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${DESIGN_TOKENS.icon.sm} search-icon text-muted-foreground`} />
                 <Input
                   placeholder="Search all fields..."
-                  className="pl-10 pr-10 h-10 w-full search-input"
+                  className={`pl-10 pr-10 ${DESIGN_TOKENS.height.input} ${DESIGN_TOKENS.width.full} search-input`}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

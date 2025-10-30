@@ -32,13 +32,18 @@ export const DESIGN_TOKENS = {
   },
   gap: {
     xs: 'gap-2',
-    sm: 'gap-4',
-    md: 'gap-6',
+    sm: 'gap-3',
+    md: 'gap-4',
+    lg: 'gap-6',
   },
   icon: {
     sm: 'h-4 w-4',
     md: 'h-5 w-5',
     lg: 'h-6 w-6',
+  },
+  responsive: {
+    padding: 'p-4 lg:p-6',
+    gap: 'gap-4',
   },
 } as const;
 
