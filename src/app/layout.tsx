@@ -10,6 +10,7 @@ const spaceGrotesk = Space_Grotesk({ weight: ['400', '700'], subsets: ['latin'],
 export const metadata: Metadata = {
   title: 'G.A.I.M.',
   description: 'Group Administrators Items Manager',
+  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
   // Theme fix update
 };
 

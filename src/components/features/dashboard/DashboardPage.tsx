@@ -335,11 +335,11 @@ export default function DashboardPage() {
   return (
     <SidebarProvider>
       <div className="main-layout flex h-screen bg-background overflow-hidden">
-        <Sidebar collapsible="icon" className="border-r flex flex-col" style={{ height: '100vh', maxHeight: '100vh' }}>
+        <Sidebar collapsible="icon" className="border-r flex flex-col sidebar-responsive" style={{ height: '100vh', maxHeight: '100vh' }}>
           <SidebarHeader className="flex-shrink-0">
             <Logo />
           </SidebarHeader>
-          <SidebarContent className="flex-1 overflow-visible py-2" style={{ flex: '1 1 auto', minHeight: 0 }}>
+          <SidebarContent className="flex-1 overflow-visible spacing-responsive-sm" style={{ flex: '1 1 auto', minHeight: 0 }}>
             <CategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -347,8 +347,8 @@ export default function DashboardPage() {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className="sidebar-footer-manual flex-shrink-0 border-t p-4" style={{ 
-            minHeight: '80px', 
+          <div className="sidebar-footer-manual flex-shrink-0 border-t spacing-responsive" style={{ 
+            minHeight: 'clamp(60px, 8vh, 100px)', 
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
@@ -362,19 +362,19 @@ export default function DashboardPage() {
           </div>
         </Sidebar>
         <div className="flex-1 flex flex-col overflow-hidden">
-          <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0">
-            <div className="flex items-center gap-2">
+          <header className="page-header flex items-center justify-between spacing-responsive-sm border-b gap-responsive flex-wrap shrink-0">
+            <div className="flex items-center gap-responsive">
               <SidebarTrigger className="md:hidden" />
-              <h1 className="text-2xl font-bold tracking-tight font-headline">
+              <h1 className="text-responsive-lg font-bold tracking-tight font-headline">
                 Inventory Dashboard
               </h1>
             </div>
-            <div className="flex items-center gap-2 flex-1 justify-end">
-              <div className="w-full max-w-[180px]">
+            <div className="flex items-center gap-responsive flex-1 justify-end">
+              <div className="w-full container-responsive">
                 <Select value={currentUser} onValueChange={setCurrentUser}>
-                  <SelectTrigger className="h-9">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-muted-foreground" />
+                  <SelectTrigger className="input-responsive">
+                    <div className="flex items-center gap-responsive">
+                      <User className="icon-responsive text-muted-foreground" />
                       <SelectValue placeholder="Select user..." />
                     </div>
                   </SelectTrigger>
@@ -384,24 +384,24 @@ export default function DashboardPage() {
                 </Select>
               </div>
               <Button size="sm" variant="export" onClick={() => handleExport()}>
-                <Download className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">Export All</span>
+                <Download className="icon-responsive" />
+                <span className="text-responsive-sm">Export All</span>
               </Button>
               <Button size="sm" variant="primary" onClick={() => setAddAssetOpen(true)}>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">Add Asset</span>
+                <PlusCircle className="icon-responsive" />
+                <span className="text-responsive-sm">Add Asset</span>
               </Button>
             </div>
           </header>
-          <main className="flex-1 flex flex-col min-h-0 p-4 md:p-6 lg:p-4 max-h-[calc(100vh-80px)] overflow-hidden">
+          <main className="flex-1 flex flex-col min-h-0 spacing-responsive max-h-[calc(100vh-80px)] overflow-hidden">
             {/* Main content area */}
             <div className="flex-1 flex flex-col min-w-0 min-h-0">
-              <div className="top-controls flex items-center gap-2 mb-4 h-[58px] shrink-0">
-                <div className="relative w-80 max-w-sm search-container">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 search-icon" />
+              <div className="top-controls flex flex-col lg:flex-row items-start lg:items-center gap-responsive mb-4 shrink-0">
+                <div className="relative w-full lg:flex-1 max-w-full lg:max-w-md search-container">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 icon-responsive search-icon" />
                   <Input
                       placeholder="Search all fields..."
-                      className="pl-10 pr-10 h-9 w-full search-input"
+                      className="pl-10 pr-10 input-responsive w-full search-input text-responsive-sm"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -412,14 +412,14 @@ export default function DashboardPage() {
                       onClick={() => setSearchQuery("")}
                       aria-label="Clear search"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="icon-responsive" />
                     </button>
                   )}
                 </div>
-                <div className="flex items-center gap-2 flex-1 justify-end">
+                <div className="flex items-center gap-responsive flex-1 justify-end w-full lg:w-auto flex-wrap">
                   <Select value={filters.category} onValueChange={handleFilterChange('category')}>
-                    <SelectTrigger className="h-9 w-[180px]">
-                      <SelectValue placeholder="Filter by product family" />
+                    <SelectTrigger className="input-responsive container-responsive">
+                      <SelectValue placeholder="Product family" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Product Families</SelectItem>
@@ -427,8 +427,8 @@ export default function DashboardPage() {
                     </SelectContent>
                   </Select>
                   <Select value={filters.status} onValueChange={handleFilterChange('status')}>
-                    <SelectTrigger className="h-9 w-[180px]">
-                      <SelectValue placeholder="Filter by status" />
+                    <SelectTrigger className="input-responsive container-responsive">
+                      <SelectValue placeholder="Status" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Statuses</SelectItem>
@@ -436,47 +436,47 @@ export default function DashboardPage() {
                     </SelectContent>
                   </Select>
                   <Select value={filters.location} onValueChange={handleFilterChange('location')}>
-                    <SelectTrigger className="h-9 w-[180px]">
-                      <SelectValue placeholder="Filter by location" />
+                    <SelectTrigger className="input-responsive container-responsive">
+                      <SelectValue placeholder="Location" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Locations</SelectItem>
                       {APP_CONFIG.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
                     </SelectContent>
                   </Select>
-                  <div style={{ width: '120px', flexShrink: 0, display: 'flex', justifyContent: 'flex-start' }}>
+                  <div className="flex-shrink-0">
                     <Button size="sm" variant="clear-filters" onClick={handleClearFilters}>
-                      <X className="mr-2 h-4 w-4" />
-                      Clear Filters
+                      <X className="icon-responsive" />
+                      <span className="text-responsive-sm">Clear Filters</span>
                     </Button>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-4 p-3 mb-4 rounded-lg border bg-card h-[58px] shrink-0">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-responsive spacing-responsive-sm mb-4 rounded-lg border bg-card shrink-0">
+                <div className="flex items-center gap-responsive flex-wrap">
                   <Button size="sm" variant="select-all" onClick={handleSelectAllOnPage} disabled={isLoading || filteredAssets.length === 0}>
-                    <Check className="mr-2 h-4 w-4" />
-                    Select all on page
+                    <Check className="icon-responsive" />
+                    <span className="text-responsive-sm">Select all</span>
                   </Button>
                   <Button size="sm" variant="clear-selection" onClick={() => setSelectedAssetIds([])} disabled={selectedAssetIds.length === 0}>
-                    <X className="mr-2 h-4 w-4" />
-                    Clear selection
+                    <X className="icon-responsive" />
+                    <span className="text-responsive-sm">Clear</span>
                   </Button>
                 </div>
 
-                <div className="text-sm font-medium text-muted-foreground">
+                <div className="text-responsive-sm font-medium text-muted-foreground">
                   {selectedAssetIds.length > 0
-                      ? `${selectedAssetIds.length} of ${filteredAssets.length} item(s) selected.`
-                      : `${filteredAssets.length} items.`
+                      ? `${selectedAssetIds.length} of ${filteredAssets.length} selected`
+                      : `${filteredAssets.length} items`
                   }
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-responsive flex-wrap">
                   <DropdownMenu open={isViewDropdownOpen} onOpenChange={setIsViewDropdownOpen}>
                     <DropdownMenuTrigger asChild>
                         <Button size="sm" variant="view-settings">
-                            <Settings2 className="mr-2 h-4 w-4" />
-                            View
+                            <Settings2 className="icon-responsive" />
+                            <span className="text-responsive-sm">View</span>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[200px]">
@@ -506,12 +506,12 @@ export default function DashboardPage() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Button size="sm" variant="export" onClick={() => handleExport(true)} disabled={selectedAssetIds.length === 0}>
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Selected
+                    <Download className="icon-responsive" />
+                    <span className="text-responsive-sm">Export Selected</span>
                   </Button>
                   <Button size="sm" variant="delete" onClick={() => setIsBulkDeleteAlertOpen(true)} disabled={selectedAssetIds.length === 0}>
-                    <Trash2 className="mr-2 h-4 w-4" />
-                    Delete Selected
+                    <Trash2 className="icon-responsive" />
+                    <span className="text-responsive-sm">Delete Selected</span>
                   </Button>
                 </div>
               </div>

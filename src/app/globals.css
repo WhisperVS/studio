@@ -93,14 +93,125 @@ html {
 }
 
 @layer utilities {
+  /* Fluid responsive design - no hardcoded breakpoints */
+  
+  /* Base scaling using viewport units for fluid responsiveness */
+  .main-layout {
+    font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+  }
+  
+  /* Fluid typography scaling */
+  .text-responsive {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  }
+  
+  .text-responsive-lg {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+  }
+  
+  .text-responsive-sm {
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  }
+  
+  /* Fluid spacing using viewport units */
+  .spacing-responsive {
+    padding: clamp(0.5rem, 2vw, 2rem);
+  }
+  
+  .spacing-responsive-sm {
+    padding: clamp(0.25rem, 1vw, 1rem);
+  }
+  
+  .gap-responsive {
+    gap: clamp(0.25rem, 1vw, 1rem);
+  }
+  
+  /* Fluid button sizing */
+  .btn-responsive {
+    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.5rem, 2vw, 1.5rem);
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+  }
+  
+  /* Fluid input sizing */
+  .input-responsive {
+    height: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    padding: clamp(0.25rem, 1vw, 0.75rem);
+  }
+  
+  /* Fluid icon sizing */
+  .icon-responsive {
+    width: clamp(0.8rem, 2vw, 1.5rem);
+    height: clamp(0.8rem, 2vw, 1.5rem);
+  }
+  
+  /* Container fluid widths */
+  .container-responsive {
+    width: clamp(200px, 20vw, 400px);
+  }
+  
+  .container-responsive-lg {
+    width: clamp(300px, 30vw, 600px);
+  }
+  
+  /* Flexible grid layouts */
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: clamp(0.5rem, 2vw, 2rem);
+  }
+  
+  /* Fluid sidebar width */
+  .sidebar-responsive {
+    width: clamp(200px, 15vw, 280px);
+  }
+  
+  /* Small screen scaling utility */
+  .scale-small-screen {
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111.11%; /* Compensate for scale */
+    height: 111.11%; /* Compensate for scale */
+  }
+  
+  .scale-tiny-screen {
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125%; /* Compensate for scale */
+    height: 125%; /* Compensate for scale */
+  }
+  
   /* Centralized form control sizing to keep Input/Select consistency */
   .form-control {
-    height: 2.25rem;      /* h-9 */
-    padding-left: 0.75rem; /* px-3 */
-    padding-right: 0.75rem; /* px-3 */
-    padding-top: 0.5rem;    /* py-2 */
-    padding-bottom: 0.5rem; /* py-2 */
-    font-size: 0.875rem;    /* text-sm */
+    height: clamp(2rem, 4vh, 3rem);      /* Fluid height */
+    padding-left: clamp(0.5rem, 1.5vw, 1rem); /* Fluid padding */
+    padding-right: clamp(0.5rem, 1.5vw, 1rem);
+    padding-top: clamp(0.25rem, 1vh, 0.75rem);
+    padding-bottom: clamp(0.25rem, 1vh, 0.75rem);
+    font-size: clamp(0.7rem, 1.5vw, 1rem);    /* Fluid text */
+  }
+
+  /* Override base body font size to be fluid */
+  body {
+    font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+  }
+
+  /* Fluid table cell sizing */
+  .asset-table td, .asset-table th {
+    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.5rem, 1.5vw, 1rem);
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+  }
+
+  /* Fluid button sizing for all buttons */
+  button {
+    padding: clamp(0.25rem, 1vh, 0.75rem) clamp(0.5rem, 2vw, 1.5rem) !important;
+    font-size: clamp(0.7rem, 1.5vw, 1rem) !important;
+  }
+
+  /* Fluid icon sizing for all icons */
+  .lucide, svg {
+    width: clamp(0.8rem, 2vw, 1.5rem) !important;
+    height: clamp(0.8rem, 2vw, 1.5rem) !important;
   }
 
   /* Horizontal ribbon spacer used beneath wide tables to provide a synced horizontal scrollbar */
