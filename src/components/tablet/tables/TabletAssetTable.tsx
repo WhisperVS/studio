@@ -211,6 +211,10 @@ export const TabletAssetTable = React.memo(function TabletAssetTable({
       });
       style.textContent = css;
       dataTable.appendChild(style);
+
+      // Adjust header padding to account for scrollbar width
+      const scrollbarWidth = scrollEl.offsetWidth - scrollEl.clientWidth;
+      headerScrollEl.style.paddingRight = `${scrollbarWidth}px`;
     };
 
     const onDataScroll = () => {
