@@ -64,6 +64,9 @@ export const TabletAssetTable = React.memo(function TabletAssetTable({
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
+  
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const headerScrollRef = useRef<HTMLDivElement | null>(null);
 
   const handleRowSelect = useRef((assetId: string, checked: boolean) => {
     onSelectedAssetIdsChange(
@@ -82,6 +85,154 @@ export const TabletAssetTable = React.memo(function TabletAssetTable({
       );
     };
   }, [selectedAssetIds, onSelectedAssetIdsChange]);
+
+  // Synchronize header and body horizontal scrolling + auto-calibrate column widths
+  useEffect(() => {
+    const scrollEl = scrollRef.current;
+    const headerScrollEl = headerScrollRef.current;
+    if (!scrollEl || !headerScrollEl) return;
+
+    const autoCalibrate = () => {
+      const headerTable = headerScrollEl.querySelector('table');
+      const dataTable = scrollEl.querySelector('table');
+      
+      if (!headerTable || !dataTable) return;
+
+      // Create temporary container for measurement
+      const tempContainer = document.createElement('div');
+      tempContainer.style.position = 'absolute';
+      tempContainer.style.visibility = 'hidden';
+      tempContainer.style.top = '-9999px';
+      tempContainer.style.width = 'max-content';
+      document.body.appendChild(tempContainer);
+
+      // Create temporary table to measure natural widths
+      const tempTable = document.createElement('table');
+      tempTable.className = 'border-collapse';
+      tempTable.style.tableLayout = 'auto';
+      tempTable.style.width = 'max-content';
+      tempTable.style.borderCollapse = 'collapse';
+
+      // Clone header
+      const tempHeader = headerTable.querySelector('thead')?.cloneNode(true) as HTMLElement;
+      if (tempHeader) {
+        const headerCells = tempHeader.querySelectorAll('th');
+        headerCells.forEach(cell => {
+          const htmlCell = cell as HTMLElement;
+          htmlCell.style.width = 'auto';
+          htmlCell.style.minWidth = 'auto';
+          htmlCell.style.maxWidth = 'none';
+          htmlCell.style.padding = '1rem 0.25rem';
+          htmlCell.style.whiteSpace = 'nowrap';
+          htmlCell.style.borderRight = '1px solid transparent';
+          htmlCell.style.boxSizing = 'border-box';
+        });
+        tempTable.appendChild(tempHeader);
+      }
+
+      // Clone ALL data rows
+      const tempBody = document.createElement('tbody');
+      const dataRows = dataTable.querySelectorAll('tbody tr');
+      dataRows.forEach(row => {
+        const clonedRow = row.cloneNode(true) as HTMLElement;
+        const dataCells = clonedRow.querySelectorAll('td');
+        dataCells.forEach(cell => {
+          const htmlCell = cell as HTMLElement;
+          htmlCell.style.width = 'auto';
+          htmlCell.style.minWidth = 'auto';
+          htmlCell.style.maxWidth = 'none';
+          htmlCell.style.padding = '0.75rem 1rem';
+          htmlCell.style.whiteSpace = 'nowrap';
+          htmlCell.style.borderRight = '1px solid transparent';
+          htmlCell.style.boxSizing = 'border-box';
+        });
+        tempBody.appendChild(clonedRow);
+      });
+      tempTable.appendChild(tempBody);
+      tempContainer.appendChild(tempTable);
+
+      // Force layout calculation
+      tempTable.offsetWidth;
+
+      // Measure optimal column widths
+      const tempHeaderCells = tempTable.querySelectorAll('thead th');
+      const realHeaderCells = headerTable.querySelectorAll('thead th');
+      const columnWidths: number[] = [];
+
+      tempHeaderCells.forEach((tempCell, index) => {
+        const headerWidth = (tempCell as HTMLElement).offsetWidth;
+        
+        // Find widest data cell in this column
+        let maxDataWidth = 0;
+        const tempDataCells = tempTable.querySelectorAll(`tbody tr td:nth-child(${index + 1})`);
+        tempDataCells.forEach(dataCell => {
+          const width = (dataCell as HTMLElement).offsetWidth;
+          maxDataWidth = Math.max(maxDataWidth, width);
+        });
+        
+        // Use the larger width
+        const optimalWidth = Math.max(headerWidth, maxDataWidth);
+        columnWidths[index] = optimalWidth;
+      });
+
+      // Clean up temp container
+      document.body.removeChild(tempContainer);
+
+      // Apply widths to header cells
+      realHeaderCells.forEach((headerCell, index) => {
+        const htmlCell = headerCell as HTMLElement;
+        const width = columnWidths[index];
+        if (width) {
+          htmlCell.style.width = `${width}px`;
+          htmlCell.style.minWidth = `${width}px`;
+          htmlCell.style.maxWidth = `${width}px`;
+          htmlCell.style.boxSizing = 'border-box';
+        }
+      });
+
+      // Apply same widths to data table cells using CSS
+      const existingStyle = dataTable.querySelector('style[data-auto-calibrate]');
+      if (existingStyle) {
+        existingStyle.remove();
+      }
+
+      const style = document.createElement('style');
+      style.setAttribute('data-auto-calibrate', 'true');
+      let css = '';
+      columnWidths.forEach((width, index) => {
+        css += `
+          table tbody tr td:nth-child(${index + 1}) {
+            width: ${width}px !important;
+            min-width: ${width}px !important;
+            max-width: ${width}px !important;
+            box-sizing: border-box;
+          }
+        `;
+      });
+      style.textContent = css;
+      dataTable.appendChild(style);
+    };
+
+    const onDataScroll = () => {
+      headerScrollEl.scrollLeft = scrollEl.scrollLeft;
+    };
+
+    scrollEl.addEventListener('scroll', onDataScroll, { passive: true });
+
+    // Initial calibration
+    setTimeout(() => autoCalibrate(), 0);
+
+    // Recalibrate on resize
+    const resizeObserver = new ResizeObserver(() => {
+      autoCalibrate();
+    });
+    resizeObserver.observe(scrollEl);
+
+    return () => {
+      scrollEl.removeEventListener('scroll', onDataScroll);
+      resizeObserver.disconnect();
+    };
+  }, [assets, columnVisibility]);
 
   const handleSort = (column: SortKey) => {
     if (sortKey === column) {
@@ -167,43 +318,51 @@ export const TabletAssetTable = React.memo(function TabletAssetTable({
 
   return (
     <>
-      <div 
-        className="rounded-md border bg-card overflow-auto tablet-table-container"
-        style={{ height: tableHeight }}
-      >
-        <Table>
-          <TableHeader className="sticky top-0 bg-background z-10 border-b">
-            <TableHeaderRow>
-              <TableHead className="w-8 min-w-[2rem] max-w-[2rem] p-1 text-center">
-                <ExternalLink className="h-[17px] w-[17px] inline-block stroke-[2.5]" />
-                <span className="sr-only">Connect</span>
-              </TableHead>
-              <TableHead className="w-8 min-w-[2rem] max-w-[2rem] p-1 text-center">
-                <CheckSquare className="h-[17px] w-[17px] inline-block stroke-[2.5]" />
-                <span className="sr-only">Select</span>
-              </TableHead>
-              {visibleColumns.map((column) => (
-                <TableHead 
-                  key={column.id}
-                  onClick={() => handleSort(column.id as SortKey)}
-                  className="cursor-pointer whitespace-nowrap h-16 text-base font-semibold text-center align-middle"
-                >
-                  <div className="flex items-center justify-center h-full">
-                    {column.label}
-                    {sortKey === column.id && (
-                      <span className="ml-2 inline-block">
-                        {sortOrder === 'asc' ? '↑' : '↓'}
-                      </span>
-                    )}
-                  </div>
-                </TableHead>
-              ))}
-              <TableHead className="w-10 min-h-[44px] px-2">
-                <span className="sr-only">Actions</span>
-              </TableHead>
-            </TableHeaderRow>
-          </TableHeader>
-          <TableBody>
+      <div className="rounded-md border bg-card overflow-hidden flex flex-col" style={{ height: tableHeight }}>
+        
+        {/* Separate Header Container - Frozen */}
+        <div className="flex-shrink-0 table-header-bg border-b">
+          <div ref={headerScrollRef} className="overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableHeaderRow>
+                  <TableHead className="w-8 min-w-[2rem] max-w-[2rem] p-1 text-center">
+                    <ExternalLink className="h-[17px] w-[17px] inline-block stroke-[2.5]" />
+                    <span className="sr-only">Connect</span>
+                  </TableHead>
+                  <TableHead className="w-8 min-w-[2rem] max-w-[2rem] p-1 text-center">
+                    <CheckSquare className="h-[17px] w-[17px] inline-block stroke-[2.5]" />
+                    <span className="sr-only">Select</span>
+                  </TableHead>
+                  {visibleColumns.map((column) => (
+                    <TableHead 
+                      key={column.id}
+                      onClick={() => handleSort(column.id as SortKey)}
+                      className="cursor-pointer whitespace-nowrap h-16 text-base font-semibold text-center align-middle"
+                    >
+                      <div className="flex items-center justify-center h-full">
+                        {column.label}
+                        {sortKey === column.id && (
+                          <span className="ml-2 inline-block">
+                            {sortOrder === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </div>
+                    </TableHead>
+                  ))}
+                  <TableHead className="w-10 min-h-[44px] px-2">
+                    <span className="sr-only">Actions</span>
+                  </TableHead>
+                </TableHeaderRow>
+              </TableHeader>
+            </Table>
+          </div>
+        </div>
+
+        {/* Scrollable Body Container */}
+        <div ref={scrollRef} className="flex-1 overflow-auto tablet-table-container">
+          <Table>
+            <TableBody>
             {sortedAssets.map((asset) => (
               <TableRow 
                 key={asset.id} 
@@ -322,8 +481,9 @@ export const TabletAssetTable = React.memo(function TabletAssetTable({
                 </TableCell>
               </TableRow>
             ))}
-          </TableBody>
-        </Table>
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
       <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
