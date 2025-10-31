@@ -62,19 +62,25 @@ export function IpadDashboard(props: DashboardProps) {
   const { currentUser, setCurrentUser } = useUser();
 
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider 
+      defaultOpen={true}
+      style={{
+        '--sidebar-width': '16rem',
+        '--sidebar-width-icon': '4rem',
+      } as React.CSSProperties}
+    >
       <div className="ipad-dashboard flex h-screen bg-background overflow-hidden">
         {/* Tablet-Optimized Sidebar - Collapses to icon bar */}
         <Sidebar 
           collapsible="icon"
           className="tablet-sidebar border-r flex flex-col h-screen bg-sidebar backdrop-blur-xl"
         >
-          <SidebarHeader className="flex-shrink-0 px-3 py-4">
+          <SidebarHeader className="flex-shrink-0 border-b tablet-sidebar-header">
             <div className="tablet-sidebar-logo">
               <Logo />
             </div>
           </SidebarHeader>
-          <SidebarContent className="flex-1 overflow-y-auto overflow-x-hidden py-2 tablet-sidebar-content">
+          <SidebarContent className="flex-1 overflow-y-auto overflow-x-hidden tablet-sidebar-content">
             <TabletCategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -82,45 +88,45 @@ export function IpadDashboard(props: DashboardProps) {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className="sidebar-footer flex-shrink-0 border-t p-3 flex items-center justify-center bg-sidebar/50">
-            <SimpleThemeToggle />
-          </div>
         </Sidebar>
 
         {/* Main Content */}
         <SidebarInset className="flex-1 flex flex-col overflow-hidden tablet-main-content">
           {/* Fixed Header - Not scrollable */}
-          <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0 bg-background/95 backdrop-blur-sm z-10">
-            <div className="flex items-center gap-3">
-              <SidebarTrigger className="tablet-menu-trigger h-10 w-10 rounded-xl hover:bg-primary/10 active:scale-95 transition-all border-2 border-border hover:border-primary/30 flex items-center justify-center shadow-sm" />
-              <div className="h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
-              <h1 className="text-xl lg:text-2xl font-bold tracking-tight font-headline">
+          <header className="page-header flex items-center justify-between p-4 border-b gap-4 shrink-0 bg-background/95 backdrop-blur-sm z-10">
+            {/* Left Section - Menu & Title */}
+            <div className="flex items-center gap-3 min-w-0">
+              <SidebarTrigger className="tablet-menu-trigger h-10 w-10 rounded-xl hover:bg-primary/10 active:scale-95 transition-all border-2 border-border hover:border-primary/30 flex items-center justify-center shadow-sm flex-shrink-0" />
+              <div className="h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent flex-shrink-0" />
+              <h1 className="text-lg lg:text-xl font-bold tracking-tight font-headline truncate">
                 Inventory Dashboard
               </h1>
             </div>
-            <div className="flex items-center gap-4 flex-1 justify-end">
-              <div className="w-full max-w-[200px]">
-                <Select value={currentUser} onValueChange={setCurrentUser}>
-                  <SelectTrigger className="h-10">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-muted-foreground" />
-                      <SelectValue placeholder="Select user..." />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {APP_CONFIG.users.map(user => (
-                      <SelectItem key={user} value={user}>{user}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button size="sm" variant="export" onClick={() => handleExport()}>
-                <Download className="h-4 w-4 mr-2" />
-                <span>Export All</span>
+
+            {/* Right Section - Actions */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <SimpleThemeToggle />
+              <div className="h-6 w-px bg-border" />
+              <Select value={currentUser} onValueChange={setCurrentUser}>
+                <SelectTrigger className="h-9 w-[140px]">
+                  <div className="flex items-center gap-2">
+                    <User className="h-4 w-4 text-muted-foreground" />
+                    <SelectValue placeholder="User" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  {APP_CONFIG.users.map(user => (
+                    <SelectItem key={user} value={user}>{user}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button size="sm" variant="export" onClick={() => handleExport()} className="h-9">
+                <Download className="h-4 w-4 mr-1.5" />
+                <span className="hidden sm:inline">Export</span>
               </Button>
-              <Button size="sm" variant="primary" onClick={() => setAddAssetOpen(true)}>
-                <PlusCircle className="h-4 w-4 mr-2" />
-                <span>Add Asset</span>
+              <Button size="sm" variant="primary" onClick={() => setAddAssetOpen(true)} className="h-9">
+                <PlusCircle className="h-4 w-4 mr-1.5" />
+                <span>Add</span>
               </Button>
             </div>
           </header>
