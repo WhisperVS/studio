@@ -62,14 +62,17 @@ export function IpadDashboard(props: DashboardProps) {
   const { currentUser, setCurrentUser } = useUser();
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={true}>
       <div className="ipad-dashboard flex h-screen bg-background overflow-hidden">
-        {/* Sidebar */}
-        <Sidebar collapsible="icon" className="border-r flex flex-col h-screen">
-          <SidebarHeader className="flex-shrink-0">
+        {/* Sidebar - Enhanced with smooth transitions */}
+        <Sidebar 
+          collapsible="icon" 
+          className="border-r flex flex-col h-screen transition-all duration-300 ease-in-out"
+        >
+          <SidebarHeader className="flex-shrink-0 transition-opacity duration-200">
             <Logo />
           </SidebarHeader>
-          <SidebarContent className="flex-1 overflow-visible py-2">
+          <SidebarContent className="flex-1 overflow-visible py-2 transition-opacity duration-200">
             <TabletCategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -77,7 +80,7 @@ export function IpadDashboard(props: DashboardProps) {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className={`sidebar-footer flex-shrink-0 border-t ${DESIGN_TOKENS.spacing.sm} flex items-center justify-center ${DESIGN_TOKENS.height.sidebar} bg-sidebar-background`}>
+          <div className={`sidebar-footer flex-shrink-0 border-t ${DESIGN_TOKENS.spacing.sm} flex items-center justify-center ${DESIGN_TOKENS.height.sidebar} bg-sidebar-background transition-opacity duration-200`}>
             <SimpleThemeToggle />
           </div>
         </Sidebar>
@@ -87,7 +90,12 @@ export function IpadDashboard(props: DashboardProps) {
           {/* Fixed Header - Not scrollable */}
           <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0 bg-background z-10">
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="h-7 w-7" />
+              <div className="relative group">
+                <SidebarTrigger className="h-9 w-9 rounded-md hover:bg-accent transition-colors shadow-sm border" />
+                <div className="absolute left-0 top-full mt-2 px-2 py-1 bg-popover text-popover-foreground text-xs rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+                  Toggle Menu
+                </div>
+              </div>
               <h1 className="text-xl lg:text-2xl font-bold tracking-tight font-headline">
                 Inventory Dashboard
               </h1>

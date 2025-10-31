@@ -743,6 +743,45 @@ html {
   --selection-bar-height: 2.5rem; /* 40px */
 }
 
+/* Enhanced sidebar animations and styling */
+.ipad-dashboard [data-sidebar] {
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ipad-dashboard [data-sidebar][data-state="collapsed"] {
+  width: 3.5rem;
+}
+
+.ipad-dashboard [data-sidebar][data-state="expanded"] {
+  width: var(--sidebar-width);
+}
+
+/* Hide text when sidebar is collapsed */
+.ipad-dashboard [data-sidebar][data-state="collapsed"] [data-sidebar-content] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ipad-dashboard [data-sidebar][data-state="expanded"] [data-sidebar-content] {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 200ms ease-in 100ms;
+}
+
+/* Sidebar trigger button enhancement */
+.ipad-dashboard [data-sidebar-trigger] {
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.ipad-dashboard [data-sidebar-trigger]:hover {
+  transform: scale(1.05);
+}
+
+.ipad-dashboard [data-sidebar-trigger]:active {
+  transform: scale(0.95);
+}
+
 .ipad-dashboard .compact-header {
   height: var(--header-height);
   min-height: var(--header-height);
