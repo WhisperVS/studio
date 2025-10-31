@@ -7,6 +7,7 @@ import type { BadgeProps } from "@/components/shared/ui/badge";
 export const BREAKPOINTS = {
   mobile: 768,
   tablet: 1024,
+  ipad: 1366,     // iPad Pro and similar tablets
   desktop: 1440,
   large: 1920,
 } as const;

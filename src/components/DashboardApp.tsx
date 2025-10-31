@@ -2,7 +2,9 @@
 
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useDeviceType } from "@/hooks/use-device";
 import { MobileDashboard } from "@/components/mobile/layouts/MobileDashboard";
+import { IpadDashboard } from "@/components/tablet/layouts/IpadDashboard";
 import { DesktopDashboard } from "@/components/desktop/layouts/DesktopDashboard";
 import { type Asset } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
@@ -43,6 +45,7 @@ export default function DashboardApp() {
 
   const { toast } = useToast();
   const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
 
   // Initialize client state
   useEffect(() => {
@@ -423,9 +426,19 @@ export default function DashboardApp() {
   };
 
   // Show loading state during initial render to avoid hydration issues
-  if (isMobile === undefined) {
+  if (isMobile === undefined || deviceType === null) {
     return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
 
-  return isMobile ? <MobileDashboard {...dashboardProps} /> : <DesktopDashboard {...dashboardProps} />;
+  // Route to appropriate dashboard based on device type
+  if (deviceType === 'mobile') {
+    return <MobileDashboard {...dashboardProps} />;
+  }
+  
+  if (deviceType === 'ipad') {
+    return <IpadDashboard {...dashboardProps} />;
+  }
+  
+  // Default to desktop for tablet, desktop, and large screen types
+  return <DesktopDashboard {...dashboardProps} />;
 }

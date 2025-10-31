@@ -27,10 +27,10 @@ const buttonVariants = cva(
         "connect": "btn-connect",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 px-3",
-        lg: "h-11 px-8",
-        icon: "h-10 w-10",
+        default: "btn-size-default",
+        sm: "btn-size-sm", 
+        lg: "btn-size-lg",
+        icon: "btn-size-icon",
       },
     },
     defaultVariants: {
