@@ -566,7 +566,8 @@ textarea,
   border-radius: var(--radius-sm);
   color: var(--text-input-text);
   box-shadow: var(--text-input-shadow);
-  padding: var(--text-input-padding);
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-size: var(--text-input-font-size);
   line-height: var(--text-input-line-height);
   height: 2.5rem; /* Same as h-10 = 40px */
