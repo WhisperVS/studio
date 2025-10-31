@@ -737,30 +737,124 @@ html {
 
 /* Enhanced iPad-specific layout optimizations */
 .ipad-dashboard {
-  --sidebar-width: 16rem; /* 256px */
+  --sidebar-width: 15rem; /* 240px - slightly narrower for better tablet fit */
+  --sidebar-collapsed-width: 4.5rem; /* 72px - wider collapsed state for touch targets */
   --header-height: 4rem; /* 64px */
   --search-bar-height: 3.5rem; /* 56px */
   --selection-bar-height: 2.5rem; /* 40px */
 }
 
-/* Enhanced sidebar animations and styling */
-.ipad-dashboard [data-sidebar] {
-  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ipad-dashboard [data-sidebar][data-state="collapsed"] {
-  width: 3.5rem;
-}
-
-.ipad-dashboard [data-sidebar][data-state="expanded"] {
+/* Tablet-Optimized Sidebar with smooth transitions */
+.ipad-dashboard .tablet-sidebar {
   width: var(--sidebar-width);
+  transition: width 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hide text when sidebar is collapsed */
-.ipad-dashboard [data-sidebar][data-state="collapsed"] [data-sidebar-content] {
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* Sidebar content animations */
+.ipad-dashboard .tablet-sidebar-content {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] .tablet-sidebar-content {
   opacity: 0;
+  transform: translateX(-10px);
   pointer-events: none;
+}
+
+.ipad-dashboard .tablet-sidebar[data-state="expanded"] .tablet-sidebar-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 100ms;
+}
+
+/* Logo transition */
+.ipad-dashboard .tablet-sidebar-logo {
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] .tablet-sidebar-logo {
+  transform: scale(0.7);
+  opacity: 0.8;
+}
+
+/* Main content adjusts smoothly */
+.ipad-dashboard .tablet-main-content {
+  transition: margin-left 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Menu trigger button with visual feedback */
+.ipad-dashboard .tablet-menu-trigger {
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.ipad-dashboard .tablet-menu-trigger::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, var(--primary) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  z-index: -1;
+}
+
+.ipad-dashboard .tablet-menu-trigger:hover::before {
+  opacity: 0.1;
+}
+
+/* Sidebar footer styling */
+.ipad-dashboard .sidebar-footer {
+  transition: opacity 250ms ease;
+}
+
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] .sidebar-footer {
+  opacity: 0.7;
+}
+
+/* Smooth scrollbar for sidebar */
+.ipad-dashboard .tablet-sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ipad-dashboard .tablet-sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ipad-dashboard .tablet-sidebar-content::-webkit-scrollbar-thumb {
+  background: var(--sidebar-accent);
+  border-radius: 3px;
+  transition: background 200ms ease;
+}
+
+.ipad-dashboard .tablet-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--sidebar-accent-foreground);
+}
+
+/* Backdrop blur effect for modern look */
+.ipad-dashboard .page-header {
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
+
+/* Sidebar glass effect when collapsed */
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-right: 1px solid var(--border);
+}
+
+/* Elegant shadow for depth */
+.ipad-dashboard .tablet-sidebar {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.ipad-dashboard .tablet-sidebar[data-state="collapsed"] {
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
 }
 
 .ipad-dashboard [data-sidebar][data-state="expanded"] [data-sidebar-content] {

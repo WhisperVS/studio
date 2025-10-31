@@ -64,15 +64,17 @@ export function IpadDashboard(props: DashboardProps) {
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="ipad-dashboard flex h-screen bg-background overflow-hidden">
-        {/* Sidebar - Enhanced with smooth transitions */}
+        {/* Tablet-Optimized Sidebar - Collapses to icon bar */}
         <Sidebar 
-          collapsible="icon" 
-          className="border-r flex flex-col h-screen transition-all duration-300 ease-in-out"
+          collapsible="icon"
+          className="tablet-sidebar border-r flex flex-col h-screen bg-sidebar backdrop-blur-xl"
         >
-          <SidebarHeader className="flex-shrink-0 transition-opacity duration-200">
-            <Logo />
+          <SidebarHeader className="flex-shrink-0 px-3 py-4">
+            <div className="tablet-sidebar-logo">
+              <Logo />
+            </div>
           </SidebarHeader>
-          <SidebarContent className="flex-1 overflow-visible py-2 transition-opacity duration-200">
+          <SidebarContent className="flex-1 overflow-y-auto overflow-x-hidden py-2 tablet-sidebar-content">
             <TabletCategoryCounts
               counts={categoryCounts}
               isLoading={isLoading}
@@ -80,22 +82,18 @@ export function IpadDashboard(props: DashboardProps) {
               onSelectCategory={handleFilterChange('category')}
             />
           </SidebarContent>
-          <div className={`sidebar-footer flex-shrink-0 border-t ${DESIGN_TOKENS.spacing.sm} flex items-center justify-center ${DESIGN_TOKENS.height.sidebar} bg-sidebar-background transition-opacity duration-200`}>
+          <div className="sidebar-footer flex-shrink-0 border-t p-3 flex items-center justify-center bg-sidebar/50">
             <SimpleThemeToggle />
           </div>
         </Sidebar>
 
         {/* Main Content */}
-        <SidebarInset className="flex-1 flex flex-col overflow-hidden">
+        <SidebarInset className="flex-1 flex flex-col overflow-hidden tablet-main-content">
           {/* Fixed Header - Not scrollable */}
-          <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0 bg-background z-10">
-            <div className="flex items-center gap-4">
-              <div className="relative group">
-                <SidebarTrigger className="h-9 w-9 rounded-md hover:bg-accent transition-colors shadow-sm border" />
-                <div className="absolute left-0 top-full mt-2 px-2 py-1 bg-popover text-popover-foreground text-xs rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
-                  Toggle Menu
-                </div>
-              </div>
+          <header className="page-header flex items-center justify-between p-4 border-b gap-4 flex-wrap shrink-0 bg-background/95 backdrop-blur-sm z-10">
+            <div className="flex items-center gap-3">
+              <SidebarTrigger className="tablet-menu-trigger h-10 w-10 rounded-xl hover:bg-primary/10 active:scale-95 transition-all border-2 border-border hover:border-primary/30 flex items-center justify-center shadow-sm" />
+              <div className="h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
               <h1 className="text-xl lg:text-2xl font-bold tracking-tight font-headline">
                 Inventory Dashboard
               </h1>
